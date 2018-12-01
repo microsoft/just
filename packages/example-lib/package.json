@@ -1,0 +1,16 @@
+{
+  "name": "example-lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rig build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "build-rig": "*",
+    "build-rig-typescript": "*"
+  }
+}

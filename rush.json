@@ -83,6 +83,16 @@
       "packageName": "build-rig-docs",
       "projectFolder": "packages/documentation/website",
       "reviewCategory": "docs"
+    },
+    {
+      "packageName": "example-lib",
+      "projectFolder": "packages/example-lib",
+      "reviewCategory": "docs"
+    },
+    {
+      "packageName": "example-app",
+      "projectFolder": "packages/example-app",
+      "reviewCategory": "docs"
     }
   ]
 }

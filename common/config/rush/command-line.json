@@ -27,13 +27,13 @@
        * of the "scripts" hook in the project's package.json file.
        * The name should be comprised of lower case words separated by hyphens.
        */
-      "name": "my-bulk-command",
+      "name": "dev",
 
       /**
        * (Required) A short summary of the custom command to be shown when printing command line
        * help, e.g. "rush --help".
        */
-      "summary": "Example bulk custom command",
+      "summary": "Innerloop",
 
       /**
        * A detailed description of the command to be shown when printing command line
@@ -50,14 +50,14 @@
        * simultaneously for multiple projects.  Similar to "rush build", regardless of parallelism
        * projects will not start processing until their dependencies have completed processing.
        */
-      "enableParallelism": false,
+      "enableParallelism": true,
 
       /**
        * Normally Rush requires that each project's package.json has a "scripts" entry matching
        * the custom command name.  To disable this check, set "ignoreMissingScript" to true;
        * projects with a missing definition will be skipped.
        */
-      "ignoreMissingScript": false
+      "ignoreMissingScript": true
     },
 
     {
@@ -120,7 +120,7 @@
        * (Required) A list of custom commands and/or built-in Rush commands that this parameter may
        * be used with.  The parameter will be appended to the shell command that Rush invokes.
        */
-       "associatedCommands": [ "build", "rebuild" ]
+      "associatedCommands": ["build", "rebuild"]
     },
 
     {
@@ -132,7 +132,7 @@
       "longName": "--my-choice",
       "description": "A custom choice parameter for the \"my-global-command\" custom command",
 
-      "associatedCommands": [ "my-global-command" ],
+      "associatedCommands": ["my-global-command"],
 
       /**
        * Normally if a parameter is omitted from the command line, it will not be passed

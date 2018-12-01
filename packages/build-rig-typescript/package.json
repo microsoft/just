@@ -8,13 +8,11 @@
     "dev": "tsc -w --preserveWatchOutput"
   },
   "dependencies": {
-    "build-rig": "*"
+    "build-rig": "*",
+    "resolve": "^1.8.1"
   },
   "devDependencies": {
     "@types/node": "^8.9.4",
-    "@types/yargs": "^12.0.1",
-    "@types/undertaker": "^1.2.0",
-    "@types/undertaker-registry": "^1.0.1",
     "typescript": "^3.1.6",
     "jest": "^23.6.0"
   },

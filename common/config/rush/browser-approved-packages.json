@@ -104,7 +104,11 @@
     },
     {
       "name": "build-rig",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "docs", "production" ]
+    },
+    {
+      "name": "build-rig-typescript",
+      "allowedCategories": [ "docs" ]
     },
     {
       "name": "bunyan",
@@ -161,6 +165,10 @@
     {
       "name": "react-dom",
       "allowedCategories": [ "docs" ]
+    },
+    {
+      "name": "resolve",
+      "allowedCategories": [ "production" ]
     },
     {
       "name": "rimraf",

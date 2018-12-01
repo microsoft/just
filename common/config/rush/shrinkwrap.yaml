@@ -22,6 +22,7 @@ dependencies:
   office-ui-fabric-react: 6.109.0
   react: 16.6.3
   react-dom: 16.6.3
+  resolve: 1.8.1
   typescript: 3.1.6
   undertaker: 1.2.0
   undertaker-registry: 1.0.1
@@ -267,7 +268,6 @@ packages:
       integrity: sha512-/PCJWN+CKt5v1xcGn4vnuu13QDoV+P7NcICP44BoonAJoPSGwVkgrXihFIQGiEjjPlUDBIw1cM7wYFLARS2/hw==
   /@babel/plugin-proposal-class-properties/7.1.0/@babel!core@7.1.6:
     dependencies:
-      '@babel/core': 7.1.6
       '@babel/helper-function-name': 7.1.0
       '@babel/helper-member-expression-to-functions': 7.0.0
       '@babel/helper-optimise-call-expression': 7.0.0
@@ -311,7 +311,6 @@ packages:
       integrity: sha512-14fhfoPcNu7itSen7Py1iGN0gEm87hX/B+8nZPqkdmANyyYWYMY2pjA3r8WXbWVKMzfnSNS0xY8GVS0IjXi/iw==
   /@babel/plugin-proposal-object-rest-spread/7.0.0/@babel!core@7.1.6:
     dependencies:
-      '@babel/core': 7.1.6
       '@babel/helper-plugin-utils': 7.0.0
       '@babel/plugin-syntax-object-rest-spread': /@babel/plugin-syntax-object-rest-spread/7.0.0/@babel!core@7.1.6
     dev: false
@@ -1153,7 +1152,6 @@ packages:
       integrity: sha512-YIBfpJNQMBkb6MCkjz/A9J76SNCSuGVamOVBgoUkLzpJD/z8ghHi9I42LQ4pulVX68N/MmImz6ZTixt7Azgexw==
   /@babel/preset-env/7.1.6/@babel!core@7.1.6:
     dependencies:
-      '@babel/core': 7.1.6
       '@babel/helper-module-imports': 7.0.0
       '@babel/helper-plugin-utils': 7.0.0
       '@babel/plugin-proposal-async-generator-functions': /@babel/plugin-proposal-async-generator-functions/7.1.0/@babel!core@7.1.6
@@ -1215,7 +1213,6 @@ packages:
       integrity: sha512-oayxyPS4Zj+hF6Et11BwuBkmpgT/zMxyuZgFrMeZID6Hdh3dGlk4sHCAhdBCpuCKW2ppBfl2uCCetlrUIJRY3w==
   /@babel/preset-react/7.0.0/@babel!core@7.1.6:
     dependencies:
-      '@babel/core': 7.1.6
       '@babel/helper-plugin-utils': 7.0.0
       '@babel/plugin-transform-react-display-name': /@babel/plugin-transform-react-display-name/7.0.0/@babel!core@7.1.6
       '@babel/plugin-transform-react-jsx': /@babel/plugin-transform-react-jsx/7.1.6/@babel!core@7.1.6
@@ -1243,7 +1240,6 @@ packages:
       integrity: sha512-f/+CRmaCe7rVEvcvPvxeA8j5aJhHC3aJie7YuqcMDhUOuyWLA7J/aNrTaHIzoWPEhpHA54mec4Mm8fv8KBlv3g==
   /@babel/register/7.0.0/@babel!core@7.1.6:
     dependencies:
-      '@babel/core': 7.1.6
       core-js: 2.5.7
       find-cache-dir: 1.0.0
       home-or-tmp: 3.0.0
@@ -1394,28 +1390,10 @@ packages:
       react-dom: ^0.14.9 || ^15.0.1-0 || ^16.0.0-0
     resolution:
       integrity: sha512-eRz6SMl3ZMs5cdyyutIVZowyfFtQdM8bgb4JN1owaOzeRqbJNkG+dIYQ7eYiAQJOJ1TjO/ChoXbBgI0yE5tkmQ==
-  /@uifabric/charting/0.28.4/react-dom@16.6.3+react@16.6.3:
+  /@uifabric/charting/0.28.4/react-dom@16.6.3:
     dependencies:
-      '@microsoft/load-themed-styles': 1.8.39
-      '@types/d3-array': 1.2.1
-      '@types/d3-axis': 1.0.10
-      '@types/d3-scale': 2.0.0
-      '@types/d3-selection': 1.3.0
-      '@types/d3-shape': 1.2.6
-      '@types/d3-time-format': 2.1.0
-      '@uifabric/icons': 6.3.0
-      '@uifabric/set-version': 1.1.3
-      d3-array: 1.2.1
-      d3-axis: 1.0.8
-      d3-scale: 2.0.0
-      d3-selection: 1.3.0
-      d3-shape: 1.2.2
-      d3-time-format: 2.1.3
-      office-ui-fabric-react: /office-ui-fabric-react/6.106.3/react-dom@16.6.3+react@16.6.3
-      prop-types: 15.6.2
-      react: 16.6.3
-      react-dom: /react-dom/16.6.3/react@16.6.3
-      tslib: 1.9.3
+      office-ui-fabric-react: /office-ui-fabric-react/6.106.3/react-dom@16.6.3
+      react-dom: 16.6.3
     dev: false
     id: registry.npmjs.org/@uifabric/charting/0.28.4
     peerDependencies:
@@ -1445,25 +1423,13 @@ packages:
       react-dom: '>=16.3.2-0 <17.0.0'
     resolution:
       integrity: sha512-wiq0wmwvGFkTO422RBQbDEBQrLgmOTcmsYLsmjP5if96bUIs3V28to7WF9NwTaCVUMRp00VWU53KZL4bUofH5Q==
-  /@uifabric/experiments/6.44.0/react-dom@16.6.3+react@16.6.3:
+  /@uifabric/experiments/6.44.0/react-dom@16.6.3:
     dependencies:
-      '@microsoft/load-themed-styles': 1.8.44
-      '@uifabric/charting': /@uifabric/charting/0.28.4/react-dom@16.6.3+react@16.6.3
-      '@uifabric/file-type-icons': /@uifabric/file-type-icons/6.4.0/react-dom@16.6.3+react@16.6.3
-      '@uifabric/fluent-theme': /@uifabric/fluent-theme/0.10.0/react-dom@16.6.3+react@16.6.3
-      '@uifabric/foundation': /@uifabric/foundation/0.5.7/react-dom@16.6.3+react@16.6.3
-      '@uifabric/icons': 6.3.0
-      '@uifabric/merge-styles': 6.15.0
-      '@uifabric/set-version': 1.1.3
-      '@uifabric/styling': 6.38.0
-      '@uifabric/theme-samples': 0.1.2
-      '@uifabric/variants': /@uifabric/variants/6.13.0/react-dom@16.6.3+react@16.6.3
-      deep-assign: 2.0.0
-      office-ui-fabric-react: /office-ui-fabric-react/6.109.0/react-dom@16.6.3+react@16.6.3
-      prop-types: 15.6.2
-      react: 16.6.3
-      react-dom: /react-dom/16.6.3/react@16.6.3
-      tslib: 1.9.3
+      '@uifabric/charting': /@uifabric/charting/0.28.4/react-dom@16.6.3
+      '@uifabric/file-type-icons': /@uifabric/file-type-icons/6.4.0/react-dom@16.6.3
+      '@uifabric/foundation': /@uifabric/foundation/0.5.7/react-dom@16.6.3
+      office-ui-fabric-react: /office-ui-fabric-react/6.109.0/react-dom@16.6.3
+      react-dom: 16.6.3
     dev: false
     id: registry.npmjs.org/@uifabric/experiments/6.44.0
     peerDependencies:
@@ -1482,13 +1448,9 @@ packages:
       react-dom: '>=16.3.2-0 <17.0.0'
     resolution:
       integrity: sha512-UGEZMAcYxHIBVn6EowEGewHWGYxq0RxeOIAo18sMpJOkRwohKvznwJUU3KN9zs0RYIMvJy8+jcChfFyJrzAsYQ==
-  /@uifabric/file-type-icons/6.4.0/react-dom@16.6.3+react@16.6.3:
+  /@uifabric/file-type-icons/6.4.0/react-dom@16.6.3:
     dependencies:
-      '@uifabric/set-version': 1.1.3
-      '@uifabric/styling': 6.38.0
-      react: 16.6.3
-      react-dom: /react-dom/16.6.3/react@16.6.3
-      tslib: 1.9.3
+      react-dom: 16.6.3
     dev: false
     id: registry.npmjs.org/@uifabric/file-type-icons/6.4.0
     peerDependencies:
@@ -1496,17 +1458,6 @@ packages:
       react-dom: '>=16.3.2-0 <17.0.0'
     resolution:
       integrity: sha512-d+SnHKKmuBSsGDDcbkvUuz+OYyU3pULBMu5uc8j3Gw+ZLe6cMZJqyNdrGuKOsTe2tkoD0Y3ehWRVWCBhnrUwDQ==
-  /@uifabric/fluent-theme/0.10.0/react-dom@16.6.3+react@16.6.3:
-    dependencies:
-      '@uifabric/merge-styles': 6.15.0
-      '@uifabric/set-version': 1.1.3
-      '@uifabric/variants': /@uifabric/variants/6.13.0/react-dom@16.6.3+react@16.6.3
-      office-ui-fabric-react: /office-ui-fabric-react/6.109.0/react-dom@16.6.3+react@16.6.3
-      tslib: 1.9.3
-    dev: false
-    id: registry.npmjs.org/@uifabric/fluent-theme/0.10.0
-    resolution:
-      integrity: sha512-OkSsfM/JhEtbyf6e0kWnyygzTPhKlwkXqF3tv1G6EzCTuxccHywzFw4WA/OH72CNW2OoRWg4u6NxwPB0chXV+g==
   /@uifabric/fluent-theme/0.8.0:
     dependencies:
       '@uifabric/merge-styles': 6.15.0
@@ -1527,12 +1478,9 @@ packages:
       react-dom: ^0.14.9 || ^15.0.1-0 || ^16.0.0-0
     resolution:
       integrity: sha512-WRCDcMdNt7RF1a7+41f25ESyMX/Pn2DAseeOuxDQF/kzsj5frs7ygHBYtXHRe5pwOwvpOmQgd+9OCeWpBuUL9Q==
-  /@uifabric/foundation/0.5.7/react-dom@16.6.3+react@16.6.3:
+  /@uifabric/foundation/0.5.7/react-dom@16.6.3:
     dependencies:
-      '@uifabric/set-version': 1.1.3
-      react: 16.6.3
-      react-dom: /react-dom/16.6.3/react@16.6.3
-      tslib: 1.9.3
+      react-dom: 16.6.3
     dev: false
     id: registry.npmjs.org/@uifabric/foundation/0.5.7
     peerDependencies:
@@ -1602,14 +1550,9 @@ packages:
       react-dom: '>=16.3.2-0 <17.0.0'
     resolution:
       integrity: sha512-Kyl51GKvamRXOrb+EfBrwa3HR8aD5uLpiuN/94eVbyuNBuLs6BxIeosqzBTsgu1sqIsiO4f17EvVyrRlHBuadg==
-  /@uifabric/utilities/6.27.0/react-dom@16.6.3+react@16.6.3:
+  /@uifabric/utilities/6.27.0/react-dom@16.6.3:
     dependencies:
-      '@uifabric/merge-styles': 6.15.0
-      '@uifabric/set-version': 1.1.3
-      prop-types: 15.6.2
-      react: 16.6.3
-      react-dom: /react-dom/16.6.3/react@16.6.3
-      tslib: 1.9.3
+      react-dom: 16.6.3
     dev: false
     id: registry.npmjs.org/@uifabric/utilities/6.27.0
     peerDependencies:
@@ -1625,15 +1568,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-VEdETryN2EFIs9qeT3z153NnS8fceK0iZmmLCM5E8IocDK1ijQwJbcXLLRiPZosyZ4Ha50bni61VAZL/JW6whQ==
-  /@uifabric/variants/6.13.0/react-dom@16.6.3+react@16.6.3:
-    dependencies:
-      '@uifabric/set-version': 1.1.3
-      office-ui-fabric-react: /office-ui-fabric-react/6.109.0/react-dom@16.6.3+react@16.6.3
-      tslib: 1.9.3
-    dev: false
-    id: registry.npmjs.org/@uifabric/variants/6.13.0
-    resolution:
-      integrity: sha512-llk9BNnquhCcI5YCU3Mu8OMsI1FjAJuJ/6TLrDhkYbvuxfkc3NUPRXdoLGQyirnMSgr2vsGqxYsemBHb20M5Eg==
   /abab/2.0.0:
     dev: false
     resolution:
@@ -6737,18 +6671,10 @@ packages:
       react-dom: '>=16.3.2-0 <17.0.0'
     resolution:
       integrity: sha512-vV1iILK401vxTXxhY2zaFXMmmso2rdKi9IyEdzuCp/wM/qW4RnsWr8OIg8kpDClyC30fNe9397ETtTs8b9etvA==
-  /office-ui-fabric-react/6.106.3/react-dom@16.6.3+react@16.6.3:
+  /office-ui-fabric-react/6.106.3/react-dom@16.6.3:
     dependencies:
-      '@microsoft/load-themed-styles': 1.8.39
-      '@uifabric/icons': 6.3.0
-      '@uifabric/merge-styles': 6.15.0
-      '@uifabric/set-version': 1.1.3
-      '@uifabric/styling': 6.35.0
-      '@uifabric/utilities': /@uifabric/utilities/6.27.0/react-dom@16.6.3+react@16.6.3
-      prop-types: 15.6.2
-      react: 16.6.3
-      react-dom: /react-dom/16.6.3/react@16.6.3
-      tslib: 1.9.3
+      '@uifabric/utilities': /@uifabric/utilities/6.27.0/react-dom@16.6.3
+      react-dom: 16.6.3
     dev: false
     id: registry.npmjs.org/office-ui-fabric-react/6.106.3
     peerDependencies:
@@ -6772,18 +6698,10 @@ packages:
       react-dom: '>=16.3.2-0 <17.0.0'
     resolution:
       integrity: sha512-MuZGurTdjuaAz1LD5C+voesFUGTMWqsaOy/8qucuaiCMFP4WKpBjkW75DaGwbfdg0lQlJesYl7AbJ7gVz7Dl5g==
-  /office-ui-fabric-react/6.109.0/react-dom@16.6.3+react@16.6.3:
+  /office-ui-fabric-react/6.109.0/react-dom@16.6.3:
     dependencies:
-      '@microsoft/load-themed-styles': 1.8.44
-      '@uifabric/icons': 6.3.0
-      '@uifabric/merge-styles': 6.15.0
-      '@uifabric/set-version': 1.1.3
-      '@uifabric/styling': 6.38.0
-      '@uifabric/utilities': /@uifabric/utilities/6.27.0/react-dom@16.6.3+react@16.6.3
-      prop-types: 15.6.2
-      react: 16.6.3
-      react-dom: /react-dom/16.6.3/react@16.6.3
-      tslib: 1.9.3
+      '@uifabric/utilities': /@uifabric/utilities/6.27.0/react-dom@16.6.3
+      react-dom: 16.6.3
     dev: false
     id: registry.npmjs.org/office-ui-fabric-react/6.109.0
     peerDependencies:
@@ -7597,7 +7515,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       prop-types: 15.6.2
-      react: 16.6.3
       scheduler: 0.11.2
     dev: false
     id: registry.npmjs.org/react-dom/16.6.3
@@ -9477,19 +9394,19 @@ packages:
   'file:projects/build-rig-docs.tgz':
     dependencies:
       '@babel/core': 7.1.6
-      '@babel/plugin-proposal-class-properties': /@babel/plugin-proposal-class-properties/7.1.0/@babel!core@7.1.6
-      '@babel/plugin-proposal-object-rest-spread': /@babel/plugin-proposal-object-rest-spread/7.0.0/@babel!core@7.1.6
+      '@babel/plugin-proposal-class-properties': 7.1.0
+      '@babel/plugin-proposal-object-rest-spread': 7.0.0
       '@babel/polyfill': 7.0.0
-      '@babel/preset-env': /@babel/preset-env/7.1.6/@babel!core@7.1.6
-      '@babel/preset-react': /@babel/preset-react/7.0.0/@babel!core@7.1.6
-      '@babel/register': /@babel/register/7.0.0/@babel!core@7.1.6
+      '@babel/preset-env': 7.1.6
+      '@babel/preset-react': 7.0.0
+      '@babel/register': 7.0.0
       '@babel/traverse': 7.1.6
       '@babel/types': 7.1.6
-      '@uifabric/experiments': /@uifabric/experiments/6.44.0/react-dom@16.6.3+react@16.6.3
+      '@uifabric/experiments': /@uifabric/experiments/6.44.0/react-dom@16.6.3
       docusaurus: 1.5.1
-      office-ui-fabric-react: /office-ui-fabric-react/6.109.0/react-dom@16.6.3+react@16.6.3
+      office-ui-fabric-react: /office-ui-fabric-react/6.109.0/react-dom@16.6.3
       react: 16.6.3
-      react-dom: /react-dom/16.6.3/react@16.6.3
+      react-dom: 16.6.3
     dev: false
     name: '@rush-temp/build-rig-docs'
     resolution:
@@ -9503,11 +9420,12 @@ packages:
       '@types/undertaker-registry': 1.0.1
       '@types/yargs': 12.0.1
       jest: 23.6.0
+      resolve: 1.8.1
       typescript: 3.2.1
     dev: false
     name: '@rush-temp/build-rig-typescript'
     resolution:
-      integrity: sha512-R3T7NsWrun4HvU/0gD4lHTMPLgtSOxUy57h20T7q5klzAB6Ihn4/TV6PGnXbdUSHemVETMiLaasjFCdWA89OMQ==
+      integrity: sha512-WrKv4OkjQSREemdCuxLTZ6AYoRmHJBtugjDe7TYE4jLDtO7K5RLk+4A4yRAlTzRbmLhY+4HN+P0jYRmUiq5Jlw==
       tarball: 'file:projects/build-rig-typescript.tgz'
     version: 0.0.0
   'file:projects/build-rig.tgz':
@@ -9555,6 +9473,7 @@ specifiers:
   office-ui-fabric-react: ^6.109.0
   react: ^16.6.0
   react-dom: ^16.6.0
+  resolve: ^1.8.1
   typescript: ^3.1.6
   undertaker: ^1.2.0
   undertaker-registry: ^1.0.1
