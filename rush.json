@@ -1,0 +1,88 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+  "rushVersion": "5.5.2",
+  "pnpmVersion": "2.15.1",
+
+  "pnpmOptions": {
+    "strictPeerDependencies": false
+  },
+
+  "nodeSupportedVersionRange": ">=8.9.4 <11.0.0",
+
+  "approvedPackagesPolicy": {
+    "reviewCategories": ["production", "tools", "docs"]
+  },
+
+  "projectFolderMaxDepth": 3,
+
+  "gitPolicy": {
+    /**
+     * Work at a big company?  Tired of finding Git commits at work with unprofessional Git
+     * emails such as "beer-lover@my-college.edu"?  Rush can validate people's Git email address
+     * before they get started.
+     *
+     * Define a list of regular expressions describing allowable e-mail patterns for Git commits.
+     * They are case-insensitive anchored JavaScript RegExps.  Example: ".*@example\.com"
+     *
+     * IMPORTANT: Because these are regular expressions encoded as JSON string literals,
+     * RegExp escapes need two backspashes, and ordinary periods should be "\\.".
+     */
+    "allowedEmailRegExps": ["[^@]+@microsoft.com"],
+
+    /**
+     * When Rush reports that the address is malformed, the notice can include an example
+     * of a recommended email.  Make sure it conforms to one of the allowedEmailRegExps
+     * expressions.
+     */
+    "sampleEmail": "mrexample@microsoft.com"
+  },
+
+  "repository": {
+    /**
+     * This setting is sometimes needed when using "rush change" with multiple Git remotes.
+     * It specifies the remote url for the official Git repository.  If this URL is provided,
+     * "rush change" will use it to find the right remote to compare against.
+     */
+    // "url": "https://github.com/Microsoft/rush-example"
+  },
+
+  "eventHooks": {
+    "preRushInstall": [
+      // "common/scripts/pre-rush-install.js"
+    ],
+
+    "postRushInstall": [],
+
+    "preRushBuild": [],
+
+    "postRushBuild": []
+  },
+
+  /**
+   * Rush can collect anonymous telemetry about everyday developer activity such as
+   * success/failure of installs, builds, and other operations.  You can use this to identify
+   * problems with your toolchain or Rush itself.  THIS TELEMETRY IS NOT SHARED WITH MICROSOFT.
+   * It is written into JSON files in the common/temp folder.  It's up to you to write scripts
+   * that read these JSON files and do something with them.  These scripts are typically registered
+   * in the "eventHooks" section.
+   */
+  // "telemetryEnabled": false,
+
+  "projects": [
+    {
+      "packageName": "build-rig",
+      "projectFolder": "packages/build-rig",
+      "reviewCategory": "production"
+    },
+    {
+      "packageName": "build-rig-typescript",
+      "projectFolder": "packages/build-rig-typescript",
+      "reviewCategory": "production"
+    },
+    {
+      "packageName": "build-rig-docs",
+      "projectFolder": "packages/documentation/website",
+      "reviewCategory": "docs"
+    }
+  ]
+}

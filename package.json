@@ -1,0 +1,13 @@
+{
+  "name": "build-rig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node ./common/scripts/install-run-rush.js install"
+  },
+  "keywords": [],
+  "author": "",
+  "private": true,
+  "license": "MIT"
+}
