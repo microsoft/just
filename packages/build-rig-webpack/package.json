@@ -1,6 +1,6 @@
 {
   "name": "build-rig-webpack",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "dev": "tsc -w --preserveWatchOutput"
   },
   "dependencies": {
-    "build-rig": "*",
+    "build-rig": "1.0.0",
     "resolve": "^1.8.1",
     "webpack": "^4.26.1",
     "css-loader": "^1.0.1",

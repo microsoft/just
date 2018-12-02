@@ -1,0 +1,17 @@
+{
+  "changes": [
+    {
+      "changeType": 0,
+      "newVersion": "1.0.0",
+      "packageName": "build-rig-webpack",
+      "comment": ""
+    },
+    {
+      "changeType": 1,
+      "comment": "Dependency build-rig version bump from * to 1.0.0.",
+      "packageName": "build-rig-webpack"
+    }
+  ],
+  "packageName": "build-rig-webpack",
+  "email": "kchau@microsoft.com"
+}

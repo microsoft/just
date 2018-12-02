@@ -1,0 +1,12 @@
+{
+  "changes": [
+    {
+      "changeType": 0,
+      "newVersion": "1.0.0",
+      "packageName": "build-rig",
+      "comment": ""
+    }
+  ],
+  "packageName": "build-rig",
+  "email": "kchau@microsoft.com"
+}
