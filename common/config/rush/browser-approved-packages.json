@@ -75,6 +75,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@types/resolve",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/rimraf",
       "allowedCategories": [ "production" ]
     },
@@ -84,6 +88,10 @@
     },
     {
       "name": "@types/undertaker-registry",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@types/webpack",
       "allowedCategories": [ "production" ]
     },
     {
@@ -99,6 +107,10 @@
       "allowedCategories": [ "docs" ]
     },
     {
+      "name": "autoprefixer",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "build",
       "allowedCategories": [ "production" ]
     },
@@ -111,6 +123,10 @@
       "allowedCategories": [ "docs" ]
     },
     {
+      "name": "build-rig-webpack",
+      "allowedCategories": [ "docs" ]
+    },
+    {
       "name": "bunyan",
       "allowedCategories": [ "production" ]
     },
@@ -119,11 +135,19 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "case-sensitive-paths-webpack-plugin",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "chalk",
       "allowedCategories": [ "production" ]
     },
     {
       "name": "cpx",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "css-loader",
       "allowedCategories": [ "production" ]
     },
     {
@@ -159,6 +183,10 @@
       "allowedCategories": [ "docs" ]
     },
     {
+      "name": "postcss-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "react",
       "allowedCategories": [ "docs" ]
     },
@@ -175,6 +203,14 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "sass-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "style-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "typescript",
       "allowedCategories": [ "production" ]
     },
@@ -184,6 +220,10 @@
     },
     {
       "name": "undertaker-registry",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack",
       "allowedCategories": [ "production" ]
     },
     {

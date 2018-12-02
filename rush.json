@@ -80,6 +80,11 @@
       "reviewCategory": "production"
     },
     {
+      "packageName": "build-rig-webpack",
+      "projectFolder": "packages/build-rig-webpack",
+      "reviewCategory": "production"
+    },
+    {
       "packageName": "build-rig-docs",
       "projectFolder": "packages/documentation/website",
       "reviewCategory": "docs"

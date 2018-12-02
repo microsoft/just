@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node ./common/scripts/install-run-rush.js install"
+    "postinstall": "node ./common/scripts/install-run-rush.js install",
+    "start": "node ./scripts/watch.js"
   },
   "keywords": [],
   "author": "",

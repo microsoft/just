@@ -2,13 +2,16 @@ import Undertaker from 'undertaker';
 import { undertaker } from './undertaker';
 import { Arguments } from 'yargs';
 import { taskLogger, ILogger } from './logger';
+import { Duplex } from 'stream';
 
 interface TaskContext {
-  argv?: Arguments;
-  logger?: ILogger;
+  argv: Arguments;
+  logger: ILogger;
 }
 
-interface TaskFunction extends Undertaker.TaskFunction, TaskContext {}
+interface TaskFunction extends Undertaker.TaskFunctionParams {
+  (this: TaskContext, done: (error?: any) => void): void | Duplex | NodeJS.Process | Promise<never> | any;
+}
 
 /**
  * This form of task definition takes a name and also a function
@@ -31,14 +34,18 @@ function task(firstParam: string | TaskFunction, fn?: TaskFunction) {
 }
 
 function _wrapFunction(taskName: string, fn: TaskFunction) {
-  const wrapped: Undertaker.TaskFunction = function(done: any) {
+  const wrapped: Undertaker.TaskFunction = function(this: TaskContext, done: any) {
     const context: TaskContext = {
       argv: (undertaker.registry() as any).argv,
       logger: taskLogger(taskName)
     };
 
     if (fn.length >= 1) {
-      (fn as any).call(context, done);
+      try {
+        (fn as any).call(context, done);
+      } catch (e) {
+        done(e);
+      }
     } else {
       // This is a synchronous OR non-callback based function, call "done" here for the user
       let results;

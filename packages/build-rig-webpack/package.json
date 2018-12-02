@@ -1,5 +1,5 @@
 {
-  "name": "build-rig-typescript",
+  "name": "build-rig-webpack",
   "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
@@ -9,12 +9,21 @@
   },
   "dependencies": {
     "build-rig": "*",
-    "resolve": "^1.8.1"
+    "resolve": "^1.8.1",
+    "webpack": "^4.26.1",
+    "css-loader": "^1.0.1",
+    "style-loader": "^0.23.1",
+    "postcss-loader": "^3.0.0",
+    "autoprefixer": "^9.3.1",
+    "sass-loader": "^7.1.0",
+    "case-sensitive-paths-webpack-plugin": "^2.1.2"
   },
   "devDependencies": {
     "@types/node": "^8.9.4",
     "@types/resolve": "^0.0.8",
+    "@types/webpack": "^4.4.20",
     "typescript": "^3.1.6",
+    "webpack": "^4.26.1",
     "jest": "^23.6.0"
   },
   "keywords": [],
