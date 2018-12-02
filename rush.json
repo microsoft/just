@@ -72,32 +72,38 @@
     {
       "packageName": "build-rig",
       "projectFolder": "packages/build-rig",
-      "reviewCategory": "production"
+      "reviewCategory": "production",
+      "versionPolicyName": "RepoPolicy"
     },
     {
       "packageName": "build-rig-typescript",
       "projectFolder": "packages/build-rig-typescript",
-      "reviewCategory": "production"
+      "reviewCategory": "production",
+      "versionPolicyName": "RepoPolicy"
     },
     {
       "packageName": "build-rig-webpack",
       "projectFolder": "packages/build-rig-webpack",
-      "reviewCategory": "production"
+      "reviewCategory": "production",
+      "versionPolicyName": "RepoPolicy"
     },
     {
       "packageName": "build-rig-docs",
       "projectFolder": "packages/documentation/website",
-      "reviewCategory": "docs"
+      "reviewCategory": "docs",
+      "shouldPublish": false
     },
     {
       "packageName": "example-lib",
       "projectFolder": "packages/example-lib",
-      "reviewCategory": "docs"
+      "reviewCategory": "docs",
+      "shouldPublish": false
     },
     {
       "packageName": "example-app",
       "projectFolder": "packages/example-app",
-      "reviewCategory": "docs"
+      "reviewCategory": "docs",
+      "shouldPublish": false
     }
   ]
 }
