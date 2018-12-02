@@ -4,6 +4,7 @@ import path from 'path';
 import { undertaker, parallel } from './index';
 import UndertakerRegistry from 'undertaker-registry';
 import Undertaker from 'undertaker';
+import { logger } from './logger';
 
 class RigRegistry extends UndertakerRegistry {
   public argv: yargs.Argv | undefined;
@@ -12,6 +13,8 @@ class RigRegistry extends UndertakerRegistry {
 
     if (fs.existsSync(rigFile)) {
       require(rigFile);
+    } else {
+      logger.error(`Cannot find a rig file. Please create one called "rig.js" in the root of the project next to "package.json"`);
     }
   }
 }
@@ -21,7 +24,13 @@ const rigRegistry = new RigRegistry();
 undertaker.registry(rigRegistry);
 
 const tree = undertaker.tree();
-const builtYargs = ((tree.nodes as any) as string[]).reduce((builder, node) => {
+
+const builtYargs = yargs
+  .demandCommand()
+  .version(require('../package.json').version)
+  .usage('rig <cmd> [options]');
+
+((tree.nodes as any) as string[]).reduce((builder, node) => {
   return builder.command({
     command: node,
     handler: argv => {
@@ -29,6 +38,6 @@ const builtYargs = ((tree.nodes as any) as string[]).reduce((builder, node) => {
       return parallel(node)(() => {});
     }
   });
-}, yargs.usage('$0 <task> [args]'));
+}, yargs);
 
 builtYargs.help().argv;
