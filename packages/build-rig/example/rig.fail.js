@@ -1,21 +1,29 @@
 const { task, series, parallel } = require('../lib/index');
 
-task('done', function(done) {
-  this.logger.info('args_done: ', this.argv);
-  setTimeout(done, 500);
+task('clean', function() {
+  this.logger.info('Cleaning up the build and lib and dist folders');
 });
 
-task('ctxonly', { describe: 'ctx coolness', builder: yargs => yargs.option('name') }, function() {
-  this.logger.info('ctxonly');
-  this.logger.info(JSON.stringify(this.argv));
+task('ts', function() {
+  this.logger.info('Here we can run build steps like Babel or Typescript');
+});
+
+task('warn', function() {
   this.logger.warn('This is what a warning looks like');
-  throw new Error('intentionally fail');
 });
 
-task('async', async function() {
-  this.logger.info(await Promise.resolve('async'));
+task('fail', function() {
+  throw new Error('this is an intentional error');
 });
 
-task('default', parallel('done', 'ctxonly', series('async')));
+task('tslint', function() {
+  this.logger.info('Linting with tslint');
+});
 
-task('yes', series('default'));
+task('webpack', function() {
+  this.logger.info('Webpack bundling files');
+});
+
+task('build', parallel('tslint', series('clean', 'ts', 'webpack', 'warn', 'fail')));
+
+task('default', parallel('build'));

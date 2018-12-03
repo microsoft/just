@@ -41,7 +41,7 @@ undertaker.on('error', function(args: any) {
     taskLogger(args.name).error(chalk.yellow('------------------------------------'));
     taskLogger(args.name).error(chalk.yellow(args.error));
     taskLogger(args.name).error(chalk.yellow('------------------------------------'));
-  } else {
+  } else if (!args.branch) {
     taskLogger(args.name).error(chalk.dim(`Error previously detected. See above for error messages.`));
   }
 
