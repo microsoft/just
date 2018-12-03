@@ -2,6 +2,18 @@
   "name": "build-rig-typescript",
   "entries": [
     {
+      "version": "1.0.4",
+      "tag": "build-rig-typescript_v1.0.4",
+      "date": "Mon, 03 Dec 2018 18:39:51 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"build-rig\" from `1.2.0` to `1.2.1`"
+          }
+        ]
+      }
+    },
+    {
       "version": "1.0.3",
       "tag": "build-rig-typescript_v1.0.3",
       "date": "Mon, 03 Dec 2018 06:31:09 GMT",

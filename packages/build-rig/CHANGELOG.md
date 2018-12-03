@@ -1,6 +1,13 @@
 # Change Log - build-rig
 
-This log was last generated on Mon, 03 Dec 2018 06:31:09 GMT and should not be manually modified.
+This log was last generated on Mon, 03 Dec 2018 18:39:51 GMT and should not be manually modified.
+
+## 1.2.1
+Mon, 03 Dec 2018 18:39:51 GMT
+
+### Patches
+
+- Adds better failure logging messages
 
 ## 1.2.0
 Mon, 03 Dec 2018 06:31:09 GMT
