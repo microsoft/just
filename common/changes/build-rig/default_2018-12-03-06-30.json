@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "build-rig",
+      "comment": "Adds default task support ",
+      "type": "minor"
+    }
+  ],
+  "packageName": "build-rig",
+  "email": "kchau@microsoft.com"
+}
