@@ -2,6 +2,18 @@
   "name": "build-rig",
   "entries": [
     {
+      "version": "1.2.0",
+      "tag": "build-rig_v1.2.0",
+      "date": "Mon, 03 Dec 2018 06:31:09 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Adds default task support "
+          }
+        ]
+      }
+    },
+    {
       "version": "1.1.0",
       "tag": "build-rig_v1.1.0",
       "date": "Mon, 03 Dec 2018 05:18:13 GMT",

@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "build-rig": "1.1.0",
-    "build-rig-typescript": "1.0.2",
-    "build-rig-webpack": "1.0.2"
+    "build-rig": "1.2.0",
+    "build-rig-typescript": "1.0.3",
+    "build-rig-webpack": "1.0.3"
   }
 }
