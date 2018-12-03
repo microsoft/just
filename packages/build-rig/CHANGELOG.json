@@ -2,6 +2,18 @@
   "name": "build-rig",
   "entries": [
     {
+      "version": "1.2.4",
+      "tag": "build-rig_v1.2.4",
+      "date": "Mon, 03 Dec 2018 22:48:20 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "better failure logging and documentation"
+          }
+        ]
+      }
+    },
+    {
       "version": "1.2.3",
       "tag": "build-rig_v1.2.3",
       "date": "Mon, 03 Dec 2018 22:24:03 GMT",

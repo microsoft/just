@@ -1,6 +1,11 @@
 # Change Log - build-rig-typescript
 
-This log was last generated on Mon, 03 Dec 2018 22:24:03 GMT and should not be manually modified.
+This log was last generated on Mon, 03 Dec 2018 22:48:20 GMT and should not be manually modified.
+
+## 1.0.7
+Mon, 03 Dec 2018 22:48:20 GMT
+
+*Version update only*
 
 ## 1.0.6
 Mon, 03 Dec 2018 22:24:03 GMT
