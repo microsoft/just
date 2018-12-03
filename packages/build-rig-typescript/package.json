@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "build-rig": "1.0.1",
+    "typescript": "^3.1.6",
     "resolve": "^1.8.1"
   },
   "devDependencies": {
     "@types/node": "^8.9.4",
     "@types/resolve": "^0.0.8",
-    "typescript": "^3.1.6",
     "jest": "^23.6.0"
   },
   "keywords": [],

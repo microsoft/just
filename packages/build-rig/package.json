@@ -18,6 +18,7 @@
     "yargs": "^12.0.5"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.10",
     "@types/node": "^8.9.4",
     "@types/yargs": "^12.0.1",
     "@types/undertaker": "^1.2.0",
