@@ -28,7 +28,7 @@ undertaker.on('stop', function(args: any) {
 
     delete tasksInProgress[args.name];
 
-    taskLogger(args.name).info(`Finished '${chalk.cyan(args.name)}' in ${durationInSecs}s`);
+    taskLogger(args.name).info(`Finished '${chalk.cyan(args.name)}' in ${chalk.yellow(String(durationInSecs) + 's')}`);
   }
 });
 

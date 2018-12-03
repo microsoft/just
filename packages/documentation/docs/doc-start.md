@@ -4,13 +4,13 @@ title: Getting Started with Build
 sidebar_label: Getting Started
 ---
 
-Build Rig is a build task definition library. It stands on the shoulders of two excellent and well tested libraries: undertaker and yargs. To get started, place a `rig.js` file in the root of your project:
+Build Rig is a build task definition library. It stands on the shoulders of two excellent and well tested libraries: undertaker and yargs.
 
-```
-touch rig.js
+```sh
+npm i -g build-rig
 ```
 
-Place some task definitions inside this file:
+Place some task definitions inside `rig.js` in your root folder (next to package.json):
 
 ```js
 const { task } = require('build-rig');
@@ -22,8 +22,8 @@ task('hello', function() {
 
 Then run it!
 
-```
-> npx rig hello
+```sh
+$ rig hello
 ```
 
 That's all!

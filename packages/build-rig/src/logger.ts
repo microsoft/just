@@ -28,11 +28,9 @@ export const logger: ILogger = {
 };
 
 function prettyTaskName(taskName: string) {
-  const diff = (longestTaskNameLength - taskName.length) / 2;
-  const leftHalf = Math.floor(diff);
-  const rightHalf = Math.ceil(diff);
+  const diff = longestTaskNameLength - taskName.length;
 
-  return ' '.repeat(leftHalf) + taskName + ' '.repeat(rightHalf);
+  return taskName + ' '.repeat(diff);
 }
 
 export const taskLogger = (taskName: string): ILogger => {
@@ -42,15 +40,15 @@ export const taskLogger = (taskName: string): ILogger => {
 
   return {
     info(msg?: any, ...optionalParams: any[]) {
-      logger.info.apply(null, [`[${chalk.green(prettyTaskName(taskName))}] ${msg}`, ...optionalParams]);
+      logger.info.apply(null, [`[ ${chalk.green(prettyTaskName(taskName))} ] ${msg}`, ...optionalParams]);
     },
 
     warn(msg?: any, ...optionalParams: any[]) {
-      logger.warn.apply(null, [`[${chalk.yellow(prettyTaskName(taskName))}] ${msg}`, ...optionalParams]);
+      logger.warn.apply(null, [`[ ${chalk.yellow(prettyTaskName(taskName))} ] ${msg}`, ...optionalParams]);
     },
 
     error(msg?: any, ...optionalParams: any[]) {
-      logger.error.apply(null, [`[${chalk.red(prettyTaskName(taskName))}] ${msg}`, ...optionalParams]);
+      logger.error.apply(null, [`[ ${chalk.red(prettyTaskName(taskName))} ] ${msg}`, ...optionalParams]);
     }
   };
 };

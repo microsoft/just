@@ -21,12 +21,14 @@ function task(firstParam: string | TaskFunction, secondParam?: TaskFunction | Pa
     undertaker.task(firstParam as any, secondParam as TaskFunction);
   } else if (arguments.length === 3 && typeof firstParam === 'string' && typeof thirdParam === 'function') {
     const commandModule = secondParam as Partial<CommandModule>;
+
     taskCommandModuleMap[firstParam as string] = {
       command: firstParam,
       builder: commandModule.builder,
       describe: commandModule.describe,
       aliases: commandModule.aliases
     };
+
     undertaker.task(firstParam as any, thirdParam);
   } else {
     throw new Error('Invalid parameter given in task() function');

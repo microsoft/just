@@ -13,6 +13,7 @@ interface WithTaskMap {
 
 export class RigRegistry extends UndertakerRegistry {
   public argv: yargs.Argv;
+  private hasDefault: boolean = false;
   private taker: Undertaker | undefined;
 
   constructor(argv: yargs.Argv) {
@@ -33,10 +34,18 @@ export class RigRegistry extends UndertakerRegistry {
       logger.error(`Cannot find '${rigFile}'. Please create one called "rig.js" in the root of the project next to "package.json"`);
     }
 
+    if (!this.hasDefault) {
+      this.argv.demandCommand();
+    }
+
     this.taker = taker;
   }
 
   set<TTaskFunction>(this: RigRegistry & WithTaskMap, taskName: string, fn: TTaskFunction): TTaskFunction {
+    if (taskName === 'default') {
+      this.hasDefault = true;
+    }
+
     let commandModule = taskCommandModuleMap[taskName];
 
     const registry = this;
@@ -56,6 +65,7 @@ export class RigRegistry extends UndertakerRegistry {
     this.argv = this.argv.command(commandModule as yargs.CommandModule);
 
     const task = (this._tasks[taskName] = this.wrapFn(taskName, fn));
+
     return task as any;
   }
 
