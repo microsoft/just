@@ -9,6 +9,7 @@ import { logger, taskLogger } from './logger';
 
 const yargsBuilder = yargs
   .demandCommand()
+  .option({ config: {} })
   .version(require('../package.json').version)
   .usage('rig <cmd> [options]');
 
@@ -25,7 +26,9 @@ class RigRegistry extends UndertakerRegistry {
   }
 
   init(taker: Undertaker) {
-    const rigFile = path.join(process.cwd(), 'rig.js');
+    const configFile = this.argv.argv.config || 'rig.js';
+
+    const rigFile = path.join(process.cwd(), configFile);
 
     if (fs.existsSync(rigFile)) {
       require(rigFile);
@@ -71,35 +74,15 @@ class RigRegistry extends UndertakerRegistry {
       }
 
       if (origFn.length > 0) {
-        try {
-          (fn as any).call(context, done);
-        } catch (e) {
-          done(e);
-        }
+        (fn as any).call(context, done);
       } else {
-        // This is a synchronous OR non-callback based function, call "done" here for the user
-        let results;
-
-        try {
-          results = (fn as any).apply(context);
-        } catch (e) {
-          if (done) {
-            return done(e);
-          }
-        }
-
-        if (done) {
-          if (results && results.then) {
-            results
-              .then(() => {
-                done();
-              })
-              .catch((e: any) => {
-                done(e);
-              });
-          } else {
+        let results = (fn as any).apply(context);
+        if (results && results.then) {
+          results.then(() => {
             done();
-          }
+          });
+        } else {
+          done();
         }
       }
     };
