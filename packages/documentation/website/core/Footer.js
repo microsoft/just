@@ -21,16 +21,6 @@ class Footer extends React.Component {
   render() {
     return (
       <footer className="nav-footer" id="footer">
-        <section className="sitemap">
-          <div>
-            <h5>Docs</h5>
-          </div>
-          <div>
-            <h5>Community</h5>
-          </div>
-          <div />
-        </section>
-
         <section className="copyright">{this.props.config.copyright}</section>
       </footer>
     );

@@ -1,5 +1,5 @@
 {
   "docs": {
-    "Create SDX App": ["doc-start", "notes"]
+    "Documentation": ["doc-start", "composition", "logging", "args"]
   }
 }

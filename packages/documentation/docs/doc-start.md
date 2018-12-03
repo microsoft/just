@@ -4,8 +4,6 @@ title: Getting Started with Build
 sidebar_label: Getting Started
 ---
 
-# Getting Started
-
 Build Rig is a build task definition library. It stands on the shoulders of two excellent and well tested libraries: undertaker and yargs. To get started, place a `rig.js` file in the root of your project:
 
 ```
@@ -32,4 +30,4 @@ That's all!
 
 ## Next Steps
 
-Learn about how to compose tasks into _rigs_
+Learn about how to [compose tasks into _rigs_](composition.md)

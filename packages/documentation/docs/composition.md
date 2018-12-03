@@ -1,10 +1,8 @@
 ---
 id: composition
-title: Composition of Tasks
-sidebar_label: Composition of Tasks
+title: Composition of tasks
+sidebar_label: Composition of tasks
 ---
-
-# Composition of Tasks
 
 Once a project get to be a bit more complex, a build step might consist of multiple sub tasks. This can be achieved with composition. This is the main reason `build-rig` is made. It simplifies the composition of tasks.
 
@@ -70,4 +68,4 @@ task('build', series('clean', parallel('babel', 'lint')));
 
 ## Next Steps
 
-Learn about Logging
+Learn about [logging](logging.md)

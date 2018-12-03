@@ -23,10 +23,10 @@ const users = [
 const siteConfig = {
   title: 'Build Rig', // Title for your website.
   tagline: 'Documentation on Build Rig',
-  url: 'https://sdx-cli.azurewebsites.net', // Your website URL
-  baseUrl: '/', // Base URL for your project */
+  url: 'https://kenotron.github.io', // Your website URL
+  baseUrl: '/build-rig', // Base URL for your project */
   projectName: 'build-rig',
-  organizationName: 'microsoft',
+  organizationName: 'kenotron',
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [{ doc: 'doc-start', label: 'Documentation' }, { page: 'help', label: 'Help' }],
@@ -45,22 +45,8 @@ const siteConfig = {
     secondaryColor: '#205C3B'
   },
 
-  /* Custom fonts for website */
-  /*
-  fonts: {
-    myFont: [
-      "Times New Roman",
-      "Serif"
-    ],
-    myOtherFont: [
-      "-apple-system",
-      "system-ui"
-    ]
-  },
-  */
-
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Microsoft`,
+  copyright: `Copyright © ${new Date().getFullYear()}`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
@@ -87,7 +73,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  editUrl: 'https://uifabric.visualstudio.com/UI%20Fabric/_git/sdx-cli?version=GBmaster&path=%2Fpackages%2Fdocumentation%2Fdocs%2F'
+  editUrl: 'https://github.com/kenotron/build-rig/tree/master/packages/documentation/docs'
 };
 
 module.exports = siteConfig;

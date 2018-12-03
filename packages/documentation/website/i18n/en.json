@@ -5,13 +5,21 @@
     "previous": "Previous",
     "tagline": "Documentation on Build Rig",
     "docs": {
+      "args": {
+        "title": "Command line arguments",
+        "sidebar_label": "Command line arguments"
+      },
       "composition": {
-        "title": "Composition of Tasks",
-        "sidebar_label": "Composition of Tasks"
+        "title": "Composition of tasks",
+        "sidebar_label": "Composition of tasks"
       },
       "doc-start": {
         "title": "Getting Started with Build",
         "sidebar_label": "Getting Started"
+      },
+      "logging": {
+        "title": "Logging",
+        "sidebar_label": "Logging"
       }
     },
     "links": {
@@ -19,7 +27,7 @@
       "Help": "Help"
     },
     "categories": {
-      "Create SDX App": "Create SDX App"
+      "Documentation": "Documentation"
     }
   },
   "pages-strings": {

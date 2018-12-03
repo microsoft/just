@@ -148,7 +148,7 @@
     },
     {
       "name": "cpx",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "docs", "production", "tools" ]
     },
     {
       "name": "css-loader",
