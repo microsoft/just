@@ -42,6 +42,7 @@ class RigRegistry extends UndertakerRegistry {
     commandModule = {
       ...commandModule,
       command: taskName,
+      ...(taskName === 'default' && { aliases: ['*'] }),
       handler(argvParam: any) {
         rigRegistry.argv = argvParam;
         return parallel(taskName)(() => {});
