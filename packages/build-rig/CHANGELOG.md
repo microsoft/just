@@ -1,6 +1,13 @@
 # Change Log - build-rig
 
-This log was last generated on Mon, 03 Dec 2018 22:04:01 GMT and should not be manually modified.
+This log was last generated on Mon, 03 Dec 2018 22:24:03 GMT and should not be manually modified.
+
+## 1.2.3
+Mon, 03 Dec 2018 22:24:03 GMT
+
+### Patches
+
+- Fixed default tasks
 
 ## 1.2.2
 Mon, 03 Dec 2018 22:04:01 GMT
