@@ -2,6 +2,18 @@
   "name": "build-rig-webpack",
   "entries": [
     {
+      "version": "1.0.2",
+      "tag": "build-rig-webpack_v1.0.2",
+      "date": "Mon, 03 Dec 2018 05:18:13 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"build-rig\" from `1.0.1` to `1.1.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "1.0.1",
       "tag": "build-rig-webpack_v1.0.1",
       "date": "Mon, 03 Dec 2018 00:54:11 GMT",
