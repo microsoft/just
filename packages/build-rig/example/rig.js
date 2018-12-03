@@ -1,12 +1,13 @@
-const { task, series, parallel } = require('../index');
+const { task, series, parallel } = require('../lib/index');
 
 task('done', function(done) {
-  this.logger.info('arsg_done: ', this.argv);
+  this.logger.info('args_done: ', this.argv);
   setTimeout(done, 500);
 });
 
-task('ctxonly', function() {
+task('ctxonly', { describe: 'ctx coolness', builder: yargs => yargs.option('name') }, function() {
   this.logger.info('ctxonly');
+  this.logger.info(JSON.stringify(this.argv));
 });
 
 task('async', async function() {

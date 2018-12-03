@@ -5,15 +5,13 @@
     "previous": "Previous",
     "tagline": "Documentation on Build Rig",
     "docs": {
+      "composition": {
+        "title": "Composition of Tasks",
+        "sidebar_label": "Composition of Tasks"
+      },
       "doc-start": {
-        "title": "Getting Started with Create SDX App",
+        "title": "Getting Started with Build",
         "sidebar_label": "Getting Started"
-      },
-      "features": {
-        "title": "features"
-      },
-      "notes": {
-        "title": "notes"
       }
     },
     "links": {
