@@ -4,7 +4,7 @@ Build Rig is a build task definition library. It stands on the shoulders of two 
 
 ## Why not just `gulp`?
 
-`undertaker` unpins the orchestration layer of `gulp`. So why not just use `gulp`? Everyone who uses gulp can related to these pain points:
+`undertaker` underpins the orchestration layer of `gulp`. So why not just use `gulp`? Everyone who uses gulp can related to these pain points:
 
 1. It has a LOT of dependencies
 2. gulp-\* plugins adds an extra level of abstraction that isn't needed most of the time

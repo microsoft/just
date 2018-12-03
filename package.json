@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "node ./common/scripts/install-run-rush.js install",
+    "build": "node ./common/scripts/install-run-rush.js build",
+    "postbuild": "node ./scripts/copyReadme.js",
     "start": "node ./scripts/watch.js"
   },
   "keywords": [],

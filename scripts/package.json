@@ -1,0 +1,14 @@
+{
+  "name": "build-rig-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "watch.js",
+  "scripts": {
+    "build": ""
+  },
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "cpx": "^1.5.0"
+  }
+}

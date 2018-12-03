@@ -100,9 +100,9 @@
       "shouldPublish": false
     },
     {
-      "packageName": "example-app",
-      "projectFolder": "packages/example-app",
-      "reviewCategory": "docs",
+      "packageName": "build-rig-scripts",
+      "projectFolder": "scripts",
+      "reviewCategory": "tools",
       "shouldPublish": false
     }
   ]
