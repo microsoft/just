@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rig build"
+    "build": "node ../build-rig/lib/cli.js build"
   },
   "keywords": [],
   "author": "",
