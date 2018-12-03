@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "build-rig",
+      "comment": "Adds better failure logging messages",
+      "type": "patch"
+    }
+  ],
+  "packageName": "build-rig",
+  "email": "kchau@microsoft.com"
+}
