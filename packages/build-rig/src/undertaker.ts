@@ -45,7 +45,7 @@ undertaker.on('error', function(args: any) {
     taskLogger(args.name).error(chalk.dim(`Error previously detected. See above for error messages.`));
   }
 
-  if (topLevelTask === args.name) {
+  if (topLevelTask === args.name && Object.keys(tasksInProgress).length > 0) {
     logger.error(
       `Other tasks that did not complete: [${Object.keys(tasksInProgress)
         .map(taskName => chalk.cyan(taskName))
@@ -57,4 +57,5 @@ undertaker.on('error', function(args: any) {
 
 export const parallel: typeof undertaker.parallel = undertaker.parallel.bind(undertaker);
 export const series: typeof undertaker.series = undertaker.series.bind(undertaker);
+
 export { undertaker };

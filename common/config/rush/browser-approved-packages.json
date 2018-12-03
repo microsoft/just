@@ -215,6 +215,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "ts-jest",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "typescript",
       "allowedCategories": [ "production" ]
     },
