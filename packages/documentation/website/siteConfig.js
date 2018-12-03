@@ -24,7 +24,7 @@ const siteConfig = {
   title: 'Build Rig', // Title for your website.
   tagline: 'Documentation on Build Rig',
   url: 'https://kenotron.github.io', // Your website URL
-  baseUrl: '/build-rig', // Base URL for your project */
+  baseUrl: '/build-rig/', // Base URL for your project */
   projectName: 'build-rig',
   organizationName: 'kenotron',
 
