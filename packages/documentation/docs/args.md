@@ -8,7 +8,7 @@ sidebar_label: Command line arguments
 
 ## Reading arguments
 
-To access the arguments passed in from command line, use the `this.argv` object provided by `yargs`.
+To read the arguments passed in from command line, use the `this.argv` object provided by `yargs`.
 
 ```js
 task('pillageMeArgs', function() {
