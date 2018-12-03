@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "build-rig",
+      "comment": "Added some readme and add support for yargs command module in task definition",
+      "type": "minor"
+    }
+  ],
+  "packageName": "build-rig",
+  "email": "kchau@microsoft.com"
+}

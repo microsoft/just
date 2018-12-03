@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "comment": "",
+      "packageName": "build-rig-typescript",
+      "type": "none"
+    }
+  ],
+  "packageName": "build-rig-typescript",
+  "email": "kchau@microsoft.com"
+}
