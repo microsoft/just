@@ -1,6 +1,6 @@
 {
   "name": "build-rig-typescript",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "dev": "tsc -w --preserveWatchOutput"
   },
   "dependencies": {
-    "build-rig": "1.2.1",
+    "build-rig": "1.2.2",
     "typescript": "^3.1.6",
     "resolve": "^1.8.1"
   },
