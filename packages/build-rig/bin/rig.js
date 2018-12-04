@@ -1,2 +1,8 @@
 #!/usr/bin/env node
-require('../lib/cli.js');
+
+try {
+  const localCmd = require.resolve('build-rig/lib/cli.js', { paths: [process.cwd()] });
+  require(localCmd);
+} catch (e) {
+  console.error('Please install a local copy of build-rig.');
+}
