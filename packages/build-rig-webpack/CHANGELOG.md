@@ -1,6 +1,11 @@
 # Change Log - build-rig-webpack
 
-This log was last generated on Tue, 04 Dec 2018 05:15:26 GMT and should not be manually modified.
+This log was last generated on Tue, 04 Dec 2018 06:13:37 GMT and should not be manually modified.
+
+## 1.0.9
+Tue, 04 Dec 2018 06:13:37 GMT
+
+*Version update only*
 
 ## 1.0.8
 Tue, 04 Dec 2018 05:15:26 GMT

@@ -1,6 +1,6 @@
 {
   "name": "build-rig",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "",
   "main": "lib/index.js",
   "typing": "lib/index.d.ts",
