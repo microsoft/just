@@ -7,6 +7,8 @@ import { taskCommandModuleMap } from './taskCommandModuleMap';
 import UndertakerRegistry from 'undertaker-registry';
 import Undertaker from 'undertaker';
 
+const yargsFn = require('yargs/yargs');
+
 interface WithTaskMap {
   _tasks: { [task: string]: any };
 }
@@ -22,7 +24,8 @@ export class RigRegistry extends UndertakerRegistry {
   }
 
   init(taker: Undertaker) {
-    let rigFile = this.argv.argv.config || 'rig.js';
+    // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the rigfile first regardless
+    let rigFile = yargsFn(process.argv.slice(1).filter(a => a !== '--help')).argv.config || 'rig.js';
 
     if (!path.isAbsolute(rigFile)) {
       rigFile = path.join(process.cwd(), rigFile);
@@ -35,7 +38,7 @@ export class RigRegistry extends UndertakerRegistry {
     }
 
     if (!this.hasDefault) {
-      this.argv.demandCommand();
+      this.argv.demandCommand().help();
     }
 
     this.taker = taker;
@@ -57,12 +60,11 @@ export class RigRegistry extends UndertakerRegistry {
       command: commandModule.command || taskName,
       ...(taskName === 'default' && { aliases: [...(commandModule.aliases ? commandModule.aliases : []), ...['*']] }),
       handler(argvParam: any) {
-        registry.argv = argvParam;
         return registry.taker!.parallel(taskName)(() => {});
       }
     };
 
-    this.argv = this.argv.command(commandModule as yargs.CommandModule);
+    this.argv.command(commandModule as yargs.CommandModule);
 
     const task = (this._tasks[taskName] = this.wrapFn(taskName, fn));
 

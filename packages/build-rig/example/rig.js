@@ -1,6 +1,6 @@
 const { task, series, parallel } = require('../lib/index');
 
-task('clean', function() {
+task('clean', { describe: 'this is cleaning', builder: yargs => yargs.option('name') }, function() {
   this.logger.info('Cleaning up the build and lib and dist folders');
 });
 
