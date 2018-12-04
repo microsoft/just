@@ -1,6 +1,13 @@
 # Change Log - build-rig
 
-This log was last generated on Mon, 03 Dec 2018 22:48:20 GMT and should not be manually modified.
+This log was last generated on Tue, 04 Dec 2018 05:15:26 GMT and should not be manually modified.
+
+## 1.2.5
+Tue, 04 Dec 2018 05:15:26 GMT
+
+### Patches
+
+- Fixed help command to actually list commands
 
 ## 1.2.4
 Mon, 03 Dec 2018 22:48:20 GMT
