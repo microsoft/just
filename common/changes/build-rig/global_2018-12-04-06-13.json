@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "build-rig",
+      "comment": "Fixes globally installed build-rig to check for local copy",
+      "type": "patch"
+    }
+  ],
+  "packageName": "build-rig",
+  "email": "kchau@microsoft.com"
+}
