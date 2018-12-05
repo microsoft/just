@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task",
+      "comment": "Rename rig bin script to just",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com"
+}
