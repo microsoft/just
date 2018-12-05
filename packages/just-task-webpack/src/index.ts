@@ -1,4 +1,4 @@
-import { task, series, parallel, logger } from 'build-rig';
+import { task, series, parallel, logger } from 'just-task';
 import path from 'path';
 import resolve from 'resolve';
 import webpack from 'webpack';

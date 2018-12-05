@@ -1,4 +1,4 @@
-# Change Log - build-rig-webpack
+# Change Log - just-task-typescript
 
 This log was last generated on Tue, 04 Dec 2018 06:13:37 GMT and should not be manually modified.
 

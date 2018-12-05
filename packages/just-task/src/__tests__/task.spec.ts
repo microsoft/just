@@ -1,6 +1,6 @@
 import { task } from '../task';
 import { parallel, undertaker } from '../undertaker';
-import { RigRegistry } from '../rigRegistry';
+import { JustTaskRegistry } from '../JustTaskRegistry';
 import yargs from 'yargs';
 import path from 'path';
 
@@ -8,7 +8,7 @@ describe('task', () => {
   beforeEach(() => {
     const yargsBuilder = yargs;
     yargsBuilder.option('config', { default: path.resolve(__dirname, 'mock/rig.js') });
-    undertaker.registry(new RigRegistry(yargsBuilder));
+    undertaker.registry(new JustTaskRegistry(yargsBuilder));
   });
 
   it('allows synchronous tasks to be defined and be run', done => {

@@ -1,4 +1,4 @@
-# Change Log - build-rig
+# Change Log - just-task
 
 This log was last generated on Tue, 04 Dec 2018 06:13:37 GMT and should not be manually modified.
 
@@ -7,7 +7,7 @@ Tue, 04 Dec 2018 06:13:37 GMT
 
 ### Patches
 
-- Fixes globally installed build-rig to check for local copy
+- Fixes globally installed just-task to check for local copy
 
 ## 1.2.5
 Tue, 04 Dec 2018 05:15:26 GMT

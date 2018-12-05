@@ -4,14 +4,14 @@ title: Composition of tasks
 sidebar_label: Composition of tasks
 ---
 
-Once a project get to be a bit more complex, a build step might consist of multiple sub tasks. This can be achieved with composition. This is the main reason `build-rig` is made. It simplifies the composition of tasks.
+Once a project get to be a bit more complex, a build step might consist of multiple sub tasks. This can be achieved with composition. This is the main reason `just-task` is made. It simplifies the composition of tasks.
 
 ## Running tasks in a series
 
 ```js
 // rig.js
 
-const { task, series } = require('build-rig');
+const { task, series } = require('just-task');
 
 task('clean', function() {
   // clean stuff
@@ -33,7 +33,7 @@ To take advantage of multi-core CPUs on our machines, we can run several tasks i
 ```js
 // rig.js
 
-const { task, parallel } = require('build-rig');
+const { task, parallel } = require('just-task');
 
 task('babel', function() {
   // run babel babel over some files
@@ -48,12 +48,12 @@ task('build', parallel('babel', 'lint'));
 
 ## Nesting tasks in series and parallel
 
-The most powerful feature of `build-rig` is its ability to compose tasks by nesting tasks in series and parallel. Let's combine the previous examples.
+The most powerful feature of `just-task` is its ability to compose tasks by nesting tasks in series and parallel. Let's combine the previous examples.
 
 ```js
 // rig.js
 
-const { task, parallel, series } = require('build-rig');
+const { task, parallel, series } = require('just-task');
 
 task('babel', function() {
   // run babel babel over some files

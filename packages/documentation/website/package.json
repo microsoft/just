@@ -1,10 +1,10 @@
 {
-  "name": "build-rig-docs",
+  "name": "just-task-docs",
   "version": "0.0.1",
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
-    "build": "docusaurus-build && cpx \"build/build-rig/**/*\" ../../../docs",
+    "build": "docusaurus-build && cpx \"build/just-task/**/*\" ../../../docs",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version"
   },

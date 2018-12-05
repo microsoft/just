@@ -1,122 +1,122 @@
 {
-  "name": "build-rig-webpack",
+  "name": "just-task-webpack",
   "entries": [
     {
       "version": "1.0.9",
-      "tag": "build-rig-webpack_v1.0.9",
+      "tag": "just-task-webpack_v1.0.9",
       "date": "Tue, 04 Dec 2018 06:13:37 GMT",
       "comments": {
         "dependency": [
           {
-            "comment": "Updating dependency \"build-rig\" from `1.2.5` to `1.2.6`"
+            "comment": "Updating dependency \"just-task\" from `1.2.5` to `1.2.6`"
           }
         ]
       }
     },
     {
       "version": "1.0.8",
-      "tag": "build-rig-webpack_v1.0.8",
+      "tag": "just-task-webpack_v1.0.8",
       "date": "Tue, 04 Dec 2018 05:15:26 GMT",
       "comments": {
         "dependency": [
           {
-            "comment": "Updating dependency \"build-rig\" from `1.2.4` to `1.2.5`"
+            "comment": "Updating dependency \"just-task\" from `1.2.4` to `1.2.5`"
           }
         ]
       }
     },
     {
       "version": "1.0.7",
-      "tag": "build-rig-webpack_v1.0.7",
+      "tag": "just-task-webpack_v1.0.7",
       "date": "Mon, 03 Dec 2018 22:48:20 GMT",
       "comments": {
         "dependency": [
           {
-            "comment": "Updating dependency \"build-rig\" from `1.2.3` to `1.2.4`"
+            "comment": "Updating dependency \"just-task\" from `1.2.3` to `1.2.4`"
           }
         ]
       }
     },
     {
       "version": "1.0.6",
-      "tag": "build-rig-webpack_v1.0.6",
+      "tag": "just-task-webpack_v1.0.6",
       "date": "Mon, 03 Dec 2018 22:24:03 GMT",
       "comments": {
         "dependency": [
           {
-            "comment": "Updating dependency \"build-rig\" from `1.2.2` to `1.2.3`"
+            "comment": "Updating dependency \"just-task\" from `1.2.2` to `1.2.3`"
           }
         ]
       }
     },
     {
       "version": "1.0.5",
-      "tag": "build-rig-webpack_v1.0.5",
+      "tag": "just-task-webpack_v1.0.5",
       "date": "Mon, 03 Dec 2018 22:04:01 GMT",
       "comments": {
         "dependency": [
           {
-            "comment": "Updating dependency \"build-rig\" from `1.2.1` to `1.2.2`"
+            "comment": "Updating dependency \"just-task\" from `1.2.1` to `1.2.2`"
           }
         ]
       }
     },
     {
       "version": "1.0.4",
-      "tag": "build-rig-webpack_v1.0.4",
+      "tag": "just-task-webpack_v1.0.4",
       "date": "Mon, 03 Dec 2018 18:39:51 GMT",
       "comments": {
         "dependency": [
           {
-            "comment": "Updating dependency \"build-rig\" from `1.2.0` to `1.2.1`"
+            "comment": "Updating dependency \"just-task\" from `1.2.0` to `1.2.1`"
           }
         ]
       }
     },
     {
       "version": "1.0.3",
-      "tag": "build-rig-webpack_v1.0.3",
+      "tag": "just-task-webpack_v1.0.3",
       "date": "Mon, 03 Dec 2018 06:31:09 GMT",
       "comments": {
         "dependency": [
           {
-            "comment": "Updating dependency \"build-rig\" from `1.1.0` to `1.2.0`"
+            "comment": "Updating dependency \"just-task\" from `1.1.0` to `1.2.0`"
           }
         ]
       }
     },
     {
       "version": "1.0.2",
-      "tag": "build-rig-webpack_v1.0.2",
+      "tag": "just-task-webpack_v1.0.2",
       "date": "Mon, 03 Dec 2018 05:18:13 GMT",
       "comments": {
         "dependency": [
           {
-            "comment": "Updating dependency \"build-rig\" from `1.0.1` to `1.1.0`"
+            "comment": "Updating dependency \"just-task\" from `1.0.1` to `1.1.0`"
           }
         ]
       }
     },
     {
       "version": "1.0.1",
-      "tag": "build-rig-webpack_v1.0.1",
+      "tag": "just-task-webpack_v1.0.1",
       "date": "Mon, 03 Dec 2018 00:54:11 GMT",
       "comments": {
         "dependency": [
           {
-            "comment": "Updating dependency \"build-rig\" from `1.0.0` to `1.0.1`"
+            "comment": "Updating dependency \"just-task\" from `1.0.0` to `1.0.1`"
           }
         ]
       }
     },
     {
       "version": "1.0.0",
-      "tag": "build-rig-webpack_v1.0.0",
+      "tag": "just-task-webpack_v1.0.0",
       "date": "Sun, 02 Dec 2018 03:50:30 GMT",
       "comments": {
         "dependency": [
           {
-            "comment": "Dependency build-rig version bump from * to 1.0.0."
+            "comment": "Dependency just-task version bump from * to 1.0.0."
           }
         ]
       }

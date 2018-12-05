@@ -70,25 +70,25 @@
 
   "projects": [
     {
-      "packageName": "build-rig",
-      "projectFolder": "packages/build-rig",
+      "packageName": "just-task",
+      "projectFolder": "packages/just-task",
       "reviewCategory": "production",
       "versionPolicyName": "RepoPolicy"
     },
     {
-      "packageName": "build-rig-typescript",
-      "projectFolder": "packages/build-rig-typescript",
+      "packageName": "just-task-typescript",
+      "projectFolder": "packages/just-task-typescript",
       "reviewCategory": "production",
       "versionPolicyName": "RepoPolicy"
     },
     {
-      "packageName": "build-rig-webpack",
-      "projectFolder": "packages/build-rig-webpack",
+      "packageName": "just-task-webpack",
+      "projectFolder": "packages/just-task-webpack",
       "reviewCategory": "production",
       "versionPolicyName": "RepoPolicy"
     },
     {
-      "packageName": "build-rig-docs",
+      "packageName": "just-task-docs",
       "projectFolder": "packages/documentation/website",
       "reviewCategory": "docs",
       "shouldPublish": false
@@ -100,7 +100,7 @@
       "shouldPublish": false
     },
     {
-      "packageName": "build-rig-scripts",
+      "packageName": "just-task-scripts",
       "projectFolder": "scripts",
       "reviewCategory": "tools",
       "shouldPublish": false

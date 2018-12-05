@@ -1,5 +1,5 @@
 {
-  "name": "build-rig-scripts",
+  "name": "just-task-scripts",
   "version": "1.0.0",
   "description": "",
   "main": "watch.js",

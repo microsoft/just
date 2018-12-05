@@ -15,12 +15,12 @@ Build Rig is a build task definition library. It stands on the shoulders of two 
 
 The core concept of this library is that related tasks are grouped together and exported via npm packages. Each project will have a `rig.js` that imports tasks from those packages and also defines custom tasks for the project itself.
 
-For example, the `build-rig-typescript` package is installable from [npmjs.org](https://npmjs.org/build-rig-typescript) and exports `typescript` and `typescript:watch` tasks. A rig file can then import and use them it like this:
+For example, the `just-task-typescript` package is installable from [npmjs.org](https://npmjs.org/just-task-typescript) and exports `typescript` and `typescript:watch` tasks. A rig file can then import and use them it like this:
 
 ```js
-require('build-rig-typescript');
+require('just-task-typescript');
 
-const { task, series } = require('build-rig');
+const { task, series } = require('just-task');
 
 task('clean', function() {
   // do the cleaning task stuff here
@@ -47,7 +47,7 @@ rig build --production
 
 ### Synchronous tasks
 
-While `gulp@4` got rid of the capability of having synchronous tasks. `build-rig` augments `undertaker` to allow this style of task.
+While `gulp@4` got rid of the capability of having synchronous tasks. `just-task` augments `undertaker` to allow this style of task.
 
 ```ts
 task('sync-task', function() {
@@ -55,11 +55,11 @@ task('sync-task', function() {
 });
 ```
 
-> As you can see, lambda's are NOT supported. This is because the functions are bound to a context for `this` so the tasks can gain access to `build-rig`-provided things like logger. Another thing that can be accessed from the context is the `argv` which is parsed by yargs.
+> As you can see, lambda's are NOT supported. This is because the functions are bound to a context for `this` so the tasks can gain access to `just-task`-provided things like logger. Another thing that can be accessed from the context is the `argv` which is parsed by yargs.
 
 ### Asynchronous tasks with promises
 
-`build-rig` supports asynchronous tasks with promises. Simply return a promise in a task function and `build-rig` will do the right thing.
+`just-task` supports asynchronous tasks with promises. Simply return a promise in a task function and `just-task` will do the right thing.
 
 ```ts
 // Async / Await automatically returns a promise
@@ -78,7 +78,7 @@ task('async-task-promise', function() {
 
 ### Asynchronous tasks with callback
 
-There are times when a callback-based async task is desired. There are times when the task is waiting on the completion of an asynchronous procedure from Node.js. Since most long-running Node.js function expects a callback to notify completion, `build-rig` supports this feature.
+There are times when a callback-based async task is desired. There are times when the task is waiting on the completion of an asynchronous procedure from Node.js. Since most long-running Node.js function expects a callback to notify completion, `just-task` supports this feature.
 
 ```ts
 task('async-task-callback', function(cb) {

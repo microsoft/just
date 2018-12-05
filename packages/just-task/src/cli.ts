@@ -1,10 +1,10 @@
 import { undertaker } from './undertaker';
-import { RigRegistry } from './RigRegistry';
+import { JustTaskRegistry } from './JustTaskRegistry';
 import yargs from 'yargs';
 
 const yargsBuilder = yargs.option({ config: { describe: 'path to a rig file, defaults to rig.js' } }).usage('rig <cmd> [options]');
 
-const registry = new RigRegistry(yargsBuilder);
+const registry = new JustTaskRegistry(yargsBuilder);
 
 undertaker.registry(registry);
 

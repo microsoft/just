@@ -1,4 +1,4 @@
-import { task, series, parallel, logger } from 'build-rig';
+import { task, series, parallel, logger } from 'just-task';
 import { spawn } from 'child_process';
 import path from 'path';
 import os from 'os';

@@ -4,7 +4,7 @@ title: Logging
 sidebar_label: Logging
 ---
 
-`build-rig` is simple, but it is opinionated. One of the built-in capabilities of `build-rig` is logging. We feel that this is an important enough of a feature to be available inside a task within its own context.
+`just-task` is simple, but it is opinionated. One of the built-in capabilities of `just-task` is logging. We feel that this is an important enough of a feature to be available inside a task within its own context.
 
 Typically, logging tasks look like the following:
 

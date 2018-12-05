@@ -1,7 +1,7 @@
-const { task, series, parallel } = require('build-rig');
+const { task, series, parallel } = require('just-task');
 
-require('build-rig-typescript');
-require('build-rig-webpack');
+require('just-task-typescript');
+require('just-task-webpack');
 
 task('build', series('typescript', 'webpack'));
 task('watch', parallel('typescript:watch'));

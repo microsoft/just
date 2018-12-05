@@ -13,7 +13,7 @@ interface WithTaskMap {
   _tasks: { [task: string]: any };
 }
 
-export class RigRegistry extends UndertakerRegistry {
+export class JustTaskRegistry extends UndertakerRegistry {
   public argv: yargs.Argv;
   private hasDefault: boolean = false;
   private taker: Undertaker | undefined;
@@ -24,17 +24,19 @@ export class RigRegistry extends UndertakerRegistry {
   }
 
   init(taker: Undertaker) {
-    // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the rigfile first regardless
-    let rigFile = yargsFn(process.argv.slice(1).filter(a => a !== '--help')).argv.config || 'rig.js';
+    // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
+    let configFile = yargsFn(process.argv.slice(1).filter(a => a !== '--help')).argv.config || 'just-task.js';
 
-    if (!path.isAbsolute(rigFile)) {
-      rigFile = path.join(process.cwd(), rigFile);
+    if (!path.isAbsolute(configFile)) {
+      configFile = path.join(process.cwd(), configFile);
     }
 
-    if (fs.existsSync(rigFile)) {
-      require(rigFile);
+    if (fs.existsSync(configFile)) {
+      require(configFile);
     } else {
-      logger.error(`Cannot find '${rigFile}'. Please create one called "rig.js" in the root of the project next to "package.json"`);
+      logger.error(
+        `Cannot find '${configFile}'. Please create one called "just-task.js" in the root of the project next to "package.json"`
+      );
     }
 
     if (!this.hasDefault) {
@@ -44,7 +46,7 @@ export class RigRegistry extends UndertakerRegistry {
     this.taker = taker;
   }
 
-  set<TTaskFunction>(this: RigRegistry & WithTaskMap, taskName: string, fn: TTaskFunction): TTaskFunction {
+  set<TTaskFunction>(this: JustTaskRegistry & WithTaskMap, taskName: string, fn: TTaskFunction): TTaskFunction {
     if (taskName === 'default') {
       this.hasDefault = true;
     }

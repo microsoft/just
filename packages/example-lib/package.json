@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node ../build-rig/lib/cli.js build"
+    "build": "node ../just-task/lib/cli.js build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "build-rig": "1.2.6",
-    "build-rig-typescript": "1.0.9",
-    "build-rig-webpack": "1.0.9"
+    "just-task": "1.2.6",
+    "just-task-typescript": "1.0.9",
+    "just-task-webpack": "1.0.9"
   }
 }

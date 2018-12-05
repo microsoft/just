@@ -119,15 +119,15 @@
       "allowedCategories": [ "production" ]
     },
     {
-      "name": "build-rig",
+      "name": "just-task",
       "allowedCategories": [ "docs", "production" ]
     },
     {
-      "name": "build-rig-typescript",
+      "name": "just-task-typescript",
       "allowedCategories": [ "docs" ]
     },
     {
-      "name": "build-rig-webpack",
+      "name": "just-task-webpack",
       "allowedCategories": [ "docs" ]
     },
     {

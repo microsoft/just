@@ -1,21 +1,21 @@
 {
-  "name": "build-rig",
+  "name": "just-task",
   "entries": [
     {
       "version": "1.2.6",
-      "tag": "build-rig_v1.2.6",
+      "tag": "just-task_v1.2.6",
       "date": "Tue, 04 Dec 2018 06:13:37 GMT",
       "comments": {
         "patch": [
           {
-            "comment": "Fixes globally installed build-rig to check for local copy"
+            "comment": "Fixes globally installed just-task to check for local copy"
           }
         ]
       }
     },
     {
       "version": "1.2.5",
-      "tag": "build-rig_v1.2.5",
+      "tag": "just-task_v1.2.5",
       "date": "Tue, 04 Dec 2018 05:15:26 GMT",
       "comments": {
         "patch": [
@@ -27,7 +27,7 @@
     },
     {
       "version": "1.2.4",
-      "tag": "build-rig_v1.2.4",
+      "tag": "just-task_v1.2.4",
       "date": "Mon, 03 Dec 2018 22:48:20 GMT",
       "comments": {
         "patch": [
@@ -39,7 +39,7 @@
     },
     {
       "version": "1.2.3",
-      "tag": "build-rig_v1.2.3",
+      "tag": "just-task_v1.2.3",
       "date": "Mon, 03 Dec 2018 22:24:03 GMT",
       "comments": {
         "patch": [
@@ -51,7 +51,7 @@
     },
     {
       "version": "1.2.2",
-      "tag": "build-rig_v1.2.2",
+      "tag": "just-task_v1.2.2",
       "date": "Mon, 03 Dec 2018 22:04:01 GMT",
       "comments": {
         "patch": [
@@ -63,7 +63,7 @@
     },
     {
       "version": "1.2.1",
-      "tag": "build-rig_v1.2.1",
+      "tag": "just-task_v1.2.1",
       "date": "Mon, 03 Dec 2018 18:39:51 GMT",
       "comments": {
         "patch": [
@@ -75,7 +75,7 @@
     },
     {
       "version": "1.2.0",
-      "tag": "build-rig_v1.2.0",
+      "tag": "just-task_v1.2.0",
       "date": "Mon, 03 Dec 2018 06:31:09 GMT",
       "comments": {
         "minor": [
@@ -87,7 +87,7 @@
     },
     {
       "version": "1.1.0",
-      "tag": "build-rig_v1.1.0",
+      "tag": "just-task_v1.1.0",
       "date": "Mon, 03 Dec 2018 05:18:13 GMT",
       "comments": {
         "minor": [
@@ -99,7 +99,7 @@
     },
     {
       "version": "1.0.1",
-      "tag": "build-rig_v1.0.1",
+      "tag": "just-task_v1.0.1",
       "date": "Mon, 03 Dec 2018 00:54:11 GMT",
       "comments": {
         "patch": [
@@ -111,7 +111,7 @@
     },
     {
       "version": "1.0.0",
-      "tag": "build-rig_v1.0.0",
+      "tag": "just-task_v1.0.0",
       "date": "Sun, 02 Dec 2018 03:50:30 GMT",
       "comments": {}
     }

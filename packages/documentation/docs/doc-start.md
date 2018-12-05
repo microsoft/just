@@ -4,16 +4,16 @@ title: Getting Started with Build
 sidebar_label: Getting Started
 ---
 
-Build Rig is a build task definition library. It stands on the shoulders of two excellent and well tested libraries: undertaker and yargs.
+`Just` is a build task definition library. It stands on the shoulders of two excellent and well tested libraries: undertaker and yargs.
 
 ```sh
-npm i -g build-rig
+npm i -g just-task
 ```
 
-Place some task definitions inside `rig.js` in your root folder (next to package.json):
+Place some task definitions inside `just-task.js` in your root folder (next to package.json):
 
 ```js
-const { task } = require('build-rig');
+const { task } = require('just-task');
 
 task('hello', function() {
   this.logger.info('world');

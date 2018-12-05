@@ -1,5 +1,5 @@
 {
-  "name": "build-rig",
+  "name": "just-task",
   "version": "1.2.6",
   "description": "",
   "main": "lib/index.js",

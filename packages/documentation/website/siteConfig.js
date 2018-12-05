@@ -21,11 +21,11 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'Build Rig', // Title for your website.
-  tagline: 'Documentation on Build Rig',
+  title: 'Just ____', // Title for your website.
+  tagline: 'Documentation on Just',
   url: 'https://kenotron.github.io', // Your website URL
-  baseUrl: '/build-rig/', // Base URL for your project */
-  projectName: 'build-rig',
+  baseUrl: '/just-task/', // Base URL for your project */
+  projectName: 'just-task',
   organizationName: 'kenotron',
 
   // For no header links in the top nav bar -> headerLinks: [],
@@ -73,7 +73,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  editUrl: 'https://github.com/kenotron/build-rig/tree/master/packages/documentation/docs/'
+  editUrl: 'https://github.com/kenotron/just-task/tree/master/packages/documentation/docs/'
 };
 
 module.exports = siteConfig;

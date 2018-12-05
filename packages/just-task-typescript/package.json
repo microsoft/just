@@ -1,5 +1,5 @@
 {
-  "name": "build-rig-typescript",
+  "name": "just-task-typescript",
   "version": "1.0.9",
   "description": "",
   "main": "lib/index.js",
@@ -8,7 +8,7 @@
     "dev": "tsc -w --preserveWatchOutput"
   },
   "dependencies": {
-    "build-rig": "1.2.6",
+    "just-task": "1.2.6",
     "typescript": "^3.1.6",
     "resolve": "^1.8.1"
   },
