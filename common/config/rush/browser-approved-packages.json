@@ -119,18 +119,6 @@
       "allowedCategories": [ "production" ]
     },
     {
-      "name": "just-task",
-      "allowedCategories": [ "docs", "production" ]
-    },
-    {
-      "name": "just-task-typescript",
-      "allowedCategories": [ "docs" ]
-    },
-    {
-      "name": "just-task-webpack",
-      "allowedCategories": [ "docs" ]
-    },
-    {
       "name": "bunyan",
       "allowedCategories": [ "production" ]
     },
@@ -177,6 +165,18 @@
     {
       "name": "json5",
       "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "just-task",
+      "allowedCategories": [ "docs", "production" ]
+    },
+    {
+      "name": "just-task-typescript",
+      "allowedCategories": [ "docs" ]
+    },
+    {
+      "name": "just-task-webpack",
+      "allowedCategories": [ "docs" ]
     },
     {
       "name": "mkdirp",
