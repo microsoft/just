@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "typing": "lib/index.d.ts",
   "bin": {
-    "rig": "bin/rig.js"
+    "just": "bin/just.js"
   },
   "scripts": {
     "build": "tsc",

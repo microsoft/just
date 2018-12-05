@@ -1,6 +1,6 @@
 ---
 id: doc-start
-title: Getting Started with Build
+title: Getting Started with Just ____
 sidebar_label: Getting Started
 ---
 
@@ -15,7 +15,7 @@ Place some task definitions inside `just-task.js` in your root folder (next to p
 ```js
 const { task } = require('just-task');
 
-task('hello', function() {
+task('sayhello', function() {
   this.logger.info('world');
 });
 ```
@@ -23,7 +23,7 @@ task('hello', function() {
 Then run it!
 
 ```sh
-$ rig hello
+$ just sayhello
 ```
 
 That's all!
