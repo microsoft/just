@@ -8,9 +8,9 @@ function getTimestamp() {
 }
 
 export interface ILogger {
-  info(msg: string): void;
-  warn(msg: string): void;
-  error(msg: string): void;
+  info(msg?: any, ...optionalParams: any[]): void;
+  warn(msg?: any, ...optionalParams: any[]): void;
+  error(msg?: any, ...optionalParams: any[]): void;
 }
 
 export const logger: ILogger = {
