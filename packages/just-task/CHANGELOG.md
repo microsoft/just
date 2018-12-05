@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Tue, 04 Dec 2018 06:13:37 GMT and should not be manually modified.
+This log was last generated on Wed, 05 Dec 2018 22:01:31 GMT and should not be manually modified.
+
+## 0.2.0
+Wed, 05 Dec 2018 22:01:31 GMT
+
+### Minor changes
+
+- Renamed to just
 
 ## 1.2.6
 Tue, 04 Dec 2018 06:13:37 GMT

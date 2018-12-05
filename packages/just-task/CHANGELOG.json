@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.2.0",
+      "tag": "just-task_v0.2.0",
+      "date": "Wed, 05 Dec 2018 22:01:31 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Renamed to just"
+          }
+        ]
+      }
+    },
+    {
       "version": "1.2.6",
       "tag": "just-task_v1.2.6",
       "date": "Tue, 04 Dec 2018 06:13:37 GMT",
