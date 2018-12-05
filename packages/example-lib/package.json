@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "just-task": "1.2.6",
-    "just-task-typescript": "1.0.9",
-    "just-task-webpack": "1.0.9"
+    "just-task": ">=0.1.0 <2.0.0",
+    "just-task-typescript": ">=0.1.0 <2.0.0",
+    "just-task-webpack": ">=0.1.0 <2.0.0"
   }
 }

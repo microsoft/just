@@ -1,6 +1,6 @@
 {
   "name": "just-task-typescript",
-  "version": "1.0.9",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "dev": "tsc -w --preserveWatchOutput"
   },
   "dependencies": {
-    "just-task": "1.2.6",
+    "just-task": ">=0.1.0 <2.0.0",
     "typescript": "^3.1.6",
     "resolve": "^1.8.1"
   },

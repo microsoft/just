@@ -1,6 +1,6 @@
 {
   "name": "just-task",
-  "version": "1.2.6",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "typing": "lib/index.d.ts",
