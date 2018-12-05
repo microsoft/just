@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.3.0",
+      "tag": "just-task_v0.3.0",
+      "date": "Wed, 05 Dec 2018 22:16:09 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Rename rig bin script to just"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.0",
       "tag": "just-task_v0.2.0",
       "date": "Wed, 05 Dec 2018 22:01:31 GMT",
