@@ -1,6 +1,13 @@
 # Change Log - just-task-typescript
 
-This log was last generated on Wed, 05 Dec 2018 22:01:31 GMT and should not be manually modified.
+This log was last generated on Thu, 06 Dec 2018 23:40:37 GMT and should not be manually modified.
+
+## 0.3.0
+Thu, 06 Dec 2018 23:40:37 GMT
+
+### Minor changes
+
+- Moved task function into a function factory so that the taskfunction can be customized
 
 ## 0.2.0
 Wed, 05 Dec 2018 22:01:31 GMT

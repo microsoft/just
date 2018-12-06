@@ -1,6 +1,6 @@
 {
   "name": "just-task-typescript",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {

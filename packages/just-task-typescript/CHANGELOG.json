@@ -2,6 +2,18 @@
   "name": "just-task-typescript",
   "entries": [
     {
+      "version": "0.3.0",
+      "tag": "just-task-typescript_v0.3.0",
+      "date": "Thu, 06 Dec 2018 23:40:37 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Moved task function into a function factory so that the taskfunction can be customized"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.0",
       "tag": "just-task-typescript_v0.2.0",
       "date": "Wed, 05 Dec 2018 22:01:31 GMT",
