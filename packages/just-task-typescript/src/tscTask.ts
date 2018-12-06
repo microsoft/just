@@ -18,10 +18,14 @@ export function tscTask(options: ts.CompilerOptions) {
       [tscCmd]
     );
 
-    const cp = spawn(process.execPath, args, { stdio: 'inherit' });
+    const cp = spawn(process.execPath, args, { stdio: 'pipe' });
 
     cp.stdout.on('data', data => {
       this.logger.info(data.toString().trim());
+    });
+
+    cp.stderr.on('error', data => {
+      this.logger.error(data.toString().trim());
     });
 
     cp.on('exit', code => {
