@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.1.2",
+      "tag": "just-task-preset_v0.1.2",
+      "date": "Fri, 07 Dec 2018 17:43:11 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed typing for tscTask"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.1",
       "tag": "just-task-preset_v0.1.1",
       "date": "Fri, 07 Dec 2018 17:00:17 GMT",

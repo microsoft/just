@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Fri, 07 Dec 2018 17:00:17 GMT and should not be manually modified.
+This log was last generated on Fri, 07 Dec 2018 17:43:11 GMT and should not be manually modified.
+
+## 0.1.2
+Fri, 07 Dec 2018 17:43:11 GMT
+
+### Patches
+
+- Fixed typing for tscTask
 
 ## 0.1.1
 Fri, 07 Dec 2018 17:00:17 GMT
