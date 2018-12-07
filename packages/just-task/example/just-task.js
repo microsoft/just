@@ -1,4 +1,4 @@
-const { task, series, parallel } = require('../lib/index');
+const { task, series, parallel, condition } = require('../lib/index');
 
 task('clean', { describe: 'this is cleaning', builder: yargs => yargs.option('name') }, function() {
   this.logger.info('Cleaning up the build and lib and dist folders');
@@ -17,5 +17,19 @@ task('webpack', function() {
 });
 
 task('build', parallel('tslint', series('clean', 'ts', 'webpack')));
+
+task(
+  'yes',
+  condition('build', argv => {
+    return true;
+  })
+);
+
+task(
+  'no',
+  condition('build', argv => {
+    return false;
+  })
+);
 
 task('default', parallel('build'));
