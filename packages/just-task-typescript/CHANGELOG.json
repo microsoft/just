@@ -2,6 +2,18 @@
   "name": "just-task-typescript",
   "entries": [
     {
+      "version": "0.4.1",
+      "tag": "just-task-typescript_v0.4.1",
+      "date": "Fri, 07 Dec 2018 00:42:04 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "check for project"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.4.0",
       "tag": "just-task-typescript_v0.4.0",
       "date": "Fri, 07 Dec 2018 00:16:35 GMT",

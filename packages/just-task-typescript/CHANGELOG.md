@@ -1,6 +1,13 @@
 # Change Log - just-task-typescript
 
-This log was last generated on Fri, 07 Dec 2018 00:16:35 GMT and should not be manually modified.
+This log was last generated on Fri, 07 Dec 2018 00:42:04 GMT and should not be manually modified.
+
+## 0.4.1
+Fri, 07 Dec 2018 00:42:04 GMT
+
+### Patches
+
+- check for project
 
 ## 0.4.0
 Fri, 07 Dec 2018 00:16:35 GMT
