@@ -11,11 +11,17 @@ interface Arguments {
   [key: string]: string;
 }
 
-export function tscTask(getOptions: (argv: Arguments) => ts.CompilerOptions | ts.CompilerOptions) {
-  return function(this: { logger: ILogger; argv: Arguments }, done: (err?: Error) => void) {
-    const options = typeof getOptions === 'function' ? getOptions(this.argv) : getOptions;
+type GetOptions = ts.CompilerOptions | ((test: Arguments) => ts.CompilerOptions);
 
-    this.logger.info(`Running ${tscCmd} with ${options.project}`);
+export function tscTask(getOptions: GetOptions) {
+  return function tsc(this: { logger: ILogger; argv: Arguments }, done: (err?: Error) => void) {
+    const options = (typeof getOptions === 'function' ? getOptions(this.argv) : getOptions) || {};
+
+    if (options.project) {
+      this.logger.info(`Running ${tscCmd} with ${options.project}`);
+    } else {
+      this.logger.info(`Running ${tscCmd}`);
+    }
 
     const args = Object.keys(options).reduce(
       (args, option) => {
