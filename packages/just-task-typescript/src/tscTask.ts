@@ -7,8 +7,14 @@ import { ILogger } from 'just-task/lib/logger';
 const typescriptPath = resolve.sync('typescript', { basedir: __dirname, preserveSymlinks: true });
 const tscCmd = path.resolve(path.dirname(typescriptPath), 'tsc.js');
 
-export function tscTask(options: ts.CompilerOptions) {
-  return function(this: { logger: ILogger }, done: (err?: Error) => void) {
+interface Arguments {
+  [key: string]: string;
+}
+
+export function tscTask(getOptions: (argv: Arguments) => ts.CompilerOptions | ts.CompilerOptions) {
+  return function(this: { logger: ILogger; argv: Arguments }, done: (err?: Error) => void) {
+    const options = typeof getOptions === 'function' ? getOptions(this.argv) : getOptions;
+
     this.logger.info(`Running ${tscCmd} with ${options.project}`);
 
     const args = Object.keys(options).reduce(
