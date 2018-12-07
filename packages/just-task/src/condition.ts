@@ -1,15 +1,19 @@
 import yargs from 'yargs';
 import { parallel } from './undertaker';
-import { ILogger } from './logger';
-import chalk from 'chalk';
+import { task } from './task';
 
 export function condition(taskName: string, conditional: (argv: yargs.Arguments) => boolean) {
-  return function condition(this: { logger: ILogger; argv: yargs.Arguments }, done: (err?: Error) => void) {
-    if (conditional && conditional(this.argv)) {
-      return parallel(taskName)(done);
-    }
+  const conditionalTaskName = `${taskName}?`;
 
-    this.logger.info(`skipped '${chalk.cyan(taskName)}'`);
-    done();
+  return function(done: any) {
+    task(conditionalTaskName, function(cb) {
+      if (conditional && conditional(this.argv)) {
+        return parallel(taskName)(cb);
+      }
+
+      cb();
+    });
+
+    parallel(conditionalTaskName)(done);
   };
 }

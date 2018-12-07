@@ -9,8 +9,12 @@ let topLevelTask: string | undefined = undefined;
 let errorReported: boolean = false;
 let tasksInProgress: { [key: string]: boolean } = {};
 
+function shouldLog(taskArgs: any) {
+  return !taskArgs.branch && taskArgs.name !== '<anonymous>' && !taskArgs.name.endsWith('?');
+}
+
 undertaker.on('start', function(args: any) {
-  if (!args.branch) {
+  if (shouldLog(args)) {
     if (!topLevelTask) {
       topLevelTask = args.name;
     }
@@ -22,7 +26,7 @@ undertaker.on('start', function(args: any) {
 });
 
 undertaker.on('stop', function(args: any) {
-  if (!args.branch) {
+  if (shouldLog(args)) {
     const duration = args.duration;
     const durationInSecs = Math.round(((duration[0] * NS_PER_SEC + duration[1]) / NS_PER_SEC) * 100) / 100;
 
@@ -41,7 +45,7 @@ undertaker.on('error', function(args: any) {
     taskLogger(args.name).error(chalk.yellow('------------------------------------'));
     taskLogger(args.name).error(chalk.yellow(args.error));
     taskLogger(args.name).error(chalk.yellow('------------------------------------'));
-  } else if (!args.branch) {
+  } else if (shouldLog(args)) {
     taskLogger(args.name).error(chalk.dim(`Error previously detected. See above for error messages.`));
   }
 

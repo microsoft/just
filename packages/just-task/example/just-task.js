@@ -20,16 +20,30 @@ task('build', parallel('tslint', series('clean', 'ts', 'webpack')));
 
 task(
   'yes',
-  condition('build', argv => {
-    return true;
-  })
+  parallel(
+    'tslint',
+    series(
+      'clean',
+      condition('ts', argv => {
+        return true;
+      }),
+      'webpack'
+    )
+  )
 );
 
 task(
   'no',
-  condition('build', argv => {
-    return false;
-  })
+  parallel(
+    'tslint',
+    series(
+      'clean',
+      condition('ts', argv => {
+        return false;
+      }),
+      'webpack'
+    )
+  )
 );
 
 task('default', parallel('build'));
