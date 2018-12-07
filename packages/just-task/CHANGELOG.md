@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Wed, 05 Dec 2018 22:16:09 GMT and should not be manually modified.
+This log was last generated on Fri, 07 Dec 2018 17:16:09 GMT and should not be manually modified.
+
+## 0.3.1
+Fri, 07 Dec 2018 17:16:09 GMT
+
+### Patches
+
+- Adds resilience to CLI script
 
 ## 0.3.0
 Wed, 05 Dec 2018 22:16:09 GMT
