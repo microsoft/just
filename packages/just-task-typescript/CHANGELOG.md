@@ -1,6 +1,13 @@
 # Change Log - just-task-typescript
 
-This log was last generated on Thu, 06 Dec 2018 23:40:37 GMT and should not be manually modified.
+This log was last generated on Fri, 07 Dec 2018 00:16:35 GMT and should not be manually modified.
+
+## 0.4.0
+Fri, 07 Dec 2018 00:16:35 GMT
+
+### Minor changes
+
+- let users pass in a function to generate options for tsc
 
 ## 0.3.0
 Thu, 06 Dec 2018 23:40:37 GMT
