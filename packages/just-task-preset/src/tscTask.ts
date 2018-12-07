@@ -11,7 +11,8 @@ interface Arguments {
   [key: string]: string;
 }
 
-type GetOptions = ts.CompilerOptions | ((test: Arguments) => ts.CompilerOptions);
+type CompilerOptions = { [key in keyof ts.CompilerOptions]: string };
+type GetOptions = CompilerOptions | ((test: Arguments) => CompilerOptions);
 
 export function tscTask(getOptions: GetOptions) {
   return function tsc(this: { logger: ILogger; argv: Arguments }, done: (err?: Error) => void) {
