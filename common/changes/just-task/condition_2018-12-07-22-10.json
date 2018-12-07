@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task",
+      "comment": "fix: makes conditon() work with series and parallel",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com"
+}
