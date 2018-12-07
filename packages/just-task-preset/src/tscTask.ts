@@ -11,7 +11,7 @@ interface Arguments {
   [key: string]: string;
 }
 
-type CompilerOptions = { [key in keyof ts.CompilerOptions]: string };
+type CompilerOptions = { [key in keyof ts.CompilerOptions]: string | boolean };
 type GetOptions = CompilerOptions | ((test: Arguments) => CompilerOptions);
 
 export function tscTask(getOptions: GetOptions) {
@@ -26,7 +26,13 @@ export function tscTask(getOptions: GetOptions) {
 
     const args = Object.keys(options).reduce(
       (args, option) => {
-        return args.concat(['--' + option, options[option] as string]);
+        if (typeof options[option] === 'string') {
+          return args.concat(['--' + option, options[option] as string]);
+        } else if (typeof options[option] === 'boolean') {
+          return args.concat(['--' + option]);
+        }
+
+        return args;
       },
       [tscCmd]
     );
