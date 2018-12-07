@@ -11,36 +11,27 @@ dependencies:
   '@rush-temp/example-lib': 'file:projects/example-lib.tgz'
   '@rush-temp/just-task': 'file:projects/just-task.tgz'
   '@rush-temp/just-task-docs': 'file:projects/just-task-docs.tgz'
+  '@rush-temp/just-task-preset': 'file:projects/just-task-preset.tgz'
   '@rush-temp/just-task-scripts': 'file:projects/just-task-scripts.tgz'
-  '@rush-temp/just-task-typescript': 'file:projects/just-task-typescript.tgz'
-  '@rush-temp/just-task-webpack': 'file:projects/just-task-webpack.tgz'
   '@types/jest': 23.3.10
   '@types/node': 8.10.38
   '@types/resolve': 0.0.8
   '@types/undertaker': 1.2.0
   '@types/undertaker-registry': 1.0.1
-  '@types/webpack': 4.4.20
   '@types/yargs': 12.0.1
   '@uifabric/experiments': 6.45.0
-  autoprefixer: 9.4.2
-  case-sensitive-paths-webpack-plugin: 2.1.2
   chalk: 2.4.1
   cpx: 1.5.0
-  css-loader: 1.0.1
   docusaurus: 1.6.0
-  jest: 23.6.0
+  just-task-typescript: 0.4.1
+  just-task-webpack: 1.1.0
   office-ui-fabric-react: 6.110.2
-  postcss-loader: 3.0.0
   react: 16.6.3
   react-dom: 16.6.3
   resolve: 1.8.1
-  sass-loader: 7.1.0
-  style-loader: 0.23.1
   ts-jest: 23.10.5
-  typescript: 3.2.1
   undertaker: 1.2.0
   undertaker-registry: 1.0.1
-  webpack: 4.27.1
   yargs: 12.0.5
 packages:
   /@babel/code-frame/7.0.0:
@@ -1307,10 +1298,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-aA5WX3w3tS4ebd4ySQra0dZHO17q/8Tt6nrPGggjWg8QLvtluse26xXgjXWHqcEuv9mrdvFzEaio6QozpxII9A==
-  /@types/anymatch/1.3.0:
-    dev: false
-    resolution:
-      integrity: sha512-7WcbyctkE8GTzogDb0ulRAEw7v8oIS54ft9mQTU7PfM0hp5e+8kpa+HeQ7IQrFbKtJXBKcZ4bh+Em9dTw5L6AQ==
   /@types/cheerio/0.22.10:
     dev: false
     resolution:
@@ -1378,16 +1365,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-auApPaJf3NPfe18hSoJkp8EbZzer2ISk7o8mCC3M9he/a04+gbMF97NkpD2S8riMGvm4BMRI59/SZQSaLTKpsQ==
-  /@types/tapable/1.0.4:
-    dev: false
-    resolution:
-      integrity: sha512-78AdXtlhpCHT0K3EytMpn4JNxaf5tbqbLcbIRoQIHzpTIyjpxLQKRoxU55ujBXAtg3Nl2h/XWvfDa9dsMOd0pQ==
-  /@types/uglify-js/3.0.4:
-    dependencies:
-      source-map: 0.6.1
-    dev: false
-    resolution:
-      integrity: sha512-SudIN9TRJ+v8g5pTG8RRCqfqTMNqgWCKKd3vtynhGzkIIjxaicNAMuY5TRadJ6tzDu3Dotf3ngaMILtmOdmWEQ==
   /@types/undertaker-registry/1.0.1:
     dev: false
     resolution:
@@ -1400,16 +1377,6 @@ packages:
     resolution:
       integrity: sha512-bx/5nZCGkasXs6qaA3B6SVDjBZqdyk04UO12e0uEPSzjt5H8jEJw0DKe7O7IM0hM2bVHRh70pmOH7PEHqXwzOw==
       tarball: 'http://registry.npmjs.org/@types/undertaker/-/undertaker-1.2.0.tgz'
-  /@types/webpack/4.4.20:
-    dependencies:
-      '@types/anymatch': 1.3.0
-      '@types/node': 8.10.38
-      '@types/tapable': 1.0.4
-      '@types/uglify-js': 3.0.4
-      source-map: 0.6.1
-    dev: false
-    resolution:
-      integrity: sha512-uSVhicDIkh2Phkn0L49eZQb4Ory5q9opiqhjxQGu+onh9mbPEhSF5OuA68dmH240VN1+mavQTmkQ1hqnKZB0gA==
   /@types/yargs/12.0.1:
     dev: false
     resolution:
@@ -3428,27 +3395,6 @@ packages:
     resolution:
       integrity: sha1-gIrcLnnPhHOAabZGyyDsJ762KeA=
       tarball: 'http://registry.npmjs.org/css-color-names/-/css-color-names-0.0.4.tgz'
-  /css-loader/1.0.1:
-    dependencies:
-      babel-code-frame: 6.26.0
-      css-selector-tokenizer: 0.7.1
-      icss-utils: 2.1.0
-      loader-utils: 1.1.0
-      lodash: 4.17.11
-      postcss: 6.0.23
-      postcss-modules-extract-imports: 1.2.1
-      postcss-modules-local-by-default: 1.2.0
-      postcss-modules-scope: 1.1.0
-      postcss-modules-values: 1.3.0
-      postcss-value-parser: 3.3.1
-      source-list-map: 2.0.1
-    dev: false
-    engines:
-      node: '>= 6.9.0 <7.0.0 || >= 8.9.0'
-    peerDependencies:
-      webpack: ^4.0.0
-    resolution:
-      integrity: sha512-+ZHAZm/yqvJ2kDtPne3uX0C+Vr3Zn5jFn2N4HywtS5ujwvsVkyg0VArEXpl3BgczDA8anieki1FIzhchX4yrDw==
   /css-loader/1.0.1/webpack@4.27.1:
     dependencies:
       babel-code-frame: 6.26.0
@@ -3463,7 +3409,7 @@ packages:
       postcss-modules-values: 1.3.0
       postcss-value-parser: 3.3.1
       source-list-map: 2.0.1
-      webpack: 4.27.1
+      webpack: /webpack/4.27.1/webpack@4.27.1
     dev: false
     engines:
       node: '>= 6.9.0 <7.0.0 || >= 8.9.0'
@@ -6644,6 +6590,38 @@ packages:
       '0': node >=0.6.0
     resolution:
       integrity: sha1-MT5mvB5cwG5Di8G3SZwuXFastqI=
+  /just-task-typescript/0.4.1:
+    dependencies:
+      just-task: 0.3.0
+      resolve: 1.8.1
+      typescript: 3.2.2
+    dev: false
+    resolution:
+      integrity: sha512-bRGC4MCcRBsWoRb4FmeTQbAMaiUr8/hK2phz7RGPwBaUOsm+Tfy2RhpW0dHfaF4ezq+W6FdN3F+W2cxab7N8jA==
+  /just-task-webpack/1.1.0:
+    dependencies:
+      autoprefixer: 9.4.2
+      case-sensitive-paths-webpack-plugin: 2.1.2
+      css-loader: /css-loader/1.0.1/webpack@4.27.1
+      just-task: 0.3.0
+      postcss-loader: 3.0.0
+      resolve: 1.8.1
+      sass-loader: /sass-loader/7.1.0/webpack@4.27.1
+      style-loader: 0.23.1
+      webpack: /webpack/4.27.1/webpack@4.27.1
+    dev: false
+    resolution:
+      integrity: sha512-dpxaFkSRIykK0isAgBUJiLbIwT16QFvXYkE3M25UR2F6zDX3Uzyyzzf0T40PQP78J7eR6ilD0fjbx5XgnUpEag==
+  /just-task/0.3.0:
+    dependencies:
+      chalk: 2.4.1
+      undertaker: 1.2.0
+      undertaker-registry: 1.0.1
+      yargs: 12.0.5
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-szLXMqSSNE0u/La5OTmqbVU+Qjoc0TcBlPyxYF6KZRpVUAcVwSPe2sfAgEyJwv7qGCfj7PVVbWw1gyWGzsWpWw==
   /kind-of/3.2.2:
     dependencies:
       is-buffer: 1.1.6
@@ -9181,21 +9159,6 @@ packages:
       fsevents: 1.2.4
     resolution:
       integrity: sha1-tNwYYcIbQn6SlQej51HiosuKs/o=
-  /sass-loader/7.1.0:
-    dependencies:
-      clone-deep: 2.0.2
-      loader-utils: 1.1.0
-      lodash.tail: 4.1.1
-      neo-async: 2.6.0
-      pify: 3.0.0
-      semver: 5.6.0
-    dev: false
-    engines:
-      node: '>= 6.9.0 || >= 8.9.0'
-    peerDependencies:
-      webpack: ^3.0.0 || ^4.0.0
-    resolution:
-      integrity: sha512-+G+BKGglmZM2GUSfT9TLuEp6tzehHPjAMoRRItOojWIqIGPloVCMhNIQuG639eJ+y033PaGTSjLaTHts8Kw79w==
   /sass-loader/7.1.0/webpack@4.27.1:
     dependencies:
       clone-deep: 2.0.2
@@ -9204,7 +9167,7 @@ packages:
       neo-async: 2.6.0
       pify: 3.0.0
       semver: 5.6.0
-      webpack: 4.27.1
+      webpack: /webpack/4.27.1/webpack@4.27.1
     dev: false
     engines:
       node: '>= 6.9.0 || >= 8.9.0'
@@ -9978,7 +9941,7 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-awRGhWqbERTRhW/8vlCczLCXcmU=
-  /terser-webpack-plugin/1.1.0:
+  /terser-webpack-plugin/1.1.0/webpack@4.27.1:
     dependencies:
       cacache: 11.3.1
       find-cache-dir: 2.0.0
@@ -9986,11 +9949,13 @@ packages:
       serialize-javascript: 1.5.0
       source-map: 0.6.1
       terser: 3.11.0
+      webpack: /webpack/4.27.1/webpack@4.27.1
       webpack-sources: 1.3.0
       worker-farm: 1.6.0
     dev: false
     engines:
       node: '>= 6.9.0 <7.0.0 || >= 8.9.0'
+    id: registry.npmjs.org/terser-webpack-plugin/1.1.0
     peerDependencies:
       webpack: ^4.3.0
     resolution:
@@ -10307,6 +10272,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-jw7P2z/h6aPT4AENXDGjcfHTu5CSqzsbZc6YlUIebTyBAq8XaKp78x7VcSh30xwSCcsu5irZkYZUSFP1MrAMbg==
+  /typescript/3.2.2:
+    dev: false
+    engines:
+      node: '>=4.2.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-VCj5UiSyHBjwfYacmDuc/NOk4QQixbE+Wn7MFJuS0nRuPQbof132Pw4u53dm264O8LPc2MVsc7RJNml5szurkg==
   /uglify-js/3.4.9:
     dependencies:
       commander: 2.17.1
@@ -10693,7 +10665,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-OiVgSrbGu7NEnEvQJJgdSFPl2qWKkWq5lHMhgiToIiN9w34EBnjYzSYs+VbL5KoYiLNtFFa7BZIKxRED3I32pA==
-  /webpack/4.27.1:
+  /webpack/4.27.1/webpack@4.27.1:
     dependencies:
       '@webassemblyjs/ast': 1.7.11
       '@webassemblyjs/helper-module-context': 1.7.11
@@ -10716,13 +10688,14 @@ packages:
       node-libs-browser: 2.1.0
       schema-utils: 0.4.7
       tapable: 1.1.1
-      terser-webpack-plugin: 1.1.0
+      terser-webpack-plugin: /terser-webpack-plugin/1.1.0/webpack@4.27.1
       watchpack: 1.6.0
       webpack-sources: 1.3.0
     dev: false
     engines:
       node: '>=6.11.5'
     hasBin: true
+    id: registry.npmjs.org/webpack/4.27.1
     resolution:
       integrity: sha512-WArHiLvHrlfyRM8i7f+2SFbr/XbQ0bXqTkPF8JpHOzub5482Y3wx7rEO8stuLGOKOgZJcqcisLhD7LrM/+fVMw==
   /websocket-driver/0.7.0:
@@ -10942,10 +10915,13 @@ packages:
     resolution:
       integrity: sha1-x+sXyT4RLLEIb6bY5R+wZnt5pfk=
   'file:projects/example-lib.tgz':
+    dependencies:
+      just-task-typescript: 0.4.1
+      just-task-webpack: 1.1.0
     dev: false
     name: '@rush-temp/example-lib'
     resolution:
-      integrity: sha512-smHMcRRl+T68RrBDr99xC3vtr6vKf6k5m4Vu2/gZrQ5O4NH/Si6//6uBBD6e7tUnvPq9KUI9gi20mnPz0HJyUQ==
+      integrity: sha512-eSlAvpnK0Q0Ve933gV9GJ6Nbbfvzw25ZGPrZJhhnOozcEuAuTxnBFwA1RL7YgtEqWOQRK56Zuz7vXyX2dj5BhA==
       tarball: 'file:projects/example-lib.tgz'
     version: 0.0.0
   'file:projects/just-task-docs.tgz':
@@ -10971,6 +10947,19 @@ packages:
       integrity: sha512-YmCDY6rBDxRDKFUuq5yLVPqbaPqMW/uNmSpwagfjX/HthccpAl55Jwyq1MwIZI94VSMfJPog+84pD9trgqQF4g==
       tarball: 'file:projects/just-task-docs.tgz'
     version: 0.0.0
+  'file:projects/just-task-preset.tgz':
+    dependencies:
+      '@types/node': 8.10.38
+      '@types/resolve': 0.0.8
+      jest: 23.6.0
+      resolve: 1.8.1
+      typescript: 3.2.2
+    dev: false
+    name: '@rush-temp/just-task-preset'
+    resolution:
+      integrity: sha512-yxNlvRkBdzZohwfR6er0L5bonlgg8zTBsBXQi0BvbwuFH4KN+no8JyUvi0WdL4VJ53KVW77wnJuOe28bl5cYtg==
+      tarball: 'file:projects/just-task-preset.tgz'
+    version: 0.0.0
   'file:projects/just-task-scripts.tgz':
     dependencies:
       cpx: 1.5.0
@@ -10979,40 +10968,6 @@ packages:
     resolution:
       integrity: sha512-0VC9u8Mp+U6n07zRkj54o2oVf5AjiSpA+j0/NdIEoj0KphvZiQbu5hdY52QpdQT+j98oQZmPp+QuDzqe3gsWJQ==
       tarball: 'file:projects/just-task-scripts.tgz'
-    version: 0.0.0
-  'file:projects/just-task-typescript.tgz':
-    dependencies:
-      '@types/node': 8.10.38
-      '@types/resolve': 0.0.8
-      jest: 23.6.0
-      resolve: 1.8.1
-      typescript: 3.2.1
-    dev: false
-    name: '@rush-temp/just-task-typescript'
-    resolution:
-      integrity: sha512-HluBMRu4vIcqCHmE30tE3sA7ohIkdZj/IZwubAWjf45Z7rQyHlPIckxp11JSx7fSG3aUYPjHZZQEHgkS7dmRwg==
-      tarball: 'file:projects/just-task-typescript.tgz'
-    version: 0.0.0
-  'file:projects/just-task-webpack.tgz':
-    dependencies:
-      '@types/node': 8.10.38
-      '@types/resolve': 0.0.8
-      '@types/webpack': 4.4.20
-      autoprefixer: 9.4.2
-      case-sensitive-paths-webpack-plugin: 2.1.2
-      css-loader: /css-loader/1.0.1/webpack@4.27.1
-      jest: 23.6.0
-      postcss-loader: 3.0.0
-      resolve: 1.8.1
-      sass-loader: /sass-loader/7.1.0/webpack@4.27.1
-      style-loader: 0.23.1
-      typescript: 3.2.1
-      webpack: 4.27.1
-    dev: false
-    name: '@rush-temp/just-task-webpack'
-    resolution:
-      integrity: sha512-ZO5RvtG+HKS4a/88bG8S0bhkNjnIhkfD98QD6Fq88D7vUoeGxuGHaivjNuXyEZ8hfCt1AgXiQ/vQZPGa7zAyUQ==
-      tarball: 'file:projects/just-task-webpack.tgz'
     version: 0.0.0
   'file:projects/just-task.tgz':
     dependencies:
@@ -11050,34 +11005,25 @@ specifiers:
   '@rush-temp/example-lib': 'file:./projects/example-lib.tgz'
   '@rush-temp/just-task': 'file:./projects/just-task.tgz'
   '@rush-temp/just-task-docs': 'file:./projects/just-task-docs.tgz'
+  '@rush-temp/just-task-preset': 'file:./projects/just-task-preset.tgz'
   '@rush-temp/just-task-scripts': 'file:./projects/just-task-scripts.tgz'
-  '@rush-temp/just-task-typescript': 'file:./projects/just-task-typescript.tgz'
-  '@rush-temp/just-task-webpack': 'file:./projects/just-task-webpack.tgz'
   '@types/jest': ^23.3.10
   '@types/node': ^8.9.4
   '@types/resolve': ^0.0.8
   '@types/undertaker': ^1.2.0
   '@types/undertaker-registry': ^1.0.1
-  '@types/webpack': ^4.4.20
   '@types/yargs': ^12.0.1
   '@uifabric/experiments': ^6.41.0
-  autoprefixer: ^9.3.1
-  case-sensitive-paths-webpack-plugin: ^2.1.2
   chalk: ^2.4.1
   cpx: ^1.5.0
-  css-loader: ^1.0.1
   docusaurus: ^1.5.1
-  jest: ^23.6.0
+  just-task-typescript: '>=0.4.1 <1.0.0'
+  just-task-webpack: '>=1.1.0 <2.0.0'
   office-ui-fabric-react: ^6.109.0
-  postcss-loader: ^3.0.0
   react: ^16.6.0
   react-dom: ^16.6.0
   resolve: ^1.8.1
-  sass-loader: ^7.1.0
-  style-loader: ^0.23.1
   ts-jest: ^23.10.5
-  typescript: ^3.1.6
   undertaker: ^1.2.0
   undertaker-registry: ^1.0.1
-  webpack: ^4.26.1
   yargs: ^12.0.5

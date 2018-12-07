@@ -171,6 +171,10 @@
       "allowedCategories": [ "docs", "production" ]
     },
     {
+      "name": "just-task-preset",
+      "allowedCategories": [ "docs" ]
+    },
+    {
       "name": "just-task-typescript",
       "allowedCategories": [ "docs" ]
     },

@@ -76,14 +76,8 @@
       "versionPolicyName": "RepoPolicy"
     },
     {
-      "packageName": "just-task-typescript",
-      "projectFolder": "packages/just-task-typescript",
-      "reviewCategory": "production",
-      "versionPolicyName": "RepoPolicy"
-    },
-    {
-      "packageName": "just-task-webpack",
-      "projectFolder": "packages/just-task-webpack",
+      "packageName": "just-task-preset",
+      "projectFolder": "packages/just-task-preset",
       "reviewCategory": "production",
       "versionPolicyName": "RepoPolicy"
     },

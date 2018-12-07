@@ -1,6 +1,6 @@
 {
-  "name": "just-task-typescript",
-  "version": "0.4.1",
+  "name": "just-task-preset",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -9,13 +9,17 @@
   },
   "dependencies": {
     "just-task": ">=0.3.0 <1.0.0",
-    "typescript": "^3.1.6",
     "resolve": "^1.8.1"
   },
   "devDependencies": {
     "@types/node": "^8.9.4",
     "@types/resolve": "^0.0.8",
-    "jest": "^23.6.0"
+    "typescript": ">=2.8.0 <4.0.0",
+    "jest": ">=22.0.0"
+  },
+  "peerDependencies": {
+    "typescript": ">=2.8.0 <4.0.0",
+    "jest": ">=22.0.0"
   },
   "keywords": [],
   "author": "Ken Chau <kchau@microsoft.com>",

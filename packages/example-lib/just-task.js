@@ -1,7 +1,6 @@
 const { task, series, parallel } = require('just-task');
 
-require('just-task-typescript');
-require('just-task-webpack');
+require('just-task-preset');
 
-task('build', series('typescript', 'webpack'));
+task('build', parallel('typescript'));
 task('watch', parallel('typescript:watch'));
