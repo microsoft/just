@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.4.0",
+      "tag": "just-task_v0.4.0",
+      "date": "Fri, 07 Dec 2018 18:17:23 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Adds a 'condition' task function that can decide whether to skip task or not"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.1",
       "tag": "just-task_v0.3.1",
       "date": "Fri, 07 Dec 2018 17:16:09 GMT",

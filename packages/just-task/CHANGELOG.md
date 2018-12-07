@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 07 Dec 2018 17:16:09 GMT and should not be manually modified.
+This log was last generated on Fri, 07 Dec 2018 18:17:23 GMT and should not be manually modified.
+
+## 0.4.0
+Fri, 07 Dec 2018 18:17:23 GMT
+
+### Minor changes
+
+- Adds a 'condition' task function that can decide whether to skip task or not
 
 ## 0.3.1
 Fri, 07 Dec 2018 17:16:09 GMT
