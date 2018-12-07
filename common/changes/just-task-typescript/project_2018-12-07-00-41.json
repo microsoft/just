@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task-typescript",
+      "comment": "check for project",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task-typescript",
+  "email": "kchau@microsoft.com"
+}
