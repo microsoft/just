@@ -79,7 +79,7 @@ export class JustTaskRegistry extends UndertakerRegistry {
     };
 
     Object.defineProperty(context, 'argv', {
-      get: () => this.argv
+      get: () => this.argv.argv
     });
 
     return function(done: any) {
