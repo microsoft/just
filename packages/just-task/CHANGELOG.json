@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.4.2",
+      "tag": "just-task_v0.4.2",
+      "date": "Fri, 07 Dec 2018 22:20:28 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix: pass the right argv to the consumers"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.4.1",
       "tag": "just-task_v0.4.1",
       "date": "Fri, 07 Dec 2018 22:10:50 GMT",

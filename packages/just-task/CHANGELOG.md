@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 07 Dec 2018 22:10:50 GMT and should not be manually modified.
+This log was last generated on Fri, 07 Dec 2018 22:20:28 GMT and should not be manually modified.
+
+## 0.4.2
+Fri, 07 Dec 2018 22:20:28 GMT
+
+### Patches
+
+- fix: pass the right argv to the consumers
 
 ## 0.4.1
 Fri, 07 Dec 2018 22:10:50 GMT
