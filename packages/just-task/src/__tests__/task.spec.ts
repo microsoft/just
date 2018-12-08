@@ -8,7 +8,7 @@ describe('task', () => {
   beforeEach(() => {
     const yargsBuilder = yargs;
     yargsBuilder.option('config', { default: path.resolve(__dirname, 'mock/rig.js') });
-    undertaker.registry(new JustTaskRegistry(yargsBuilder));
+    undertaker.registry(new JustTaskRegistry());
   });
 
   it('allows synchronous tasks to be defined and be run', done => {
@@ -48,37 +48,6 @@ describe('task', () => {
 
     parallel('test')(function() {
       expect(testFunction).toBeCalledTimes(1);
-      done();
-    });
-  });
-
-  it('exposes logger in the context', done => {
-    task('test', function() {
-      expect(this.logger).not.toBeNull();
-    });
-
-    parallel('test')(function() {
-      done();
-    });
-  });
-
-  it('exposes argv in the context', done => {
-    task('test', function() {
-      expect(this.argv).not.toBeNull();
-    });
-
-    parallel('test')(function() {
-      done();
-    });
-  });
-
-  it('can take in yargs argv', done => {
-    task('test', { builder: yargs => yargs.option('name', { default: 'hello' }) }, function() {
-      expect(this.argv).not.toBeNull();
-      expect(this.argv.name).not.toBe('hello');
-    });
-
-    parallel('test')(function() {
       done();
     });
   });
