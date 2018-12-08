@@ -1,6 +1,6 @@
 {
   "name": "just-task-preset",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "dependencies": {
     "async": "^2.6.1",
     "cpx": "^1.5.0",
-    "just-task": ">=0.4.2 <1.0.0",
+    "just-task": ">=0.5.0 <1.0.0",
     "resolve": "^1.8.1",
     "rimraf": "^2.6.2",
     "mkdirp": "^0.5.1"

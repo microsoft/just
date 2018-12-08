@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.5.0",
+      "tag": "just-task_v0.5.0",
+      "date": "Sat, 08 Dec 2018 04:58:33 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "streamlines API so the logger is not from the this context"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.4.2",
       "tag": "just-task_v0.4.2",
       "date": "Fri, 07 Dec 2018 22:20:28 GMT",

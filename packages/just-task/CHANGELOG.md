@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 07 Dec 2018 22:20:28 GMT and should not be manually modified.
+This log was last generated on Sat, 08 Dec 2018 04:58:33 GMT and should not be manually modified.
+
+## 0.5.0
+Sat, 08 Dec 2018 04:58:33 GMT
+
+### Minor changes
+
+- streamlines API so the logger is not from the this context
 
 ## 0.4.2
 Fri, 07 Dec 2018 22:20:28 GMT
