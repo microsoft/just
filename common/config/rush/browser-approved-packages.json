@@ -39,6 +39,10 @@
       "allowedCategories": [ "docs" ]
     },
     {
+      "name": "@types/async",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/bunyan",
       "allowedCategories": [ "production" ]
     },
@@ -109,6 +113,10 @@
     {
       "name": "@uifabric/fabric-website-resources",
       "allowedCategories": [ "docs" ]
+    },
+    {
+      "name": "async",
+      "allowedCategories": [ "production" ]
     },
     {
       "name": "autoprefixer",
