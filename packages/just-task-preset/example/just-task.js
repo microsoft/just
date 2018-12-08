@@ -1,7 +1,16 @@
-const { task, parallel } = require('just-task');
-const { tscTask } = require('../lib/tscTask');
+// @ts-check
+
+const { task, parallel, thunk } = require('just-task');
+const { tscTask, copyTask } = require('../lib/index');
 
 //task('build', parallel(tscTask(), tscTask()));
-task('ts', tscTask());
+task('ts', tscTask({}));
 
-task('build', parallel('ts'));
+task(
+  'build',
+  parallel(
+    thunk(() => {
+      return copyTask([], '');
+    })
+  )
+);

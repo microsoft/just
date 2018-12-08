@@ -26,29 +26,3 @@ export const logger: ILogger = {
     console.error.apply(null, [`${chalk.gray(getTimestamp())} ${chalk.redBright('x')} ${msg}`, ...optionalParams]);
   }
 };
-
-function prettyTaskName(taskName: string) {
-  const diff = longestTaskNameLength - taskName.length;
-
-  return taskName + ' '.repeat(diff);
-}
-
-export const taskLogger = (taskName: string): ILogger => {
-  if (taskName.length > longestTaskNameLength) {
-    longestTaskNameLength = taskName.length;
-  }
-
-  return {
-    info(msg?: any, ...optionalParams: any[]) {
-      logger.info.apply(null, [`[ ${chalk.green(prettyTaskName(taskName))} ] ${msg}`, ...optionalParams]);
-    },
-
-    warn(msg?: any, ...optionalParams: any[]) {
-      logger.warn.apply(null, [`[ ${chalk.yellow(prettyTaskName(taskName))} ] ${msg}`, ...optionalParams]);
-    },
-
-    error(msg?: any, ...optionalParams: any[]) {
-      logger.error.apply(null, [`[ ${chalk.red(prettyTaskName(taskName))} ] ${msg}`, ...optionalParams]);
-    }
-  };
-};
