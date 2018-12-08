@@ -8,31 +8,31 @@ export function addResolvePath(pathName: string) {
   resolvePaths.push(pathName);
 }
 
+function tryResolve(moduleName: string, basedir: string) {
+  try {
+    return resolveFn.sync(moduleName, { basedir, preserveSymlinks: true });
+  } catch (e) {
+    return null;
+  }
+}
+
 export function resolve(moduleName: string) {
   const configArg = yargsFn(process.argv.slice(1).filter(a => a !== '--help')).argv.config;
   const configFilePath = configArg ? path.resolve(path.dirname(configArg)) : undefined;
 
-  try {
-    return resolveFn.sync(moduleName, { basedir: process.cwd(), preserveSymlinks: true });
-  } catch (e) {
-    // pass
-  }
+  const allResolvePaths = [process.cwd(), ...(configFilePath ? [configFilePath] : []), ...resolvePaths];
+  let resolved: string | null = null;
 
-  if (configFilePath) {
-    try {
-      return resolveFn.sync(moduleName, { basedir: configFilePath, preserveSymlinks: true });
-    } catch (e) {
-      // pass
-    }
-  }
-
-  for (let resolvePath of resolvePaths) {
-    try {
-      return resolveFn.sync(moduleName, { basedir: resolvePath, preserveSymlinks: true });
-    } catch (e) {
-      // pass
+  for (let tryPath of allResolvePaths) {
+    resolved = tryResolve(moduleName, tryPath);
+    if (resolved) {
+      return resolved;
     }
   }
 
   return null;
+}
+
+export function resolveCwd(moduleName: string) {
+  return tryResolve(moduleName, process.cwd());
 }

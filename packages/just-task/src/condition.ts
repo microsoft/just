@@ -1,10 +1,8 @@
-import yargs from 'yargs';
-import { argv } from './option';
 import { parallel } from './undertaker';
 
-export function condition(taskName: string, conditional: (argv: yargs.Arguments) => boolean) {
+export function condition(taskName: string, conditional: () => boolean) {
   return function(done: any) {
-    if (conditional && conditional(argv())) {
+    if (conditional && conditional()) {
       parallel(taskName)(done);
     } else {
       done();

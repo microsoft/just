@@ -43,6 +43,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@types/autoprefixer",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/bunyan",
       "allowedCategories": [ "production" ]
     },
@@ -80,6 +84,10 @@
     },
     {
       "name": "@types/node",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@types/node-sass",
       "allowedCategories": [ "production" ]
     },
     {

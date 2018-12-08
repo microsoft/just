@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/jest": "^23.3.10",
     "@types/node": "^8.9.4",
+    "@types/resolve": "^0.0.8",
     "@types/undertaker": "^1.2.0",
     "@types/undertaker-registry": "^1.0.1",
     "@types/yargs": "^12.0.1",
