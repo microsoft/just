@@ -232,7 +232,7 @@
     },
     {
       "name": "typescript",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "docs", "production" ]
     },
     {
       "name": "undertaker",
