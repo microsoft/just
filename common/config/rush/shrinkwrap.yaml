@@ -26,6 +26,7 @@ dependencies:
   '@types/rimraf': 2.0.2
   '@types/undertaker': 1.2.0
   '@types/undertaker-registry': 1.0.1
+  '@types/webpack': 4.4.20
   '@types/yargs': 12.0.1
   '@uifabric/experiments': 6.45.0
   async: 2.6.1
@@ -46,6 +47,7 @@ dependencies:
   tslint: 5.11.0
   undertaker: 1.2.0
   undertaker-registry: 1.0.1
+  webpack: 4.27.1
   yargs: 12.0.5
 packages:
   /@babel/code-frame/7.0.0:
@@ -1349,6 +1351,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-L/srhENhBtbZLUD9FfJ2ZQdnYv3A3MT3UI2EMbC06fHUzIxLjjbkomD6o42UrbsRMwlS9p1BtxExeaCdX73q2Q==
+  /@types/anymatch/1.3.0:
+    dev: false
+    resolution:
+      integrity: sha512-7WcbyctkE8GTzogDb0ulRAEw7v8oIS54ft9mQTU7PfM0hp5e+8kpa+HeQ7IQrFbKtJXBKcZ4bh+Em9dTw5L6AQ==
   /@types/argparse/1.0.33:
     dev: false
     resolution:
@@ -1478,6 +1484,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Hm/bnWq0TCy7jmjeN5bKYij9vw5GrDFWME4IuxV08278NtU/VdGbzsBohcCUJ7+QMqmUq5hpRKB39HeQWJjztQ==
+  /@types/tapable/1.0.4:
+    dev: false
+    resolution:
+      integrity: sha512-78AdXtlhpCHT0K3EytMpn4JNxaf5tbqbLcbIRoQIHzpTIyjpxLQKRoxU55ujBXAtg3Nl2h/XWvfDa9dsMOd0pQ==
+  /@types/uglify-js/3.0.4:
+    dependencies:
+      source-map: 0.6.1
+    dev: false
+    resolution:
+      integrity: sha512-SudIN9TRJ+v8g5pTG8RRCqfqTMNqgWCKKd3vtynhGzkIIjxaicNAMuY5TRadJ6tzDu3Dotf3ngaMILtmOdmWEQ==
   /@types/undertaker-registry/1.0.1:
     dev: false
     resolution:
@@ -1490,6 +1506,16 @@ packages:
     resolution:
       integrity: sha512-bx/5nZCGkasXs6qaA3B6SVDjBZqdyk04UO12e0uEPSzjt5H8jEJw0DKe7O7IM0hM2bVHRh70pmOH7PEHqXwzOw==
       tarball: 'http://registry.npmjs.org/@types/undertaker/-/undertaker-1.2.0.tgz'
+  /@types/webpack/4.4.20:
+    dependencies:
+      '@types/anymatch': 1.3.0
+      '@types/node': 8.10.38
+      '@types/tapable': 1.0.4
+      '@types/uglify-js': 3.0.4
+      source-map: 0.6.1
+    dev: false
+    resolution:
+      integrity: sha512-uSVhicDIkh2Phkn0L49eZQb4Ory5q9opiqhjxQGu+onh9mbPEhSF5OuA68dmH240VN1+mavQTmkQ1hqnKZB0gA==
   /@types/yargs/12.0.1:
     dev: false
     resolution:
@@ -10320,6 +10346,23 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-awRGhWqbERTRhW/8vlCczLCXcmU=
+  /terser-webpack-plugin/1.1.0:
+    dependencies:
+      cacache: 11.3.1
+      find-cache-dir: 2.0.0
+      schema-utils: 1.0.0
+      serialize-javascript: 1.5.0
+      source-map: 0.6.1
+      terser: 3.11.0
+      webpack-sources: 1.3.0
+      worker-farm: 1.6.0
+    dev: false
+    engines:
+      node: '>= 6.9.0 <7.0.0 || >= 8.9.0'
+    peerDependencies:
+      webpack: ^4.3.0
+    resolution:
+      integrity: sha512-61lV0DSxMAZ8AyZG7/A4a3UPlrbOBo8NIQ4tJzLPAdGOQ+yoNC7l5ijEow27lBAL2humer01KLS6bGIMYQxKoA==
   /terser-webpack-plugin/1.1.0/webpack@4.27.1:
     dependencies:
       cacache: 11.3.1
@@ -11106,6 +11149,38 @@ packages:
     dev: false
     resolution:
       integrity: sha512-OiVgSrbGu7NEnEvQJJgdSFPl2qWKkWq5lHMhgiToIiN9w34EBnjYzSYs+VbL5KoYiLNtFFa7BZIKxRED3I32pA==
+  /webpack/4.27.1:
+    dependencies:
+      '@webassemblyjs/ast': 1.7.11
+      '@webassemblyjs/helper-module-context': 1.7.11
+      '@webassemblyjs/wasm-edit': 1.7.11
+      '@webassemblyjs/wasm-parser': 1.7.11
+      acorn: 5.7.3
+      acorn-dynamic-import: 3.0.0
+      ajv: 6.6.1
+      ajv-keywords: /ajv-keywords/3.2.0/ajv@6.6.1
+      chrome-trace-event: 1.0.0
+      enhanced-resolve: 4.1.0
+      eslint-scope: 4.0.0
+      json-parse-better-errors: 1.0.2
+      loader-runner: 2.3.1
+      loader-utils: 1.1.0
+      memory-fs: 0.4.1
+      micromatch: 3.1.10
+      mkdirp: 0.5.1
+      neo-async: 2.6.0
+      node-libs-browser: 2.1.0
+      schema-utils: 0.4.7
+      tapable: 1.1.1
+      terser-webpack-plugin: 1.1.0
+      watchpack: 1.6.0
+      webpack-sources: 1.3.0
+    dev: false
+    engines:
+      node: '>=6.11.5'
+    hasBin: true
+    resolution:
+      integrity: sha512-WArHiLvHrlfyRM8i7f+2SFbr/XbQ0bXqTkPF8JpHOzub5482Y3wx7rEO8stuLGOKOgZJcqcisLhD7LrM/+fVMw==
   /webpack/4.27.1/webpack@4.27.1:
     dependencies:
       '@webassemblyjs/ast': 1.7.11
@@ -11446,6 +11521,7 @@ packages:
       '@types/node-sass': 3.10.32
       '@types/resolve': 0.0.8
       '@types/rimraf': 2.0.2
+      '@types/webpack': 4.4.20
       async: 2.6.1
       autoprefixer: 9.4.2
       cpx: 1.5.0
@@ -11459,10 +11535,11 @@ packages:
       rimraf: 2.6.2
       tslint: /tslint/5.11.0/typescript@3.2.2
       typescript: 3.2.2
+      webpack: 4.27.1
     dev: false
     name: '@rush-temp/just-task-preset'
     resolution:
-      integrity: sha512-XHoBB1wzxVzcXD7E5fGsHa34dIQyaR8qRbQ6lDiYNsqPzHNHMQwI9FXd+DwZOcRbzASMGeu13h2trNfSF8SmZQ==
+      integrity: sha512-U6uHsObBxpQGeWx1QcOa7YiSvXMOXCI62rFXzRrW2T6aNlUGy4+L+mHlpFiW/g4niEzj5fRr5XDMbSRVs57tHQ==
       tarball: 'file:projects/just-task-preset.tgz'
     version: 0.0.0
   'file:projects/just-task-scripts.tgz':
@@ -11527,6 +11604,7 @@ specifiers:
   '@types/rimraf': ^2.0.2
   '@types/undertaker': ^1.2.0
   '@types/undertaker-registry': ^1.0.1
+  '@types/webpack': ^4.4.20
   '@types/yargs': ^12.0.1
   '@uifabric/experiments': ^6.41.0
   async: ^2.6.1
@@ -11547,4 +11625,5 @@ specifiers:
   tslint: '>=5.0.0 <6.0.0'
   undertaker: ^1.2.0
   undertaker-registry: ^1.0.1
+  webpack: '>=4.0.0 <5.0.0'
   yargs: ^12.0.5
