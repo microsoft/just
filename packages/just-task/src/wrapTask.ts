@@ -10,9 +10,13 @@ export function wrapTask(fn: any) {
     } else {
       let results = (fn as any).call();
       if (results && results.then) {
-        results.then(() => {
-          done();
-        });
+        results
+          .then(() => {
+            done();
+          })
+          .catch((e: any) => {
+            done(e);
+          });
       } else {
         done();
       }

@@ -2,19 +2,18 @@ import path from 'path';
 import { spawn } from 'child_process';
 import * as ts from 'typescript';
 import { resolve, logger } from 'just-task';
+import { exec } from './exec';
 
 type CompilerOptions = { [key in keyof ts.CompilerOptions]: string | boolean };
 
 export function tscTask(options: CompilerOptions) {
-  const typescriptPath = resolve('typescript');
+  const tscCmd = resolve('typescript/lib/tsc.js');
 
-  if (!typescriptPath) {
+  if (!tscCmd) {
     throw new Error('cannot find tsc');
   }
 
-  const tscCmd = path.resolve(path.dirname(typescriptPath!), 'tsc.js');
-
-  return function tsc(done: (err?: Error) => void) {
+  return function tsc() {
     if (options.project) {
       logger.info(`Running ${tscCmd} with ${options.project}`);
     } else {
@@ -34,21 +33,8 @@ export function tscTask(options: CompilerOptions) {
       [tscCmd]
     );
 
-    const cp = spawn(process.execPath, args, { stdio: 'pipe' });
-
-    cp.stdout.on('data', data => {
-      logger.info(data.toString().trim());
-    });
-
-    cp.stderr.on('error', data => {
-      logger.error(data.toString().trim());
-    });
-
-    cp.on('exit', code => {
-      if (code !== 0) {
-        return done(new Error('Error in typescript'));
-      }
-      done();
-    });
+    const cmd = [process.execPath, ...args].join(' ');
+    logger.info(cmd);
+    return exec(cmd);
   };
 }
