@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Sat, 08 Dec 2018 04:58:33 GMT and should not be manually modified.
+This log was last generated on Sun, 09 Dec 2018 23:01:57 GMT and should not be manually modified.
+
+## 0.6.0
+Sun, 09 Dec 2018 23:01:57 GMT
+
+### Minor changes
+
+- Adds thunk and condition meta functions
 
 ## 0.5.0
 Sat, 08 Dec 2018 04:58:33 GMT
