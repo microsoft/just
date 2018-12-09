@@ -1,5 +1,3 @@
-import path from 'path';
-import { spawn } from 'child_process';
 import * as ts from 'typescript';
 import { resolve, logger } from 'just-task';
 import { exec } from './exec';
