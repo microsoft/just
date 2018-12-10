@@ -13,6 +13,10 @@
         "title": "Composition of tasks",
         "sidebar_label": "Composition of tasks"
       },
+      "condition": {
+        "title": "Controlling Task Flow with Conditionals",
+        "sidebar_label": "Conditionals"
+      },
       "doc-start": {
         "title": "Getting Started with Just ____",
         "sidebar_label": "Getting Started"
@@ -20,6 +24,10 @@
       "logging": {
         "title": "Logging",
         "sidebar_label": "Logging"
+      },
+      "thunk": {
+        "title": "Higher Order Task Functions",
+        "sidebar_label": "Higher Order Task Functions"
       }
     },
     "links": {

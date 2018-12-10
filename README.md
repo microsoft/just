@@ -1,6 +1,6 @@
-# Build Rig
+# Just
 
-Build Rig is a build task definition library. It stands on the shoulders of two excellent and well tested libraries: [undertaker](https://github.com/gulpjs/undertaker) and [yargs](https://github.com/yargs/yargs).
+`Just` is a build task definition library. It stands on the shoulders of two excellent and well tested libraries: [undertaker](https://github.com/gulpjs/undertaker) and [yargs](https://github.com/yargs/yargs).
 
 ## Why not just `gulp`?
 
@@ -13,7 +13,7 @@ Build Rig is a build task definition library. It stands on the shoulders of two 
 
 ## Core concepts
 
-The core concept of this library is that related tasks are grouped together and exported via npm packages. Each project will have a `rig.js` that imports tasks from those packages and also defines custom tasks for the project itself.
+The core concept of this library is that related tasks are grouped together and exported via npm packages. Each project will have a `just-task.js` that imports tasks from those packages and also defines custom tasks for the project itself.
 
 For example, the `just-task-typescript` package is installable from [npmjs.org](https://npmjs.org/just-task-typescript) and exports `typescript` and `typescript:watch` tasks. A rig file can then import and use them it like this:
 
@@ -31,16 +31,16 @@ task('build', series('clean', 'typescript'));
 
 ## Usage
 
-With the `rig.js` in the root of the project, you can run the task by running:
+With the `just-task.js` in the root of the project, you can run the task by running:
 
 ```
-rig <task> [arguments]
+just <task> [arguments]
 ```
 
 For example:
 
 ```
-rig build --production
+just build --production
 ```
 
 ## What types of tasks are available?

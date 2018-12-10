@@ -4,7 +4,7 @@ title: Logging
 sidebar_label: Logging
 ---
 
-`just-task` is simple, but it is opinionated. One of the built-in capabilities of `just-task` is logging. We feel that this is an important enough of a feature to be available inside a task within its own context.
+`just-task` is simple, but it is opinionated. One of the built-in capabilities of `just-task` is logging. We feel that this is an important enough of a feature to be available by the library.
 
 Typically, logging tasks look like the following:
 
@@ -15,8 +15,10 @@ Typically, logging tasks look like the following:
 To log within the task, simply use the `logger` object off of `this` inside a task function.
 
 ```js
+const { task, logger } = require('just-task');
+
 task('needsLogging', function() {
-  this.logger.info('log something');
+  logger.info('log something');
 });
 ```
 
@@ -25,15 +27,19 @@ If you want to log an error or warning do it with the `logger` object's `warn()`
 ![](assets/failure.png)
 
 ```js
+const { task, logger } = require('just-task');
+
 task('needsLogging', function() {
-  this.logger.warn('a warning');
-  this.logger.error('an error');
+  logger.warn('a warning');
+  logger.error('an error');
 });
 ```
 
 If your error is meant to stop the tasks, simply throw an Error:
 
 ```js
+const { task, logger } = require('just-task');
+
 task('needsLogging', function() {
   throw new Error('an error');
 });

@@ -5,6 +5,8 @@
 <url> <loc>https://kenotron.github.io/just-task/users</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://kenotron.github.io/just-task/en/users" /> </url>
 <url> <loc>https://kenotron.github.io/just-task/docs/args</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://kenotron.github.io/just-task/docs/args" /> </url>
 <url> <loc>https://kenotron.github.io/just-task/docs/composition</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://kenotron.github.io/just-task/docs/composition" /> </url>
+<url> <loc>https://kenotron.github.io/just-task/docs/condition</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://kenotron.github.io/just-task/docs/condition" /> </url>
 <url> <loc>https://kenotron.github.io/just-task/docs/doc-start</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://kenotron.github.io/just-task/docs/doc-start" /> </url>
 <url> <loc>https://kenotron.github.io/just-task/docs/logging</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://kenotron.github.io/just-task/docs/logging" /> </url>
+<url> <loc>https://kenotron.github.io/just-task/docs/thunk</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://kenotron.github.io/just-task/docs/thunk" /> </url>
 </urlset>

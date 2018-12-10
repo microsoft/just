@@ -9,8 +9,6 @@ Once a project get to be a bit more complex, a build step might consist of multi
 ## Running tasks in a series
 
 ```js
-// rig.js
-
 const { task, series } = require('just-task');
 
 task('clean', function() {
@@ -31,8 +29,6 @@ When you trigger `rig build`, the `clean` task will run and complete before `bab
 To take advantage of multi-core CPUs on our machines, we can run several tasks in parallel. Simply use the `parallel()` function.
 
 ```js
-// rig.js
-
 const { task, parallel } = require('just-task');
 
 task('babel', function() {
@@ -51,8 +47,6 @@ task('build', parallel('babel', 'lint'));
 The most powerful feature of `just-task` is its ability to compose tasks by nesting tasks in series and parallel. Let's combine the previous examples.
 
 ```js
-// rig.js
-
 const { task, parallel, series } = require('just-task');
 
 task('babel', function() {
