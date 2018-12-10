@@ -21,11 +21,9 @@ Now, let's try to preconfigure this task based on something we can pass in from 
 const { task, argv, option, thunk } = require('just-task');
 const { tscTask } = require('just-task-preset');
 
-option('amd')
+option('amd');
 
-task('build', thunk(() => {
-  tscTask({ module: argv().amd ? 'amd' : 'commonjs' }))
-});
+task('build', thunk(() => tscTask({ module: argv().amd ? 'amd' : 'commonjs' })));
 ```
 
 Now the build task can take in an argument and perform Typescript compilation for different modes:
