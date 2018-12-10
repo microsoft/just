@@ -13,10 +13,12 @@ npm i -g just-task
 Place some task definitions inside `just-task.js` in your root folder (next to package.json):
 
 ```js
-const { task } = require('just-task');
+const { task, option, logger, argv } = require('just-task');
+
+option('name', { default: 'world' });
 
 task('sayhello', function() {
-  this.logger.info('world');
+  logger.info(argv().name);
 });
 ```
 
@@ -24,6 +26,7 @@ Then run it!
 
 ```sh
 $ just sayhello
+$ just sayhello --name me
 ```
 
 That's all!
