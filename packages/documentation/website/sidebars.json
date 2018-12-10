@@ -1,5 +1,5 @@
 {
   "docs": {
-    "Documentation": ["doc-start", "composition", "logging", "args"]
+    "Documentation": ["doc-start", "composition", "logging", "args", "condition", "thunk"]
   }
 }
