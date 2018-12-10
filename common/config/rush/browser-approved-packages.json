@@ -99,6 +99,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@types/run-parallel-limit",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/undertaker",
       "allowedCategories": [ "production" ]
     },
@@ -224,6 +228,10 @@
     },
     {
       "name": "rimraf",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "run-parallel-limit",
       "allowedCategories": [ "production" ]
     },
     {

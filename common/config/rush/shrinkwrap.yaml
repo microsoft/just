@@ -14,9 +14,7 @@ dependencies:
   '@rush-temp/just-task-docs': 'file:projects/just-task-docs.tgz'
   '@rush-temp/just-task-preset': 'file:projects/just-task-preset.tgz'
   '@rush-temp/just-task-scripts': 'file:projects/just-task-scripts.tgz'
-  '@types/async': 2.0.50
   '@types/autoprefixer': 9.1.1
-  '@types/cpx': 1.5.0
   '@types/glob': 7.1.1
   '@types/jest': 23.3.10
   '@types/mkdirp': 0.5.2
@@ -24,12 +22,12 @@ dependencies:
   '@types/node-sass': 3.10.32
   '@types/resolve': 0.0.8
   '@types/rimraf': 2.0.2
+  '@types/run-parallel-limit': 1.0.0
   '@types/undertaker': 1.2.0
   '@types/undertaker-registry': 1.0.1
   '@types/webpack': 4.4.20
   '@types/yargs': 12.0.1
   '@uifabric/experiments': 6.45.0
-  async: 2.6.1
   autoprefixer: 9.4.2
   chalk: 2.4.1
   cpx: 1.5.0
@@ -43,6 +41,7 @@ dependencies:
   react-dom: 16.6.3
   resolve: 1.8.1
   rimraf: 2.6.2
+  run-parallel-limit: 1.0.5
   ts-jest: 23.10.5
   tslint: 5.11.0
   undertaker: 1.2.0
@@ -1484,6 +1483,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Hm/bnWq0TCy7jmjeN5bKYij9vw5GrDFWME4IuxV08278NtU/VdGbzsBohcCUJ7+QMqmUq5hpRKB39HeQWJjztQ==
+  /@types/run-parallel-limit/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-L3igU8Boko2/qnTl47Ahc4AcrzQp/0nfiSy6cku369MWmmzIMWDRAYSO4w6HAZSbHlcqG5F+JC6eg01C77sfVA==
   /@types/tapable/1.0.4:
     dev: false
     resolution:
@@ -1917,9 +1920,14 @@ packages:
       ajv: '>=5.0.0'
     resolution:
       integrity: sha1-7PAh+hCP0X37Xms4Py3SM+Mf/Fk=
+  /ajv-keywords/3.2.0:
+    dev: false
+    peerDependencies:
+      ajv: ^6.0.0
+    resolution:
+      integrity: sha1-6GuBnGAs+IIa1jdBNpjx3sAhhHo=
   /ajv-keywords/3.2.0/ajv@6.6.1:
-    dependencies:
-      ajv: 6.6.1
+    dependencies: {}
     dev: false
     id: registry.npmjs.org/ajv-keywords/3.2.0
     peerDependencies:
@@ -9460,6 +9468,10 @@ packages:
       node: '>=0.12.0'
     resolution:
       integrity: sha1-A3GrSuC91yDUFm19/aZP96RFpsA=
+  /run-parallel-limit/1.0.5:
+    dev: false
+    resolution:
+      integrity: sha512-NsY+oDngvrvMxKB3G8ijBzIema6aYbQMD2bHOamvN52BysbIGTnEY2xsNyfrcr9GhY995/t/0nQN3R3oZvaDlg==
   /run-queue/1.0.3:
     dependencies:
       aproba: 1.2.0
@@ -11190,7 +11202,7 @@ packages:
       acorn: 5.7.3
       acorn-dynamic-import: 3.0.0
       ajv: 6.6.1
-      ajv-keywords: /ajv-keywords/3.2.0/ajv@6.6.1
+      ajv-keywords: 3.2.0
       chrome-trace-event: 1.0.0
       enhanced-resolve: 4.1.0
       eslint-scope: 4.0.0
@@ -11483,7 +11495,7 @@ packages:
     dev: false
     name: '@rush-temp/example-lib'
     resolution:
-      integrity: sha512-GjCKAOaRO5h74hFf12jJOs+0poOYiDUfzENMxoTISi90FsBiJwVLvSq2v18zQr9y1zYpwC5a9D2Giop1zRFI0A==
+      integrity: sha512-9vtQYcILtQF3RA1NjRAPH0W8nCVuqzs2evRZMgRUM+zJ0TROpUMvn3/fEO3jCxW4UrZ4lffMNT4kA1b4OKj7Ew==
       tarball: 'file:projects/example-lib.tgz'
     version: 0.0.0
   'file:projects/just-task-docs.tgz':
@@ -11521,6 +11533,7 @@ packages:
       '@types/node-sass': 3.10.32
       '@types/resolve': 0.0.8
       '@types/rimraf': 2.0.2
+      '@types/run-parallel-limit': 1.0.0
       '@types/webpack': 4.4.20
       async: 2.6.1
       autoprefixer: 9.4.2
@@ -11533,13 +11546,14 @@ packages:
       postcss-modules: 1.4.1
       resolve: 1.8.1
       rimraf: 2.6.2
+      run-parallel-limit: 1.0.5
       tslint: /tslint/5.11.0/typescript@3.2.2
       typescript: 3.2.2
-      webpack: 4.27.1
+      webpack: /webpack/4.27.1/webpack@4.27.1
     dev: false
     name: '@rush-temp/just-task-preset'
     resolution:
-      integrity: sha512-U6uHsObBxpQGeWx1QcOa7YiSvXMOXCI62rFXzRrW2T6aNlUGy4+L+mHlpFiW/g4niEzj5fRr5XDMbSRVs57tHQ==
+      integrity: sha512-k5vl6F3p7ECNBEbqqej93cDgJUJJsHtgSxFR9RuOvFlE3tn9zzP2Jtp5X2OdR46yHOQL/P/PYxHjFj1JAXv/Kw==
       tarball: 'file:projects/just-task-preset.tgz'
     version: 0.0.0
   'file:projects/just-task-scripts.tgz':
@@ -11592,9 +11606,7 @@ specifiers:
   '@rush-temp/just-task-docs': 'file:./projects/just-task-docs.tgz'
   '@rush-temp/just-task-preset': 'file:./projects/just-task-preset.tgz'
   '@rush-temp/just-task-scripts': 'file:./projects/just-task-scripts.tgz'
-  '@types/async': ^2.0.50
   '@types/autoprefixer': ^9.1.1
-  '@types/cpx': ^1.5.0
   '@types/glob': ^7.1.1
   '@types/jest': ^23.3.10
   '@types/mkdirp': ^0.5.2
@@ -11602,12 +11614,12 @@ specifiers:
   '@types/node-sass': ^3.10.32
   '@types/resolve': ^0.0.8
   '@types/rimraf': ^2.0.2
+  '@types/run-parallel-limit': ^1.0.0
   '@types/undertaker': ^1.2.0
   '@types/undertaker-registry': ^1.0.1
   '@types/webpack': ^4.4.20
   '@types/yargs': ^12.0.1
   '@uifabric/experiments': ^6.41.0
-  async: ^2.6.1
   autoprefixer: '>=7.0.0 <10.0.0'
   chalk: ^2.4.1
   cpx: ^1.5.0
@@ -11621,6 +11633,7 @@ specifiers:
   react-dom: ^16.6.0
   resolve: ^1.8.1
   rimraf: ^2.6.2
+  run-parallel-limit: ^1.0.5
   ts-jest: ^23.10.5
   tslint: '>=5.0.0 <6.0.0'
   undertaker: ^1.2.0
