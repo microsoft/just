@@ -5,3 +5,5 @@ export * from './sassTask';
 export * from './jestTask';
 export * from './tslintTask';
 export * from './webpackTask';
+export * from './apiExtractorTask';
+export * from './outdatedTask';

@@ -16,6 +16,7 @@ dependencies:
   '@rush-temp/just-task-preset': 'file:projects/just-task-preset.tgz'
   '@rush-temp/just-task-scripts': 'file:projects/just-task-scripts.tgz'
   '@types/autoprefixer': 9.1.1
+  '@types/chalk': 2.2.0
   '@types/glob': 7.1.1
   '@types/jest': 23.3.10
   '@types/mkdirp': 0.5.2
@@ -24,6 +25,7 @@ dependencies:
   '@types/resolve': 0.0.8
   '@types/rimraf': 2.0.2
   '@types/run-parallel-limit': 1.0.0
+  '@types/semver': 5.5.0
   '@types/undertaker': 1.2.0
   '@types/undertaker-registry': 1.0.1
   '@types/webpack': 4.4.20
@@ -43,6 +45,7 @@ dependencies:
   resolve: 1.8.1
   rimraf: 2.6.2
   run-parallel-limit: 1.0.5
+  semver: 5.6.0
   ts-jest: 23.10.5
   tslint: 5.11.0
   undertaker: 1.2.0
@@ -1374,6 +1377,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-mseeUmIM9k44Ml5yRG2zAfdVjf1cuOVUmWODuPqbZ97/1vUOCc7DzTp/I/NyXAUL5VCkHIR5nvqUobx42eYHgQ==
+  /@types/chalk/2.2.0:
+    dependencies:
+      chalk: 2.4.1
+    deprecated: 'This is a stub types definition for chalk (https://github.com/chalk/chalk). chalk provides its own type definitions, so you don''t need @types/chalk installed!'
+    dev: false
+    resolution:
+      integrity: sha512-1zzPV9FDe1I/WHhRkf9SNgqtRJWZqrBWgu7JGveuHmmyR9CnAPCie2N/x+iHrgnpYBIcCJWHBoMRv2TRWktsvw==
   /@types/cheerio/0.22.10:
     dev: false
     resolution:
@@ -1493,6 +1503,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-L3igU8Boko2/qnTl47Ahc4AcrzQp/0nfiSy6cku369MWmmzIMWDRAYSO4w6HAZSbHlcqG5F+JC6eg01C77sfVA==
+  /@types/semver/5.5.0:
+    dev: false
+    resolution:
+      integrity: sha512-41qEJgBH/TWgo5NFSvBCJ1qkoi3Q6ONSF2avrHq1LVEZfYpdHmj0y9SuTK+u9ZhG1sYQKBL1AWXKyLWP4RaUoQ==
   /@types/tapable/1.0.4:
     dev: false
     resolution:
@@ -1978,12 +1992,6 @@ packages:
       ajv: '>=5.0.0'
     resolution:
       integrity: sha1-7PAh+hCP0X37Xms4Py3SM+Mf/Fk=
-  /ajv-keywords/3.2.0:
-    dev: false
-    peerDependencies:
-      ajv: ^6.0.0
-    resolution:
-      integrity: sha1-6GuBnGAs+IIa1jdBNpjx3sAhhHo=
   /ajv-keywords/3.2.0/ajv@6.6.1:
     dependencies:
       ajv: 6.6.1
@@ -3033,12 +3041,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-mYQLZnx5Qt1JgB1WEiMCf2647plpGeQ2NMR/5L0HNZzGQo4fuSPnK+wjfPnKZV0aiJDgzmWqqkV/g7JD+DW0qw==
-  /case-sensitive-paths-webpack-plugin/2.1.2:
-    dev: false
-    engines:
-      node: '>=4'
-    resolution:
-      integrity: sha512-oEZgAFfEvKtjSRCu6VgYkuGxwrWXMnQzyBmlLPP7r6PWQVtHxP5Z5N6XsuJvtoVax78am/r7lr46bwo3IVEBOg==
   /caseless/0.12.0:
     dev: false
     resolution:
@@ -3222,17 +3224,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-4FG+RSG9DL7uEwRUZXZn3SS34DiDPfzP0VOiEwtUWlE+AR2EIg+hSyvrIgUUfhdgR/UkAeW2QHgeP+hWrXs7jQ==
-  /clone-deep/2.0.2:
-    dependencies:
-      for-own: 1.0.0
-      is-plain-object: 2.0.4
-      kind-of: 6.0.2
-      shallow-clone: 1.0.0
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-SZegPTKjCgpQH63E+eN6mVEEPdQBOUzjyJm5Pora4lrwWRFS8I0QAxV/KD6vV/i0WuijHZWQC1fMsPEdxfdVCQ==
   /clone-stats/0.0.1:
     dev: false
     resolution:
@@ -3500,17 +3491,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
-  /cosmiconfig/4.0.0:
-    dependencies:
-      is-directory: 0.3.1
-      js-yaml: 3.12.0
-      parse-json: 4.0.0
-      require-from-string: 2.0.2
-    dev: false
-    engines:
-      node: '>=4'
-    resolution:
-      integrity: sha512-6e5vDdrXZD+t5v0L8CrurPeybg4Fmf+FCSYxXKYVAqLUtyCSbuyqE059d0kDthTNRzKVjL7QMgNpEUlsoYH3iQ==
   /cpx/1.5.0:
     dependencies:
       babel-runtime: 6.26.0
@@ -3623,29 +3603,6 @@ packages:
     resolution:
       integrity: sha1-gIrcLnnPhHOAabZGyyDsJ762KeA=
       tarball: 'http://registry.npmjs.org/css-color-names/-/css-color-names-0.0.4.tgz'
-  /css-loader/1.0.1/webpack@4.27.1:
-    dependencies:
-      babel-code-frame: 6.26.0
-      css-selector-tokenizer: 0.7.1
-      icss-utils: 2.1.0
-      loader-utils: 1.1.0
-      lodash: 4.17.11
-      postcss: 6.0.23
-      postcss-modules-extract-imports: 1.2.1
-      postcss-modules-local-by-default: 1.2.0
-      postcss-modules-scope: 1.1.0
-      postcss-modules-values: 1.3.0
-      postcss-value-parser: 3.3.1
-      source-list-map: 2.0.1
-      webpack: /webpack/4.27.1/webpack@4.27.1
-    dev: false
-    engines:
-      node: '>= 6.9.0 <7.0.0 || >= 8.9.0'
-    id: registry.npmjs.org/css-loader/1.0.1
-    peerDependencies:
-      webpack: ^4.0.0
-    resolution:
-      integrity: sha512-+ZHAZm/yqvJ2kDtPne3uX0C+Vr3Zn5jFn2N4HywtS5ujwvsVkyg0VArEXpl3BgczDA8anieki1FIzhchX4yrDw==
   /css-modules-loader-core/1.1.0:
     dependencies:
       icss-replace-symbols: 1.1.0
@@ -5026,12 +4983,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-calZMC10u0FMUqoiunI2AiGIIUtUIvifNwkHhNupZH4cbNnW1Itkoh/Nf5HFYmDrwWPjrUxpkZT0KhuCq0jmGw==
-  /for-in/0.1.8:
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha1-2Hc5COMSVhCZUrH9ubP6hn0ndeE=
   /for-in/1.0.2:
     dev: false
     engines:
@@ -5724,12 +5675,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-Bupvg2ead0njhs/h/oEq5dsiPe0=
-  /icss-utils/2.1.0:
-    dependencies:
-      postcss: 6.0.23
-    dev: false
-    resolution:
-      integrity: sha1-g/Cg7DeL8yRheLbCrZE28TWxyWI=
   /ieee754/1.1.12:
     dev: false
     resolution:
@@ -5793,22 +5738,6 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-8Zwu7h5xumxlWMUV+fyWaAGJptQ=
-  /import-cwd/2.1.0:
-    dependencies:
-      import-from: 2.1.0
-    dev: false
-    engines:
-      node: '>=4'
-    resolution:
-      integrity: sha1-qmzzbnInYShcs3HsZRn1PiQ1sKk=
-  /import-from/2.1.0:
-    dependencies:
-      resolve-from: 3.0.0
-    dev: false
-    engines:
-      node: '>=4'
-    resolution:
-      integrity: sha1-M1238qev/VOqpHHUuAId7ja387E=
   /import-local/1.0.0:
     dependencies:
       pkg-dir: 2.0.0
@@ -6038,12 +5967,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-2eis5WqQGV7peooDyLmNEPUrps9+SXX5c9pL3xEB+4e9HnGuDa7mB7kHxHw4CbqS9k1T2hOH3miL8n8WtiYVtg==
-  /is-directory/0.3.1:
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha1-YTObbyR1/Hcv2cnYP1yFddwVSuE=
   /is-dotfile/1.0.3:
     dev: false
     engines:
@@ -6886,38 +6809,6 @@ packages:
       '0': node >=0.6.0
     resolution:
       integrity: sha1-MT5mvB5cwG5Di8G3SZwuXFastqI=
-  /just-task-typescript/0.4.1:
-    dependencies:
-      just-task: 0.3.0
-      resolve: 1.8.1
-      typescript: 3.2.2
-    dev: false
-    resolution:
-      integrity: sha512-bRGC4MCcRBsWoRb4FmeTQbAMaiUr8/hK2phz7RGPwBaUOsm+Tfy2RhpW0dHfaF4ezq+W6FdN3F+W2cxab7N8jA==
-  /just-task-webpack/1.1.0:
-    dependencies:
-      autoprefixer: 9.4.2
-      case-sensitive-paths-webpack-plugin: 2.1.2
-      css-loader: /css-loader/1.0.1/webpack@4.27.1
-      just-task: 0.3.0
-      postcss-loader: 3.0.0
-      resolve: 1.8.1
-      sass-loader: /sass-loader/7.1.0/webpack@4.27.1
-      style-loader: 0.23.1
-      webpack: /webpack/4.27.1/webpack@4.27.1
-    dev: false
-    resolution:
-      integrity: sha512-dpxaFkSRIykK0isAgBUJiLbIwT16QFvXYkE3M25UR2F6zDX3Uzyyzzf0T40PQP78J7eR6ilD0fjbx5XgnUpEag==
-  /just-task/0.3.0:
-    dependencies:
-      chalk: 2.4.1
-      undertaker: 1.2.0
-      undertaker-registry: 1.0.1
-      yargs: 12.0.5
-    dev: false
-    hasBin: true
-    resolution:
-      integrity: sha512-szLXMqSSNE0u/La5OTmqbVU+Qjoc0TcBlPyxYF6KZRpVUAcVwSPe2sfAgEyJwv7qGCfj7PVVbWw1gyWGzsWpWw==
   /kind-of/3.2.2:
     dependencies:
       is-buffer: 1.1.6
@@ -7237,10 +7128,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
-  /lodash.tail/4.1.1:
-    dev: false
-    resolution:
-      integrity: sha1-0jM6NtnncXyK0vfKyv7HwytERmQ=
   /lodash.template/3.6.2:
     dependencies:
       lodash._basecopy: 3.0.1
@@ -7630,15 +7517,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-8ZItLHeEgaqEvd5lYBXfm4EZSFCX29Jb9K+lAHhDKzReKBQKj3R+7NOF6tjqYi9t4oI8VUfaWITJQm86wnXGNQ==
-  /mixin-object/2.0.1:
-    dependencies:
-      for-in: 0.1.8
-      is-extendable: 0.1.1
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha1-T7lJRB2rGCVA8f4DW6YOGUel5X4=
   /mkdirp/0.5.1:
     dependencies:
       minimist: 0.0.8
@@ -8334,15 +8212,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-9ID0BDTvgHQfhGkJn43qGPVaTck=
-  /parse-json/4.0.0:
-    dependencies:
-      error-ex: 1.3.2
-      json-parse-better-errors: 1.0.2
-    dev: false
-    engines:
-      node: '>=4'
-    resolution:
-      integrity: sha1-vjX1Qlvh9/bHRxhPmKeIy5lHfuA=
   /parse-node-version/1.0.0:
     dev: false
     engines:
@@ -8580,26 +8449,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-T53GVFsdinJhgwm7rg1BzbeBRomOg9y5MBVhGcsV0CxurUdVj1UlPdKtn7aqYA/c/QVkzKMjq2bSV5dKG5+AwQ==
-  /postcss-load-config/2.0.0:
-    dependencies:
-      cosmiconfig: 4.0.0
-      import-cwd: 2.1.0
-    dev: false
-    engines:
-      node: '>= 4'
-    resolution:
-      integrity: sha512-V5JBLzw406BB8UIfsAWSK2KSwIJ5yoEIVFb4gVkXci0QdKgA24jLmHZ/ghe/GgX0lJ0/D1uUK1ejhzEY94MChQ==
-  /postcss-loader/3.0.0:
-    dependencies:
-      loader-utils: 1.1.0
-      postcss: 7.0.6
-      postcss-load-config: 2.0.0
-      schema-utils: 1.0.0
-    dev: false
-    engines:
-      node: '>= 6'
-    resolution:
-      integrity: sha512-cLWoDEY5OwHcAjDnkyRQzAXfs2jrKjXpO/HQFcc5b5u/r7aa471wdmChmwfnv7x2u840iat/wi0lQ5nbRgSkUA==
   /postcss-merge-idents/2.1.7:
     dependencies:
       has: 1.0.3
@@ -8672,12 +8521,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-thTJcgvmgW6u41+zpfqh26agXds=
-  /postcss-modules-extract-imports/1.2.1:
-    dependencies:
-      postcss: 6.0.23
-    dev: false
-    resolution:
-      integrity: sha512-6jt9XZwUhwmRUhb/CkyJY020PYaPJsCyt3UjbaWo6XEbH/94Hmv6MP7fG2C5NDU/BcHzyGYxNtHvM+LTf9HrYw==
   /postcss-modules-local-by-default/1.2.0:
     dependencies:
       css-selector-tokenizer: 0.7.1
@@ -9470,12 +9313,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=
-  /require-from-string/2.0.2:
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
   /require-main-filename/1.0.1:
     dev: false
     resolution:
@@ -9631,23 +9468,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-E/vWPNHK8JCLn9k0dq1DpR0eC0k=
-  /sass-loader/7.1.0/webpack@4.27.1:
-    dependencies:
-      clone-deep: 2.0.2
-      loader-utils: 1.1.0
-      lodash.tail: 4.1.1
-      neo-async: 2.6.0
-      pify: 3.0.0
-      semver: 5.6.0
-      webpack: /webpack/4.27.1/webpack@4.27.1
-    dev: false
-    engines:
-      node: '>= 6.9.0 || >= 8.9.0'
-    id: registry.npmjs.org/sass-loader/7.1.0
-    peerDependencies:
-      webpack: ^3.0.0 || ^4.0.0
-    resolution:
-      integrity: sha512-+G+BKGglmZM2GUSfT9TLuEp6tzehHPjAMoRRItOojWIqIGPloVCMhNIQuG639eJ+y033PaGTSjLaTHts8Kw79w==
   /sax/1.2.4:
     dev: false
     resolution:
@@ -9820,16 +9640,6 @@ packages:
     resolution:
       integrity: sha512-QMEp5B7cftE7APOjk5Y6xgrbWu+WkLVQwk8JNjZ8nKRciZaByEW6MubieAiToS7+dwvrjGhH8jRXz3MVd0AYqQ==
       tarball: 'http://registry.npmjs.org/sha.js/-/sha.js-2.4.11.tgz'
-  /shallow-clone/1.0.0:
-    dependencies:
-      is-extendable: 0.1.1
-      kind-of: 5.1.0
-      mixin-object: 2.0.1
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-oeXreoKR/SyNJtRJMAKPDSvd28OqEwG4eR/xc856cRGBII7gX9lvAqDxusPm0846z/w/hWYjI1NpKwJ00NHzRA==
   /shebang-command/1.2.0:
     dependencies:
       shebang-regex: 1.0.0
@@ -10308,15 +10118,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-k55yxKHwaXnpYGsOzg4Vl8+tDrWylxDEpknGjhTiZB8dFRU5rTo9CAzeycivxV3s+zlTKwrs6WxMxR95n26kwg==
-  /style-loader/0.23.1:
-    dependencies:
-      loader-utils: 1.1.0
-      schema-utils: 1.0.0
-    dev: false
-    engines:
-      node: '>= 0.12.0'
-    resolution:
-      integrity: sha512-XK+uv9kWwhZMZ1y7mysB+zoihsEj4wneFWAS5qoiLwzW0WzSqMrrsIy+a3zkQJq0ipFtBpX5W3MqyRIBF/WFGg==
   /subarg/1.0.0:
     dependencies:
       minimist: 1.2.0
@@ -10467,25 +10268,6 @@ packages:
     dev: false
     engines:
       node: '>= 6.9.0 <7.0.0 || >= 8.9.0'
-    peerDependencies:
-      webpack: ^4.3.0
-    resolution:
-      integrity: sha512-61lV0DSxMAZ8AyZG7/A4a3UPlrbOBo8NIQ4tJzLPAdGOQ+yoNC7l5ijEow27lBAL2humer01KLS6bGIMYQxKoA==
-  /terser-webpack-plugin/1.1.0/webpack@4.27.1:
-    dependencies:
-      cacache: 11.3.1
-      find-cache-dir: 2.0.0
-      schema-utils: 1.0.0
-      serialize-javascript: 1.5.0
-      source-map: 0.6.1
-      terser: 3.11.0
-      webpack: /webpack/4.27.1/webpack@4.27.1
-      webpack-sources: 1.3.0
-      worker-farm: 1.6.0
-    dev: false
-    engines:
-      node: '>= 6.9.0 <7.0.0 || >= 8.9.0'
-    id: registry.npmjs.org/terser-webpack-plugin/1.1.0
     peerDependencies:
       webpack: ^4.3.0
     resolution:
@@ -11310,39 +11092,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-WArHiLvHrlfyRM8i7f+2SFbr/XbQ0bXqTkPF8JpHOzub5482Y3wx7rEO8stuLGOKOgZJcqcisLhD7LrM/+fVMw==
-  /webpack/4.27.1/webpack@4.27.1:
-    dependencies:
-      '@webassemblyjs/ast': 1.7.11
-      '@webassemblyjs/helper-module-context': 1.7.11
-      '@webassemblyjs/wasm-edit': 1.7.11
-      '@webassemblyjs/wasm-parser': 1.7.11
-      acorn: 5.7.3
-      acorn-dynamic-import: 3.0.0
-      ajv: 6.6.1
-      ajv-keywords: 3.2.0
-      chrome-trace-event: 1.0.0
-      enhanced-resolve: 4.1.0
-      eslint-scope: 4.0.0
-      json-parse-better-errors: 1.0.2
-      loader-runner: 2.3.1
-      loader-utils: 1.1.0
-      memory-fs: 0.4.1
-      micromatch: 3.1.10
-      mkdirp: 0.5.1
-      neo-async: 2.6.0
-      node-libs-browser: 2.1.0
-      schema-utils: 0.4.7
-      tapable: 1.1.1
-      terser-webpack-plugin: /terser-webpack-plugin/1.1.0/webpack@4.27.1
-      watchpack: 1.6.0
-      webpack-sources: 1.3.0
-    dev: false
-    engines:
-      node: '>=6.11.5'
-    hasBin: true
-    id: registry.npmjs.org/webpack/4.27.1
-    resolution:
-      integrity: sha512-WArHiLvHrlfyRM8i7f+2SFbr/XbQ0bXqTkPF8JpHOzub5482Y3wx7rEO8stuLGOKOgZJcqcisLhD7LrM/+fVMw==
   /websocket-driver/0.7.0:
     dependencies:
       http-parser-js: 0.5.0
@@ -11606,8 +11355,6 @@ packages:
       integrity: sha512-DUOKC/IhbkdLKKiV89gw9DUauTV8U/8yJl1sjf6MtDmzevLKOF2duNJ495S3MFVjqZarr+qNGCPbkg4mu4PpLw==
   'file:projects/example-lib.tgz':
     dependencies:
-      just-task-typescript: 0.4.1
-      just-task-webpack: 1.1.0
       typescript: 3.2.2
     dev: false
     name: '@rush-temp/example-lib'
@@ -11673,6 +11420,7 @@ packages:
       '@microsoft/api-extractor': 6.3.0
       '@types/async': 2.0.50
       '@types/autoprefixer': 9.1.1
+      '@types/chalk': 2.2.0
       '@types/cpx': 1.5.0
       '@types/glob': 7.1.1
       '@types/mkdirp': 0.5.2
@@ -11681,9 +11429,11 @@ packages:
       '@types/resolve': 0.0.8
       '@types/rimraf': 2.0.2
       '@types/run-parallel-limit': 1.0.0
+      '@types/semver': 5.5.0
       '@types/webpack': 4.4.20
       async: 2.6.1
       autoprefixer: 9.4.2
+      chalk: 2.4.1
       cpx: 1.5.0
       glob: 7.1.3
       jest: 23.6.0
@@ -11694,13 +11444,14 @@ packages:
       resolve: 1.8.1
       rimraf: 2.6.2
       run-parallel-limit: 1.0.5
+      semver: 5.6.0
       tslint: /tslint/5.11.0/typescript@3.2.2
       typescript: 3.2.2
       webpack: 4.27.1
     dev: false
     name: '@rush-temp/just-task-preset'
     resolution:
-      integrity: sha512-k5vl6F3p7ECNBEbqqej93cDgJUJJsHtgSxFR9RuOvFlE3tn9zzP2Jtp5X2OdR46yHOQL/P/PYxHjFj1JAXv/Kw==
+      integrity: sha512-qWxAA8EeoKnIYdkBpGrdXB8+qXmaUkFfs1Su8EZ+2CbzmQV/RUivgaPMPlNu4RKwqxUdC95sNXpg0e4YX1MzzQ==
       tarball: 'file:projects/just-task-preset.tgz'
     version: 0.0.0
   'file:projects/just-task-scripts.tgz':
@@ -11755,6 +11506,7 @@ specifiers:
   '@rush-temp/just-task-preset': 'file:./projects/just-task-preset.tgz'
   '@rush-temp/just-task-scripts': 'file:./projects/just-task-scripts.tgz'
   '@types/autoprefixer': ^9.1.1
+  '@types/chalk': ^2.2.0
   '@types/glob': ^7.1.1
   '@types/jest': ^23.3.10
   '@types/mkdirp': ^0.5.2
@@ -11763,6 +11515,7 @@ specifiers:
   '@types/resolve': ^0.0.8
   '@types/rimraf': ^2.0.2
   '@types/run-parallel-limit': ^1.0.0
+  '@types/semver': ^5.5.0
   '@types/undertaker': ^1.2.0
   '@types/undertaker-registry': ^1.0.1
   '@types/webpack': ^4.4.20
@@ -11782,6 +11535,7 @@ specifiers:
   resolve: ^1.8.1
   rimraf: ^2.6.2
   run-parallel-limit: ^1.0.5
+  semver: ^5.6.0
   ts-jest: ^23.10.5
   tslint: '>=5.0.0 <6.0.0'
   undertaker: ^1.2.0
