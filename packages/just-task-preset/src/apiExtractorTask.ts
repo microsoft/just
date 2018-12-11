@@ -2,7 +2,7 @@ import { logger } from 'just-task';
 import { Extractor } from '@microsoft/api-extractor';
 import { IExtractorConfig, IExtractorOptions } from '@microsoft/api-extractor/dist/index-internal';
 
-export function apiExtractorTask(extractorConfig: IExtractorConfig, extractorOptions: Partial<IExtractorOptions>) {
+export function apiExtractorTask(extractorConfig: IExtractorConfig, extractorOptions: IExtractorOptions) {
   // This interface represents the API Extractor config file contents
   const config: IExtractorConfig = {
     compiler: {
@@ -22,7 +22,7 @@ export function apiExtractorTask(extractorConfig: IExtractorConfig, extractorOpt
   };
 
   return function apiExtractor(done: (err?: Error) => void) {
-    logger.info(`Extracting Public API surface from index`);
+    logger.info(`Extracting Public API surface from '${config.project.entryPointSourceFile}'`);
     const extractor = new Extractor(config, extractorOptions);
     const success = extractor.processProject();
     if (!success) {

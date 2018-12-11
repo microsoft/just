@@ -98,6 +98,13 @@
       "projectFolder": "scripts",
       "reviewCategory": "tools",
       "shouldPublish": false
+    },
+    {
+      "packageName": "just-stack-web-lib",
+      "projectFolder": "packages/just-stack-web-lib",
+      "reviewCategory": "production",
+      "versionPolicyName": "RepoPolicy",
+      "shouldPublish": false
     }
   ]
 }

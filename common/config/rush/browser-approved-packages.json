@@ -39,6 +39,10 @@
       "allowedCategories": [ "docs" ]
     },
     {
+      "name": "@microsoft/api-extractor",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/async",
       "allowedCategories": [ "production" ]
     },
@@ -192,7 +196,7 @@
     },
     {
       "name": "just-task-preset",
-      "allowedCategories": [ "docs" ]
+      "allowedCategories": [ "docs", "production" ]
     },
     {
       "name": "just-task-typescript",
@@ -207,8 +211,16 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "node-sass",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "office-ui-fabric-react",
       "allowedCategories": [ "docs" ]
+    },
+    {
+      "name": "postcss",
+      "allowedCategories": [ "production" ]
     },
     {
       "name": "postcss-loader",
@@ -244,6 +256,10 @@
     },
     {
       "name": "ts-jest",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "tslint",
       "allowedCategories": [ "production" ]
     },
     {
