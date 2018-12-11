@@ -11,7 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "just-task": ">=0.6.0 <1.0.0",
-    "just-task-preset": ">=0.4.0 <1.0.0",
+    "just-task-preset": ">=0.5.0 <1.0.0",
     "typescript": "^3.2.2"
   }
 }

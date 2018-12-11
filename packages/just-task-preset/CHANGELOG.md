@@ -1,6 +1,19 @@
 # Change Log - just-task-preset
 
-This log was last generated on Fri, 07 Dec 2018 17:43:11 GMT and should not be manually modified.
+This log was last generated on Tue, 11 Dec 2018 18:53:32 GMT and should not be manually modified.
+
+## 0.5.0
+Tue, 11 Dec 2018 18:53:32 GMT
+
+### Minor changes
+
+- streamlines API so the logger is not from the this context
+- Adds a preset task for self updates
+- Adds webpack, api-extractor, clean, copy, jest, sass, tslint task presets
+
+### Patches
+
+- reduce size by using smaller dep
 
 ## 0.1.2
 Fri, 07 Dec 2018 17:43:11 GMT

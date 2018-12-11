@@ -2,6 +2,29 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.5.0",
+      "tag": "just-task-preset_v0.5.0",
+      "date": "Tue, 11 Dec 2018 18:53:32 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "streamlines API so the logger is not from the this context"
+          },
+          {
+            "comment": "Adds a preset task for self updates"
+          },
+          {
+            "comment": "Adds webpack, api-extractor, clean, copy, jest, sass, tslint task presets"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "reduce size by using smaller dep"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.2",
       "tag": "just-task-preset_v0.1.2",
       "date": "Fri, 07 Dec 2018 17:43:11 GMT",
