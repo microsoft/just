@@ -66,7 +66,7 @@ function getUpdateVersions(versionSpec: VersionSpec, versionInfo: VersionInfo) {
 
     let packageJsonVersion = '';
 
-    const resolved = resolveCwd(`${name}/package.json`);
+    const resolved = resolve(`${name}/package.json`);
     if (resolved) {
       packageJsonVersion = JSON.parse(fs.readFileSync(resolved).toString()).version;
     }
