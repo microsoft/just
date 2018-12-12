@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Tue, 11 Dec 2018 18:53:32 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Dec 2018 02:34:29 GMT and should not be manually modified.
+
+## 0.5.1
+Wed, 12 Dec 2018 02:34:29 GMT
+
+### Patches
+
+- Fixed: updates the resolve logic for outdated task to be consistent with just-task.js resolution
 
 ## 0.5.0
 Tue, 11 Dec 2018 18:53:32 GMT

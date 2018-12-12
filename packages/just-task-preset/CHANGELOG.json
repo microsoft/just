@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.5.1",
+      "tag": "just-task-preset_v0.5.1",
+      "date": "Wed, 12 Dec 2018 02:34:29 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed: updates the resolve logic for outdated task to be consistent with just-task.js resolution"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.0",
       "tag": "just-task-preset_v0.5.0",
       "date": "Tue, 11 Dec 2018 18:53:32 GMT",
