@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.6.1",
+      "tag": "just-task_v0.6.1",
+      "date": "Wed, 12 Dec 2018 03:04:50 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed resolution logic"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.0",
       "tag": "just-task_v0.6.0",
       "date": "Sun, 09 Dec 2018 23:01:57 GMT",

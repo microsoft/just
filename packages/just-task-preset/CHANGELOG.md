@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Wed, 12 Dec 2018 02:40:54 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Dec 2018 03:04:50 GMT and should not be manually modified.
+
+## 0.5.3
+Wed, 12 Dec 2018 03:04:50 GMT
+
+### Patches
+
+- Fixed resolution logic
 
 ## 0.5.2
 Wed, 12 Dec 2018 02:40:54 GMT
