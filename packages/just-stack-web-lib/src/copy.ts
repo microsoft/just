@@ -33,26 +33,23 @@ function expandSourcePath(pattern) {
   }
 }
 
-task(
-  'copy',
-  thunk(() => {
-    let tasks = [];
-    let configPath = path.resolve(process.cwd(), 'config/pre-copy.json');
+task('copy', () => {
+  let tasks = [];
+  let configPath = path.resolve(process.cwd(), 'config/pre-copy.json');
 
-    if (!fs.existsSync(configPath)) {
-      return;
+  if (!fs.existsSync(configPath)) {
+    return;
+  }
+
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+
+  if (config && config.copyTo) {
+    for (let destination in config.copyTo) {
+      const sources = config.copyTo[destination];
+      destination = path.resolve(process.cwd(), destination);
+      tasks.push(copyTask(sources.map(src => expandSourcePath(src)), destination));
     }
+  }
 
-    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-
-    if (config && config.copyTo) {
-      for (let destination in config.copyTo) {
-        const sources = config.copyTo[destination];
-        destination = path.resolve(process.cwd(), destination);
-        tasks.push(copyTask(sources.map(src => expandSourcePath(src)), destination));
-      }
-    }
-
-    return series.apply(null, tasks);
-  })
-);
+  return series.apply(null, tasks);
+});

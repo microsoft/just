@@ -8,11 +8,9 @@ task('ts', tscTask({}));
 
 task(
   'build',
-  parallel(
-    thunk(() => {
-      return copyTask([], '');
-    })
-  )
+  parallel(() => {
+    return copyTask([], '');
+  })
 );
 
 const spec = {

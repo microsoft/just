@@ -9,7 +9,11 @@ export function wrapTask(fn: any) {
       (fn as any).call(null, done);
     } else {
       let results = (fn as any).call();
-      if (results && results.then) {
+
+      // The result is a function, we will assume that this is a task function to be called
+      if (results && typeof results === 'function') {
+        results.call(null, done);
+      } else if (results && results.then) {
         results
           .then(() => {
             done();

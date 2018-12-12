@@ -16,7 +16,10 @@ export class JustTaskRegistry extends UndertakerRegistry {
     let configFile = resolve('./just-task.js');
 
     if (configFile && fs.existsSync(configFile)) {
-      require(configFile);
+      const configModule = require(configFile);
+      if (typeof configModule === 'function') {
+        configModule();
+      }
     } else {
       logger.error(
         `Cannot find '${configFile}'. Please create one called "just-task.js" in the root of the project next to "package.json"`
