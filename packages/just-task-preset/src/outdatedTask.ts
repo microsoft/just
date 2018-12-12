@@ -58,7 +58,7 @@ function getUpdateVersions(versionSpec: VersionSpec, versionInfo: VersionInfo) {
 
     let updateVersion: string | undefined;
 
-    if (semver.valid(spec)) {
+    if (semver.validRange(spec)) {
       updateVersion = semver.maxSatisfying(info.versions, spec);
     } else {
       updateVersion = info.tags[spec] || info.tags.latest;
