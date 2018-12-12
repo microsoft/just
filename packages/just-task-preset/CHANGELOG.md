@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Wed, 12 Dec 2018 02:34:29 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Dec 2018 02:40:54 GMT and should not be manually modified.
+
+## 0.5.2
+Wed, 12 Dec 2018 02:40:54 GMT
+
+### Patches
+
+- Fixed: use validRange check for the versionSpec instead of valid
 
 ## 0.5.1
 Wed, 12 Dec 2018 02:34:29 GMT

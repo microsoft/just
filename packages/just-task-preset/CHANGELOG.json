@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.5.2",
+      "tag": "just-task-preset_v0.5.2",
+      "date": "Wed, 12 Dec 2018 02:40:54 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed: use validRange check for the versionSpec instead of valid"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.1",
       "tag": "just-task-preset_v0.5.1",
       "date": "Wed, 12 Dec 2018 02:34:29 GMT",
