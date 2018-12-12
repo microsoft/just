@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task-preset",
+      "comment": "Fixed: use validRange check for the versionSpec instead of valid",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task-preset",
+  "email": "kchau@microsoft.com"
+}
