@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.7.0",
+      "tag": "just-task_v0.7.0",
+      "date": "Wed, 12 Dec 2018 18:57:17 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Get rid of thunk API"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.1",
       "tag": "just-task_v0.6.1",
       "date": "Wed, 12 Dec 2018 03:04:50 GMT",
