@@ -16,11 +16,14 @@ function tryResolve(moduleName: string, basedir: string) {
   }
 }
 
-export function resolve(moduleName: string) {
+export function resolve(moduleName: string, cwd?: string) {
+  if (!cwd) {
+    cwd = process.cwd();
+  }
   const configArg = yargsFn(process.argv.slice(1).filter(a => a !== '--help')).argv.config;
   const configFilePath = configArg ? path.resolve(path.dirname(configArg)) : undefined;
 
-  const allResolvePaths = [process.cwd(), ...(configFilePath ? [configFilePath] : []), ...resolvePaths];
+  const allResolvePaths = [cwd, ...(configFilePath ? [configFilePath] : []), ...resolvePaths];
   let resolved: string | null = null;
 
   for (let tryPath of allResolvePaths) {
@@ -33,6 +36,9 @@ export function resolve(moduleName: string) {
   return null;
 }
 
-export function resolveCwd(moduleName: string) {
-  return tryResolve(moduleName, process.cwd());
+export function resolveCwd(moduleName: string, cwd?: string) {
+  if (!cwd) {
+    cwd = process.cwd();
+  }
+  return tryResolve(moduleName, cwd);
 }

@@ -8,6 +8,7 @@ import os from 'os';
 import semver from 'semver';
 
 export interface IOutdatedOptions {
+  cwd?: string;
   versionSpec?: VersionSpec;
 }
 
@@ -79,9 +80,24 @@ function getUpdateVersions(versionSpec: VersionSpec, versionInfo: VersionInfo) {
   return keepUpdated;
 }
 
+function getPackageVersionSpec(original: string, updated: string) {
+  let matched = original.match(/^(>=|>|\^|~)/);
+
+  if (matched) {
+    return `${matched[1]}${updated}`;
+  } else {
+    return updated;
+  }
+}
+
+const defaultOptions: IOutdatedOptions = {
+  versionSpec: { 'just-task': 'latest', 'just-task-preset': 'latest' },
+  cwd: process.cwd()
+};
+
 export function outdatedTask(outdatedOptions: IOutdatedOptions = {}) {
   const options: IOutdatedOptions = {
-    versionSpec: { 'just-task': 'latest', 'just-task-preset': 'latest' },
+    ...defaultOptions,
     ...outdatedOptions
   };
   return async function outdated() {
@@ -102,19 +118,9 @@ export function outdatedTask(outdatedOptions: IOutdatedOptions = {}) {
   };
 }
 
-function getPackageVersionSpec(original: string, updated: string) {
-  let matched = original.match(/^(>=|>|\^|~)/);
-
-  if (matched) {
-    return `${matched[1]}${updated}`;
-  } else {
-    return updated;
-  }
-}
-
 export function selfUpdateTask(outdatedOptions: IOutdatedOptions = {}) {
   const options: IOutdatedOptions = {
-    versionSpec: { 'just-task': 'latest', 'just-task-preset': 'latest' },
+    ...defaultOptions,
     ...outdatedOptions
   };
   return async function outdated() {
@@ -123,7 +129,9 @@ export function selfUpdateTask(outdatedOptions: IOutdatedOptions = {}) {
     if (options.versionSpec) {
       const versionInfo = await fetchVersions(options.versionSpec);
       const updateVersions = getUpdateVersions(options.versionSpec, versionInfo);
-      const packageJsonFile = resolve('./package.json');
+      const packageJsonFile = resolveCwd('./package.json', path.dirname(resolve('./just-task.js')!));
+
+      console.log(packageJsonFile);
 
       if (packageJsonFile) {
         const packageJson = JSON.parse(fs.readFileSync(packageJsonFile).toString());
@@ -135,6 +143,8 @@ export function selfUpdateTask(outdatedOptions: IOutdatedOptions = {}) {
               logger.info(`  ${chalk.cyan(name)} updated to '${chalk.yellow(updateVersions[name])}' (devDependencies)`);
             } else {
               packageJson.dependencies = packageJson.dependencies || {};
+
+              console.log(packageJson);
 
               if (packageJson.dependencies[name] !== updateVersions[name]) {
                 packageJson.dependencies[name] = getPackageVersionSpec(packageJson.dependencies[name], updateVersions[name]);
