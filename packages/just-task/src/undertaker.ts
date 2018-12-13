@@ -15,7 +15,7 @@ const taskColor: { [taskName: string]: number } = {};
 let colorIndex = 0;
 
 function shouldLog(taskArgs: any) {
-  return !taskArgs.branch && taskArgs.name !== '<anonymous>' && !taskArgs.name.endsWith('?');
+  return !taskArgs.branch && taskArgs.name !== '<anonymous>' && !taskArgs.name.endsWith('?') && taskArgs.name !== 'executeWrappedTask';
 }
 
 function colorizeTaskName(taskName: string) {

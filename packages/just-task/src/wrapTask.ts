@@ -12,18 +12,18 @@ export function wrapTask(fn: any) {
 
       // The result is a function, we will assume that this is a task function to be called
       if (results && typeof results === 'function') {
-        results.call(null, done);
+        return results.call(null, done);
       } else if (results && results.then) {
-        results
+        return results
           .then(() => {
             done();
           })
           .catch((e: any) => {
             done(e);
           });
-      } else {
-        done();
       }
+
+      done();
     }
   };
 }

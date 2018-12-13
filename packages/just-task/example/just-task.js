@@ -26,6 +26,17 @@ module.exports = () => {
     };
   });
 
+  task('webpack:promise', () => {
+    const someVar = Math.random();
+
+    return new Promise((resolve, reject) => {
+      logger.info('Webpack bundling files', someVar);
+      setTimeout(() => {
+        resolve();
+      }, 500);
+    });
+  });
+
   task('build', parallel('tslint', series('clean', 'ts', 'webpack')));
 
   task(
@@ -37,10 +48,10 @@ module.exports = () => {
         condition('ts', () => {
           return argv().production;
         }),
-        'webpack'
+        parallel('webpack', 'webpack:promise')
       )
     )
   );
 
-  task('default', parallel('build'));
+  task('default', parallel('cond'));
 };
