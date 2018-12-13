@@ -5,20 +5,19 @@ import nodeSass from 'node-sass';
 import postcss from 'postcss';
 import { resolveCwd } from 'just-task';
 import autoprefixer from 'autoprefixer';
+import parallelLimit from 'run-parallel-limit';
 
 const autoprefixerFn = autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie >= 11'] });
 
 export function sassTask(createSourceModule: (fileName: string, css: string) => string, postcssPlugins: postcss.AcceptedPlugin[] = []) {
-  return function sass() {
-    const promises: Promise<void>[] = [];
+  return function sass(done: (err?: Error) => void) {
     const files = glob.sync(path.resolve(process.cwd(), 'src/**/*.scss'));
 
     if (files.length) {
-      files.forEach(fileName => {
-        fileName = path.resolve(fileName);
-
-        promises.push(
-          new Promise((resolve, reject) => {
+      const tasks = files.map(
+        fileName =>
+          function(cb: any) {
+            fileName = path.resolve(fileName);
             nodeSass.render(
               {
                 file: fileName,
@@ -28,7 +27,7 @@ export function sassTask(createSourceModule: (fileName: string, css: string) => 
               },
               (err, result) => {
                 if (err) {
-                  reject(path.relative(process.cwd(), fileName) + ': ' + err);
+                  cb(path.relative(process.cwd(), fileName) + ': ' + err);
                 } else {
                   const css = result.css.toString();
 
@@ -36,17 +35,16 @@ export function sassTask(createSourceModule: (fileName: string, css: string) => 
                     .process(css, { from: fileName })
                     .then(result => {
                       fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, result.css));
-                      resolve();
+                      cb();
                     });
                 }
               }
             );
-          })
-        );
-      });
-    }
+          }
+      );
 
-    return Promise.all(promises);
+      parallelLimit(tasks, 5, done);
+    }
   };
 }
 

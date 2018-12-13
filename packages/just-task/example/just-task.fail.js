@@ -1,29 +1,59 @@
-const { task, series, parallel } = require('../lib/index');
+const { task, series, parallel, condition, option, logger, argv } = require('../lib/index');
+const cp = require('child_process');
 
-task('clean', function() {
-  this.logger.info('Cleaning up the build and lib and dist folders');
-});
+module.exports = () => {
+  option('name').option('production');
 
-task('ts', function() {
-  this.logger.info('Here we can run build steps like Babel or Typescript');
-});
+  task('clean', 'this is cleaning', function() {
+    logger.info('Cleaning up the build and lib and dist folders');
+  });
 
-task('warn', function() {
-  this.logger.warn('This is what a warning looks like');
-});
+  task('ts', function() {
+    logger.info('Here we can run build steps like Babel or Typescript');
+  });
 
-task('fail', function() {
-  throw new Error('this is an intentional error');
-});
+  task('tslint', function() {
+    logger.info('Linting with tslint');
+  });
 
-task('tslint', function() {
-  this.logger.info('Linting with tslint');
-});
+  task('webpack', () => {
+    const someVar = Math.random();
 
-task('webpack', function() {
-  this.logger.info('Webpack bundling files');
-});
+    return function(done) {
+      return new Promise((resolve, reject) => {
+        cp.exec('node ./longprocess.js', (error, stdout, stderr) => (error ? reject(stderr) : resolve(stdout)));
+      });
+    };
+  });
 
-task('build', parallel('tslint', series('clean', 'ts', 'webpack', 'warn', 'fail')));
+  task('webpack:promise', () => {
+    const someVar = Math.random();
 
-task('default', parallel('build'));
+    return function() {
+      return new Promise((resolve, reject) => {
+        logger.info('Webpack bundling files', someVar);
+        setTimeout(() => {
+          reject('adsfadsf');
+        }, 500);
+      });
+    };
+  });
+
+  task('build', parallel('tslint', series('clean', 'ts', 'webpack')));
+
+  task(
+    'cond',
+    parallel(
+      'tslint',
+      series(
+        'clean',
+        condition('ts', () => {
+          return argv().production;
+        }),
+        parallel('webpack', 'webpack:promise')
+      )
+    )
+  );
+
+  task('default', parallel('cond'));
+};
