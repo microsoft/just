@@ -2,6 +2,23 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.5.5",
+      "tag": "just-task-preset_v0.5.5",
+      "date": "Thu, 13 Dec 2018 23:56:45 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Update: Sass Task now runs in parallel with limits"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-task\" from `>=0.7.1 <1.0.0` to `>=0.7.2 <1.0.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.4",
       "tag": "just-task-preset_v0.5.4",
       "date": "Wed, 12 Dec 2018 18:57:17 GMT",

@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Thu, 13 Dec 2018 18:16:47 GMT and should not be manually modified.
+This log was last generated on Thu, 13 Dec 2018 23:56:45 GMT and should not be manually modified.
+
+## 0.7.2
+Thu, 13 Dec 2018 23:56:45 GMT
+
+### Patches
+
+- Fixed: config file argument now works again
 
 ## 0.7.1
 Thu, 13 Dec 2018 18:16:47 GMT

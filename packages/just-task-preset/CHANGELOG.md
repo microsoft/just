@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Wed, 12 Dec 2018 18:57:17 GMT and should not be manually modified.
+This log was last generated on Thu, 13 Dec 2018 23:56:45 GMT and should not be manually modified.
+
+## 0.5.5
+Thu, 13 Dec 2018 23:56:45 GMT
+
+### Patches
+
+- Update: Sass Task now runs in parallel with limits
 
 ## 0.5.4
 Wed, 12 Dec 2018 18:57:17 GMT
