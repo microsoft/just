@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "just-task": ">=0.7.0 <1.0.0",
+    "just-task": ">=0.7.1 <1.0.0",
     "just-task-preset": ">=0.5.4 <1.0.0",
     "typescript": "^3.2.2"
   }

@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.7.1",
+      "tag": "just-task_v0.7.1",
+      "date": "Thu, 13 Dec 2018 18:16:47 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed a bug with the new thunk replacement of just returning a function"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.0",
       "tag": "just-task_v0.7.0",
       "date": "Wed, 12 Dec 2018 18:57:17 GMT",

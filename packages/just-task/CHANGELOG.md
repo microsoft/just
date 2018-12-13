@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Wed, 12 Dec 2018 18:57:17 GMT and should not be manually modified.
+This log was last generated on Thu, 13 Dec 2018 18:16:47 GMT and should not be manually modified.
+
+## 0.7.1
+Thu, 13 Dec 2018 18:16:47 GMT
+
+### Patches
+
+- Fixed a bug with the new thunk replacement of just returning a function
 
 ## 0.7.0
 Wed, 12 Dec 2018 18:57:17 GMT
