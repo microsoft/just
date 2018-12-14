@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task-preset",
+      "comment": "Fixed: sass task now resolved imports with ~ correctly",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task-preset",
+  "email": "kchau@microsoft.com"
+}
