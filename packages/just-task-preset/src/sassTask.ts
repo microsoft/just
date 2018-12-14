@@ -50,13 +50,7 @@ export function sassTask(createSourceModule: (fileName: string, css: string) => 
 
 function requireResolvePackageUrl(packageUrl: string) {
   const fullName = packageUrl + (packageUrl.endsWith('.scss') ? '' : '.scss');
-
-  try {
-    return resolveCwd(fullName);
-  } catch (e) {
-    // try again with a private reference
-    return resolveCwd(path.join(path.dirname(fullName), `_${path.basename(fullName)}`));
-  }
+  return resolveCwd(fullName) || resolveCwd(path.join(path.dirname(fullName), `_${path.basename(fullName)}`));
 }
 
 function patchSassUrl(url: string, prev: string, done: any) {
