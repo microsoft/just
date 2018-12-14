@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.5.6",
+      "tag": "just-task-preset_v0.5.6",
+      "date": "Fri, 14 Dec 2018 18:42:51 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed: sass task now resolved imports with ~ correctly"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.5",
       "tag": "just-task-preset_v0.5.5",
       "date": "Thu, 13 Dec 2018 23:56:45 GMT",
