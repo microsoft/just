@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Fri, 14 Dec 2018 18:42:51 GMT and should not be manually modified.
+This log was last generated on Sat, 15 Dec 2018 04:42:57 GMT and should not be manually modified.
+
+## 0.5.7
+Sat, 15 Dec 2018 04:42:57 GMT
+
+### Patches
+
+- fix bugs with config file search"
 
 ## 0.5.6
 Fri, 14 Dec 2018 18:42:51 GMT

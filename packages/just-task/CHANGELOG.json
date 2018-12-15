@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.7.3",
+      "tag": "just-task_v0.7.3",
+      "date": "Sat, 15 Dec 2018 04:42:57 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix bugs with config file search"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.2",
       "tag": "just-task_v0.7.2",
       "date": "Thu, 13 Dec 2018 23:56:45 GMT",
