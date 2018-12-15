@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.6.0",
+      "tag": "just-task-preset_v0.6.0",
+      "date": "Sat, 15 Dec 2018 23:19:16 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "added: split verify and update api-extractor tasks"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.7",
       "tag": "just-task-preset_v0.5.7",
       "date": "Sat, 15 Dec 2018 04:42:57 GMT",

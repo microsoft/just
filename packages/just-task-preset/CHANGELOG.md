@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Sat, 15 Dec 2018 04:42:57 GMT and should not be manually modified.
+This log was last generated on Sat, 15 Dec 2018 23:19:16 GMT and should not be manually modified.
+
+## 0.6.0
+Sat, 15 Dec 2018 23:19:16 GMT
+
+### Minor changes
+
+- added: split verify and update api-extractor tasks
 
 ## 0.5.7
 Sat, 15 Dec 2018 04:42:57 GMT
