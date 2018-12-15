@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task-preset",
+      "comment": "fix bugs with config file search\"",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task-preset",
+  "email": "kchau@microsoft.com"
+}
