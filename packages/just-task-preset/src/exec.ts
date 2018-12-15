@@ -3,11 +3,12 @@ import { spawn as cpSpawn, SpawnOptions } from 'child_process';
 
 export function exec(cmd: string, opts: ExecOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {}) {
   return new Promise((resolve, reject) => {
-    const child = cpExec(cmd, opts, (error, stdout, stderr) => (error ? reject(stderr) : resolve(stdout)));
+    const child = cpExec(cmd, opts, (error, stdout, stderr) => (error ? reject(stderr || stdout) : resolve(stdout)));
 
     if (opts.stdout) {
       child.stdout.pipe(opts.stdout);
     }
+
     if (opts.stderr) {
       child.stderr.pipe(opts.stderr);
     }

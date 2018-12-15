@@ -14,8 +14,7 @@ export class JustTaskRegistry extends UndertakerRegistry {
     super.init(taker);
 
     // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
-    let configFile = resolve(`./${yargs.argv.config || 'just-task.js'}`);
-
+    let configFile = resolve(yargs.argv.config || './just-task.js');
     if (configFile && fs.existsSync(configFile)) {
       const configModule = require(configFile);
       if (typeof configModule === 'function') {

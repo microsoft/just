@@ -44,6 +44,8 @@ export function sassTask(createSourceModule: (fileName: string, css: string) => 
       );
 
       parallelLimit(tasks, 5, done);
+    } else {
+      done();
     }
   };
 }

@@ -8,9 +8,17 @@ export function addResolvePath(pathName: string) {
   resolvePaths.push(pathName);
 }
 
+function isFileNameLike(name: string) {
+  return name.includes('.') && !name.includes('/') && !name.includes('\\');
+}
+
 function tryResolve(moduleName: string, basedir: string) {
   try {
-    return resolveFn.sync(moduleName, { basedir, preserveSymlinks: true });
+    if (isFileNameLike(moduleName)) {
+      return resolveFn.sync(`./${moduleName}`, { basedir, preserveSymlinks: true });
+    } else {
+      return resolveFn.sync(moduleName, { basedir, preserveSymlinks: true });
+    }
   } catch (e) {
     return null;
   }
