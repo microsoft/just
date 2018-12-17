@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.6.1",
+      "tag": "just-task-preset_v0.6.1",
+      "date": "Mon, 17 Dec 2018 23:17:49 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed: supports windows with the shell escape"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.0",
       "tag": "just-task-preset_v0.6.0",
       "date": "Sat, 15 Dec 2018 23:19:16 GMT",
