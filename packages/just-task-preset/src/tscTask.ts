@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
 import { resolve, logger, resolveCwd } from 'just-task';
-import { exec } from './exec';
+import { exec, encodeArgs } from './exec';
 import path from 'path';
 import fs from 'fs';
 
@@ -35,7 +35,7 @@ export function tscTask(options: CompilerOptions) {
         [tscCmd]
       );
 
-      const cmd = [process.execPath, ...args].join(' ');
+      const cmd = encodeArgs([process.execPath, ...args]).join(' ');
       logger.info(`Executing: ${cmd}`);
       return exec(cmd);
     } else {
