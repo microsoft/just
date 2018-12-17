@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task-preset",
+      "comment": "Fixed: supports windows with the shell escape",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task-preset",
+  "email": "kchau@microsoft.com"
+}
