@@ -18,6 +18,10 @@ export function exec(cmd: string, opts: ExecOptions & { stdout?: NodeJS.Writable
 // Taken from https://github.com/xxorax/node-shell-escape/blob/master/shell-escape.js
 // However, we needed to use double quotes because that's the norm in more platforms
 export function encodeArgs(cmdArgs: string[]) {
+  if (!cmdArgs) {
+    return cmdArgs;
+  }
+
   return cmdArgs.map(arg => {
     if (/[^A-Za-z0-9_\/:=-]/.test(arg)) {
       arg = '"' + arg.replace(/"/g, '"\\"') + '"';

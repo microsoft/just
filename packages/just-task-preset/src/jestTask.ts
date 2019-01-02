@@ -24,15 +24,13 @@ export function jestTask(options: IJestTaskOptions = {}) {
         `--config ${configFile}`,
         '--passWithNoTests',
         '--colors',
-        options.runInBand ? '--runInBand' : undefined,
-        options.coverage ? '--coverage' : undefined,
-        options.u || options.updateSnapshot ? '--updateSnapshot' : undefined,
+        options.runInBand ? '--runInBand' : '',
+        options.coverage ? '--coverage' : '',
+        options.u || options.updateSnapshot ? '--updateSnapshot' : '',
         ...(options._ ? options._ : [])
-      ]
-        .filter(arg => !!arg)
-        .join(' ');
+      ].filter(arg => !!arg) as Array<string>;
 
-      const cmd = encodeArgs([process.execPath, jestCmd, args]).join(' ');
+      const cmd = encodeArgs([process.execPath, jestCmd, ...args]).join(' ');
       logger.info(cmd);
       return exec(cmd, { stdout: process.stdout, stderr: process.stderr });
     } else {
