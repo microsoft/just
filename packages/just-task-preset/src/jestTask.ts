@@ -21,7 +21,8 @@ export function jestTask(options: IJestTaskOptions = {}) {
     if (configFile && jestCmd && existsSync(configFile)) {
       logger.info(`Running Jest`);
       const args = [
-        `--config ${configFile}`,
+        '--config',
+        configFile,
         '--passWithNoTests',
         '--colors',
         options.runInBand ? '--runInBand' : '',
