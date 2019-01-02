@@ -22,7 +22,7 @@ task('babel', function() {
 task('build', series('clean', 'babel'));
 ```
 
-When you trigger `rig build`, the `clean` task will run and complete before `babel` task is run.
+When you trigger `just build`, the `clean` task will run and complete before `babel` task is run.
 
 ## Runny tasks in parallel
 
