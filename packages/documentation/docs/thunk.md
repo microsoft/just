@@ -32,3 +32,7 @@ Now the build task can take in an argument and perform Typescript compilation fo
 $ just build --amd
 $ just build --commonjs
 ```
+
+## Next Steps
+
+Learn about the [Just task presets](presets.md)

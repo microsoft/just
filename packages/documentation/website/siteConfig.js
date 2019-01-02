@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'Just ____', // Title for your website.
-  tagline: 'Documentation on Just',
+  tagline: 'The task library that just works',
   url: 'https://kenotron.github.io', // Your website URL
   baseUrl: '/just-task/', // Base URL for your project */
   projectName: 'just-task',

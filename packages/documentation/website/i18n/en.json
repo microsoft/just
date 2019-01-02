@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Documentation on Just",
+    "tagline": "The task library that just works",
     "docs": {
       "args": {
         "title": "Command line arguments",
@@ -25,6 +25,22 @@
         "title": "Logging",
         "sidebar_label": "Logging"
       },
+      "preset-jest": {
+        "title": "Jest",
+        "sidebar_label": "Jest"
+      },
+      "preset-ts": {
+        "title": "Typescript",
+        "sidebar_label": "Typescript"
+      },
+      "preset-tslint": {
+        "title": "Typescript Lint",
+        "sidebar_label": "Typescript Lint"
+      },
+      "presets": {
+        "title": "Just Task Presets",
+        "sidebar_label": "Task Presets"
+      },
       "thunk": {
         "title": "Higher Order Task Functions",
         "sidebar_label": "Higher Order Task Functions"
@@ -35,7 +51,8 @@
       "Help": "Help"
     },
     "categories": {
-      "Documentation": "Documentation"
+      "Basics": "Basics",
+      "Presets": "Presets"
     }
   },
   "pages-strings": {

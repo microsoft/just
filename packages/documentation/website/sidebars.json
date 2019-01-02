@@ -1,5 +1,6 @@
 {
   "docs": {
-    "Documentation": ["doc-start", "composition", "logging", "args", "condition", "thunk"]
+    "Basics": ["doc-start", "composition", "logging", "args", "condition", "thunk"],
+    "Presets": ["presets", "preset-ts", "preset-jest", "preset-tslint"]
   }
 }

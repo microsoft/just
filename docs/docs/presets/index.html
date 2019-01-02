@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Just Task Presets · Just ____</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Unlike other build libraries, Just strives to be useful from the beginning. You can choose to write your own tasks that call other Node.js tools like Typescript, jest, and webpack. However, Just includes some preset tasks to get you up and running immediately. The included tasks are enough to have a very productive environment without dictating a certain stack to be used with Just.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Just Task Presets · Just ____"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kenotron.github.io/just-task/index.html"/><meta property="og:description" content="&lt;p&gt;Unlike other build libraries, Just strives to be useful from the beginning. You can choose to write your own tasks that call other Node.js tools like Typescript, jest, and webpack. However, Just includes some preset tasks to get you up and running immediately. The included tasks are enough to have a very productive environment without dictating a certain stack to be used with Just.&lt;/p&gt;
+"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/just-task/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/just-task/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/just-task/"><h2 class="headerTitle">Just ____</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/just-task/docs/doc-start" target="_self">Documentation</a></li><li class=""><a href="/just-task/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Presets</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Basics</h3><ul><li class="navListItem"><a class="navItem" href="/just-task/docs/doc-start">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/just-task/docs/composition">Composition of tasks</a></li><li class="navListItem"><a class="navItem" href="/just-task/docs/logging">Logging</a></li><li class="navListItem"><a class="navItem" href="/just-task/docs/args">Command line arguments</a></li><li class="navListItem"><a class="navItem" href="/just-task/docs/condition">Conditionals</a></li><li class="navListItem"><a class="navItem" href="/just-task/docs/thunk">Higher Order Task Functions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Presets</h3><ul><li class="navListItem navListItemActive"><a class="navItem" href="/just-task/docs/presets">Task Presets</a></li><li class="navListItem"><a class="navItem" href="/just-task/docs/preset-ts">Typescript</a></li><li class="navListItem"><a class="navItem" href="/just-task/docs/preset-jest">Jest</a></li><li class="navListItem"><a class="navItem" href="/just-task/docs/preset-tslint">Typescript Lint</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/kenotron/just-task/tree/master/packages/documentation/docs/presets.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Just Task Presets</h1></header><article><div><span><p>Unlike other build libraries, Just strives to be useful from the beginning. You can choose to write your own tasks that call other Node.js tools like Typescript, jest, and webpack. However, Just includes some preset tasks to get you up and running immediately. The included tasks are enough to have a very productive environment without dictating a certain stack to be used with Just.</p>
+<blockquote>
+<p>NOTE: even though <code>just-task-preset</code> interacts with <code>typescript</code>, it does not take <code>typescript</code> as a dependency. It assumes that the developers will include that in their own projects. This gives <code>just-task-preset</code> the flexibility of targeting many different versions of individual build tools without imposing a version on the consumers.</p>
+</blockquote>
+<p>These presets are coded as higher order task functions. Each of these preset functions return a task function to be registered as a task in your own <code>just-task.js</code> like this:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// just-task.js</span>
+<span class="hljs-keyword">import</span> { tscTask } <span class="hljs-keyword">from</span> <span class="hljs-string">'just-task-preset'</span>;
+task(<span class="hljs-string">'ts'</span>, tscTask());
+</code></pre>
+<p>Generally, these higher order functions also take an <code>options</code> argument to generate a specific task function preconfigured according to the options. For example:</p>
+<pre><code class="hljs css language-ts"><span class="hljs-comment">// just-task.js</span>
+<span class="hljs-keyword">import</span> { tscTask } <span class="hljs-keyword">from</span> <span class="hljs-string">'just-task-preset'</span>;
+task(<span class="hljs-string">'ts:commonjs'</span>, tscTask({ <span class="hljs-keyword">module</span>: 'commonjs' }));
+task('ts:esnext', tscTask({ <span class="hljs-keyword">module</span>: 'esnext' }));
+</code></pre>
+<p>Something like this will give you two separate Typescript compilation task functions that produce different kinds of module output format.</p>
+<h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
+<p>Learn about the <a href="/just-task/docs/preset-ts">Typescript preset</a></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/just-task/docs/thunk"><span class="arrow-prev">← </span><span>Higher Order Task Functions</span></a><a class="docs-next button" href="/just-task/docs/preset-ts"><span>Typescript</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#next-steps">Next Steps</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019</section></footer></div></body></html>

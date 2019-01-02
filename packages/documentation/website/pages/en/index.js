@@ -8,7 +8,6 @@
 const React = require('react');
 
 const CompLibrary = require('../../core/CompLibrary.js');
-CompLibrary.Button;
 const siteConfig = require(`${process.cwd()}/siteConfig.js`);
 
 function docUrl(doc, language) {
@@ -61,6 +60,9 @@ class HomeSplash extends React.Component {
       <SplashContainer>
         <div className="inner">
           <ProjectTitle />
+          <PromoSection>
+            <img src={`${siteConfig.baseUrl}img/sample.png`} srcSet={`${siteConfig.baseUrl}img/sample-2x.png 2x`} />
+          </PromoSection>
           <PromoSection>
             <Button href={docUrl('doc-start.html', language)}>Let's Get Started!</Button>
           </PromoSection>
