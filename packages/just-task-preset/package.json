@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w --preserveWatchOutput"
+    "dev": "tsc -w --preserveWatchOutput",
+    "test": "jest"
   },
   "dependencies": {
     "chalk": "^2.4.1",
@@ -29,6 +30,7 @@
     "@types/run-parallel-limit": "^1.0.0",
     "@types/semver": "^5.5.0",
     "@types/webpack": "^4.4.20",
+    "@types/jest": "^23.3.10",
     "typescript": ">=2.8.0 <4.0.0",
     "jest": ">=22.0.0"
   },
