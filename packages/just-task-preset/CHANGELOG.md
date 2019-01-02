@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Mon, 17 Dec 2018 23:17:49 GMT and should not be manually modified.
+This log was last generated on Wed, 02 Jan 2019 18:38:41 GMT and should not be manually modified.
+
+## 0.6.2
+Wed, 02 Jan 2019 18:38:41 GMT
+
+### Patches
+
+- Fixed: making jest give the right args given the encodedArgs function
 
 ## 0.6.1
 Mon, 17 Dec 2018 23:17:49 GMT

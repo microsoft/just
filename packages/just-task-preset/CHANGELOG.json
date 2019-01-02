@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.6.2",
+      "tag": "just-task-preset_v0.6.2",
+      "date": "Wed, 02 Jan 2019 18:38:41 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed: making jest give the right args given the encodedArgs function"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.1",
       "tag": "just-task-preset_v0.6.1",
       "date": "Mon, 17 Dec 2018 23:17:49 GMT",
