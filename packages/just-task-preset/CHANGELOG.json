@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.6.3",
+      "tag": "just-task-preset_v0.6.3",
+      "date": "Wed, 02 Jan 2019 18:42:46 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixed the jest task to not combine configfile and config option together"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.2",
       "tag": "just-task-preset_v0.6.2",
       "date": "Wed, 02 Jan 2019 18:38:41 GMT",

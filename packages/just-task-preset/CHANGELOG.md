@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Wed, 02 Jan 2019 18:38:41 GMT and should not be manually modified.
+This log was last generated on Wed, 02 Jan 2019 18:42:46 GMT and should not be manually modified.
+
+## 0.6.3
+Wed, 02 Jan 2019 18:42:46 GMT
+
+### Patches
+
+- fixed the jest task to not combine configfile and config option together
 
 ## 0.6.2
 Wed, 02 Jan 2019 18:38:41 GMT
