@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.7.5",
+      "tag": "just-task_v0.7.5",
+      "date": "Sat, 05 Jan 2019 20:47:28 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed: make sure to display list of tasks that didn't complete"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.4",
       "tag": "just-task_v0.7.4",
       "date": "Sat, 05 Jan 2019 19:16:15 GMT",

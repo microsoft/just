@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Sat, 05 Jan 2019 19:16:15 GMT and should not be manually modified.
+This log was last generated on Sat, 05 Jan 2019 20:47:28 GMT and should not be manually modified.
+
+## 0.7.5
+Sat, 05 Jan 2019 20:47:28 GMT
+
+### Patches
+
+- Fixed: make sure to display list of tasks that didn't complete
 
 ## 0.7.4
 Sat, 05 Jan 2019 19:16:15 GMT
