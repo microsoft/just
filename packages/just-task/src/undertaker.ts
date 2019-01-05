@@ -59,6 +59,7 @@ undertaker.on('error', function(args: any) {
     logger.error(chalk.yellow('------------------------------------'));
     logger.error(chalk.yellow(args.error));
     logger.error(chalk.yellow('------------------------------------'));
+    process.exitCode = 1;
   } else if (shouldLog(args)) {
     logger.error(chalk.dim(`Error previously detected. See above for error messages.`));
   }

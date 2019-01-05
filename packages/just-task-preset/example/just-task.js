@@ -1,6 +1,6 @@
 // @ts-check
 
-const { task, parallel, thunk } = require('just-task');
+const { task, parallel } = require('just-task');
 const { tscTask, copyTask, outdatedTask, selfUpdateTask } = require('../lib/index');
 
 //task('build', parallel(tscTask(), tscTask()));
