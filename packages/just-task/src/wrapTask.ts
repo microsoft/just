@@ -8,19 +8,13 @@ export function wrapTask(fn: any) {
     if (origFn.length > 0) {
       (fn as any).call(null, done);
     } else {
-      let results = (fn as any).call();
+      let results = (origFn as any).call();
 
       // The result is a function, we will assume that this is a task function to be called
       if (results && typeof results === 'function') {
         return results.call(null, done);
       } else if (results && results.then) {
-        return results
-          .then(() => {
-            done();
-          })
-          .catch((e: any) => {
-            done(e);
-          });
+        return results;
       }
 
       done();

@@ -61,16 +61,28 @@ undertaker.on('error', function(args: any) {
     logger.error(chalk.yellow('------------------------------------'));
     process.exitCode = 1;
   } else if (shouldLog(args)) {
+    const duration = args.duration;
+    const durationInSecs = Math.round(((duration[0] * NS_PER_SEC + duration[1]) / NS_PER_SEC) * 100) / 100;
+    logger.error(`finished '${colorizeTaskName(args.name)}' in ${chalk.yellow(String(durationInSecs) + 's')} with ${chalk.red('errors')}`);
+    process.exitCode = 1;
+  }
+
+  if (topLevelTask === args.name) {
+    process.exit(1);
+  }
+});
+
+process.on('exit', code => {
+  if (code !== 0) {
     logger.error(chalk.dim(`Error previously detected. See above for error messages.`));
   }
 
-  if (topLevelTask === args.name && Object.keys(tasksInProgress).length > 0) {
+  if (Object.keys(tasksInProgress).length > 0) {
     logger.error(
       `Other tasks that did not complete: [${Object.keys(tasksInProgress)
         .map(taskName => colorizeTaskName(taskName))
         .join(', ')}]`
     );
-    process.exit(1);
   }
 });
 
