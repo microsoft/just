@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Sat, 15 Dec 2018 04:42:57 GMT and should not be manually modified.
+This log was last generated on Sat, 05 Jan 2019 19:16:15 GMT and should not be manually modified.
+
+## 0.7.4
+Sat, 05 Jan 2019 19:16:15 GMT
+
+### Patches
+
+- Fixed: set proper exit code for cases where task function exits the process before top level task is reached
 
 ## 0.7.3
 Sat, 15 Dec 2018 04:42:57 GMT
