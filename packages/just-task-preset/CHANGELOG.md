@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Wed, 16 Jan 2019 18:54:26 GMT and should not be manually modified.
+This log was last generated on Wed, 16 Jan 2019 21:43:43 GMT and should not be manually modified.
+
+## 0.6.5
+Wed, 16 Jan 2019 21:43:43 GMT
+
+### Patches
+
+- fix jest spawn so it works with nvm in linux
 
 ## 0.6.4
 Wed, 16 Jan 2019 18:54:26 GMT

@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.6.5",
+      "tag": "just-task-preset_v0.6.5",
+      "date": "Wed, 16 Jan 2019 21:43:43 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix jest spawn so it works with nvm in linux"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.4",
       "tag": "just-task-preset_v0.6.4",
       "date": "Wed, 16 Jan 2019 18:54:26 GMT",
