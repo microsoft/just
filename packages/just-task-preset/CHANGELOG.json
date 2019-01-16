@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.6.4",
+      "tag": "just-task-preset_v0.6.4",
+      "date": "Wed, 16 Jan 2019 18:54:26 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix jestTask to support watch mode"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.3",
       "tag": "just-task-preset_v0.6.3",
       "date": "Wed, 02 Jan 2019 18:42:46 GMT",

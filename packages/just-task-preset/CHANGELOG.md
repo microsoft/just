@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Wed, 02 Jan 2019 18:42:46 GMT and should not be manually modified.
+This log was last generated on Wed, 16 Jan 2019 18:54:26 GMT and should not be manually modified.
+
+## 0.6.4
+Wed, 16 Jan 2019 18:54:26 GMT
+
+### Patches
+
+- Fix jestTask to support watch mode
 
 ## 0.6.3
 Wed, 02 Jan 2019 18:42:46 GMT
