@@ -1,3 +1,5 @@
+jest.mock('yargs');
+
 import { task } from '../task';
 import { parallel, undertaker } from '../undertaker';
 import { JustTaskRegistry } from '../JustTaskRegistry';
@@ -7,7 +9,7 @@ import path from 'path';
 describe('task', () => {
   beforeEach(() => {
     const yargsBuilder = yargs;
-    yargsBuilder.option('config', { default: path.resolve(__dirname, 'mock/rig.js') });
+    yargsBuilder.option('config', { default: path.resolve(__dirname, '__mocks__/just-task.js') });
     undertaker.registry(new JustTaskRegistry());
   });
 

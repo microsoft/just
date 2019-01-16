@@ -15,8 +15,6 @@ export function tscTask(options: CompilerOptions) {
   }
 
   return function tsc() {
-    console.log(resolve('tsconfig.json'));
-
     options.project = options.project || tsConfigFile || undefined;
 
     if (options.project && fs.existsSync(options.project as string)) {

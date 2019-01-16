@@ -1,7 +1,7 @@
 // @ts-check
 
 const { task, parallel } = require('just-task');
-const { tscTask, copyTask, outdatedTask, selfUpdateTask } = require('../lib/index');
+const { tscTask, copyTask, jestTask, outdatedTask, selfUpdateTask } = require('../lib/index');
 
 //task('build', parallel(tscTask(), tscTask()));
 task('ts', tscTask({}));
@@ -12,6 +12,9 @@ task(
     return copyTask([], '');
   })
 );
+
+task('test', jestTask());
+task('start-test', jestTask({ watch: true }));
 
 const spec = {
   versionSpec: {

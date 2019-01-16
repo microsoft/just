@@ -1,15 +1,16 @@
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs';
-import nodeSass from 'node-sass';
-import postcss from 'postcss';
 import { resolveCwd } from 'just-task';
-import autoprefixer from 'autoprefixer';
 import parallelLimit from 'run-parallel-limit';
 
-const autoprefixerFn = autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie >= 11'] });
+// Because we do not statically import postcssPlugin package, we cannot enforce type of postcssPlugins
+export function sassTask(createSourceModule: (fileName: string, css: string) => string, postcssPlugins: any[] = []) {
+  const nodeSass = require('node-sass');
+  const postcss = require('postcss');
+  const autoprefixer = require('autoprefixer');
+  const autoprefixerFn = autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie >= 11'] });
 
-export function sassTask(createSourceModule: (fileName: string, css: string) => string, postcssPlugins: postcss.AcceptedPlugin[] = []) {
   return function sass(done: (err?: Error) => void) {
     const files = glob.sync(path.resolve(process.cwd(), 'src/**/*.scss'));
 
@@ -25,7 +26,7 @@ export function sassTask(createSourceModule: (fileName: string, css: string) => 
                 importer: patchSassUrl,
                 includePaths: [path.resolve(process.cwd(), 'node_modules')]
               },
-              (err, result) => {
+              (err: Error, result: { css: Buffer }) => {
                 if (err) {
                   cb(path.relative(process.cwd(), fileName) + ': ' + err);
                 } else {
@@ -33,7 +34,7 @@ export function sassTask(createSourceModule: (fileName: string, css: string) => 
 
                   postcss([autoprefixerFn!, ...postcssPlugins])
                     .process(css, { from: fileName })
-                    .then(result => {
+                    .then((result: { css: string }) => {
                       fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, result.css));
                       cb();
                     });
