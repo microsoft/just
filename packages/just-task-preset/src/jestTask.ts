@@ -21,7 +21,7 @@ export function jestTask(options: IJestTaskOptions = {}) {
 
     if (configFile && jestCmd && existsSync(configFile)) {
       logger.info(`Running Jest`);
-      const cmd = encodeArgs([process.execPath])[0];
+      const cmd = process.execPath;
 
       const args = [
         jestCmd,
