@@ -4,7 +4,7 @@
   "pnpmVersion": "2.15.1",
 
   "pnpmOptions": {
-    "strictPeerDependencies": false
+    "strictPeerDependencies": true
   },
 
   "nodeSupportedVersionRange": ">=8.9.4 <11.0.0",
@@ -47,9 +47,7 @@
   },
 
   "eventHooks": {
-    "preRushInstall": [
-      // "common/scripts/pre-rush-install.js"
-    ],
+    "preRushInstall": [],
 
     "postRushInstall": [],
 
@@ -68,49 +66,5 @@
    */
   // "telemetryEnabled": false,
 
-  "projects": [
-    {
-      "packageName": "just-task",
-      "projectFolder": "packages/just-task",
-      "reviewCategory": "production",
-      "versionPolicyName": "RepoPolicy"
-    },
-    {
-      "packageName": "just-task-preset",
-      "projectFolder": "packages/just-task-preset",
-      "reviewCategory": "production",
-      "versionPolicyName": "RepoPolicy"
-    },
-    {
-      "packageName": "create-just-stack",
-      "projectFolder": "packages/create-just-stack",
-      "reviewCategory": "production",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "just-task-docs",
-      "projectFolder": "packages/documentation/website",
-      "reviewCategory": "docs",
-      "shouldPublish": false
-    },
-    {
-      "packageName": "example-lib",
-      "projectFolder": "packages/example-lib",
-      "reviewCategory": "docs",
-      "shouldPublish": false
-    },
-    {
-      "packageName": "just-task-scripts",
-      "projectFolder": "scripts",
-      "reviewCategory": "tools",
-      "shouldPublish": false
-    }
-    // {
-    //   "packageName": "just-stack-web-lib",
-    //   "projectFolder": "packages/just-stack-web-lib",
-    //   "reviewCategory": "production",
-    //   "versionPolicyName": "RepoPolicy",
-    //   "shouldPublish": false
-    // }
-  ]
+  "projects": []
 }

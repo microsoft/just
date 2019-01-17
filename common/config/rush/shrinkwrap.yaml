@@ -9,6 +9,7 @@ dependencies:
   '@babel/traverse': 7.1.6
   '@babel/types': 7.2.0
   '@microsoft/api-extractor': 6.3.0
+  '@rush-temp/create-just-stack': 'file:projects/create-just-stack.tgz'
   '@rush-temp/example-lib': 'file:projects/example-lib.tgz'
   '@rush-temp/just-task': 'file:projects/just-task.tgz'
   '@rush-temp/just-task-docs': 'file:projects/just-task-docs.tgz'
@@ -16,7 +17,11 @@ dependencies:
   '@rush-temp/just-task-scripts': 'file:projects/just-task-scripts.tgz'
   '@types/autoprefixer': 9.1.1
   '@types/chalk': 2.2.0
+  '@types/cpx': 1.5.0
   '@types/glob': 7.1.1
+  '@types/handlebars': 4.0.40
+  '@types/jest': 23.3.12
+  '@types/json5': 0.0.30
   '@types/mkdirp': 0.5.2
   '@types/node': 8.10.38
   '@types/node-sass': 3.10.32
@@ -34,6 +39,8 @@ dependencies:
   cpx: 1.5.0
   docusaurus: 1.6.0
   glob: 7.1.3
+  handlebars: 4.0.12
+  json5: 2.1.0
   mkdirp: 0.5.1
   node-sass: 4.10.0
   office-ui-fabric-react: 6.110.2
@@ -1388,7 +1395,7 @@ packages:
       integrity: sha512-fOM/Jhv51iyugY7KOBZz2ThfT1gwvsGCfWxpLpZDgkGjpEO4Le9cld07OdskikLjDUQJ43dzDaVRSFwQlpdqVg==
   /@types/cpx/1.5.0:
     dependencies:
-      '@types/node': 8.10.38
+      '@types/node': 8.10.39
     dev: false
     resolution:
       integrity: sha512-kuGK3lZqEvHTSDbJcaA6tcPoEXV4/e88YrltZMcQUewZhzYQwNSTMGIiPBqeeFd4LCBo1CX5U6CV6LaHG3wXSg==
@@ -1455,6 +1462,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-1Bh06cbWJUHMC97acuD6UMG29nMt0Aqz1vF3guLfG+kHHJhy3AyohZFFxYk2f7Q1SQIrNwvncxAE0N/9s70F2w==
+  /@types/handlebars/4.0.40:
+    dev: false
+    resolution:
+      integrity: sha512-sGWNtsjNrLOdKha2RV1UeF8+UbQnPSG7qbe5wwbni0mw4h2gHXyPFUMOC+xwGirIiiydM/HSqjDO4rk6NFB18w==
   /@types/jest/23.3.10:
     dev: false
     resolution:
@@ -1463,6 +1474,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-eroF85PoG87XjCwzxey7yBsQNkIY/TV5myKKSG/022A0FW25afdu/uub6JDMS5eT68zBBt82S+w/MFOTjeLM3Q==
+  /@types/jest/23.3.12:
+    dev: false
+    resolution:
+      integrity: sha512-/kQvbVzdEpOq4tEWT79yAHSM4nH4xMlhJv2GrLVQt4Qmo8yYsPdioBM1QpN/2GX1wkfMnyXvdoftvLUr0LBj7Q==
+  /@types/json5/0.0.30:
+    dev: false
+    resolution:
+      integrity: sha512-sqm9g7mHlPY/43fcSNrCYfOeX9zkTTK+euO5E6+CVijSMm5tTjkVdwdqRkY3ljjIAf8679vps5jKUoJBCLsMDA==
   /@types/minimatch/3.0.3:
     dev: false
     resolution:
@@ -1484,6 +1503,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-EibsnbJerd0hBFaDjJStFrVbVBAtOy4dgL8zZFw0uOvPqzBAX59Ci8cgjg3+RgJIWhsB5A4c+pi+D4P9tQQh/A==
+  /@types/node/8.10.39:
+    dev: false
+    resolution:
+      integrity: sha512-rE7fktr02J8ybFf6eysife+WF+L4sAHWzw09DgdCebEu+qDwMvv4zl6Bc+825ttGZP73kCKxa3dhJOoGJ8+5mA==
   /@types/node/8.5.8:
     dev: false
     resolution:
@@ -1545,6 +1568,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-UVjo2oH79aRNcsDlFlnQ/iJ67Jd7j6uSg7jUJP/RZ/nUjAh5ElmnwlD5K/6eGgETJUgCHkiWn91B8JjXQ6ubAw==
+  /@types/yargs/12.0.5:
+    dev: false
+    resolution:
+      integrity: sha512-y51XRWWg1GiW4+mV2zmFQUqJT3bX7nuUaXW4j8a2dFvT9ZlaNLjb7ZxcUSDyklt/UBWrW2+31x+hQpRzxaTFzw==
   /@types/z-schema/3.16.31:
     dev: false
     resolution:
@@ -3071,6 +3098,16 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-ObN6h1v2fTJSmUXoS3nMQ92LbDK9be4TV+6G+omQlGJFdcUX5heKi1LZ1YnRMIgwTLEj3E24bT6tYni50rlCfQ==
+  /chalk/2.4.2:
+    dependencies:
+      ansi-styles: 3.2.1
+      escape-string-regexp: 1.0.5
+      supports-color: 5.5.0
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
   /chardet/0.4.2:
     dev: false
     resolution:
@@ -9344,6 +9381,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-lreewLK/BlghmxtfH36YYVg1i8IAce4TI7oao75I1g245+6BctqTVQiBP3YUJ9C6DQOXJmkYR9X9fCLtCOJc5w==
+  /rimraf/2.6.3:
+    dependencies:
+      glob: 7.1.3
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
   /ripemd160/2.0.2:
     dependencies:
       hash-base: 3.0.4
@@ -11317,13 +11361,37 @@ packages:
       commander: 2.19.0
     resolution:
       integrity: sha512-DUOKC/IhbkdLKKiV89gw9DUauTV8U/8yJl1sjf6MtDmzevLKOF2duNJ495S3MFVjqZarr+qNGCPbkg4mu4PpLw==
+  'file:projects/create-just-stack.tgz':
+    dependencies:
+      '@types/cpx': 1.5.0
+      '@types/glob': 7.1.1
+      '@types/handlebars': 4.0.40
+      '@types/json5': 0.0.30
+      '@types/mkdirp': 0.5.2
+      '@types/rimraf': 2.0.2
+      '@types/yargs': 12.0.5
+      chalk: 2.4.2
+      cpx: 1.5.0
+      glob: 7.1.3
+      handlebars: 4.0.12
+      json5: 2.1.0
+      mkdirp: 0.5.1
+      rimraf: 2.6.3
+      typescript: 3.2.2
+      yargs: 12.0.5
+    dev: false
+    name: '@rush-temp/create-just-stack'
+    resolution:
+      integrity: sha512-2VYfyZ0/1edI6BrJVuxR8SlPM/oE85yV3agRwjoaBIKgaDLt5l77AN9OM1b1X2MMxy2uvg9hxoMx/3wFwNe00g==
+      tarball: 'file:projects/create-just-stack.tgz'
+    version: 0.0.0
   'file:projects/example-lib.tgz':
     dependencies:
       typescript: 3.2.2
     dev: false
     name: '@rush-temp/example-lib'
     resolution:
-      integrity: sha512-sId+z1YLi32YzAO59hyrppdC5QfxRokQJB4Z3pt6Uf0uDeJUHoY5lTPcZrntslQ0eYnXKmd+ln5bg9PPV7LKXQ==
+      integrity: sha512-0dqkI+orvsCRmndMwcyPQ44W9yFYxFQ4DcruLT6e5iDZ3xvtsLtCxmNTkwSXPCpUJSRt+uU+o/rauVEnOiYwog==
       tarball: 'file:projects/example-lib.tgz'
     version: 0.0.0
   'file:projects/just-task-docs.tgz':
@@ -11386,7 +11454,7 @@ packages:
     dev: false
     name: '@rush-temp/just-task-preset'
     resolution:
-      integrity: sha512-9fxUvS1ZzD0OmkxvvAXwMGpW3nsZGsusAwL0pP6BhhTecQxiyHwpsSaAISs6l2VpFl1RDi2BRsH69P5wkdOMsg==
+      integrity: sha512-UdWIDKcGF/cQtkleW/O9dw8xeYjV5wsyCTfzgci4lEBzK3O2/hAfxY6j+NMgKbgV3oN8T7fLV3+y4qcRhITi0g==
       tarball: 'file:projects/just-task-preset.tgz'
     version: 0.0.0
   'file:projects/just-task-scripts.tgz':
@@ -11434,6 +11502,7 @@ specifiers:
   '@babel/traverse': ^7.0.0
   '@babel/types': ^7.1.2
   '@microsoft/api-extractor': '>=6.0.0 <7.0.0'
+  '@rush-temp/create-just-stack': 'file:./projects/create-just-stack.tgz'
   '@rush-temp/example-lib': 'file:./projects/example-lib.tgz'
   '@rush-temp/just-task': 'file:./projects/just-task.tgz'
   '@rush-temp/just-task-docs': 'file:./projects/just-task-docs.tgz'
@@ -11441,7 +11510,11 @@ specifiers:
   '@rush-temp/just-task-scripts': 'file:./projects/just-task-scripts.tgz'
   '@types/autoprefixer': ^9.1.1
   '@types/chalk': ^2.2.0
+  '@types/cpx': ^1.5.0
   '@types/glob': ^7.1.1
+  '@types/handlebars': ^4.0.39
+  '@types/jest': ^23.3.10
+  '@types/json5': ^0.0.30
   '@types/mkdirp': ^0.5.2
   '@types/node': ^8.9.4
   '@types/node-sass': ^3.10.32
@@ -11459,6 +11532,8 @@ specifiers:
   cpx: ^1.5.0
   docusaurus: ^1.5.1
   glob: ^7.1.3
+  handlebars: ^4.0.12
+  json5: ^2.1.0
   mkdirp: ^0.5.1
   node-sass: '>=4.0.0 <5.0.0'
   office-ui-fabric-react: ^6.109.0
