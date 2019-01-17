@@ -1,10 +1,10 @@
 {
-  "name": "create-just-stack",
+  "name": "create-just",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "bin": {
-    "skit": "bin/create-just-stack.js"
+    "create-just": "bin/create-just.js"
   },
   "scripts": {
     "build": "npx tsc",
@@ -29,6 +29,7 @@
     "@types/json5": "^0.0.30",
     "@types/glob": "^7.1.1",
     "@types/mkdirp": "^0.5.2",
+    "@types/node": "^10.12.18",
     "@types/rimraf": "^2.0.2",
     "@types/yargs": "^12.0.1"
   }

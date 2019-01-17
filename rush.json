@@ -82,8 +82,8 @@
       "versionPolicyName": "RepoPolicy"
     },
     {
-      "packageName": "create-just-stack",
-      "projectFolder": "packages/create-just-stack",
+      "packageName": "create-just",
+      "projectFolder": "packages/create-just",
       "reviewCategory": "production",
       "shouldPublish": true
     },
