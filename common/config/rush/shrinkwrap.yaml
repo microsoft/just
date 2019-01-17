@@ -34,6 +34,7 @@ dependencies:
   '@types/undertaker': 1.2.0
   '@types/undertaker-registry': 1.0.1
   '@types/webpack': 4.4.23
+  '@types/yargs': 12.0.1
   '@uifabric/experiments': 6.50.7
   autoprefixer: 9.4.5
   chalk: 2.4.2
@@ -1571,10 +1572,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-UVjo2oH79aRNcsDlFlnQ/iJ67Jd7j6uSg7jUJP/RZ/nUjAh5ElmnwlD5K/6eGgETJUgCHkiWn91B8JjXQ6ubAw==
-  /@types/yargs/12.0.5:
-    dev: false
-    resolution:
-      integrity: sha512-y51XRWWg1GiW4+mV2zmFQUqJT3bX7nuUaXW4j8a2dFvT9ZlaNLjb7ZxcUSDyklt/UBWrW2+31x+hQpRzxaTFzw==
   /@types/z-schema/3.16.31:
     dev: false
     resolution:
@@ -7302,21 +7299,6 @@ packages:
       marked: ^0.4.0 || ^0.5.0 || ^0.6.0
     resolution:
       integrity: sha512-Yr1yVS0BbDG55vx7be1D0mdv+jGs9AW563o/Tt/7FTsId2J0yqhrTeXAqq/Q0DyyXltIn6CSxzesQuFqXgafjQ==
-  /marked-terminal/3.2.0/marked@0.6.0:
-    dependencies:
-      ansi-escapes: 3.1.0
-      cardinal: 2.1.1
-      chalk: 2.4.2
-      cli-table: 0.3.1
-      marked: 0.6.0
-      node-emoji: 1.8.1
-      supports-hyperlinks: 1.0.1
-    dev: false
-    id: registry.npmjs.org/marked-terminal/3.2.0
-    peerDependencies:
-      marked: ^0.4.0 || ^0.5.0 || ^0.6.0
-    resolution:
-      integrity: sha512-Yr1yVS0BbDG55vx7be1D0mdv+jGs9AW563o/Tt/7FTsId2J0yqhrTeXAqq/Q0DyyXltIn6CSxzesQuFqXgafjQ==
   /marked/0.6.0:
     dev: false
     engines:
@@ -10449,6 +10431,18 @@ packages:
       jest: '>=22 <24'
     resolution:
       integrity: sha512-MRCs9qnGoyKgFc8adDEntAOP64fWK1vZKnOYU1o2HxaqjdJvGqmkLCPCnVq1/If4zkUmEjKPnCiUisTrlX2p2A==
+  /ts-jest/23.10.5/jest@23.6.0:
+    dependencies:
+      jest: 23.6.0
+    dev: false
+    engines:
+      node: '>= 6'
+    hasBin: true
+    id: registry.npmjs.org/ts-jest/23.10.5
+    peerDependencies:
+      jest: '>=22 <24'
+    resolution:
+      integrity: sha512-MRCs9qnGoyKgFc8adDEntAOP64fWK1vZKnOYU1o2HxaqjdJvGqmkLCPCnVq1/If4zkUmEjKPnCiUisTrlX2p2A==
   /ts-loader/5.3.3:
     dependencies:
       chalk: 2.4.2
@@ -10459,22 +10453,6 @@ packages:
     dev: false
     engines:
       node: '>=6.11.5'
-    peerDependencies:
-      typescript: '*'
-    resolution:
-      integrity: sha512-KwF1SplmOJepnoZ4eRIloH/zXL195F51skt7reEsS6jvDqzgc/YSbz9b8E07GxIUwLXdcD4ssrJu6v8CwaTafA==
-  /ts-loader/5.3.3/typescript@3.2.2:
-    dependencies:
-      chalk: 2.4.2
-      enhanced-resolve: 4.1.0
-      loader-utils: 1.2.3
-      micromatch: 3.1.10
-      semver: 5.6.0
-      typescript: 3.2.2
-    dev: false
-    engines:
-      node: '>=6.11.5'
-    id: registry.npmjs.org/ts-loader/5.3.3
     peerDependencies:
       typescript: '*'
     resolution:
@@ -10976,32 +10954,6 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-jeJveHwz/vwpJ3B8bxEL5a/rVKIpRNJDsKggfKnxuYeohNDW4Y/wB9N/XHJA093qZyS0r6mYL+/crLsIol4WKA==
-  /webpack-cli/3.2.1/webpack@4.28.4:
-    dependencies:
-      chalk: 2.4.2
-      cross-spawn: 6.0.5
-      enhanced-resolve: 4.1.0
-      findup-sync: 2.0.0
-      global-modules: 1.0.0
-      global-modules-path: 2.3.1
-      import-local: 2.0.0
-      interpret: 1.2.0
-      lightercollective: 0.1.0
-      loader-utils: 1.2.3
-      supports-color: 5.5.0
-      v8-compile-cache: 2.0.2
-      webpack: /webpack/4.28.4/webpack@4.28.4
-      yargs: 12.0.5
-    dev: false
-    engines:
-      node: '>=6.11.5'
-    hasBin: true
-    id: registry.npmjs.org/webpack-cli/3.2.1
-    peerDependencies:
-      webpack: 4.x.x
-    requiresBuild: true
-    resolution:
-      integrity: sha512-jeJveHwz/vwpJ3B8bxEL5a/rVKIpRNJDsKggfKnxuYeohNDW4Y/wB9N/XHJA093qZyS0r6mYL+/crLsIol4WKA==
   /webpack-sources/1.3.0:
     dependencies:
       source-list-map: 2.0.1
@@ -11325,14 +11277,14 @@ packages:
       handlebars: 4.0.12
       json5: 2.1.0
       marked: 0.6.0
-      marked-terminal: /marked-terminal/3.2.0/marked@0.6.0
+      marked-terminal: 3.2.0
       mkdirp: 0.5.1
       prompts: 2.0.1
       rimraf: 2.6.3
-      ts-loader: /ts-loader/5.3.3/typescript@3.2.2
+      ts-loader: 5.3.3
       typescript: 3.2.2
       webpack: /webpack/4.28.4/webpack@4.28.4
-      webpack-cli: /webpack-cli/3.2.1/webpack@4.28.4
+      webpack-cli: 3.2.1
       yargs: 12.0.5
     dev: false
     name: '@rush-temp/create-just'
@@ -11423,11 +11375,11 @@ packages:
       '@types/resolve': 0.0.8
       '@types/undertaker': 1.2.0
       '@types/undertaker-registry': 1.0.1
-      '@types/yargs': 12.0.5
+      '@types/yargs': 12.0.1
       chalk: 2.4.2
       jest: 23.6.0
       resolve: 1.9.0
-      ts-jest: 23.10.5
+      ts-jest: /ts-jest/23.10.5/jest@23.6.0
       typescript: 3.2.2
       undertaker: 1.2.0
       undertaker-registry: 1.0.1
@@ -11435,7 +11387,7 @@ packages:
     dev: false
     name: '@rush-temp/just-task'
     resolution:
-      integrity: sha512-QZC/dy+Vrq4f3aE3hpAoxvqaQ4TsD4fQzsy6+zzpjAoPYiCGpHJn4pfLr4a7wUBv05JScHAJjM7bmDabLcARHg==
+      integrity: sha512-Ct+A8d2O0O1wcmGVcLKZu2KZNSGuq6wA+iUZX2ERxRiCP6xVxUyHSyG6NPXDt6mwXjEToDBWYXenNZJjv2iEcQ==
       tarball: 'file:projects/just-task.tgz'
     version: 0.0.0
 registry: 'https://registry.npmjs.org/'
@@ -11477,6 +11429,7 @@ specifiers:
   '@types/undertaker': ^1.2.0
   '@types/undertaker-registry': ^1.0.1
   '@types/webpack': ^4.4.20
+  '@types/yargs': 12.0.1
   '@uifabric/experiments': ^6.41.0
   autoprefixer: '>=7.0.0 <10.0.0'
   chalk: ^2.4.1
