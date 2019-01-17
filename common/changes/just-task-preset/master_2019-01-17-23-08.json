@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task-preset",
+      "comment": "Fixed: presets to not have direct deps on anything",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task-preset",
+  "email": "kchau@microsoft.com"
+}

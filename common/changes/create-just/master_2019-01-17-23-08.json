@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "create-just",
+      "comment": "Added: basic lib generation",
+      "type": "minor"
+    }
+  ],
+  "packageName": "create-just",
+  "email": "kchau@microsoft.com"
+}
