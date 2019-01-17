@@ -67,6 +67,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@types/fs-extra",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/glob",
       "allowedCategories": [ "production" ]
     },
@@ -83,6 +87,14 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@types/marked",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@types/marked-terminal",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/mkdirp",
       "allowedCategories": [ "production" ]
     },
@@ -92,6 +104,10 @@
     },
     {
       "name": "@types/node-sass",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@types/prompts",
       "allowedCategories": [ "production" ]
     },
     {
@@ -179,6 +195,10 @@
       "allowedCategories": [ "docs" ]
     },
     {
+      "name": "fs-extra",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "glob",
       "allowedCategories": [ "production" ]
     },
@@ -211,6 +231,14 @@
       "allowedCategories": [ "docs" ]
     },
     {
+      "name": "marked",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "marked-terminal",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "mkdirp",
       "allowedCategories": [ "production" ]
     },
@@ -228,6 +256,10 @@
     },
     {
       "name": "postcss-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "prompts",
       "allowedCategories": [ "production" ]
     },
     {
@@ -267,6 +299,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "ts-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "tslint",
       "allowedCategories": [ "production" ]
     },
@@ -284,6 +320,10 @@
     },
     {
       "name": "webpack",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack-cli",
       "allowedCategories": [ "production" ]
     },
     {

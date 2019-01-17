@@ -6,18 +6,16 @@ import * as rush from '../rush';
 
 export interface CreatePackageCommandArgs {
   name: string;
-  type: 'native' | 'webview' | 'web';
+  type: string;
 }
 export function createPackageCommand(args: CreatePackageCommandArgs) {
   const name = args.name;
 
   logger.info(`Creating a ${args.type} package called: ${name}`);
 
-  const { installPath, packageTemplatePath } = paths;
+  const { installPath, templatePath } = paths;
   const packagePath = path.join(installPath, 'packages', name);
-  const templatePath = path.join(packageTemplatePath, args.type);
-
-  transform(templatePath, packagePath, {
+  transform(templatePath(args.type), packagePath, {
     name
   });
 

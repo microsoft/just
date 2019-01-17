@@ -1,13 +1,13 @@
 import yargs from 'yargs';
-import { initRepoCommand } from './commands/initRepoCommand';
+import { initCommand } from './commands/initCommand';
 import { createPackageCommand } from './commands/createPackageCommand';
 
 yargs
   .command({
+    aliases: '*',
     command: 'init',
-
     describe: 'Creates a brand new repository',
-    handler: initRepoCommand
+    handler: initCommand
   })
   .command({
     command: 'create <name>',

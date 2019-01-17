@@ -1,6 +1,6 @@
 import { resolve, logger, resolveCwd } from 'just-task';
 import { spawn, encodeArgs } from './exec';
-import { fstat, existsSync } from 'fs';
+import { existsSync } from 'fs';
 
 export interface IJestTaskOptions {
   config?: string;

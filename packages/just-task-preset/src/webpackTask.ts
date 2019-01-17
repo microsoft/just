@@ -1,6 +1,5 @@
 import { logger, argv, resolve } from 'just-task';
-import wp from 'webpack';
-import path from 'path';
+
 import fs from 'fs';
 
 function flatten(arr: any[]): any[] {
@@ -10,6 +9,8 @@ function flatten(arr: any[]): any[] {
 }
 
 export function webpackTask() {
+  const wp = require('webpack');
+
   return function webpack() {
     logger.info(`Running Webpack`);
     const webpackConfigPath = resolve('./webpack.config.js');
@@ -34,7 +35,7 @@ export function webpackTask() {
           }
           config = flatten(config);
 
-          wp(config, (err, stats) => {
+          wp(config, (err: Error, stats: any) => {
             if (err || stats.hasErrors()) {
               let errorStats = stats.toJson('errors-only');
               errorStats.errors.forEach((error: any) => {

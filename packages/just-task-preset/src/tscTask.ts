@@ -1,7 +1,6 @@
 import * as ts from 'typescript';
 import { resolve, logger, resolveCwd } from 'just-task';
 import { exec, encodeArgs } from './exec';
-import path from 'path';
 import fs from 'fs';
 
 type CompilerOptions = { [key in keyof ts.CompilerOptions]: string | boolean };

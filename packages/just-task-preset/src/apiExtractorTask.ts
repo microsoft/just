@@ -1,8 +1,6 @@
 import { logger } from 'just-task';
-import { Extractor } from '@microsoft/api-extractor';
-import { IExtractorConfig, IExtractorOptions } from '@microsoft/api-extractor/dist/index-internal';
 
-export function apiExtractorVerifyTask(config: IExtractorConfig, options: IExtractorOptions) {
+export function apiExtractorVerifyTask(config: any, options: any) {
   return function apiExtractorVerify() {
     if (!apiExtractorWrapper(config, options)) {
       throw 'The public API file is out of date. Please run "npm run update-api" and commit the updated API file.';
@@ -10,7 +8,7 @@ export function apiExtractorVerifyTask(config: IExtractorConfig, options: IExtra
   };
 }
 
-export function apiExtractorUpdateTask(config: IExtractorConfig, options: IExtractorOptions) {
+export function apiExtractorUpdateTask(config: any, options: any) {
   return function apiExtractorUpdate() {
     if (!apiExtractorWrapper(config, options)) {
       logger.warn(`- Update API: API file is out of date, updating...`);
@@ -28,7 +26,7 @@ export function apiExtractorUpdateTask(config: IExtractorConfig, options: IExtra
   };
 }
 
-function mergeConfig(extractorConfig: IExtractorConfig): IExtractorConfig {
+function mergeConfig(extractorConfig: any): any {
   return {
     compiler: {
       configType: 'tsconfig',
@@ -47,7 +45,8 @@ function mergeConfig(extractorConfig: IExtractorConfig): IExtractorConfig {
   };
 }
 
-function apiExtractorWrapper(extractorConfig: IExtractorConfig, extractorOptions: IExtractorOptions) {
+function apiExtractorWrapper(extractorConfig: any, extractorOptions: any) {
+  const { Extractor } = require('@microsoft/api-extractor');
   const config = mergeConfig(extractorConfig);
   logger.info(`Extracting Public API surface from '${config.project.entryPointSourceFile}'`);
   const extractor = new Extractor(config, extractorOptions);

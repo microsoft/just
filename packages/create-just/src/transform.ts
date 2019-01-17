@@ -1,17 +1,16 @@
 import glob from 'glob';
 import path from 'path';
-import fs from 'fs';
-import cpx from 'cpx';
-import mkdirp from 'mkdirp';
+import fse from 'fs-extra';
 import handlebars from 'handlebars';
+import { logger } from './logger';
 
 export function transform(srcPath: string, destPath: string, data?: any) {
   const templateFiles = [...glob.sync('**/*', { cwd: srcPath }), ...glob.sync('**/.*', { cwd: srcPath })];
 
-  if (!fs.existsSync(destPath)) {
-    mkdirp.sync(destPath);
+  if (!fse.existsSync(destPath)) {
+    fse.mkdirpSync(destPath);
   }
-
+  logger.info(`transform: move files from ${srcPath} to ${destPath}`);
   templateFiles
     .filter(name => name.indexOf('.DS_Store') < 0)
     .forEach(templateFile => {
@@ -20,11 +19,11 @@ export function transform(srcPath: string, destPath: string, data?: any) {
       const outputFile = path.join(destPath, templateFile);
 
       if (path.extname(templateFile) === '.hbs') {
-        const template = handlebars.compile(fs.readFileSync(inputFile).toString());
+        const template = handlebars.compile(fse.readFileSync(inputFile).toString());
         const results = template(data);
-        fs.writeFileSync(outputFile.replace(/\.hbs$/, ''), results);
+        fse.writeFileSync(outputFile.replace(/\.hbs$/, ''), results);
       } else {
-        cpx.copySync(inputFile, outputDir);
+        fse.copySync(inputFile, outputFile, { overwrite: true });
       }
     });
 }

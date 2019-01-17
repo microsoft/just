@@ -5,11 +5,7 @@ export const paths = {
     return process.cwd();
   },
 
-  get repoTemplatePath() {
-    return path.resolve(__dirname, '../templates/repo');
-  },
-
-  get packageTemplatePath() {
-    return path.resolve(__dirname, '../templates/package');
+  templatePath(...args: string[]) {
+    return path.resolve.apply(null, [__dirname, '../templates', ...args]);
   }
 };
