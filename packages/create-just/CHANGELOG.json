@@ -1,0 +1,17 @@
+{
+  "name": "create-just",
+  "entries": [
+    {
+      "version": "0.1.0",
+      "tag": "create-just_v0.1.0",
+      "date": "Thu, 17 Jan 2019 23:10:46 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Added: basic lib generation"
+          }
+        ]
+      }
+    }
+  ]
+}

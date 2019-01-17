@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Wed, 16 Jan 2019 21:43:43 GMT and should not be manually modified.
+This log was last generated on Thu, 17 Jan 2019 23:10:46 GMT and should not be manually modified.
+
+## 0.6.6
+Thu, 17 Jan 2019 23:10:46 GMT
+
+### Patches
+
+- Fixed: presets to not have direct deps on anything
 
 ## 0.6.5
 Wed, 16 Jan 2019 21:43:43 GMT
