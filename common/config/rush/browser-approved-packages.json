@@ -211,6 +211,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "html-webpack-plugin",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "jest",
       "allowedCategories": [ "production" ]
     },

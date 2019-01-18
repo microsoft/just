@@ -1,8 +1,8 @@
 {
-  "name": "just-stack-monorepo-lib",
+  "name": "just-stack-uifabric",
   "version": "0.1.0",
   "just-stack": true,
-  "description": "Just Stack Library for MonoRepo",
+  "description": "Just Stack UI Fabric Application with React",
   "main": "index.js",
   "keywords": [],
   "author": "",

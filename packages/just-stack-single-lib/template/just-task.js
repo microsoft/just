@@ -1,3 +1,3 @@
 // @ts-check
-const justTasks = require('just-scripts-web');
-module.exports = justTasks;
+const { lib } = require('just-scripts-web');
+module.exports = lib;

@@ -94,14 +94,8 @@
       "shouldPublish": true
     },
     {
-      "packageName": "just-stack-monorepo-lib",
-      "projectFolder": "packages/just-stack-monorepo-lib",
-      "reviewCategory": "production",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "just-stack-monorepo-uifabric",
-      "projectFolder": "packages/just-stack-monorepo-uifabric",
+      "packageName": "just-stack-uifabric",
+      "projectFolder": "packages/just-stack-uifabric",
       "reviewCategory": "production",
       "shouldPublish": true
     },

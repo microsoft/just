@@ -26,8 +26,8 @@ export async function addPackageCommand(args: AddPackageCommandArgs) {
       name: 'type',
       message: 'What type of package to add to the repo?',
       choices: [
-        { title: 'Library', value: 'just-stack-monorepo-lib' },
-        { title: 'UI Fabric Web Application (React)', value: 'just-stack-monorepo-uifabric' }
+        { title: 'Library', value: 'just-stack-single-lib' },
+        { title: 'UI Fabric Web Application (React)', value: 'just-stack-uifabric' }
       ]
     });
     args.type = response.type;
