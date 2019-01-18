@@ -2,3 +2,5 @@ lib/
 src/
 tsconfig.json
 webpack.config.js
+*.log
+package-deps.json
