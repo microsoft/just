@@ -1,0 +1,17 @@
+{
+  "name": "just-stack-monorepo",
+  "entries": [
+    {
+      "version": "0.1.0",
+      "tag": "just-stack-monorepo_v0.1.0",
+      "date": "Fri, 18 Jan 2019 05:23:13 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "new package"
+          }
+        ]
+      }
+    }
+  ]
+}

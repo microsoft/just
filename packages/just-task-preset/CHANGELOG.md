@@ -1,6 +1,13 @@
 # Change Log - just-task-preset
 
-This log was last generated on Thu, 17 Jan 2019 23:10:46 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Jan 2019 05:23:13 GMT and should not be manually modified.
+
+## 0.6.7
+Fri, 18 Jan 2019 05:23:13 GMT
+
+### Patches
+
+- get rid of peer deps
 
 ## 0.6.6
 Thu, 17 Jan 2019 23:10:46 GMT

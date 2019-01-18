@@ -1,6 +1,6 @@
 {
   "name": "just-task-preset",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "description": "",
   "main": "lib/index.js",
   "scripts": {

@@ -2,6 +2,18 @@
   "name": "just-task-preset",
   "entries": [
     {
+      "version": "0.6.7",
+      "tag": "just-task-preset_v0.6.7",
+      "date": "Fri, 18 Jan 2019 05:23:13 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "get rid of peer deps"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.6",
       "tag": "just-task-preset_v0.6.6",
       "date": "Thu, 17 Jan 2019 23:10:46 GMT",
