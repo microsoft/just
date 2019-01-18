@@ -16,7 +16,8 @@ export async function downloadPackage(pkg: string) {
 
   if (pkgFile) {
     await tar.x({
-      file: path.join(pkgPath, pkgFile)
+      file: path.join(pkgPath, pkgFile),
+      cwd: pkgPath
     });
     return path.join(pkgPath, 'package', 'template');
   }

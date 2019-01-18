@@ -14,8 +14,8 @@ export function transform(srcPath: string, destPath: string, data?: any) {
   templateFiles
     .filter(name => name.indexOf('.DS_Store') < 0)
     .forEach(templateFile => {
+      logger.info(`processing ${templateFile}`);
       const inputFile = path.join(srcPath, templateFile);
-      const outputDir = path.join(destPath, path.dirname(templateFile));
       const outputFile = path.join(destPath, templateFile);
 
       if (path.extname(templateFile) === '.hbs') {
