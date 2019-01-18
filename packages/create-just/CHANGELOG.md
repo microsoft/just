@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Fri, 18 Jan 2019 05:23:13 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Jan 2019 22:55:29 GMT and should not be manually modified.
+
+## 0.3.0
+Fri, 18 Jan 2019 22:55:29 GMT
+
+### Minor changes
+
+- Using the new just-stack-*
 
 ## 0.2.0
 Fri, 18 Jan 2019 05:23:13 GMT

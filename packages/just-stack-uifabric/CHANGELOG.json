@@ -1,6 +1,18 @@
 {
-  "name": "just-stack-single-lib",
+  "name": "just-stack-uifabric",
   "entries": [
+    {
+      "version": "0.2.0",
+      "tag": "just-stack-uifabric_v0.2.0",
+      "date": "Fri, 18 Jan 2019 22:55:29 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Added a new stack for generating UI Fabric web app"
+          }
+        ]
+      }
+    },
     {
       "version": "0.1.0",
       "tag": "just-stack-single-lib_v0.1.0",
