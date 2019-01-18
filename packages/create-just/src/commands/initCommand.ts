@@ -7,6 +7,7 @@ import fse from 'fs-extra';
 import prompts from 'prompts';
 import marked from 'marked';
 import TerminalRenderer from 'marked-terminal';
+import { execSync } from 'child_process';
 
 export interface InitCommandArgs {
   type: string;
@@ -28,17 +29,12 @@ export async function initCommand(argv: InitCommandArgs) {
       type: 'select',
       name: 'type',
       message: 'What type of repo to create?',
-      choices: [
-        { title: 'Basic library', value: 'single-lib' },
-        { title: 'React component library', value: 'single-component-lib' },
-        { title: 'React app', value: 'single-app' },
-        { title: 'Monorepo', value: 'monorepo' }
-      ]
+      choices: [{ title: 'Basic library', value: 'single-lib' }, { title: 'Monorepo', value: 'monorepo' }]
     });
     argv.type = response.type;
   }
 
-  const name = path.basename(__dirname);
+  const name = path.basename(installPath);
 
   if (checkEmptyRepo(installPath)) {
     logger.info('Initializing the repo in the current directory');
@@ -48,6 +44,9 @@ export async function initCommand(argv: InitCommandArgs) {
     // createPackageCommand({ name: 'helloworld', type: 'web' });
     // TODO: add more post-init instructions
     // TODO: run git init && git commit initial commit
+    execSync('git init');
+    execSync('git add .');
+    execSync('git commit -m "initial commit"');
 
     logger.info('All Set! Typing out the contents of the generated README.md');
     logger.info('\n' + marked(fse.readFileSync(path.join(installPath, 'README.md')).toString()));

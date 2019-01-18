@@ -1,4 +1,6 @@
-const { task, series } = require('just-task');
+// @ts-check
+
+const { task, series, parallel } = require('just-task');
 const { cleanTask, tscTask, jestTask } = require('just-task-preset');
 
 module.exports = function() {
@@ -7,7 +9,7 @@ module.exports = function() {
   task('ts:commonjs', tscTask({ module: 'commonjs', outDir: 'lib-commonjs' }));
   task('ts:esm', tscTask({ module: 'esnext', outDir: 'lib' }));
   task('ts:watch', tscTask({ module: 'esnext', outDir: 'lib', watch: true }));
-  task('ts', paralle('ts:commonjs', 'ts:esm'));
+  task('ts', parallel('ts:commonjs', 'ts:esm'));
 
   task('jest', jestTask());
   task('jest:watch', jestTask({ watch: true }));
