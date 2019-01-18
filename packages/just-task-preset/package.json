@@ -33,16 +33,6 @@
     "typescript": ">=2.8.0 <4.0.0",
     "jest": ">=22.0.0"
   },
-  "peerDependencies": {
-    "@microsoft/api-extractor": ">=6.0.0 <7.0.0",
-    "autoprefixer": ">=7.0.0 <10.0.0",
-    "node-sass": ">=4.0.0 <5.0.0",
-    "jest": ">=22.0.0",
-    "postcss": ">=6.0.0 <8.0.0",
-    "typescript": ">=2.8.0 <4.0.0",
-    "tslint": ">=5.0.0 <6.0.0",
-    "webpack": ">=4.0.0 <5.0.0"
-  },
   "keywords": [],
   "author": "Ken Chau <kchau@microsoft.com>",
   "license": "MIT"

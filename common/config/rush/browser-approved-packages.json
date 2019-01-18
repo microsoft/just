@@ -127,6 +127,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@types/tar",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/undertaker",
       "allowedCategories": [ "production" ]
     },
@@ -292,6 +296,10 @@
     },
     {
       "name": "style-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "tar",
       "allowedCategories": [ "production" ]
     },
     {

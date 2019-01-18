@@ -88,6 +88,18 @@
       "shouldPublish": true
     },
     {
+      "packageName": "just-stack-monorepo",
+      "projectFolder": "packages/just-stack-monorepo",
+      "reviewCategory": "production",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "just-stack-single-lib",
+      "projectFolder": "packages/just-stack-single-lib",
+      "reviewCategory": "production",
+      "shouldPublish": true
+    },
+    {
       "packageName": "just-task-docs",
       "projectFolder": "packages/documentation/website",
       "reviewCategory": "docs",

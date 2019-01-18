@@ -1,11 +1,12 @@
 import path from 'path';
+import os from 'os';
 
 export const paths = {
   get installPath() {
     return process.cwd();
   },
 
-  templatePath(...args: string[]) {
-    return path.resolve.apply(null, [__dirname, '../templates', ...args]);
+  tempPath(...args: string[]) {
+    return path.resolve.apply(null, [os.tmpdir(), 'just-stack', ...args]);
   }
 };

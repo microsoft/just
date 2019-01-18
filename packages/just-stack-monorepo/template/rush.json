@@ -66,5 +66,10 @@
    */
   // "telemetryEnabled": false,
 
-  "projects": []
+  "projects": [
+    {
+      "packageName": "scripts",
+      "projectFolder": "scripts"
+    }
+  ]
 }

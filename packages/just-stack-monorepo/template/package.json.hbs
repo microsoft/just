@@ -1,0 +1,13 @@
+{
+  "name": "{{name}}-monorepo",
+  "private": true,
+  "version": "0.0.1",
+  "description": "{{name}} Mono Repo",
+  "license": "MIT",
+  "scripts": {
+    "build": "common/scripts/install-run-rush.js build",
+    "test": "common/scripts/install-run-rush.js test",
+    "update": "common/scripts/install-run-rush.js update",
+    "postinstall": "common/scripts/install-run-rush.js install"
+  }
+}

@@ -8,9 +8,10 @@ dependencies:
   '@babel/register': 7.0.0
   '@babel/traverse': 7.2.3
   '@babel/types': 7.2.2
-  '@microsoft/api-extractor': 6.3.0
   '@rush-temp/create-just': 'file:projects/create-just.tgz'
   '@rush-temp/example-lib': 'file:projects/example-lib.tgz'
+  '@rush-temp/just-stack-monorepo': 'file:projects/just-stack-monorepo.tgz'
+  '@rush-temp/just-stack-single-lib': 'file:projects/just-stack-single-lib.tgz'
   '@rush-temp/just-task': 'file:projects/just-task.tgz'
   '@rush-temp/just-task-docs': 'file:projects/just-task-docs.tgz'
   '@rush-temp/just-task-preset': 'file:projects/just-task-preset.tgz'
@@ -31,12 +32,12 @@ dependencies:
   '@types/rimraf': 2.0.2
   '@types/run-parallel-limit': 1.0.0
   '@types/semver': 5.5.0
+  '@types/tar': 4.0.0
   '@types/undertaker': 1.2.0
   '@types/undertaker-registry': 1.0.1
   '@types/webpack': 4.4.23
   '@types/yargs': 12.0.1
   '@uifabric/experiments': 6.50.7
-  autoprefixer: 9.4.5
   chalk: 2.4.2
   cpx: 1.5.0
   docusaurus: 1.6.2
@@ -47,9 +48,7 @@ dependencies:
   marked: 0.6.0
   marked-terminal: 3.2.0
   mkdirp: 0.5.1
-  node-sass: 4.11.0
   office-ui-fabric-react: 6.127.0
-  postcss: 7.0.13
   prompts: 2.0.1
   react: 16.7.0
   react-dom: 16.7.0
@@ -57,11 +56,12 @@ dependencies:
   rimraf: 2.6.3
   run-parallel-limit: 1.0.5
   semver: 5.6.0
+  tar: 4.4.8
   ts-jest: 23.10.5
   ts-loader: 5.3.3
-  tslint: 5.12.1
   undertaker: 1.2.0
   undertaker-registry: 1.0.1
+  webpack: 4.28.4
   webpack-cli: 3.2.1
   yargs: 12.0.5
 packages:
@@ -1541,6 +1541,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-78AdXtlhpCHT0K3EytMpn4JNxaf5tbqbLcbIRoQIHzpTIyjpxLQKRoxU55ujBXAtg3Nl2h/XWvfDa9dsMOd0pQ==
+  /@types/tar/4.0.0:
+    dependencies:
+      '@types/node': 8.10.39
+    dev: false
+    resolution:
+      integrity: sha512-YybbEHNngcHlIWVCYsoj7Oo1JU9JqONuAlt1LlTH/lmL8BMhbzdFUgReY87a05rY1j8mfK47Del+TCkaLAXwLw==
   /@types/uglify-js/3.0.4:
     dependencies:
       source-map: 0.6.1
@@ -1985,14 +1991,9 @@ packages:
       ajv: '>=5.0.0'
     resolution:
       integrity: sha512-DCRfO/4nQ+89p/RK43i8Ezd41EqdGIU4ld7nGF8OQ14oc/we5rEntLCUa7+jrn3nn83BosfwZA0wb4pon2o8iQ==
-  /ajv-keywords/3.2.0:
-    dev: false
-    peerDependencies:
-      ajv: ^6.0.0
-    resolution:
-      integrity: sha1-6GuBnGAs+IIa1jdBNpjx3sAhhHo=
   /ajv-keywords/3.2.0/ajv@6.7.0:
-    dependencies: {}
+    dependencies:
+      ajv: 6.7.0
     dev: false
     id: registry.npmjs.org/ajv-keywords/3.2.0
     peerDependencies:
@@ -5039,6 +5040,12 @@ packages:
       node: '>=6 <7 || >=8'
     resolution:
       integrity: sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==
+  /fs-minipass/1.2.5:
+    dependencies:
+      minipass: 2.3.5
+    dev: false
+    resolution:
+      integrity: sha512-JhBl0skXjUPCFH7x6x61gQxrKyXsxB5gcgePLZCwfyCGGsTISMoIeObbrvVeP6Xmyaudw4TT43qV2Gz+iyd2oQ==
   /fs-write-stream-atomic/1.0.10:
     dependencies:
       graceful-fs: 4.1.15
@@ -7499,6 +7506,19 @@ packages:
     dev: false
     resolution:
       integrity: sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
+  /minipass/2.3.5:
+    dependencies:
+      safe-buffer: 5.1.2
+      yallist: 3.0.3
+    dev: false
+    resolution:
+      integrity: sha512-Gi1W4k059gyRbyVUZQ4mEqLm0YIUiGYfvxhF6SIlk3ui1WVxMTGfGdQ2SInh3PDrRTVvPKgULkpJtT4RH10+VA==
+  /minizlib/1.2.1:
+    dependencies:
+      minipass: 2.3.5
+    dev: false
+    resolution:
+      integrity: sha512-7+4oTUOWKg7AuL3vloEWekXY2/D20cevzsrNT2kGWm+39J9hGTCBv8VI5Pm5lXZ/o3/mdR4f8rflAPhnQb8mPA==
   /mississippi/3.0.0:
     dependencies:
       concat-stream: 1.6.2
@@ -10118,6 +10138,20 @@ packages:
     dev: false
     resolution:
       integrity: sha1-jk0qJWwOIYXGsYrWlK7JaLg8sdE=
+  /tar/4.4.8:
+    dependencies:
+      chownr: 1.1.1
+      fs-minipass: 1.2.5
+      minipass: 2.3.5
+      minizlib: 1.2.1
+      mkdirp: 0.5.1
+      safe-buffer: 5.1.2
+      yallist: 3.0.3
+    dev: false
+    engines:
+      node: '>=4.5'
+    resolution:
+      integrity: sha512-LzHF64s5chPQQS0IYBn9IN5h3i98c12bo4NCO7e0sGM2llXQ3p2FGC5sdENN4cTW48O915Sh+x+EXx7XW96xYQ==
   /tcp-port-used/0.1.2:
     dependencies:
       debug: 0.7.4
@@ -10150,6 +10184,23 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-awRGhWqbERTRhW/8vlCczLCXcmU=
+  /terser-webpack-plugin/1.2.1:
+    dependencies:
+      cacache: 11.3.2
+      find-cache-dir: 2.0.0
+      schema-utils: 1.0.0
+      serialize-javascript: 1.6.1
+      source-map: 0.6.1
+      terser: 3.14.1
+      webpack-sources: 1.3.0
+      worker-farm: 1.6.0
+    dev: false
+    engines:
+      node: '>= 6.9.0'
+    peerDependencies:
+      webpack: ^4.0.0
+    resolution:
+      integrity: sha512-GGSt+gbT0oKcMDmPx4SRSfJPE1XaN3kQRWG4ghxKQw9cn5G9x6aCKSsgYdvyM0na9NJ4Drv0RG6jbBByZ5CMjw==
   /terser-webpack-plugin/1.2.1/webpack@4.28.4:
     dependencies:
       cacache: 11.3.2
@@ -10431,18 +10482,6 @@ packages:
       jest: '>=22 <24'
     resolution:
       integrity: sha512-MRCs9qnGoyKgFc8adDEntAOP64fWK1vZKnOYU1o2HxaqjdJvGqmkLCPCnVq1/If4zkUmEjKPnCiUisTrlX2p2A==
-  /ts-jest/23.10.5/jest@23.6.0:
-    dependencies:
-      jest: 23.6.0
-    dev: false
-    engines:
-      node: '>= 6'
-    hasBin: true
-    id: registry.npmjs.org/ts-jest/23.10.5
-    peerDependencies:
-      jest: '>=22 <24'
-    resolution:
-      integrity: sha512-MRCs9qnGoyKgFc8adDEntAOP64fWK1vZKnOYU1o2HxaqjdJvGqmkLCPCnVq1/If4zkUmEjKPnCiUisTrlX2p2A==
   /ts-loader/5.3.3:
     dependencies:
       chalk: 2.4.2
@@ -10461,7 +10500,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==
-  /tslint/5.12.1:
+  /tslint/5.12.1/typescript@3.2.2:
     dependencies:
       babel-code-frame: 6.26.0
       builtin-modules: 1.1.1
@@ -10474,19 +10513,23 @@ packages:
       resolve: 1.9.0
       semver: 5.6.0
       tslib: 1.9.3
-      tsutils: 2.29.0
+      tsutils: /tsutils/2.29.0/typescript@3.2.2
+      typescript: 3.2.2
     dev: false
     engines:
       node: '>=4.8.0'
     hasBin: true
+    id: registry.npmjs.org/tslint/5.12.1
     peerDependencies:
       typescript: '>=2.1.0 || >=2.1.0-dev || >=2.2.0-dev || >=2.3.0-dev || >=2.4.0-dev || >=2.5.0-dev || >=2.6.0-dev || >=2.7.0-dev || >=2.8.0-dev || >=2.9.0-dev'
     resolution:
       integrity: sha512-sfodBHOucFg6egff8d1BvuofoOQ/nOeYNfbp7LDlKBcLNrL3lmS5zoiDGyOMdT7YsEXAwWpTdAHwOGOc8eRZAw==
-  /tsutils/2.29.0:
+  /tsutils/2.29.0/typescript@3.2.2:
     dependencies:
       tslib: 1.9.3
+      typescript: 3.2.2
     dev: false
+    id: registry.npmjs.org/tsutils/2.29.0
     peerDependencies:
       typescript: '>=2.1.0 || >=2.1.0-dev || >=2.2.0-dev || >=2.3.0-dev || >=2.4.0-dev || >=2.5.0-dev || >=2.6.0-dev || >=2.7.0-dev || >=2.8.0-dev || >=2.9.0-dev || >= 3.0.0-dev || >= 3.1.0-dev'
     resolution:
@@ -10961,6 +11004,38 @@ packages:
     dev: false
     resolution:
       integrity: sha512-OiVgSrbGu7NEnEvQJJgdSFPl2qWKkWq5lHMhgiToIiN9w34EBnjYzSYs+VbL5KoYiLNtFFa7BZIKxRED3I32pA==
+  /webpack/4.28.4:
+    dependencies:
+      '@webassemblyjs/ast': 1.7.11
+      '@webassemblyjs/helper-module-context': 1.7.11
+      '@webassemblyjs/wasm-edit': 1.7.11
+      '@webassemblyjs/wasm-parser': 1.7.11
+      acorn: 5.7.3
+      acorn-dynamic-import: 3.0.0
+      ajv: 6.7.0
+      ajv-keywords: /ajv-keywords/3.2.0/ajv@6.7.0
+      chrome-trace-event: 1.0.0
+      enhanced-resolve: 4.1.0
+      eslint-scope: 4.0.0
+      json-parse-better-errors: 1.0.2
+      loader-runner: 2.4.0
+      loader-utils: 1.2.3
+      memory-fs: 0.4.1
+      micromatch: 3.1.10
+      mkdirp: 0.5.1
+      neo-async: 2.6.0
+      node-libs-browser: 2.2.0
+      schema-utils: 0.4.7
+      tapable: 1.1.1
+      terser-webpack-plugin: 1.2.1
+      watchpack: 1.6.0
+      webpack-sources: 1.3.0
+    dev: false
+    engines:
+      node: '>=6.11.5'
+    hasBin: true
+    resolution:
+      integrity: sha512-NxjD61WsK/a3JIdwWjtIpimmvE6UrRi3yG54/74Hk9rwNj5FPkA4DJCf1z4ByDWLkvZhTZE+P3C/eh6UD5lDcw==
   /webpack/4.28.4/webpack@4.28.4:
     dependencies:
       '@webassemblyjs/ast': 1.7.11
@@ -10970,7 +11045,7 @@ packages:
       acorn: 5.7.3
       acorn-dynamic-import: 3.0.0
       ajv: 6.7.0
-      ajv-keywords: 3.2.0
+      ajv-keywords: /ajv-keywords/3.2.0/ajv@6.7.0
       chrome-trace-event: 1.0.0
       enhanced-resolve: 4.1.0
       eslint-scope: 4.0.0
@@ -11269,6 +11344,7 @@ packages:
       '@types/node': 10.12.18
       '@types/prompts': 1.2.0
       '@types/rimraf': 2.0.2
+      '@types/tar': 4.0.0
       '@types/yargs': 12.0.1
       chalk: 2.4.2
       cpx: 1.5.0
@@ -11281,6 +11357,7 @@ packages:
       mkdirp: 0.5.1
       prompts: 2.0.1
       rimraf: 2.6.3
+      tar: 4.4.8
       ts-loader: 5.3.3
       typescript: 3.2.2
       webpack: /webpack/4.28.4/webpack@4.28.4
@@ -11289,7 +11366,7 @@ packages:
     dev: false
     name: '@rush-temp/create-just'
     resolution:
-      integrity: sha512-72hDRxyYM6/1W6aAuutzFlqbtAwpA8rEiLGUJ1b0PAPhlr53exGTAgxN3CTjVEyovPPMY4l84+6qomEmOcY9lQ==
+      integrity: sha512-Jtt5sYP5H3UZndpK3gv4Gq8t7ME4sTGc9/KTElLoz0NAY1sVDw/UnR5M6ozQmAwBjWdwOv2NZLHHUW5eA5WSrQ==
       tarball: 'file:projects/create-just.tgz'
     version: 0.0.0
   'file:projects/example-lib.tgz':
@@ -11298,8 +11375,22 @@ packages:
     dev: false
     name: '@rush-temp/example-lib'
     resolution:
-      integrity: sha512-0dqkI+orvsCRmndMwcyPQ44W9yFYxFQ4DcruLT6e5iDZ3xvtsLtCxmNTkwSXPCpUJSRt+uU+o/rauVEnOiYwog==
+      integrity: sha512-K7ysro9NZxySQud40XA1CqxQnZxy+aQprZ3BEyp+Od9lXLgxi1mruFfeT6e4SFSVAYLZyLWgBNamzLZre/QqgQ==
       tarball: 'file:projects/example-lib.tgz'
+    version: 0.0.0
+  'file:projects/just-stack-monorepo.tgz':
+    dev: false
+    name: '@rush-temp/just-stack-monorepo'
+    resolution:
+      integrity: sha512-AJsas4g6/0J9cr7D43c0p1beby7WF7dlN0BThkD3x5sXra/wpPDlBRrt+VA8Csb50h5QsIr6YSOd7OSyYOy9gg==
+      tarball: 'file:projects/just-stack-monorepo.tgz'
+    version: 0.0.0
+  'file:projects/just-stack-single-lib.tgz':
+    dev: false
+    name: '@rush-temp/just-stack-single-lib'
+    resolution:
+      integrity: sha512-x1dhYje7oEcfbdy2fINw/0pdisZKqnZRliIvaVoN/KSGSqfW327ZGtwAVQ/DJlMwq+Z5bJO6qbnxCVKDouZAmg==
+      tarball: 'file:projects/just-stack-single-lib.tgz'
     version: 0.0.0
   'file:projects/just-task-docs.tgz':
     dependencies:
@@ -11350,13 +11441,13 @@ packages:
       rimraf: 2.6.3
       run-parallel-limit: 1.0.5
       semver: 5.6.0
-      tslint: 5.12.1
+      tslint: /tslint/5.12.1/typescript@3.2.2
       typescript: 3.2.2
       webpack: /webpack/4.28.4/webpack@4.28.4
     dev: false
     name: '@rush-temp/just-task-preset'
     resolution:
-      integrity: sha512-PSbY5Uxny6hmT4TJ6FuOI2vgONpqXo5ZibYOXJBRiti1fbUYY3dDv33fqnwc2fq9Nh57yPbykRMgY3JBjykOTg==
+      integrity: sha512-x3wKRp0KEHP3gwk5hrKNhWqRNl5zBGdOJsavLEvoTqgsvLIUQhxt6fl2GZD3ikXSNNuWQltub9rf4JIDc+rGRw==
       tarball: 'file:projects/just-task-preset.tgz'
     version: 0.0.0
   'file:projects/just-task-scripts.tgz':
@@ -11379,7 +11470,7 @@ packages:
       chalk: 2.4.2
       jest: 23.6.0
       resolve: 1.9.0
-      ts-jest: /ts-jest/23.10.5/jest@23.6.0
+      ts-jest: 23.10.5
       typescript: 3.2.2
       undertaker: 1.2.0
       undertaker-registry: 1.0.1
@@ -11403,9 +11494,10 @@ specifiers:
   '@babel/register': ^7.0.0
   '@babel/traverse': ^7.0.0
   '@babel/types': ^7.1.2
-  '@microsoft/api-extractor': '>=6.0.0 <7.0.0'
   '@rush-temp/create-just': 'file:./projects/create-just.tgz'
   '@rush-temp/example-lib': 'file:./projects/example-lib.tgz'
+  '@rush-temp/just-stack-monorepo': 'file:./projects/just-stack-monorepo.tgz'
+  '@rush-temp/just-stack-single-lib': 'file:./projects/just-stack-single-lib.tgz'
   '@rush-temp/just-task': 'file:./projects/just-task.tgz'
   '@rush-temp/just-task-docs': 'file:./projects/just-task-docs.tgz'
   '@rush-temp/just-task-preset': 'file:./projects/just-task-preset.tgz'
@@ -11426,12 +11518,12 @@ specifiers:
   '@types/rimraf': ^2.0.2
   '@types/run-parallel-limit': ^1.0.0
   '@types/semver': ^5.5.0
+  '@types/tar': ^4.0.0
   '@types/undertaker': ^1.2.0
   '@types/undertaker-registry': ^1.0.1
   '@types/webpack': ^4.4.20
   '@types/yargs': 12.0.1
   '@uifabric/experiments': ^6.41.0
-  autoprefixer: '>=7.0.0 <10.0.0'
   chalk: ^2.4.1
   cpx: ^1.5.0
   docusaurus: ^1.5.1
@@ -11442,9 +11534,7 @@ specifiers:
   marked: ^0.6.0
   marked-terminal: ^3.2.0
   mkdirp: ^0.5.1
-  node-sass: '>=4.0.0 <5.0.0'
   office-ui-fabric-react: ^6.109.0
-  postcss: '>=6.0.0 <8.0.0'
   prompts: ^2.0.1
   react: ^16.6.0
   react-dom: ^16.6.0
@@ -11452,10 +11542,11 @@ specifiers:
   rimraf: ^2.6.2
   run-parallel-limit: ^1.0.5
   semver: ^5.6.0
+  tar: ^4.4.8
   ts-jest: ^23.10.5
   ts-loader: ^5.3.3
-  tslint: '>=5.0.0 <6.0.0'
   undertaker: ^1.2.0
   undertaker-registry: ^1.0.1
+  webpack: ^4.28.4
   webpack-cli: ^3.2.1
   yargs: ^12.0.5

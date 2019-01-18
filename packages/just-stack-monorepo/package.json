@@ -1,0 +1,13 @@
+{
+  "name": "just-stack-monorepo",
+  "version": "0.0.1",
+  "just-stack": true,
+  "description": "Monorepo using Rush",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "build": ""
+  }
+}
