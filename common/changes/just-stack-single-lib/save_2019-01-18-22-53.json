@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-single-lib",
+      "comment": "Switched to using just-scripts-web",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-stack-single-lib",
+  "email": "kchau@microsoft.com"
+}

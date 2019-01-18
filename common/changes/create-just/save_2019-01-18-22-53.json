@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "create-just",
+      "comment": "Using the new just-stack-*",
+      "type": "minor"
+    }
+  ],
+  "packageName": "create-just",
+  "email": "kchau@microsoft.com"
+}
