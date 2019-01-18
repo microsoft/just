@@ -1,0 +1,16 @@
+{
+  "name": "just-scripts-web",
+  "version": "0.0.1",
+  "description": "Just Stack Scripts for Building Web Libraries or Applications",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "main": "./just-task.js",
+  "dependencies": {
+    "just-task": ">=0.7.0",
+    "just-task-preset": ">=0.6.0",
+    "webpack": "^4.28.4",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.2.4"
+  }
+}

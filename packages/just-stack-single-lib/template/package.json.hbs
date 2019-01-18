@@ -8,18 +8,18 @@
   "typings": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "npx just -p just-task build",
-    "test": "npx just -p just-task test",
-    "just": "npx just -p just-task",
-    "clean": "npx just -p just-task clean",
-    "start": "npx just -p just-task start",
-    "start-test": "npx just -p just-task start-test",
-    "update-snapshots": "npx just -p just-task jest -u",
-    "update-api": "npx just -p just-task update-api"
+    "build": "just build",
+    "test": "just test",
+    "just": "just",
+    "clean": "just clean",
+    "start": "just start",
+    "start-test": "just start-test",
+    "update-snapshots": "just jest -u"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^6.3.0",
     "@types/jest": "^23.3.3",
+    "just-script-web": "^0.0.1",
     "just-task": "^0.7.5",
     "just-task-preset": "^0.6.6",
     "typescript": "^3.2.2",

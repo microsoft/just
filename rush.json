@@ -112,6 +112,12 @@
       "shouldPublish": true
     },
     {
+      "packageName": "just-scripts-web",
+      "projectFolder": "packages/just-scripts-web",
+      "reviewCategory": "production",
+      "shouldPublish": true
+    },
+    {
       "packageName": "just-task-docs",
       "projectFolder": "packages/documentation/website",
       "reviewCategory": "docs",
