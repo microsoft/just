@@ -20,5 +20,8 @@
   "peerDependencies": {
     "just-task": ">=0.7.0",
     "just-task-preset": ">=0.6.0"
+  },
+  "scripts": {
+    "build": ""
   }
 }
