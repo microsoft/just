@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts-web",
+      "comment": "remove deps from this package",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-scripts-web",
+  "email": "kchau@microsoft.com"
+}
