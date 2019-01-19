@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts-web",
+      "comment": "added webpack build",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-scripts-web",
+  "email": "kchau@microsoft.com"
+}
