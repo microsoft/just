@@ -5,6 +5,14 @@ import fse from 'fs-extra';
 import tar from 'tar';
 import path from 'path';
 
+function isDevMode(pkg: string) {
+  const projectPackageJsonFile = path.join(__dirname, '../../../package.json');
+  if (fse.existsSync(path.join(__dirname, '../../', pkg)) && fse.existsSync(projectPackageJsonFile)) {
+    const packageJson = JSON.parse(fse.readFileSync(projectPackageJsonFile).toString());
+    return packageJson.name === 'just-task';
+  }
+}
+
 export async function downloadPackage(pkg: string) {
   const npmCmd = os.platform() === 'win32' ? 'npm.cmd' : 'npm';
   const { tempPath } = paths;
@@ -13,6 +21,10 @@ export async function downloadPackage(pkg: string) {
 
   if (fse.existsSync(pkgPath)) {
     fse.removeSync(pkgPath);
+  }
+
+  if (isDevMode(pkg)) {
+    return path.join(__dirname, '../../', pkg, 'template');
   }
 
   fse.mkdirpSync(pkgPath);

@@ -5,6 +5,9 @@ import { transform } from '../transform';
 import prompts from 'prompts';
 import * as rush from '../rush';
 import { downloadPackage } from '../downloadPackage';
+import fse from 'fs-extra';
+import marked from 'marked';
+import TerminalRenderer from 'marked-terminal';
 
 export interface AddPackageCommandArgs {
   name: string;
@@ -14,6 +17,10 @@ export async function addPackageCommand(args: AddPackageCommandArgs) {
   if (args.cwd) {
     process.chdir(args.cwd);
   }
+
+  marked.setOptions({
+    renderer: new TerminalRenderer()
+  });
 
   const name =
     args.name ||
@@ -51,5 +58,12 @@ export async function addPackageCommand(args: AddPackageCommandArgs) {
     rush.addPackage(name, installPath);
     logger.info('Running rush update');
     rush.update(installPath);
+
+    logger.info('All Set!');
+
+    const readmeFile = path.join(packagePath, 'README.md');
+    if (fse.existsSync(readmeFile)) {
+      logger.info('\n' + marked(fse.readFileSync(readmeFile).toString()));
+    }
   }
 }

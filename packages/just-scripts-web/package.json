@@ -6,21 +6,6 @@
   "author": "",
   "license": "ISC",
   "main": "./index.js",
-  "dependencies": {
-    "webpack": "^4.28.4",
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.2.4",
-    "css-loader": "^2.1.0",
-    "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^0.23.1",
-    "autoprefixer": "^9.4.5",
-    "postcss-loader": "^3.0.0",
-    "postcss": "^7.0.13"
-  },
-  "peerDependencies": {
-    "just-task": ">=0.7.0",
-    "just-task-preset": ">=0.6.0"
-  },
   "scripts": {
     "build": ""
   }

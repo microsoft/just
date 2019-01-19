@@ -10,6 +10,7 @@ import TerminalRenderer from 'marked-terminal';
 import { execSync } from 'child_process';
 import yargs from 'yargs';
 import { downloadPackage } from '../downloadPackage';
+import * as rush from '../rush';
 
 function checkEmptyRepo(installPath: string) {
   return readdirSync(installPath).length === 0;
@@ -50,6 +51,10 @@ export async function initCommand(argv: yargs.Arguments) {
       execSync('git init');
       execSync('git add .');
       execSync('git commit -m "initial commit"');
+
+      if (argv.type.includes('monorepo')) {
+        rush.update(installPath);
+      }
 
       logger.info('All Set!');
 
