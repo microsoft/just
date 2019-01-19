@@ -10,7 +10,8 @@ yargs
     handler: initCommand
   })
   .command({
-    command: 'add <name>',
+    command: 'add [name]',
+    builder: yargs => yargs.option('cwd', { default: process.cwd() }),
     describe: 'Adds a new package in the packages folder of a mono-repo',
     handler: addPackageCommand
   })

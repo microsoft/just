@@ -8,11 +8,5 @@ Now that you have created this repository, go ahead and run the following to get
 
 ```sh
 npm install
-npm start
-```
-
-By default this mono-repo has NO packages. Create one by typing:
-
-```sh
 npm run add-package
 ```

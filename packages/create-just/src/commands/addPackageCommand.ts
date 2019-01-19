@@ -8,33 +8,40 @@ import { downloadPackage } from '../downloadPackage';
 
 export interface AddPackageCommandArgs {
   name: string;
-  type: string;
+  cwd: string;
 }
 export async function addPackageCommand(args: AddPackageCommandArgs) {
-  const name = args.name;
+  if (args.cwd) {
+    process.chdir(args.cwd);
+  }
 
-  logger.info(`Creating a ${args.type} package called: ${name}`);
+  const name =
+    args.name ||
+    (await prompts({
+      type: 'text',
+      name: 'name',
+      message: 'What is the name of the package?'
+    })).name;
+
+  logger.info(`Creating a package called: ${name}`);
 
   const { installPath } = paths;
 
   // TODO: do validation that the path is indeed a monorepo
 
   // TODO: autosuggest just-stack-* packages from npmjs.org
-  if (!args.type) {
-    let response = await prompts({
-      type: 'select',
-      name: 'type',
-      message: 'What type of package to add to the repo?',
-      choices: [
-        { title: 'Library', value: 'just-stack-single-lib' },
-        { title: 'UI Fabric Web Application (React)', value: 'just-stack-uifabric' }
-      ]
-    });
-    args.type = response.type;
-  }
+  let response = await prompts({
+    type: 'select',
+    name: 'type',
+    message: 'What type of package to add to the repo?',
+    choices: [
+      { title: 'Library', value: 'just-stack-single-lib' },
+      { title: 'UI Fabric Web Application (React)', value: 'just-stack-uifabric' }
+    ]
+  });
 
   const packagePath = path.join(installPath, 'packages', name);
-  const templatePath = await downloadPackage(args.type);
+  const templatePath = await downloadPackage(response.type);
 
   if (templatePath) {
     transform(templatePath, packagePath, {
