@@ -1,6 +1,6 @@
 {
   "name": "just-stack-single-lib",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "just-stack": true,
   "description": "Basic Library",
   "main": "index.js",

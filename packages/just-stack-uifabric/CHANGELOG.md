@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Sat, 19 Jan 2019 04:50:19 GMT and should not be manually modified.
+This log was last generated on Sat, 19 Jan 2019 05:19:51 GMT and should not be manually modified.
+
+## 0.3.2
+Sat, 19 Jan 2019 05:19:51 GMT
+
+### Patches
+
+- fix tsconfig
 
 ## 0.3.1
 Sat, 19 Jan 2019 04:50:19 GMT

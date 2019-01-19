@@ -2,6 +2,18 @@
   "name": "just-stack-uifabric",
   "entries": [
     {
+      "version": "0.3.2",
+      "tag": "just-stack-uifabric_v0.3.2",
+      "date": "Sat, 19 Jan 2019 05:19:51 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix tsconfig"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.1",
       "tag": "just-stack-uifabric_v0.3.1",
       "date": "Sat, 19 Jan 2019 04:50:19 GMT",

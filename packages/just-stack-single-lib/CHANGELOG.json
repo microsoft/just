@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.2.4",
+      "tag": "just-stack-single-lib_v0.2.4",
+      "date": "Sat, 19 Jan 2019 05:19:51 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix tsconfig"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.3",
       "tag": "just-stack-single-lib_v0.2.3",
       "date": "Sat, 19 Jan 2019 04:31:35 GMT",
