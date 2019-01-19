@@ -2,6 +2,18 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "version": "0.2.6",
+      "tag": "just-stack-monorepo_v0.2.6",
+      "date": "Sat, 19 Jan 2019 04:46:16 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix: should not enforce git policy"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.5",
       "tag": "just-stack-monorepo_v0.2.5",
       "date": "Sat, 19 Jan 2019 04:31:35 GMT",
