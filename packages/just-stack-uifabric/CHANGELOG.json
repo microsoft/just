@@ -2,6 +2,18 @@
   "name": "just-stack-uifabric",
   "entries": [
     {
+      "version": "0.3.0",
+      "tag": "just-stack-uifabric_v0.3.0",
+      "date": "Sat, 19 Jan 2019 04:31:35 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "added oufr to deps"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.2",
       "tag": "just-stack-uifabric_v0.2.2",
       "date": "Sat, 19 Jan 2019 01:08:44 GMT",

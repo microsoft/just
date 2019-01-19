@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Sat, 19 Jan 2019 00:54:18 GMT and should not be manually modified.
+This log was last generated on Sat, 19 Jan 2019 04:31:35 GMT and should not be manually modified.
+
+## 0.4.0
+Sat, 19 Jan 2019 04:31:35 GMT
+
+### Minor changes
+
+- fix workflow for monorepo - runs rush
 
 ## 0.3.2
 Sat, 19 Jan 2019 00:54:18 GMT
