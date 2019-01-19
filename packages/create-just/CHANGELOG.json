@@ -2,6 +2,18 @@
   "name": "create-just",
   "entries": [
     {
+      "version": "0.3.2",
+      "tag": "create-just_v0.3.2",
+      "date": "Sat, 19 Jan 2019 00:54:18 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "adds an option for cwd"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.1",
       "tag": "create-just_v0.3.1",
       "date": "Sat, 19 Jan 2019 00:22:29 GMT",

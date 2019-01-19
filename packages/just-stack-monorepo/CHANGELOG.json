@@ -2,6 +2,18 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "version": "0.2.3",
+      "tag": "just-stack-monorepo_v0.2.3",
+      "date": "Sat, 19 Jan 2019 00:54:18 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixing the scripts name in rush.json"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.2",
       "tag": "just-stack-monorepo_v0.2.2",
       "date": "Sat, 19 Jan 2019 00:27:17 GMT",

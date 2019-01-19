@@ -1,6 +1,13 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Sat, 19 Jan 2019 00:27:17 GMT and should not be manually modified.
+This log was last generated on Sat, 19 Jan 2019 00:54:18 GMT and should not be manually modified.
+
+## 0.2.3
+Sat, 19 Jan 2019 00:54:18 GMT
+
+### Patches
+
+- fixing the scripts name in rush.json
 
 ## 0.2.2
 Sat, 19 Jan 2019 00:27:17 GMT
