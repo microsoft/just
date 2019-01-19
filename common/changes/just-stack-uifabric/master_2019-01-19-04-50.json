@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-uifabric",
+      "comment": "fix: latest version of oufr is 6.128",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-stack-uifabric",
+  "email": "kchau@microsoft.com"
+}
