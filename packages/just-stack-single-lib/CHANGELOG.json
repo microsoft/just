@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.2.2",
+      "tag": "just-stack-single-lib_v0.2.2",
+      "date": "Sat, 19 Jan 2019 01:08:44 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix the range for scripts"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.1",
       "tag": "just-stack-single-lib_v0.2.1",
       "date": "Sat, 19 Jan 2019 00:22:29 GMT",

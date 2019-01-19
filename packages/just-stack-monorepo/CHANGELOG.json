@@ -2,6 +2,18 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "version": "0.2.4",
+      "tag": "just-stack-monorepo_v0.2.4",
+      "date": "Sat, 19 Jan 2019 01:08:44 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix the readme to be printed nicely"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.3",
       "tag": "just-stack-monorepo_v0.2.3",
       "date": "Sat, 19 Jan 2019 00:54:18 GMT",

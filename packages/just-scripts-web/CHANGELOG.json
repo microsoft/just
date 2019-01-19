@@ -2,6 +2,18 @@
   "name": "just-scripts-web",
   "entries": [
     {
+      "version": "0.2.0",
+      "tag": "just-scripts-web_v0.2.0",
+      "date": "Sat, 19 Jan 2019 01:08:44 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "added webpack build"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.0",
       "tag": "just-scripts-web_v0.1.0",
       "date": "Fri, 18 Jan 2019 22:55:29 GMT",

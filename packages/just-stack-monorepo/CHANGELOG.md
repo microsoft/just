@@ -1,6 +1,13 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Sat, 19 Jan 2019 00:54:18 GMT and should not be manually modified.
+This log was last generated on Sat, 19 Jan 2019 01:08:44 GMT and should not be manually modified.
+
+## 0.2.4
+Sat, 19 Jan 2019 01:08:44 GMT
+
+### Patches
+
+- fix the readme to be printed nicely
 
 ## 0.2.3
 Sat, 19 Jan 2019 00:54:18 GMT
