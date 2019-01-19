@@ -16,7 +16,7 @@ export async function downloadPackage(pkg: string) {
   }
 
   fse.mkdirpSync(pkgPath);
-  spawnSync(npmCmd, ['pack', pkg], { cwd: pkgPath });
+  spawnSync(npmCmd, ['pack', `${pkg}@latest`], { cwd: pkgPath });
   const files = fse.readdirSync(pkgPath);
   const pkgFile = files.find(file => file.endsWith('tgz') || file.endsWith('tar.gz'));
 
