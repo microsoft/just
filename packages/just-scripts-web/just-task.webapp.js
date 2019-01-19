@@ -1,7 +1,7 @@
 // @ts-check
 
 const { task, series, parallel } = require('just-task');
-const { cleanTask, tscTask, jestTask } = require('just-task-preset');
+const { cleanTask, tscTask, jestTask, webpackTask } = require('just-task-preset');
 
 module.exports = function() {
   task('clean', cleanTask());
@@ -14,7 +14,9 @@ module.exports = function() {
   task('jest', jestTask());
   task('jest:watch', jestTask({ watch: true }));
 
-  task('build', series('clean', 'ts', 'jest'));
+  task('webpack', webpackTask());
+
+  task('build', series('clean', 'ts', parallel('jest', 'webpack')));
   task('test', series('clean', 'jest'));
   task('start', series('clean', 'ts:watch'));
   task('start-test', series('clean', 'jest:watch'));
