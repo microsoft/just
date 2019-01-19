@@ -2,6 +2,18 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "version": "0.2.2",
+      "tag": "just-stack-monorepo_v0.2.2",
+      "date": "Sat, 19 Jan 2019 00:27:17 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix to run rush correctly"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.1",
       "tag": "just-stack-monorepo_v0.2.1",
       "date": "Sat, 19 Jan 2019 00:22:29 GMT",
