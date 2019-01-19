@@ -1,6 +1,13 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Fri, 18 Jan 2019 22:55:29 GMT and should not be manually modified.
+This log was last generated on Sat, 19 Jan 2019 00:22:29 GMT and should not be manually modified.
+
+## 0.2.1
+Sat, 19 Jan 2019 00:22:29 GMT
+
+### Patches
+
+- Fix deps
 
 ## 0.2.0
 Fri, 18 Jan 2019 22:55:29 GMT

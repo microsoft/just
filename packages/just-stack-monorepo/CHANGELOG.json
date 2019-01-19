@@ -2,6 +2,18 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "version": "0.2.1",
+      "tag": "just-stack-monorepo_v0.2.1",
+      "date": "Sat, 19 Jan 2019 00:22:29 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix deps"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.0",
       "tag": "just-stack-monorepo_v0.2.0",
       "date": "Fri, 18 Jan 2019 22:55:29 GMT",
