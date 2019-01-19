@@ -10,7 +10,7 @@ yargs
     handler: initCommand
   })
   .command({
-    command: 'add <package>',
+    command: 'add <name>',
     describe: 'Adds a new package in the packages folder of a mono-repo',
     handler: addPackageCommand
   })

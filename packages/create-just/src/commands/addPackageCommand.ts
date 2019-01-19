@@ -42,7 +42,6 @@ export async function addPackageCommand(args: AddPackageCommandArgs) {
     });
 
     rush.addPackage(name, installPath);
-
     logger.info('Running rush update');
     rush.update(installPath);
   }

@@ -69,7 +69,8 @@
   "projects": [
     {
       "packageName": "scripts",
-      "projectFolder": "scripts"
+      "projectFolder": "scripts",
+      "reviewCategory": "tools"
     }
   ]
 }

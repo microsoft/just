@@ -8,7 +8,13 @@ import path from 'path';
 export async function downloadPackage(pkg: string) {
   const npmCmd = os.platform() === 'win32' ? 'npm.cmd' : 'npm';
   const { tempPath } = paths;
+
   const pkgPath = tempPath(pkg);
+
+  if (fse.existsSync(pkgPath)) {
+    fse.removeSync(pkgPath);
+  }
+
   fse.mkdirpSync(pkgPath);
   spawnSync(npmCmd, ['pack', pkg], { cwd: pkgPath });
   const files = fse.readdirSync(pkgPath);
