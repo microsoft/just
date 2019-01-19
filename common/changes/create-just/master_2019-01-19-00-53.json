@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "create-just",
+      "comment": "adds an option for cwd",
+      "type": "patch"
+    }
+  ],
+  "packageName": "create-just",
+  "email": "kchau@microsoft.com"
+}
