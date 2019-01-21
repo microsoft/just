@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts-utils",
+      "comment": "fix scripts to transform correctly with subdirs",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-scripts-utils",
+  "email": "kchau@microsoft.com"
+}
