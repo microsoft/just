@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.3.3",
+      "tag": "just-stack-single-lib_v0.3.3",
+      "date": "Mon, 21 Jan 2019 03:27:17 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix stack"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.2",
       "tag": "just-stack-single-lib_v0.3.2",
       "date": "Mon, 21 Jan 2019 02:54:15 GMT",
