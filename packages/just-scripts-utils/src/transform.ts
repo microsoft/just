@@ -4,7 +4,7 @@ import fse from 'fs-extra';
 import handlebars from 'handlebars';
 
 export function transform(srcPath: string, destPath: string, data?: any) {
-  const templateFiles = [...glob.sync('**/*', { cwd: srcPath }), ...glob.sync('**/.*', { cwd: srcPath })];
+  const templateFiles = [...new Set([...glob.sync('**/*', { cwd: srcPath }), ...glob.sync('**/.*', { cwd: srcPath })])];
 
   if (!fse.existsSync(destPath)) {
     fse.mkdirpSync(destPath);
@@ -16,12 +16,16 @@ export function transform(srcPath: string, destPath: string, data?: any) {
       const inputFile = path.join(srcPath, templateFile);
       const outputFile = path.join(destPath, templateFile);
 
-      if (path.extname(templateFile) === '.hbs') {
+      const stat = fse.statSync(inputFile);
+
+      if (path.extname(templateFile) === '.hbs' && stat.isFile()) {
         const template = handlebars.compile(fse.readFileSync(inputFile).toString());
         const results = template(data);
         fse.writeFileSync(outputFile.replace(/\.hbs$/, ''), results);
-      } else {
+      } else if (stat.isFile()) {
         fse.copySync(inputFile, outputFile, { overwrite: true });
+      } else {
+        fse.mkdirpSync(outputFile);
       }
     });
 }
