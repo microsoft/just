@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.3.0",
+      "tag": "just-stack-single-lib_v0.3.0",
+      "date": "Mon, 21 Jan 2019 02:21:01 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "updated to use just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.4",
       "tag": "just-stack-single-lib_v0.2.4",
       "date": "Sat, 19 Jan 2019 05:19:51 GMT",

@@ -1,0 +1,17 @@
+{
+  "name": "just-scripts-utils",
+  "entries": [
+    {
+      "version": "0.2.0",
+      "tag": "just-scripts-utils_v0.2.0",
+      "date": "Mon, 21 Jan 2019 02:21:01 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "new publish!"
+          }
+        ]
+      }
+    }
+  ]
+}
