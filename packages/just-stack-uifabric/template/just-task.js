@@ -1,3 +1,3 @@
 // @ts-check
-const { webapp } = require('just-scripts-web');
+const { webapp } = require('just-scripts');
 module.exports = webapp;

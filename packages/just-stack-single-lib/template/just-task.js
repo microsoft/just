@@ -1,3 +1,3 @@
 // @ts-check
-const { lib } = require('just-scripts-web');
+const { lib } = require('just-scripts');
 module.exports = lib;
