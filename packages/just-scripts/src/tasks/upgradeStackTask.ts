@@ -1,13 +1,19 @@
 import fse from 'fs-extra';
 import path from 'path';
-import semver from 'semver';
+import chalk from 'chalk';
 import { logger } from 'just-task';
 import { paths, downloadPackage, transform } from 'just-scripts-utils';
+import { mergePackageJson } from '../package/mergePackageJson';
 
-export async function upgradeStackTask() {
-  const { installPath, tempPath } = paths;
-  const packageJsonFile = path.join(installPath, 'package.json');
+export function upgradeStackTask() {
+  const { installPath } = paths;
+  return upgradeStackPackageJsonFile(installPath);
+}
+
+export async function upgradeStackPackageJsonFile(projectPath: string) {
+  const packageJsonFile = path.join(projectPath, 'package.json');
   const packageJson = fse.readJsonSync(packageJsonFile);
+  const { tempPath } = paths;
 
   if (packageJson.just) {
     const stack = packageJson.just.stack;
@@ -16,32 +22,24 @@ export async function upgradeStackTask() {
     if (stackPath) {
       const templatePath = tempPath(packageJson.name);
       transform(stackPath, templatePath, { name: packageJson.name });
+
       // Update package.json deps
       const stackPackageJson = fse.readJsonSync(path.join(templatePath, 'package.json'));
-      const depTypes = ['dependencies', 'devDependencies'];
-      let packageJsonModified = false;
-      depTypes.forEach(devType => {
-        if (stackPackageJson[devType]) {
-          Object.keys(stackPackageJson[devType]).forEach(dep => {
-            const strippedPackageVersion = packageJson[devType][dep] ? packageJson[devType][dep].replace(/^[~^]/, '') : '0.0.0';
-            const strippedStackPackageVersion = stackPackageJson[devType][dep].replace(/^[~^]/, '');
 
-            if (semver.gt(strippedStackPackageVersion, strippedPackageVersion)) {
-              logger.info(`Dependency ${dep} should be updated to ${stackPackageJson[devType][dep]}`);
-              packageJson[devType][dep] = stackPackageJson[devType][dep];
-              packageJsonModified = true;
-            }
-          });
-        }
-      });
+      // If modified, the reference would be different
+      const newPackageJson = mergePackageJson(packageJson, stackPackageJson);
 
-      if (packageJsonModified) {
-        fse.writeFileSync(packageJsonFile, JSON.stringify(packageJson, null, 2));
+      logger.info(`Checking if package ${packageJson.name} should be upgraded...`);
+      if (newPackageJson !== packageJson) {
+        logger.info(`Package ${chalk.cyan(packageJson.name)} is being upgraded.`);
+        fse.writeFileSync(packageJsonFile, JSON.stringify(newPackageJson, null, 2));
+      } else {
+        logger.info(`Package ${chalk.cyan(packageJson.name)} upgrade not needed.`);
       }
     } else {
       logger.error(`Cannot read or retrieve the stack package.json for ${stack}`);
     }
   } else {
-    logger.info(`Package ${packageJson} does not have a "just" key. Not self-upgradeable through this task.`);
+    logger.info(`Package ${chalk.cyan(packageJson.name)} does not have a "just" key. Skipping upgrade.`);
   }
 }
