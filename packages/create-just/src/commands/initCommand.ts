@@ -1,26 +1,16 @@
-import { paths } from '../paths';
+import { paths, logger, transform, prettyPrintMarkdown, rushUpdate, downloadPackage } from 'just-scripts-utils';
 import path from 'path';
-import { logger } from '../logger';
 import { readdirSync } from 'fs';
-import { transform } from '../transform';
 import fse from 'fs-extra';
 import prompts from 'prompts';
-import marked from 'marked';
-import TerminalRenderer from 'marked-terminal';
 import { execSync } from 'child_process';
 import yargs from 'yargs';
-import { downloadPackage } from '../downloadPackage';
-import * as rush from '../rush';
 
 function checkEmptyRepo(installPath: string) {
   return readdirSync(installPath).length === 0;
 }
 
 export async function initCommand(argv: yargs.Arguments) {
-  marked.setOptions({
-    renderer: new TerminalRenderer()
-  });
-
   const { installPath } = paths;
 
   // TODO: autosuggest just-stack-* packages from npmjs.org
@@ -53,14 +43,14 @@ export async function initCommand(argv: yargs.Arguments) {
       execSync('git commit -m "initial commit"');
 
       if (argv.type.includes('monorepo')) {
-        rush.update(installPath);
+        rushUpdate(installPath);
       }
 
       logger.info('All Set!');
 
       const readmeFile = path.join(installPath, 'README.md');
       if (fse.existsSync(readmeFile)) {
-        logger.info('\n' + marked(fse.readFileSync(readmeFile).toString()));
+        logger.info('\n' + prettyPrintMarkdown(fse.readFileSync(readmeFile).toString()));
       }
     } else {
       logger.error('Having trouble downloading and extracting the template package');

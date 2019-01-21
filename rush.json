@@ -106,8 +106,14 @@
       "shouldPublish": true
     },
     {
-      "packageName": "just-scripts-web",
-      "projectFolder": "packages/just-scripts-web",
+      "packageName": "just-scripts",
+      "projectFolder": "packages/just-scripts",
+      "reviewCategory": "production",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "just-scripts-utils",
+      "projectFolder": "packages/just-scripts-utils",
       "reviewCategory": "production",
       "shouldPublish": true
     },

@@ -1,7 +1,6 @@
-// @ts-check
-
-const { task, series, parallel } = require('just-task');
-const { cleanTask, tscTask, jestTask, webpackTask } = require('just-task-preset');
+import { task, series, parallel } from 'just-task';
+import { cleanTask, tscTask, jestTask, webpackTask } from 'just-task-preset';
+import { upgradeStackTask } from '../tasks/upgradeStackTask';
 
 module.exports = function() {
   task('clean', cleanTask());
@@ -20,4 +19,6 @@ module.exports = function() {
   task('test', series('clean', 'jest'));
   task('start', series('clean', 'ts:watch'));
   task('start-test', series('clean', 'jest:watch'));
+
+  task('upgrade-stack', upgradeStackTask);
 };

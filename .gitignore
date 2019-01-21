@@ -8,6 +8,8 @@ yarn-error.log*
 
 node_modules
 lib
+lib-commonjs
+lib-amd
 build
 dist
 temp

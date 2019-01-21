@@ -1,26 +1,15 @@
 import path from 'path';
-import { paths } from '../paths';
-import { logger } from '../logger';
-import { transform } from '../transform';
+import { paths, logger, transform, rushAddPackage, rushUpdate, prettyPrintMarkdown, downloadPackage } from 'just-scripts-utils';
 import prompts from 'prompts';
-import * as rush from '../rush';
-import { downloadPackage } from '../downloadPackage';
 import fse from 'fs-extra';
-import marked from 'marked';
-import TerminalRenderer from 'marked-terminal';
+import { argv } from 'just-task';
 
-export interface AddPackageCommandArgs {
-  name: string;
-  cwd: string;
-}
-export async function addPackageCommand(args: AddPackageCommandArgs) {
+export async function addPackageTask() {
+  const args = argv();
+
   if (args.cwd) {
     process.chdir(args.cwd);
   }
-
-  marked.setOptions({
-    renderer: new TerminalRenderer()
-  });
 
   const name =
     args.name ||
@@ -55,15 +44,15 @@ export async function addPackageCommand(args: AddPackageCommandArgs) {
       name
     });
 
-    rush.addPackage(name, installPath);
+    rushAddPackage(name, installPath);
     logger.info('Running rush update');
-    rush.update(installPath);
+    rushUpdate(installPath);
 
     logger.info('All Set!');
 
     const readmeFile = path.join(packagePath, 'README.md');
     if (fse.existsSync(readmeFile)) {
-      logger.info('\n' + marked(fse.readFileSync(readmeFile).toString()));
+      logger.info('\n' + prettyPrintMarkdown(fse.readFileSync(readmeFile).toString()));
     }
   }
 }

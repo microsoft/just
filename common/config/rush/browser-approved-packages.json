@@ -223,6 +223,14 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "just-scripts",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "just-scripts-utils",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "just-task",
       "allowedCategories": [ "docs", "production" ]
     },
