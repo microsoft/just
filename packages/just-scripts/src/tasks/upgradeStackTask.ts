@@ -2,19 +2,24 @@ import fse from 'fs-extra';
 import path from 'path';
 import semver from 'semver';
 import { logger } from 'just-task';
-import { downloadPackage } from 'just-scripts-utils';
+import { paths, downloadPackage, transform } from 'just-scripts-utils';
 
 export async function upgradeStackTask() {
-  const cwd = process.cwd();
-  const packageJson = fse.readJsonSync(path.join(cwd, 'package.json'));
+  const { installPath, tempPath } = paths;
+  const packageJsonFile = path.join(installPath, 'package.json');
+  const packageJson = fse.readJsonSync(packageJsonFile);
 
   if (packageJson.just) {
     const stack = packageJson.just.stack;
     const stackPath = await downloadPackage(stack);
+
     if (stackPath) {
+      const templatePath = tempPath(packageJson.name);
+      transform(stackPath, templatePath, { name: packageJson.name });
       // Update package.json deps
-      const stackPackageJson = fse.readJsonSync(stackPath);
+      const stackPackageJson = fse.readJsonSync(path.join(templatePath, 'package.json'));
       const depTypes = ['dependencies', 'devDependencies'];
+      let packageJsonModified = false;
       depTypes.forEach(devType => {
         if (stackPackageJson[devType]) {
           Object.keys(stackPackageJson[devType]).forEach(dep => {
@@ -22,11 +27,17 @@ export async function upgradeStackTask() {
             const strippedStackPackageVersion = stackPackageJson[devType][dep].replace(/^[~^]/, '');
 
             if (semver.gt(strippedStackPackageVersion, strippedPackageVersion)) {
+              logger.info(`Dependency ${dep} should be updated to ${stackPackageJson[devType][dep]}`);
               packageJson[devType][dep] = stackPackageJson[devType][dep];
+              packageJsonModified = true;
             }
           });
         }
       });
+
+      if (packageJsonModified) {
+        fse.writeFileSync(packageJsonFile, JSON.stringify(packageJson, null, 2));
+      }
     } else {
       logger.error(`Cannot read or retrieve the stack package.json for ${stack}`);
     }
