@@ -1,9 +1,9 @@
 import { task, option } from 'just-task';
 import { addPackageTask, upgradeRepoTask } from '../tasks';
 
-module.exports = function() {
+export function monorepo() {
   option('cwd');
   option('name');
   task('add-package', addPackageTask);
   task('upgrade-repo', upgradeRepoTask);
-};
+}

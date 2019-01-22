@@ -1,7 +1,7 @@
 import { task, series, parallel } from 'just-task';
 import { cleanTask, tscTask, jestTask, upgradeStackTask } from '../tasks';
 
-module.exports = function() {
+export function lib() {
   task('clean', cleanTask());
 
   task('ts:commonjs', tscTask({ module: 'commonjs', outDir: 'lib-commonjs' }));
@@ -18,4 +18,4 @@ module.exports = function() {
   task('start-test', series('clean', 'jest:watch'));
 
   task('upgrade-stack', upgradeStackTask);
-};
+}
