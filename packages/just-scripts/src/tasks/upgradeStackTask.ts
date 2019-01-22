@@ -2,8 +2,7 @@ import fse from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 import { logger } from 'just-task';
-import { paths, downloadPackage, transform } from 'just-scripts-utils';
-import { mergePackageJson } from '../package/mergePackageJson';
+import { paths, downloadPackage, transform, mergePackageJson } from 'just-scripts-utils';
 
 export function upgradeStackTask() {
   const { installPath } = paths;

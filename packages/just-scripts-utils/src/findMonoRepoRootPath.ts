@@ -1,4 +1,4 @@
-import { paths } from 'just-scripts-utils';
+import { paths } from './paths';
 import path from 'path';
 import fse from 'fs-extra';
 

@@ -1,9 +1,17 @@
 import path from 'path';
-import { paths, logger, transform, rushAddPackage, rushUpdate, prettyPrintMarkdown, downloadPackage } from 'just-scripts-utils';
+import {
+  paths,
+  logger,
+  transform,
+  rushAddPackage,
+  rushUpdate,
+  prettyPrintMarkdown,
+  downloadPackage,
+  findMonoRepoRootPath
+} from 'just-scripts-utils';
 import prompts from 'prompts';
 import fse from 'fs-extra';
 import { argv } from 'just-task';
-import { findMonoRepoRootPath } from '../package/findMonoRepoRootPath';
 
 export async function addPackageTask() {
   const args = argv();

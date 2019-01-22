@@ -1,7 +1,7 @@
 import fse from 'fs-extra';
 import path from 'path';
 import { upgradeStackPackageJsonFile } from './upgradeStackTask';
-import { findMonoRepoRootPath } from '../package/findMonoRepoRootPath';
+import { findMonoRepoRootPath } from 'just-scripts-utils';
 
 export async function upgradeRepoTask() {
   const rootPath = findMonoRepoRootPath();
