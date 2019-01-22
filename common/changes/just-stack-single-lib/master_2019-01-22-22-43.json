@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-single-lib",
+      "comment": "update just-scripts in templates",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-stack-single-lib",
+  "email": "kchau@microsoft.com"
+}
