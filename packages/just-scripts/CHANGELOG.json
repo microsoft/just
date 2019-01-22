@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.7.1",
+      "tag": "just-scripts_v0.7.1",
+      "date": "Tue, 22 Jan 2019 22:49:45 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "exports the correct named exports for presets"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.0",
       "tag": "just-scripts_v0.7.0",
       "date": "Tue, 22 Jan 2019 22:31:23 GMT",

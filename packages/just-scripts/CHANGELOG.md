@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 22 Jan 2019 22:31:23 GMT and should not be manually modified.
+This log was last generated on Tue, 22 Jan 2019 22:49:45 GMT and should not be manually modified.
+
+## 0.7.1
+Tue, 22 Jan 2019 22:49:45 GMT
+
+### Patches
+
+- exports the correct named exports for presets
 
 ## 0.7.0
 Tue, 22 Jan 2019 22:31:23 GMT
