@@ -2,6 +2,18 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "version": "0.6.0",
+      "tag": "just-stack-monorepo_v0.6.0",
+      "date": "Tue, 22 Jan 2019 22:43:55 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "update just-scripts in templates"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.0",
       "tag": "just-stack-monorepo_v0.5.0",
       "date": "Tue, 22 Jan 2019 21:28:18 GMT",

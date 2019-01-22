@@ -1,6 +1,6 @@
 {
   "name": "just-stack-monorepo",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "just-stack": true,
   "description": "Monorepo using Rush",
   "main": "index.js",

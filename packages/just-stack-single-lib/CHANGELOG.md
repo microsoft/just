@@ -1,6 +1,13 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Tue, 22 Jan 2019 21:28:18 GMT and should not be manually modified.
+This log was last generated on Tue, 22 Jan 2019 22:43:55 GMT and should not be manually modified.
+
+## 0.5.0
+Tue, 22 Jan 2019 22:43:55 GMT
+
+### Minor changes
+
+- update just-scripts in templates
 
 ## 0.4.0
 Tue, 22 Jan 2019 21:28:18 GMT
