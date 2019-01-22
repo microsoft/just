@@ -1,3 +1,3 @@
 // @ts-check
-const { lib } = require('just-scripts');
-module.exports = lib;
+const { taskPresets } = require('just-scripts');
+module.exports = taskPresets.lib;

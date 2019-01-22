@@ -1,7 +1,4 @@
-const lib = require('./config/just-task.lib');
-const webapp = require('./config/just-task.webapp');
-const monorepo = require('./config/just-task.monorepo');
+export * from './tasks';
 
-export { lib };
-export { webapp };
-export { monorepo };
+import * as taskPresets from './task-presets';
+export { taskPresets };

@@ -32,7 +32,11 @@
     "tar": "^4.4.8",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
-    "ts-loader": "^5.3.3"
+    "ts-loader": "^5.3.3",
+    "resolve": "^1.8.1",
+    "rimraf": "^2.6.2",
+    "mkdirp": "^0.5.1",
+    "run-parallel-limit": "^1.0.5"
   },
   "scripts": {
     "build": "webpack --mode production",

@@ -1,3 +1,3 @@
 // @ts-check
-const { webapp } = require('just-scripts');
-module.exports = webapp;
+const { taskPresets } = require('just-scripts');
+module.exports = taskPresets.webapp;

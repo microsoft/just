@@ -1,6 +1,5 @@
 import { task, option } from 'just-task';
-import { addPackageTask } from '../tasks/addPackageTask';
-import { upgradeRepoTask } from '../tasks/upgradeRepoTask';
+import { addPackageTask, upgradeRepoTask } from '../tasks';
 
 module.exports = function() {
   option('cwd');

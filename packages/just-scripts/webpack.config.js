@@ -12,7 +12,7 @@ module.exports = {
       }
     ]
   },
-  externals: ['just-task', 'just-task-preset'],
+  externals: ['just-task'],
   resolve: {
     extensions: ['.ts', '.js']
   },

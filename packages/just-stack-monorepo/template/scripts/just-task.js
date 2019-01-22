@@ -1,2 +1,3 @@
-const { monorepo } = require('just-scripts');
-module.exports = monorepo;
+// @ts-check
+const { taskPresets } = require('just-scripts');
+module.exports = taskPresets.monorepo;

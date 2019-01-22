@@ -76,12 +76,6 @@
       "versionPolicyName": "RepoPolicy"
     },
     {
-      "packageName": "just-task-preset",
-      "projectFolder": "packages/just-task-preset",
-      "reviewCategory": "production",
-      "versionPolicyName": "RepoPolicy"
-    },
-    {
       "packageName": "create-just",
       "projectFolder": "packages/create-just",
       "reviewCategory": "production",

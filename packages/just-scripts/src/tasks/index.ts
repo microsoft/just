@@ -6,4 +6,6 @@ export * from './jestTask';
 export * from './tslintTask';
 export * from './webpackTask';
 export * from './apiExtractorTask';
-export * from './outdatedTask';
+export * from './addPackageTask';
+export * from './upgradeRepoTask';
+export * from './upgradeStackTask';
