@@ -2,6 +2,23 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.7.0",
+      "tag": "just-scripts_v0.7.0",
+      "date": "Tue, 22 Jan 2019 22:31:23 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "move utils from scripts to here, get rid of preset dep"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-scripts-utils\" from `>=0.2.2 <1.0.0` to `>=0.3.0 <1.0.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.0",
       "tag": "just-scripts_v0.6.0",
       "date": "Tue, 22 Jan 2019 21:28:18 GMT",

@@ -1,6 +1,13 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Mon, 21 Jan 2019 03:27:17 GMT and should not be manually modified.
+This log was last generated on Tue, 22 Jan 2019 22:31:23 GMT and should not be manually modified.
+
+## 0.3.0
+Tue, 22 Jan 2019 22:31:23 GMT
+
+### Minor changes
+
+- move utils from scripts to here
 
 ## 0.2.2
 Mon, 21 Jan 2019 03:27:17 GMT
