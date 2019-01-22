@@ -8,11 +8,12 @@ module.exports = {
       {
         test: /\.ts$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: [/node_modules/, /__tests__/]
       }
     ]
   },
-  externals: ['just-task'],
+  // External tools are imported by the consumers
+  externals: ['just-task', '@microsoft/api-extractor', 'autoprefixer', 'postcss', 'node-sass', 'webpack'],
   resolve: {
     extensions: ['.ts', '.js']
   },

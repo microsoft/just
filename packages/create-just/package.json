@@ -17,7 +17,7 @@
     "@types/prompts": "^1.2.0",
     "@types/yargs": "12.0.1",
     "@types/fs-extra": "^5.0.4",
-    "typescript": "^3.1.6",
+    "typescript": "^3.2.4",
     "fs-extra": "^7.0.1",
     "prompts": "^2.0.1",
     "yargs": "^12.0.5",

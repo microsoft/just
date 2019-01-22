@@ -1,4 +1,4 @@
-import rimraf from 'rimraf';
+import fse from 'fs-extra';
 import parallelLimit from 'run-parallel-limit';
 import path from 'path';
 import { logger } from 'just-task';
@@ -14,7 +14,7 @@ export function cleanTask(paths: string[] = [], limit: number = 5) {
     const cleanTasks = paths.map(
       cleanPath =>
         function(cb: (error: Error) => void) {
-          rimraf(cleanPath, cb);
+          fse.remove(cleanPath, cb);
         }
     );
 

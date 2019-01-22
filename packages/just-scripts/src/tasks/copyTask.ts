@@ -1,16 +1,15 @@
 import glob from 'glob';
-import fs from 'fs';
+import fse from 'fs-extra';
 import path from 'path';
 import parallelLimit from 'run-parallel-limit';
-import mkdirp from 'mkdirp';
 import { logger } from 'just-task';
 
 export function copyTask(paths: string[] = [], dest: string, limit: number = 15) {
   return function copy(done: (err?: Error) => void) {
     logger.info(`Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`);
 
-    if (!fs.existsSync(dest)) {
-      mkdirp.sync(dest);
+    if (!fse.existsSync(dest)) {
+      fse.mkdirpSync(dest);
     }
 
     const copyTasks: parallelLimit.Task<void>[] = [];
@@ -20,8 +19,8 @@ export function copyTask(paths: string[] = [], dest: string, limit: number = 15)
       const matches = glob.sync(srcPath);
 
       matches.forEach(matchedPath => {
-        if (fs.existsSync(matchedPath)) {
-          const stat = fs.statSync(matchedPath);
+        if (fse.existsSync(matchedPath)) {
+          const stat = fse.statSync(matchedPath);
           if (stat.isDirectory()) {
             return helper(path.join(matchedPath, '**/*'), basePath);
           }
@@ -30,14 +29,14 @@ export function copyTask(paths: string[] = [], dest: string, limit: number = 15)
         const relativePath = path.relative(basePath, matchedPath);
 
         copyTasks.push(cb => {
-          const readStream = fs.createReadStream(matchedPath);
+          const readStream = fse.createReadStream(matchedPath);
           const destPath = path.join(dest, relativePath);
 
-          if (!fs.existsSync(path.dirname(destPath))) {
-            mkdirp.sync(path.dirname(destPath));
+          if (!fse.existsSync(path.dirname(destPath))) {
+            fse.mkdirpSync(path.dirname(destPath));
           }
 
-          readStream.pipe(fs.createWriteStream(destPath));
+          readStream.pipe(fse.createWriteStream(destPath));
           readStream.on('error', err => cb(err));
           readStream.on('end', cb);
         });
@@ -63,8 +62,8 @@ function getBasePath(pattern: string) {
 
   const relativePath = relativePathParts.join(path.sep);
 
-  if (fs.existsSync(relativePath)) {
-    const stat = fs.statSync(relativePath);
+  if (fse.existsSync(relativePath)) {
+    const stat = fse.statSync(relativePath);
 
     if (!stat.isDirectory()) {
       return path.dirname(relativePath);

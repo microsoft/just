@@ -224,7 +224,7 @@
     },
     {
       "name": "just-scripts",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "docs", "production" ]
     },
     {
       "name": "just-scripts-utils",
