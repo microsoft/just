@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Mon, 21 Jan 2019 02:21:01 GMT and should not be manually modified.
+This log was last generated on Tue, 22 Jan 2019 21:28:18 GMT and should not be manually modified.
+
+## 0.5.1
+Tue, 22 Jan 2019 21:28:18 GMT
+
+### Patches
+
+- deps
 
 ## 0.5.0
 Mon, 21 Jan 2019 02:21:01 GMT

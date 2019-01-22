@@ -1,6 +1,13 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Mon, 21 Jan 2019 03:27:17 GMT and should not be manually modified.
+This log was last generated on Tue, 22 Jan 2019 21:28:18 GMT and should not be manually modified.
+
+## 0.4.0
+Tue, 22 Jan 2019 21:28:18 GMT
+
+### Minor changes
+
+- got rid of preset references
 
 ## 0.3.3
 Mon, 21 Jan 2019 03:27:17 GMT

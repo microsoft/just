@@ -2,6 +2,18 @@
   "name": "create-just",
   "entries": [
     {
+      "version": "0.5.1",
+      "tag": "create-just_v0.5.1",
+      "date": "Tue, 22 Jan 2019 21:28:18 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "deps"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.0",
       "tag": "create-just_v0.5.0",
       "date": "Mon, 21 Jan 2019 02:21:01 GMT",

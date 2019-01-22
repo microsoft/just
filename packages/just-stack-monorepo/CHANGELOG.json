@@ -2,6 +2,18 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "version": "0.5.0",
+      "tag": "just-stack-monorepo_v0.5.0",
+      "date": "Tue, 22 Jan 2019 21:28:18 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "got rid of preset references"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.4.0",
       "tag": "just-stack-monorepo_v0.4.0",
       "date": "Mon, 21 Jan 2019 19:57:09 GMT",

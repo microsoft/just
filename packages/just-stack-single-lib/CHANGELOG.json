@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.4.0",
+      "tag": "just-stack-single-lib_v0.4.0",
+      "date": "Tue, 22 Jan 2019 21:28:18 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "got rid of preset references"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.3",
       "tag": "just-stack-single-lib_v0.3.3",
       "date": "Mon, 21 Jan 2019 03:27:17 GMT",
