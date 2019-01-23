@@ -16,7 +16,9 @@ export function findMonoRepoRootPath() {
     // Determine the monorepo by either presence of rush.json or package.json that has a just.stack of just-stack-monorepo
     if (fse.existsSync(rushConfigFile)) {
       return currentPath;
-    } else if (fse.existsSync(packageJsonFile)) {
+    }
+
+    if (fse.existsSync(packageJsonFile)) {
       const packageJson = fse.readJsonSync(packageJsonFile);
       const stack = packageJson.just && packageJson.just.stack;
       if (stack === 'just-stack-monorepo') {

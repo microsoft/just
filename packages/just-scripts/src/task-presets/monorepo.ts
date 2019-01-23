@@ -4,6 +4,6 @@ import { addPackageTask, upgradeRepoTask } from '../tasks';
 export function monorepo() {
   option('cwd');
   option('name');
-  task('add-package', addPackageTask);
-  task('upgrade-repo', upgradeRepoTask);
+  task('add-package', 'adds a package to the monorepo', addPackageTask);
+  task('upgrade-repo', 'upgrades packages inside the monorepo according to the just-stack template', upgradeRepoTask);
 }
