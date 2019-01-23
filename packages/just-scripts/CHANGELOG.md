@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 22 Jan 2019 22:49:45 GMT and should not be manually modified.
+This log was last generated on Wed, 23 Jan 2019 00:05:38 GMT and should not be manually modified.
+
+## 0.7.2
+Wed, 23 Jan 2019 00:05:38 GMT
+
+### Patches
+
+- better logging during add package
 
 ## 0.7.1
 Tue, 22 Jan 2019 22:49:45 GMT
