@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts-utils",
+      "comment": "Fixes",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-scripts-utils",
+  "email": "kchau@microsoft.com"
+}
