@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Fri, 25 Jan 2019 07:08:59 GMT and should not be manually modified.
+This log was last generated on Fri, 25 Jan 2019 07:15:35 GMT and should not be manually modified.
+
+## 0.5.3
+Fri, 25 Jan 2019 07:15:35 GMT
+
+### Patches
+
+- adding back the readme instructions
 
 ## 0.5.2
 Fri, 25 Jan 2019 07:08:59 GMT
