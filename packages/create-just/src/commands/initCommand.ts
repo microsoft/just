@@ -47,11 +47,11 @@ export async function initCommand(argv: yargs.Arguments) {
       }
 
       logger.info('All Set!');
-      /*
+
       const readmeFile = path.join(installPath, 'README.md');
       if (fse.existsSync(readmeFile)) {
         logger.info('\n' + prettyPrintMarkdown(fse.readFileSync(readmeFile).toString()));
-      }*/
+      }
     } else {
       logger.error('Having trouble downloading and extracting the template package');
     }
