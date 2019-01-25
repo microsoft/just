@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Fri, 25 Jan 2019 07:08:59 GMT and should not be manually modified.
+This log was last generated on Fri, 25 Jan 2019 07:13:05 GMT and should not be manually modified.
+
+## 0.7.1
+Fri, 25 Jan 2019 07:13:05 GMT
+
+### Patches
+
+- adding an index.html for dev innerloop"
 
 ## 0.7.0
 Fri, 25 Jan 2019 07:08:59 GMT
