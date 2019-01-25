@@ -25,7 +25,8 @@ module.exports = {
     libraryTarget: 'commonjs2'
   },
   node: {
-    __dirname: false
+    __dirname: false,
+    process: false
   },
   stats: 'errors-only'
 };

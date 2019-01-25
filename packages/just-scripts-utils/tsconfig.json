@@ -4,6 +4,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
+    "declarationMap": true,
     "outDir": "lib",
     "strict": true,
     "strictBindCallApply": false,

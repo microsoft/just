@@ -143,6 +143,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@types/webpack-merge",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/yargs",
       "allowedCategories": [ "production" ]
     },
@@ -344,6 +348,10 @@
     },
     {
       "name": "webpack-cli",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack-merge",
       "allowedCategories": [ "production" ]
     },
     {
