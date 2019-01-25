@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Tue, 22 Jan 2019 21:28:18 GMT and should not be manually modified.
+This log was last generated on Fri, 25 Jan 2019 07:08:59 GMT and should not be manually modified.
+
+## 0.5.2
+Fri, 25 Jan 2019 07:08:59 GMT
+
+### Patches
+
+- Fixed create just script
 
 ## 0.5.1
 Tue, 22 Jan 2019 21:28:18 GMT

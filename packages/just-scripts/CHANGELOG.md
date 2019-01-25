@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 23 Jan 2019 00:05:38 GMT and should not be manually modified.
+This log was last generated on Fri, 25 Jan 2019 07:08:59 GMT and should not be manually modified.
+
+## 0.7.3
+Fri, 25 Jan 2019 07:08:59 GMT
+
+### Patches
+
+- Fixes webpack task
 
 ## 0.7.2
 Wed, 23 Jan 2019 00:05:38 GMT
