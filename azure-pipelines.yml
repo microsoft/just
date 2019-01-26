@@ -20,4 +20,5 @@ steps:
       git config user.name "kchau@microsoft.com"
       npm install
       npm run build
+      node ./common/scripts/install-run-rush.js publish -a -p -b master -n $(npm.authtoken)
     displayName: 'npm install and build'
