@@ -8,7 +8,8 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "build": ""
+    "build": "npm test",
+    "test": "jest"
   },
   "devDependencies": {
     "fs-extra": "^7.0.1",
