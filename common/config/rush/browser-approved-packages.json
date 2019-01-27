@@ -223,6 +223,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "jest-expect-message",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "json5",
       "allowedCategories": [ "production" ]
     },
