@@ -43,6 +43,7 @@ dependencies:
   glob: 7.1.3
   handlebars: 4.0.12
   jest: 23.6.0
+  jest-expect-message: 1.0.2
   json5: 2.1.0
   marked: 0.6.0
   marked-terminal: 3.2.0
@@ -6342,6 +6343,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-V+gO0IQd6jAxZ8zozXlSHeuv3hA=
+  /jest-expect-message/1.0.2:
+    dev: false
+    resolution:
+      integrity: sha512-WFiXMgwS2lOqQZt1iJMI/hOXpUm32X+ApsuzYcQpW5m16Pv6/Gd9kgC+Q+Q1YVNU04kYcAOv9NXMnjg6kKUy6Q==
   /jest-get-type/22.4.3:
     dev: false
     resolution:
@@ -11076,7 +11081,7 @@ packages:
       handlebars: 4.0.12
       json5: 2.1.0
       marked: 0.6.0
-      marked-terminal: 3.2.0
+      marked-terminal: /marked-terminal/3.2.0/marked@0.6.0
       mkdirp: 0.5.1
       prompts: 2.0.1
       rimraf: 2.6.3
@@ -11089,7 +11094,7 @@ packages:
     dev: false
     name: '@rush-temp/create-just'
     resolution:
-      integrity: sha512-o4o/VF6mqYnO4cIlipwJXNsQSnQiQKvklF5Fkfb7xZo7y7af94bMWKKP5LXaUvRmUB2KdSaeryHmPF7yF6HFKw==
+      integrity: sha512-NP48SToBrZpwJyM9JEr2YTis6T/U17kuLyUxT3bHJqvOcXdzV8o11MMj3toiVGvKMooq3bwAdZMWPClf4aYRkg==
       tarball: 'file:projects/create-just.tgz'
     version: 0.0.0
   'file:projects/example-lib.tgz':
@@ -11098,7 +11103,7 @@ packages:
     dev: false
     name: '@rush-temp/example-lib'
     resolution:
-      integrity: sha512-gErs5Pr1FIZKblgsDLpyXKTRdK+GU831QQEw5OfyZOIfqDFYV7fkur6TZpc+/QA0qgeb4wPzd5FkGlu4a+8TIQ==
+      integrity: sha512-bF/zn5hmBcjwvNHlo5LGZx62N8IuahFtcd2sdlFVNdXUDU7dT2ONd0Kg9FS+oO5uq9R2T46lh5doFi9K30xbuw==
       tarball: 'file:projects/example-lib.tgz'
     version: 0.0.0
   'file:projects/just-scripts-utils.tgz':
@@ -11106,6 +11111,7 @@ packages:
       '@types/fs-extra': 5.0.4
       '@types/glob': 7.1.1
       '@types/handlebars': 4.0.40
+      '@types/jest': 23.3.13
       '@types/json5': 0.0.30
       '@types/marked': 0.6.0
       '@types/marked-terminal': 3.1.1
@@ -11118,6 +11124,8 @@ packages:
       fs-extra: 7.0.1
       glob: 7.1.3
       handlebars: 4.0.12
+      jest: 23.6.0
+      jest-expect-message: 1.0.2
       json5: 2.1.0
       marked: 0.6.0
       marked-terminal: /marked-terminal/3.2.0/marked@0.6.0
@@ -11128,7 +11136,7 @@ packages:
     dev: false
     name: '@rush-temp/just-scripts-utils'
     resolution:
-      integrity: sha512-NcTJTRadb5tIqQnUedsTKdcvAdBUJP5J8TWP2bg8HZun620yD/xkc2fqPMKoc+/5ORUSmoCBpfSkGXilgUgueA==
+      integrity: sha512-lCpJJUSVEloLyehFsMZWVIBGkMNFS1CbEDZViQtjZOnkyNIxj0NPoJob84hRtWUBqp+bL4bYviCiC3CvHbibrw==
       tarball: 'file:projects/just-scripts-utils.tgz'
     version: 0.0.0
   'file:projects/just-scripts.tgz':
@@ -11154,7 +11162,7 @@ packages:
       json5: 2.1.0
       just-task-preset: 0.6.7
       marked: 0.6.0
-      marked-terminal: 3.2.0
+      marked-terminal: /marked-terminal/3.2.0/marked@0.6.0
       mkdirp: 0.5.1
       prompts: 2.0.1
       resolve: 1.9.0
@@ -11171,28 +11179,46 @@ packages:
     dev: false
     name: '@rush-temp/just-scripts'
     resolution:
-      integrity: sha512-jQ81c4krlAdSOHI9JIm/OFGeKKaMYFodNLzxXmWZ4oVyifKgA+AQTmT3OMG1j6b7c0RLqHf/adNdy3QvGPNA9g==
+      integrity: sha512-zkLTuT4kAjPe4w1Z7ubk2BWfqyiB6bMCk/E1C/+Vw+0FI7D2QEW3WBjuagPaUnYVdfeM77KWZg26JCiG5ygguQ==
       tarball: 'file:projects/just-scripts.tgz'
     version: 0.0.0
   'file:projects/just-stack-monorepo.tgz':
+    dependencies:
+      fs-extra: 7.0.1
+      glob: 7.1.3
+      jest: 23.6.0
+      jest-expect-message: 1.0.2
+      json5: 2.1.0
     dev: false
     name: '@rush-temp/just-stack-monorepo'
     resolution:
-      integrity: sha512-AJsas4g6/0J9cr7D43c0p1beby7WF7dlN0BThkD3x5sXra/wpPDlBRrt+VA8Csb50h5QsIr6YSOd7OSyYOy9gg==
+      integrity: sha512-6JGoqi3Taj6tjNySAtFXAtwSMMXPVnr6HOScU1beG1sC4l82a6oKGKng6bZRv4ZoJs4kMhms4QTrqJJ2ztmrBA==
       tarball: 'file:projects/just-stack-monorepo.tgz'
     version: 0.0.0
   'file:projects/just-stack-single-lib.tgz':
+    dependencies:
+      fs-extra: 7.0.1
+      glob: 7.1.3
+      jest: 23.6.0
+      jest-expect-message: 1.0.2
+      json5: 2.1.0
     dev: false
     name: '@rush-temp/just-stack-single-lib'
     resolution:
-      integrity: sha512-x1dhYje7oEcfbdy2fINw/0pdisZKqnZRliIvaVoN/KSGSqfW327ZGtwAVQ/DJlMwq+Z5bJO6qbnxCVKDouZAmg==
+      integrity: sha512-Snu+K9HfdOwiHfMa06iCWHkUzy/fcLbsiVNUxaBl6SeEMfgup9LQ8Vg0ye2LB/fahEKZEzrZCA28vrl9KayI8g==
       tarball: 'file:projects/just-stack-single-lib.tgz'
     version: 0.0.0
   'file:projects/just-stack-uifabric.tgz':
+    dependencies:
+      fs-extra: 7.0.1
+      glob: 7.1.3
+      jest: 23.6.0
+      jest-expect-message: 1.0.2
+      json5: 2.1.0
     dev: false
     name: '@rush-temp/just-stack-uifabric'
     resolution:
-      integrity: sha512-/f9m4foA8nB6GzfjaFinZJXUSDaMvUvyE0LYsUmLIm7L2SmaHlGNkKsqv3q19Ll6MVZ3LaC7GGCygKBT7X74Hw==
+      integrity: sha512-AykY7pDrW736C1YKJvg6L+0ZRp+u0ar2vHcCHzmx8kmP3DDfnkwSYIvEGiKnt8zReqdOCph+jnp+AuoJlBoG2g==
       tarball: 'file:projects/just-stack-uifabric.tgz'
     version: 0.0.0
   'file:projects/just-task-docs.tgz':
@@ -11297,6 +11323,7 @@ specifiers:
   glob: ^7.1.3
   handlebars: ^4.0.12
   jest: ^23.6.0
+  jest-expect-message: ^1.0.2
   json5: ^2.1.0
   marked: ^0.6.0
   marked-terminal: ^3.2.0
