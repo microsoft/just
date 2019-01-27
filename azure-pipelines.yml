@@ -20,6 +20,7 @@ steps:
   - script: |
       git config user.email "kchau@microsoft.com"
       git config user.name "kchau@microsoft.com"
+      git remote set-url origin https://$(github.user):$(github.pat)@github.com/Microsoft/just-task.git
       npm install
       npm run build
       node ./common/scripts/install-run-rush.js publish -a -p -b master -n $(npm.authtoken)
