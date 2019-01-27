@@ -1,6 +1,6 @@
 ---
 id: doc-start
-title: Getting Started with Just ____
+title: Getting Started with Just
 sidebar_label: Getting Started
 ---
 

@@ -1,5 +1,5 @@
 ---
-id: preset-tslint
+id: scripts-tslint
 title: Typescript Lint
 sidebar_label: Typescript Lint
 ---
@@ -8,6 +8,6 @@ Typescript is a very popular compiler. But as the amount of code grows, develope
 
 ```tsx
 // just-task.js
-import { tslintTask } from 'just-task-preset';
+import { tslintTask } from 'just-scripts';
 task('tslint', tslintTask());
 ```
