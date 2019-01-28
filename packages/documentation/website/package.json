@@ -4,7 +4,7 @@
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
-    "build": "docusaurus-build && cpx \"build/just-task/**/*\" ../../../docs",
+    "build": "docusaurus-build && cpx \"build/just/**/*\" ../../../docs",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version"
   },
