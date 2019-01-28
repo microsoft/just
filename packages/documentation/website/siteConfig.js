@@ -24,8 +24,8 @@ const siteConfig = {
   title: 'Just ____', // Title for your website.
   tagline: 'The task library that just works',
   url: 'https://kenotron.github.io', // Your website URL
-  baseUrl: '/just-task/', // Base URL for your project */
-  projectName: 'just-task',
+  baseUrl: '/just/', // Base URL for your project */
+  projectName: 'just',
   organizationName: 'kenotron',
 
   // For no header links in the top nav bar -> headerLinks: [],
