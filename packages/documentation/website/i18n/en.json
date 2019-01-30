@@ -18,28 +18,32 @@
         "sidebar_label": "Conditionals"
       },
       "doc-start": {
-        "title": "Getting Started with Just ____",
+        "title": "Getting Started with Just",
         "sidebar_label": "Getting Started"
       },
       "logging": {
         "title": "Logging",
         "sidebar_label": "Logging"
       },
-      "preset-jest": {
+      "scripts-jest": {
         "title": "Jest",
         "sidebar_label": "Jest"
       },
-      "preset-ts": {
+      "scripts-ts": {
         "title": "Typescript",
         "sidebar_label": "Typescript"
       },
-      "preset-tslint": {
+      "scripts-tslint": {
         "title": "Typescript Lint",
         "sidebar_label": "Typescript Lint"
       },
-      "presets": {
-        "title": "Just Task Presets",
-        "sidebar_label": "Task Presets"
+      "scripts": {
+        "title": "Just Scripts",
+        "sidebar_label": "Just Scripts"
+      },
+      "stacks": {
+        "title": "Just Stacks",
+        "sidebar_label": "Just Stacks"
       },
       "thunk": {
         "title": "Higher Order Task Functions",
@@ -52,7 +56,8 @@
     },
     "categories": {
       "Basics": "Basics",
-      "Presets": "Presets"
+      "Scripts": "Scripts",
+      "Stacks": "Stacks"
     }
   },
   "pages-strings": {

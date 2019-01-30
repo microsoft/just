@@ -1,22 +1,22 @@
 ---
-id: preset-jest
+id: scripts-jest
 title: Jest
 sidebar_label: Jest
 ---
 
-Jest is one of the most popular testing libraries in the Javascript ecosystem. It is also a preset supported out of the box inside the `just-task-preset` library. Similar to the other presets, this task function assumes that you have a `jest.config.js` at the root of the project.
+Jest is one of the most popular testing libraries in the Javascript ecosystem. It is also a preset supported out of the box inside the `just-scripts` library. Similar to the other presets, this task function assumes that you have a `jest.config.js` at the root of the project.
 
 ```tsx
 // just-task.js
-import { jestTask } from 'just-task-preset';
+import { jestTask } from 'just-scripts';
 task('test', jestTask());
 ```
 
-You can pass in a few options like any another preset tasks in the `just-task-preset` library.
+You can pass in a few options like any another preset tasks in the `just-scripts` library.
 
 ```tsx
 // just-task.js
-import { jestTask } from 'just-task-preset';
+import { jestTask } from 'just-scripts';
 
 const options = {
   runInBand: true
@@ -45,4 +45,4 @@ This causes the `jestTask()` to update snapshots. Configuration of the snapshot 
 
 ## Next Steps
 
-Learn about the [tslint preset](preset-tslint.md)
+Learn about the [tslint preset](scripts-tslint.md)
