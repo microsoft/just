@@ -9,5 +9,5 @@
     "strictBindCallApply": false,
     "esModuleInterop": true
   },
-  "include": ["src"]
+  "include": ["src", "typings/*.d.ts"]
 }

@@ -13,7 +13,7 @@ function isDevMode(pkg: string) {
   }
 }
 
-export async function downloadPackage(pkg: string) {
+export async function downloadPackage(pkg: string, version: string = 'latest') {
   const npmCmd = os.platform() === 'win32' ? 'npm.cmd' : 'npm';
   const { tempPath } = paths;
 
@@ -28,7 +28,7 @@ export async function downloadPackage(pkg: string) {
   }
 
   fse.mkdirpSync(pkgPath);
-  spawnSync(npmCmd, ['pack', `${pkg}@latest`, '--no-cache'], { cwd: pkgPath });
+  spawnSync(npmCmd, ['pack', `${pkg}@${version}`, '--no-cache'], { cwd: pkgPath });
   const files = fse.readdirSync(pkgPath);
   const pkgFile = files.find(file => file.endsWith('tgz'));
 

@@ -1,9 +1,15 @@
 import path from 'path';
 import os from 'os';
 
+let installPath: string = '';
+
 export const paths = {
   get installPath() {
-    return process.cwd();
+    return installPath || process.cwd();
+  },
+
+  set installPath(value: string) {
+    installPath = value;
   },
 
   tempPath(...args: string[]) {

@@ -11,8 +11,6 @@ function checkEmptyRepo(installPath: string) {
 }
 
 export async function initCommand(argv: yargs.Arguments) {
-  const { installPath } = paths;
-
   // TODO: autosuggest just-stack-* packages from npmjs.org
   if (!argv.type) {
     let response = await prompts({
@@ -28,34 +26,50 @@ export async function initCommand(argv: yargs.Arguments) {
     argv.type = response.type;
   }
 
-  const name = path.basename(installPath);
+  let name: string = '';
+  if (!argv.name && !checkEmptyRepo(paths.installPath)) {
+    let response = await prompts({
+      type: 'text',
+      name: 'name',
+      message: 'What is the name of the repo to create?'
+    });
+    name = response.name;
+    paths.installPath = path.join(paths.installPath, name);
+  } else if (!argv.name) {
+    name = path.basename(paths.installPath);
+  } else {
+    name = argv.name;
+    paths.installPath = path.join(paths.installPath, name);
+  }
 
-  if (checkEmptyRepo(installPath)) {
-    logger.info('Initializing the repo in the current directory');
+  if (!fse.pathExistsSync(paths.installPath)) {
+    fse.mkdirpSync(paths.installPath);
+  }
 
-    const templatePath = await downloadPackage(argv.type);
+  process.chdir(paths.installPath);
 
-    if (templatePath) {
-      transform(templatePath, installPath, { name });
+  logger.info('Initializing the repo in the current directory');
 
-      execSync('git init');
-      execSync('git add .');
-      execSync('git commit -m "initial commit"');
+  const templatePath = await downloadPackage(argv.type);
 
-      if (argv.type.includes('monorepo')) {
-        rushUpdate(installPath);
-      }
+  if (templatePath) {
+    transform(templatePath, paths.installPath, { name });
 
-      logger.info('All Set!');
+    execSync('git init');
+    execSync('git add .');
+    execSync('git commit -m "initial commit"');
 
-      const readmeFile = path.join(installPath, 'README.md');
-      if (fse.existsSync(readmeFile)) {
-        logger.info('\n' + prettyPrintMarkdown(fse.readFileSync(readmeFile).toString()));
-      }
-    } else {
-      logger.error('Having trouble downloading and extracting the template package');
+    if (argv.type.includes('monorepo')) {
+      rushUpdate(paths.installPath);
+    }
+
+    logger.info('All Set!');
+
+    const readmeFile = path.join(paths.installPath, 'README.md');
+    if (fse.existsSync(readmeFile)) {
+      logger.info('\n' + prettyPrintMarkdown(fse.readFileSync(readmeFile).toString()));
     }
   } else {
-    logger.warn('The current directory is not empty. Please initialize an empty directory.');
+    logger.error('Having trouble downloading and extracting the template package');
   }
 }
