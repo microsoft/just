@@ -1,6 +1,6 @@
 {
   "name": "just-scripts",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "Just Stack Scripts",
   "keywords": [],
   "author": "",
@@ -9,7 +9,7 @@
   "dependencies": {},
   "devDependencies": {
     "just-task": ">=0.7.6 <1.0.0",
-    "just-scripts-utils": ">=0.3.2 <1.0.0",
+    "just-scripts-utils": ">=0.3.3 <1.0.0",
     "@types/fs-extra": "^5.0.4",
     "@types/handlebars": "^4.0.39",
     "@types/jest": "^23.3.13",

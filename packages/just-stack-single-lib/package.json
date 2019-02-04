@@ -1,6 +1,6 @@
 {
   "name": "just-stack-single-lib",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "just-stack": true,
   "description": "Basic Library",
   "main": "index.js",
@@ -17,6 +17,6 @@
     "jest": "^23.6.0",
     "jest-expect-message": "^1.0.2",
     "json5": "^2.1.0",
-    "just-scripts-utils": ">=0.3.2"
+    "just-scripts-utils": "0.3.3"
   }
 }

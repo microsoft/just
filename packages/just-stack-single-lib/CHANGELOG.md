@@ -1,6 +1,13 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Tue, 22 Jan 2019 22:43:55 GMT and should not be manually modified.
+This log was last generated on Mon, 04 Feb 2019 05:47:04 GMT and should not be manually modified.
+
+## 0.5.1
+Mon, 04 Feb 2019 05:47:04 GMT
+
+### Patches
+
+- added support for upgrade-stack
 
 ## 0.5.0
 Tue, 22 Jan 2019 22:43:55 GMT

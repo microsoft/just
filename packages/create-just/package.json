@@ -1,6 +1,6 @@
 {
   "name": "create-just",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "",
   "main": "dist/create-just.js",
   "bin": {
@@ -24,6 +24,6 @@
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "ts-loader": "^5.3.3",
-    "just-scripts-utils": ">=0.3.2 <1.0.0"
+    "just-scripts-utils": ">=0.3.3 <1.0.0"
   }
 }

@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 25 Jan 2019 07:08:59 GMT and should not be manually modified.
+This log was last generated on Mon, 04 Feb 2019 05:47:04 GMT and should not be manually modified.
+
+## 0.7.4
+Mon, 04 Feb 2019 05:47:04 GMT
+
+### Patches
+
+- upgrade repo to use templates deps in a monorepo scripts folder
 
 ## 0.7.3
 Fri, 25 Jan 2019 07:08:59 GMT

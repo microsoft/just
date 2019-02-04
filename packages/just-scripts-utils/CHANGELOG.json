@@ -2,6 +2,18 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "version": "0.3.3",
+      "tag": "just-scripts-utils_v0.3.3",
+      "date": "Mon, 04 Feb 2019 05:47:04 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "flexibility change"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.2",
       "tag": "just-scripts-utils_v0.3.2",
       "date": "Fri, 25 Jan 2019 07:08:59 GMT",
