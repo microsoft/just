@@ -1,17 +1,9 @@
 import path from 'path';
-import {
-  paths,
-  logger,
-  transform,
-  rushAddPackage,
-  rushUpdate,
-  prettyPrintMarkdown,
-  downloadPackage,
-  findMonoRepoRootPath
-} from 'just-scripts-utils';
+import { logger, transform, rushAddPackage, rushUpdate, prettyPrintMarkdown, findMonoRepoRootPath } from 'just-scripts-utils';
 import prompts from 'prompts';
 import fse from 'fs-extra';
 import { argv } from 'just-task';
+import { findInstalledStacks } from '../monorepo/findInstalledStacks';
 
 export async function addPackageTask() {
   const args = argv();
@@ -30,19 +22,20 @@ export async function addPackageTask() {
   if (rootPath) {
     // TODO: do validation that the path is indeed a monorepo
 
+    const installedStacks = findInstalledStacks(rootPath);
+
     // TODO: autosuggest just-stack-* packages from npmjs.org
     let response = await prompts({
       type: 'select',
-      name: 'type',
+      name: 'stack',
       message: 'What type of package to add to the repo?',
-      choices: [
-        { title: 'Library', value: 'just-stack-single-lib' },
-        { title: 'UI Fabric Web Application (React)', value: 'just-stack-uifabric' }
-      ]
+      choices: installedStacks.map(stack => ({ title: stack.description, value: stack.name }))
     });
 
+    const selectedStack = installedStacks.find(stack => stack.name === response.stack)!;
+
     const packagePath = path.join(rootPath, 'packages', name);
-    const templatePath = await downloadPackage(response.type);
+    const templatePath = path.join(selectedStack.path, 'template');
 
     if (templatePath) {
       transform(templatePath, packagePath, {
@@ -52,6 +45,9 @@ export async function addPackageTask() {
       rushAddPackage(name, rootPath);
       logger.info('Running rush update');
       rushUpdate(rootPath);
+
+      fse.removeSync(path.join(packagePath, '.gitignore'));
+      fse.removeSync(path.join(packagePath, '.gitattributes'));
 
       logger.info('All Set!');
 

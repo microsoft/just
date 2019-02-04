@@ -14,14 +14,6 @@ build
 dist
 temp
 
-documentation/lib/core/metadata.js
-documentation/lib/core/MetadataBlog.js
-
-documentation/website/translated_docs
-documentation/website/build/
-documentation/website/yarn.lock
-documentation/website/i18n/*
-
 # Rush files
 common/temp/**
 package-deps.json

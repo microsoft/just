@@ -39,7 +39,8 @@
     "resolve": "^1.8.1",
     "rimraf": "^2.6.2",
     "mkdirp": "^0.5.1",
-    "run-parallel-limit": "^1.0.5"
+    "run-parallel-limit": "^1.0.5",
+    "npm-registry-fetch": "^3.9.0"
   },
   "scripts": {
     "build": "webpack --mode production",
