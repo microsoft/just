@@ -1,17 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-  "rushVersion": "5.5.2",
+  "rushVersion": "5.5.4",
   "pnpmVersion": "2.15.1",
 
   "pnpmOptions": {
     "strictPeerDependencies": false
   },
 
-  "nodeSupportedVersionRange": ">=8.9.4 <11.0.0",
-
-  "approvedPackagesPolicy": {
-    "reviewCategories": ["production", "tools", "docs"]
-  },
+  "nodeSupportedVersionRange": ">=8.9.4 <9.0.0 || >=10.9.0 <11.0.0",
 
   "projectFolderMaxDepth": 3,
 
@@ -72,67 +68,56 @@
     {
       "packageName": "just-task",
       "projectFolder": "packages/just-task",
-      "reviewCategory": "production",
       "versionPolicyName": "RepoPolicy"
     },
     {
       "packageName": "create-just",
       "projectFolder": "packages/create-just",
-      "reviewCategory": "production",
       "shouldPublish": true
     },
     {
       "packageName": "just-stack-monorepo",
       "projectFolder": "packages/just-stack-monorepo",
-      "reviewCategory": "production",
       "shouldPublish": true
     },
     {
       "packageName": "just-stack-uifabric",
       "projectFolder": "packages/just-stack-uifabric",
-      "reviewCategory": "production",
       "shouldPublish": true
     },
     {
       "packageName": "just-stack-single-lib",
       "projectFolder": "packages/just-stack-single-lib",
-      "reviewCategory": "production",
       "shouldPublish": true
     },
     {
       "packageName": "just-scripts",
       "projectFolder": "packages/just-scripts",
-      "reviewCategory": "production",
       "shouldPublish": true
     },
     {
       "packageName": "just-scripts-utils",
       "projectFolder": "packages/just-scripts-utils",
-      "reviewCategory": "production",
       "shouldPublish": true
     },
     {
       "packageName": "just-task-docs",
       "projectFolder": "packages/documentation/website",
-      "reviewCategory": "docs",
       "shouldPublish": false
     },
     {
       "packageName": "example-lib",
       "projectFolder": "packages/example-lib",
-      "reviewCategory": "docs",
       "shouldPublish": false
     },
     {
       "packageName": "just-task-scripts",
       "projectFolder": "scripts",
-      "reviewCategory": "tools",
       "shouldPublish": false
     }
     // {
     //   "packageName": "just-stack-web-lib",
     //   "projectFolder": "packages/just-stack-web-lib",
-    //   "reviewCategory": "production",
     //   "versionPolicyName": "RepoPolicy",
     //   "shouldPublish": false
     // }
