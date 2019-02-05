@@ -1,21 +1,18 @@
 import path from 'path';
 import os from 'os';
 
-let installPath: string = '';
+let projectPath: string = '';
 
 export const paths = {
   /**
-   * Gets the location where the generated project will go. Defaults to `process.cwd()`.
+   * Location where the generated project will go. Defaults to `process.cwd()`.
    */
-  get installPath(): string {
-    return installPath || process.cwd();
+  get projectPath(): string {
+    return projectPath || process.cwd();
   },
 
-  /**
-   * Sets the location where the generated project will go.
-   */
-  set installPath(value: string) {
-    installPath = value;
+  set projectPath(value: string) {
+    projectPath = value;
   },
 
   /**

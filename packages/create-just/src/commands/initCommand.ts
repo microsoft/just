@@ -1,4 +1,11 @@
-import { paths, logger, transform, prettyPrintMarkdown, rushUpdate, downloadPackage } from 'just-scripts-utils';
+import {
+  paths,
+  logger,
+  transform,
+  prettyPrintMarkdown,
+  rushUpdate,
+  downloadPackage
+} from 'just-scripts-utils';
 import path from 'path';
 import { readdirSync } from 'fs';
 import fse from 'fs-extra';
@@ -6,8 +13,8 @@ import prompts from 'prompts';
 import { execSync } from 'child_process';
 import yargs from 'yargs';
 
-function checkEmptyRepo(installPath: string) {
-  return readdirSync(installPath).length === 0;
+function checkEmptyRepo(projectPath: string) {
+  return readdirSync(projectPath).length === 0;
 }
 
 export async function initCommand(argv: yargs.Arguments) {
@@ -27,45 +34,45 @@ export async function initCommand(argv: yargs.Arguments) {
   }
 
   let name: string = '';
-  if (!argv.name && !checkEmptyRepo(paths.installPath)) {
+  if (!argv.name && !checkEmptyRepo(paths.projectPath)) {
     let response = await prompts({
       type: 'text',
       name: 'name',
       message: 'What is the name of the repo to create?'
     });
     name = response.name;
-    paths.installPath = path.join(paths.installPath, name);
+    paths.projectPath = path.join(paths.projectPath, name);
   } else if (!argv.name) {
-    name = path.basename(paths.installPath);
+    name = path.basename(paths.projectPath);
   } else {
     name = argv.name;
-    paths.installPath = path.join(paths.installPath, name);
+    paths.projectPath = path.join(paths.projectPath, name);
   }
 
-  if (!fse.pathExistsSync(paths.installPath)) {
-    fse.mkdirpSync(paths.installPath);
+  if (!fse.pathExistsSync(paths.projectPath)) {
+    fse.mkdirpSync(paths.projectPath);
   }
 
-  process.chdir(paths.installPath);
+  process.chdir(paths.projectPath);
 
   logger.info('Initializing the repo in the current directory');
 
   const templatePath = await downloadPackage(argv.type);
 
   if (templatePath) {
-    transform(templatePath, paths.installPath, { name });
+    transform(templatePath, paths.projectPath, { name });
 
     execSync('git init');
     execSync('git add .');
     execSync('git commit -m "initial commit"');
 
     if (argv.type.includes('monorepo')) {
-      rushUpdate(paths.installPath);
+      rushUpdate(paths.projectPath);
     }
 
     logger.info('All Set!');
 
-    const readmeFile = path.join(paths.installPath, 'README.md');
+    const readmeFile = path.join(paths.projectPath, 'README.md');
     if (fse.existsSync(readmeFile)) {
       logger.info('\n' + prettyPrintMarkdown(fse.readFileSync(readmeFile).toString()));
     }
