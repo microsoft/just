@@ -1,5 +1,19 @@
 {
+  "editor.formatOnSave": true,
+  "editor.trimAutoWhitespace": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "json.format.enable": false,
   "[handlebars]": {
     "editor.formatOnSave": false
+  },
+  "files.associations": {
+    "rush.json": "jsonc",
+    "**/common/config/rush/*.json": "jsonc"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/lib": true
   }
 }

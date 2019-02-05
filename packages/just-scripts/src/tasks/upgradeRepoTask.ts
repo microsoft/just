@@ -1,9 +1,9 @@
 import fse from 'fs-extra';
 import path from 'path';
 import { upgradeStackPackageJsonFile } from './upgradeStackTask';
-import { findMonoRepoRootPath, rushAddPackage, rushUpdate } from 'just-scripts-utils';
+import { findMonoRepoRootPath, rushUpdate, readRushJson } from 'just-scripts-utils';
 import { getOutdatedStacks } from '../monorepo/getOutdatedStacks';
-import { argv, logger } from 'just-task';
+import { argv } from 'just-task';
 
 export interface UpgradeRepoTaskOptions {
   latest: boolean;
@@ -34,7 +34,7 @@ export async function upgradeRepoTask() {
 
     rushUpdate(rootPath);
 
-    const rushConfig = fse.readJsonSync(path.join(rootPath, 'rush.json'));
+    const rushConfig = readRushJson(rootPath);
 
     // uses Array.reduce to sequentially loop through promise
     rushConfig.projects.reduce(async (previousPromise: Promise<void>, project: any) => {
