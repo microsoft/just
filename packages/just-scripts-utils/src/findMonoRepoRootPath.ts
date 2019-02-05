@@ -3,11 +3,11 @@ import path from 'path';
 import fse from 'fs-extra';
 
 export function findMonoRepoRootPath() {
-  const { installPath } = paths;
+  const { projectPath } = paths;
   let found = false;
-  let currentPath = installPath;
+  let currentPath = projectPath;
 
-  const { root } = path.parse(installPath);
+  const { root } = path.parse(projectPath);
 
   while (!found && currentPath !== root) {
     const packageJsonFile = path.join(currentPath, 'package.json');

@@ -5,8 +5,8 @@ import { logger } from 'just-task';
 import { paths, downloadPackage, transform, mergePackageJson } from 'just-scripts-utils';
 
 export async function upgradeStackTask() {
-  const { installPath } = paths;
-  return upgradeStackPackageJsonFile(installPath);
+  const { projectPath } = paths;
+  return upgradeStackPackageJsonFile(projectPath);
 }
 
 /**

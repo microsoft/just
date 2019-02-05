@@ -5,6 +5,8 @@
   "editor.tabSize": 2,
   "files.trimTrailingWhitespace": true,
   "json.format.enable": false,
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
   "[handlebars]": {
     "editor.formatOnSave": false
   },
