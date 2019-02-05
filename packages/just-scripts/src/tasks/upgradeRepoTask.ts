@@ -24,6 +24,7 @@ export async function upgradeRepoTask() {
   if (rootPath) {
     process.chdir(rootPath);
     const scriptsPath = path.join(rootPath, 'scripts');
+    // TODO: better error handling (remove ! assertions)
     const scriptsPackageJson = readPackageJson(scriptsPath)!;
     const outdatedStacks = await getOutdatedStacks(rootPath);
 
