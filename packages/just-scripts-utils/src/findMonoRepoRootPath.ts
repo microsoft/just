@@ -1,6 +1,7 @@
 import { paths } from './paths';
 import path from 'path';
 import fse from 'fs-extra';
+import { readPackageJson } from './readPackageJson';
 
 export function findMonoRepoRootPath() {
   const { projectPath } = paths;
@@ -10,7 +11,6 @@ export function findMonoRepoRootPath() {
   const { root } = path.parse(projectPath);
 
   while (!found && currentPath !== root) {
-    const packageJsonFile = path.join(currentPath, 'package.json');
     const rushConfigFile = path.join(currentPath, 'rush.json');
 
     // Determine the monorepo by either presence of rush.json or package.json that has a just.stack of just-stack-monorepo
@@ -18,8 +18,8 @@ export function findMonoRepoRootPath() {
       return currentPath;
     }
 
-    if (fse.existsSync(packageJsonFile)) {
-      const packageJson = fse.readJsonSync(packageJsonFile);
+    const packageJson = readPackageJson(currentPath);
+    if (packageJson) {
       const stack = packageJson.just && packageJson.just.stack;
       if (stack === 'just-stack-monorepo') {
         return currentPath;
