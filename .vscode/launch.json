@@ -1,0 +1,23 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug test",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/packages/just-scripts-utils/node_modules/jest/bin/jest.js",
+      "cwd": "${fileDirname}",
+      "args": ["-i", "--runInBand"],
+      "runtimeArgs": ["--nolazy", "--debug"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "outFiles": []
+    }
+  ]
+}
