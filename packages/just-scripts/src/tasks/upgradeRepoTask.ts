@@ -1,7 +1,12 @@
 import fse from 'fs-extra';
 import path from 'path';
 import { upgradeStackPackageJsonFile } from './upgradeStackTask';
-import { findMonoRepoRootPath, rushUpdate, readRushJson } from 'just-scripts-utils';
+import {
+  findMonoRepoRootPath,
+  rushUpdate,
+  readRushJson,
+  readPackageJson
+} from 'just-scripts-utils';
 import { getOutdatedStacks } from '../monorepo/getOutdatedStacks';
 import { argv } from 'just-task';
 
@@ -19,14 +24,19 @@ export async function upgradeRepoTask() {
   if (rootPath) {
     process.chdir(rootPath);
     const scriptsPath = path.join(rootPath, 'scripts');
-    const scriptsPackageJson = fse.readJsonSync(path.join(scriptsPath, 'package.json'));
+    // TODO: better error handling (remove ! assertions)
+    const scriptsPackageJson = readPackageJson(scriptsPath)!;
     const outdatedStacks = await getOutdatedStacks(rootPath);
 
     outdatedStacks.forEach(stack => {
-      if (scriptsPackageJson.devDependencies[stack.name]) {
-        scriptsPackageJson.devDependencies[stack.name] = options.latest ? `^${stack.latest}` : `^${stack.wanted}`;
-      } else if (scriptsPackageJson.dependencies[stack.name]) {
-        scriptsPackageJson.dependencies[stack.name] = options.latest ? `^${stack.latest}` : `^${stack.wanted}`;
+      if (scriptsPackageJson.devDependencies![stack.name]) {
+        scriptsPackageJson.devDependencies![stack.name] = options.latest
+          ? `^${stack.latest}`
+          : `^${stack.wanted}`;
+      } else if (scriptsPackageJson.dependencies![stack.name]) {
+        scriptsPackageJson.dependencies![stack.name] = options.latest
+          ? `^${stack.latest}`
+          : `^${stack.wanted}`;
       }
     });
 

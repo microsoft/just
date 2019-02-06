@@ -2,9 +2,16 @@ import fse from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 import { logger } from 'just-task';
-import { paths, downloadPackage, transform, mergePackageJson } from 'just-scripts-utils';
+import {
+  paths,
+  downloadPackage,
+  transform,
+  mergePackageJson,
+  readPackageJson,
+  IPackageJson
+} from 'just-scripts-utils';
 
-export async function upgradeStackTask() {
+export async function upgradeStackTask(): Promise<void> {
   const { projectPath } = paths;
   return upgradeStackPackageJsonFile(projectPath);
 }
@@ -17,11 +24,13 @@ export async function upgradeStackTask() {
  * @param projectPath
  * @param templateInstallationPath
  */
-export async function upgradeStackPackageJsonFile(projectPath: string, templateInstallationPath: string | null = null) {
-  const packageJsonFile = path.join(projectPath, 'package.json');
-  const packageJson = fse.readJsonSync(packageJsonFile);
+export async function upgradeStackPackageJsonFile(
+  projectPath: string,
+  templateInstallationPath?: string
+): Promise<void> {
+  const packageJson = readPackageJson(projectPath);
 
-  if (packageJson.just && packageJson.just.stack) {
+  if (packageJson && packageJson.just && packageJson.just.stack) {
     const stack = packageJson.just.stack;
     let stackPath: string | null = null;
 
@@ -32,36 +41,40 @@ export async function upgradeStackPackageJsonFile(projectPath: string, templateI
     }
 
     if (stackPath) {
-      upgradePackageDeps(stackPath, packageJsonFile);
+      upgradePackageDeps(stackPath, projectPath, packageJson);
     } else {
       logger.error(`Cannot read or retrieve the stack package.json for ${stack}`);
     }
+  } else if (packageJson) {
+    logger.info(
+      `Package ${chalk.cyan(packageJson.name)} does not have a "just" key. Skipping upgrade.`
+    );
   } else {
-    logger.info(`Package ${chalk.cyan(packageJson.name)} does not have a "just" key. Skipping upgrade.`);
+    logger.info(`package.json not found under ${chalk.cyan(projectPath)}. Skipping upgrade.`);
   }
 }
 
 /**
  * Takes the installed or newly downloaded template and merge in the new package deps
- * @param stackPath
- * @param packageJsonFile
  */
-function upgradePackageDeps(stackPath: string, packageJsonFile: string) {
-  const packageJson = fse.readJsonSync(packageJsonFile);
-  const { tempPath } = paths;
-  const templatePath = tempPath(packageJson.name);
+function upgradePackageDeps(stackPath: string, projectPath: string, packageJson: IPackageJson) {
+  const templatePath = paths.tempPath(packageJson.name);
   transform(stackPath, templatePath, { name: packageJson.name });
 
   // Update package.json deps
-  const stackPackageJson = fse.readJsonSync(path.join(templatePath, 'package.json'));
+  const stackPackageJson = readPackageJson(templatePath);
+  if (!stackPackageJson) {
+    logger.error(`Cannot find or read stack's package.json under ${stackPath}`);
+    return;
+  }
 
-  // If modified, the reference would be different
   const newPackageJson = mergePackageJson(packageJson, stackPackageJson);
 
+  // If modified, the reference would be different
   logger.info(`Checking if package ${packageJson.name} should be upgraded...`);
   if (newPackageJson !== packageJson) {
     logger.info(`Package ${chalk.cyan(packageJson.name)} is being upgraded.`);
-    fse.writeFileSync(packageJsonFile, JSON.stringify(newPackageJson, null, 2));
+    fse.writeJsonSync(path.join(projectPath, 'package.json'), newPackageJson, { spaces: 2 });
   } else {
     logger.info(`Package ${chalk.cyan(packageJson.name)} upgrade not needed.`);
   }

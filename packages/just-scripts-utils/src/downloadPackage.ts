@@ -4,12 +4,12 @@ import os from 'os';
 import fse from 'fs-extra';
 import tar from 'tar';
 import path from 'path';
+import { readPackageJson } from './readPackageJson';
 
 function isDevMode(pkg: string) {
-  const projectPackageJsonFile = path.join(__dirname, '../../../package.json');
-  if (fse.existsSync(path.join(__dirname, '../../', pkg)) && fse.existsSync(projectPackageJsonFile)) {
-    const packageJson = JSON.parse(fse.readFileSync(projectPackageJsonFile).toString());
-    return packageJson.name === 'just-task';
+  const projectPackageJson = readPackageJson(path.join(__dirname, '../../..'));
+  if (projectPackageJson && fse.existsSync(path.join(__dirname, '../..', pkg))) {
+    return projectPackageJson.name === 'just-task';
   }
 }
 
