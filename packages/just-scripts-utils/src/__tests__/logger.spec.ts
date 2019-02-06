@@ -55,11 +55,13 @@ describe('logger', () => {
     expect(consoleInfo).toHaveBeenCalledWith(timeStr, square, obj, 3, null, undefined);
   });
 
-  it('handles verbose logging', () => {
+  it('ignores verbose logs when enableVerbose is false', () => {
     logger.enableVerbose = false;
     logger.verbose('hi');
     expect(consoleInfo).toHaveBeenCalledTimes(0);
+  });
 
+  it('prints verbose logs when enableVerbose is true', () => {
     logger.enableVerbose = true;
     logger.verbose('hi');
     expect(consoleInfo).toHaveBeenCalledTimes(1);
