@@ -3,12 +3,16 @@ import { readPackageJson } from '../readPackageJson';
 
 describe('readPackageJson', () => {
   const testDir = 'testDir';
+  const badDir = 'badDir';
   const testName = 'my-fake-package';
 
   beforeAll(() => {
     mockfs({
       [testDir]: {
         'package.json': JSON.stringify({ name: testName })
+      },
+      [badDir]: {
+        'package.json': '{' // invalid JSON
       }
     });
   });
@@ -25,5 +29,10 @@ describe('readPackageJson', () => {
     const packageJson = readPackageJson(testDir);
     expect(packageJson).toBeDefined();
     expect(packageJson!.name).toEqual(testName);
+  });
+
+  it('returns undefined for invalid json', () => {
+    const packageJson = readPackageJson(badDir);
+    expect(packageJson).toBeUndefined();
   });
 });

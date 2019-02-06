@@ -3,7 +3,14 @@ import path from 'path';
 import fse from 'fs-extra';
 import { readPackageJson } from './readPackageJson';
 
-export function findMonoRepoRootPath() {
+/**
+ * Find the path of a monorepo root relative to the project being generated/updated (as defined
+ * by `paths.projectPath`, or defaulting to `process.cwd()`).
+ *
+ * This will be either the directory containing rush.json or the root of a package which uses
+ * the `just-stack-monorepo` stack according to the `just.stack` property of its package.json.
+ */
+export function findMonoRepoRootPath(): string | null {
   const { projectPath } = paths;
   let found = false;
   let currentPath = projectPath;
