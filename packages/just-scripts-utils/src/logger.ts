@@ -1,26 +1,48 @@
 import chalk from 'chalk';
+import yargs from 'yargs';
 
-function getTimestamp() {
+function logInternal(method: 'info' | 'warn' | 'error', symbol: string, ...args: any[]) {
   const now = new Date();
-  return `[${now.toLocaleTimeString()}]`;
+  const timestamp = chalk.gray(`[${now.toLocaleTimeString()}]`);
+
+  console[method](timestamp, symbol, ...args);
 }
 
 export interface ILogger {
-  info(msg?: any, ...optionalParams: any[]): void;
-  warn(msg?: any, ...optionalParams: any[]): void;
-  error(msg?: any, ...optionalParams: any[]): void;
+  /** Whether verbose logging is enabled. Default false unless --verbose arg is given. */
+  enableVerbose: boolean;
+  /** Log to `console.info` with a timestamp, but only if verbose logging is enabled. */
+  verbose(...args: any[]): void;
+  /** Log to `console.info` with a timestamp. */
+  info(...args: any[]): void;
+  /** Log to `console.warn` with a timestamp. */
+  warn(...args: any[]): void;
+  /** Log to `console.error` with a timestamp. */
+  error(...args: any[]): void;
 }
 
+const emptySquare = '\u25a1';
+const square = '\u25a0';
+const triangle = '\u25b2';
+
 export const logger: ILogger = {
-  info(msg?: any, ...optionalParams: any[]) {
-    console.info.apply(null, [`${chalk.gray(getTimestamp())} ${chalk.green('\u25a0')} ${msg}`, ...optionalParams]);
+  enableVerbose: !!yargs.argv.verbose,
+
+  verbose(...args: any[]) {
+    if (logger.enableVerbose) {
+      logInternal('info', chalk.gray(emptySquare), ...args);
+    }
   },
 
-  warn(msg?: any, ...optionalParams: any[]) {
-    console.warn.apply(null, [`${chalk.gray(getTimestamp())} ${chalk.yellow('\u25b2')} ${msg}`, ...optionalParams]);
+  info(...args: any[]) {
+    logInternal('info', chalk.green(square), ...args);
   },
 
-  error(msg?: any, ...optionalParams: any[]) {
-    console.error.apply(null, [`${chalk.gray(getTimestamp())} ${chalk.redBright('x')} ${msg}`, ...optionalParams]);
+  warn(...args: any[]) {
+    logInternal('warn', chalk.yellow(triangle), ...args);
+  },
+
+  error(...args: any[]) {
+    logInternal('error', chalk.redBright('x'), ...args);
   }
 };
