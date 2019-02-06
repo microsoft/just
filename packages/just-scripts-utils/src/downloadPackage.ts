@@ -5,40 +5,71 @@ import fse from 'fs-extra';
 import tar from 'tar';
 import path from 'path';
 import { readPackageJson } from './readPackageJson';
+import { logger } from './logger';
 
-function isDevMode(pkg: string) {
-  const projectPackageJson = readPackageJson(path.join(__dirname, '../../..'));
-  if (projectPackageJson && fse.existsSync(path.join(__dirname, '../..', pkg))) {
-    return projectPackageJson.name === 'just-task';
-  }
+let dirname: string = '';
+/** For testing purposes only. */
+export function _setMockDirname(dir: string): void {
+  dirname = dir;
 }
 
-export async function downloadPackage(pkg: string, version: string = 'latest') {
-  const npmCmd = os.platform() === 'win32' ? 'npm.cmd' : 'npm';
-  const { tempPath } = paths;
+/**
+ * True if the package path exists and the command is being run within the just-task monorepo.
+ * @param pkg Package path
+ */
+export function _isDevMode(pkg: string): boolean {
+  const projectPackageJson = readPackageJson(path.join(dirname || __dirname, '../../..'));
+  if (projectPackageJson && fse.existsSync(path.join(dirname || __dirname, '../..', pkg))) {
+    return projectPackageJson.name === 'just-task';
+  }
+  return false;
+}
 
-  const pkgPath = tempPath(pkg);
+/**
+ * Downloads a copy of a package containing just templates into the temp folder and returns
+ * the path to the template folder within the package. (If this is used within the just-task
+ * monorepo and `pkg` is the name of a package under the `packages` folder, it will return
+ * the local path rather than downloading anything.)
+ *
+ * @param pkg Package name/partial path to download.
+ * @param version Version of the package to download.
+ * @returns The path to the template folder within the package.
+ */
+export async function downloadPackage(
+  pkg: string,
+  version: string = 'latest'
+): Promise<string | null> {
+  if (_isDevMode(pkg)) {
+    return path.join(dirname || __dirname, '../..', pkg, 'template');
+  }
+
+  const npmCmd = os.platform() === 'win32' ? 'npm.cmd' : 'npm';
+
+  const pkgPath = paths.tempPath(pkg);
 
   if (fse.existsSync(pkgPath)) {
     fse.removeSync(pkgPath);
   }
 
-  if (isDevMode(pkg)) {
-    return path.join(__dirname, '../../', pkg, 'template');
+  fse.mkdirpSync(pkgPath);
+  const result = spawnSync(npmCmd, ['pack', `${pkg}@${version}`, '--no-cache'], { cwd: pkgPath });
+  if (result.error) {
+    logger.error('Error fetching package');
+    logger.error(result.error);
+    return null;
   }
 
-  fse.mkdirpSync(pkgPath);
-  spawnSync(npmCmd, ['pack', `${pkg}@${version}`, '--no-cache'], { cwd: pkgPath });
   const files = fse.readdirSync(pkgPath);
   const pkgFile = files.find(file => file.endsWith('tgz'));
 
   if (pkgFile) {
-    await tar.x({
+    await tar.extract({
       file: path.join(pkgPath, pkgFile),
       cwd: pkgPath
     });
     return path.join(pkgPath, 'package', 'template');
+  } else {
+    logger.error('Could not find downloaded tgz file for package');
+    return null;
   }
-
-  return null;
 }
