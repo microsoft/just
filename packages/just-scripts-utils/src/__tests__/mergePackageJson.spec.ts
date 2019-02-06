@@ -2,17 +2,18 @@ import { mergePackageJson, _shouldUpdateDep } from '../mergePackageJson';
 import { IPackageJson } from '../IPackageJson';
 
 describe('_shouldUpdateDep', () => {
-  it('correctly detects deps needing update', () => {
-    // okay if old version is undefined
+  it('returns true if old version is undefined', () => {
     expect(_shouldUpdateDep(undefined, '0.0.1')).toBe(true);
+  });
 
-    // do nothing if either version is totally invalid
+  it('returns false if either version is invalid', () => {
     expect(_shouldUpdateDep(undefined, 'hi')).toBe(false);
     expect(_shouldUpdateDep('hi', '0.0.1')).toBe(false);
     expect(_shouldUpdateDep('0.0.1', 'hi')).toBe(false);
+  });
 
-    // do nothing if either version is a type of range we don't understand
-    // (ideally we should add handling for these later)
+  it('returns false if either version is an unsupported range type', () => {
+    // Ideally we should add handling for these later...
     expect(_shouldUpdateDep(undefined, '1.x.x')).toBe(false);
     expect(_shouldUpdateDep('0.0.1', '1.x.x')).toBe(false);
     expect(_shouldUpdateDep('1.0.0', '2.x.x')).toBe(false);
@@ -21,8 +22,9 @@ describe('_shouldUpdateDep', () => {
     expect(_shouldUpdateDep('=1.0.0', '2.0.0')).toBe(false);
     expect(_shouldUpdateDep('<1.0.0', '2.0.0')).toBe(false);
     expect(_shouldUpdateDep('>=1.0.0 <2.0.0', '3.0.0')).toBe(false);
+  });
 
-    // normal cases!
+  it('returns true for deps needing update', () => {
     expect(_shouldUpdateDep('1.0.0', '2.0.0')).toBe(true);
     expect(_shouldUpdateDep('1.0.0', '1.0.1')).toBe(true);
     expect(_shouldUpdateDep('1.0.0', '~1.0.1')).toBe(true);
@@ -30,6 +32,9 @@ describe('_shouldUpdateDep', () => {
     expect(_shouldUpdateDep('1.0.0', '^2.0.0')).toBe(true);
     expect(_shouldUpdateDep('~1.0.0', '2.0.0')).toBe(true);
     expect(_shouldUpdateDep('^1.0.0', '2.0.0')).toBe(true);
+  });
+
+  it('returns false for deps not needing update', () => {
     expect(_shouldUpdateDep('2.0.0', '1.0.0')).toBe(false);
     expect(_shouldUpdateDep('1.0.1', '1.0.0')).toBe(false);
     expect(_shouldUpdateDep('~2.0.0', '1.0.0')).toBe(false);
@@ -42,11 +47,18 @@ describe('_shouldUpdateDep', () => {
   // initially considered worth fixing. If one of these is fixed and it fails the test,
   // please remove the old test case and add one to the normal section.
   it('has questionable handling of some edge cases', () => {
+    // undefined to 0.0.0 is kind of an upgrade
     expect(_shouldUpdateDep(undefined, '0.0.0')).toBe(false);
+
+    // original version is smaller or identical by pure numerical comparison, but ~ or ^
+    // in incoming version potentially allows a newer version to be picked up
     expect(_shouldUpdateDep('~1.0.0', '^1.0.0')).toBe(false);
     expect(_shouldUpdateDep('~1.1.0', '^1.0.0')).toBe(false);
     expect(_shouldUpdateDep('1.0.1', '~1.0.0')).toBe(false);
     expect(_shouldUpdateDep('1.0.1', '^1.0.0')).toBe(false);
+
+    // original version is smaller by numerical comparison, but ~ or ^ in incoming version
+    // would allow a newer version to be picked up
     expect(_shouldUpdateDep('~1.0.0', '1.0.1')).toBe(true);
     expect(_shouldUpdateDep('^1.0.0', '1.0.1')).toBe(true);
   });
