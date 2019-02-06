@@ -11,10 +11,6 @@ import {
 import { getOutdatedStacks } from '../monorepo/getOutdatedStacks';
 import { argv } from 'just-task';
 
-interface IUpgradeRepoTaskOptions {
-  latest: boolean;
-}
-
 export async function upgradeRepoTask() {
   const rootPath = findMonoRepoRootPath();
   if (!rootPath) {
@@ -30,19 +26,22 @@ export async function upgradeRepoTask() {
     return;
   }
 
-  const options: IUpgradeRepoTaskOptions = {
-    latest: argv().latest
-  };
+  const rushConfig = readRushJson(rootPath);
+  if (!rushConfig) {
+    logger.error(`Could not read rush.json under ${rootPath}. Not upgrading anything.`);
+    return;
+  }
 
   process.chdir(rootPath);
   const outdatedStacks = await getOutdatedStacks(rootPath);
+  const latest = argv().latest;
 
   outdatedStacks.forEach(stack => {
     const { dependencies = {}, devDependencies = {} } = scriptsPackageJson;
     if (devDependencies[stack.name]) {
-      devDependencies[stack.name] = options.latest ? `^${stack.latest}` : `^${stack.wanted}`;
+      devDependencies[stack.name] = latest ? `^${stack.latest}` : `^${stack.wanted}`;
     } else if (dependencies[stack.name]) {
-      dependencies[stack.name] = options.latest ? `^${stack.latest}` : `^${stack.wanted}`;
+      dependencies[stack.name] = latest ? `^${stack.latest}` : `^${stack.wanted}`;
     }
   });
 
@@ -50,10 +49,12 @@ export async function upgradeRepoTask() {
 
   rushUpdate(rootPath);
 
-  const rushConfig = readRushJson(rootPath);
-
+  let promise = Promise.resolve();
   for (const project of rushConfig.projects) {
     const projectPath = path.join(rootPath, project.projectFolder);
-    await upgradeStackPackageJsonFile(projectPath, path.join(scriptsPath, 'node_modules'));
+    promise = promise.then(() =>
+      upgradeStackPackageJsonFile(projectPath, path.join(scriptsPath, 'node_modules'))
+    );
   }
+  return promise;
 }
