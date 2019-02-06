@@ -1,4 +1,4 @@
-export * from './downloadPackage';
+export { downloadPackage } from './downloadPackage';
 export * from './findMonoRepoRootPath';
 export * from './IPackageJson';
 export { logger } from './logger';
