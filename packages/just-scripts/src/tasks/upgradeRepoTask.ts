@@ -5,52 +5,55 @@ import {
   findMonoRepoRootPath,
   rushUpdate,
   readRushJson,
-  readPackageJson
+  readPackageJson,
+  logger
 } from 'just-scripts-utils';
 import { getOutdatedStacks } from '../monorepo/getOutdatedStacks';
 import { argv } from 'just-task';
 
-export interface UpgradeRepoTaskOptions {
+interface IUpgradeRepoTaskOptions {
   latest: boolean;
 }
 
 export async function upgradeRepoTask() {
-  const options: UpgradeRepoTaskOptions = {
+  const rootPath = findMonoRepoRootPath();
+  if (!rootPath) {
+    logger.error('Could not find monorepo root path. Not upgrading anything.');
+    return;
+  }
+
+  const scriptsPath = path.join(rootPath, 'scripts');
+  const scriptsPackageJsonPath = path.join(scriptsPath, 'package.json');
+  const scriptsPackageJson = readPackageJson(scriptsPath);
+  if (!scriptsPackageJson) {
+    logger.error(`Could not read ${scriptsPackageJsonPath}. Not upgrading anything.`);
+    return;
+  }
+
+  const options: IUpgradeRepoTaskOptions = {
     latest: argv().latest
   };
 
-  const rootPath = findMonoRepoRootPath();
+  process.chdir(rootPath);
+  const outdatedStacks = await getOutdatedStacks(rootPath);
 
-  if (rootPath) {
-    process.chdir(rootPath);
-    const scriptsPath = path.join(rootPath, 'scripts');
-    // TODO: better error handling (remove ! assertions)
-    const scriptsPackageJson = readPackageJson(scriptsPath)!;
-    const outdatedStacks = await getOutdatedStacks(rootPath);
+  outdatedStacks.forEach(stack => {
+    const { dependencies = {}, devDependencies = {} } = scriptsPackageJson;
+    if (devDependencies[stack.name]) {
+      devDependencies[stack.name] = options.latest ? `^${stack.latest}` : `^${stack.wanted}`;
+    } else if (dependencies[stack.name]) {
+      dependencies[stack.name] = options.latest ? `^${stack.latest}` : `^${stack.wanted}`;
+    }
+  });
 
-    outdatedStacks.forEach(stack => {
-      if (scriptsPackageJson.devDependencies![stack.name]) {
-        scriptsPackageJson.devDependencies![stack.name] = options.latest
-          ? `^${stack.latest}`
-          : `^${stack.wanted}`;
-      } else if (scriptsPackageJson.dependencies![stack.name]) {
-        scriptsPackageJson.dependencies![stack.name] = options.latest
-          ? `^${stack.latest}`
-          : `^${stack.wanted}`;
-      }
-    });
+  fse.writeJsonSync(scriptsPackageJsonPath, scriptsPackageJson, { spaces: 2 });
 
-    fse.writeJsonSync(path.join(scriptsPath, 'package.json'), scriptsPackageJson, { spaces: 2 });
+  rushUpdate(rootPath);
 
-    rushUpdate(rootPath);
+  const rushConfig = readRushJson(rootPath);
 
-    const rushConfig = readRushJson(rootPath);
-
-    // uses Array.reduce to sequentially loop through promise
-    rushConfig.projects.reduce(async (previousPromise: Promise<void>, project: any) => {
-      await previousPromise;
-      const projectPath = path.join(rootPath, project.projectFolder);
-      return upgradeStackPackageJsonFile(projectPath, path.join(scriptsPath, 'node_modules'));
-    }, Promise.resolve());
+  for (const project of rushConfig.projects) {
+    const projectPath = path.join(rootPath, project.projectFolder);
+    await upgradeStackPackageJsonFile(projectPath, path.join(scriptsPath, 'node_modules'));
   }
 }
