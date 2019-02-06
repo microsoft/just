@@ -20,7 +20,7 @@ export function findInstalledStacks(rootPath: string) {
     return stacks.map<IStackInfo>(([stack, stackPath]) => {
       const packageJson = readPackageJson(stackPath)!; // already checked existence above
       return {
-        description: packageJson.description,
+        description: packageJson.description!,
         name: stack,
         version: packageJson.version,
         path: stackPath
