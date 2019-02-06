@@ -79,24 +79,25 @@ describe('mergePackageJson', () => {
   }
 
   it('handles undefined deps and devDeps', () => {
-    // no deps or devDeps in either
-    let original = genPackageJson();
-    let incoming = genPackageJson();
-    let result = mergePackageJson(original, incoming);
+    const original = genPackageJson();
+    const incoming = genPackageJson();
+    const result = mergePackageJson(original, incoming);
     expect(result).toBe(original);
+  });
 
-    // deps only in original
-    original = genPackageJson({ dependencies: { b: '1.0.0' } });
-    incoming = genPackageJson();
-    result = mergePackageJson(original, incoming);
+  it('handles if deps are only defined in original', () => {
+    const original = genPackageJson({ dependencies: { b: '1.0.0' } });
+    const incoming = genPackageJson();
+    const result = mergePackageJson(original, incoming);
     expect(result).toBe(original);
     expect(result.dependencies).toBeDefined();
     expect(result.devDependencies).toBeUndefined();
+  });
 
-    // deps only in incoming
-    original = genPackageJson();
-    incoming = genPackageJson({ dependencies: { b: '1.0.0' } });
-    result = mergePackageJson(original, incoming);
+  it('handles if deps are only defined in incoming', () => {
+    const original = genPackageJson();
+    const incoming = genPackageJson({ dependencies: { b: '1.0.0' } });
+    const result = mergePackageJson(original, incoming);
     expect(result === original).toBe(false); // new object returned
     // in this case it should deep equal incoming, with empty devDependencies added
     expect(result).toEqual({ ...incoming, devDependencies: {} });
@@ -135,32 +136,37 @@ describe('mergePackageJson', () => {
     });
   });
 
-  it('does not change older incoming dep', () => {
+  it('does not change older incoming dep (with only one dep total)', () => {
     // one dep and incoming version is older => return original
     const original = genPackageJson({ dependencies: { b: '1.0.0' } });
     const incoming = genPackageJson({ dependencies: { b: '0.1.1' } });
-    let result = mergePackageJson(original, incoming);
+    const result = mergePackageJson(original, incoming);
     expect(result).toBe(original);
+  });
 
+  it('does not change older incoming dep, merges new deps', () => {
     // incoming introduces a new dep but has old version of existing dep
     // => merge in added dep but keep newer version of existing dep
-    incoming.dependencies!.c = '1.0.0';
-    result = mergePackageJson(original, incoming);
+    const original = genPackageJson({ dependencies: { b: '1.0.0' } });
+    const incoming = genPackageJson({ dependencies: { b: '0.1.1', c: '1.0.0' } });
+    const result = mergePackageJson(original, incoming);
     expect(result === original).toBe(false);
     expect(result.dependencies).toEqual({ b: '1.0.0', c: '1.0.0' });
     expect(original.dependencies).toEqual({ b: '1.0.0' });
   });
 
-  it('updates to new dep version', () => {
+  it('updates to new dep version (with only one dep total)', () => {
     // one dep and incoming version is newer => upgrade
     const original = genPackageJson({ dependencies: { b: '1.0.0' } });
     const incoming = genPackageJson({ dependencies: { b: '2.0.0' } });
-    let result = mergePackageJson(original, incoming);
+    const result = mergePackageJson(original, incoming);
     expect(result.dependencies).toEqual(incoming.dependencies);
+  });
 
-    original.dependencies!.c = '1.0.0';
-    incoming.dependencies!.d = '1.0.0';
-    result = mergePackageJson(original, incoming);
+  it('updates to new dep version, merges deps', () => {
+    const original = genPackageJson({ dependencies: { b: '1.0.0', c: '1.0.0' } });
+    const incoming = genPackageJson({ dependencies: { b: '2.0.0', d: '1.0.0' } });
+    const result = mergePackageJson(original, incoming);
     expect(result.dependencies).toEqual({ b: '2.0.0', c: '1.0.0', d: '1.0.0' });
   });
 });
