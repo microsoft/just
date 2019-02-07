@@ -124,13 +124,13 @@ describe('readRushJson', () => {
     // cause a fake update error
     jest.spyOn(jju, 'update', 'get').mockImplementationOnce(throwError);
     rushAddPackage('b', 'root');
-    expect(consoleError).toHaveBeenCalledTimes(1);
+    expect(consoleError).toHaveBeenCalledTimes(2);
     expect(fs.readFileSync('root/rush.json').toString()).toEqual(rushJsonStr);
 
     // cause a fake write error
     jest.spyOn(fs, 'writeFileSync').mockImplementation(throwError);
     rushAddPackage('b', 'root');
-    expect(consoleError).toHaveBeenCalledTimes(2);
+    expect(consoleError).toHaveBeenCalledTimes(4);
     expect(fs.readFileSync('root/rush.json').toString()).toEqual(rushJsonStr);
   });
 });
