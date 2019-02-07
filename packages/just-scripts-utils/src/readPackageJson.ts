@@ -10,6 +10,6 @@ import { IPackageJson } from './IPackageJson';
 export function readPackageJson(folderPath: string): IPackageJson | undefined {
   const packageJsonPath = path.join(folderPath, 'package.json');
   if (fse.existsSync(packageJsonPath)) {
-    return fse.readJsonSync(packageJsonPath);
+    return fse.readJsonSync(packageJsonPath, { throws: false }) || undefined;
   }
 }
