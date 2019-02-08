@@ -256,7 +256,7 @@ describe('applyTemplate', () => {
     jest.spyOn(glob, 'sync').mockImplementationOnce(throwError);
 
     const result = applyTemplate('template', 'project');
-    expect(result).toEqual({ error: true });
+    expect(result).toEqual({ error: true, processed: 0, warnings: 0 });
     expect(lastError).toContain('Error finding template files');
     expect(lastError).toContain(thrownErrorMsg);
   });
@@ -277,7 +277,7 @@ describe('applyTemplate', () => {
     jest.spyOn(fse, 'mkdirpSync').mockImplementationOnce(throwError);
 
     const result = applyTemplate('template', 'project');
-    expect(result).toEqual({ error: true });
+    expect(result).toEqual({ error: true, processed: 0, warnings: 0 });
     expect(lastError).toContain(`Couldn't create directory`);
     expect(lastError).toContain(thrownErrorMsg);
   });

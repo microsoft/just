@@ -33,7 +33,7 @@ export function applyTemplate(
     templateFiles = [...new Set(glob.sync('**/*', { cwd: templateDir, dot: true }))];
   } catch (ex) {
     logger.error(`Error finding template files under ${templateDir}: ${ex}`);
-    return { error: true };
+    return { error: true, processed: 0, warnings: 0 };
   }
 
   if (!fse.existsSync(projectDir)) {
@@ -41,7 +41,7 @@ export function applyTemplate(
       fse.mkdirpSync(projectDir);
     } catch (ex) {
       logger.error(`Couldn't create directory ${projectDir}: ${ex}`);
-      return { error: true };
+      return { error: true, processed: 0, warnings: 0 };
     }
   }
 
