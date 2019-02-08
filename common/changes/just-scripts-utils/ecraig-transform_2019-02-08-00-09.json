@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts-utils",
+      "comment": "API updates and error checking",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-scripts-utils",
+  "email": "elcraig@microsoft.com"
+}
