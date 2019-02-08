@@ -4,7 +4,7 @@ import fse from 'fs-extra';
 import handlebars from 'handlebars';
 import { logger } from './logger';
 
-export interface ITransformResult {
+export interface IApplyTemplateResult {
   /** Whether a fatal error occurred */
   error?: boolean;
   /** Number of files/folders processed successfully (not counting warnings) */
@@ -21,13 +21,13 @@ export interface ITransformResult {
  * @param projectDir Path to the destination project to create/update
  * @param templateData If the template contains any handlebars files, this will be passed to them
  * when compiling
- * @returns Object indicating whether the transform was successful
+ * @returns Object indicating whether the template application was successful
  */
-export function transform(
+export function applyTemplate(
   templateDir: string,
   projectDir: string,
   templateData?: any
-): ITransformResult {
+): IApplyTemplateResult {
   let templateFiles: string[];
   try {
     templateFiles = [...new Set(glob.sync('**/*', { cwd: templateDir, dot: true }))];

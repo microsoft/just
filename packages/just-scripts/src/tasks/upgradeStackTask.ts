@@ -5,7 +5,7 @@ import { logger } from 'just-task';
 import {
   paths,
   downloadPackage,
-  transform,
+  applyTemplate,
   mergePackageJson,
   readPackageJson,
   IPackageJson
@@ -59,7 +59,7 @@ export async function upgradeStackPackageJsonFile(
  */
 function upgradePackageDeps(stackPath: string, projectPath: string, packageJson: IPackageJson) {
   const templatePath = paths.tempPath(packageJson.name);
-  transform(stackPath, templatePath, { name: packageJson.name });
+  applyTemplate(stackPath, templatePath, { name: packageJson.name });
 
   // Update package.json deps
   const stackPackageJson = readPackageJson(templatePath);

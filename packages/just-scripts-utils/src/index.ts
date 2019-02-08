@@ -8,4 +8,4 @@ export * from './paths';
 export * from './prettyPrintMarkdown';
 export * from './readPackageJson';
 export { readRushJson, rushAddPackage, rushUpdate } from './rush';
-export { transform } from './transform';
+export { applyTemplate } from './applyTemplate';

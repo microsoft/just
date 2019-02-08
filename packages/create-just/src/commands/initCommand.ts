@@ -1,7 +1,7 @@
 import {
   paths,
   logger,
-  transform,
+  applyTemplate,
   prettyPrintMarkdown,
   rushUpdate,
   downloadPackage
@@ -60,7 +60,7 @@ export async function initCommand(argv: yargs.Arguments) {
   const templatePath = await downloadPackage(argv.type);
 
   if (templatePath) {
-    transform(templatePath, paths.projectPath, { name });
+    applyTemplate(templatePath, paths.projectPath, { name });
 
     execSync('git init');
     execSync('git add .');

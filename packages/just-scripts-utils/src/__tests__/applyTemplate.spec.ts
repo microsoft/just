@@ -2,7 +2,7 @@ import mockfs from 'mock-fs';
 import fse from 'fs-extra';
 import glob from 'glob';
 import path from 'path';
-import { _processFileFromTemplate, _writeHbsFile, transform } from '../transform';
+import { _processFileFromTemplate, _writeHbsFile, applyTemplate } from '../applyTemplate';
 import { logger } from '../logger';
 
 // Example handlebars templates
@@ -240,7 +240,7 @@ describe('_processFileFromTemplate', () => {
   });
 });
 
-describe('transform', () => {
+describe('applyTemplate', () => {
   beforeEach(() => {
     throwOnWarnOrError();
   });
@@ -255,7 +255,7 @@ describe('transform', () => {
     jest.spyOn(logger, 'error').mockImplementation(fakeError);
     jest.spyOn(glob, 'sync').mockImplementationOnce(throwError);
 
-    const result = transform('template', 'project');
+    const result = applyTemplate('template', 'project');
     expect(result).toEqual({ error: true });
     expect(lastError).toContain('Error finding template files');
     expect(lastError).toContain(thrownErrorMsg);
@@ -266,7 +266,7 @@ describe('transform', () => {
       template: {}
     });
 
-    const result = transform('template', 'project');
+    const result = applyTemplate('template', 'project');
     expect(fse.existsSync('project')).toBe(true);
     expect(result).toEqual({ processed: 0, warnings: 0 });
   });
@@ -276,7 +276,7 @@ describe('transform', () => {
     jest.spyOn(fse, 'existsSync').mockReturnValueOnce(false);
     jest.spyOn(fse, 'mkdirpSync').mockImplementationOnce(throwError);
 
-    const result = transform('template', 'project');
+    const result = applyTemplate('template', 'project');
     expect(result).toEqual({ error: true });
     expect(lastError).toContain(`Couldn't create directory`);
     expect(lastError).toContain(thrownErrorMsg);
@@ -290,7 +290,7 @@ describe('transform', () => {
       }
     });
 
-    const result = transform('template', 'project');
+    const result = applyTemplate('template', 'project');
     expect(result).toEqual({ processed: 1, warnings: 0 });
     expect(fse.existsSync('project')).toBe(true);
     expect(fse.existsSync('project/.DS_Store')).toBe(false);
@@ -303,7 +303,7 @@ describe('transform', () => {
       project: { 'bar.txt': '', a: {} }
     });
 
-    const result = transform('template', 'project');
+    const result = applyTemplate('template', 'project');
     expect(result).toEqual({ processed: 1, warnings: 0 });
     expect(fse.existsSync('project/foo.txt')).toBe(true);
     expect(fse.existsSync('project/bar.txt')).toBe(true);
@@ -353,7 +353,7 @@ describe('transform', () => {
     });
     jest.spyOn(logger, 'warn').mockImplementation(fakeWarn);
 
-    const result = transform('template', 'project', { name: 'world' });
+    const result = applyTemplate('template', 'project', { name: 'world' });
     expect(directoryTree('project')).toEqual({
       '.gitignore': '',
       'g.txt': '',

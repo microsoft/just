@@ -2,7 +2,7 @@ const path = require('path');
 const fse = require('fs-extra');
 const glob = require('glob');
 const json = require('json5');
-const { transform } = require('just-scripts-utils');
+const { applyTemplate } = require('just-scripts-utils');
 
 describe('stack snapshot', () => {
   const snapshotPath = path.resolve(__dirname, 'temp');
@@ -14,7 +14,7 @@ describe('stack snapshot', () => {
   });
 
   beforeAll(() => {
-    transform(templatePath, snapshotPath, { name: 'testproject' });
+    applyTemplate(templatePath, snapshotPath, { name: 'testproject' });
     jsonFiles = glob.sync('**/*.json', { cwd: snapshotPath });
   });
 
