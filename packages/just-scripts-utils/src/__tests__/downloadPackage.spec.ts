@@ -7,8 +7,6 @@ import { paths } from '../paths';
 import { logger } from '../logger';
 import { _isDevMode, downloadPackage, _setMockDirname } from '../downloadPackage';
 
-// TODO: make sure this works on windows (different slash format)
-
 describe('downloadPackage', () => {
   /**
    * Final part of the directory containing the built version of downloadPackage.ts.

@@ -3,8 +3,6 @@ import mockfs from 'mock-fs';
 import jju from 'jju';
 import { _justReadRushJson, _parseRushJson, rushAddPackage } from '../rush';
 
-// TODO: test on Windows
-
 const rushJsonStrNoProjects = `{
   // this is a comment
   "rushVersion": "5.5.4"
