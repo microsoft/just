@@ -1,6 +1,13 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Mon, 04 Feb 2019 05:47:04 GMT and should not be manually modified.
+This log was last generated on Wed, 13 Feb 2019 22:31:47 GMT and should not be manually modified.
+
+## 0.4.0
+Wed, 13 Feb 2019 22:31:47 GMT
+
+### Minor changes
+
+- API updates and error checking
 
 ## 0.3.3
 Mon, 04 Feb 2019 05:47:04 GMT

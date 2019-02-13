@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 04 Feb 2019 05:47:04 GMT and should not be manually modified.
+This log was last generated on Wed, 13 Feb 2019 22:31:47 GMT and should not be manually modified.
+
+## 0.7.5
+Wed, 13 Feb 2019 22:31:47 GMT
+
+### Patches
+
+- Dependency updates and improved error handling
 
 ## 0.7.4
 Mon, 04 Feb 2019 05:47:04 GMT

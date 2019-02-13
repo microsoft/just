@@ -2,6 +2,18 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "version": "0.4.0",
+      "tag": "just-scripts-utils_v0.4.0",
+      "date": "Wed, 13 Feb 2019 22:31:47 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "API updates and error checking"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.3",
       "tag": "just-scripts-utils_v0.3.3",
       "date": "Mon, 04 Feb 2019 05:47:04 GMT",
