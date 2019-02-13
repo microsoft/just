@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-uifabric",
+      "comment": "Update dependency version",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-stack-uifabric",
+  "email": "elcraig@microsoft.com"
+}

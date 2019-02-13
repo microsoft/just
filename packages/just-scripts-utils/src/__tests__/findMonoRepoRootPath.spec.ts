@@ -2,8 +2,6 @@ import mockfs from 'mock-fs';
 import { paths } from '../paths';
 import { findMonoRepoRootPath } from '../findMonoRepoRootPath';
 
-// TODO: make sure tests pass on windows
-
 describe('findMonoRepoRootPath', () => {
   const packageJsonWithJustStack = JSON.stringify({ just: { stack: 'just-stack-monorepo' } });
   const packageJsonWithWrongStack = JSON.stringify({ just: { stack: 'no' } });

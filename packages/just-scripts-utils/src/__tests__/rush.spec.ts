@@ -3,8 +3,6 @@ import mockfs from 'mock-fs';
 import jju from 'jju';
 import { _justReadRushJson, _parseRushJson, rushAddPackage } from '../rush';
 
-// TODO: test on Windows
-
 const rushJsonStrNoProjects = `{
   // this is a comment
   "rushVersion": "5.5.4"
@@ -124,13 +122,14 @@ describe('readRushJson', () => {
     // cause a fake update error
     jest.spyOn(jju, 'update', 'get').mockImplementationOnce(throwError);
     rushAddPackage('b', 'root');
-    expect(consoleError).toHaveBeenCalledTimes(1);
+    expect(consoleError).toHaveBeenCalled();
     expect(fs.readFileSync('root/rush.json').toString()).toEqual(rushJsonStr);
 
     // cause a fake write error
+    consoleError.mockClear();
     jest.spyOn(fs, 'writeFileSync').mockImplementation(throwError);
     rushAddPackage('b', 'root');
-    expect(consoleError).toHaveBeenCalledTimes(2);
+    expect(consoleError).toHaveBeenCalled();
     expect(fs.readFileSync('root/rush.json').toString()).toEqual(rushJsonStr);
   });
 });

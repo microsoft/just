@@ -53,8 +53,9 @@ export function rushAddPackage(packageName: string, rootPath: string): void {
   try {
     const newContents = jju.update(oldContents, rushJson, { mode: 'cjson', indent: 2 });
     fs.writeFileSync(rushJsonPath, newContents);
-  } catch {
+  } catch (ex) {
     logger.error(`Couldn't update rush.json under ${rootPath}. Not adding package.`);
+    logger.error('Error:', ex);
   }
 }
 

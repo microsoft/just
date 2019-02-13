@@ -1,5 +1,12 @@
 import path from 'path';
-import { logger, transform, rushAddPackage, rushUpdate, prettyPrintMarkdown, findMonoRepoRootPath } from 'just-scripts-utils';
+import {
+  logger,
+  applyTemplate,
+  rushAddPackage,
+  rushUpdate,
+  prettyPrintMarkdown,
+  findMonoRepoRootPath
+} from 'just-scripts-utils';
 import prompts from 'prompts';
 import fse from 'fs-extra';
 import { argv } from 'just-task';
@@ -38,7 +45,7 @@ export async function addPackageTask() {
     const templatePath = path.join(selectedStack.path, 'template');
 
     if (templatePath) {
-      transform(templatePath, packagePath, {
+      applyTemplate(templatePath, packagePath, {
         name
       });
 
