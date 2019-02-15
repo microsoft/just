@@ -14,8 +14,10 @@ describe('prettyPrintMarkdown', () => {
     const result = prettyPrintMarkdown('# hello\nworld');
     expect(result).toContain('hello');
     expect(result).toContain('world');
+  });
 
-    // even handles questionable markdown!
+  it('handles questionable markdown', () => {
+    // missing closing * for bold
     expect(prettyPrintMarkdown('**hello*')).toContain('hello');
   });
 });
