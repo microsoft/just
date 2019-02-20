@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 13 Feb 2019 22:31:47 GMT and should not be manually modified.
+This log was last generated on Wed, 20 Feb 2019 16:30:03 GMT and should not be manually modified.
+
+## 0.7.6
+Wed, 20 Feb 2019 16:30:03 GMT
+
+### Patches
+
+- Remove generated vs code settings when adding package in monorepo
 
 ## 0.7.5
 Wed, 13 Feb 2019 22:31:47 GMT

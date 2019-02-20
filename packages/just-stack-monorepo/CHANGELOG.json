@@ -2,6 +2,18 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "version": "0.6.4",
+      "tag": "just-stack-monorepo_v0.6.4",
+      "date": "Wed, 20 Feb 2019 16:30:03 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Simplify generated rush config; improve other config files"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.3",
       "tag": "just-stack-monorepo_v0.6.3",
       "date": "Wed, 13 Feb 2019 22:31:47 GMT",

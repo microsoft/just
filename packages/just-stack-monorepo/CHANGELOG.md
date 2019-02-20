@@ -1,6 +1,13 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Wed, 13 Feb 2019 22:31:47 GMT and should not be manually modified.
+This log was last generated on Wed, 20 Feb 2019 16:30:03 GMT and should not be manually modified.
+
+## 0.6.4
+Wed, 20 Feb 2019 16:30:03 GMT
+
+### Patches
+
+- Simplify generated rush config; improve other config files
 
 ## 0.6.3
 Wed, 13 Feb 2019 22:31:47 GMT

@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.7.6",
+      "tag": "just-scripts_v0.7.6",
+      "date": "Wed, 20 Feb 2019 16:30:03 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Remove generated vs code settings when adding package in monorepo"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.5",
       "tag": "just-scripts_v0.7.5",
       "date": "Wed, 13 Feb 2019 22:31:47 GMT",

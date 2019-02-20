@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.5.3",
+      "tag": "just-stack-single-lib_v0.5.3",
+      "date": "Wed, 20 Feb 2019 16:30:03 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Update generated config files"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.2",
       "tag": "just-stack-single-lib_v0.5.2",
       "date": "Wed, 13 Feb 2019 22:31:47 GMT",
