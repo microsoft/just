@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-uifabric",
+      "comment": "Add scss.ts to gitignore",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-stack-uifabric",
+  "email": "elcraig@microsoft.com"
+}
