@@ -2,6 +2,18 @@
   "name": "create-just",
   "entries": [
     {
+      "version": "0.6.2",
+      "tag": "create-just_v0.6.2",
+      "date": "Wed, 20 Feb 2019 23:17:15 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Lock some dep versions"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.1",
       "tag": "create-just_v0.6.1",
       "date": "Wed, 13 Feb 2019 22:31:47 GMT",

@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 20 Feb 2019 16:30:03 GMT and should not be manually modified.
+This log was last generated on Wed, 20 Feb 2019 23:17:15 GMT and should not be manually modified.
+
+## 0.7.7
+Wed, 20 Feb 2019 23:17:15 GMT
+
+### Patches
+
+- Lock some dep versions
 
 ## 0.7.6
 Wed, 20 Feb 2019 16:30:03 GMT

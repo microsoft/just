@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.5.4",
+      "tag": "just-stack-single-lib_v0.5.4",
+      "date": "Wed, 20 Feb 2019 23:17:15 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add scss.ts to gitignore"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.3",
       "tag": "just-stack-single-lib_v0.5.3",
       "date": "Wed, 20 Feb 2019 16:30:03 GMT",

@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Wed, 13 Feb 2019 22:31:47 GMT and should not be manually modified.
+This log was last generated on Wed, 20 Feb 2019 23:17:15 GMT and should not be manually modified.
+
+## 0.6.2
+Wed, 20 Feb 2019 23:17:15 GMT
+
+### Patches
+
+- Lock some dep versions
 
 ## 0.6.1
 Wed, 13 Feb 2019 22:31:47 GMT

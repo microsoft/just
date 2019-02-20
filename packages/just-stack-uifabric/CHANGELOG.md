@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Wed, 20 Feb 2019 16:30:03 GMT and should not be manually modified.
+This log was last generated on Wed, 20 Feb 2019 23:17:15 GMT and should not be manually modified.
+
+## 0.7.5
+Wed, 20 Feb 2019 23:17:15 GMT
+
+### Patches
+
+- Add scss.ts to gitignore
 
 ## 0.7.4
 Wed, 20 Feb 2019 16:30:03 GMT

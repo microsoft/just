@@ -1,6 +1,13 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Wed, 20 Feb 2019 16:30:03 GMT and should not be manually modified.
+This log was last generated on Wed, 20 Feb 2019 23:17:15 GMT and should not be manually modified.
+
+## 0.5.4
+Wed, 20 Feb 2019 23:17:15 GMT
+
+### Patches
+
+- Add scss.ts to gitignore
 
 ## 0.5.3
 Wed, 20 Feb 2019 16:30:03 GMT

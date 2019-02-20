@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Tue, 22 Jan 2019 21:28:18 GMT and should not be manually modified.
+This log was last generated on Wed, 20 Feb 2019 23:17:15 GMT and should not be manually modified.
+
+## 0.7.7
+Wed, 20 Feb 2019 23:17:15 GMT
+
+### Patches
+
+- Lock some dep versions
 
 ## 0.7.6
 Tue, 22 Jan 2019 21:28:18 GMT

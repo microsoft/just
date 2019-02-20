@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.7.7",
+      "tag": "just-task_v0.7.7",
+      "date": "Wed, 20 Feb 2019 23:17:15 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Lock some dep versions"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.6",
       "tag": "just-task_v0.7.6",
       "date": "Tue, 22 Jan 2019 21:28:18 GMT",
