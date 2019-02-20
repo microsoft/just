@@ -53,8 +53,10 @@ export async function addPackageTask() {
       logger.info('Running rush update');
       rushUpdate(rootPath);
 
+      // Remove some files that aren't relevant for an individual project within a monorepo
       fse.removeSync(path.join(packagePath, '.gitignore'));
       fse.removeSync(path.join(packagePath, '.gitattributes'));
+      fse.removeSync(path.join(packagePath, '.vscode'));
 
       logger.info('All Set!');
 
