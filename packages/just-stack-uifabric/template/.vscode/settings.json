@@ -1,0 +1,21 @@
+{
+  // When enabled, will trim trailing whitespace when you save a file.
+  "files.trimTrailingWhitespace": true,
+  // Controls whether the editor should render whitespace characters
+  "editor.renderWhitespace": "all",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/coverage": true,
+    "**/*.scss.ts": true
+  },
+  // Configure glob patterns for excluding files and folders in searches. Inherits all glob patterns from the file.exclude setting.
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/lib": true,
+    "**/lib-commonjs": true,
+    "**/lib-esm": true,
+    "**/lib-es2015": true,
+    "**/dist": true
+  }
+}
