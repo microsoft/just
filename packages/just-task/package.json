@@ -26,9 +26,9 @@
     "@types/undertaker": "^1.2.0",
     "@types/undertaker-registry": "^1.0.1",
     "@types/yargs": "12.0.1",
+    "jest": "^23.6.0",
     "ts-jest": "^23.10.5",
-    "typescript": "^3.2.4",
-    "jest": "^23.6.0"
+    "typescript": "~3.3.3"
   },
   "keywords": [],
   "author": "Ken Chau <kchau@microsoft.com>",
