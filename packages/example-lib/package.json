@@ -12,6 +12,6 @@
   "devDependencies": {
     "just-task": ">=0.7.6 <1.0.0",
     "just-scripts": ">=0.7.6 <1.0.0",
-    "typescript": "^3.2.4"
+    "typescript": "~3.3.3"
   }
 }
