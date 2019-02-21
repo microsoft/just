@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "Enables sourcemap for debugging just-scripts in case of error",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com"
+}
