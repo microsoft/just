@@ -49,14 +49,14 @@ export async function addPackageTask() {
         name
       });
 
-      rushAddPackage(name, rootPath);
-      logger.info('Running rush update');
-      rushUpdate(rootPath);
-
       // Remove some files that aren't relevant for an individual project within a monorepo
       fse.removeSync(path.join(packagePath, '.gitignore'));
       fse.removeSync(path.join(packagePath, '.gitattributes'));
       fse.removeSync(path.join(packagePath, '.vscode'));
+
+      rushAddPackage(name, rootPath);
+      logger.info('Running rush update');
+      rushUpdate(rootPath);
 
       logger.info('All Set!');
 

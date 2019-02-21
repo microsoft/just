@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-uifabric",
+      "comment": "Fix webpack version",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-stack-uifabric",
+  "email": "elcraig@microsoft.com"
+}
