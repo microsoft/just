@@ -2,6 +2,18 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "version": "0.6.7",
+      "tag": "just-stack-monorepo_v0.6.7",
+      "date": "Thu, 21 Feb 2019 23:25:53 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-scripts-utils\" from `0.4.0` to `0.4.1`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.6",
       "tag": "just-stack-monorepo_v0.6.6",
       "date": "Thu, 21 Feb 2019 04:41:31 GMT",

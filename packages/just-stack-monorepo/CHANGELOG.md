@@ -1,6 +1,11 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Thu, 21 Feb 2019 04:41:31 GMT and should not be manually modified.
+This log was last generated on Thu, 21 Feb 2019 23:25:53 GMT and should not be manually modified.
+
+## 0.6.7
+Thu, 21 Feb 2019 23:25:53 GMT
+
+*Version update only*
 
 ## 0.6.6
 Thu, 21 Feb 2019 04:41:31 GMT

@@ -1,0 +1,17 @@
+{
+  "name": "just-task-logger",
+  "entries": [
+    {
+      "version": "0.1.1",
+      "tag": "just-task-logger_v0.1.1",
+      "date": "Thu, 21 Feb 2019 23:25:53 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add logger package"
+          }
+        ]
+      }
+    }
+  ]
+}

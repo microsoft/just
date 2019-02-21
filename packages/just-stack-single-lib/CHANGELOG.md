@@ -1,6 +1,11 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Wed, 20 Feb 2019 23:17:15 GMT and should not be manually modified.
+This log was last generated on Thu, 21 Feb 2019 23:25:53 GMT and should not be manually modified.
+
+## 0.5.5
+Thu, 21 Feb 2019 23:25:53 GMT
+
+*Version update only*
 
 ## 0.5.4
 Wed, 20 Feb 2019 23:17:15 GMT
