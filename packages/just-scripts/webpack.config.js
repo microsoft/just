@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: './src/index.ts',
   mode: 'production',
-  devtool: 'none',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -14,7 +14,14 @@ module.exports = {
     ]
   },
   // External tools are imported by the consumers
-  externals: ['just-task', '@microsoft/api-extractor', 'autoprefixer', 'postcss', 'node-sass', 'webpack'],
+  externals: [
+    'just-task',
+    '@microsoft/api-extractor',
+    'autoprefixer',
+    'postcss',
+    'node-sass',
+    'webpack'
+  ],
   resolve: {
     extensions: ['.ts', '.js']
   },
