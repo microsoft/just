@@ -1,0 +1,27 @@
+{
+  "name": "just-task-logger",
+  "version": "0.1.0",
+  "description": "Logger for Just scripts and tasks",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc -w --preserveWatchOutput",
+    "test": "jest",
+    "start-test": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "yargs": "^12.0.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.12.18",
+    "@types/yargs": "12.0.1",
+    "jest": "^23.6.0",
+    "mock-fs": "^4.8.0",
+    "ts-jest": "^23.10.5"
+  }
+}
