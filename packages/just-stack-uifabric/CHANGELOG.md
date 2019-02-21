@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Wed, 20 Feb 2019 23:17:15 GMT and should not be manually modified.
+This log was last generated on Thu, 21 Feb 2019 04:41:31 GMT and should not be manually modified.
+
+## 0.7.6
+Thu, 21 Feb 2019 04:41:31 GMT
+
+### Patches
+
+- Fix webpack version
 
 ## 0.7.5
 Wed, 20 Feb 2019 23:17:15 GMT

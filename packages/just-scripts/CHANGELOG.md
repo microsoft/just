@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 20 Feb 2019 23:17:15 GMT and should not be manually modified.
+This log was last generated on Thu, 21 Feb 2019 04:41:31 GMT and should not be manually modified.
+
+## 0.7.8
+Thu, 21 Feb 2019 04:41:31 GMT
+
+### Patches
+
+- addPackageTask: Remove extra files from template before running rush update
 
 ## 0.7.7
 Wed, 20 Feb 2019 23:17:15 GMT

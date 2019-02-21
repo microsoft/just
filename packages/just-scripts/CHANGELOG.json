@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.7.8",
+      "tag": "just-scripts_v0.7.8",
+      "date": "Thu, 21 Feb 2019 04:41:31 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "addPackageTask: Remove extra files from template before running rush update"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.7",
       "tag": "just-scripts_v0.7.7",
       "date": "Wed, 20 Feb 2019 23:17:15 GMT",

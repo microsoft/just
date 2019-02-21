@@ -1,6 +1,6 @@
 {
   "name": "just-stack-uifabric",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "just-stack": true,
   "description": "Just Stack UI Fabric Application with React",
   "main": "index.js",
