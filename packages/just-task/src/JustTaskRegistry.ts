@@ -4,7 +4,6 @@ import { logger } from './logger';
 
 import UndertakerRegistry from 'undertaker-registry';
 import Undertaker from 'undertaker';
-import path from 'path';
 import { resolve } from './resolve';
 
 export class JustTaskRegistry extends UndertakerRegistry {
@@ -23,7 +22,8 @@ export class JustTaskRegistry extends UndertakerRegistry {
       }
     } else {
       logger.error(
-        `Cannot find '${configFile}'. Please create one called "just-task.js" in the root of the project next to "package.json"`
+        `Cannot find config file "${configFile}".`,
+        `Please create a file called "just-task.js" in the root of the project next to "package.json".`
       );
     }
 
