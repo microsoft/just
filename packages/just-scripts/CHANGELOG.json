@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.7.9",
+      "tag": "just-scripts_v0.7.9",
+      "date": "Thu, 21 Feb 2019 22:15:15 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Enables sourcemap for debugging just-scripts in case of error"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.8",
       "tag": "just-scripts_v0.7.8",
       "date": "Thu, 21 Feb 2019 04:41:31 GMT",

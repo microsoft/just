@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 21 Feb 2019 04:41:31 GMT and should not be manually modified.
+This log was last generated on Thu, 21 Feb 2019 22:15:15 GMT and should not be manually modified.
+
+## 0.7.9
+Thu, 21 Feb 2019 22:15:15 GMT
+
+### Patches
+
+- Enables sourcemap for debugging just-scripts in case of error
 
 ## 0.7.8
 Thu, 21 Feb 2019 04:41:31 GMT
