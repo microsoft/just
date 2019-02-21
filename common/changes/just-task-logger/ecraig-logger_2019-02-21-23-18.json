@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task-logger",
+      "comment": "Add logger package",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task-logger",
+  "email": "elcraig@microsoft.com"
+}

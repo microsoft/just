@@ -2,7 +2,7 @@ export { downloadPackage } from './downloadPackage';
 export * from './findMonoRepoRootPath';
 export * from './IPackageJson';
 export * from './IRushJson';
-export { logger } from './logger';
+export { logger, ILogger } from './logger';
 export { mergePackageJson } from './mergePackageJson';
 export * from './paths';
 export * from './prettyPrintMarkdown';

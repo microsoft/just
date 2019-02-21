@@ -17,6 +17,7 @@ dependencies:
   '@rush-temp/just-stack-uifabric': 'file:projects/just-stack-uifabric.tgz'
   '@rush-temp/just-task': 'file:projects/just-task.tgz'
   '@rush-temp/just-task-docs': 'file:projects/just-task-docs.tgz'
+  '@rush-temp/just-task-logger': 'file:projects/just-task-logger.tgz'
   '@rush-temp/just-task-scripts': 'file:projects/just-task-scripts.tgz'
   '@types/fs-extra': 5.0.4
   '@types/glob': 7.1.1
@@ -1453,6 +1454,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ePl4l+7dLLmCucIwgQHAgjiepY++qcI6nb8eAwGNkB6OxmTe3Z9rQU3rSpomqu42PCCnlThZbOoxsf+qylJsLA==
+  /@types/jest/23.3.14:
+    dev: false
+    resolution:
+      integrity: sha512-Q5hTcfdudEL2yOmluA1zaSyPbzWPmJ3XfSWeP3RyoYvS9hnje1ZyagrZOuQ6+1nQC1Gw+7gap3pLNL3xL6UBug==
   /@types/jju/1.4.0:
     dev: false
     resolution:
@@ -1482,6 +1487,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-CBgLNk4o3XMnqMc0rhb6lc77IwShMEglz05deDcn2lQxyXEZivfwgYJu7SMha9V5XcrP6qZuevTHV/QrN2vjKQ==
+  /@types/node/10.12.26:
+    dev: false
+    resolution:
+      integrity: sha512-nMRqS+mL1TOnIJrL6LKJcNZPB8V3eTfRo9FQA2b5gDvrHurC8XbSA86KNe0dShlEL7ReWJv/OU9NL7Z0dnqWTg==
   /@types/prompts/1.2.0:
     dev: false
     resolution:
@@ -11035,7 +11044,7 @@ packages:
     dev: false
     name: '@rush-temp/example-lib'
     resolution:
-      integrity: sha512-2+Cfe9ochsapDvalBC98dyIASJFhDetr6FKyZIM3j439g+1MEk1UMMNptx6Y+4aMUOAoxkbum5Q5Uaep8x0eAw==
+      integrity: sha512-aQJYnOTM5mj+8jLG1RPV3nJE/8yEUQrEqDlUq/e5OaihtNl+2r0shTotynRcOe+RfsZ2UeIRHIIx/r54xnwHYw==
       tarball: 'file:projects/example-lib.tgz'
     version: 0.0.0
   'file:projects/just-scripts-utils.tgz':
@@ -11096,7 +11105,7 @@ packages:
     dev: false
     name: '@rush-temp/just-scripts'
     resolution:
-      integrity: sha512-M+7k62YSlwCbvAiS0LryPIMA9jlhE25N9CHpcripbymo4dxuOh1eXDmEO+sVWKo4pkwmuDL4xSXVb4CWt9EinQ==
+      integrity: sha512-DYwcOzErchqXHKj7x0ZK0MjUEROS/HzpF9eSbuVJBQ5mhAoQAxe1DskeOsxkWrWt1JXmmUza0gpxKWSf5GXWlw==
       tarball: 'file:projects/just-scripts.tgz'
     version: 0.0.0
   'file:projects/just-stack-monorepo.tgz':
@@ -11161,6 +11170,22 @@ packages:
       integrity: sha512-YmCDY6rBDxRDKFUuq5yLVPqbaPqMW/uNmSpwagfjX/HthccpAl55Jwyq1MwIZI94VSMfJPog+84pD9trgqQF4g==
       tarball: 'file:projects/just-task-docs.tgz'
     version: 0.0.0
+  'file:projects/just-task-logger.tgz':
+    dependencies:
+      '@types/jest': 23.3.14
+      '@types/node': 10.12.26
+      '@types/yargs': 12.0.1
+      chalk: 2.4.2
+      jest: 23.6.0
+      mock-fs: 4.8.0
+      ts-jest: /ts-jest/23.10.5/jest@23.6.0
+      yargs: 12.0.5
+    dev: false
+    name: '@rush-temp/just-task-logger'
+    resolution:
+      integrity: sha512-gC7z085Kt8b0Mbxi7Xsn7cBcD7gYoUcBz8sxsEqYm1qVdRgby93kIkERpbsh3i14aj/Jh0kRgUSgHuYPbhWvMQ==
+      tarball: 'file:projects/just-task-logger.tgz'
+    version: 0.0.0
   'file:projects/just-task-scripts.tgz':
     dependencies:
       cpx: 1.5.0
@@ -11189,7 +11214,7 @@ packages:
     dev: false
     name: '@rush-temp/just-task'
     resolution:
-      integrity: sha512-ftQH/SirMHc0CrcywoCtI4qFWdBNz1t/F9vJs/YLXQ/NrwfcPz8+qZa+y96qiNL4dwASiQZFtxpLak3p39zLOw==
+      integrity: sha512-9X7le0kn6l/mMRzxJ2BxE4CwPp19DO64Z0kLaPFtY/OSJg28NgaPf7DlvPS+DSnkKkt3z4JLyGF1v6zx83e6vw==
       tarball: 'file:projects/just-task.tgz'
     version: 0.0.0
 registry: 'https://registry.npmjs.org/'
@@ -11214,6 +11239,7 @@ specifiers:
   '@rush-temp/just-stack-uifabric': 'file:./projects/just-stack-uifabric.tgz'
   '@rush-temp/just-task': 'file:./projects/just-task.tgz'
   '@rush-temp/just-task-docs': 'file:./projects/just-task-docs.tgz'
+  '@rush-temp/just-task-logger': 'file:./projects/just-task-logger.tgz'
   '@rush-temp/just-task-scripts': 'file:./projects/just-task-scripts.tgz'
   '@types/fs-extra': ^5.0.4
   '@types/glob': ^7.1.1
