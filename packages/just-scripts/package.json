@@ -1,6 +1,6 @@
 {
   "name": "just-scripts",
-  "version": "0.7.9",
+  "version": "0.8.0",
   "description": "Just Stack Scripts",
   "keywords": [],
   "author": "",
@@ -20,7 +20,7 @@
     "jest": "^23.6.0",
     "jest-cli": "^23.0.0",
     "just-scripts-utils": ">=0.4.1 <1.0.0",
-    "just-task": ">=0.7.8 <1.0.0",
+    "just-task": ">=0.7.9 <1.0.0",
     "npm-registry-fetch": "^3.9.0",
     "prompts": "^2.0.1",
     "run-parallel-limit": "^1.0.5",

@@ -1,6 +1,6 @@
 {
   "name": "just-task",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "description": "",
   "main": "lib/index.js",
   "typing": "lib/index.d.ts",
@@ -10,7 +10,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w --preserveWatchOutput",
-    "test": "jest"
+    "test": "jest",
+    "start-test": "jest --watch"
   },
   "dependencies": {
     "chalk": "^2.4.1",
@@ -22,12 +23,14 @@
   },
   "devDependencies": {
     "@types/jest": "^23.3.13",
+    "@types/mock-fs": "^3.6.30",
     "@types/node": "^10.12.18",
     "@types/resolve": "^0.0.8",
     "@types/undertaker": "^1.2.0",
     "@types/undertaker-registry": "^1.0.1",
     "@types/yargs": "12.0.1",
     "jest": "^23.6.0",
+    "mock-fs": "^4.8.0",
     "ts-jest": "^23.10.5",
     "typescript": "~3.3.3"
   },

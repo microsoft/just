@@ -1,11 +1,12 @@
-import * as ts from 'typescript';
+import ts from 'typescript';
 import { resolve, logger, resolveCwd } from 'just-task';
 import { exec, encodeArgs, spawn } from './exec';
 import fs from 'fs';
+import { TaskFunction } from 'just-task/lib/task';
 
 type CompilerOptions = { [key in keyof ts.CompilerOptions]: string | boolean };
 
-export function tscTask(options: CompilerOptions) {
+export function tscTask(options: CompilerOptions): TaskFunction {
   const tsConfigFile = resolveCwd('./tsconfig.json');
   const tscCmd = resolve('typescript/lib/tsc.js');
 
@@ -41,7 +42,7 @@ export function tscTask(options: CompilerOptions) {
   };
 }
 
-export function tscWatchTask(options: CompilerOptions) {
+export function tscWatchTask(options: CompilerOptions): TaskFunction {
   const tsConfigFile = resolveCwd('./tsconfig.json');
   const tscCmd = resolve('typescript/lib/tsc.js');
 

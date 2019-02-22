@@ -1,16 +1,23 @@
-jest.mock('yargs');
-
 import { task } from '../task';
 import { parallel, undertaker } from '../undertaker';
 import { JustTaskRegistry } from '../JustTaskRegistry';
-import yargs from 'yargs';
+import { logger } from '../logger';
+import yargsMock from './__mocks__/yargs';
 import path from 'path';
 
 describe('task', () => {
+  beforeAll(() => {
+    yargsMock.argv.config = path.resolve(__dirname, '__mocks__/just-task.js');
+    jest.spyOn(logger, 'info').mockImplementation(() => undefined);
+  });
+
   beforeEach(() => {
-    const yargsBuilder = yargs;
-    yargsBuilder.option('config', { default: path.resolve(__dirname, '__mocks__/just-task.js') });
     undertaker.registry(new JustTaskRegistry());
+  });
+
+  afterAll(() => {
+    yargsMock.argv.config = undefined;
+    jest.restoreAllMocks();
   });
 
   it('allows synchronous tasks to be defined and be run', done => {
