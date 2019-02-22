@@ -2,6 +2,23 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.8.0",
+      "tag": "just-task_v0.8.0",
+      "date": "Fri, 22 Feb 2019 23:37:36 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Consistent interface naming"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-task-logger\" from `>=0.1.2 <1.0.0` to `>=0.2.0 <1.0.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.10",
       "tag": "just-task_v0.7.10",
       "date": "Fri, 22 Feb 2019 19:03:38 GMT",

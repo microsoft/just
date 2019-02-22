@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 22 Feb 2019 19:03:38 GMT and should not be manually modified.
+This log was last generated on Fri, 22 Feb 2019 23:37:36 GMT and should not be manually modified.
+
+## 0.8.0
+Fri, 22 Feb 2019 23:37:36 GMT
+
+### Minor changes
+
+- Consistent interface naming
 
 ## 0.7.10
 Fri, 22 Feb 2019 19:03:38 GMT

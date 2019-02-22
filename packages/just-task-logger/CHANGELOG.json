@@ -2,6 +2,18 @@
   "name": "just-task-logger",
   "entries": [
     {
+      "version": "0.2.0",
+      "tag": "just-task-logger_v0.2.0",
+      "date": "Fri, 22 Feb 2019 23:37:36 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Consistent interface naming"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.1.2",
       "tag": "just-task-logger_v0.1.2",
       "date": "Fri, 22 Feb 2019 19:03:38 GMT",

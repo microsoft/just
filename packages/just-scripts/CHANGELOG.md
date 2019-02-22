@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 22 Feb 2019 22:50:01 GMT and should not be manually modified.
+This log was last generated on Fri, 22 Feb 2019 23:37:36 GMT and should not be manually modified.
+
+## 0.10.0
+Fri, 22 Feb 2019 23:37:36 GMT
+
+### Minor changes
+
+- Consistent interface naming
 
 ## 0.9.0
 Fri, 22 Feb 2019 22:50:01 GMT
