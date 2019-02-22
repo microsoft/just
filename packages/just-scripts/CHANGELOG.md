@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 22 Feb 2019 18:39:56 GMT and should not be manually modified.
+This log was last generated on Fri, 22 Feb 2019 19:03:38 GMT and should not be manually modified.
+
+## 0.8.1
+Fri, 22 Feb 2019 19:03:38 GMT
+
+### Patches
+
+- Update package metadata
 
 ## 0.8.0
 Fri, 22 Feb 2019 18:39:56 GMT

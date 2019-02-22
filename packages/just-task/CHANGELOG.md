@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 22 Feb 2019 16:58:03 GMT and should not be manually modified.
+This log was last generated on Fri, 22 Feb 2019 19:03:38 GMT and should not be manually modified.
+
+## 0.7.10
+Fri, 22 Feb 2019 19:03:38 GMT
+
+### Patches
+
+- Update package metadata
 
 ## 0.7.9
 Fri, 22 Feb 2019 16:58:03 GMT
