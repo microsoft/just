@@ -3,9 +3,13 @@ import path from 'path';
 import fs from 'fs';
 import { resolveCwd } from 'just-task';
 import parallelLimit from 'run-parallel-limit';
+import { TaskFunction } from 'just-task/lib/task';
 
 // Because we do not statically import postcssPlugin package, we cannot enforce type of postcssPlugins
-export function sassTask(createSourceModule: (fileName: string, css: string) => string, postcssPlugins: any[] = []) {
+export function sassTask(
+  createSourceModule: (fileName: string, css: string) => string,
+  postcssPlugins: any[] = []
+): TaskFunction {
   const nodeSass = require('node-sass');
   const postcss = require('postcss');
   const autoprefixer = require('autoprefixer');
@@ -53,7 +57,10 @@ export function sassTask(createSourceModule: (fileName: string, css: string) => 
 
 function requireResolvePackageUrl(packageUrl: string) {
   const fullName = packageUrl + (packageUrl.endsWith('.scss') ? '' : '.scss');
-  return resolveCwd(fullName) || resolveCwd(path.join(path.dirname(fullName), `_${path.basename(fullName)}`));
+  return (
+    resolveCwd(fullName) ||
+    resolveCwd(path.join(path.dirname(fullName), `_${path.basename(fullName)}`))
+  );
 }
 
 function patchSassUrl(url: string, prev: string, done: any) {

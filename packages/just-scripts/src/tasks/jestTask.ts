@@ -1,6 +1,7 @@
 import { resolve, logger, resolveCwd } from 'just-task';
 import { spawn, encodeArgs } from './exec';
 import { existsSync } from 'fs';
+import { TaskFunction } from 'just-task/lib/task';
 
 export interface IJestTaskOptions {
   config?: string;
@@ -12,7 +13,7 @@ export interface IJestTaskOptions {
   _?: string[];
 }
 
-export function jestTask(options: IJestTaskOptions = {}) {
+export function jestTask(options: IJestTaskOptions = {}): TaskFunction {
   const jestConfigFile = resolveCwd('./jest.config.js');
 
   return function jest() {

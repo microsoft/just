@@ -2,6 +2,7 @@ import { logger, argv, resolve, resolveCwd } from 'just-task';
 import fs from 'fs';
 import { encodeArgs, spawn } from './exec';
 import webpackMerge from 'webpack-merge';
+import { TaskFunction } from 'just-task/lib/task';
 
 declare var __non_webpack_require__: any;
 
@@ -10,7 +11,7 @@ export interface WebpackTaskOptions {
   mode?: 'production' | 'development';
 }
 
-export function webpackTask(options?: WebpackTaskOptions) {
+export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   const wp = require('webpack');
 
   return function webpack() {
