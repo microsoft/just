@@ -1,9 +1,8 @@
-import { resolve, logger, resolveCwd } from 'just-task';
+import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { spawn, encodeArgs } from './exec';
 import { existsSync } from 'fs';
-import { TaskFunction } from 'just-task/lib/task';
 
-export interface IJestTaskOptions {
+export interface JestTaskOptions {
   config?: string;
   runInBand?: boolean;
   coverage?: boolean;
@@ -13,7 +12,7 @@ export interface IJestTaskOptions {
   _?: string[];
 }
 
-export function jestTask(options: IJestTaskOptions = {}): TaskFunction {
+export function jestTask(options: JestTaskOptions = {}): TaskFunction {
   const jestConfigFile = resolveCwd('./jest.config.js');
 
   return function jest() {

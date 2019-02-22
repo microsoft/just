@@ -8,7 +8,7 @@ function logInternal(method: 'info' | 'warn' | 'error', symbol: string, ...args:
   console[method](timestamp, symbol, ...args);
 }
 
-export interface ILogger {
+export interface Logger {
   /** Whether verbose logging is enabled. Default false unless --verbose arg is given. */
   enableVerbose: boolean;
   /** Log to `console.info` with a timestamp, but only if verbose logging is enabled. */
@@ -25,7 +25,7 @@ const emptySquare = '\u25a1';
 const square = '\u25a0';
 const triangle = '\u25b2';
 
-export const logger: ILogger = {
+export const logger: Logger = {
   enableVerbose: !!yargs.argv.verbose,
 
   verbose(...args: any[]) {

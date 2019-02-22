@@ -1,12 +1,12 @@
-export interface IDependencies {
+export interface Dependencies {
   [key: string]: string;
 }
 
-export interface IPackageJson {
+export interface PackageJson {
   name: string;
   description?: string;
-  dependencies?: IDependencies;
-  devDependencies?: IDependencies;
+  dependencies?: Dependencies;
+  devDependencies?: Dependencies;
   just?: {
     /** Stack that the package is tracking */
     stack?: string;

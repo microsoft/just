@@ -9,8 +9,7 @@ import {
   logger
 } from 'just-scripts-utils';
 import { getOutdatedStacks } from '../monorepo/getOutdatedStacks';
-import { argv } from 'just-task';
-import { TaskFunction } from 'just-task/lib/task';
+import { argv, TaskFunction } from 'just-task';
 
 export function upgradeRepoTask(): TaskFunction {
   return async function upgradeRepo() {

@@ -4,7 +4,7 @@ import fse from 'fs-extra';
 import handlebars from 'handlebars';
 import { logger } from './logger';
 
-export interface IApplyTemplateResult {
+export interface ApplyTemplateResult {
   /** Whether a fatal error occurred */
   error?: boolean;
   /** Number of files/folders processed successfully (not counting warnings) */
@@ -27,7 +27,7 @@ export function applyTemplate(
   templateDir: string,
   projectDir: string,
   templateData?: any
-): IApplyTemplateResult {
+): ApplyTemplateResult {
   let templateFiles: string[];
   try {
     templateFiles = [...new Set(glob.sync('**/*', { cwd: templateDir, dot: true }))];

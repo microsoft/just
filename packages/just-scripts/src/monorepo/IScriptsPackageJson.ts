@@ -1,6 +1,6 @@
-import { IPackageJson } from 'just-scripts-utils';
+import { PackageJson } from 'just-scripts-utils';
 
-export interface IScriptsPackageJson extends IPackageJson {
+export interface ScriptsPackageJson extends PackageJson {
   just?: {
     stack?: string;
     stacks?: string[];

@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import jju from 'jju';
 import { logger } from './logger';
-import { IRushJson } from './IRushJson';
+import { RushJson } from './interfaces/RushJson';
 
 /**
  * Runs rush update.
@@ -22,7 +22,7 @@ export function rushUpdate(cwd: string): void {
  * @param rootPath Path to the folder containing rush.json.
  * @returns The parsed contents of rush.json or undefined if it's not found.
  */
-export function readRushJson(rootPath: string): IRushJson | undefined {
+export function readRushJson(rootPath: string): RushJson | undefined {
   const rushJsonPath = path.join(rootPath, 'rush.json');
   const contents = _justReadRushJson(rushJsonPath);
   return _parseRushJson(contents!);
@@ -69,7 +69,7 @@ export function _justReadRushJson(rushJsonPath: string): string | undefined {
 }
 
 /** Parse an already-read rush.json. Exported for testing only. */
-export function _parseRushJson(rushJsonContents: string): IRushJson | undefined {
+export function _parseRushJson(rushJsonContents: string): RushJson | undefined {
   try {
     // rush.json can contain comments, so we have to use a json library which supports comments
     // (instead of JSON.parse/JSON.stringify)

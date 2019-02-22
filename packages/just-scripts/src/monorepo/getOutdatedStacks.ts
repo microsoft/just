@@ -2,7 +2,7 @@ import { findInstalledStacks } from './findInstalledStacks';
 import path from 'path';
 import { spawn } from 'child_process';
 
-export interface IOutdatedInfo {
+export interface OutdatedInfo {
   name: string;
   current: string;
   wanted: string;
@@ -27,7 +27,7 @@ export async function getOutdatedStacks(rootPath: string) {
     });
   });
 
-  const outdatedStacks: IOutdatedInfo[] = [];
+  const outdatedStacks: OutdatedInfo[] = [];
 
   Object.keys(outdatedJson).forEach(name => {
     const outdated = outdatedJson[name];

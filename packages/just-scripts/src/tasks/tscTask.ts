@@ -1,8 +1,7 @@
 import ts from 'typescript';
-import { resolve, logger, resolveCwd } from 'just-task';
+import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { exec, encodeArgs, spawn } from './exec';
 import fs from 'fs';
-import { TaskFunction } from 'just-task/lib/task';
 
 type CompilerOptions = { [key in keyof ts.CompilerOptions]: string | boolean };
 

@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task-logger",
+      "comment": "Consistent interface naming",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-task-logger",
+  "email": "elcraig@microsoft.com"
+}

@@ -1,16 +1,15 @@
 import fse from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
-import { logger } from 'just-task';
+import { logger, TaskFunction } from 'just-task';
 import {
   paths,
   downloadPackage,
   applyTemplate,
   mergePackageJson,
   readPackageJson,
-  IPackageJson
+  PackageJson
 } from 'just-scripts-utils';
-import { TaskFunction } from 'just-task/lib/task';
 
 export function upgradeStackTask(): TaskFunction {
   const { projectPath } = paths;
@@ -60,7 +59,7 @@ export async function upgradeStackPackageJsonFile(
 /**
  * Takes the installed or newly downloaded template and merge in the new package deps
  */
-function upgradePackageDeps(stackPath: string, projectPath: string, packageJson: IPackageJson) {
+function upgradePackageDeps(stackPath: string, projectPath: string, packageJson: PackageJson) {
   const templatePath = paths.tempPath(packageJson.name);
   applyTemplate(stackPath, templatePath, { name: packageJson.name });
 

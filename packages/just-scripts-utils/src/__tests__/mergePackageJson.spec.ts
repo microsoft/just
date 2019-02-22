@@ -1,5 +1,5 @@
 import { mergePackageJson, _shouldUpdateDep } from '../mergePackageJson';
-import { IPackageJson } from '../IPackageJson';
+import { PackageJson } from '../interfaces/PackageJson';
 
 describe('_shouldUpdateDep', () => {
   it('returns true if old version is undefined', () => {
@@ -64,8 +64,8 @@ describe('_shouldUpdateDep', () => {
   });
 
   it('does nothing if original.just is undefined', () => {
-    const original: IPackageJson = { name: 'a' };
-    const incoming: IPackageJson = { name: 'a', dependencies: { b: '1.0.0' } };
+    const original: PackageJson = { name: 'a' };
+    const incoming: PackageJson = { name: 'a', dependencies: { b: '1.0.0' } };
     const result = mergePackageJson(original, incoming);
     expect(result).toBe(original);
     expect(result.dependencies).toBeUndefined();
@@ -74,7 +74,7 @@ describe('_shouldUpdateDep', () => {
 
 describe('mergePackageJson', () => {
   /** Generates a package.json with required `name` and `just` properties. */
-  function genPackageJson(extraProps: Partial<IPackageJson> = {}): IPackageJson {
+  function genPackageJson(extraProps: Partial<PackageJson> = {}): PackageJson {
     return { name: 'a', just: {}, ...extraProps };
   }
 
