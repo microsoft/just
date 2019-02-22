@@ -2,8 +2,7 @@ import glob from 'glob';
 import fse from 'fs-extra';
 import path from 'path';
 import parallelLimit from 'run-parallel-limit';
-import { logger } from 'just-task';
-import { TaskFunction } from 'just-task/lib/task';
+import { logger, TaskFunction } from 'just-task';
 
 export function copyTask(paths: string[] = [], dest: string, limit: number = 15): TaskFunction {
   return function copy(done: (err?: Error) => void) {

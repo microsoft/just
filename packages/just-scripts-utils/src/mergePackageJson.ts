@@ -1,5 +1,5 @@
 import semver from 'semver';
-import { IPackageJson, IDependencies } from './IPackageJson';
+import { PackageJson } from './interfaces/PackageJson';
 
 /**
  * Merges an incoming package.json with an original semantically. It can only handle merging
@@ -10,13 +10,13 @@ import { IPackageJson, IDependencies } from './IPackageJson';
  * @returns Returns a new package.json object if any changes were needed, or returns `original`
  * if not. (You can tell if changes were made by checking the object identity.)
  */
-export function mergePackageJson(original: IPackageJson, incoming: IPackageJson): IPackageJson {
+export function mergePackageJson(original: PackageJson, incoming: PackageJson): PackageJson {
   if (!original.just) {
     return original;
   }
 
   // deep copy the deps and devDeps
-  const newPackageJson: IPackageJson = {
+  const newPackageJson: PackageJson = {
     ...original,
     dependencies: { ...(original.dependencies || {}) },
     devDependencies: { ...(original.devDependencies || {}) }

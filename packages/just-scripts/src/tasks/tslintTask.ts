@@ -1,14 +1,13 @@
-import { resolve, logger, resolveCwd } from 'just-task';
+import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { exec, encodeArgs } from 'just-scripts-utils';
 import path from 'path';
 import fs from 'fs';
-import { TaskFunction } from 'just-task/lib/task';
 
-export interface ITsLintTaskOptions {
+export interface TsLintTaskOptions {
   config?: string;
 }
 
-export function tslintTask(options: ITsLintTaskOptions = {}): TaskFunction {
+export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
   const projectFile = resolveCwd('./tsconfig.json');
 
   return function tslint() {

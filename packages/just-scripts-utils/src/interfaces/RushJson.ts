@@ -1,12 +1,12 @@
-export interface IRushProject {
+export interface RushProject {
   packageName: string;
   projectFolder: string;
   shouldPublish?: boolean;
   versionPolicyName?: string;
 }
 
-export interface IRushJson {
-  projects: IRushProject[];
+export interface RushJson {
+  projects: RushProject[];
   rushVersion: string;
   // more properties can be added as needed
 }

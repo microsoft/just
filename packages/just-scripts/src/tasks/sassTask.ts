@@ -1,9 +1,8 @@
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs';
-import { resolveCwd } from 'just-task';
+import { resolveCwd, TaskFunction } from 'just-task';
 import parallelLimit from 'run-parallel-limit';
-import { TaskFunction } from 'just-task/lib/task';
 
 // Because we do not statically import postcssPlugin package, we cannot enforce type of postcssPlugins
 export function sassTask(

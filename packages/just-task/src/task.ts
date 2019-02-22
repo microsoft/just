@@ -1,13 +1,13 @@
 import Undertaker from 'undertaker';
 import yargs, { Arguments } from 'yargs';
 import { undertaker } from './undertaker';
-import { ILogger } from './logger';
+import { Logger } from './logger';
 import { Duplex } from 'stream';
 import { wrapTask } from './wrapTask';
 
 export interface TaskContext {
   argv: Arguments;
-  logger: ILogger;
+  logger: Logger;
 }
 
 export interface TaskFunction extends Undertaker.TaskFunctionParams {
@@ -19,7 +19,7 @@ export interface TaskFunction extends Undertaker.TaskFunctionParams {
     | any;
 }
 
-function task(
+export function task(
   firstParam: string | TaskFunction,
   secondParam?: TaskFunction | string,
   thirdParam?: TaskFunction
@@ -57,5 +57,3 @@ function getCommandModule(taskName: string, describe?: string): yargs.CommandMod
     }
   };
 }
-
-export { task };

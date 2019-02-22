@@ -1,5 +1,4 @@
-import { logger } from 'just-task';
-import { TaskFunction } from 'just-task/lib/task';
+import { logger, TaskFunction } from 'just-task';
 
 export function apiExtractorVerifyTask(config: any, options: any): TaskFunction {
   return function apiExtractorVerify() {

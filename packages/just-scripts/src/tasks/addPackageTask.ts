@@ -9,9 +9,8 @@ import {
 } from 'just-scripts-utils';
 import prompts from 'prompts';
 import fse from 'fs-extra';
-import { argv } from 'just-task';
+import { argv, TaskFunction } from 'just-task';
 import { findInstalledStacks } from '../monorepo/findInstalledStacks';
-import { TaskFunction } from 'just-task/lib/task';
 
 export function addPackageTask(): TaskFunction {
   return async function addPackage() {
