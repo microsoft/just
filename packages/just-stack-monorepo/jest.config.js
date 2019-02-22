@@ -1,5 +1,1 @@
-module.exports = {
-  verbose: true,
-  testEnvironment: 'node',
-  setupTestFrameworkScriptFile: 'jest-expect-message'
-};
+module.exports = require('../../scripts/jest.template.config');

@@ -1,0 +1,11 @@
+const path = require('path');
+
+/** Jest config for packages within the just monorepo */
+module.exports = {
+  roots: ['<rootDir>/src'],
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  testMatch: ['**/?(*.)+(spec|test).[jt]s'],
+  reporters: [path.resolve(__dirname, './jest-reporter.js')],
+  verbose: true
+};
