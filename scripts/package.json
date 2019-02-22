@@ -9,6 +9,7 @@
   "keywords": [],
   "author": "",
   "dependencies": {
-    "cpx": "^1.5.0"
+    "cpx": "^1.5.0",
+    "jest-cli": "^23.0.0"
   }
 }
