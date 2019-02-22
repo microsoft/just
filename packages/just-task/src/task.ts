@@ -1,28 +1,41 @@
 import Undertaker from 'undertaker';
-import yargs from 'yargs';
+import yargs, { Arguments } from 'yargs';
 import { undertaker } from './undertaker';
-import { Arguments } from 'yargs';
 import { ILogger } from './logger';
 import { Duplex } from 'stream';
 import { wrapTask } from './wrapTask';
 
-interface TaskContext {
+export interface TaskContext {
   argv: Arguments;
   logger: ILogger;
 }
 
 export interface TaskFunction extends Undertaker.TaskFunctionParams {
-  (this: TaskContext, done: (error?: any) => void): void | Duplex | NodeJS.Process | Promise<never> | any;
+  (this: TaskContext, done: (error?: any) => void):
+    | void
+    | Duplex
+    | NodeJS.Process
+    | Promise<never>
+    | any;
 }
 
-function task(firstParam: string | TaskFunction, secondParam?: TaskFunction | string, thirdParam?: TaskFunction) {
-  if (arguments.length === 1 && typeof firstParam === 'string') {
+function task(
+  firstParam: string | TaskFunction,
+  secondParam?: TaskFunction | string,
+  thirdParam?: TaskFunction
+): Undertaker.TaskFunction | undefined {
+  const argCount = arguments.length;
+  if (argCount === 1 && typeof firstParam === 'string') {
     return undertaker.task(firstParam);
-  } else if (arguments.length === 2 && typeof firstParam === 'string' && typeof secondParam === 'function') {
+  } else if (
+    argCount === 2 &&
+    typeof firstParam === 'string' &&
+    typeof secondParam === 'function'
+  ) {
     undertaker.task(firstParam, wrapTask(secondParam as TaskFunction));
     yargs.command(getCommandModule(firstParam));
   } else if (
-    arguments.length === 3 &&
+    argCount === 3 &&
     typeof firstParam === 'string' &&
     typeof secondParam === 'string' &&
     typeof thirdParam === 'function'
@@ -34,11 +47,11 @@ function task(firstParam: string | TaskFunction, secondParam?: TaskFunction | st
   }
 }
 
-function getCommandModule(taskName: string, describe?: string) {
+function getCommandModule(taskName: string, describe?: string): yargs.CommandModule {
   return {
     command: taskName,
     describe,
-    ...(taskName === 'default' && { aliases: ['*'] }),
+    ...(taskName === 'default' ? { aliases: ['*'] } : {}),
     handler(argvParam: any) {
       return undertaker.parallel(taskName)(() => {});
     }

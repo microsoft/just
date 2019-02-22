@@ -2,8 +2,9 @@ import fse from 'fs-extra';
 import parallelLimit from 'run-parallel-limit';
 import path from 'path';
 import { logger } from 'just-task';
+import { TaskFunction } from 'just-task/lib/task';
 
-export function cleanTask(paths: string[] = [], limit: number = 5) {
+export function cleanTask(paths: string[] = [], limit: number = 5): TaskFunction {
   if (paths.length === 0) {
     paths = ['lib', 'temp', 'dist', 'coverage'];
   }

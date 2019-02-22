@@ -10,10 +10,13 @@ import {
   readPackageJson,
   IPackageJson
 } from 'just-scripts-utils';
+import { TaskFunction } from 'just-task/lib/task';
 
-export async function upgradeStackTask(): Promise<void> {
+export function upgradeStackTask(): TaskFunction {
   const { projectPath } = paths;
-  return upgradeStackPackageJsonFile(projectPath);
+  return function upgradeStack() {
+    upgradeStackPackageJsonFile(projectPath);
+  };
 }
 
 /**

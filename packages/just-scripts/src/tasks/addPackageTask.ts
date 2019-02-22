@@ -11,22 +11,28 @@ import prompts from 'prompts';
 import fse from 'fs-extra';
 import { argv } from 'just-task';
 import { findInstalledStacks } from '../monorepo/findInstalledStacks';
+import { TaskFunction } from 'just-task/lib/task';
 
-export async function addPackageTask() {
-  const args = argv();
-  const rootPath = findMonoRepoRootPath();
+export function addPackageTask(): TaskFunction {
+  return async function addPackage() {
+    const args = argv();
+    const rootPath = findMonoRepoRootPath();
 
-  const name =
-    args.name ||
-    (await prompts({
-      type: 'text',
-      name: 'name',
-      message: 'What is the name of the package?'
-    })).name;
+    const name =
+      args.name ||
+      (await prompts({
+        type: 'text',
+        name: 'name',
+        message: 'What is the name of the package?'
+      })).name;
 
-  logger.info(`Creating a package called: ${name}`);
+    logger.info(`Creating a package called: ${name}`);
 
-  if (rootPath) {
+    if (!rootPath) {
+      logger.warn('Cannot determine the root path to the mono repo');
+      return;
+    }
+
     // TODO: do validation that the path is indeed a monorepo
 
     const installedStacks = findInstalledStacks(rootPath);
@@ -65,7 +71,5 @@ export async function addPackageTask() {
         logger.info('\n' + prettyPrintMarkdown(fse.readFileSync(readmeFile).toString()));
       }
     }
-  } else {
-    logger.warn('Cannot determine the root path to the mono repo');
-  }
+  };
 }

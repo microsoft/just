@@ -1,17 +1,13 @@
-import { Arguments } from 'yargs';
-import path from 'path';
+const yargs = () => yargs;
 
-const yargs = jest.genMockFromModule<Arguments>('yargs');
 yargs.argv = {
-  config: path.join(__dirname, 'just-task.js')
-};
+  config: undefined
+} as { config: string | undefined };
 
-yargs.demandCommand = function() {
-  return yargs;
-};
+yargs.command = () => yargs;
 
-yargs.help = function() {
-  return yargs;
-};
+yargs.demandCommand = () => yargs;
 
-module.exports = yargs;
+yargs.help = () => yargs;
+
+export default yargs;
