@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.5.7",
+      "tag": "just-stack-single-lib_v0.5.7",
+      "date": "Fri, 22 Feb 2019 22:50:01 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-scripts-utils\" from `0.4.2` to `0.5.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.6",
       "tag": "just-stack-single-lib_v0.5.6",
       "date": "Fri, 22 Feb 2019 19:03:38 GMT",

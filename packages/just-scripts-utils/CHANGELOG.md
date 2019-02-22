@@ -1,6 +1,13 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Fri, 22 Feb 2019 19:03:38 GMT and should not be manually modified.
+This log was last generated on Fri, 22 Feb 2019 22:50:01 GMT and should not be manually modified.
+
+## 0.5.0
+Fri, 22 Feb 2019 22:50:01 GMT
+
+### Minor changes
+
+- Move exec to just-scripts-utils
 
 ## 0.4.2
 Fri, 22 Feb 2019 19:03:38 GMT

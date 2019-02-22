@@ -1,6 +1,11 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Fri, 22 Feb 2019 19:03:38 GMT and should not be manually modified.
+This log was last generated on Fri, 22 Feb 2019 22:50:01 GMT and should not be manually modified.
+
+## 0.7.9
+Fri, 22 Feb 2019 22:50:01 GMT
+
+*Version update only*
 
 ## 0.7.8
 Fri, 22 Feb 2019 19:03:38 GMT

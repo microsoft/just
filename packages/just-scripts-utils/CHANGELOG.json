@@ -2,6 +2,18 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "version": "0.5.0",
+      "tag": "just-scripts-utils_v0.5.0",
+      "date": "Fri, 22 Feb 2019 22:50:01 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Move exec to just-scripts-utils"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.4.2",
       "tag": "just-scripts-utils_v0.4.2",
       "date": "Fri, 22 Feb 2019 19:03:38 GMT",
