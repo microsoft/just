@@ -10,8 +10,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "just-task": ">=0.7.9 <1.0.0",
-    "just-scripts": ">=0.8.0 <1.0.0",
+    "just-task": ">=0.7.10 <1.0.0",
+    "just-scripts": ">=0.8.1 <1.0.0",
     "typescript": "~3.3.3"
   }
 }

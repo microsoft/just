@@ -1,6 +1,6 @@
 {
   "name": "just-stack-uifabric",
-  "version": "0.7.7",
+  "version": "0.7.8",
   "just-stack": true,
   "description": "Just stack for UI Fabric application with React",
   "repository": {
@@ -21,6 +21,6 @@
     "jest": "^23.6.0",
     "jest-expect-message": "^1.0.2",
     "json5": "^2.1.0",
-    "just-scripts-utils": "0.4.1"
+    "just-scripts-utils": "0.4.2"
   }
 }

@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Wed, 20 Feb 2019 23:17:15 GMT and should not be manually modified.
+This log was last generated on Fri, 22 Feb 2019 19:03:38 GMT and should not be manually modified.
+
+## 0.6.3
+Fri, 22 Feb 2019 19:03:38 GMT
+
+### Patches
+
+- Update package metadata
 
 ## 0.6.2
 Wed, 20 Feb 2019 23:17:15 GMT
