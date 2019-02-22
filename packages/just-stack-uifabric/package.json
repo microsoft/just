@@ -2,7 +2,11 @@
   "name": "just-stack-uifabric",
   "version": "0.7.7",
   "just-stack": true,
-  "description": "Just Stack UI Fabric Application with React",
+  "description": "Just stack for UI Fabric application with React",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/just"
+  },
   "main": "index.js",
   "keywords": [],
   "author": "",

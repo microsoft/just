@@ -2,7 +2,11 @@
   "name": "just-stack-monorepo",
   "version": "0.6.7",
   "just-stack": true,
-  "description": "Monorepo using Rush",
+  "description": "Just stack for monorepo using Rush",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/just"
+  },
   "main": "index.js",
   "keywords": [],
   "author": "",

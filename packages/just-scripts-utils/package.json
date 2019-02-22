@@ -2,6 +2,10 @@
   "name": "just-scripts-utils",
   "version": "0.4.1",
   "description": "Utilities for Just stack scripts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/just"
+  },
   "main": "./lib/index.js",
   "scripts": {
     "build": "tsc",

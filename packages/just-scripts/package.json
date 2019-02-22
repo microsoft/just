@@ -2,6 +2,10 @@
   "name": "just-scripts",
   "version": "0.7.9",
   "description": "Just Stack Scripts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/just"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
