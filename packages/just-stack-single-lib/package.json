@@ -2,7 +2,7 @@
   "name": "just-stack-single-lib",
   "version": "0.5.5",
   "just-stack": true,
-  "description": "Just stack for basic library",
+  "description": "Just stack for basic Node library",
   "repository": {
     "type": "git",
     "url": "https://github.com/Microsoft/just"
