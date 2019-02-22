@@ -1,6 +1,6 @@
 import { logger, argv, resolve, resolveCwd } from 'just-task';
 import fs from 'fs';
-import { encodeArgs, spawn } from './exec';
+import { encodeArgs, spawn } from 'just-scripts-utils';
 import webpackMerge from 'webpack-merge';
 import { TaskFunction } from 'just-task/lib/task';
 

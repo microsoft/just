@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "Move exec to just-scripts-utils",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "elcraig@microsoft.com"
+}
