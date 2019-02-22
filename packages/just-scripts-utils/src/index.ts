@@ -1,4 +1,5 @@
 export { downloadPackage } from './downloadPackage';
+export * from './exec';
 export * from './findMonoRepoRootPath';
 export * from './interfaces/PackageJson';
 export * from './interfaces/RushJson';

@@ -1,5 +1,5 @@
 import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
-import { spawn, encodeArgs } from './exec';
+import { spawn, encodeArgs } from 'just-scripts-utils';
 import { existsSync } from 'fs';
 
 export interface JestTaskOptions {

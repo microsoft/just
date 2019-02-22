@@ -1,5 +1,5 @@
 import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
-import { exec, encodeArgs } from './exec';
+import { exec, encodeArgs } from 'just-scripts-utils';
 import path from 'path';
 import fs from 'fs';
 

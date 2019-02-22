@@ -1,6 +1,6 @@
 import { logger, argv, resolve, resolveCwd, TaskFunction } from 'just-task';
 import fs from 'fs';
-import { encodeArgs, spawn } from './exec';
+import { encodeArgs, spawn } from 'just-scripts-utils';
 import webpackMerge from 'webpack-merge';
 
 declare var __non_webpack_require__: any;
