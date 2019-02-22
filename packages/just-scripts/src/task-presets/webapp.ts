@@ -1,5 +1,12 @@
 import { task, series, parallel } from 'just-task';
-import { cleanTask, tscTask, jestTask, webpackTask, upgradeStackTask, webpackDevServerTask } from '../tasks';
+import {
+  cleanTask,
+  tscTask,
+  jestTask,
+  webpackTask,
+  upgradeStackTask,
+  webpackDevServerTask
+} from '../tasks';
 
 export function webapp() {
   task('clean', cleanTask());
@@ -20,5 +27,5 @@ export function webapp() {
   task('start', series('clean', 'webpack:watch'));
   task('start-test', series('clean', 'jest:watch'));
 
-  task('upgrade-stack', upgradeStackTask);
+  task('upgrade-stack', upgradeStackTask());
 }

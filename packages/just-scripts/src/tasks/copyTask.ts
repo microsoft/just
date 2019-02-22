@@ -3,10 +3,13 @@ import fse from 'fs-extra';
 import path from 'path';
 import parallelLimit from 'run-parallel-limit';
 import { logger } from 'just-task';
+import { TaskFunction } from 'just-task/lib/task';
 
-export function copyTask(paths: string[] = [], dest: string, limit: number = 15) {
+export function copyTask(paths: string[] = [], dest: string, limit: number = 15): TaskFunction {
   return function copy(done: (err?: Error) => void) {
-    logger.info(`Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`);
+    logger.info(
+      `Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`
+    );
 
     if (!fse.existsSync(dest)) {
       fse.mkdirpSync(dest);

@@ -2,12 +2,13 @@ import { resolve, logger, resolveCwd } from 'just-task';
 import { exec, encodeArgs } from './exec';
 import path from 'path';
 import fs from 'fs';
+import { TaskFunction } from 'just-task/lib/task';
 
 export interface ITsLintTaskOptions {
   config?: string;
 }
 
-export function tslintTask(options: ITsLintTaskOptions = {}) {
+export function tslintTask(options: ITsLintTaskOptions = {}): TaskFunction {
   const projectFile = resolveCwd('./tsconfig.json');
 
   return function tslint() {
@@ -16,7 +17,14 @@ export function tslintTask(options: ITsLintTaskOptions = {}) {
     if (projectFile && tslintCmd && fs.existsSync(projectFile)) {
       logger.info(`Running tslint`);
 
-      const args = ['--project', projectFile, '-t', 'stylish', '-r', path.dirname(resolve('tslint-microsoft-contrib') || '')];
+      const args = [
+        '--project',
+        projectFile,
+        '-t',
+        'stylish',
+        '-r',
+        path.dirname(resolve('tslint-microsoft-contrib') || '')
+      ];
 
       const cmd = encodeArgs([process.execPath, tslintCmd, ...args]).join(' ');
       logger.info(cmd);
