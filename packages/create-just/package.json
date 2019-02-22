@@ -1,7 +1,11 @@
 {
   "name": "create-just",
   "version": "0.6.2",
-  "description": "",
+  "description": "Create a new repository using Just",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/just"
+  },
   "main": "dist/create-just.js",
   "bin": {
     "create-just": "bin/create-just.js"

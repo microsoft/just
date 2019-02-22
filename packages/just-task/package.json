@@ -1,7 +1,11 @@
 {
   "name": "just-task",
   "version": "0.7.9",
-  "description": "",
+  "description": "Build task definition library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/just"
+  },
   "main": "lib/index.js",
   "typing": "lib/index.d.ts",
   "bin": {
