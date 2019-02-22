@@ -1,6 +1,6 @@
 import ts from 'typescript';
 import { resolve, logger, resolveCwd } from 'just-task';
-import { exec, encodeArgs, spawn } from './exec';
+import { exec, encodeArgs, spawn } from 'just-scripts-utils';
 import fs from 'fs';
 import { TaskFunction } from 'just-task/lib/task';
 

@@ -1,5 +1,5 @@
 import { resolve, logger, resolveCwd } from 'just-task';
-import { spawn, encodeArgs } from './exec';
+import { spawn, encodeArgs } from 'just-scripts-utils';
 import { existsSync } from 'fs';
 import { TaskFunction } from 'just-task/lib/task';
 
