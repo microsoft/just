@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task",
+      "comment": "Fix breaks caused by just-task resolve using the same yargs instance to check config path",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com"
+}
