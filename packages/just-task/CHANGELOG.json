@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.8.1",
+      "tag": "just-task_v0.8.1",
+      "date": "Sun, 24 Feb 2019 04:07:27 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix breaks caused by just-task resolve using the same yargs instance to check config path"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.8.0",
       "tag": "just-task_v0.8.0",
       "date": "Fri, 22 Feb 2019 23:37:36 GMT",

@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 22 Feb 2019 23:37:36 GMT and should not be manually modified.
+This log was last generated on Sun, 24 Feb 2019 04:07:27 GMT and should not be manually modified.
+
+## 0.8.1
+Sun, 24 Feb 2019 04:07:27 GMT
+
+### Patches
+
+- Fix breaks caused by just-task resolve using the same yargs instance to check config path
 
 ## 0.8.0
 Fri, 22 Feb 2019 23:37:36 GMT
