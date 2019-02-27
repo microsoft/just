@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "[breaking] Add parameters to make optional peer deps explicit",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "elcraig@microsoft.com"
+}

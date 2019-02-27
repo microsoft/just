@@ -33,7 +33,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         options.coverage ? '--coverage' : '',
         options.watch ? '--watch' : '',
         options.u || options.updateSnapshot ? '--updateSnapshot' : '',
-        ...(options._ ? options._ : [])
+        ...(options._ || [])
       ].filter(arg => !!arg) as Array<string>;
 
       logger.info(cmd, encodeArgs(args).join(' '));

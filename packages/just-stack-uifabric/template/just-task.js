@@ -1,3 +1,4 @@
 // @ts-check
 const { taskPresets } = require('just-scripts');
-module.exports = taskPresets.webapp;
+const webpack = require('webpack');
+module.exports = () => taskPresets.webapp(webpack);

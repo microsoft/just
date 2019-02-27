@@ -8,7 +8,13 @@ import {
   webpackDevServerTask
 } from '../tasks';
 
-export function webapp() {
+/**
+ * Register tasks for building a webapp.
+ *
+ * @param webpackModule Webpack module (`import webpack from 'webpack'`). This is needed because
+ * just-scripts does not take a (non-dev) dependency on or bundle webpack.
+ */
+export function webapp(webpackModule: any) {
   task('clean', cleanTask());
 
   task('ts:commonjs', tscTask({ module: 'commonjs', outDir: 'lib-commonjs' }));
@@ -19,7 +25,7 @@ export function webapp() {
   task('jest', jestTask());
   task('jest:watch', jestTask({ watch: true }));
 
-  task('webpack', webpackTask());
+  task('webpack', webpackTask(webpackModule));
   task('webpack:watch', webpackDevServerTask());
 
   task('build', series('clean', 'ts', parallel('jest', 'webpack')));

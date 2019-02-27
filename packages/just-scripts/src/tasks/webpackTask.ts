@@ -1,22 +1,28 @@
 import { logger, argv, resolve, resolveCwd, TaskFunction } from 'just-task';
-import fs from 'fs';
+import fs from 'fs-extra';
 import { encodeArgs, spawn } from 'just-scripts-utils';
 import webpackMerge from 'webpack-merge';
 
-declare var __non_webpack_require__: any;
+import webpack from 'webpack';
 
 export interface WebpackTaskOptions {
+  /** Path to config file (relative to working directory) */
   config?: string;
   mode?: 'production' | 'development';
 }
 
-export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
-  const wp = require('webpack');
-
-  return function webpack() {
+/**
+ * Generate a task function which runs webpack.
+ *
+ * @param webpackModule Webpack module (`import webpack from 'webpack'`). This is needed because
+ * just-scripts does not take a (non-dev) dependency on or bundle webpack.
+ * @param options Build options
+ */
+export function webpackTask(webpackModule: any, options: WebpackTaskOptions = {}): TaskFunction {
+  return function webpackFn() {
     logger.info(`Running Webpack`);
-    const webpackConfigPath = resolveCwd((options && options.config) || 'webpack.config.js');
-    logger.info(`Webpack Config Path: ${webpackConfigPath}`);
+    const webpackConfigPath = resolveCwd(options.config || 'webpack.config.js');
+    logger.info(`Webpack config path: ${webpackConfigPath}`);
 
     if (webpackConfigPath && fs.existsSync(webpackConfigPath)) {
       return new Promise((resolve, reject) => {
@@ -25,9 +31,11 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
             return reject(`Cannot find webpack configuration file`);
           }
 
-          const configLoader = __non_webpack_require__(webpackConfigPath);
+          const configLoader:
+            | webpack.Configuration
+            | ((args: any) => webpack.Configuration) = __non_webpack_require__(webpackConfigPath);
 
-          let webpackConfig;
+          let webpackConfig: webpack.Configuration;
 
           // If the loaded webpack config is a function
           // call it with the original process.argv arguments from build.js.
@@ -40,7 +48,8 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
           const { config, ...restConfig } = options || { config: null };
           webpackConfig = webpackMerge(webpackConfig, restConfig);
 
-          wp(webpackConfig, (err: Error, stats: any) => {
+          const wp: typeof webpack = webpackModule;
+          wp(webpackConfig, (err: Error, stats: webpack.Stats) => {
             if (err || stats.hasErrors()) {
               let errorStats = stats.toJson('errors-only');
               errorStats.errors.forEach((error: any) => {
@@ -60,15 +69,15 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   };
 }
 
-export function webpackDevServerTask(options?: WebpackTaskOptions) {
-  const configPath = resolveCwd((options && options.config) || 'webpack.serve.config.js');
+export function webpackDevServerTask(options: WebpackTaskOptions = {}) {
+  const configPath = resolveCwd(options.config || 'webpack.serve.config.js');
   const cmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
 
   return function webpackDevServer() {
     console.log(cmd, configPath);
 
     if (cmd && configPath && fs.existsSync(configPath)) {
-      const mode = (options && options.mode) || 'development';
+      const mode = options.mode || 'development';
       const args = [cmd, '--config', configPath, '--open', '--mode', mode];
 
       logger.info(cmd, encodeArgs(args).join(' '));
