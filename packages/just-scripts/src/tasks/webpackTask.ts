@@ -8,6 +8,8 @@ declare var __non_webpack_require__: any;
 export interface WebpackTaskOptions {
   config?: string;
   mode?: 'production' | 'development';
+  // can contain other config values which are passed on to webpack
+  [key: string]: any;
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
@@ -27,20 +29,26 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
           const configLoader = __non_webpack_require__(webpackConfigPath);
 
-          let webpackConfig;
+          let webpackConfigs;
 
           // If the loaded webpack config is a function
           // call it with the original process.argv arguments from build.js.
           if (typeof configLoader == 'function') {
-            webpackConfig = configLoader(argv());
+            webpackConfigs = configLoader(argv());
           } else {
-            webpackConfig = configLoader;
+            webpackConfigs = configLoader;
+          }
+
+          if (!Array.isArray(webpackConfigs)) {
+            webpackConfigs = [webpackConfigs];
           }
 
           const { config, ...restConfig } = options || { config: null };
-          webpackConfig = webpackMerge(webpackConfig, restConfig);
+          webpackConfigs = webpackConfigs.map(webpackConfig =>
+            webpackMerge(webpackConfig, restConfig)
+          );
 
-          wp(webpackConfig, (err: Error, stats: any) => {
+          wp(webpackConfigs, (err: Error, stats: any) => {
             if (err || stats.hasErrors()) {
               let errorStats = stats.toJson('errors-only');
               errorStats.errors.forEach((error: any) => {
@@ -48,7 +56,6 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
               });
               reject(`Webpack failed with ${errorStats.errors.length} error(s).`);
             } else {
-              logger.info(stats);
               resolve();
             }
           });
