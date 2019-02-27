@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.10.1",
+      "tag": "just-scripts_v0.10.1",
+      "date": "Wed, 27 Feb 2019 06:19:32 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix webpack task to handle config arrays"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.10.0",
       "tag": "just-scripts_v0.10.0",
       "date": "Fri, 22 Feb 2019 23:37:36 GMT",

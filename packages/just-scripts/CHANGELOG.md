@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 22 Feb 2019 23:37:36 GMT and should not be manually modified.
+This log was last generated on Wed, 27 Feb 2019 06:19:32 GMT and should not be manually modified.
+
+## 0.10.1
+Wed, 27 Feb 2019 06:19:32 GMT
+
+### Patches
+
+- Fix webpack task to handle config arrays
 
 ## 0.10.0
 Fri, 22 Feb 2019 23:37:36 GMT
