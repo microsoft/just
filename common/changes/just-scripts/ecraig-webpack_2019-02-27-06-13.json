@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "Fix webpack task to handle config arrays",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "elcraig@microsoft.com"
+}
