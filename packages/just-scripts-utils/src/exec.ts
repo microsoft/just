@@ -1,12 +1,17 @@
 import cp from 'child_process';
 
+export interface ExecError extends cp.ExecException {
+  stdout?: string;
+  stderr?: string;
+}
+
 /**
  * Execute a command.
  *
  * @param cmd Command to execute
  * @param opts Normal exec options plus stdout/stderr for piping output. Can pass `process` for this param.
  * @returns Promise which will settle when the command completes. If output was not piped, it will be
- * returned as the promise's value.
+ * returned as the promise's value. If the promise was rejected, the error will be of type `ExecError`.
  */
 export function exec(
   cmd: string,
@@ -16,9 +21,11 @@ export function exec(
     const child = cp.exec(
       cmd,
       opts,
-      (error: cp.ExecException | null, stdout?: string, stderr?: string) => {
+      (error: ExecError | null, stdout?: string, stderr?: string) => {
         if (error) {
-          reject(stderr || stdout);
+          error.stdout = stdout;
+          error.stderr = stderr;
+          reject(error);
         } else {
           resolve(stdout);
         }
@@ -63,8 +70,8 @@ export function encodeArgs(cmdArgs: string[]) {
  * @param cmd Command to execute
  * @param args Args for the command
  * @param opts Normal spawn options plus stdout/stderr for piping output. Can pass `process` for this param.
- * @returns Promise which will settle when the command completes. If the promise is rejected, the error code
- * will be the rejection value.
+ * @returns Promise which will settle when the command completes. If the promise is rejected, the error will
+ * include the child process's exit code.
  */
 export function spawn(
   cmd: string,
@@ -73,7 +80,15 @@ export function spawn(
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     const child = cp.spawn(cmd, args, opts);
-    child.on('exit', code => (code !== 0 ? reject(code) : resolve()));
+    child.on('exit', code => {
+      if (code) {
+        const error = new Error('Command failed: ' + [cmd, ...args].join(' '));
+        (error as any).code = code;
+        reject(error);
+      } else {
+        resolve();
+      }
+    });
 
     if (opts.stdout) {
       child.stdout.pipe(opts.stdout);
