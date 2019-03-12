@@ -2,6 +2,18 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "version": "0.6.1",
+      "tag": "just-scripts-utils_v0.6.1",
+      "date": "Tue, 12 Mar 2019 20:07:18 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Exec error handling improvements"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.0",
       "tag": "just-scripts-utils_v0.6.0",
       "date": "Fri, 22 Feb 2019 23:37:36 GMT",
