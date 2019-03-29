@@ -1,5 +1,5 @@
 import mockfs from 'mock-fs';
-import yargsMock from './__mocks__/yargs';
+import yargsMock from './__mocks__/yargs/yargs';
 import {
   _isFileNameLike,
   _tryResolve,
@@ -137,7 +137,7 @@ describe('resolve', () => {
     expect(resolve('b.txt', 'a')).toContain('a/b.txt');
   });
 
-  it('uses dirname of --config arg', () => {
+  fit('uses dirname of --config arg', () => {
     mockfs({
       a: { 'b.txt': '' }
     });
