@@ -23,5 +23,6 @@ steps:
       git remote set-url origin https://$(github.user):$(github.pat)@github.com/Microsoft/just.git
       npm install
       npm run build
+      npm test
       node ./common/scripts/install-run-rush.js publish -a -p -b master -n $(npm.authtoken)
     displayName: 'npm install and build'

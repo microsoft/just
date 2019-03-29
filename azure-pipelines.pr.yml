@@ -20,4 +20,5 @@ steps:
       git config user.name "kchau@microsoft.com"
       npm install
       npm run build
+      npm test
     displayName: 'npm install and build'
