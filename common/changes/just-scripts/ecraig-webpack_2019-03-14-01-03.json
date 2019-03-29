@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "Stop webpacking package",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "elcraig@microsoft.com"
+}

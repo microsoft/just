@@ -1,5 +1,5 @@
 import mockfs from 'mock-fs';
-import yargsMock from './__mocks__/yargs';
+import yargsMock from './__mocks__/yargs/yargs';
 import {
   _isFileNameLike,
   _tryResolve,

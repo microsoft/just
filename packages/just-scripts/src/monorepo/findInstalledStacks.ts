@@ -1,7 +1,7 @@
 import path from 'path';
 import fse from 'fs-extra';
-import { ScriptsPackageJson } from './IScriptsPackageJson';
-import { StackInfo } from './IStackInfo';
+import { ScriptsPackageJson } from './ScriptsPackageJson';
+import { StackInfo } from './StackInfo';
 import { readPackageJson } from 'just-scripts-utils';
 
 // Fetch templates for installation - fetches templates for project generation

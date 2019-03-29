@@ -18,7 +18,16 @@ steps:
   - script: |
       git config user.email "kchau@microsoft.com"
       git config user.name "kchau@microsoft.com"
+    displayName: git config
+
+  - script: |
       npm install
+    displayName: 'npm install'
+
+  - script: |
       npm run build
+    displayName: 'build'
+
+  - script: |
       npm test
-    displayName: 'npm install and build'
+    displayName: 'test'
