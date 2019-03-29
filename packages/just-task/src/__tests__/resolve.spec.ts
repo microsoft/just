@@ -137,7 +137,7 @@ describe('resolve', () => {
     expect(resolve('b.txt', 'a')).toContain('a/b.txt');
   });
 
-  fit('uses dirname of --config arg', () => {
+  it('uses dirname of --config arg', () => {
     mockfs({
       a: { 'b.txt': '' }
     });
