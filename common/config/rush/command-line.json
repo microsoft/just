@@ -61,6 +61,15 @@
     },
 
     {
+      "commandKind": "bulk",
+      "name": "test",
+      "summary": "Test",
+      "description": "Runs tests in every project if available",
+      "enableParallelism": true,
+      "ignoreMissingScript": true
+    },
+
+    {
       /**
        * (Required) Determines the type of custom command.
        * Rush's "global" commands are invoked once for the entire repo.
