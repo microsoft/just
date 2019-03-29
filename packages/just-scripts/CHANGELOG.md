@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 27 Feb 2019 06:19:32 GMT and should not be manually modified.
+This log was last generated on Fri, 29 Mar 2019 20:31:33 GMT and should not be manually modified.
+
+## 0.11.0
+Fri, 29 Mar 2019 20:31:33 GMT
+
+### Minor changes
+
+- Stop webpacking package
 
 ## 0.10.1
 Wed, 27 Feb 2019 06:19:32 GMT
