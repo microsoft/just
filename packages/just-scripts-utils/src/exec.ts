@@ -80,15 +80,24 @@ export function spawn(
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     const child = cp.spawn(cmd, args, opts);
-    child.on('exit', code => {
-      if (code) {
-        const error = new Error('Command failed: ' + [cmd, ...args].join(' '));
-        (error as any).code = code;
-        reject(error);
-      } else {
-        resolve();
+
+    let exitHandled = false;
+
+    const handleExit = (code: number, signal: number) => {
+      if (!exitHandled) {
+        exitHandled = true;
+        if (code) {
+          const error = new Error('Command failed: ' + [cmd, ...args].join(' '));
+          (error as any).code = code;
+          reject(error);
+        } else {
+          resolve();
+        }
       }
-    });
+    };
+
+    child.on('close', handleExit);
+    child.on('exit', handleExit);
 
     if (opts.stdout) {
       child.stdout.pipe(opts.stdout);

@@ -1,13 +1,9 @@
-// @ts-check
+import fs from 'fs-extra';
+import path from 'path';
+import { spawnSync } from '../spawnSync';
+import { tmpPath } from '../tmpPath';
 
-const fs = require('fs-extra');
-const path = require('path');
-const os = require('os');
-const spawnAsync = require('./spawnAsync');
-
-const ToolPrefix = 'just-scenario-tests';
-const tmpPath = path.join(os.tmpdir(), ToolPrefix);
-const toolsPath = path.join(__dirname, 'node_modules');
+const toolsPath = path.join(__dirname, '../../node_modules');
 
 describe('create-just', () => {
   beforeEach(() => {
@@ -17,8 +13,8 @@ describe('create-just', () => {
     fs.mkdirpSync(tmpPath);
   });
 
-  it('can provision a monorepo', async () => {
-    const results = await spawnAsync(
+  it('can provision a monorepo', () => {
+    const results = spawnSync(
       process.execPath,
       [
         path.join(toolsPath, 'create-just/bin/create-just.js'),
@@ -29,11 +25,11 @@ describe('create-just', () => {
       { cwd: tmpPath }
     );
 
-    expect(results.stdout).toContain('All Set!');
-  }, 60000);
+    expect(results).toContain('All Set!');
+  });
 
   it('can provision a single lib', async () => {
-    const results = await spawnAsync(
+    const results = spawnSync(
       process.execPath,
       [
         path.join(toolsPath, 'create-just/bin/create-just.js'),
@@ -44,6 +40,6 @@ describe('create-just', () => {
       { cwd: tmpPath }
     );
 
-    expect(results.stdout).toContain('All Set!');
-  }, 60000);
+    expect(results).toContain('All Set!');
+  });
 });
