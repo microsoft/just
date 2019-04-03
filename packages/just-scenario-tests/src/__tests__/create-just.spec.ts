@@ -28,7 +28,7 @@ describe('create-just', () => {
     expect(results).toContain('All Set!');
   });
 
-  it('can provision a single lib', async () => {
+  it('can provision a single lib', () => {
     const results = spawnSync(
       process.execPath,
       [
