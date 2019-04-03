@@ -19,10 +19,10 @@ function checkEmptyRepo(projectPath: string) {
 
 export async function initCommand(argv: yargs.Arguments) {
   // TODO: autosuggest just-stack-* packages from npmjs.org
-  if (!argv.type) {
+  if (!argv.stack) {
     let response = await prompts({
       type: 'select',
-      name: 'type',
+      name: 'stack',
       message: 'What type of repo to create?',
       choices: [
         { title: 'Basic library', value: 'just-stack-single-lib' },
@@ -30,7 +30,7 @@ export async function initCommand(argv: yargs.Arguments) {
         { title: 'Monorepo', value: 'just-stack-monorepo' }
       ]
     });
-    argv.type = response.type;
+    argv.stack = response.stack;
   }
 
   let name: string = '';
@@ -57,7 +57,7 @@ export async function initCommand(argv: yargs.Arguments) {
 
   logger.info('Initializing the repo in the current directory');
 
-  const templatePath = await downloadPackage(argv.type);
+  const templatePath = await downloadPackage(argv.stack);
 
   if (templatePath) {
     applyTemplate(templatePath, paths.projectPath, { name });
@@ -66,7 +66,7 @@ export async function initCommand(argv: yargs.Arguments) {
     execSync('git add .');
     execSync('git commit -m "initial commit"');
 
-    if (argv.type.includes('monorepo')) {
+    if (argv.stack.includes('monorepo')) {
       rushUpdate(paths.projectPath);
     }
 

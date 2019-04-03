@@ -10,6 +10,7 @@ dependencies:
   '@babel/types': 7.3.2
   '@rush-temp/create-just': 'file:projects/create-just.tgz'
   '@rush-temp/example-lib': 'file:projects/example-lib.tgz'
+  '@rush-temp/just-scenario-tests': 'file:projects/just-scenario-tests.tgz'
   '@rush-temp/just-scripts': 'file:projects/just-scripts.tgz'
   '@rush-temp/just-scripts-utils': 'file:projects/just-scripts-utils.tgz'
   '@rush-temp/just-stack-monorepo': 'file:projects/just-stack-monorepo.tgz'
@@ -19,7 +20,6 @@ dependencies:
   '@rush-temp/just-task-docs': 'file:projects/just-task-docs.tgz'
   '@rush-temp/just-task-logger': 'file:projects/just-task-logger.tgz'
   '@rush-temp/just-task-scripts': 'file:projects/just-task-scripts.tgz'
-  '@types/fs-extra': 5.0.4
   '@types/glob': 7.1.1
   '@types/handlebars': 4.0.40
   '@types/jest': 23.3.13
@@ -1438,6 +1438,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-DsknoBvD8s+RFfSGjmERJ7ZOP1HI0UZRA3FSI+Zakhrc/Gy26YQsLI+m5V5DHxroHRJqCDLKJp7Hixn8zyaF7g==
+  /@types/fs-extra/5.0.5:
+    dependencies:
+      '@types/node': 10.14.4
+    dev: false
+    resolution:
+      integrity: sha512-w7iqhDH9mN8eLClQOYTkhdYUOSpp25eXxfc6VbFOGtzxW34JcvctH2bKjj4jD4++z4R5iO5D+pg48W2e03I65A==
   /@types/glob/7.1.1:
     dependencies:
       '@types/events': 3.0.0
@@ -1491,6 +1497,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-nMRqS+mL1TOnIJrL6LKJcNZPB8V3eTfRo9FQA2b5gDvrHurC8XbSA86KNe0dShlEL7ReWJv/OU9NL7Z0dnqWTg==
+  /@types/node/10.14.4:
+    dev: false
+    resolution:
+      integrity: sha512-DT25xX/YgyPKiHFOpNuANIQIVvYEwCWXgK2jYYwqgaMrYE6+tq+DtmMwlD3drl6DJbUwtlIDnn0d7tIn/EbXBg==
   /@types/prompts/1.2.0:
     dev: false
     resolution:
@@ -11035,7 +11045,7 @@ packages:
     dev: false
     name: '@rush-temp/create-just'
     resolution:
-      integrity: sha512-1PnWy5a+9ktkfBKL3z+0CFof7CCvVaLFJN1tyFzOxwWEBe4rLogH1hEuIL2EzdQOez1bzOaRwEU8Vayd5mT1+Q==
+      integrity: sha512-VqPWxKXK5WJf7P1eyxQMhOEUXNiG6NvtGsWHJz1d2hlkasPumWCSP2FBB/VbkWmflRTC5aM1kTJyETP7CODKtQ==
       tarball: 'file:projects/create-just.tgz'
     version: 0.0.0
   'file:projects/example-lib.tgz':
@@ -11044,8 +11054,22 @@ packages:
     dev: false
     name: '@rush-temp/example-lib'
     resolution:
-      integrity: sha512-aQJYnOTM5mj+8jLG1RPV3nJE/8yEUQrEqDlUq/e5OaihtNl+2r0shTotynRcOe+RfsZ2UeIRHIIx/r54xnwHYw==
+      integrity: sha512-Z8ADj+DpjglEG4REQHlAoy6KevG1sADdXSDbru28DRIwd7U52mMk8V//pFdhWZuqWNPHRVRKfY+xQj4XWc85Ww==
       tarball: 'file:projects/example-lib.tgz'
+    version: 0.0.0
+  'file:projects/just-scenario-tests.tgz':
+    dependencies:
+      '@types/fs-extra': 5.0.5
+      '@types/jest': 23.3.14
+      '@types/node': 10.12.26
+      fs-extra: 7.0.1
+      jest: 23.6.0
+      ts-jest: /ts-jest/23.10.5/jest@23.6.0
+    dev: false
+    name: '@rush-temp/just-scenario-tests'
+    resolution:
+      integrity: sha512-+jnl5KqgUuNsO6XxGjGq5Yg5Os2KYnKRFe4/sbB7L5VQ1CnY7AouYJAvFBihiHffEYagTZhe2lgt9hYyz2oDXg==
+      tarball: 'file:projects/just-scenario-tests.tgz'
     version: 0.0.0
   'file:projects/just-scripts-utils.tgz':
     dependencies:
@@ -11073,11 +11097,12 @@ packages:
       semver: 5.6.0
       tar: 4.4.8
       ts-jest: /ts-jest/23.10.5/jest@23.6.0
+      typescript: 3.3.3
       yargs: 12.0.5
     dev: false
     name: '@rush-temp/just-scripts-utils'
     resolution:
-      integrity: sha512-//P/9UIZoMZ/jXrHOzliDpUC1b+u8lFvySOeWmmt5MW1EpDY9ODbC0BkVeBlIWtNafrElVuF38sudAbKpm3PvA==
+      integrity: sha512-UukcnRXYP2zdlan0iCN3PaMdbdXc6cEq/P754tohohMGKXCfiFHVpsxBgNhIPKPhdzy5JXyeoASCO8pHE9nOWg==
       tarball: 'file:projects/just-scripts-utils.tgz'
     version: 0.0.0
   'file:projects/just-scripts.tgz':
@@ -11100,12 +11125,12 @@ packages:
       ts-loader: /ts-loader/5.3.3/typescript@3.3.3
       typescript: 3.3.3
       webpack: 4.29.5
-      webpack-cli: 3.2.1
+      webpack-cli: /webpack-cli/3.2.1/webpack@4.29.5
       webpack-merge: 4.2.1
     dev: false
     name: '@rush-temp/just-scripts'
     resolution:
-      integrity: sha512-DYwcOzErchqXHKj7x0ZK0MjUEROS/HzpF9eSbuVJBQ5mhAoQAxe1DskeOsxkWrWt1JXmmUza0gpxKWSf5GXWlw==
+      integrity: sha512-GGkkXH5ycwPhNovTUsVpLqQu21Np5fSzkpvjsRe27GOZgjwGVxOLLMGUDUMwv2MhTYNv2749SjPuWEcTVF44uQ==
       tarball: 'file:projects/just-scripts.tgz'
     version: 0.0.0
   'file:projects/just-stack-monorepo.tgz':
@@ -11118,7 +11143,7 @@ packages:
     dev: false
     name: '@rush-temp/just-stack-monorepo'
     resolution:
-      integrity: sha512-uA3SznVlyblvLzdHQDt5hcb0iBd/GYQmSMXcINfIWPlTvbIrhY17nHfBNumYwzY/XC/7NUppz8IGmL3NrM+KRg==
+      integrity: sha512-jzm3De+zoiaJTUdlZ041oyFXQHQavcpqEERufKif8oXv73SWzYrDWfOueue83ffQcXAZxLEXvv0TAMO1LXaX5Q==
       tarball: 'file:projects/just-stack-monorepo.tgz'
     version: 0.0.0
   'file:projects/just-stack-single-lib.tgz':
@@ -11131,7 +11156,7 @@ packages:
     dev: false
     name: '@rush-temp/just-stack-single-lib'
     resolution:
-      integrity: sha512-o52aWVhjnvZ7DPHLeTSktxlAse3CzyX0Wf4bX5kRDR7ctqxNUkiN5O3pQ6P1aGyZmh3s0/UVdL2g+xYqYqKv7Q==
+      integrity: sha512-bzu0woy+3NSlaiK4w87vmPtQSUdevAPfyHFa4G3EOjUBZlcJuNWMRjyVd4as1AHUj0Jsa6fm2f5T5kCiDGJRFg==
       tarball: 'file:projects/just-stack-single-lib.tgz'
     version: 0.0.0
   'file:projects/just-stack-uifabric.tgz':
@@ -11144,7 +11169,7 @@ packages:
     dev: false
     name: '@rush-temp/just-stack-uifabric'
     resolution:
-      integrity: sha512-QnkhtPFAKaAHXC52n8ly65epIuvC/rslRdm6uQFv/dtV07tqt4l7TmaU3B8HP/iN9jvAdJ7fFZc5OcXGnJg2qw==
+      integrity: sha512-l0ng8Sbh1oW1ar2uz6fSPTy5kEylwYfzJwUYVCZnPaOM1ZEYU6j2LRUfBnZWnMu5fy4Ae6cKkAAdBMFMeue91Q==
       tarball: 'file:projects/just-stack-uifabric.tgz'
     version: 0.0.0
   'file:projects/just-task-docs.tgz':
@@ -11189,15 +11214,17 @@ packages:
   'file:projects/just-task-scripts.tgz':
     dependencies:
       cpx: 1.5.0
+      jest-cli: 23.6.0
     dev: false
     name: '@rush-temp/just-task-scripts'
     resolution:
-      integrity: sha512-0VC9u8Mp+U6n07zRkj54o2oVf5AjiSpA+j0/NdIEoj0KphvZiQbu5hdY52QpdQT+j98oQZmPp+QuDzqe3gsWJQ==
+      integrity: sha512-BOBMIZJ4ShHPCveUC5w2WEPOW4Jr6fBsvxuFeXxdEo0iqlkJQgKUB/Ud/rQp7c4wJl3VCviZV+GzA//T6iFOhw==
       tarball: 'file:projects/just-task-scripts.tgz'
     version: 0.0.0
   'file:projects/just-task.tgz':
     dependencies:
       '@types/jest': 23.3.13
+      '@types/mock-fs': 3.6.30
       '@types/node': 10.12.21
       '@types/resolve': 0.0.8
       '@types/undertaker': 1.2.0
@@ -11205,6 +11232,7 @@ packages:
       '@types/yargs': 12.0.1
       chalk: 2.4.2
       jest: 23.6.0
+      mock-fs: 4.8.0
       resolve: 1.10.0
       ts-jest: /ts-jest/23.10.5/jest@23.6.0
       typescript: 3.3.3
@@ -11214,7 +11242,7 @@ packages:
     dev: false
     name: '@rush-temp/just-task'
     resolution:
-      integrity: sha512-9X7le0kn6l/mMRzxJ2BxE4CwPp19DO64Z0kLaPFtY/OSJg28NgaPf7DlvPS+DSnkKkt3z4JLyGF1v6zx83e6vw==
+      integrity: sha512-UEstoANc3HzUoTmk2Y6Z503I9ch//tdCtSYywwHcl/P2ONVwlSZypY5bDo1MbmDYJnmzLUDgmFpPfWWo5CLN1A==
       tarball: 'file:projects/just-task.tgz'
     version: 0.0.0
 registry: 'https://registry.npmjs.org/'
@@ -11232,6 +11260,7 @@ specifiers:
   '@babel/types': ^7.1.2
   '@rush-temp/create-just': 'file:./projects/create-just.tgz'
   '@rush-temp/example-lib': 'file:./projects/example-lib.tgz'
+  '@rush-temp/just-scenario-tests': 'file:./projects/just-scenario-tests.tgz'
   '@rush-temp/just-scripts': 'file:./projects/just-scripts.tgz'
   '@rush-temp/just-scripts-utils': 'file:./projects/just-scripts-utils.tgz'
   '@rush-temp/just-stack-monorepo': 'file:./projects/just-stack-monorepo.tgz'
@@ -11241,7 +11270,6 @@ specifiers:
   '@rush-temp/just-task-docs': 'file:./projects/just-task-docs.tgz'
   '@rush-temp/just-task-logger': 'file:./projects/just-task-logger.tgz'
   '@rush-temp/just-task-scripts': 'file:./projects/just-task-scripts.tgz'
-  '@types/fs-extra': ^5.0.4
   '@types/glob': ^7.1.1
   '@types/handlebars': ^4.0.39
   '@types/jest': ^23.3.13

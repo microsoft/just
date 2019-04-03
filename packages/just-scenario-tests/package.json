@@ -1,0 +1,28 @@
+{
+  "name": "just-scenario-tests",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "docker build -t just-scenario-tests -f Dockerfile ../..",
+    "test": "docker run -v $(pwd)/../..:/app just-scenario-tests",
+    "_dockerTest": "jest --detectOpenHandles"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^10.12.18",
+    "@types/jest": "^23.3.13",
+    "@types/fs-extra": "^5.0.5",
+    "create-just": ">=0.6.3",
+    "just-scripts": ">=0.10.1 <1.0.0",
+    "just-stack-monorepo": ">=0.6.11",
+    "just-stack-single-lib": ">=0.5.9",
+    "just-stack-uifabric": ">=0.7.11",
+    "just-scripts-utils": ">=0.6.1 <1.0.0",
+    "fs-extra": "^7.0.1",
+    "ts-jest": "^23.10.5",
+    "jest": "^23.6.0"
+  }
+}
