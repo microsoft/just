@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-single-lib",
+      "comment": "Add custom Jest reporter",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-stack-single-lib",
+  "email": "elcraig@microsoft.com"
+}

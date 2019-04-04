@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-uifabric",
+      "comment": "Add custom Jest reporter and default to IE11-compatible libs",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-stack-uifabric",
+  "email": "elcraig@microsoft.com"
+}

@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-monorepo",
+      "comment": "Update dep versions",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-stack-monorepo",
+  "email": "elcraig@microsoft.com"
+}

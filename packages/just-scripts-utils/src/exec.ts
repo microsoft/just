@@ -61,6 +61,27 @@ export function encodeArgs(cmdArgs: string[]) {
 }
 
 /**
+ * Execute a command synchronously.
+ *
+ * @param cmd  Command to execute
+ * @param cwd Working directory in which to run the command (default: `process.cwd()`)
+ * @param returnOutput If true, return the command's output. If false/unspecified,
+ * inherit stdio from the parent process (so the child's output goes to the console).
+ * @returns If `returnOutput` is true, returns the command's output. Otherwise returns undefined.
+ */
+export function execSync(cmd: string, cwd?: string, returnOutput?: boolean): string | undefined {
+  cwd = cwd || process.cwd();
+  const env = { ...process.env };
+
+  const output = cp.execSync(cmd, {
+    cwd,
+    env: env,
+    stdio: returnOutput ? undefined : 'inherit'
+  });
+  return returnOutput ? (output || '').toString('utf8') : undefined;
+}
+
+/**
  * Execute a command in a new process.
  *
  * @param cmd Command to execute

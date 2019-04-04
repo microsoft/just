@@ -1,3 +1,4 @@
+// This doesn't have types for some reason
 const DefaultReporter = require('jest-cli/build/reporters/default_reporter').default;
 
 /**
@@ -5,20 +6,23 @@ const DefaultReporter = require('jest-cli/build/reporters/default_reporter').def
  * when there are no errors.
  */
 class JestReporter extends DefaultReporter {
-  constructor(...args) {
+  private _isLoggingError: boolean;
+
+  constructor(...args: any[]) {
     super(...args);
 
     this._isLoggingError = false;
-    this.log = message => {
-      if (this._isLoggingError) {
-        process.stderr.write(message + '\n');
-      } else {
-        process.stdout.write(message + '\n');
-      }
-    };
   }
 
-  printTestFileFailureMessage(...args) {
+  public log = (message: string) => {
+    if (this._isLoggingError) {
+      process.stderr.write(message + '\n');
+    } else {
+      process.stdout.write(message + '\n');
+    }
+  };
+
+  public printTestFileFailureMessage(...args: any[]) {
     this._isLoggingError = true;
     super.printTestFileFailureMessage(...args);
     this._isLoggingError = false;

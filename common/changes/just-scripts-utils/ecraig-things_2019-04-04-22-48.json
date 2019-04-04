@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts-utils",
+      "comment": "Add execSync",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-scripts-utils",
+  "email": "elcraig@microsoft.com"
+}

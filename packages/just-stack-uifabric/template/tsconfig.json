@@ -3,6 +3,7 @@
     "target": "es5",
     "module": "es2015",
     "outDir": "./lib",
+    "lib": ["es5", "dom"],
     "importHelpers": true,
     "downlevelIteration": true,
     "strict": true,

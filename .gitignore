@@ -14,9 +14,10 @@ build
 dist
 temp
 
-# Rush files
+# Rush and npm files
 common/temp/**
 package-deps.json
+package-lock.json
 
 # Binary files
 *.tgz
