@@ -18,6 +18,7 @@
     "start-test": "jest --watch"
   },
   "dependencies": {
+    "@types/yargs": "12.0.1",
     "chalk": "^2.4.1",
     "just-task-logger": ">=0.2.0 <1.0.0",
     "resolve": "^1.8.1",
@@ -32,7 +33,6 @@
     "@types/resolve": "^0.0.8",
     "@types/undertaker": "^1.2.0",
     "@types/undertaker-registry": "^1.0.1",
-    "@types/yargs": "12.0.1",
     "jest": "^23.6.0",
     "mock-fs": "^4.8.0",
     "ts-jest": "^23.10.5",

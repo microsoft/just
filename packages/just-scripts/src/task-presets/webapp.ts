@@ -1,31 +1,46 @@
-import { task, series, parallel } from 'just-task';
+import { Task, ComposedTask, argv, composedTasks } from 'just-task';
 import {
-  cleanTask,
-  tscTask,
-  jestTask,
   webpackTask,
-  upgradeStackTask,
-  webpackDevServerTask
+  webpackDevServerTask,
+  CompilerOptions,
+  JestTaskOptions,
+  WebpackTaskOptions
 } from '../tasks';
+import { YargsOptions, registerOptions, TaskPreset } from './TaskPreset';
+import { LibTasks, lib } from './lib';
 
-export function webapp() {
-  task('clean', cleanTask());
-
-  task('ts:commonjs', tscTask({ module: 'commonjs', outDir: 'lib-commonjs' }));
-  task('ts:esm', tscTask({ module: 'esnext', outDir: 'lib' }));
-  task('ts:watch', tscTask({ module: 'esnext', outDir: 'lib', watch: true }));
-  task('ts', parallel('ts:commonjs', 'ts:esm'));
-
-  task('jest', jestTask());
-  task('jest:watch', jestTask({ watch: true }));
-
-  task('webpack', webpackTask());
-  task('webpack:watch', webpackDevServerTask());
-
-  task('build', series('clean', 'ts', parallel('jest', 'webpack')));
-  task('test', series('clean', 'jest'));
-  task('start', series('clean', 'webpack:watch'));
-  task('start-test', series('clean', 'jest:watch'));
-
-  task('upgrade-stack', upgradeStackTask());
+export interface WebappTasks extends LibTasks {
+  clean: Task;
+  'ts:commonjs': Task<CompilerOptions>;
+  'ts:esm': Task<CompilerOptions>;
+  'ts:watch': Task<CompilerOptions>;
+  ts: ComposedTask;
+  jest: Task<JestTaskOptions>;
+  'jest:watch': Task<JestTaskOptions>;
+  webpack: Task<WebpackTaskOptions>;
+  'webpack:watch': Task<WebpackTaskOptions>;
+  build: ComposedTask;
+  test: ComposedTask;
+  start: ComposedTask;
+  'start-test': ComposedTask;
+  'upgrade-stack': Task;
 }
+
+export const webapp: TaskPreset<WebappTasks> = {
+  options(extraOptions: YargsOptions = {}) {
+    registerOptions(extraOptions);
+    return argv();
+  },
+  defaultTasks(): WebappTasks {
+    return {
+      ...lib.defaultTasks(),
+      webpack: { fn: webpackTask },
+      'webpack:watch': { fn: webpackDevServerTask },
+      build: { series: ['clean', 'ts', { parallel: ['jest', 'webpack'] }] },
+      start: { series: ['clean', 'webpack:watch'] }
+    };
+  },
+  register(tasks?: WebappTasks) {
+    composedTasks(tasks || webapp.defaultTasks());
+  }
+};

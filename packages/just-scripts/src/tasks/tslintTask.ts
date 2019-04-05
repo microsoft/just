@@ -7,6 +7,9 @@ export interface TsLintTaskOptions {
   config?: string;
 }
 
+/**
+ * Run tslint. You must have tslint installed in your workspace to make this work.
+ */
 export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
   const projectFile = resolveCwd('./tsconfig.json');
 

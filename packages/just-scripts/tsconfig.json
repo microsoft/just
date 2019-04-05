@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2015",
+    "lib": ["es2017"],
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
@@ -8,6 +9,7 @@
     "strict": true,
     "strictBindCallApply": false,
     "esModuleInterop": true,
+    "noUnusedLocals": true,
     "sourceMap": true
   },
   "include": ["src", "typings/*.d.ts"]

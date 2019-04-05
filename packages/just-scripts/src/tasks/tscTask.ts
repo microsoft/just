@@ -3,9 +3,9 @@ import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { exec, encodeArgs, spawn } from 'just-scripts-utils';
 import fs from 'fs';
 
-type CompilerOptions = { [key in keyof ts.CompilerOptions]: string | boolean };
+export type CompilerOptions = { [key in keyof ts.CompilerOptions]: string | boolean };
 
-export function tscTask(options: CompilerOptions): TaskFunction {
+export function tscTask(options: CompilerOptions = {}): TaskFunction {
   const tsConfigFile = resolveCwd('./tsconfig.json');
   const tscCmd = resolve('typescript/lib/tsc.js');
 
