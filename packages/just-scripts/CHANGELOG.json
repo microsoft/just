@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.11.1",
+      "tag": "just-scripts_v0.11.1",
+      "date": "Fri, 05 Apr 2019 21:18:13 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Find installed stack from scripts folder in monorepo"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.0",
       "tag": "just-scripts_v0.11.0",
       "date": "Fri, 29 Mar 2019 20:31:33 GMT",

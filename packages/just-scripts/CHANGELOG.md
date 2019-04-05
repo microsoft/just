@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 29 Mar 2019 20:31:33 GMT and should not be manually modified.
+This log was last generated on Fri, 05 Apr 2019 21:18:13 GMT and should not be manually modified.
+
+## 0.11.1
+Fri, 05 Apr 2019 21:18:13 GMT
+
+### Patches
+
+- Find installed stack from scripts folder in monorepo
 
 ## 0.11.0
 Fri, 29 Mar 2019 20:31:33 GMT
