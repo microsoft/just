@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.11.2",
+      "tag": "just-scripts_v0.11.2",
+      "date": "Fri, 05 Apr 2019 22:59:13 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix the rootpath for finding installed stacks again"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.1",
       "tag": "just-scripts_v0.11.1",
       "date": "Fri, 05 Apr 2019 21:18:13 GMT",

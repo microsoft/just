@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 05 Apr 2019 21:18:13 GMT and should not be manually modified.
+This log was last generated on Fri, 05 Apr 2019 22:59:13 GMT and should not be manually modified.
+
+## 0.11.2
+Fri, 05 Apr 2019 22:59:13 GMT
+
+### Patches
+
+- fix the rootpath for finding installed stacks again
 
 ## 0.11.1
 Fri, 05 Apr 2019 21:18:13 GMT
