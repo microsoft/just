@@ -12,7 +12,7 @@ export interface OutdatedInfo {
 
 export async function getOutdatedStacks(rootPath: string) {
   const scriptsPath = path.join(rootPath, 'scripts');
-  const installedStacks = findInstalledStacks(rootPath);
+  const installedStacks = findInstalledStacks(scriptsPath);
 
   const outdatedJson: any = await new Promise((resolve, reject) => {
     const cp = spawn('npm', ['outdated', '--json'], { cwd: scriptsPath, stdio: 'pipe' });

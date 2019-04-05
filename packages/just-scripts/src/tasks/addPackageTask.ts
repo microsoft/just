@@ -34,7 +34,7 @@ export function addPackageTask(): TaskFunction {
 
     // TODO: do validation that the path is indeed a monorepo
 
-    const installedStacks = findInstalledStacks(rootPath);
+    const installedStacks = findInstalledStacks(path.join(rootPath, 'scripts'));
 
     // TODO: autosuggest just-stack-* packages from npmjs.org
     let response = await prompts({
