@@ -64,7 +64,11 @@ export function upgradeRepoTask(): TaskFunction {
               } to v${diffInfo.toVersion}`
             );
 
-            applyStackDiffs(project.projectFolder, stackDiffs[projPackageJson.just.stack]);
+            applyStackDiffs(
+              rootPath,
+              project.projectFolder,
+              stackDiffs[projPackageJson.just.stack]
+            );
 
             didUpgradeProjects = true;
           }
@@ -83,6 +87,6 @@ export function upgradeRepoTask(): TaskFunction {
     }
 
     logger.info('Writing just-stacks.json. Please check this file in!');
-    // writeLockFile(rootPath);
+    writeLockFile(rootPath);
   };
 }
