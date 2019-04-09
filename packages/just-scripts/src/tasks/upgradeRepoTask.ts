@@ -5,6 +5,7 @@ import {
   readPackageJson,
   logger
 } from 'just-scripts-utils';
+import path from 'path';
 import { TaskFunction } from 'just-task';
 import { getAvailableStacks } from '../stack/getAvailableStacks';
 import { readLockFile, writeLockFile } from '../stack/lockfile';
@@ -23,22 +24,22 @@ export function upgradeRepoTask(): TaskFunction {
     const oldStacks = readLockFile(rootPath);
 
     if (oldStacks) {
+      let didUpgradeProjects = false;
+
       // First, gather all the stack diffs
       const newStacks = getAvailableStacks(rootPath);
       const stackDiffs: { [stack: string]: DiffInfo } = {};
 
       try {
-        await Object.keys(oldStacks).reduce((currentPromise, stack) => {
+        await Object.keys(oldStacks).reduce(async (currentPromise, stack) => {
+          await currentPromise;
           if (oldStacks[stack] !== newStacks[stack]) {
-            return currentPromise.then(async () => {
-              stackDiffs[stack] = await getStackDiffs(stack, oldStacks[stack], newStacks[stack]);
-            });
+            stackDiffs[stack] = await getStackDiffs(stack, oldStacks[stack], newStacks[stack]);
           }
-
-          return currentPromise;
         }, Promise.resolve());
       } catch (e) {
-        logger.error('Cannot figure out upgrades needed for the packages in this repo');
+        logger.error('Cannot figure out upgrades needed for the packages in this repo: ', e);
+        return;
       }
 
       // Second, for each package, look for stacks that match
@@ -49,31 +50,39 @@ export function upgradeRepoTask(): TaskFunction {
       }
 
       await rushConfig.projects.reduce(async (currentPromise, project) => {
-        const projPackageJson = readPackageJson(project.projectFolder);
+        await currentPromise;
 
-        if (projPackageJson && projPackageJson.just && projPackageJson.just.stack) {
-          await currentPromise;
+        if (project.projectFolder !== 'scripts') {
+          const projPackageJson = readPackageJson(path.join(rootPath, project.projectFolder));
 
-          const diffInfo = stackDiffs[projPackageJson.just.stack];
+          if (projPackageJson && projPackageJson.just && projPackageJson.just.stack) {
+            const diffInfo = stackDiffs[projPackageJson.just.stack];
 
-          logger.info(
-            `Upgrading ${project.packageName} from ${projPackageJson.just.stack} v${
-              diffInfo.fromVersion
-            } to v${diffInfo.toVersion}`
-          );
+            logger.info(
+              `Upgrading ${project.packageName} from ${projPackageJson.just.stack} v${
+                diffInfo.fromVersion
+              } to v${diffInfo.toVersion}`
+            );
 
-          applyStackDiffs(project.projectFolder, stackDiffs[projPackageJson.just.stack]);
+            applyStackDiffs(project.projectFolder, stackDiffs[projPackageJson.just.stack]);
+
+            didUpgradeProjects = true;
+          }
         }
       }, Promise.resolve());
+
+      if (didUpgradeProjects) {
+        logger.info(
+          'Upgrade repo task has finished its work. You might notice some conflicts to be resolved by hand.'
+        );
+
+        logger.info(
+          'You might also have to perform a `rush update` manually if package.json has been modified by the upgrade'
+        );
+      }
     }
 
-    rushUpdate(rootPath);
-
     logger.info('Writing just-stacks.json. Please check this file in!');
-    writeLockFile(rootPath);
-
-    logger.info(
-      'Upgrade repo task has finished its work. You might notice some conflicts to be resolved by hand.'
-    );
+    // writeLockFile(rootPath);
   };
 }

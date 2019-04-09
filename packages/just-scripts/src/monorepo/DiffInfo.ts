@@ -1,6 +1,7 @@
+import { patch_obj } from 'diff-match-patch';
+
 export interface DiffInfo {
-  diffFile: string;
-  ignoreLeadingPathComponentCount: number;
+  patches: { [filename: string]: patch_obj[] };
   fromVersion: string;
   toVersion: string;
 }

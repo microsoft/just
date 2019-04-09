@@ -1,7 +1,9 @@
 import fs from 'fs-extra';
+import glob from 'glob';
 import { downloadPackage, exec, paths, encodeArgs } from 'just-scripts-utils';
 import path from 'path';
 import { DiffInfo } from './DiffInfo';
+import { diff_match_patch, patch_obj } from 'diff-match-patch';
 
 export async function getStackDiffs(
   stack: string,
@@ -13,30 +15,36 @@ export async function getStackDiffs(
     downloadPackage(stack, toVersion)
   ]);
 
-  fs.mkdirpSync(paths.tempPath('diffs'));
-
-  const diffFile = paths.tempPath('diffs', `${stack}.diff`);
-
-  const tmpErr = fs.createWriteStream(diffFile);
-
-  const pathParts = packagePaths[0]!.split(path.sep);
-  const ignoreLeadingPathComponentCount = pathParts.length;
-
-  try {
-    const diff = await exec(
-      encodeArgs(['git', 'diff', '--no-index', packagePaths[0]!, packagePaths[1]!]).join(' '),
-      {
-        stderr: tmpErr
-      }
-    );
-  } catch (e) {
-    // no error, git uses stderr to write output
-  }
-
-  return {
-    diffFile,
-    ignoreLeadingPathComponentCount,
+  // Concentrates on new and modified files only
+  const diffInfo: DiffInfo = {
+    patches: {},
     fromVersion,
     toVersion
   };
+
+  const fromPath = packagePaths[0]!;
+  const toPath = packagePaths[1]!;
+  const globbedFiles = glob
+    .sync('**/*', { cwd: toPath, nodir: true })
+    .concat(glob.sync('**/.*', { cwd: toPath, nodir: true }));
+
+  const dmp = new diff_match_patch();
+
+  globbedFiles.forEach(file => {
+    const toFile = path.join(toPath, file);
+    const toContent = fs.readFileSync(toFile).toString();
+
+    const fromFile = path.join(fromPath, file);
+
+    if (fs.existsSync(fromFile)) {
+      const fromContent = fs.readFileSync(fromFile).toString();
+      const diffs = dmp.diff_main(fromContent, toContent);
+      diffInfo.patches[file.replace('.hbs', '')] = dmp.patch_make(fromContent, diffs);
+    } else {
+      const diffs = dmp.diff_main('', toContent);
+      diffInfo.patches[file.replace('.hbs', '')] = dmp.patch_make('', diffs);
+    }
+  });
+
+  return diffInfo;
 }
