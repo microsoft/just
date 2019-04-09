@@ -39,13 +39,13 @@ export async function downloadPackage(
   pkg: string,
   version: string = 'latest'
 ): Promise<string | null> {
-  if (_isDevMode(pkg)) {
-    return path.join(dirname || __dirname, '../..', pkg, 'template');
+  if (_isDevMode(pkg) && version === 'latest') {
+    return path.join(dirname || __dirname, '../../', pkg, 'template');
   }
 
   const npmCmd = os.platform() === 'win32' ? 'npm.cmd' : 'npm';
 
-  const pkgPath = paths.tempPath(pkg);
+  const pkgPath = paths.tempPath(pkg, version);
 
   if (fse.existsSync(pkgPath)) {
     fse.removeSync(pkgPath);

@@ -6,5 +6,9 @@ export function monorepo() {
   option('name');
   option('latest');
   task('add-package', 'adds a package to the monorepo', addPackageTask);
-  task('upgrade-repo', 'upgrades packages inside the monorepo according to the just-stack template', upgradeRepoTask);
+  task(
+    'upgrade-repo',
+    'upgrades packages inside the monorepo according to the just-stack template',
+    upgradeRepoTask
+  );
 }

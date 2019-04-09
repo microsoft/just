@@ -7,6 +7,7 @@ export interface PackageJson {
   description?: string;
   dependencies?: Dependencies;
   devDependencies?: Dependencies;
+  keywords?: string;
   just?: {
     /** Stack that the package is tracking */
     stack?: string;
