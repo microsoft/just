@@ -35,6 +35,8 @@ export async function getStackDiffs(
 
   return {
     diffFile,
-    ignoreLeadingPathComponentCount
+    ignoreLeadingPathComponentCount,
+    fromVersion,
+    toVersion
   };
 }

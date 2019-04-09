@@ -53,6 +53,15 @@ export function upgradeRepoTask(): TaskFunction {
 
         if (projPackageJson && projPackageJson.just && projPackageJson.just.stack) {
           await currentPromise;
+
+          const diffInfo = stackDiffs[projPackageJson.just.stack];
+
+          logger.info(
+            `Upgrading ${project.packageName} from ${projPackageJson.just.stack} v${
+              diffInfo.fromVersion
+            } to v${diffInfo.toVersion}`
+          );
+
           applyStackDiffs(project.projectFolder, stackDiffs[projPackageJson.just.stack]);
         }
       }, Promise.resolve());
