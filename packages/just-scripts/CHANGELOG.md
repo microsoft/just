@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 05 Apr 2019 22:59:13 GMT and should not be manually modified.
+This log was last generated on Wed, 10 Apr 2019 20:30:38 GMT and should not be manually modified.
+
+## 0.12.0
+Wed, 10 Apr 2019 20:30:38 GMT
+
+### Minor changes
+
+- Fixing up the upgrade scripts to use devdeps instead of just.stacks; also uses a diff / apply method to get upgrades working
 
 ## 0.11.2
 Fri, 05 Apr 2019 22:59:13 GMT

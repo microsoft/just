@@ -2,6 +2,23 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.12.0",
+      "tag": "just-scripts_v0.12.0",
+      "date": "Wed, 10 Apr 2019 20:30:38 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Fixing up the upgrade scripts to use devdeps instead of just.stacks; also uses a diff / apply method to get upgrades working"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-scripts-utils\" from `>=0.6.1 <1.0.0` to `>=0.7.0 <1.0.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.2",
       "tag": "just-scripts_v0.11.2",
       "date": "Fri, 05 Apr 2019 22:59:13 GMT",

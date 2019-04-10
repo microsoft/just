@@ -1,6 +1,13 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Tue, 12 Mar 2019 20:07:18 GMT and should not be manually modified.
+This log was last generated on Wed, 10 Apr 2019 20:30:38 GMT and should not be manually modified.
+
+## 0.7.0
+Wed, 10 Apr 2019 20:30:38 GMT
+
+### Minor changes
+
+- Fixing up the temp path to also use version in path
 
 ## 0.6.1
 Tue, 12 Mar 2019 20:07:18 GMT
