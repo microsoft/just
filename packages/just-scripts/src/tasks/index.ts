@@ -8,4 +8,3 @@ export * from './webpackTask';
 export * from './apiExtractorTask';
 export * from './addPackageTask';
 export * from './upgradeRepoTask';
-export * from './upgradeStackTask';

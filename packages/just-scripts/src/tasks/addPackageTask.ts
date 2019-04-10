@@ -46,6 +46,11 @@ export function addPackageTask(): TaskFunction {
 
     const selectedStack = installedStacks.find(stack => stack.name === response.stack)!;
 
+    if (!selectedStack) {
+      logger.warn('Cannot add package if no stack is selected');
+      return;
+    }
+
     const packagePath = path.join(rootPath, 'packages', name);
     const templatePath = path.join(selectedStack.path, 'template');
 
