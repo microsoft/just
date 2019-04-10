@@ -10,7 +10,7 @@ import { getAvailableStacks } from '../stack/getAvailableStacks';
 export function findInstalledStacks(rootPath: string) {
   const scriptsPath = path.join(rootPath, 'scripts');
   const stacks = Object.keys(getAvailableStacks(rootPath))
-    .filter(stack => stack.includes('monorepo'))
+    .filter(stack => !stack.includes('monorepo'))
     .map(stack => [stack, path.join(scriptsPath, 'node_modules', stack)]);
 
   return stacks.map<StackInfo>(([stack, stackPath]) => {
