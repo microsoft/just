@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "fix add-package task to list actual stacks",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com"
+}
