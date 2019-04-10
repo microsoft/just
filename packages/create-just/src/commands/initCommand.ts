@@ -25,9 +25,9 @@ export async function initCommand(argv: yargs.Arguments) {
       name: 'stack',
       message: 'What type of repo to create?',
       choices: [
-        { title: 'Basic library', value: 'just-stack-single-lib' },
-        { title: 'UI Fabric Web Application (React)', value: 'just-stack-uifabric' },
-        { title: 'Monorepo', value: 'just-stack-monorepo' }
+        { title: 'Monorepo', value: 'just-stack-monorepo' },
+        { title: 'UI Fabric React Application', value: 'just-stack-uifabric' },
+        { title: 'Basic library', value: 'just-stack-single-lib' }
       ]
     });
     argv.stack = response.stack;

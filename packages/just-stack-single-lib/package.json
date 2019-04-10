@@ -8,7 +8,9 @@
     "url": "https://github.com/Microsoft/just"
   },
   "main": "index.js",
-  "keywords": [],
+  "keywords": [
+    "just-stack"
+  ],
   "author": "",
   "license": "MIT",
   "scripts": {
