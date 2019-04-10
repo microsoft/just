@@ -2,6 +2,18 @@
   "name": "create-just",
   "entries": [
     {
+      "version": "0.6.4",
+      "tag": "create-just_v0.6.4",
+      "date": "Wed, 10 Apr 2019 21:52:06 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixing the order in which to present the stack choices"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.3",
       "tag": "create-just_v0.6.3",
       "date": "Fri, 22 Feb 2019 19:03:38 GMT",

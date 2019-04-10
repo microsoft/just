@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Fri, 22 Feb 2019 19:03:38 GMT and should not be manually modified.
+This log was last generated on Wed, 10 Apr 2019 21:52:06 GMT and should not be manually modified.
+
+## 0.6.4
+Wed, 10 Apr 2019 21:52:06 GMT
+
+### Patches
+
+- fixing the order in which to present the stack choices
 
 ## 0.6.3
 Fri, 22 Feb 2019 19:03:38 GMT

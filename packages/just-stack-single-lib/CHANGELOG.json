@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.5.11",
+      "tag": "just-stack-single-lib_v0.5.11",
+      "date": "Wed, 10 Apr 2019 21:52:06 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "upgrade deps"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.10",
       "tag": "just-stack-single-lib_v0.5.10",
       "date": "Wed, 10 Apr 2019 20:30:38 GMT",

@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 10 Apr 2019 20:30:38 GMT and should not be manually modified.
+This log was last generated on Wed, 10 Apr 2019 21:52:06 GMT and should not be manually modified.
+
+## 0.12.1
+Wed, 10 Apr 2019 21:52:06 GMT
+
+### Patches
+
+- fix add-package task to list actual stacks
 
 ## 0.12.0
 Wed, 10 Apr 2019 20:30:38 GMT
