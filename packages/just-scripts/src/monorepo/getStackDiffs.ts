@@ -1,12 +1,19 @@
 import fs from 'fs-extra';
 import glob from 'glob';
-import { downloadPackage, exec, paths, encodeArgs } from 'just-scripts-utils';
+import { downloadPackage } from 'just-scripts-utils';
 import path from 'path';
 import { DiffInfo } from './DiffInfo';
-import { diff_match_patch, patch_obj, Diff } from 'diff-match-patch';
+import { diff_match_patch as DiffMatchPatch, patch_obj as Patch, Diff } from 'diff-match-patch';
 
-export async function getStackDiffs(stack: string, fromVersion: string, toVersion: string): Promise<DiffInfo> {
-  const packagePaths = await Promise.all([downloadPackage(stack, fromVersion), downloadPackage(stack, toVersion)]);
+export async function getStackDiffs(
+  stack: string,
+  fromVersion: string,
+  toVersion: string
+): Promise<DiffInfo> {
+  const packagePaths = await Promise.all([
+    downloadPackage(stack, fromVersion),
+    downloadPackage(stack, toVersion)
+  ]);
 
   // Concentrates on new and modified files only
   const diffInfo: DiffInfo = {
@@ -17,8 +24,8 @@ export async function getStackDiffs(stack: string, fromVersion: string, toVersio
 
   const fromPath = packagePaths[0]!;
   const toPath = packagePaths[1]!;
-  const globbedFiles = glob.sync('**/*', { cwd: toPath, nodir: true }).concat(glob.sync('**/.*', { cwd: toPath, nodir: true }));
-  const dmp = new diff_match_patch();
+  const globbedFiles = glob.sync('**/*', { cwd: toPath, nodir: true, dot: true });
+  const dmp = new DiffMatchPatch();
 
   globbedFiles.forEach(file => {
     const toFile = path.join(toPath, file);
@@ -27,7 +34,7 @@ export async function getStackDiffs(stack: string, fromVersion: string, toVersio
     const fromFile = path.join(fromPath, file);
 
     let diffs: Diff[];
-    let patches: patch_obj[];
+    let patches: Patch[];
 
     if (fs.existsSync(fromFile)) {
       const fromContent = fs.readFileSync(fromFile).toString();

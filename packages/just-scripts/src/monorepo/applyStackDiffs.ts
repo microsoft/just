@@ -1,26 +1,19 @@
 import { DiffInfo } from './DiffInfo';
-import { diff_match_patch } from 'diff-match-patch';
+import { diff_match_patch as DiffMatchPatch } from 'diff-match-patch';
 import glob from 'glob';
 import fs from 'fs';
 import path from 'path';
 import { logger } from 'just-task';
 
 export function applyStackDiffs(rootPath: string, projectPath: string, diffInfo: DiffInfo) {
-  const dmp = new diff_match_patch();
+  const dmp = new DiffMatchPatch();
 
-  const globbedFiles = glob
-    .sync('**/*', {
-      cwd: path.join(rootPath, projectPath),
-      ignore: 'node_modules/**/*',
-      nodir: true
-    })
-    .concat(
-      glob.sync('**/.*', {
-        cwd: path.join(rootPath, projectPath),
-        ignore: 'node_modules/**/*',
-        nodir: true
-      })
-    );
+  const globbedFiles = glob.sync('**/*', {
+    cwd: path.join(rootPath, projectPath),
+    ignore: 'node_modules/**/*',
+    nodir: true,
+    dot: true
+  });
 
   globbedFiles.forEach(file => {
     const filePath = path.join(rootPath, projectPath, file);

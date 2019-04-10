@@ -9,19 +9,19 @@ export function getAvailableStacks(rootPath: string) {
     throw new Error(`not able to read package.json from ${scriptsPath}`);
   }
 
+  let stackDeps: { [key: string]: string } = {};
+
   const devDeps = packageJson.devDependencies || {};
 
-  const stackDeps = Object.keys(devDeps).reduce<{ [key: string]: string }>((collected, dep) => {
+  Object.keys(devDeps).forEach(dep => {
     const depPackageJson = readPackageJson(dep)!;
     if (
       dep.includes('just-stack') ||
       (depPackageJson.keywords && depPackageJson.keywords.includes('just-stack'))
     ) {
-      return { ...collected, [dep]: devDeps[dep] };
+      stackDeps[dep] = devDeps[dep];
     }
-
-    return collected;
-  }, {});
+  });
 
   return stackDeps;
 }
