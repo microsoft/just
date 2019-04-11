@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 10 Apr 2019 21:52:06 GMT and should not be manually modified.
+This log was last generated on Thu, 11 Apr 2019 18:27:56 GMT and should not be manually modified.
+
+## 0.12.2
+Thu, 11 Apr 2019 18:27:56 GMT
+
+### Patches
+
+- make the just-stack.json write out to a specific installed version of stack
 
 ## 0.12.1
 Wed, 10 Apr 2019 21:52:06 GMT

@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.5.12",
+      "tag": "just-stack-single-lib_v0.5.12",
+      "date": "Thu, 11 Apr 2019 18:27:56 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "make tsconfig only include src files in the generated packages"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.11",
       "tag": "just-stack-single-lib_v0.5.11",
       "date": "Wed, 10 Apr 2019 21:52:06 GMT",

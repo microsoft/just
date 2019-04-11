@@ -1,6 +1,13 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Wed, 10 Apr 2019 21:52:06 GMT and should not be manually modified.
+This log was last generated on Thu, 11 Apr 2019 18:27:56 GMT and should not be manually modified.
+
+## 0.5.12
+Thu, 11 Apr 2019 18:27:56 GMT
+
+### Patches
+
+- make tsconfig only include src files in the generated packages
 
 ## 0.5.11
 Wed, 10 Apr 2019 21:52:06 GMT

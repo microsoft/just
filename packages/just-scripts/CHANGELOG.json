@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.12.2",
+      "tag": "just-scripts_v0.12.2",
+      "date": "Thu, 11 Apr 2019 18:27:56 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "make the just-stack.json write out to a specific installed version of stack"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.12.1",
       "tag": "just-scripts_v0.12.1",
       "date": "Wed, 10 Apr 2019 21:52:06 GMT",
