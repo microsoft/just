@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
+    "target": "es5",
+    "module": "es2015",
     "outDir": "./lib",
     "importHelpers": true,
     "downlevelIteration": true,
     "strict": true,
     "moduleResolution": "node",
-    "esModuleInterop": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "react"
+  },
+  "include": ["src/**/*"]
 }
