@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-single-lib",
+      "comment": "make tsconfig only include src files in the generated packages",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-stack-single-lib",
+  "email": "kchau@microsoft.com"
+}

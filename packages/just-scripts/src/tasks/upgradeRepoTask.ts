@@ -10,10 +10,13 @@ import { applyStackDiffs } from '../monorepo/applyStackDiffs';
 export function upgradeRepoTask(): TaskFunction {
   return async function upgradeRepo() {
     const rootPath = findMonoRepoRootPath();
+
     if (!rootPath) {
       logger.error('Could not find monorepo root path. Not upgrading anything.');
       return;
     }
+
+    const scriptsPath = path.join(rootPath, 'scripts');
 
     const oldStacks = readLockFile(rootPath);
 
