@@ -7,7 +7,7 @@
     "postinstall": "node ./common/scripts/install-run-rush.js install",
     "build": "node ./common/scripts/install-run-rush.js build",
     "test": "node ./common/scripts/install-run-rush.js test",
-    "build:docs": "node ./common/scripts/install-run-rush.js build -t just-task-docs",
+    "build:docs": "node ./common/scripts/install-run-rush.js rebuild -t just-task-docs",
     "postbuild": "node ./scripts/copyReadme.js",
     "start": "node ./scripts/watch.js",
     "deploy": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -a -p -b master"
