@@ -41,6 +41,16 @@
         "title": "Just Scripts",
         "sidebar_label": "Just Scripts"
       },
+      "stacks-monorepo": {
+        "title": "stacks-monorepo"
+      },
+      "stacks-single": {
+        "title": "Single Stack",
+        "sidebar_label": "Single Stack"
+      },
+      "stacks-upgrades": {
+        "title": "stacks-upgrades"
+      },
       "stacks": {
         "title": "Just Stacks",
         "sidebar_label": "Just Stacks"

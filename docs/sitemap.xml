@@ -12,6 +12,9 @@
 <url> <loc>https://microsoft.github.io/just/docs/scripts-ts</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/just/docs/scripts-ts" /> </url>
 <url> <loc>https://microsoft.github.io/just/docs/scripts-tslint</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/just/docs/scripts-tslint" /> </url>
 <url> <loc>https://microsoft.github.io/just/docs/scripts</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/just/docs/scripts" /> </url>
+<url> <loc>https://microsoft.github.io/just/docs/stacks-monorepo</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/just/docs/stacks-monorepo" /> </url>
+<url> <loc>https://microsoft.github.io/just/docs/stacks-single</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/just/docs/stacks-single" /> </url>
+<url> <loc>https://microsoft.github.io/just/docs/stacks-upgrades</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/just/docs/stacks-upgrades" /> </url>
 <url> <loc>https://microsoft.github.io/just/docs/stacks</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/just/docs/stacks" /> </url>
 <url> <loc>https://microsoft.github.io/just/docs/thunk</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/just/docs/thunk" /> </url>
 </urlset>
