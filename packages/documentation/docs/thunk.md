@@ -35,4 +35,4 @@ $ just build --commonjs
 
 ## Next Steps
 
-Learn about the [Just task presets](presets.md)
+Learn about the [Just Scripts](scripts.md)
