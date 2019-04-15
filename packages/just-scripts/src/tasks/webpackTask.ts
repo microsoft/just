@@ -3,8 +3,6 @@ import fs from 'fs';
 import { encodeArgs, spawn } from 'just-scripts-utils';
 import webpackMerge from 'webpack-merge';
 
-declare var __non_webpack_require__: any;
-
 export interface WebpackTaskOptions {
   config?: string;
   mode?: 'production' | 'development';
@@ -27,7 +25,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
             return reject(`Cannot find webpack configuration file`);
           }
 
-          const configLoader = __non_webpack_require__(webpackConfigPath);
+          const configLoader = require(webpackConfigPath);
 
           let webpackConfigs;
 
