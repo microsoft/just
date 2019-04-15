@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 11 Apr 2019 18:27:56 GMT and should not be manually modified.
+This log was last generated on Mon, 15 Apr 2019 21:26:42 GMT and should not be manually modified.
+
+## 0.12.3
+Mon, 15 Apr 2019 21:26:42 GMT
+
+### Patches
+
+- Fix the require statement of for webpack config since it no longer uses webpack to bundle the just-scripts
 
 ## 0.12.2
 Thu, 11 Apr 2019 18:27:56 GMT
