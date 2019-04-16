@@ -2,11 +2,12 @@ import yargs from 'yargs';
 import { undertaker } from './undertaker';
 import { wrapTask } from './wrapTask';
 import { TaskFunction } from './interfaces';
+import { TaskFunction as UndertakerTaskFunction } from 'undertaker';
 
 export function task(
-  firstParam: string | TaskFunction,
-  secondParam?: TaskFunction | string,
-  thirdParam?: TaskFunction
+  firstParam: string | TaskFunction | UndertakerTaskFunction,
+  secondParam?: TaskFunction | string | UndertakerTaskFunction,
+  thirdParam?: TaskFunction | UndertakerTaskFunction
 ): TaskFunction | undefined {
   const argCount = arguments.length;
   if (argCount === 1 && typeof firstParam === 'string') {
