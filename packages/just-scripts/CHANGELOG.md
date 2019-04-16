@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 15 Apr 2019 21:26:42 GMT and should not be manually modified.
+This log was last generated on Tue, 16 Apr 2019 19:33:20 GMT and should not be manually modified.
+
+## 0.13.0
+Tue, 16 Apr 2019 19:33:20 GMT
+
+### Minor changes
+
+- Gives the add-package script a way to take in params for generating name and stack
 
 ## 0.12.3
 Mon, 15 Apr 2019 21:26:42 GMT
