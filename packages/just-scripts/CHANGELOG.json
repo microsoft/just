@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.12.3",
+      "tag": "just-scripts_v0.12.3",
+      "date": "Mon, 15 Apr 2019 21:26:42 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix the require statement of for webpack config since it no longer uses webpack to bundle the just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.12.2",
       "tag": "just-scripts_v0.12.2",
       "date": "Thu, 11 Apr 2019 18:27:56 GMT",
