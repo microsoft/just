@@ -1,12 +1,5 @@
 import path from 'path';
-import {
-  logger,
-  applyTemplate,
-  rushAddPackage,
-  rushUpdate,
-  prettyPrintMarkdown,
-  findMonoRepoRootPath
-} from 'just-scripts-utils';
+import { logger, applyTemplate, rushAddPackage, rushUpdate, prettyPrintMarkdown, findMonoRepoRootPath } from 'just-scripts-utils';
 import prompts from 'prompts';
 import fse from 'fs-extra';
 import { argv, TaskFunction } from 'just-task';
@@ -35,13 +28,14 @@ export function addPackageTask(): TaskFunction {
     // TODO: do validation that the path is indeed a monorepo
     const installedStacks = findInstalledStacks(rootPath);
 
-    // TODO: autosuggest just-stack-* packages from npmjs.org
-    let response = await prompts({
-      type: 'select',
-      name: 'stack',
-      message: 'What type of package to add to the repo?',
-      choices: installedStacks.map(stack => ({ title: stack.description, value: stack.name }))
-    });
+    let response =
+      { stack: args.stack } ||
+      (await prompts({
+        type: 'select',
+        name: 'stack',
+        message: 'What type of package to add to the repo?',
+        choices: installedStacks.map(stack => ({ title: stack.description, value: stack.name }))
+      }));
 
     const selectedStack = installedStacks.find(stack => stack.name === response.stack)!;
 
