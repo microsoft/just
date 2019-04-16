@@ -1,0 +1,12 @@
+import { spawnSync } from './spawnSync';
+import path from 'path';
+import os from 'os';
+
+export function runNpm(args: string[], tmpPath: string) {
+  const npmPath = path.join(path.dirname(process.execPath), os.platform() === 'win32' ? 'npm.cmd' : 'npm');
+  return spawnSync(npmPath, args, { cwd: tmpPath });
+}
+
+export function runNode(args: string[], tmpPath: string) {
+  return spawnSync(process.execPath, args, { cwd: tmpPath });
+}
