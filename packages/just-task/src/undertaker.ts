@@ -96,7 +96,7 @@ export function parallel(...tasks: Task[]) {
     }
   });
 
-  return wrapTask(undertaker.parallel(newTasks));
+  return undertaker.parallel(newTasks);
 }
 
 export function series(...tasks: Task[]) {
@@ -108,7 +108,7 @@ export function series(...tasks: Task[]) {
     }
   });
 
-  return wrapTask(undertaker.series(newTasks));
+  return undertaker.series(newTasks);
 }
 
 undertaker.series.bind(undertaker);

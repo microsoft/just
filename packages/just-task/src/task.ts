@@ -2,7 +2,6 @@ import yargs from 'yargs';
 import { undertaker } from './undertaker';
 import { wrapTask } from './wrapTask';
 import { TaskFunction } from './interfaces';
-import { TaskFunction as UndertakerTaskFunction } from 'undertaker';
 
 export function task(
   firstParam: string | TaskFunction,
