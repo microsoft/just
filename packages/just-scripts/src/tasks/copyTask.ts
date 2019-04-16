@@ -4,11 +4,9 @@ import path from 'path';
 import parallelLimit from 'run-parallel-limit';
 import { logger, TaskFunction } from 'just-task';
 
-export function copyTask(paths: string[] = [], dest: string, limit: number = 15): TaskFunction {
+export function copyTask(paths: string[] = [], dest: string, limit: number = 15) {
   return function copy(done: (err?: Error) => void) {
-    logger.info(
-      `Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`
-    );
+    logger.info(`Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`);
 
     if (!fse.existsSync(dest)) {
       fse.mkdirpSync(dest);

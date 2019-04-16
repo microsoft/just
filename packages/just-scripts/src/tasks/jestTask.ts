@@ -12,7 +12,7 @@ export interface JestTaskOptions {
   _?: string[];
 }
 
-export function jestTask(options: JestTaskOptions = {}): TaskFunction {
+export function jestTask(options: JestTaskOptions = {}) {
   const jestConfigFile = resolveCwd('./jest.config.js');
 
   return function jest() {

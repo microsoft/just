@@ -3,7 +3,7 @@ import parallelLimit from 'run-parallel-limit';
 import path from 'path';
 import { logger, TaskFunction } from 'just-task';
 
-export function cleanTask(paths: string[] = [], limit: number = 5): TaskFunction {
+export function cleanTask(paths: string[] = [], limit: number = 5) {
   if (paths.length === 0) {
     paths = ['lib', 'temp', 'dist', 'coverage'];
   }

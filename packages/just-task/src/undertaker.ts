@@ -2,7 +2,7 @@ import Undertaker from 'undertaker';
 import { logger } from './logger';
 import chalk from 'chalk';
 import { wrapTask } from './wrapTask';
-import { Task } from './interfaces';
+import { Task, TaskFunction } from './interfaces';
 
 const undertaker = new Undertaker();
 const NS_PER_SEC = 1e9;
@@ -96,7 +96,7 @@ export function parallel(...tasks: Task[]) {
     }
   });
 
-  return undertaker.parallel(newTasks);
+  return wrapTask(undertaker.parallel(newTasks));
 }
 
 export function series(...tasks: Task[]) {
@@ -108,7 +108,7 @@ export function series(...tasks: Task[]) {
     }
   });
 
-  return undertaker.series(newTasks);
+  return wrapTask(undertaker.series(newTasks));
 }
 
 undertaker.series.bind(undertaker);
