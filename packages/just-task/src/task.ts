@@ -13,10 +13,10 @@ export function task(
   if (argCount === 1 && typeof firstParam === 'string') {
     return undertaker.task(firstParam);
   } else if (argCount === 2 && typeof firstParam === 'string' && typeof secondParam === 'function') {
-    wrapTask(undertaker.task(firstParam, wrapTask(secondParam as TaskFunction)));
+    undertaker.task(firstParam, wrapTask(secondParam as TaskFunction));
     yargs.command(getCommandModule(firstParam));
   } else if (argCount === 3 && typeof firstParam === 'string' && typeof secondParam === 'string' && typeof thirdParam === 'function') {
-    wrapTask(undertaker.task(firstParam, wrapTask(thirdParam)));
+    undertaker.task(firstParam, wrapTask(thirdParam));
     yargs.command(getCommandModule(firstParam, secondParam));
   } else {
     throw new Error('Invalid parameter given in task() function');

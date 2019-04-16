@@ -1,5 +1,5 @@
 export function wrapTask(fn: any) {
-  const wrappedFunction = function wrapFunction(done: any) {
+  return function wrapFunction(done: any) {
     let origFn = fn;
     if (fn.unwrap) {
       origFn = fn.unwrap();
@@ -20,6 +20,4 @@ export function wrapTask(fn: any) {
       done();
     }
   };
-
-  return wrappedFunction;
 }
