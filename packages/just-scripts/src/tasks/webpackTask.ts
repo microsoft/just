@@ -10,7 +10,7 @@ export interface WebpackTaskOptions {
   [key: string]: any;
 }
 
-export function webpackTask(options?: WebpackTaskOptions) {
+export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   const wp = require('webpack');
 
   return function webpack() {
@@ -42,7 +42,9 @@ export function webpackTask(options?: WebpackTaskOptions) {
           }
 
           const { config, ...restConfig } = options || { config: null };
-          webpackConfigs = webpackConfigs.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
+          webpackConfigs = webpackConfigs.map(webpackConfig =>
+            webpackMerge(webpackConfig, restConfig)
+          );
 
           wp(webpackConfigs, (err: Error, stats: any) => {
             if (err || stats.hasErrors()) {

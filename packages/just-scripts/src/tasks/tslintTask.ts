@@ -7,7 +7,7 @@ export interface TsLintTaskOptions {
   config?: string;
 }
 
-export function tslintTask(options: TsLintTaskOptions = {}) {
+export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
   const projectFile = resolveCwd('./tsconfig.json');
 
   return function tslint() {
@@ -16,7 +16,14 @@ export function tslintTask(options: TsLintTaskOptions = {}) {
     if (projectFile && tslintCmd && fs.existsSync(projectFile)) {
       logger.info(`Running tslint`);
 
-      const args = ['--project', projectFile, '-t', 'stylish', '-r', path.dirname(resolve('tslint-microsoft-contrib') || '')];
+      const args = [
+        '--project',
+        projectFile,
+        '-t',
+        'stylish',
+        '-r',
+        path.dirname(resolve('tslint-microsoft-contrib') || '')
+      ];
 
       const cmd = encodeArgs([process.execPath, tslintCmd, ...args]).join(' ');
       logger.info(cmd);

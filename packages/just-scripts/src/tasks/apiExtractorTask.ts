@@ -1,6 +1,6 @@
 import { logger, TaskFunction } from 'just-task';
 
-export function apiExtractorVerifyTask(config: any, options: any) {
+export function apiExtractorVerifyTask(config: any, options: any): TaskFunction {
   return function apiExtractorVerify() {
     if (!apiExtractorWrapper(config, options)) {
       throw 'The public API file is out of date. Please run "npm run update-api" and commit the updated API file.';
@@ -8,7 +8,7 @@ export function apiExtractorVerifyTask(config: any, options: any) {
   };
 }
 
-export function apiExtractorUpdateTask(config: any, options: any) {
+export function apiExtractorUpdateTask(config: any, options: any): TaskFunction {
   return function apiExtractorUpdate() {
     if (!apiExtractorWrapper(config, options)) {
       logger.warn(`- Update API: API file is out of date, updating...`);
@@ -18,7 +18,9 @@ export function apiExtractorUpdateTask(config: any, options: any) {
       if (!apiExtractorWrapper(config, options)) {
         throw Error(`- Update API: failed to update API file.`);
       } else {
-        logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
+        logger.info(
+          `- Update API: successully verified API file. Please commit API file as part of your changes.`
+        );
       }
     } else {
       logger.info(`- Update API: API file is already up to date, no update needed.`);

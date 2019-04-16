@@ -12,6 +12,4 @@ export interface TaskContext {
 
 export interface TaskFunction extends Undertaker.TaskFunctionParams {
   (this: TaskContext, done: (error?: any) => void): void | Duplex | NodeJS.Process | Promise<never> | any;
-  runBefore(taskName: string): void;
-  runAfter(taskName: string): void;
 }

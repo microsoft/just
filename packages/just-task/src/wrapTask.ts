@@ -1,7 +1,3 @@
-import { undertaker, series } from './undertaker';
-
-let counter = 0;
-
 export function wrapTask(fn: any) {
   const wrappedFunction = function wrapFunction(done: any) {
     let origFn = fn;
@@ -23,20 +19,6 @@ export function wrapTask(fn: any) {
 
       done();
     }
-  };
-
-  wrappedFunction.runBefore = function runBefore(taskName: string) {
-    const id = `${taskName}_before_${counter++}?`;
-
-    undertaker.task(id, undertaker.task(taskName));
-    undertaker.task(taskName, series(wrappedFunction, id));
-  };
-
-  wrappedFunction.runAfter = function runAfter(taskName: string) {
-    const id = `${taskName}_after_${counter++}?`;
-
-    undertaker.task(id, undertaker.task(taskName));
-    undertaker.task(taskName, series(id, wrappedFunction));
   };
 
   return wrappedFunction;

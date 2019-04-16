@@ -7,7 +7,7 @@ import { getStackDiffs } from '../monorepo/getStackDiffs';
 import { DiffInfo } from '../monorepo/DiffInfo';
 import { applyStackDiffs } from '../monorepo/applyStackDiffs';
 
-export function upgradeRepoTask() {
+export function upgradeRepoTask(): TaskFunction {
   return async function upgradeRepo() {
     const rootPath = findMonoRepoRootPath();
 
@@ -58,10 +58,16 @@ export function upgradeRepoTask() {
             // no diff info means that there isn't any diffs to apply
             if (diffInfo) {
               logger.info(
-                `Upgrading ${project.packageName} from ${projPackageJson.just.stack} v${diffInfo.fromVersion} to v${diffInfo.toVersion}`
+                `Upgrading ${project.packageName} from ${projPackageJson.just.stack} v${
+                  diffInfo.fromVersion
+                } to v${diffInfo.toVersion}`
               );
 
-              applyStackDiffs(rootPath, project.projectFolder, stackDiffs[projPackageJson.just.stack]);
+              applyStackDiffs(
+                rootPath,
+                project.projectFolder,
+                stackDiffs[projPackageJson.just.stack]
+              );
 
               didUpgradeProjects = true;
             }
@@ -70,9 +76,13 @@ export function upgradeRepoTask() {
       }, Promise.resolve());
 
       if (didUpgradeProjects) {
-        logger.info('Upgrade repo task has finished its work. You might notice some conflicts to be resolved by hand.');
+        logger.info(
+          'Upgrade repo task has finished its work. You might notice some conflicts to be resolved by hand.'
+        );
 
-        logger.info('You might also have to perform a `rush update` manually if package.json has been modified by the upgrade');
+        logger.info(
+          'You might also have to perform a `rush update` manually if package.json has been modified by the upgrade'
+        );
       }
     }
 

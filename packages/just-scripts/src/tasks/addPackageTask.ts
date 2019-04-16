@@ -5,7 +5,7 @@ import fse from 'fs-extra';
 import { argv, TaskFunction } from 'just-task';
 import { findInstalledStacks } from '../monorepo/findInstalledStacks';
 
-export function addPackageTask() {
+export function addPackageTask(): TaskFunction {
   return async function addPackage() {
     const args = argv();
     const rootPath = findMonoRepoRootPath();

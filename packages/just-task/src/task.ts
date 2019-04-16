@@ -5,18 +5,19 @@ import { TaskFunction } from './interfaces';
 import { TaskFunction as UndertakerTaskFunction } from 'undertaker';
 
 export function task(
-  firstParam: string | TaskFunction | UndertakerTaskFunction,
-  secondParam?: TaskFunction | string | UndertakerTaskFunction,
-  thirdParam?: TaskFunction | UndertakerTaskFunction
-): TaskFunction | undefined {
+  firstParam: string | TaskFunction,
+  secondParam?: string | TaskFunction,
+  thirdParam?: TaskFunction
+): TaskFunction | void {
   const argCount = arguments.length;
+
   if (argCount === 1 && typeof firstParam === 'string') {
-    return wrapTask(undertaker.task(firstParam));
+    return undertaker.task(firstParam);
   } else if (argCount === 2 && typeof firstParam === 'string' && typeof secondParam === 'function') {
-    undertaker.task(firstParam, wrapTask(secondParam as TaskFunction));
+    wrapTask(undertaker.task(firstParam, wrapTask(secondParam as TaskFunction)));
     yargs.command(getCommandModule(firstParam));
   } else if (argCount === 3 && typeof firstParam === 'string' && typeof secondParam === 'string' && typeof thirdParam === 'function') {
-    undertaker.task(firstParam, wrapTask(thirdParam));
+    wrapTask(undertaker.task(firstParam, wrapTask(thirdParam)));
     yargs.command(getCommandModule(firstParam, secondParam));
   } else {
     throw new Error('Invalid parameter given in task() function');
