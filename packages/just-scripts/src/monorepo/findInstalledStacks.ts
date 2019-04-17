@@ -1,5 +1,5 @@
 import path from 'path';
-import { StackInfo } from './StackInfo';
+import { StackInfo } from '../stack/StackInfo';
 import { readPackageJson } from 'just-scripts-utils';
 import { getAvailableStacks } from '../stack/getAvailableStacks';
 
@@ -9,7 +9,7 @@ import { getAvailableStacks } from '../stack/getAvailableStacks';
 
 export function findInstalledStacks(rootPath: string) {
   const scriptsPath = path.join(rootPath, 'scripts');
-  const stacks = Object.keys(getAvailableStacks(rootPath))
+  const stacks = Object.keys(getAvailableStacks(scriptsPath))
     .filter(stack => !stack.includes('monorepo'))
     .map(stack => [stack, path.join(scriptsPath, 'node_modules', stack)]);
 
@@ -22,6 +22,4 @@ export function findInstalledStacks(rootPath: string) {
       path: stackPath
     };
   });
-
-  return [];
 }

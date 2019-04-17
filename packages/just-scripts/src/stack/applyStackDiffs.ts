@@ -5,18 +5,18 @@ import fs from 'fs';
 import path from 'path';
 import { logger } from 'just-task';
 
-export function applyStackDiffs(rootPath: string, projectPath: string, diffInfo: DiffInfo) {
+export function applyStackDiffs(projectPath: string, diffInfo: DiffInfo) {
   const dmp = new DiffMatchPatch();
 
   const globbedFiles = glob.sync('**/*', {
-    cwd: path.join(rootPath, projectPath),
+    cwd: projectPath,
     ignore: 'node_modules/**/*',
     nodir: true,
     dot: true
   });
 
   globbedFiles.forEach(file => {
-    const filePath = path.join(rootPath, projectPath, file);
+    const filePath = path.join(projectPath, file);
 
     if (diffInfo.patches[file]) {
       logger.info(`Patching ${file}`);
