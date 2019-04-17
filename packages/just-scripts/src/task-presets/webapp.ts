@@ -21,6 +21,5 @@ export function webapp() {
   task('start', series('clean', 'webpack:watch'));
   task('start-test', series('clean', 'jest:watch'));
 
-  console.log('hi');
   task('upgrade-stack', upgradeStackTask());
 }
