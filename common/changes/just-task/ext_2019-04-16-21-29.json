@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task",
+      "comment": "Adds API to allow injecting a task after task has been registered",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com"
+}

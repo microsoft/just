@@ -1,5 +1,5 @@
 export function wrapTask(fn: any) {
-  return function(done: any) {
+  return function wrapFunction(done: any) {
     let origFn = fn;
     if (fn.unwrap) {
       origFn = fn.unwrap();
