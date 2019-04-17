@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Sun, 24 Feb 2019 04:07:27 GMT and should not be manually modified.
+This log was last generated on Wed, 17 Apr 2019 00:09:58 GMT and should not be manually modified.
+
+## 0.9.0
+Wed, 17 Apr 2019 00:09:58 GMT
+
+### Minor changes
+
+- Adds API to allow injecting a task after task has been registered
 
 ## 0.8.1
 Sun, 24 Feb 2019 04:07:27 GMT

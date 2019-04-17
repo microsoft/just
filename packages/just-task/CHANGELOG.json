@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.9.0",
+      "tag": "just-task_v0.9.0",
+      "date": "Wed, 17 Apr 2019 00:09:58 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Adds API to allow injecting a task after task has been registered"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.8.1",
       "tag": "just-task_v0.8.1",
       "date": "Sun, 24 Feb 2019 04:07:27 GMT",
