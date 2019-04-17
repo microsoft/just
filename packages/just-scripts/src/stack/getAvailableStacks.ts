@@ -1,4 +1,5 @@
 import { readPackageJson } from 'just-scripts-utils';
+import path from 'path';
 
 export function getAvailableStacks(rootPath: string) {
   const packageJson = readPackageJson(rootPath);
@@ -10,10 +11,9 @@ export function getAvailableStacks(rootPath: string) {
   let stackDeps: { [key: string]: string } = {};
 
   const devDeps = packageJson.devDependencies || {};
-
   Object.keys(devDeps).forEach(dep => {
-    const depPackageJson = readPackageJson(dep)!;
-    if (dep.includes('just-stack') || (depPackageJson.keywords && depPackageJson.keywords.includes('just-stack'))) {
+    const depPackageJson = readPackageJson(path.join(rootPath, 'node_modules', dep))!;
+    if (dep.includes('just-stack') || (depPackageJson && depPackageJson.keywords && depPackageJson.keywords.includes('just-stack'))) {
       stackDeps[dep] = devDeps[dep];
     }
   });

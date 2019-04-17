@@ -1,5 +1,5 @@
 import { task, series, parallel } from 'just-task';
-import { cleanTask, tscTask, jestTask } from '../tasks';
+import { cleanTask, tscTask, jestTask, upgradeStackTask } from '../tasks';
 
 export function lib() {
   task('clean', cleanTask());
@@ -16,4 +16,6 @@ export function lib() {
   task('test', series('clean', 'jest'));
   task('start', series('clean', 'ts:watch'));
   task('start-test', series('clean', 'jest:watch'));
+
+  task('upgrade-stack', upgradeStackTask());
 }

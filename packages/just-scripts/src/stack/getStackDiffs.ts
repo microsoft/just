@@ -52,7 +52,7 @@ export async function getStackDiffs(rootPath: string, resolvedStacks: StackVersi
   const oldStacks = readLockFile(rootPath);
 
   if (!oldStacks) {
-    logger.error('Lock file not available');
+    logger.warn('Lock file not available');
     return null;
   }
 
