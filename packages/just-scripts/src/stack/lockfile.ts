@@ -1,25 +1,8 @@
-import { getAvailableStacks } from './getAvailableStacks';
 import path from 'path';
 import fs from 'fs';
-import { readPackageJson } from 'just-scripts-utils';
-import { resolve } from 'just-task';
+import { StackVersions } from './StackVersions';
 
-export function writeLockFile(rootPath: string) {
-  const stacks = getAvailableStacks(rootPath);
-
-  const resolvedStacks: { [key: string]: string } = {};
-  Object.keys(stacks).forEach(stack => {
-    const packageJsonPath = resolve(stack + '/package.json', path.join(rootPath, 'scripts'));
-
-    if (packageJsonPath) {
-      const packageJson = readPackageJson(path.dirname(packageJsonPath));
-
-      if (packageJson) {
-        resolvedStacks[stack] = packageJson.version;
-      }
-    }
-  });
-
+export function writeLockFile(rootPath: string, resolvedStacks: StackVersions) {
   const lockFile = path.join(rootPath, 'just-stacks.json');
   fs.writeFileSync(lockFile, JSON.stringify({ stacks: resolvedStacks }, null, 2));
 }
@@ -31,6 +14,5 @@ export function readLockFile(rootPath: string) {
   }
 
   const lockFileObject = JSON.parse(fs.readFileSync(lockFile).toString());
-
   return lockFileObject && lockFileObject.stacks ? lockFileObject.stacks : null;
 }

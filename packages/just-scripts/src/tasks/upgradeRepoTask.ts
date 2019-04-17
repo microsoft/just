@@ -1,11 +1,10 @@
 import { findMonoRepoRootPath, readRushJson, readPackageJson, logger } from 'just-scripts-utils';
 import path from 'path';
 import { TaskFunction } from 'just-task';
-import { getAvailableStacks } from '../stack/getAvailableStacks';
-import { readLockFile, writeLockFile } from '../stack/lockfile';
-import { getStackDiffs } from '../monorepo/getStackDiffs';
-import { DiffInfo } from '../monorepo/DiffInfo';
-import { applyStackDiffs } from '../monorepo/applyStackDiffs';
+import { writeLockFile } from '../stack/lockfile';
+import { getStackDiffs } from '../stack/getStackDiffs';
+import { applyStackDiffs } from '../stack/applyStackDiffs';
+import { getResolvedStackVersions } from '../stack/getResolvedStackVersions';
 
 export function upgradeRepoTask(): TaskFunction {
   return async function upgradeRepo() {
@@ -16,30 +15,13 @@ export function upgradeRepoTask(): TaskFunction {
       return;
     }
 
-    const scriptsPath = path.join(rootPath, 'scripts');
+    const resolveStacks = getResolvedStackVersions(path.join(rootPath, 'scripts'));
+    const stackDiffs = await getStackDiffs(rootPath, resolveStacks);
 
-    const oldStacks = readLockFile(rootPath);
-
-    if (oldStacks) {
+    if (stackDiffs) {
       let didUpgradeProjects = false;
 
-      // First, gather all the stack diffs
-      const newStacks = getAvailableStacks(rootPath);
-      const stackDiffs: { [stack: string]: DiffInfo } = {};
-
-      try {
-        await Object.keys(oldStacks).reduce(async (currentPromise, stack) => {
-          await currentPromise;
-          if (oldStacks[stack] !== newStacks[stack]) {
-            stackDiffs[stack] = await getStackDiffs(stack, oldStacks[stack], newStacks[stack]);
-          }
-        }, Promise.resolve());
-      } catch (e) {
-        logger.error('Cannot figure out upgrades needed for the packages in this repo: ', e);
-        return;
-      }
-
-      // Second, for each package, look for stacks that match
+      // For each package, look for stacks that match, and apply upgrade for the project
       const rushConfig = readRushJson(rootPath);
       if (!rushConfig) {
         logger.error(`Could not read rush.json under ${rootPath}. Not upgrading anything.`);
@@ -58,16 +40,10 @@ export function upgradeRepoTask(): TaskFunction {
             // no diff info means that there isn't any diffs to apply
             if (diffInfo) {
               logger.info(
-                `Upgrading ${project.packageName} from ${projPackageJson.just.stack} v${
-                  diffInfo.fromVersion
-                } to v${diffInfo.toVersion}`
+                `Upgrading ${project.packageName} from ${projPackageJson.just.stack} v${diffInfo.fromVersion} to v${diffInfo.toVersion}`
               );
 
-              applyStackDiffs(
-                rootPath,
-                project.projectFolder,
-                stackDiffs[projPackageJson.just.stack]
-              );
+              applyStackDiffs(path.join(rootPath, project.projectFolder), stackDiffs[projPackageJson.just.stack]);
 
               didUpgradeProjects = true;
             }
@@ -76,17 +52,12 @@ export function upgradeRepoTask(): TaskFunction {
       }, Promise.resolve());
 
       if (didUpgradeProjects) {
-        logger.info(
-          'Upgrade repo task has finished its work. You might notice some conflicts to be resolved by hand.'
-        );
-
-        logger.info(
-          'You might also have to perform a `rush update` manually if package.json has been modified by the upgrade'
-        );
+        logger.info('Upgrade repo task has finished its work. You might notice some conflicts to be resolved by hand.');
+        logger.info('You might also have to perform a `rush update` manually if package.json has been modified by the upgrade');
       }
     }
 
     logger.info('Writing just-stacks.json. Please check this file in!');
-    writeLockFile(rootPath);
+    writeLockFile(rootPath, resolveStacks);
   };
 }
