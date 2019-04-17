@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 16 Apr 2019 19:33:20 GMT and should not be manually modified.
+This log was last generated on Wed, 17 Apr 2019 23:43:45 GMT and should not be manually modified.
+
+## 0.14.0
+Wed, 17 Apr 2019 23:43:45 GMT
+
+### Minor changes
+
+- Added upgrade-stack with diff-match-patch algo
 
 ## 0.13.0
 Tue, 16 Apr 2019 19:33:20 GMT

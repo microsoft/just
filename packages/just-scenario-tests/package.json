@@ -16,7 +16,7 @@
     "@types/jest": "^23.3.13",
     "@types/fs-extra": "^5.0.5",
     "create-just": "0.6.4",
-    "just-scripts": ">=0.13.0 <1.0.0",
+    "just-scripts": ">=0.14.0 <1.0.0",
     "just-stack-monorepo": "0.6.13",
     "just-stack-single-lib": "0.5.12",
     "just-stack-uifabric": "0.7.14",
