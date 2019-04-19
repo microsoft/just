@@ -1,5 +1,13 @@
 import path from 'path';
-import { logger, applyTemplate, rushAddPackage, rushUpdate, prettyPrintMarkdown, findMonoRepoRootPath } from 'just-scripts-utils';
+import {
+  logger,
+  applyTemplate,
+  rushAddPackage,
+  rushUpdate,
+  prettyPrintMarkdown,
+  findMonoRepoRootPath,
+  readPackageJson
+} from 'just-scripts-utils';
 import prompts from 'prompts';
 import fse from 'fs-extra';
 import { argv, TaskFunction } from 'just-task';
@@ -56,6 +64,15 @@ export function addPackageTask(): TaskFunction {
       fse.removeSync(path.join(packagePath, '.gitignore'));
       fse.removeSync(path.join(packagePath, '.gitattributes'));
       fse.removeSync(path.join(packagePath, '.vscode'));
+
+      // Remove devDep entry that is not appropriate inside individual project
+      const pkgJson = readPackageJson(packagePath);
+
+      if (pkgJson && pkgJson.devDependencies && pkgJson.just && pkgJson.just.stack) {
+        delete pkgJson.devDependencies[pkgJson.just.stack];
+      }
+
+      fse.writeFileSync(path.join(packagePath, 'package.json'), JSON.stringify(pkgJson, null, 2));
 
       rushAddPackage(name, rootPath);
       logger.info('Running rush update');
