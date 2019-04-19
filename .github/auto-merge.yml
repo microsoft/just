@@ -1,5 +1,5 @@
 rules:
   - minApprovals:
-      OWNER: 1
+      OWNER: 0
   - requiredLabels:
       - merge
