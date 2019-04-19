@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Thu, 11 Apr 2019 18:27:56 GMT and should not be manually modified.
+This log was last generated on Fri, 19 Apr 2019 01:51:22 GMT and should not be manually modified.
+
+## 0.7.15
+Fri, 19 Apr 2019 01:51:22 GMT
+
+### Patches
+
+- update deps
 
 ## 0.7.14
 Thu, 11 Apr 2019 18:27:56 GMT

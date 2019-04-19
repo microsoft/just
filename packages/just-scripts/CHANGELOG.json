@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.14.1",
+      "tag": "just-scripts_v0.14.1",
+      "date": "Fri, 19 Apr 2019 01:51:22 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "update add package task to remove extra just-stack devdep when provisioning a new repo"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.14.0",
       "tag": "just-scripts_v0.14.0",
       "date": "Wed, 17 Apr 2019 23:43:45 GMT",

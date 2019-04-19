@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 17 Apr 2019 23:43:45 GMT and should not be manually modified.
+This log was last generated on Fri, 19 Apr 2019 01:51:22 GMT and should not be manually modified.
+
+## 0.14.1
+Fri, 19 Apr 2019 01:51:22 GMT
+
+### Patches
+
+- update add package task to remove extra just-stack devdep when provisioning a new repo
 
 ## 0.14.0
 Wed, 17 Apr 2019 23:43:45 GMT
