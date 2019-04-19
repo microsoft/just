@@ -12,7 +12,6 @@ import prompts from 'prompts';
 import fse from 'fs-extra';
 import { argv, TaskFunction } from 'just-task';
 import { findInstalledStacks } from '../monorepo/findInstalledStacks';
-import { getAvailableStacks } from '../stack/getAvailableStacks';
 
 export function addPackageTask(): TaskFunction {
   return async function addPackage() {
