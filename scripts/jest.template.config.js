@@ -4,6 +4,8 @@ const path = require('path');
 module.exports = {
   testEnvironment: 'node',
   reporters: [path.resolve(__dirname, './jest-reporter.js')],
-  setupTestFrameworkScriptFile: 'jest-expect-message',
+  setupFilesAfterEnv: ['jest-expect-message'],
+  transformIgnorePatterns: ['node_modules', 'template/'],
+  testPathIgnorePatterns: ['node_modules', 'template/'],
   verbose: true
 };
