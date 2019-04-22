@@ -12,14 +12,14 @@
   "typings": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "npx just build",
-    "test": "npx just test",
-    "just": "npx just",
-    "clean": "npx just clean",
-    "start": "npx just start",
-    "start-test": "npx just start-test",
-    "update-snapshots": "npx just jest -u",
-    "upgrade-stack": "npx just upgrade-stack"
+    "just": "just",
+    "clean": "just clean",
+    "build": "just build",
+    "test": "just test",
+    "test:update": "just jest -u",
+    "test:start": "just start-test",
+    "start": "just start",
+    "stack:upgrade": "just upgrade-stack"
   },
   "dependencies": {
     "office-ui-fabric-react": "^6.165.0",
@@ -27,27 +27,7 @@
     "react-dom": "~16.8.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.0",
-    "@types/react-dom": "~16.0.11",
-    "@types/react": "~16.7.0",
-    "autoprefixer": "^9.4.5",
-    "css-loader": "^2.1.0",
-    "html-webpack-plugin": "^3.2.0",
-    "jest": "^24.0.0",
-    "just-scripts": "^0.14.0",
-    "just-task": "^0.9.0",
-    "node-sass": "^4.11.0",
-    "postcss": "^7.0.13",
-    "postcss-loader": "^3.0.0",
-    "style-loader": "^0.23.1",
-    "ts-jest": "^24.0.1",
-    "ts-loader": "^5.3.3",
-    "tslib": "^1.9.3",
-    "typescript": "~3.2.4",
-    "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14",
-    "webpack": "~4.29.5",
-    "just-stack-uifabric": "^0.7.14"
+    "just-stack-uifabric": ">=0.7.0"
   },
   "just": {
     "stack": "just-stack-uifabric"
