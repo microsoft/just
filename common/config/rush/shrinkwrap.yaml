@@ -74,6 +74,7 @@ dependencies:
   ts-jest: 24.0.2
   ts-loader: 5.3.3
   tslib: 1.9.3
+  typescript: 3.4.4
   undertaker: 1.2.0
   undertaker-registry: 1.0.1
   webpack: 4.29.5
@@ -12534,21 +12535,6 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-KwF1SplmOJepnoZ4eRIloH/zXL195F51skt7reEsS6jvDqzgc/YSbz9b8E07GxIUwLXdcD4ssrJu6v8CwaTafA==
-  /ts-loader/5.3.3/typescript@3.3.3:
-    dependencies:
-      chalk: 2.4.2
-      enhanced-resolve: 4.1.0
-      loader-utils: 1.2.3
-      micromatch: 3.1.10
-      semver: 5.6.0
-    dev: false
-    engines:
-      node: '>=6.11.5'
-    id: registry.npmjs.org/ts-loader/5.3.3
-    peerDependencies:
-      typescript: '*'
-    resolution:
-      integrity: sha512-KwF1SplmOJepnoZ4eRIloH/zXL195F51skt7reEsS6jvDqzgc/YSbz9b8E07GxIUwLXdcD4ssrJu6v8CwaTafA==
   /ts-loader/5.3.3/typescript@3.4.4:
     dependencies:
       chalk: 2.4.2
@@ -13536,7 +13522,7 @@ packages:
       npm-registry-fetch: 3.9.0
       prompts: 2.0.1
       run-parallel-limit: 1.0.5
-      ts-loader: /ts-loader/5.3.3/typescript@3.3.3
+      ts-loader: /ts-loader/5.3.3/typescript@3.4.4
       typescript: 3.4.4
       webpack: 4.29.5
       webpack-cli: /webpack-cli/3.2.1/webpack@4.29.5
@@ -13760,6 +13746,7 @@ specifiers:
   ts-jest: ^24.0.1
   ts-loader: ^5.3.3
   tslib: ^1.9.3
+  typescript: 3.4.4
   undertaker: ^1.2.0
   undertaker-registry: ^1.0.1
   webpack: ~4.29.5
