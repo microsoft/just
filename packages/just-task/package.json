@@ -33,10 +33,10 @@
     "@types/undertaker": "^1.2.0",
     "@types/undertaker-registry": "^1.0.1",
     "@types/yargs": "12.0.1",
-    "jest": "^23.6.0",
+    "jest": "^24.0.0",
     "mock-fs": "^4.8.0",
-    "ts-jest": "^23.10.5",
-    "typescript": "~3.3.3"
+    "ts-jest": "^24.0.1",
+    "typescript": "~3.4.4"
   },
   "keywords": [],
   "author": "Ken Chau <kchau@microsoft.com>",

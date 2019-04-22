@@ -42,9 +42,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
           }
 
           const { config, ...restConfig } = options || { config: null };
-          webpackConfigs = webpackConfigs.map(webpackConfig =>
-            webpackMerge(webpackConfig, restConfig)
-          );
+          webpackConfigs = webpackConfigs.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
 
           wp(webpackConfigs, (err: Error, stats: any) => {
             if (err || stats.hasErrors()) {
@@ -70,8 +68,6 @@ export function webpackDevServerTask(options?: WebpackTaskOptions) {
   const cmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
 
   return function webpackDevServer() {
-    console.log(cmd, configPath);
-
     if (cmd && configPath && fs.existsSync(configPath)) {
       const mode = (options && options.mode) || 'development';
       const args = [cmd, '--config', configPath, '--open', '--mode', mode];

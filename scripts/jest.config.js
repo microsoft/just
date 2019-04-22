@@ -7,5 +7,11 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/?(*.)+(spec|test).[jt]s'],
   reporters: [path.resolve(__dirname, './jest-reporter.js')],
-  verbose: true
+  verbose: true,
+  globals: {
+    'ts-jest': {
+      tsConfig: path.resolve(process.cwd(), 'tsconfig.json'),
+      packageJson: path.resolve(process.cwd(), 'package.json')
+    }
+  }
 };
