@@ -1,11 +1,4 @@
-import {
-  paths,
-  logger,
-  applyTemplate,
-  prettyPrintMarkdown,
-  rushUpdate,
-  downloadPackage
-} from 'just-scripts-utils';
+import { paths, logger, applyTemplate, prettyPrintMarkdown, rushUpdate, downloadPackage } from 'just-scripts-utils';
 import path from 'path';
 import { readdirSync } from 'fs';
 import fse from 'fs-extra';
@@ -63,12 +56,16 @@ export async function initCommand(argv: yargs.Arguments) {
     applyTemplate(templatePath, paths.projectPath, { name });
 
     execSync('git init');
-    execSync('git add .');
-    execSync('git commit -m "initial commit"');
 
     if (argv.stack.includes('monorepo')) {
       rushUpdate(paths.projectPath);
+    } else {
+      execSync('npm install');
+      execSync('npm run just upgrade-stack');
     }
+
+    execSync('git add .');
+    execSync('git commit -m "initial commit"');
 
     logger.info('All Set!');
 
