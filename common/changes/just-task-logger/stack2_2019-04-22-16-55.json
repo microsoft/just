@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "comment": "",
+      "packageName": "just-task-logger",
+      "type": "none"
+    }
+  ],
+  "packageName": "just-task-logger",
+  "email": "kchau@microsoft.com"
+}
