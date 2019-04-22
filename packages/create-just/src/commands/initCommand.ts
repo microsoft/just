@@ -61,7 +61,6 @@ export async function initCommand(argv: yargs.Arguments) {
       rushUpdate(paths.projectPath);
     } else {
       execSync('npm install');
-      execSync('npm run just upgrade-stack');
     }
 
     execSync('git add .');
