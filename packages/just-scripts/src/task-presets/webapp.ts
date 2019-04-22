@@ -2,7 +2,6 @@ import { task, series, parallel } from 'just-task';
 import { cleanTask, tscTask, jestTask, webpackTask, webpackDevServerTask, upgradeStackTask } from '../tasks';
 
 export function webapp() {
-  console.log('hi');
   task('clean', cleanTask());
 
   task('ts:commonjs', tscTask({ module: 'commonjs', outDir: 'lib-commonjs' }));
