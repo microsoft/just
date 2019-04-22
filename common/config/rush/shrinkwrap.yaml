@@ -12534,14 +12534,13 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-KwF1SplmOJepnoZ4eRIloH/zXL195F51skt7reEsS6jvDqzgc/YSbz9b8E07GxIUwLXdcD4ssrJu6v8CwaTafA==
-  /ts-loader/5.3.3/typescript@3.2.4:
+  /ts-loader/5.3.3/typescript@3.3.3:
     dependencies:
       chalk: 2.4.2
       enhanced-resolve: 4.1.0
       loader-utils: 1.2.3
       micromatch: 3.1.10
       semver: 5.6.0
-      typescript: 3.2.4
     dev: false
     engines:
       node: '>=6.11.5'
@@ -12550,14 +12549,14 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-KwF1SplmOJepnoZ4eRIloH/zXL195F51skt7reEsS6jvDqzgc/YSbz9b8E07GxIUwLXdcD4ssrJu6v8CwaTafA==
-  /ts-loader/5.3.3/typescript@3.3.3:
+  /ts-loader/5.3.3/typescript@3.4.4:
     dependencies:
       chalk: 2.4.2
       enhanced-resolve: 4.1.0
       loader-utils: 1.2.3
       micromatch: 3.1.10
       semver: 5.6.0
-      typescript: 3.3.3
+      typescript: 3.4.4
     dev: false
     engines:
       node: '>=6.11.5'
@@ -12605,13 +12604,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-  /typescript/3.2.4:
-    dev: false
-    engines:
-      node: '>=4.2.0'
-    hasBin: true
-    resolution:
-      integrity: sha512-0RNDbSdEokBeEAkgNbxJ+BLwSManFy9TeXz8uW+48j/xhEXv1ePME60olyzw2XzUqUBNAYFeJadIqAgNqIACwg==
   /typescript/3.3.3:
     dev: false
     engines:
@@ -12619,6 +12611,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-Y21Xqe54TBVp+VDSNbuDYdGw0BpoR/Q6wo/+35M8PAU0vipahnyduJWirxxdxjsAkS7hue53x2zp8gz7F05u0A==
+  /typescript/3.4.4:
+    dev: false
+    engines:
+      node: '>=4.2.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-xt5RsIRCEaf6+j9AyOBgvVuAec0i92rgCaS3S+UVf5Z/vF2Hvtsw08wtUTJqp4djwznoAgjSxeCcU4r+CcDBJA==
   /uglify-js/3.4.10:
     dependencies:
       commander: 2.19.0
@@ -13450,24 +13449,24 @@ packages:
       '@types/yargs': 12.0.1
       fs-extra: 7.0.1
       prompts: 2.0.1
-      ts-loader: /ts-loader/5.3.3/typescript@3.3.3
-      typescript: 3.3.3
+      ts-loader: /ts-loader/5.3.3/typescript@3.4.4
+      typescript: 3.4.4
       webpack: 4.29.5
       webpack-cli: /webpack-cli/3.2.1/webpack@4.29.5
       yargs: 12.0.5
     dev: false
     name: '@rush-temp/create-just'
     resolution:
-      integrity: sha512-Y8xTwOXQZctP2vRVTzoOef1HelPQgDQm4ub38fkm1VoKHqEkudLLkgHrKzutQjqyWGdfrOH61C20q0C8qILVOw==
+      integrity: sha512-8CH697O14zum+t/Qe6qQAuMx9+ifaOv0YQ5NbpPGDiq+uJKPvyZtwuxY8GPRI4nBa2BlQurkXWGG6PvlYNSL5A==
       tarball: 'file:projects/create-just.tgz'
     version: 0.0.0
   'file:projects/example-lib.tgz':
     dependencies:
-      typescript: 3.3.3
+      typescript: 3.4.4
     dev: false
     name: '@rush-temp/example-lib'
     resolution:
-      integrity: sha512-c0ZpvkShLCPRMFmsb2doWWaUick4MqsAx7EX4Ppdoi3krF+JG2Mn97+Ue+yHQHLgydX2OZsQrQAc5ijrLG7NsA==
+      integrity: sha512-GcS4/+u/WTrHNMmIPTe+nasAhl8/72Y5HyF1+G7RYScgD4T30y8h/zMrkHIuXcifCbtUAdfvQarFwTBLKcrwTg==
       tarball: 'file:projects/example-lib.tgz'
     version: 0.0.0
   'file:projects/just-scenario-tests.tgz':
@@ -13510,12 +13509,12 @@ packages:
       semver: 5.6.0
       tar: 4.4.8
       ts-jest: /ts-jest/24.0.2/jest@24.7.1
-      typescript: 3.3.3
+      typescript: 3.4.4
       yargs: 12.0.5
     dev: false
     name: '@rush-temp/just-scripts-utils'
     resolution:
-      integrity: sha512-slgtVKfmyeSsBiDA5w/szAWvVEMBvsryX9Tesc2GG0dSX0ksE6q9UEHj3uGNu3PELY9p6oFUsZlF8DGG/XAsTw==
+      integrity: sha512-/R0+noX/rL16z2Mp5EvW1JirO3WVxY6220sM7EBAIp69WahuY6N5yMEMIM5/FQYpnSdHvybygX5NVx8WvGZJyw==
       tarball: 'file:projects/just-scripts-utils.tgz'
     version: 0.0.0
   'file:projects/just-scripts.tgz':
@@ -13538,14 +13537,14 @@ packages:
       prompts: 2.0.1
       run-parallel-limit: 1.0.5
       ts-loader: /ts-loader/5.3.3/typescript@3.3.3
-      typescript: 3.3.3
+      typescript: 3.4.4
       webpack: 4.29.5
       webpack-cli: /webpack-cli/3.2.1/webpack@4.29.5
       webpack-merge: 4.2.1
     dev: false
     name: '@rush-temp/just-scripts'
     resolution:
-      integrity: sha512-XTSm+7sMD/20I3GsFLOU4nxdIdAJNm1EuyJsjXJhWwQXgDRIQUFpMvOpuFHelXLvpfZUotjJW4r2oxzSR8YMUQ==
+      integrity: sha512-yb1GeN73YaLuGVJ4LhNAa3bZgm5T28Z1jMg127fJ0noYHahED8KU8SBnjQT1TS2F/gE3JyeHu036I8J6OqB46w==
       tarball: 'file:projects/just-scripts.tgz'
     version: 0.0.0
   'file:projects/just-stack-monorepo.tgz':
@@ -13563,15 +13562,19 @@ packages:
     version: 0.0.0
   'file:projects/just-stack-single-lib.tgz':
     dependencies:
+      '@types/jest': 24.0.11
       fs-extra: 7.0.1
       glob: 7.1.3
       jest: 24.7.1
       jest-expect-message: 1.0.2
       json5: 2.1.0
+      ts-jest: /ts-jest/24.0.2/jest@24.7.1
+      tslib: 1.9.3
+      typescript: 3.3.3
     dev: false
     name: '@rush-temp/just-stack-single-lib'
     resolution:
-      integrity: sha512-1EdPRC9D6li3sYuA8Coyp1ICxQd4KSFuLJcoPBBCKwQAIWEM30foVKOb7viZPqWe/BJyoaMXZyUhvwLP9nDRWA==
+      integrity: sha512-YtaYB/EtAUk4a5FtNT8cTifE1SyBcA1y4nMjmoxV6a9oqktog4FRbu8kg/uPxesJvc0OLqmF8aCHtMWIydXsFA==
       tarball: 'file:projects/just-stack-single-lib.tgz'
     version: 0.0.0
   'file:projects/just-stack-uifabric.tgz':
@@ -13592,16 +13595,16 @@ packages:
       postcss-loader: 3.0.0
       style-loader: 0.23.1
       ts-jest: /ts-jest/24.0.2/jest@24.7.1
-      ts-loader: /ts-loader/5.3.3/typescript@3.2.4
+      ts-loader: /ts-loader/5.3.3/typescript@3.4.4
       tslib: 1.9.3
-      typescript: 3.2.4
+      typescript: 3.4.4
       webpack: 4.29.5
       webpack-cli: /webpack-cli/3.2.1/webpack@4.29.5
       webpack-dev-server: /webpack-dev-server/3.3.1/webpack@4.29.5
     dev: false
     name: '@rush-temp/just-stack-uifabric'
     resolution:
-      integrity: sha512-efsCWhA3rCVT/b4wdGcGPMx8izl5qS6bHdyQx1qXGhHybtKjnDwEgeXJilG1b7ZlgCSI1a0CzhZPMo/w1FMgNw==
+      integrity: sha512-tLxqQxqQa2T3pMZ7o0MOFAfoWthT3M5zb5E1/LjKRO/XnP2eIuM8nU31g7Z0Ha69MGgKGJfpt+00H+soK8xUMQ==
       tarball: 'file:projects/just-stack-uifabric.tgz'
     version: 0.0.0
   'file:projects/just-task-docs.tgz':
@@ -13636,11 +13639,12 @@ packages:
       jest: 24.7.1
       mock-fs: 4.8.0
       ts-jest: /ts-jest/24.0.2/jest@24.7.1
+      typescript: 3.4.4
       yargs: 12.0.5
     dev: false
     name: '@rush-temp/just-task-logger'
     resolution:
-      integrity: sha512-A/RLaTPIttaon8Hl3PFS0JPlCHnNRJN2wrxgcn6ovzzipO6EUbUgVXfrueixYcZuhmhut18CQ3+y2ZPMXmORXw==
+      integrity: sha512-N/TlDAf55TyyDCXnOvNvuS2u/FAOMJItuSv8qA7s81NuAOX9Lin1ivBohWOnEnOt9zxyApAesycztWhmlp6kVg==
       tarball: 'file:projects/just-task-logger.tgz'
     version: 0.0.0
   'file:projects/just-task-scripts.tgz':
@@ -13667,14 +13671,14 @@ packages:
       mock-fs: 4.8.0
       resolve: 1.10.0
       ts-jest: /ts-jest/24.0.2/jest@24.7.1
-      typescript: 3.3.3
+      typescript: 3.4.4
       undertaker: 1.2.0
       undertaker-registry: 1.0.1
       yargs: 12.0.5
     dev: false
     name: '@rush-temp/just-task'
     resolution:
-      integrity: sha512-Dg/e5gdF77Cq8iivpl0cQ7MkRNUfil8Oht4thw0ptyp0t2mtu5lSPQgZZEYG05JXOHPVr9GvgLJzW6W952WSiA==
+      integrity: sha512-piPmQsc0cJV8VIW188UdZyfveOla+FQhFzdFG6wJxwe8Ax8VVi4GWeknF4x8Cte6qysuTXDElCCEsZi7O0Kycg==
       tarball: 'file:projects/just-task.tgz'
     version: 0.0.0
 registry: 'https://registry.npmjs.org/'

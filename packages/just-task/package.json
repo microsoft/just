@@ -36,7 +36,7 @@
     "jest": "^24.0.0",
     "mock-fs": "^4.8.0",
     "ts-jest": "^24.0.1",
-    "typescript": "~3.3.3"
+    "typescript": "~3.4.4"
   },
   "keywords": [],
   "author": "Ken Chau <kchau@microsoft.com>",
