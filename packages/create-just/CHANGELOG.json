@@ -2,6 +2,18 @@
   "name": "create-just",
   "entries": [
     {
+      "version": "0.6.5",
+      "tag": "create-just_v0.6.5",
+      "date": "Mon, 22 Apr 2019 16:55:52 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Runs npm install for you"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.4",
       "tag": "create-just_v0.6.4",
       "date": "Wed, 10 Apr 2019 21:52:06 GMT",

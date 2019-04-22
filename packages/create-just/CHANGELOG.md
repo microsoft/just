@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Wed, 10 Apr 2019 21:52:06 GMT and should not be manually modified.
+This log was last generated on Mon, 22 Apr 2019 16:55:52 GMT and should not be manually modified.
+
+## 0.6.5
+Mon, 22 Apr 2019 16:55:52 GMT
+
+### Patches
+
+- Runs npm install for you
 
 ## 0.6.4
 Wed, 10 Apr 2019 21:52:06 GMT
