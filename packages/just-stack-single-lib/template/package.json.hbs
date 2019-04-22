@@ -12,14 +12,14 @@
   "typings": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "npx just build",
-    "test": "npx just test",
     "just": "npx just",
     "clean": "npx just clean",
+    "build": "npx just build",
     "start": "npx just start",
-    "start-test": "npx just start-test",
-    "update-snapshots": "npx just jest -u",
-    "upgrade-stack": "npx just upgrade-stack"
+    "test": "npx just test",
+    "test:start": "npx just start-test",
+    "test:update": "npx just jest -u",
+    "stack:upgrade": "npx just upgrade-stack"
   },
   "devDependencies": {
     "just-stack-single-lib": ">=0.5.14"
