@@ -2,6 +2,18 @@
   "name": "just-stack-uifabric",
   "entries": [
     {
+      "version": "0.9.1",
+      "tag": "just-stack-uifabric_v0.9.1",
+      "date": "Tue, 23 Apr 2019 16:47:58 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "move typing to template"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.9.0",
       "tag": "just-stack-uifabric_v0.9.0",
       "date": "Tue, 23 Apr 2019 16:19:37 GMT",

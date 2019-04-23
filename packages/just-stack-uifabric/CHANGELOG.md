@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Tue, 23 Apr 2019 16:19:37 GMT and should not be manually modified.
+This log was last generated on Tue, 23 Apr 2019 16:47:58 GMT and should not be manually modified.
+
+## 0.9.1
+Tue, 23 Apr 2019 16:47:58 GMT
+
+### Patches
+
+- move typing to template
 
 ## 0.9.0
 Tue, 23 Apr 2019 16:19:37 GMT
