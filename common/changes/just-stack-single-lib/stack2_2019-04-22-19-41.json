@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-single-lib",
+      "comment": "Moved the devdeps as deps in the stack",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-stack-single-lib",
+  "email": "kchau@microsoft.com"
+}

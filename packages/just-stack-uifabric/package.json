@@ -17,12 +17,30 @@
     "build": "npm test",
     "test": "jest"
   },
-  "devDependencies": {
+  "dependencies": {
     "fs-extra": "^7.0.1",
     "glob": "^7.1.3",
-    "jest": "^23.6.0",
     "jest-expect-message": "^1.0.2",
     "json5": "^2.1.0",
-    "just-scripts-utils": "0.7.0"
+    "@types/jest": "^24.0.0",
+    "@types/react-dom": "~16.0.11",
+    "@types/react": "~16.7.0",
+    "autoprefixer": "^9.4.5",
+    "css-loader": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.0.0",
+    "just-scripts-utils": "0.7.0",
+    "just-scripts": "^0.14.0",
+    "node-sass": "^4.11.0",
+    "postcss": "^7.0.13",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^0.23.1",
+    "ts-jest": "^24.0.1",
+    "ts-loader": "^5.3.3",
+    "tslib": "^1.9.3",
+    "typescript": "~3.4.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14",
+    "webpack": "~4.29.5"
   }
 }

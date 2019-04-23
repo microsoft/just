@@ -12,24 +12,17 @@
   "typings": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "npx just build",
-    "test": "npx just test",
     "just": "npx just",
     "clean": "npx just clean",
+    "build": "npx just build",
     "start": "npx just start",
-    "start-test": "npx just start-test",
-    "update-snapshots": "npx just jest -u",
-    "upgrade-stack": "npx just upgrade-stack"
+    "test": "npx just test",
+    "test:start": "npx just start-test",
+    "test:update": "npx just jest -u",
+    "stack:upgrade": "npx just upgrade-stack"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.0",
-    "jest": "^24.0.0",
-    "just-scripts": "^0.14.0",
-    "just-task": "^0.9.0",
-    "ts-jest": "^24.0.1",
-    "tslib": "^1.9.3",
-    "typescript": "^3.2.4",
-    "just-stack-single-lib": "^0.5.12"
+    "just-stack-single-lib": ">=0.5.14"
   },
   "just": {
     "stack": "just-stack-single-lib"
