@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Fri, 19 Apr 2019 01:51:22 GMT and should not be manually modified.
+This log was last generated on Tue, 23 Apr 2019 16:19:37 GMT and should not be manually modified.
+
+## 0.9.0
+Tue, 23 Apr 2019 16:19:37 GMT
+
+### Minor changes
+
+- Update Fabric stack to hide devdeps
 
 ## 0.7.15
 Fri, 19 Apr 2019 01:51:22 GMT

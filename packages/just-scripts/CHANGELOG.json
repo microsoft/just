@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.14.3",
+      "tag": "just-scripts_v0.14.3",
+      "date": "Tue, 23 Apr 2019 16:19:37 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "get rid of accidental console.log"
+          },
+          {
+            "comment": "get rid of another accidental console.log in webpackTask"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.14.1",
       "tag": "just-scripts_v0.14.1",
       "date": "Fri, 19 Apr 2019 01:51:22 GMT",

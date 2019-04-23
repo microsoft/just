@@ -2,6 +2,21 @@
   "name": "create-just",
   "entries": [
     {
+      "version": "0.6.6",
+      "tag": "create-just_v0.6.6",
+      "date": "Tue, 23 Apr 2019 16:19:37 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Runs npm install for you"
+          },
+          {
+            "comment": "Get rid of the upgrade-stack step"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.4",
       "tag": "create-just_v0.6.4",
       "date": "Wed, 10 Apr 2019 21:52:06 GMT",

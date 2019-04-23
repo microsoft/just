@@ -2,6 +2,23 @@
   "name": "just-stack-uifabric",
   "entries": [
     {
+      "version": "0.9.0",
+      "tag": "just-stack-uifabric_v0.9.0",
+      "date": "Tue, 23 Apr 2019 16:19:37 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Update Fabric stack to hide devdeps"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-scripts\" from `^0.14.0` to `^0.14.3`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.15",
       "tag": "just-stack-uifabric_v0.7.15",
       "date": "Fri, 19 Apr 2019 01:51:22 GMT",

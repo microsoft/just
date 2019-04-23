@@ -2,6 +2,23 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.6.0",
+      "tag": "just-stack-single-lib_v0.6.0",
+      "date": "Tue, 23 Apr 2019 16:19:37 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Moved the devdeps as deps in the stack"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-scripts\" from `^0.14.0` to `^0.14.3`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.13",
       "tag": "just-stack-single-lib_v0.5.13",
       "date": "Fri, 19 Apr 2019 01:51:22 GMT",
