@@ -1,6 +1,18 @@
 # Change Log - create-just
 
-This log was last generated on Tue, 23 Apr 2019 16:19:37 GMT and should not be manually modified.
+This log was last generated on Wed, 24 Apr 2019 23:38:23 GMT and should not be manually modified.
+
+## 0.7.0
+Wed, 24 Apr 2019 23:38:23 GMT
+
+### Minor changes
+
+- Adds an ability to specify a path for template (helps with testing templates in development)
+
+### Patches
+
+- npm install with output streaming
+- adds a init command ability to pass in relative paths
 
 ## 0.6.6
 Tue, 23 Apr 2019 16:19:37 GMT

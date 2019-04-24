@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 23 Apr 2019 16:19:37 GMT and should not be manually modified.
+This log was last generated on Wed, 24 Apr 2019 23:38:23 GMT and should not be manually modified.
+
+## 0.14.4
+Wed, 24 Apr 2019 23:38:23 GMT
+
+### Patches
+
+- Added webpack overlays and such
 
 ## 0.14.3
 Tue, 23 Apr 2019 16:19:37 GMT

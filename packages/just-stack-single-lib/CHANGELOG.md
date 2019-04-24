@@ -1,6 +1,14 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Tue, 23 Apr 2019 16:47:58 GMT and should not be manually modified.
+This log was last generated on Wed, 24 Apr 2019 23:38:23 GMT and should not be manually modified.
+
+## 0.6.2
+Wed, 24 Apr 2019 23:38:23 GMT
+
+### Patches
+
+- up dep
+- bump dep
 
 ## 0.6.1
 Tue, 23 Apr 2019 16:47:58 GMT

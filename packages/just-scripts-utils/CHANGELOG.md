@@ -1,6 +1,14 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Wed, 10 Apr 2019 20:30:38 GMT and should not be manually modified.
+This log was last generated on Wed, 24 Apr 2019 23:38:23 GMT and should not be manually modified.
+
+## 0.7.1
+Wed, 24 Apr 2019 23:38:23 GMT
+
+### Patches
+
+- up dep
+- add ability to use path for template
 
 ## 0.7.0
 Wed, 10 Apr 2019 20:30:38 GMT

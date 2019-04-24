@@ -1,6 +1,18 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Tue, 23 Apr 2019 16:47:58 GMT and should not be manually modified.
+This log was last generated on Wed, 24 Apr 2019 23:38:23 GMT and should not be manually modified.
+
+## 0.10.0
+Wed, 24 Apr 2019 23:38:23 GMT
+
+### Minor changes
+
+- Added a bit more default page look
+
+### Patches
+
+- up dep
+- adds logo
 
 ## 0.9.1
 Tue, 23 Apr 2019 16:47:58 GMT

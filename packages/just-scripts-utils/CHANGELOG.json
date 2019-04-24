@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "version": "0.7.1",
+      "tag": "just-scripts-utils_v0.7.1",
+      "date": "Wed, 24 Apr 2019 23:38:23 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "up dep"
+          },
+          {
+            "comment": "add ability to use path for template"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.0",
       "tag": "just-scripts-utils_v0.7.0",
       "date": "Wed, 10 Apr 2019 20:30:38 GMT",

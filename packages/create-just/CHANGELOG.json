@@ -2,6 +2,31 @@
   "name": "create-just",
   "entries": [
     {
+      "version": "0.7.0",
+      "tag": "create-just_v0.7.0",
+      "date": "Wed, 24 Apr 2019 23:38:23 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "npm install with output streaming"
+          },
+          {
+            "comment": "adds a init command ability to pass in relative paths"
+          }
+        ],
+        "minor": [
+          {
+            "comment": "Adds an ability to specify a path for template (helps with testing templates in development)"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-scripts-utils\" from `>=0.7.0 <1.0.0` to `>=0.7.1 <1.0.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.6",
       "tag": "create-just_v0.6.6",
       "date": "Tue, 23 Apr 2019 16:19:37 GMT",
