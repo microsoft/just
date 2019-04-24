@@ -13,8 +13,8 @@ import { stylesOverlay } from './webpack/overlays/stylesOverlay';
 import { fileOverlay } from './webpack/overlays/fileOverlay';
 
 export const webpackOverlays = {
-  tsloader: tsOverlay,
-  htmlWebpackPlugin: htmlOverlay,
+  typescript: tsOverlay,
+  html: htmlOverlay,
   styles: stylesOverlay,
   file: fileOverlay
 };
