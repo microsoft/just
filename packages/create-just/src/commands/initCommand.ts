@@ -6,8 +6,14 @@ import prompts from 'prompts';
 import { execSync } from 'child_process';
 import yargs from 'yargs';
 
+const initCwd = process.cwd();
+
 function checkEmptyRepo(projectPath: string) {
   return readdirSync(projectPath).length === 0;
+}
+
+function isFilePath(pathName: string) {
+  return pathName.match(/^\./) || pathName.indexOf('/') > -1;
 }
 
 export async function initCommand(argv: yargs.Arguments) {
@@ -48,9 +54,9 @@ export async function initCommand(argv: yargs.Arguments) {
 
   process.chdir(paths.projectPath);
 
-  logger.info('Initializing the repo in the current directory');
+  logger.info(`Initializing the repo in ${paths.projectPath}`);
 
-  const templatePath = await downloadPackage(argv.stack);
+  const templatePath = isFilePath(argv.stack) ? path.join(initCwd, argv.stack, 'template') : await downloadPackage(argv.stack);
 
   if (templatePath) {
     applyTemplate(templatePath, paths.projectPath, { name });

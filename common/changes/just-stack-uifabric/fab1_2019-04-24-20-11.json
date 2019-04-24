@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-uifabric",
+      "comment": "adds logo",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-stack-uifabric",
+  "email": "kchau@microsoft.com"
+}
