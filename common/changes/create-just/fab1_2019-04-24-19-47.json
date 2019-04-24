@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "create-just",
+      "comment": "Adds an ability to specify a path for template (helps with testing templates in development)",
+      "type": "minor"
+    }
+  ],
+  "packageName": "create-just",
+  "email": "kchau@microsoft.com"
+}
