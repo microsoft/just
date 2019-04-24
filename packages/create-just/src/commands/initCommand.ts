@@ -60,7 +60,7 @@ export async function initCommand(argv: yargs.Arguments) {
     if (argv.stack.includes('monorepo')) {
       rushUpdate(paths.projectPath);
     } else {
-      execSync('npm install');
+      execSync('npm install', { stdio: 'inherit' });
     }
 
     execSync('git add .');
