@@ -365,6 +365,6 @@ describe('applyTemplate', () => {
         }
       }
     });
-    expect(result).toEqual({ processed: 5, warnings: 2 });
+    expect(result).toEqual({ processed: 3, warnings: 1 });
   });
 });

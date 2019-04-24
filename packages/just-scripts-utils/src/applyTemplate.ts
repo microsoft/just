@@ -26,7 +26,7 @@ export interface ApplyTemplateResult {
 export function applyTemplate(templateDir: string, projectDir: string, templateData?: any): ApplyTemplateResult {
   let templateFiles: string[];
   try {
-    templateFiles = glob.sync('**/*', { cwd: templateDir, dot: true, nodir: true, ignore: ['node_modules/**/*', '.DS_Store'] });
+    templateFiles = glob.sync('**/*', { cwd: templateDir, dot: true, nodir: true, ignore: ['node_modules/**/*', '**/.DS_Store'] });
   } catch (ex) {
     logger.error(`Error finding template files under ${templateDir}: ${ex}`);
     return { error: true, processed: 0, warnings: 0 };
