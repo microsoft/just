@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts-utils",
+      "comment": "add ability to use path for template",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-scripts-utils",
+  "email": "kchau@microsoft.com"
+}
