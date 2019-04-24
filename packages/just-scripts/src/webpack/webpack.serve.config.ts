@@ -1,21 +1,18 @@
 import path from 'path';
-export const webpackServeConfig = {
-  entry: './src/index',
-  resolve: {
-    extensions: ['.js', '.ts', '.tsx']
+import merge from 'webpack-merge';
+import { tsOverlay } from './overlays/tsOverlay';
+import { fileOverlay } from './overlays/fileOverlay';
+
+export const webpackServeConfig: any = merge(
+  {
+    entry: './src/index',
+    mode: 'development',
+    output: {
+      path: path.join(process.cwd(), 'dist'),
+      publicPath: 'dist',
+      filename: 'bundle.js'
+    }
   },
-  mode: 'development',
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
-  },
-  output: {
-    path: path.join(process.cwd(), 'dist'),
-    filename: 'bundle.js'
-  }
-};
+  tsOverlay,
+  fileOverlay
+);

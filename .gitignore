@@ -17,3 +17,8 @@ temp
 # Rush files
 common/temp/**
 package-deps.json
+
+# Binary files
+*.tgz
+*.tar
+*.gz
