@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-single-lib",
+      "comment": "bump dep",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-stack-single-lib",
+  "email": "kchau@microsoft.com"
+}

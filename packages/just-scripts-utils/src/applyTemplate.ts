@@ -23,14 +23,10 @@ export interface ApplyTemplateResult {
  * when compiling
  * @returns Object indicating whether the template application was successful
  */
-export function applyTemplate(
-  templateDir: string,
-  projectDir: string,
-  templateData?: any
-): ApplyTemplateResult {
+export function applyTemplate(templateDir: string, projectDir: string, templateData?: any): ApplyTemplateResult {
   let templateFiles: string[];
   try {
-    templateFiles = [...new Set(glob.sync('**/*', { cwd: templateDir, dot: true }))];
+    templateFiles = glob.sync('**/*', { cwd: templateDir, dot: true, nodir: true, ignore: ['node_modules/**/*', '.DS_Store'] });
   } catch (ex) {
     logger.error(`Error finding template files under ${templateDir}: ${ex}`);
     return { error: true, processed: 0, warnings: 0 };
@@ -47,15 +43,13 @@ export function applyTemplate(
 
   let processed = 0;
   let warnings = 0;
-  templateFiles
-    .filter(name => name.indexOf('.DS_Store') < 0)
-    .forEach(templateFile => {
-      if (_processFileFromTemplate(templateFile, templateDir, projectDir, templateData)) {
-        ++processed;
-      } else {
-        ++warnings;
-      }
-    });
+  templateFiles.forEach(templateFile => {
+    if (_processFileFromTemplate(templateFile, templateDir, projectDir, templateData)) {
+      ++processed;
+    } else {
+      ++warnings;
+    }
+  });
 
   return { processed, warnings };
 }
@@ -68,12 +62,7 @@ export function applyTemplate(
  * @param templateData If the file is a handlebars template, this will be passed to it when compiling
  * @returns true if no errors occur
  */
-export function _processFileFromTemplate(
-  templateFile: string,
-  templateDir: string,
-  projectDir: string,
-  templateData?: any
-): boolean {
+export function _processFileFromTemplate(templateFile: string, templateDir: string, projectDir: string, templateData?: any): boolean {
   const inputFilePath = path.join(templateDir, templateFile);
   const outputFilePath = path.join(projectDir, templateFile);
 
