@@ -39,7 +39,7 @@
      * It specifies the remote url for the official Git repository.  If this URL is provided,
      * "rush change" will use it to find the right remote to compare against.
      */
-    // "url": "https://github.com/Microsoft/rush-example"
+    "url": "https://github.com/Microsoft/just.git"
   },
 
   "eventHooks": {

@@ -6,6 +6,7 @@
   "scripts": {
     "postinstall": "node ./common/scripts/install-run-rush.js install",
     "build": "node ./common/scripts/install-run-rush.js build",
+    "checkchange": "node ./common/scripts/install-run-rush.js change -v",
     "test": "node ./common/scripts/install-run-rush.js test",
     "build:docs": "node ./common/scripts/install-run-rush.js rebuild -t just-task-docs",
     "postbuild": "node ./scripts/copyReadme.js",
