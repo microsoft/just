@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "create-uifabric",
+      "comment": "fix the bin script path",
+      "type": "patch"
+    }
+  ],
+  "packageName": "create-uifabric",
+  "email": "kchau@microsoft.com"
+}
