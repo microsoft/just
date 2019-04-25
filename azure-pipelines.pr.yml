@@ -25,6 +25,10 @@ steps:
     displayName: 'npm install'
 
   - script: |
+      npm run checkchange
+    displayName: 'check change files'
+
+  - script: |
       npm run build
     displayName: 'build'
 
