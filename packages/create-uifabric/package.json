@@ -11,7 +11,7 @@
   },
   "main": "dist/create-uifabric.js",
   "bin": {
-    "create-just": "bin/create-just.js"
+    "create-uifabric": "bin/create-uifabric.js"
   },
   "keywords": [],
   "author": "",
