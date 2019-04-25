@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Wed, 24 Apr 2019 23:38:23 GMT and should not be manually modified.
+This log was last generated on Thu, 25 Apr 2019 02:25:55 GMT and should not be manually modified.
+
+## 0.10.1
+Thu, 25 Apr 2019 02:25:55 GMT
+
+### Patches
+
+- Fixed to include fluent theme
 
 ## 0.10.0
 Wed, 24 Apr 2019 23:38:23 GMT

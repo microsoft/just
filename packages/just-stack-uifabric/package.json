@@ -1,6 +1,6 @@
 {
   "name": "just-stack-uifabric",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "just-stack": true,
   "description": "Just stack for UI Fabric application with React",
   "repository": {

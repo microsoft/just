@@ -2,6 +2,18 @@
   "name": "just-stack-uifabric",
   "entries": [
     {
+      "version": "0.10.1",
+      "tag": "just-stack-uifabric_v0.10.1",
+      "date": "Thu, 25 Apr 2019 02:25:55 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed to include fluent theme"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.10.0",
       "tag": "just-stack-uifabric_v0.10.0",
       "date": "Wed, 24 Apr 2019 23:38:23 GMT",

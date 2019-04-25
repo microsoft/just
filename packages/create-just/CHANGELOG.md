@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Wed, 24 Apr 2019 23:38:23 GMT and should not be manually modified.
+This log was last generated on Thu, 25 Apr 2019 02:25:55 GMT and should not be manually modified.
+
+## 0.7.1
+Thu, 25 Apr 2019 02:25:55 GMT
+
+### Patches
+
+- Fixed absolute local paths vs relative
 
 ## 0.7.0
 Wed, 24 Apr 2019 23:38:23 GMT
