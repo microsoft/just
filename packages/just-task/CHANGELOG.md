@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Thu, 25 Apr 2019 21:21:58 GMT and should not be manually modified.
+This log was last generated on Thu, 25 Apr 2019 22:19:05 GMT and should not be manually modified.
+
+## 0.9.3
+Thu, 25 Apr 2019 22:19:05 GMT
+
+### Patches
+
+- really get rid of deprecation warning
 
 ## 0.9.2
 Thu, 25 Apr 2019 21:21:58 GMT

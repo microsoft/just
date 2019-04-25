@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.9.3",
+      "tag": "just-task_v0.9.3",
+      "date": "Thu, 25 Apr 2019 22:19:05 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "really get rid of deprecation warning"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.9.2",
       "tag": "just-task_v0.9.2",
       "date": "Thu, 25 Apr 2019 21:21:58 GMT",
