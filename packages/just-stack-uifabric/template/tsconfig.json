@@ -11,5 +11,5 @@
     "esModuleInterop": true,
     "jsx": "react"
   },
-  "include": ["src/index.tsx", "typing/**/*.d.ts"]
+  "include": ["src/index.tsx", "typings/**/*.d.ts"]
 }
