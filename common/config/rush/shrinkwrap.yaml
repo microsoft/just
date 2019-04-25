@@ -9,6 +9,7 @@ dependencies:
   '@babel/traverse': 7.2.3
   '@babel/types': 7.3.2
   '@rush-temp/create-just': 'file:projects/create-just.tgz'
+  '@rush-temp/create-uifabric': 'file:projects/create-uifabric.tgz'
   '@rush-temp/example-lib': 'file:projects/example-lib.tgz'
   '@rush-temp/just-scripts': 'file:projects/just-scripts.tgz'
   '@rush-temp/just-scripts-utils': 'file:projects/just-scripts-utils.tgz'
@@ -42,6 +43,7 @@ dependencies:
   autoprefixer: 9.5.1
   chalk: 2.4.2
   cpx: 1.5.0
+  create-just: 0.7.1
   css-loader: 2.1.1
   diff-match-patch: 1.0.4
   docusaurus: 1.7.2
@@ -398,7 +400,6 @@ packages:
       integrity: sha512-wNHxLkEKTQ2ay0tnsam2z7fGZUi+05ziDJflEt3AZTP3oXLKHJp9HqhfroB/vdMvt3sda9fAbq7FsG8QPDrZBg==
   /@babel/plugin-proposal-class-properties/7.3.0/@babel!core@7.2.2:
     dependencies:
-      '@babel/core': 7.2.2
       '@babel/helper-create-class-features-plugin': /@babel/helper-create-class-features-plugin/7.3.2/@babel!core@7.2.2
       '@babel/helper-plugin-utils': 7.0.0
     dev: false
@@ -438,7 +439,6 @@ packages:
       integrity: sha512-DjeMS+J2+lpANkYLLO+m6GjoTMygYglKmRe6cDTbFv3L9i6mmiE8fe6B8MtCSLZpVXscD5kn7s6SgtHrDoBWoA==
   /@babel/plugin-proposal-object-rest-spread/7.3.2/@babel!core@7.2.2:
     dependencies:
-      '@babel/core': 7.2.2
       '@babel/helper-plugin-utils': 7.0.0
       '@babel/plugin-syntax-object-rest-spread': /@babel/plugin-syntax-object-rest-spread/7.2.0/@babel!core@7.2.2
     dev: false
@@ -1292,7 +1292,6 @@ packages:
       integrity: sha512-FHKrD6Dxf30e8xgHQO0zJZpUPfVZg+Xwgz5/RdSWCbza9QLNk4Qbp40ctRoqDxml3O8RMzB1DU55SXeDG6PqHQ==
   /@babel/preset-env/7.3.1/@babel!core@7.2.2:
     dependencies:
-      '@babel/core': 7.2.2
       '@babel/helper-module-imports': 7.0.0
       '@babel/helper-plugin-utils': 7.0.0
       '@babel/plugin-proposal-async-generator-functions': /@babel/plugin-proposal-async-generator-functions/7.2.0/@babel!core@7.2.2
@@ -1356,7 +1355,6 @@ packages:
       integrity: sha512-oayxyPS4Zj+hF6Et11BwuBkmpgT/zMxyuZgFrMeZID6Hdh3dGlk4sHCAhdBCpuCKW2ppBfl2uCCetlrUIJRY3w==
   /@babel/preset-react/7.0.0/@babel!core@7.2.2:
     dependencies:
-      '@babel/core': 7.2.2
       '@babel/helper-plugin-utils': 7.0.0
       '@babel/plugin-transform-react-display-name': /@babel/plugin-transform-react-display-name/7.2.0/@babel!core@7.2.2
       '@babel/plugin-transform-react-jsx': /@babel/plugin-transform-react-jsx/7.3.0/@babel!core@7.2.2
@@ -1384,7 +1382,6 @@ packages:
       integrity: sha512-f/+CRmaCe7rVEvcvPvxeA8j5aJhHC3aJie7YuqcMDhUOuyWLA7J/aNrTaHIzoWPEhpHA54mec4Mm8fv8KBlv3g==
   /@babel/register/7.0.0/@babel!core@7.2.2:
     dependencies:
-      '@babel/core': 7.2.2
       core-js: 2.6.3
       find-cache-dir: 1.0.0
       home-or-tmp: 3.0.0
@@ -1960,28 +1957,10 @@ packages:
       react-dom: ^0.14.9 || ^15.0.1-0 || ^16.0.0-0
     resolution:
       integrity: sha512-iFwuoFUQoS6H6paxrRsVCxQnw2SqnxhS+EBh54Gb3A6HxS2IKzGAE5c4tnZcqjXNPxXTvXgt5iQg3xycIa95cg==
-  /@uifabric/charting/0.28.5/react-dom@16.7.0+react@16.7.0:
+  /@uifabric/charting/0.28.5/react-dom@16.7.0:
     dependencies:
-      '@microsoft/load-themed-styles': 1.8.56
-      '@types/d3-array': 1.2.1
-      '@types/d3-axis': 1.0.10
-      '@types/d3-scale': 2.0.0
-      '@types/d3-selection': 1.3.0
-      '@types/d3-shape': 1.3.0
-      '@types/d3-time-format': 2.1.0
-      '@uifabric/icons': 6.3.0
-      '@uifabric/set-version': 1.1.3
-      d3-array: 1.2.1
-      d3-axis: 1.0.8
-      d3-scale: 2.0.0
-      d3-selection: 1.3.0
-      d3-shape: 1.3.4
-      d3-time-format: 2.1.3
-      office-ui-fabric-react: /office-ui-fabric-react/6.133.0/react-dom@16.7.0+react@16.7.0
-      prop-types: 15.6.2
-      react: 16.7.0
-      react-dom: /react-dom/16.7.0/react@16.7.0
-      tslib: 1.9.3
+      office-ui-fabric-react: /office-ui-fabric-react/6.133.0/react-dom@16.7.0
+      react-dom: 16.7.0
     dev: false
     id: registry.npmjs.org/@uifabric/charting/0.28.5
     peerDependencies:
@@ -2014,27 +1993,14 @@ packages:
       react-dom: '>=16.3.2-0 <17.0.0'
     resolution:
       integrity: sha512-+1z5RUSP5gWfB5VIcD1A7O1ITbzwBEvCOOn0Md5vOhozrcDPxEAcoIve29Ckckd/05xmMAYTjgQVMjgE4y8Rng==
-  /@uifabric/experiments/6.54.2/react-dom@16.7.0+react@16.7.0:
+  /@uifabric/experiments/6.54.2/react-dom@16.7.0:
     dependencies:
-      '@microsoft/load-themed-styles': 1.8.56
-      '@uifabric/azure-themes': 0.1.5
-      '@uifabric/charting': /@uifabric/charting/0.28.5/react-dom@16.7.0+react@16.7.0
-      '@uifabric/file-type-icons': /@uifabric/file-type-icons/6.4.1/react-dom@16.7.0+react@16.7.0
-      '@uifabric/fluent-theme': 0.13.4
-      '@uifabric/foundation': /@uifabric/foundation/0.7.1/react-dom@16.7.0+react@16.7.0
-      '@uifabric/icons': 6.3.0
-      '@uifabric/merge-styles': 6.15.2
-      '@uifabric/set-version': 1.1.3
-      '@uifabric/styling': 6.41.0
-      '@uifabric/theme-samples': 0.1.4
-      '@uifabric/utilities': /@uifabric/utilities/6.29.0/react-dom@16.7.0+react@16.7.0
-      '@uifabric/variants': 6.14.0
-      deep-assign: 2.0.0
-      office-ui-fabric-react: /office-ui-fabric-react/6.133.0/react-dom@16.7.0+react@16.7.0
-      prop-types: 15.6.2
-      react: 16.7.0
-      react-dom: /react-dom/16.7.0/react@16.7.0
-      tslib: 1.9.3
+      '@uifabric/charting': /@uifabric/charting/0.28.5/react-dom@16.7.0
+      '@uifabric/file-type-icons': /@uifabric/file-type-icons/6.4.1/react-dom@16.7.0
+      '@uifabric/foundation': /@uifabric/foundation/0.7.1/react-dom@16.7.0
+      '@uifabric/utilities': /@uifabric/utilities/6.29.0/react-dom@16.7.0
+      office-ui-fabric-react: /office-ui-fabric-react/6.133.0/react-dom@16.7.0
+      react-dom: 16.7.0
     dev: false
     id: registry.npmjs.org/@uifabric/experiments/6.54.2
     peerDependencies:
@@ -2053,13 +2019,9 @@ packages:
       react-dom: '>=16.3.2-0 <17.0.0'
     resolution:
       integrity: sha512-T6wGiA/RjLqRE+P5RRObpcRJ+ejh4ZwZX584GgEymOCcU7kjzWSZR7imTA65FbUMUhXxR68b3oiWgPSaCAXE8w==
-  /@uifabric/file-type-icons/6.4.1/react-dom@16.7.0+react@16.7.0:
+  /@uifabric/file-type-icons/6.4.1/react-dom@16.7.0:
     dependencies:
-      '@uifabric/set-version': 1.1.3
-      '@uifabric/styling': 6.41.0
-      react: 16.7.0
-      react-dom: /react-dom/16.7.0/react@16.7.0
-      tslib: 1.9.3
+      react-dom: 16.7.0
     dev: false
     id: registry.npmjs.org/@uifabric/file-type-icons/6.4.1
     peerDependencies:
@@ -2090,14 +2052,10 @@ packages:
       react-dom: ^0.14.9 || ^15.0.1-0 || ^16.0.0-0
     resolution:
       integrity: sha512-YrdaJXAe4x7whaj7/x1fhFsBGao0vAec6mVIAYCvC09AK+puEYDahIloVWA6vLTRlWzzOZWsvN3S3Z1tzfhIRw==
-  /@uifabric/foundation/0.7.1/react-dom@16.7.0+react@16.7.0:
+  /@uifabric/foundation/0.7.1/react-dom@16.7.0:
     dependencies:
-      '@uifabric/set-version': 1.1.3
-      '@uifabric/styling': 6.41.0
-      '@uifabric/utilities': /@uifabric/utilities/6.29.0/react-dom@16.7.0+react@16.7.0
-      react: 16.7.0
-      react-dom: /react-dom/16.7.0/react@16.7.0
-      tslib: 1.9.3
+      '@uifabric/utilities': /@uifabric/utilities/6.29.0/react-dom@16.7.0
+      react-dom: 16.7.0
     dev: false
     id: registry.npmjs.org/@uifabric/foundation/0.7.1
     peerDependencies:
@@ -2157,14 +2115,9 @@ packages:
       react-dom: '>=16.3.2-0 <17.0.0'
     resolution:
       integrity: sha512-2VKRadp+pGV5PFubSYCUTU4Sg3NdztECFiEvgyVDIrGYZhSwOVHMwAKb+I9hr990OLCb+gSK3rekJp/To9NZFQ==
-  /@uifabric/utilities/6.29.0/react-dom@16.7.0+react@16.7.0:
+  /@uifabric/utilities/6.29.0/react-dom@16.7.0:
     dependencies:
-      '@uifabric/merge-styles': 6.15.2
-      '@uifabric/set-version': 1.1.3
-      prop-types: 15.6.2
-      react: 16.7.0
-      react-dom: /react-dom/16.7.0/react@16.7.0
-      tslib: 1.9.3
+      react-dom: 16.7.0
     dev: false
     id: registry.npmjs.org/@uifabric/utilities/6.29.0
     peerDependencies:
@@ -2341,9 +2294,23 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-63d99gEXI6OxTopywIBcjoZ0a9I=
+  /acorn-dynamic-import/4.0.0:
+    dev: false
+    peerDependencies:
+      acorn: ^6.0.0
+    resolution:
+      integrity: sha512-d3OEjQV4ROpoflsnUA8HozoIR504TFxNivYEUi6uwz0IYhBkTDXGuWlNdMtybRt3nqVx/L6XqMt0FxkXuWKZhw==
   /acorn-dynamic-import/4.0.0/acorn@6.1.0:
+    dependencies: {}
+    dev: false
+    id: registry.npmjs.org/acorn-dynamic-import/4.0.0
+    peerDependencies:
+      acorn: ^6.0.0
+    resolution:
+      integrity: sha512-d3OEjQV4ROpoflsnUA8HozoIR504TFxNivYEUi6uwz0IYhBkTDXGuWlNdMtybRt3nqVx/L6XqMt0FxkXuWKZhw==
+  /acorn-dynamic-import/4.0.0/acorn@6.1.1:
     dependencies:
-      acorn: 6.1.0
+      acorn: 6.1.1
     dev: false
     id: registry.npmjs.org/acorn-dynamic-import/4.0.0
     peerDependencies:
@@ -2422,6 +2389,12 @@ packages:
       ajv: '>=5.0.0'
     resolution:
       integrity: sha512-DCRfO/4nQ+89p/RK43i8Ezd41EqdGIU4ld7nGF8OQ14oc/we5rEntLCUa7+jrn3nn83BosfwZA0wb4pon2o8iQ==
+  /ajv-keywords/3.4.0:
+    dev: false
+    peerDependencies:
+      ajv: ^6.9.1
+    resolution:
+      integrity: sha512-aUjdRFISbuFOl0EIZc+9e4FfZp0bDZgAdOOf30bJmw8VM9v84SHyVyxDfbWxpGYbdZD/9XoKxfHVNmxPkhwyGw==
   /ajv-keywords/3.4.0/ajv@6.10.0:
     dependencies:
       ajv: 6.10.0
@@ -2432,8 +2405,7 @@ packages:
     resolution:
       integrity: sha512-aUjdRFISbuFOl0EIZc+9e4FfZp0bDZgAdOOf30bJmw8VM9v84SHyVyxDfbWxpGYbdZD/9XoKxfHVNmxPkhwyGw==
   /ajv-keywords/3.4.0/ajv@6.9.1:
-    dependencies:
-      ajv: 6.9.1
+    dependencies: {}
     dev: false
     id: registry.npmjs.org/ajv-keywords/3.4.0
     peerDependencies:
@@ -4252,6 +4224,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-MJG9liiZ+ogc4TzUwuvbER1JRdgvUFSB5+VR/g5h82fGaIRWMWddtKBHi7/sVhfjQZ6SehlyhvQYrcYkaUIpLg==
+  /create-just/0.7.1:
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-HUeyk7MPRL5r8mT8z61cjaQBd41y7tdo3FufSG8/R8ImqC26SiCaPFBuSOnt4X2n7PMbwDEUYuAQwunPY7jzKw==
   /cross-spawn/3.0.1:
     dependencies:
       lru-cache: 4.1.5
@@ -4341,7 +4318,7 @@ packages:
       postcss-modules-values: 2.0.0
       postcss-value-parser: 3.3.1
       schema-utils: 1.0.0
-      webpack: 4.29.5
+      webpack: /webpack/4.29.5/acorn@6.1.1+webpack@4.29.5
     dev: false
     engines:
       node: '>= 6.9.0'
@@ -5688,7 +5665,7 @@ packages:
     dependencies:
       loader-utils: 1.2.3
       schema-utils: 1.0.0
-      webpack: 4.29.5
+      webpack: /webpack/4.29.5/acorn@6.1.1+webpack@4.29.5
     dev: false
     engines:
       node: '>= 6.9.0'
@@ -6607,7 +6584,7 @@ packages:
       tapable: 1.1.3
       toposort: 1.0.7
       util.promisify: 1.0.0
-      webpack: 4.29.5
+      webpack: /webpack/4.29.5/acorn@6.1.1+webpack@4.29.5
     dev: false
     engines:
       node: '>=6.9'
@@ -8913,21 +8890,6 @@ packages:
       marked: ^0.4.0 || ^0.5.0 || ^0.6.0
     resolution:
       integrity: sha512-Yr1yVS0BbDG55vx7be1D0mdv+jGs9AW563o/Tt/7FTsId2J0yqhrTeXAqq/Q0DyyXltIn6CSxzesQuFqXgafjQ==
-  /marked-terminal/3.2.0/marked@0.6.0:
-    dependencies:
-      ansi-escapes: 3.2.0
-      cardinal: 2.1.1
-      chalk: 2.4.2
-      cli-table: 0.3.1
-      marked: 0.6.0
-      node-emoji: 1.8.1
-      supports-hyperlinks: 1.0.1
-    dev: false
-    id: registry.npmjs.org/marked-terminal/3.2.0
-    peerDependencies:
-      marked: ^0.4.0 || ^0.5.0 || ^0.6.0
-    resolution:
-      integrity: sha512-Yr1yVS0BbDG55vx7be1D0mdv+jGs9AW563o/Tt/7FTsId2J0yqhrTeXAqq/Q0DyyXltIn6CSxzesQuFqXgafjQ==
   /marked/0.6.0:
     dev: false
     engines:
@@ -9684,18 +9646,10 @@ packages:
       react-dom: '>=16.3.2-0 <17.0.0'
     resolution:
       integrity: sha512-FbDUIfiy+X9+rYg4r2FWWem2Y9bdiqYDHv+qRY9kW5FYA30mb4VjlByLnJZnm4erKm0i/RCLUWJ5+TP88PgdeA==
-  /office-ui-fabric-react/6.133.0/react-dom@16.7.0+react@16.7.0:
+  /office-ui-fabric-react/6.133.0/react-dom@16.7.0:
     dependencies:
-      '@microsoft/load-themed-styles': 1.8.56
-      '@uifabric/icons': 6.3.0
-      '@uifabric/merge-styles': 6.15.2
-      '@uifabric/set-version': 1.1.3
-      '@uifabric/styling': 6.41.0
-      '@uifabric/utilities': /@uifabric/utilities/6.29.0/react-dom@16.7.0+react@16.7.0
-      prop-types: 15.6.2
-      react: 16.7.0
-      react-dom: /react-dom/16.7.0/react@16.7.0
-      tslib: 1.9.3
+      '@uifabric/utilities': /@uifabric/utilities/6.29.0/react-dom@16.7.0
+      react-dom: 16.7.0
     dev: false
     id: registry.npmjs.org/office-ui-fabric-react/6.133.0
     peerDependencies:
@@ -10878,7 +10832,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       prop-types: 15.6.2
-      react: 16.7.0
       scheduler: 0.12.0
     dev: false
     id: registry.npmjs.org/react-dom/16.7.0
@@ -12338,6 +12291,17 @@ packages:
       webpack: ^4.0.0
     resolution:
       integrity: sha512-1DMkTk286BzmfylAvLXwpJrI7dWa5BnFmscV/2dCr8+c56egFcbaeFAl7+sujAjdmpLam21XRdhA4oifLyiWWg==
+  /terser-webpack-plugin/1.2.2/webpack@4.29.5:
+    dependencies:
+      webpack: /webpack/4.29.5/webpack@4.29.5
+    dev: false
+    engines:
+      node: '>= 6.9.0'
+    id: registry.npmjs.org/terser-webpack-plugin/1.2.2
+    peerDependencies:
+      webpack: ^4.0.0
+    resolution:
+      integrity: sha512-1DMkTk286BzmfylAvLXwpJrI7dWa5BnFmscV/2dCr8+c56egFcbaeFAl7+sujAjdmpLam21XRdhA4oifLyiWWg==
   /terser/3.16.1:
     dependencies:
       commander: 2.17.1
@@ -13082,7 +13046,7 @@ packages:
       loader-utils: 1.2.3
       supports-color: 5.5.0
       v8-compile-cache: 2.0.2
-      webpack: 4.29.5
+      webpack: /webpack/4.29.5/webpack@4.29.5
       yargs: 12.0.5
     dev: false
     engines:
@@ -13112,7 +13076,7 @@ packages:
       memory-fs: 0.4.1
       mime: 2.4.2
       range-parser: 1.2.0
-      webpack: 4.29.5
+      webpack: /webpack/4.29.5/acorn@6.1.1+webpack@4.29.5
       webpack-log: 2.0.0
     dev: false
     engines:
@@ -13191,7 +13155,7 @@ packages:
       strip-ansi: 3.0.1
       supports-color: 6.1.0
       url: 0.11.0
-      webpack: 4.29.5
+      webpack: /webpack/4.29.5/acorn@6.1.1+webpack@4.29.5
       webpack-dev-middleware: /webpack-dev-middleware/3.6.2/webpack@4.29.5
       webpack-log: 2.0.0
       yargs: 12.0.5
@@ -13256,6 +13220,30 @@ packages:
     engines:
       node: '>=6.11.5'
     hasBin: true
+    resolution:
+      integrity: sha512-DuWlYUT982c7XVHodrLO9quFbNpVq5FNxLrMUfYUTlgKW0+yPimynYf1kttSQpEneAL1FH3P3OLNgkyImx8qIQ==
+  /webpack/4.29.5/acorn@6.1.1+webpack@4.29.5:
+    dependencies:
+      acorn-dynamic-import: /acorn-dynamic-import/4.0.0/acorn@6.1.1
+      ajv-keywords: 3.4.0
+      terser-webpack-plugin: /terser-webpack-plugin/1.2.2/webpack@4.29.5
+    dev: false
+    engines:
+      node: '>=6.11.5'
+    hasBin: true
+    id: registry.npmjs.org/webpack/4.29.5
+    resolution:
+      integrity: sha512-DuWlYUT982c7XVHodrLO9quFbNpVq5FNxLrMUfYUTlgKW0+yPimynYf1kttSQpEneAL1FH3P3OLNgkyImx8qIQ==
+  /webpack/4.29.5/webpack@4.29.5:
+    dependencies:
+      acorn-dynamic-import: 4.0.0
+      ajv-keywords: 3.4.0
+      terser-webpack-plugin: /terser-webpack-plugin/1.2.2/webpack@4.29.5
+    dev: false
+    engines:
+      node: '>=6.11.5'
+    hasBin: true
+    id: registry.npmjs.org/webpack/4.29.5
     resolution:
       integrity: sha512-DuWlYUT982c7XVHodrLO9quFbNpVq5FNxLrMUfYUTlgKW0+yPimynYf1kttSQpEneAL1FH3P3OLNgkyImx8qIQ==
   /websocket-driver/0.7.0:
@@ -13527,14 +13515,25 @@ packages:
       prompts: 2.0.1
       ts-loader: /ts-loader/5.3.3/typescript@3.4.4
       typescript: 3.4.4
-      webpack: 4.29.5
+      webpack: /webpack/4.29.5/webpack@4.29.5
       webpack-cli: /webpack-cli/3.2.1/webpack@4.29.5
       yargs: 12.0.5
     dev: false
     name: '@rush-temp/create-just'
     resolution:
-      integrity: sha512-8CH697O14zum+t/Qe6qQAuMx9+ifaOv0YQ5NbpPGDiq+uJKPvyZtwuxY8GPRI4nBa2BlQurkXWGG6PvlYNSL5A==
+      integrity: sha512-BPpfrxytXD53Uz12jdIMUcV3Tke0LE4+hBWZecoNelx89w1zlYN4ajEGKLGsSfOuLhPUoiBkijlrrPMRBQfblQ==
       tarball: 'file:projects/create-just.tgz'
+    version: 0.0.0
+  'file:projects/create-uifabric.tgz':
+    dependencies:
+      '@types/node': 10.14.5
+      create-just: 0.7.1
+      typescript: 3.4.4
+    dev: false
+    name: '@rush-temp/create-uifabric'
+    resolution:
+      integrity: sha512-TKrIjrWTa2Gv4Sb0AzvSh+f/P/eYLomtiTf3LGFtRrkVUS/dPTlveuElzN2yjUmLtLhDn8HZG9Z7KwGry8aelg==
+      tarball: 'file:projects/create-uifabric.tgz'
     version: 0.0.0
   'file:projects/example-lib.tgz':
     dependencies:
@@ -13542,7 +13541,7 @@ packages:
     dev: false
     name: '@rush-temp/example-lib'
     resolution:
-      integrity: sha512-McdEAkOUhvKIT6s5GFIuE6Nw5OAy82C78CPbF+DTBFKtGMIZylruZ9c8XNaL+lLvGy6gTvFkyInfsjMIzq8lMQ==
+      integrity: sha512-fiGZe2QwZ1wEgzTM+pzqKL5U6WiLNxiqSKvl3TnGhiC07I+H1FHuWH7Yoc4NIe5o4ks8ffDS2cfzL8jkHnVMRg==
       tarball: 'file:projects/example-lib.tgz'
     version: 0.0.0
   'file:projects/just-scripts-utils.tgz':
@@ -13566,11 +13565,11 @@ packages:
       jest: 24.7.1
       jju: 1.4.0
       marked: 0.6.0
-      marked-terminal: /marked-terminal/3.2.0/marked@0.6.0
+      marked-terminal: 3.2.0
       mock-fs: 4.8.0
       semver: 5.6.0
       tar: 4.4.8
-      ts-jest: /ts-jest/24.0.2/jest@24.7.1
+      ts-jest: 24.0.2
       typescript: 3.4.4
       yargs: 12.0.5
     dev: false
@@ -13607,7 +13606,7 @@ packages:
     dev: false
     name: '@rush-temp/just-scripts'
     resolution:
-      integrity: sha512-yb1GeN73YaLuGVJ4LhNAa3bZgm5T28Z1jMg127fJ0noYHahED8KU8SBnjQT1TS2F/gE3JyeHu036I8J6OqB46w==
+      integrity: sha512-l5bOeHnyJeZXMv3vLqHp+G9fvIwepQ8sdByuXlsDdiamTBC2L9KIrigiiKFa2dTcdKUX6sAHgPqtu4J5xmtzdQ==
       tarball: 'file:projects/just-scripts.tgz'
     version: 0.0.0
   'file:projects/just-stack-monorepo.tgz':
@@ -13620,7 +13619,7 @@ packages:
     dev: false
     name: '@rush-temp/just-stack-monorepo'
     resolution:
-      integrity: sha512-DcY/0RVP1Niuu8+QtN9OeqFUIhXIw3s0uFzQMW8KNhfkvwfqzhG1KIPFBR5JBHszzL6hfYR0NJoSZzSqu6YYXA==
+      integrity: sha512-D0SUW8YUqpXImGYAL56vNcCamg0peMAyLLGnof9OQ+3fuageub5OWMk2TYB3omteLu8uSOue75lTQJw50b+qAA==
       tarball: 'file:projects/just-stack-monorepo.tgz'
     version: 0.0.0
   'file:projects/just-stack-single-lib.tgz':
@@ -13637,7 +13636,7 @@ packages:
     dev: false
     name: '@rush-temp/just-stack-single-lib'
     resolution:
-      integrity: sha512-7qb6tCOr7gYoBKQPAI34SjX23lo64jAm7rrOA2Obo5COrkwPUfT5abYc6V6Y/v9GIiXOi5ljQDtmWmvUZKMtRw==
+      integrity: sha512-fu+P/ufyt3cH8L+u5FPH1/X6A8Cl9HlXkWpKgZ0IP6yrUkkR7Z+14muOPO7r0agxTDCIGSele/D4gcPy5LOjLQ==
       tarball: 'file:projects/just-stack-single-lib.tgz'
     version: 0.0.0
   'file:projects/just-stack-uifabric.tgz':
@@ -13664,32 +13663,32 @@ packages:
       ts-loader: /ts-loader/5.3.3/typescript@3.4.4
       tslib: 1.9.3
       typescript: 3.4.4
-      webpack: 4.29.5
+      webpack: /webpack/4.29.5/acorn@6.1.1+webpack@4.29.5
       webpack-cli: /webpack-cli/3.2.1/webpack@4.29.5
       webpack-dev-server: /webpack-dev-server/3.3.1/webpack@4.29.5
     dev: false
     name: '@rush-temp/just-stack-uifabric'
     resolution:
-      integrity: sha512-w4rezfdfIZOdgdKpncZioVE/vKDVmBj38jTBCEMSZXcyaOdtpySi9ERQKs+LazBTU8luwwCkYuXCgQpY3rKC7g==
+      integrity: sha512-Ex+c1BNoTXNsGkACNr+HoCNVTElNgC4gfIhgJQGSlr6y1stLIcZKiaZup6zhAV/1TL9Nm5csanjf93DS9ZgMqw==
       tarball: 'file:projects/just-stack-uifabric.tgz'
     version: 0.0.0
   'file:projects/just-task-docs.tgz':
     dependencies:
       '@babel/core': 7.2.2
-      '@babel/plugin-proposal-class-properties': /@babel/plugin-proposal-class-properties/7.3.0/@babel!core@7.2.2
-      '@babel/plugin-proposal-object-rest-spread': /@babel/plugin-proposal-object-rest-spread/7.3.2/@babel!core@7.2.2
+      '@babel/plugin-proposal-class-properties': 7.3.0
+      '@babel/plugin-proposal-object-rest-spread': 7.3.2
       '@babel/polyfill': 7.2.5
-      '@babel/preset-env': /@babel/preset-env/7.3.1/@babel!core@7.2.2
-      '@babel/preset-react': /@babel/preset-react/7.0.0/@babel!core@7.2.2
-      '@babel/register': /@babel/register/7.0.0/@babel!core@7.2.2
+      '@babel/preset-env': 7.3.1
+      '@babel/preset-react': 7.0.0
+      '@babel/register': 7.0.0
       '@babel/traverse': 7.2.3
       '@babel/types': 7.3.2
-      '@uifabric/experiments': /@uifabric/experiments/6.54.2/react-dom@16.7.0+react@16.7.0
+      '@uifabric/experiments': /@uifabric/experiments/6.54.2/react-dom@16.7.0
       cpx: 1.5.0
       docusaurus: 1.7.2
-      office-ui-fabric-react: /office-ui-fabric-react/6.133.0/react-dom@16.7.0+react@16.7.0
+      office-ui-fabric-react: /office-ui-fabric-react/6.133.0/react-dom@16.7.0
       react: 16.7.0
-      react-dom: /react-dom/16.7.0/react@16.7.0
+      react-dom: 16.7.0
     dev: false
     name: '@rush-temp/just-task-docs'
     resolution:
@@ -13704,7 +13703,7 @@ packages:
       chalk: 2.4.2
       jest: 24.7.1
       mock-fs: 4.8.0
-      ts-jest: /ts-jest/24.0.2/jest@24.7.1
+      ts-jest: 24.0.2
       typescript: 3.4.4
       yargs: 12.0.5
     dev: false
@@ -13736,7 +13735,7 @@ packages:
       jest: 24.7.1
       mock-fs: 4.8.0
       resolve: 1.10.0
-      ts-jest: /ts-jest/24.0.2/jest@24.7.1
+      ts-jest: 24.0.2
       typescript: 3.4.4
       undertaker: 1.2.0
       undertaker-registry: 1.0.1
@@ -13761,6 +13760,7 @@ specifiers:
   '@babel/traverse': ^7.0.0
   '@babel/types': ^7.1.2
   '@rush-temp/create-just': 'file:./projects/create-just.tgz'
+  '@rush-temp/create-uifabric': 'file:./projects/create-uifabric.tgz'
   '@rush-temp/example-lib': 'file:./projects/example-lib.tgz'
   '@rush-temp/just-scripts': 'file:./projects/just-scripts.tgz'
   '@rush-temp/just-scripts-utils': 'file:./projects/just-scripts-utils.tgz'
@@ -13794,6 +13794,7 @@ specifiers:
   autoprefixer: ^9.4.5
   chalk: ^2.4.1
   cpx: ^1.5.0
+  create-just: latest
   css-loader: ^2.1.0
   diff-match-patch: 1.0.4
   docusaurus: ^1.5.1
