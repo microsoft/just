@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-  "rushVersion": "5.5.4",
+  "rushVersion": "5.7.0",
   "pnpmVersion": "2.15.1",
 
   "pnpmOptions": {
@@ -24,7 +24,7 @@
      * RegExp escapes need two backspashes, and ordinary periods should be "\\.".
      */
     "allowedEmailRegExps": ["[^@]+@microsoft.com"],
-
+    "versionBumpCommitMessage": "Applying package updates. [skip ci]",
     /**
      * When Rush reports that the address is malformed, the notice can include an example
      * of a recommended email.  Make sure it conforms to one of the allowedEmailRegExps
