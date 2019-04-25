@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { spawnSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import jju from 'jju';
@@ -10,8 +10,7 @@ import { RushJson } from './interfaces/RushJson';
  * @param cwd Working directory in which to run the command.
  */
 export function rushUpdate(cwd: string): void {
-  // TODO: does this work on Windows?
-  execSync(`${process.execPath} common/scripts/install-run-rush.js update`, {
+  spawnSync(process.execPath, ['common/scripts/install-run-rush.js', 'update'], {
     cwd,
     stdio: 'inherit'
   });

@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts-utils",
+      "comment": "Fix #78 by using Spawn instead of Exec",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-scripts-utils",
+  "email": "reli@microsoft.com"
+}
