@@ -119,16 +119,10 @@
       "packageName": "just-task-scripts",
       "projectFolder": "scripts",
       "shouldPublish": false
-    },
-    {
-      "packageName": "just-scenario-tests",
-      "projectFolder": "packages/just-scenario-tests",
-      "shouldPublish": false
     }
     // {
-    //   "packageName": "just-stack-web-lib",
-    //   "projectFolder": "packages/just-stack-web-lib",
-    //   "versionPolicyName": "RepoPolicy",
+    //   "packageName": "just-scenario-tests",
+    //   "projectFolder": "packages/just-scenario-tests",
     //   "shouldPublish": false
     // }
   ]
