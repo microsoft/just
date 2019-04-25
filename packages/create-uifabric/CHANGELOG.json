@@ -2,6 +2,18 @@
   "name": "create-uifabric",
   "entries": [
     {
+      "version": "0.2.1",
+      "tag": "create-uifabric_v0.2.1",
+      "date": "Thu, 25 Apr 2019 18:40:13 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix the bin script path"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.0",
       "tag": "create-uifabric_v0.2.0",
       "date": "Thu, 25 Apr 2019 18:29:49 GMT",
