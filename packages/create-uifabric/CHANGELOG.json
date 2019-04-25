@@ -1,0 +1,17 @@
+{
+  "name": "create-uifabric",
+  "entries": [
+    {
+      "version": "0.2.0",
+      "tag": "create-uifabric_v0.2.0",
+      "date": "Thu, 25 Apr 2019 18:29:49 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "new package for creating fabric apps quickly"
+          }
+        ]
+      }
+    }
+  ]
+}

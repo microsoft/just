@@ -1,6 +1,13 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Wed, 24 Apr 2019 23:38:23 GMT and should not be manually modified.
+This log was last generated on Thu, 25 Apr 2019 18:29:49 GMT and should not be manually modified.
+
+## 0.7.2
+Thu, 25 Apr 2019 18:29:49 GMT
+
+### Patches
+
+- Fix #78 by using Spawn instead of Exec
 
 ## 0.7.1
 Wed, 24 Apr 2019 23:38:23 GMT

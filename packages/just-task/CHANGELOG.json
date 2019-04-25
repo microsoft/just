@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.9.1",
+      "tag": "just-task_v0.9.1",
+      "date": "Thu, 25 Apr 2019 18:29:49 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "gets rid of dep0097 warnings when running just tasks"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.9.0",
       "tag": "just-task_v0.9.0",
       "date": "Wed, 17 Apr 2019 00:09:58 GMT",
