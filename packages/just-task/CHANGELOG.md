@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Thu, 25 Apr 2019 18:29:49 GMT and should not be manually modified.
+This log was last generated on Thu, 25 Apr 2019 21:21:58 GMT and should not be manually modified.
+
+## 0.9.2
+Thu, 25 Apr 2019 21:21:58 GMT
+
+### Patches
+
+- get rid of logs with the wrapped task
 
 ## 0.9.1
 Thu, 25 Apr 2019 18:29:49 GMT
