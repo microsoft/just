@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "create-just",
+      "comment": "Fixed absolute local paths vs relative",
+      "type": "patch"
+    }
+  ],
+  "packageName": "create-just",
+  "email": "kchau@microsoft.com"
+}
