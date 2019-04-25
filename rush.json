@@ -119,6 +119,11 @@
       "packageName": "just-task-scripts",
       "projectFolder": "scripts",
       "shouldPublish": false
+    },
+    {
+      "packageName": "create-uifabric",
+      "projectFolder": "packages/create-uifabric",
+      "shouldPublish": true
     }
     // {
     //   "packageName": "just-scenario-tests",
