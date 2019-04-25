@@ -3,19 +3,18 @@ import { JustTaskRegistry } from './JustTaskRegistry';
 import yargs from 'yargs';
 
 const originalEmitWarning = process.emitWarning;
-process.emitWarning = function emitWarning(warning: string | Error, name?: string, ctor?: Function) {
-  if (name === 'DEP0097') {
+
+(process.emitWarning as any) = function emitWarning(this: any, warning: string, type: string, code: string, ctor?: Function) {
+  if (code === 'DEP0097') {
     // Undertaker uses a deprecated approach that causes NodeJS 10 to print
     // this warning to stderr:
     //
     // "Using a domain property in MakeCallback is deprecated. Use the  async_context
     // variant of MakeCallback or the AsyncResource class instead."
-
     // Suppress the warning!
     return;
   }
-
-  return originalEmitWarning(warning, name, ctor);
+  return originalEmitWarning.apply(this, arguments);
 };
 
 yargs
