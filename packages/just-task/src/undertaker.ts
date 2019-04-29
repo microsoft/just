@@ -58,7 +58,23 @@ undertaker.on('error', function(args: any) {
     errorReported = true;
     logger.error(chalk.red(`Error detected while running '${colorizeTaskName(args.name)}'`));
     logger.error(chalk.yellow('------------------------------------'));
-    logger.error(chalk.yellow(args.error));
+
+    const stackOrMessage = args.error.stack || args.error.message;
+
+    if (stackOrMessage) {
+      logger.error(chalk.yellow(stackOrMessage));
+    }
+
+    if (args.error.stdout) {
+      logger.error(chalk.yellow('stdout:'));
+      logger.error(args.error.stdout);
+    }
+
+    if (args.error.stderr) {
+      logger.error(chalk.yellow('stderr:'));
+      logger.error(args.error.stderr);
+    }
+
     logger.error(chalk.yellow('------------------------------------'));
     process.exitCode = 1;
   } else if (shouldLog(args)) {
