@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Thu, 25 Apr 2019 22:19:05 GMT and should not be manually modified.
+This log was last generated on Mon, 29 Apr 2019 21:46:55 GMT and should not be manually modified.
+
+## 0.9.4
+Mon, 29 Apr 2019 21:46:55 GMT
+
+### Patches
+
+- More explicit error logs
 
 ## 0.9.3
 Thu, 25 Apr 2019 22:19:05 GMT

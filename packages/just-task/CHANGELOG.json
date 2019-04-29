@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.9.4",
+      "tag": "just-task_v0.9.4",
+      "date": "Mon, 29 Apr 2019 21:46:55 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "More explicit error logs"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.9.3",
       "tag": "just-task_v0.9.3",
       "date": "Thu, 25 Apr 2019 22:19:05 GMT",
