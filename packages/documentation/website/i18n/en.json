@@ -37,6 +37,10 @@
         "title": "Typescript Lint",
         "sidebar_label": "Typescript Lint"
       },
+      "scripts-webpack": {
+        "title": "Webpack",
+        "sidebar_label": "Webpack"
+      },
       "scripts": {
         "title": "Just Scripts",
         "sidebar_label": "Just Scripts"
