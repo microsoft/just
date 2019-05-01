@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task",
+      "comment": "Export the chain API from the root as well",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com"
+}
