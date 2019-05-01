@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.9.5",
+      "tag": "just-task_v0.9.5",
+      "date": "Wed, 01 May 2019 16:12:57 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Export the chain API from the root as well"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.9.4",
       "tag": "just-task_v0.9.4",
       "date": "Mon, 29 Apr 2019 21:46:55 GMT",

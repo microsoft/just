@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Mon, 29 Apr 2019 21:46:55 GMT and should not be manually modified.
+This log was last generated on Wed, 01 May 2019 16:12:57 GMT and should not be manually modified.
+
+## 0.9.5
+Wed, 01 May 2019 16:12:57 GMT
+
+### Patches
+
+- Export the chain API from the root as well
 
 ## 0.9.4
 Mon, 29 Apr 2019 21:46:55 GMT
