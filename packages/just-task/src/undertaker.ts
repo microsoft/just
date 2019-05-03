@@ -59,7 +59,7 @@ undertaker.on('error', function(args: any) {
     logger.error(chalk.red(`Error detected while running '${colorizeTaskName(args.name)}'`));
     logger.error(chalk.yellow('------------------------------------'));
 
-    const stackOrMessage = args.error.stack || args.error.message;
+    const stackOrMessage = args.error.stack || args.error.message || args.error;
 
     if (stackOrMessage) {
       logger.error(chalk.yellow(stackOrMessage));

@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task",
+      "comment": "Show error message if it's a string",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-task",
+  "email": "elcraig@microsoft.com"
+}
