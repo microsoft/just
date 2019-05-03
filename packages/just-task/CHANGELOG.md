@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Wed, 01 May 2019 16:12:57 GMT and should not be manually modified.
+This log was last generated on Fri, 03 May 2019 19:49:20 GMT and should not be manually modified.
+
+## 0.9.6
+Fri, 03 May 2019 19:49:20 GMT
+
+### Patches
+
+- Show error message if it's a string
 
 ## 0.9.5
 Wed, 01 May 2019 16:12:57 GMT
