@@ -70,16 +70,28 @@ export async function initCommand(argv: yargs.Arguments) {
   if (templatePath) {
     applyTemplate(templatePath, paths.projectPath, { name });
 
-    execSync('git init');
-
     if (argv.stack.includes('monorepo')) {
       rushUpdate(paths.projectPath);
     } else {
       execSync('npm install', { stdio: 'inherit' });
     }
 
-    execSync('git add .');
-    execSync('git commit -m "initial commit"');
+    try {
+      execSync('git init');
+      execSync('git add .');
+      execSync('git commit -m "initial commit"');
+    } catch (e) {
+      logger.warn('Looks like you may not have git installed or there was some sort of error initializing the git repo');
+      logger.info(`
+Please make sure you have git installed and then issue the following:
+
+  cd ${paths.projectPath}
+  git init
+  git add .
+  git commit -m "initial commit"
+
+`);
+    }
 
     logger.info('All Set!');
 
