@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Thu, 25 Apr 2019 02:25:55 GMT and should not be manually modified.
+This log was last generated on Mon, 06 May 2019 15:58:55 GMT and should not be manually modified.
+
+## 0.8.0
+Mon, 06 May 2019 15:58:55 GMT
+
+### Minor changes
+
+- removes the requirement of git, but gives hint if git was not successful
 
 ## 0.7.1
 Thu, 25 Apr 2019 02:25:55 GMT

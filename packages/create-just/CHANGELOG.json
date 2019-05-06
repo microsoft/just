@@ -2,6 +2,18 @@
   "name": "create-just",
   "entries": [
     {
+      "version": "0.8.0",
+      "tag": "create-just_v0.8.0",
+      "date": "Mon, 06 May 2019 15:58:55 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "removes the requirement of git, but gives hint if git was not successful"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.1",
       "tag": "create-just_v0.7.1",
       "date": "Thu, 25 Apr 2019 02:25:55 GMT",

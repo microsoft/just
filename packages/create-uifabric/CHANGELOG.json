@@ -2,6 +2,18 @@
   "name": "create-uifabric",
   "entries": [
     {
+      "version": "0.2.2",
+      "tag": "create-uifabric_v0.2.2",
+      "date": "Mon, 06 May 2019 15:58:55 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"create-just\" from `latest` to `0.8.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.1",
       "tag": "create-uifabric_v0.2.1",
       "date": "Thu, 25 Apr 2019 18:40:13 GMT",
