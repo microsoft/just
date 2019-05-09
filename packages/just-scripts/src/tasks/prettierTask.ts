@@ -1,16 +1,25 @@
 import { logger, resolve } from 'just-task';
 import { spawn } from 'just-scripts-utils';
 import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
+import path from 'path';
+import { arrayify } from '../arrayUtils/arrayify';
 
 interface PrettierContext {
   prettierBin: string;
-  configPath: string;
-  ignorePath: string;
+  configPath?: string;
+  ignorePath?: string;
   files: string[];
+  check: boolean;
 }
 
-export function prettierTask(options: any = {}) {
-  const prettierBin = resolve('prettier/bin/prettier.js');
+interface PrettierTaskOptions {
+  files?: string[] | string;
+  ignorePath?: string;
+  configPath?: string;
+}
+
+export function prettierTask(options: PrettierTaskOptions = {}) {
+  const prettierBin = resolve('prettier/bin-prettier.js');
 
   if (prettierBin) {
     return function prettier() {
@@ -18,7 +27,28 @@ export function prettierTask(options: any = {}) {
         prettierBin,
         ...{ configPath: options.configPath || undefined },
         ...{ ignorePath: options.ignorePath || undefined },
-        ...{ files: options.files || undefined }
+        ...{ files: arrayify(options.files || path.resolve(process.cwd(), '**', '*.{ts,tsx,js,jsx,json,scss,html,yml,md}')) },
+        check: false
+      });
+    };
+  }
+
+  return function() {
+    logger.warn('Prettier is not available, ignoring this task');
+  };
+}
+
+export function prettierCheckTask(options: PrettierTaskOptions = {}) {
+  const prettierBin = resolve('prettier/bin-prettier.js');
+
+  if (prettierBin) {
+    return function prettierCheck() {
+      return runPrettierAsync({
+        prettierBin,
+        ...{ configPath: options.configPath || undefined },
+        ...{ ignorePath: options.ignorePath || undefined },
+        ...{ files: arrayify(options.files || path.resolve(process.cwd(), '**', '*.{ts,tsx,js,jsx,json,scss,html,yml,md}')) },
+        check: true
       });
     };
   }
@@ -30,7 +60,7 @@ export function prettierTask(options: any = {}) {
 
 function runPrettierAsync(context: PrettierContext) {
   const MaxFileEntriesPerChunk = 20;
-  const { prettierBin, configPath, ignorePath, files } = context;
+  const { prettierBin, configPath, ignorePath, files, check } = context;
 
   const chunks = splitArrayIntoChunks(files, MaxFileEntriesPerChunk);
 
@@ -39,9 +69,12 @@ function runPrettierAsync(context: PrettierContext) {
       prettierBin,
       ...(configPath ? ['--config', configPath] : []),
       ...(ignorePath ? ['--ignore-path', ignorePath] : []),
-      '--write',
+      ...(check ? ['--check'] : ['--write']),
       ...chunk
     ];
+
+    logger.info(process.execPath + ' ' + prettierArgs.join(' '));
+
     return finishPromise.then(() => spawn(process.execPath, prettierArgs, { stdio: 'inherit' }));
   }, Promise.resolve());
 }
