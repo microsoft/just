@@ -14,7 +14,8 @@ export function tscTask(options: CompilerOptions): TaskFunction {
   }
 
   return function tsc() {
-    options.project = options.project || tsConfigFile || undefined;
+    // Read from options argument, if not there try the tsConfigFile found in root, if not then skip and use no config
+    options.project = (options && options.project) || tsConfigFile || undefined;
 
     if (options.project && fs.existsSync(options.project as string)) {
       logger.info(`Running ${tscCmd} with ${options.project}`);
