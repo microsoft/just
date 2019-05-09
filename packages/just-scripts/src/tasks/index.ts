@@ -9,3 +9,4 @@ export * from './apiExtractorTask';
 export * from './addPackageTask';
 export * from './upgradeRepoTask';
 export * from './upgradeStackTask';
+export * from './copyInstructionsTask';
