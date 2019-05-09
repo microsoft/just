@@ -13,15 +13,19 @@ export function prettierTask(options: any = {}) {
   const prettierBin = resolve('prettier/bin/prettier.js');
 
   if (prettierBin) {
-    runPrettierAsync({
-      prettierBin,
-      ...{ configPath: options.configPath || undefined },
-      ...{ ignorePath: options.ignorePath || undefined },
-      ...{ files: options.files || undefined }
-    });
+    return function prettier() {
+      return runPrettierAsync({
+        prettierBin,
+        ...{ configPath: options.configPath || undefined },
+        ...{ ignorePath: options.ignorePath || undefined },
+        ...{ files: options.files || undefined }
+      });
+    };
   }
 
-  logger.warn('Prettier is not available, ignoring this task');
+  return function() {
+    logger.warn('Prettier is not available, ignoring this task');
+  };
 }
 
 function runPrettierAsync(context: PrettierContext) {
