@@ -19,18 +19,6 @@ export interface CopyConfig {
   copyInstructions: CopyInstruction[];
 }
 
-export interface LocalizedFileInfo {
-  /**
-   * The base path of where the localized files are located.
-   */
-  baseDirectory: string;
-
-  /**
-   * The name of the localized file to be copied, without extension (.js or .min.js will be added).
-   */
-  baseFileName: string;
-}
-
 /**
  * Copies files into a destination directory with the same names.
  * For example copyFilesToDestinationDirectory(['some/path/foo.js', 'bar.js'], 'dest/target') would result in the creation of
