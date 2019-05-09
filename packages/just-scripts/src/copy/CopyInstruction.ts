@@ -1,6 +1,6 @@
 import { join, basename, normalize } from 'path';
 import { readdirSync } from 'fs';
-import { arrayify } from './arrayify';
+import { arrayify } from '../arrayUtils/arrayify';
 
 export interface CopyInstruction {
   /**
