@@ -1,8 +1,8 @@
 import { dirname } from 'path';
 import { readFile, writeFile, copy, ensureDir } from 'fs-extra';
 import { CopyInstruction, CopyConfig } from './CopyInstruction';
-import { arrayify } from './arrayify';
-import { uniqueValues } from './uniqueValues';
+import { arrayify } from '../arrayUtils/arrayify';
+import { uniqueValues } from '../arrayUtils/uniqueValues';
 
 /**
  * Function containing the core code for the copy task with a given config.
