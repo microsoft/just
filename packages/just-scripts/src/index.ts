@@ -21,3 +21,6 @@ export const webpackOverlays = {
 
 import webpackMerge from 'webpack-merge';
 export { webpackMerge };
+
+import * as copyInstructions from './copy/CopyInstruction';
+export { copyInstructions };
