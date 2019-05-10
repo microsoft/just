@@ -37,7 +37,7 @@ export class JustTaskRegistry extends UndertakerRegistry {
     }
 
     if (!this.hasDefault) {
-      yargs.demandCommand().help();
+      yargs.demandCommand(1, 'No default tasks are defined.').help();
     }
   }
 

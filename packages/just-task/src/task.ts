@@ -15,12 +15,12 @@ export function task(
   } else if (argCount === 2 && isString(firstParam) && isString(secondParam)) {
     // task('default', 'build');
     undertaker.task(firstParam, undertaker.series(secondParam));
-    yargs.command(getCommandModule(firstParam));
+    yargs.command(getCommandModule(firstParam, ''));
   } else if (argCount === 2 && isString(firstParam) && isTaskFunction(secondParam)) {
     // task('pretter', prettierTask());
     // task('custom', () => { ... });
     undertaker.task(firstParam, wrapTask(secondParam as TaskFunction));
-    yargs.command(getCommandModule(firstParam));
+    yargs.command(getCommandModule(firstParam, ''));
   } else if (argCount === 3 && isString(firstParam) && isString(secondParam) && isTaskFunction(thirdParam)) {
     // task('custom', 'describes this thing', () => { ... })
     undertaker.task(firstParam, wrapTask(thirdParam));
