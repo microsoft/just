@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.9.7",
+      "tag": "just-task_v0.9.7",
+      "date": "Fri, 10 May 2019 17:53:27 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Adds validation of command and a friendlier error message"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.9.6",
       "tag": "just-task_v0.9.6",
       "date": "Fri, 03 May 2019 19:49:20 GMT",
