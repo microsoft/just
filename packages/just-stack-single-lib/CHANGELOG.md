@@ -1,6 +1,13 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Wed, 24 Apr 2019 23:38:23 GMT and should not be manually modified.
+This log was last generated on Fri, 10 May 2019 00:04:16 GMT and should not be manually modified.
+
+## 0.7.0
+Fri, 10 May 2019 00:04:16 GMT
+
+### Minor changes
+
+- moved devdeps to deps
 
 ## 0.6.2
 Wed, 24 Apr 2019 23:38:23 GMT

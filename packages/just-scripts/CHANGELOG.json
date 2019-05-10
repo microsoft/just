@@ -2,6 +2,29 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.15.0",
+      "tag": "just-scripts_v0.15.0",
+      "date": "Fri, 10 May 2019 00:04:16 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Gets rid of the loc stuff"
+          },
+          {
+            "comment": "fix tscTask requiring an empty object for option"
+          }
+        ],
+        "minor": [
+          {
+            "comment": "adds a new advanced copy task"
+          },
+          {
+            "comment": "added prettier task"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.14.4",
       "tag": "just-scripts_v0.14.4",
       "date": "Wed, 24 Apr 2019 23:38:23 GMT",

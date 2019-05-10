@@ -1,6 +1,19 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 24 Apr 2019 23:38:23 GMT and should not be manually modified.
+This log was last generated on Fri, 10 May 2019 00:04:16 GMT and should not be manually modified.
+
+## 0.15.0
+Fri, 10 May 2019 00:04:16 GMT
+
+### Minor changes
+
+- adds a new advanced copy task
+- added prettier task
+
+### Patches
+
+- Gets rid of the loc stuff
+- fix tscTask requiring an empty object for option
 
 ## 0.14.4
 Wed, 24 Apr 2019 23:38:23 GMT
