@@ -1,5 +1,3 @@
-// This is a clone of the ../yargs.ts file but exported as a commonjs module, simulating yargs/yargs
-
 const yargs = () => yargs;
 
 yargs.argv = {
@@ -11,5 +9,13 @@ yargs.command = () => yargs;
 yargs.demandCommand = () => yargs;
 
 yargs.help = () => yargs;
+
+yargs.getCommandInstance = () => ({
+  getCommands: () => []
+});
+
+yargs.getContext = () => ({
+  commands: []
+});
 
 export = yargs;

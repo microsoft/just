@@ -16,9 +16,14 @@ export class JustTaskRegistry extends UndertakerRegistry {
     let configFile = resolve(yargs.argv.config || './just-task.js');
 
     if (configFile && fs.existsSync(configFile)) {
-      const configModule = require(configFile);
-      if (typeof configModule === 'function') {
-        configModule();
+      try {
+        const configModule = require(configFile);
+        if (typeof configModule === 'function') {
+          configModule();
+        }
+      } catch (e) {
+        logger.error(`Invalid configuration file: ${configFile}`);
+        logger.error(`Error: ${e.message || e}`);
       }
     } else {
       logger.error(
@@ -27,8 +32,12 @@ export class JustTaskRegistry extends UndertakerRegistry {
       );
     }
 
+    if (!validateCommands(yargs)) {
+      process.exit(1);
+    }
+
     if (!this.hasDefault) {
-      yargs.demandCommand().help();
+      yargs.demandCommand(1, 'No default tasks are defined.').help();
     }
   }
 
@@ -41,4 +50,51 @@ export class JustTaskRegistry extends UndertakerRegistry {
 
     return fn;
   }
+}
+
+function validateCommands(yargs: any) {
+  const commandKeys = yargs.getCommandInstance().getCommands();
+  const argv = yargs.argv;
+  const unknown: string[] = [];
+  const currentContext = yargs.getContext();
+
+  if (commandKeys.length > 0) {
+    argv._.slice(currentContext.commands.length).forEach((key: string) => {
+      if (commandKeys.indexOf(key) === -1) {
+        unknown.push(key);
+      }
+    });
+  }
+
+  if (unknown.length > 0) {
+    logger.error(`Unknown command: ${unknown.join(', ')}`);
+
+    const recommended = recommendCommands(unknown[0], commandKeys);
+
+    if (recommended) {
+      logger.info(`Did you mean this task name: ${recommended}?`);
+    }
+
+    return false;
+  }
+
+  return true;
+}
+
+function recommendCommands(cmd: string, potentialCommands: string[]) {
+  const distance = require('yargs/lib/levenshtein');
+  const threshold = 3; // if it takes more than three edits, let's move on.
+  potentialCommands = potentialCommands.sort((a, b) => b.length - a.length);
+
+  let recommended = null;
+  let bestDistance = Infinity;
+  for (let i = 0, candidate; (candidate = potentialCommands[i]) !== undefined; i++) {
+    const d = distance(cmd, candidate);
+    if (d <= threshold && d < bestDistance) {
+      bestDistance = d;
+      recommended = candidate;
+    }
+  }
+
+  return recommended;
 }
