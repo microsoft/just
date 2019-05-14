@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "export copy instructions types as well",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com"
+}
