@@ -6,6 +6,9 @@
     "type": "git",
     "url": "https://github.com/Microsoft/just"
   },
+  "bin": {
+    "just-scripts": "bin/just-scripts.js"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",

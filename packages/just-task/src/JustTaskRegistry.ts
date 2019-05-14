@@ -13,7 +13,7 @@ export class JustTaskRegistry extends UndertakerRegistry {
     super.init(taker);
 
     // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
-    let configFile = resolve(yargs.argv.config || './just-task.js');
+    let configFile = [yargs.argv.config, './just.config.js', './just-task.js'].reduce((value, entry) => value || resolve(entry));
 
     if (configFile && fs.existsSync(configFile)) {
       try {
@@ -28,7 +28,7 @@ export class JustTaskRegistry extends UndertakerRegistry {
     } else {
       logger.error(
         `Cannot find config file "${configFile}".`,
-        `Please create a file called "just-task.js" in the root of the project next to "package.json".`
+        `Please create a file called "just.config.js" in the root of the project next to "package.json".`
       );
     }
 

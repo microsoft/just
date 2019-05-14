@@ -8,7 +8,7 @@ import path from 'path';
 //      to figure out config path)
 const yargsFn = require('yargs/yargs');
 
-let resolvePaths: string[] = [];
+let resolvePaths: string[] = [__dirname];
 
 /**
  * Add a path to the list used by `resolve()`.
@@ -22,7 +22,7 @@ export function addResolvePath(pathName: string): void {
  * Reset the list of paths used by `resolve()`.
  */
 export function resetResolvePaths(): void {
-  resolvePaths = [];
+  resolvePaths = [__dirname];
 }
 
 /**

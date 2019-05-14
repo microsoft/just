@@ -24,3 +24,5 @@ export { webpackMerge };
 
 import * as copyInstructions from './copy/CopyInstruction';
 export { copyInstructions };
+
+export * from 'just-task';
