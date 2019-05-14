@@ -23,4 +23,5 @@ import webpackMerge from 'webpack-merge';
 export { webpackMerge };
 
 import * as copyInstructions from './copy/CopyInstruction';
+export { CopyInstruction, CopyConfig } from './copy/CopyInstruction';
 export { copyInstructions };
