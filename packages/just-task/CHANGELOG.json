@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.9.8",
+      "tag": "just-task_v0.9.8",
+      "date": "Tue, 14 May 2019 17:59:20 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Adds __dirname resolve as last resort"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.9.7",
       "tag": "just-task_v0.9.7",
       "date": "Fri, 10 May 2019 17:53:27 GMT",

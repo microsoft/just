@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 10 May 2019 00:04:16 GMT and should not be manually modified.
+This log was last generated on Tue, 14 May 2019 17:59:20 GMT and should not be manually modified.
+
+## 0.15.1
+Tue, 14 May 2019 17:59:20 GMT
+
+### Patches
+
+- Adds just-scripts bin script
 
 ## 0.15.0
 Fri, 10 May 2019 00:04:16 GMT

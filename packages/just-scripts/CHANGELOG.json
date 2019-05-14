@@ -2,6 +2,23 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.15.1",
+      "tag": "just-scripts_v0.15.1",
+      "date": "Tue, 14 May 2019 17:59:20 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Adds just-scripts bin script"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-task\" from `>=0.9.7 <1.0.0` to `>=0.9.8 <1.0.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.15.0",
       "tag": "just-scripts_v0.15.0",
       "date": "Fri, 10 May 2019 00:04:16 GMT",

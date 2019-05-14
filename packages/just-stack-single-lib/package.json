@@ -28,8 +28,8 @@
     "just-scripts-utils": "^0.7.2",
     "@types/jest": "^24.0.0",
     "jest": "^24.0.0",
-    "just-scripts": "^0.15.0",
-    "just-task": "^0.9.7",
+    "just-scripts": "^0.15.1",
+    "just-task": "^0.9.8",
     "ts-jest": "^24.0.1",
     "tslib": "^1.9.3",
     "typescript": "^3.2.4"

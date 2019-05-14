@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 10 May 2019 17:53:27 GMT and should not be manually modified.
+This log was last generated on Tue, 14 May 2019 17:59:20 GMT and should not be manually modified.
+
+## 0.9.8
+Tue, 14 May 2019 17:59:20 GMT
+
+### Patches
+
+- Adds __dirname resolve as last resort
 
 ## 0.9.7
 Fri, 10 May 2019 17:53:27 GMT
