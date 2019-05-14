@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.15.2",
+      "tag": "just-scripts_v0.15.2",
+      "date": "Tue, 14 May 2019 23:58:34 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "export copy instructions types as well"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.15.1",
       "tag": "just-scripts_v0.15.1",
       "date": "Tue, 14 May 2019 17:59:20 GMT",

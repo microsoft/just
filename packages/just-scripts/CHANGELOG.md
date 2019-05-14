@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 14 May 2019 17:59:20 GMT and should not be manually modified.
+This log was last generated on Tue, 14 May 2019 23:58:34 GMT and should not be manually modified.
+
+## 0.15.2
+Tue, 14 May 2019 23:58:34 GMT
+
+### Patches
+
+- export copy instructions types as well
 
 ## 0.15.1
 Tue, 14 May 2019 17:59:20 GMT
