@@ -2,6 +2,18 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "version": "0.6.17",
+      "tag": "just-stack-monorepo_v0.6.17",
+      "date": "Wed, 15 May 2019 18:33:15 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add npmignore"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.16",
       "tag": "just-stack-monorepo_v0.6.16",
       "date": "Thu, 25 Apr 2019 18:29:49 GMT",

@@ -1,6 +1,13 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Fri, 10 May 2019 00:04:16 GMT and should not be manually modified.
+This log was last generated on Wed, 15 May 2019 18:33:15 GMT and should not be manually modified.
+
+## 0.8.0
+Wed, 15 May 2019 18:33:15 GMT
+
+### Minor changes
+
+- Fix bin linking, add npmignore, stricter compiler options
 
 ## 0.7.0
 Fri, 10 May 2019 00:04:16 GMT

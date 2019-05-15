@@ -2,6 +2,18 @@
   "name": "just-stack-uifabric",
   "entries": [
     {
+      "version": "0.11.0",
+      "tag": "just-stack-uifabric_v0.11.0",
+      "date": "Wed, 15 May 2019 18:33:15 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Stricter compiler options"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.10.3",
       "tag": "just-stack-uifabric_v0.10.3",
       "date": "Fri, 10 May 2019 00:04:16 GMT",

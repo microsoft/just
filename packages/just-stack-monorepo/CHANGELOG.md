@@ -1,6 +1,13 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Thu, 25 Apr 2019 18:29:49 GMT and should not be manually modified.
+This log was last generated on Wed, 15 May 2019 18:33:15 GMT and should not be manually modified.
+
+## 0.6.17
+Wed, 15 May 2019 18:33:15 GMT
+
+### Patches
+
+- Add npmignore
 
 ## 0.6.16
 Thu, 25 Apr 2019 18:29:49 GMT
