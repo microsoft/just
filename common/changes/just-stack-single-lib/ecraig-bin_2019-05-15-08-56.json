@@ -2,10 +2,10 @@
   "changes": [
     {
       "packageName": "just-stack-single-lib",
-      "comment": "Fix bin linking, add npmignore",
-      "type": "patch"
+      "comment": "Fix bin linking, add npmignore, stricter compiler options",
+      "type": "minor"
     }
   ],
   "packageName": "just-stack-single-lib",
-  "email": ""
+  "email": "ecraig12345@gmail.com"
 }
