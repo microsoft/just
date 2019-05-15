@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 14 May 2019 23:58:34 GMT and should not be manually modified.
+This log was last generated on Wed, 15 May 2019 18:44:08 GMT and should not be manually modified.
+
+## 0.15.3
+Wed, 15 May 2019 18:44:08 GMT
+
+### Patches
+
+- Update task presets to clean all the output dirs they create
 
 ## 0.15.2
 Tue, 14 May 2019 23:58:34 GMT
