@@ -11,9 +11,6 @@
   "keywords": [
     "just-stack"
   ],
-  "bin": {
-    "just": ""
-  },
   "author": "",
   "license": "MIT",
   "scripts": {
