@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-stack-uifabric",
+      "comment": "Stricter compiler options",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-stack-uifabric",
+  "email": "ecraig12345@gmail.com"
+}
