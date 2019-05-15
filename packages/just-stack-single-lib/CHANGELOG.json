@@ -2,6 +2,29 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.8.1",
+      "tag": "just-stack-single-lib_v0.8.1",
+      "date": "Wed, 15 May 2019 18:44:04 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Switch microsoft in repo URL to lowercase"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-scripts-utils\" from `^0.7.2` to `^0.7.3`"
+          },
+          {
+            "comment": "Updating dependency \"just-scripts\" from `^0.15.2` to `^0.15.3`"
+          },
+          {
+            "comment": "Updating dependency \"just-task\" from `^0.9.8` to `^0.9.9`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.8.0",
       "tag": "just-stack-single-lib_v0.8.0",
       "date": "Wed, 15 May 2019 18:33:15 GMT",

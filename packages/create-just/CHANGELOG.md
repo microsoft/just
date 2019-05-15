@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Mon, 06 May 2019 15:58:55 GMT and should not be manually modified.
+This log was last generated on Wed, 15 May 2019 18:44:04 GMT and should not be manually modified.
+
+## 0.8.1
+Wed, 15 May 2019 18:44:04 GMT
+
+### Patches
+
+- Switch microsoft in repo URL to lowercase
 
 ## 0.8.0
 Mon, 06 May 2019 15:58:55 GMT

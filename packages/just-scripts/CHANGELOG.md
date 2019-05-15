@@ -1,6 +1,14 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 14 May 2019 23:58:34 GMT and should not be manually modified.
+This log was last generated on Wed, 15 May 2019 18:44:04 GMT and should not be manually modified.
+
+## 0.15.3
+Wed, 15 May 2019 18:44:04 GMT
+
+### Patches
+
+- Update task presets to clean all the output dirs they create
+- Switch microsoft in repo URL to lowercase
 
 ## 0.15.2
 Tue, 14 May 2019 23:58:34 GMT

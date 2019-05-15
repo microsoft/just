@@ -2,6 +2,18 @@
   "name": "just-task-logger",
   "entries": [
     {
+      "version": "0.2.1",
+      "tag": "just-task-logger_v0.2.1",
+      "date": "Wed, 15 May 2019 18:44:04 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Switch microsoft in repo URL to lowercase"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.0",
       "tag": "just-task-logger_v0.2.0",
       "date": "Fri, 22 Feb 2019 23:37:36 GMT",

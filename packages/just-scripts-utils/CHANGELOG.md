@@ -1,6 +1,13 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Thu, 25 Apr 2019 18:29:49 GMT and should not be manually modified.
+This log was last generated on Wed, 15 May 2019 18:44:04 GMT and should not be manually modified.
+
+## 0.7.3
+Wed, 15 May 2019 18:44:04 GMT
+
+### Patches
+
+- Switch microsoft in repo URL to lowercase
 
 ## 0.7.2
 Thu, 25 Apr 2019 18:29:49 GMT
