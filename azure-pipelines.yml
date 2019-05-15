@@ -20,7 +20,7 @@ steps:
   - script: |
       git config user.email "kchau@microsoft.com"
       git config user.name "kchau@microsoft.com"
-      git remote set-url origin https://$(github.user):$(github.pat)@github.com/Microsoft/just.git
+      git remote set-url origin https://$(github.user):$(github.pat)@github.com/microsoft/just.git
     displayName: 'git config'
 
   - script: |

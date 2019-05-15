@@ -4,7 +4,7 @@
   "description": "Utilities for Just stack scripts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/just"
+    "url": "https://github.com/microsoft/just"
   },
   "main": "./lib/index.js",
   "scripts": {

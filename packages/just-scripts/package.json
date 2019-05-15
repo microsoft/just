@@ -4,7 +4,7 @@
   "description": "Just Stack Scripts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/just"
+    "url": "https://github.com/microsoft/just"
   },
   "bin": {
     "just-scripts": "bin/just-scripts.js"
