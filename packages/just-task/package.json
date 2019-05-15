@@ -4,7 +4,7 @@
   "description": "Build task definition library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/just"
+    "url": "https://github.com/microsoft/just"
   },
   "main": "lib/index.js",
   "typing": "lib/index.d.ts",

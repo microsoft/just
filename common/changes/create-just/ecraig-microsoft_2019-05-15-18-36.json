@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "create-just",
+      "comment": "Switch microsoft in repo URL to lowercase",
+      "type": "patch"
+    }
+  ],
+  "packageName": "create-just",
+  "email": "elcraig@microsoft.com"
+}
