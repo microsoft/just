@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "Update task presets to clean all the output dirs they create",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "elcraig@microsoft.com"
+}
