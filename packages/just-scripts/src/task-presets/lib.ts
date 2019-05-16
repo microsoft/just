@@ -1,16 +1,37 @@
-import { task, series, parallel } from 'just-task';
-import { cleanTask, tscTask, jestTask, upgradeStackTask, defaultCleanPaths } from '../tasks';
+import { task, series, parallel, option } from 'just-task';
+import {
+  cleanTask,
+  tscTask,
+  jestTask,
+  upgradeStackTask,
+  defaultCleanPaths,
+  CleanTaskOptions,
+  JestTaskOptions,
+  TscTaskOptions
+} from '../tasks';
 
-export function lib() {
-  task('clean', cleanTask([...defaultCleanPaths(), 'lib-commonjs']));
+export interface LibPresetOptions {
+  clean?: CleanTaskOptions;
+  tsCommonjs?: TscTaskOptions;
+  tsEsm?: TscTaskOptions;
+  tsWatch?: TscTaskOptions;
+  jest?: JestTaskOptions;
+  jestWatch?: JestTaskOptions;
+}
 
-  task('ts:commonjs', tscTask({ module: 'commonjs', outDir: 'lib-commonjs' }));
-  task('ts:esm', tscTask({ module: 'esnext', outDir: 'lib' }));
-  task('ts:watch', tscTask({ module: 'esnext', outDir: 'lib', watch: true }));
+export function lib(options: LibPresetOptions = {}) {
+  const { clean = {}, tsCommonjs = {}, tsEsm = {}, tsWatch = {}, jest = {}, jestWatch = {} } = options;
+  option('runInBand');
+
+  task('clean', cleanTask({ paths: [...defaultCleanPaths(), 'lib-commonjs'], ...clean }));
+
+  task('ts:commonjs', tscTask({ module: 'commonjs', outDir: 'lib-commonjs', ...tsCommonjs }));
+  task('ts:esm', tscTask({ module: 'esnext', outDir: 'lib', ...tsEsm }));
+  task('ts:watch', tscTask({ module: 'esnext', outDir: 'lib', ...tsWatch, watch: true }));
   task('ts', parallel('ts:commonjs', 'ts:esm'));
 
-  task('jest', jestTask());
-  task('jest:watch', jestTask({ watch: true }));
+  task('jest', jestTask(jest));
+  task('jest:watch', jestTask({ ...jestWatch, watch: true }));
 
   task('build', series('clean', 'ts', 'jest'));
   task('test', series('clean', 'jest'));
