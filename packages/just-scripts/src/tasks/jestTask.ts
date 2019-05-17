@@ -10,6 +10,11 @@ export interface JestTaskOptions {
   watch?: boolean;
   u?: boolean;
   _?: string[];
+
+  /**
+   * Arguments to be passed into a spawn call for jest
+   */
+  nodeArgs?: string[];
 }
 
 export function jestTask(options: JestTaskOptions = {}): TaskFunction {
@@ -24,16 +29,17 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
       const cmd = process.execPath;
 
       const args = [
+        ...(options.nodeArgs || []),
         jestCmd,
         '--config',
         configFile,
         '--passWithNoTests',
         '--colors',
-        options.runInBand ? '--runInBand' : '',
-        options.coverage ? '--coverage' : '',
-        options.watch ? '--watch' : '',
-        options.u || options.updateSnapshot ? '--updateSnapshot' : '',
-        ...(options._ ? options._ : [])
+        ...(options.runInBand ? ['--runInBand'] : []),
+        ...(options.coverage ? ['--coverage'] : []),
+        ...(options.watch ? ['--watch'] : []),
+        ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
+        ...(options._ || [])
       ].filter(arg => !!arg) as Array<string>;
 
       logger.info(cmd, encodeArgs(args).join(' '));
