@@ -4,11 +4,28 @@ import fs from 'fs';
 import { resolveCwd, TaskFunction } from 'just-task';
 import parallelLimit from 'run-parallel-limit';
 
-// Because we do not statically import postcssPlugin package, we cannot enforce type of postcssPlugins
+export interface SassTaskOptions {
+  createSourceModule: (fileName: string, css: string) => string;
+  // Because we do not statically import postcssPlugin package, we cannot enforce type of postcssPlugins
+  postcssPlugins?: any[];
+}
+
+export function sassTask(options: SassTaskOptions): TaskFunction;
+/** @deprecated Use object param version */
+export function sassTask(createSourceModule: (fileName: string, css: string) => string, postcssPlugins?: any[]): TaskFunction;
 export function sassTask(
-  createSourceModule: (fileName: string, css: string) => string,
-  postcssPlugins: any[] = []
+  optionsOrCreateSourceModule: SassTaskOptions | ((fileName: string, css: string) => string),
+  postcssPlugins?: any[]
 ): TaskFunction {
+  let createSourceModule: (fileName: string, css: string) => string;
+  if (typeof optionsOrCreateSourceModule === 'function') {
+    createSourceModule = optionsOrCreateSourceModule;
+  } else {
+    createSourceModule = optionsOrCreateSourceModule.createSourceModule;
+    postcssPlugins = optionsOrCreateSourceModule.postcssPlugins;
+  }
+  postcssPlugins = postcssPlugins || [];
+
   const nodeSass = require('node-sass');
   const postcss = require('postcss');
   const autoprefixer = require('autoprefixer');
@@ -35,7 +52,7 @@ export function sassTask(
                 } else {
                   const css = result.css.toString();
 
-                  postcss([autoprefixerFn!, ...postcssPlugins])
+                  postcss([autoprefixerFn, ...postcssPlugins!])
                     .process(css, { from: fileName })
                     .then((result: { css: string }) => {
                       fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, result.css));
@@ -56,10 +73,7 @@ export function sassTask(
 
 function requireResolvePackageUrl(packageUrl: string) {
   const fullName = packageUrl + (packageUrl.endsWith('.scss') ? '' : '.scss');
-  return (
-    resolveCwd(fullName) ||
-    resolveCwd(path.join(path.dirname(fullName), `_${path.basename(fullName)}`))
-  );
+  return resolveCwd(fullName) || resolveCwd(path.join(path.dirname(fullName), `_${path.basename(fullName)}`));
 }
 
 function patchSassUrl(url: string, prev: string, done: any) {

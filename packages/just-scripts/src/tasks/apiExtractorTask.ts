@@ -18,9 +18,7 @@ export function apiExtractorUpdateTask(config: any, options: any): TaskFunction 
       if (!apiExtractorWrapper(config, options)) {
         throw Error(`- Update API: failed to update API file.`);
       } else {
-        logger.info(
-          `- Update API: successully verified API file. Please commit API file as part of your changes.`
-        );
+        logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
       }
     } else {
       logger.info(`- Update API: API file is already up to date, no update needed.`);
