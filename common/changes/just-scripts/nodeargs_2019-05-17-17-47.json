@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "Adds a nodeArgs to jestTask",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com"
+}
