@@ -5,7 +5,12 @@ import webpackMerge from 'webpack-merge';
 
 export interface WebpackTaskOptions {
   config?: string;
+
+  /** true to output to stats.json; a string to output to a file */
+  outputStats?: boolean | string;
+
   mode?: 'production' | 'development';
+
   // can contain other config values which are passed on to webpack
   [key: string]: any;
 }
@@ -45,6 +50,11 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
           webpackConfigs = webpackConfigs.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
 
           wp(webpackConfigs, (err: Error, stats: any) => {
+            if (options && options.outputStats) {
+              const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
+              fs.writeFileSync();
+            }
+
             if (err || stats.hasErrors()) {
               let errorStats = stats.toJson('errors-only');
               errorStats.errors.forEach((error: any) => {
