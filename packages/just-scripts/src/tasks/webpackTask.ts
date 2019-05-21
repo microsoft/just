@@ -52,7 +52,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
           wp(webpackConfigs, (err: Error, stats: any) => {
             if (options && options.outputStats) {
               const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
-              fs.writeFileSync();
+              fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
             }
 
             if (err || stats.hasErrors()) {
