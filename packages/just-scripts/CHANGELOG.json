@@ -2,6 +2,24 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.16.0",
+      "tag": "just-scripts_v0.16.0",
+      "date": "Tue, 21 May 2019 22:37:14 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Switch clean, copy, and sass tasks to use options objects"
+          },
+          {
+            "comment": "Adds a nodeArgs to jestTask"
+          },
+          {
+            "comment": "add flag to write output stats"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.15.3",
       "tag": "just-scripts_v0.15.3",
       "date": "Wed, 15 May 2019 18:44:04 GMT",

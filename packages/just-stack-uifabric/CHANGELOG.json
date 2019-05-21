@@ -2,6 +2,18 @@
   "name": "just-stack-uifabric",
   "entries": [
     {
+      "version": "0.11.2",
+      "tag": "just-stack-uifabric_v0.11.2",
+      "date": "Tue, 21 May 2019 22:37:14 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-scripts\" from `^0.15.3` to `^0.16.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.1",
       "tag": "just-stack-uifabric_v0.11.1",
       "date": "Wed, 15 May 2019 18:44:04 GMT",
