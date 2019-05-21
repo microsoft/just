@@ -4,11 +4,22 @@
     {
       "version": "0.15.3",
       "tag": "just-scripts_v0.15.3",
-      "date": "Wed, 15 May 2019 18:44:08 GMT",
+      "date": "Wed, 15 May 2019 18:44:04 GMT",
       "comments": {
         "patch": [
           {
             "comment": "Update task presets to clean all the output dirs they create"
+          },
+          {
+            "comment": "Switch microsoft in repo URL to lowercase"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-scripts-utils\" from `>=0.7.2 <1.0.0` to `>=0.7.3 <1.0.0`"
+          },
+          {
+            "comment": "Updating dependency \"just-task\" from `>=0.9.8 <1.0.0` to `>=0.9.9 <1.0.0`"
           }
         ]
       }

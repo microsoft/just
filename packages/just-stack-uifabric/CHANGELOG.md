@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Wed, 15 May 2019 18:33:15 GMT and should not be manually modified.
+This log was last generated on Wed, 15 May 2019 18:44:04 GMT and should not be manually modified.
+
+## 0.11.1
+Wed, 15 May 2019 18:44:04 GMT
+
+### Patches
+
+- Switch microsoft in repo URL to lowercase
 
 ## 0.11.0
 Wed, 15 May 2019 18:33:15 GMT

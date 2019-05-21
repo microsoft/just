@@ -1,6 +1,13 @@
 # Change Log - just-task-logger
 
-This log was last generated on Fri, 22 Feb 2019 23:37:36 GMT and should not be manually modified.
+This log was last generated on Wed, 15 May 2019 18:44:04 GMT and should not be manually modified.
+
+## 0.2.1
+Wed, 15 May 2019 18:44:04 GMT
+
+### Patches
+
+- Switch microsoft in repo URL to lowercase
 
 ## 0.2.0
 Fri, 22 Feb 2019 23:37:36 GMT
