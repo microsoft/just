@@ -11,12 +11,14 @@ import { tsOverlay } from './webpack/overlays/tsOverlay';
 import { htmlOverlay } from './webpack/overlays/htmlOverlay';
 import { stylesOverlay } from './webpack/overlays/stylesOverlay';
 import { fileOverlay } from './webpack/overlays/fileOverlay';
+import { displayBailoutOverlay } from './webpack/overlays/displayBailoutOverlay';
 
 export const webpackOverlays = {
   typescript: tsOverlay,
   html: htmlOverlay,
   styles: stylesOverlay,
-  file: fileOverlay
+  file: fileOverlay,
+  displayBailout: displayBailoutOverlay
 };
 
 import webpackMerge from 'webpack-merge';

@@ -2,6 +2,7 @@ import path from 'path';
 import merge from 'webpack-merge';
 import { tsOverlay } from './overlays/tsOverlay';
 import { fileOverlay } from './overlays/fileOverlay';
+import { displayBailoutOverlay } from './overlays/displayBailoutOverlay';
 
 export const webpackConfig: any = merge(
   {
@@ -13,5 +14,6 @@ export const webpackConfig: any = merge(
     }
   },
   tsOverlay,
-  fileOverlay
+  fileOverlay,
+  displayBailoutOverlay
 );
