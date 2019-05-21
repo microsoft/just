@@ -10,11 +10,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-<<<<<<< HEAD
-    "just-task": ">=0.9.8 <1.0.0",
-=======
     "just-task": ">=0.9.9 <1.0.0",
->>>>>>> origin/publish-1557945844368
     "just-scripts": ">=0.15.3 <1.0.0",
     "typescript": "~3.4.4"
   }
