@@ -4,14 +4,37 @@ import path from 'path';
 import parallelLimit from 'run-parallel-limit';
 import { logger, TaskFunction } from 'just-task';
 
-export function copyTask(paths: string[] = [], dest: string, limit: number = 15): TaskFunction {
-  return function copy(done: (err?: Error) => void) {
-    logger.info(
-      `Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`
-    );
+export interface CopyTaskOptions {
+  /** Paths to copy */
+  paths?: string[];
+  /** Destination directory */
+  dest: string;
+  /**
+   * Limit on number of simultaneous copying tasks
+   * @default 15
+   */
+  limit?: number;
+}
 
-    if (!fse.existsSync(dest)) {
-      fse.mkdirpSync(dest);
+export function copyTask(options: CopyTaskOptions): TaskFunction;
+/** @deprecated Use object param version */
+export function copyTask(paths: string[] | undefined, dest: string, limit?: number): TaskFunction;
+export function copyTask(optionsOrPaths: CopyTaskOptions | string[] | undefined, dest?: string, limit?: number): TaskFunction {
+  let paths: string[] = [];
+  if (Array.isArray(optionsOrPaths)) {
+    paths = optionsOrPaths;
+  } else if (optionsOrPaths) {
+    paths = optionsOrPaths.paths || [];
+    dest = optionsOrPaths.dest;
+    limit = optionsOrPaths.limit;
+  }
+  limit = limit || 15;
+
+  return function copy(done: (err?: Error) => void) {
+    logger.info(`Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`);
+
+    if (!fse.existsSync(dest!)) {
+      fse.mkdirpSync(dest!);
     }
 
     const copyTasks: parallelLimit.Task<void>[] = [];
@@ -32,7 +55,7 @@ export function copyTask(paths: string[] = [], dest: string, limit: number = 15)
 
         copyTasks.push(cb => {
           const readStream = fse.createReadStream(matchedPath);
-          const destPath = path.join(dest, relativePath);
+          const destPath = path.join(dest!, relativePath);
 
           if (!fse.existsSync(path.dirname(destPath))) {
             fse.mkdirpSync(path.dirname(destPath));
@@ -46,7 +69,7 @@ export function copyTask(paths: string[] = [], dest: string, limit: number = 15)
     }
 
     paths.forEach(copyPath => helper(copyPath));
-    parallelLimit(copyTasks, limit, done);
+    parallelLimit(copyTasks, limit!, done);
   };
 }
 
