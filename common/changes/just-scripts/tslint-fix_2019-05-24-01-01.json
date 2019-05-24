@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "Add a `fix` option to tslintTask",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "rezha@microsoft.com"
+}

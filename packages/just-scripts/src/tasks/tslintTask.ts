@@ -5,6 +5,7 @@ import fs from 'fs';
 
 export interface TsLintTaskOptions {
   config?: string;
+  fix?: boolean;
 }
 
 export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
@@ -24,6 +25,10 @@ export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
         '-r',
         path.dirname(resolve('tslint-microsoft-contrib') || '')
       ];
+
+      if (options.fix) {
+        args.push('--fix');
+      }
 
       const cmd = encodeArgs([process.execPath, tslintCmd, ...args]).join(' ');
       logger.info(cmd);
