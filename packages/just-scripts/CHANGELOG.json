@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.17.0",
+      "tag": "just-scripts_v0.17.0",
+      "date": "Fri, 24 May 2019 17:59:43 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add a `fix` option to tslintTask"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.16.0",
       "tag": "just-scripts_v0.16.0",
       "date": "Tue, 21 May 2019 22:37:14 GMT",

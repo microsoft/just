@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 21 May 2019 22:37:14 GMT and should not be manually modified.
+This log was last generated on Fri, 24 May 2019 17:59:43 GMT and should not be manually modified.
+
+## 0.17.0
+Fri, 24 May 2019 17:59:43 GMT
+
+### Minor changes
+
+- Add a `fix` option to tslintTask
 
 ## 0.16.0
 Tue, 21 May 2019 22:37:14 GMT
