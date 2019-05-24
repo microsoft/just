@@ -26,7 +26,7 @@ export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
         path.dirname(resolve('tslint-microsoft-contrib') || '')
       ];
 
-      if (options.fix === true) {
+      if (options.fix) {
         args.push('--fix');
       }
 
