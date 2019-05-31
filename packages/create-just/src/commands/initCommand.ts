@@ -13,7 +13,7 @@ function checkEmptyRepo(projectPath: string) {
   return readdirSync(projectPath).length === 0;
 }
 
-async function getTemplatePath(pathName: string) {
+async function getTemplatePath(pathName: string, registry?: string) {
   if (pathName.match(/^\./)) {
     // relative to initCwd
     return path.join(initCwd, pathName, 'template');
@@ -23,7 +23,7 @@ async function getTemplatePath(pathName: string) {
   }
 
   // download it from feed
-  return await downloadPackage(pathName);
+  return await downloadPackage(pathName, registry);
 }
 
 export async function initCommand(argv: yargs.Arguments) {
@@ -66,7 +66,7 @@ export async function initCommand(argv: yargs.Arguments) {
 
   logger.info(`Initializing the repo in ${paths.projectPath}`);
 
-  const templatePath = await getTemplatePath(argv.stack);
+  const templatePath = await getTemplatePath(argv.stack, argv.registry);
 
   if (templatePath) {
     applyTemplate(templatePath, paths.projectPath, { name });
