@@ -89,8 +89,6 @@ export function apiExtractorUpdateTask(
       } else {
         logger.info(`- Update API: API file is already up to date, no update needed.`);
       }
-    } else {
-      logger.warn('@microsoft/api-extractor package not detected, this task will have no effect');
     }
   };
 }
@@ -99,6 +97,12 @@ function apiExtractorWrapper(configJsonFilePath: string, extractorOptions: Omit<
   const apiExtractorModule = tryRequire('@microsoft/api-extractor');
 
   if (!apiExtractorModule) {
+    logger.warn('@microsoft/api-extractor package not detected, this task will have no effect');
+    return;
+  }
+
+  if (!apiExtractorModule.Exclude.invoke) {
+    logger.warn('Please update your @microsoft/api-extractor package, this task will have no effect');
     return;
   }
 
