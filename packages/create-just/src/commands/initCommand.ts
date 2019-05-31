@@ -75,7 +75,7 @@ export async function initCommand(argv: yargs.Arguments) {
       rushUpdate(paths.projectPath);
     } else {
       const npmCmd = path.join(path.dirname(process.execPath), os.platform() === 'win32' ? 'npm.cmd' : 'npm');
-      spawnSync(npmCmd, ['install', ...(argv.registry ? [argv.registry] : [])], { stdio: 'inherit' });
+      spawnSync(npmCmd, ['install', ...(argv.registry ? ['--registry', argv.registry] : [])], { stdio: 'inherit' });
     }
 
     try {
