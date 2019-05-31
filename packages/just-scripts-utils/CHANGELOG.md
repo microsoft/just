@@ -1,6 +1,13 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Wed, 15 May 2019 18:44:04 GMT and should not be manually modified.
+This log was last generated on Fri, 31 May 2019 21:15:02 GMT and should not be manually modified.
+
+## 0.8.0
+Fri, 31 May 2019 21:15:02 GMT
+
+### Minor changes
+
+- Adds the ability to override registry in downloadPackage
 
 ## 0.7.3
 Wed, 15 May 2019 18:44:04 GMT

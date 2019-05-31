@@ -1,6 +1,11 @@
 # Change Log - create-uifabric
 
-This log was last generated on Wed, 15 May 2019 18:44:04 GMT and should not be manually modified.
+This log was last generated on Fri, 31 May 2019 21:15:02 GMT and should not be manually modified.
+
+## 0.2.4
+Fri, 31 May 2019 21:15:02 GMT
+
+*Version update only*
 
 ## 0.2.3
 Wed, 15 May 2019 18:44:04 GMT
