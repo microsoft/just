@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "comment": "Fixes stylesOverlay and make tasks tolerant of tooling's absense",
+      "type": "patch"
+    }
+  ],
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com"
+}

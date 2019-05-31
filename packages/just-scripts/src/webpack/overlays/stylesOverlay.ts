@@ -1,88 +1,110 @@
-import { resolveCwd } from 'just-task';
+import { resolve } from 'just-task';
 
-const styleLoader = resolveCwd('@microsoft/loader-load-themed-styles') || resolveCwd('style-loader');
-const sassLoader = resolveCwd('sass-loader');
-const cssLoader = resolveCwd('css-loader');
-const postCssLoader = resolveCwd('postcss-loader');
+const styleLoader = resolve('@microsoft/loader-load-themed-styles') || resolve('style-loader');
+const sassLoader = resolve('node-sass') && resolve('sass-loader');
+const cssLoader = resolve('css-loader');
+const postCssLoader = resolve('postcss-loader');
 
-const merge = require('webpack-merge');
+const cssTest = /\.css$/;
+const cssModuleTest = /\.module\.css$/;
+const sassTest = /\.(scss|sass)$/;
+const sassModuleTest = /\.module\.(scss|sass)$/;
+const defaultIdentName = '[name]_[local]_[hash:base64:5]';
 
-export const stylesOverlay = merge(
-  {
-    ...(sassLoader &&
-      styleLoader &&
-      cssLoader &&
-      postCssLoader && {
-        module: {
-          rules: [
-            {
-              test: /\.scss$/,
-              enforce: 'pre',
-              exclude: [/node_modules/],
-              use: [
-                {
-                  loader: styleLoader // creates style nodes from JS strings
-                },
-                {
-                  loader: 'css-loader', // translates CSS into CommonJS
-                  options: {
-                    modules: true,
-                    importLoaders: 2,
-                    localIdentName: '[name]_[local]_[hash:base64:5]',
-                    minimize: false
-                  }
-                },
-                {
-                  loader: 'postcss-loader',
-                  options: {
-                    plugins: function() {
-                      return [require('autoprefixer')];
-                    }
-                  }
-                },
-                {
-                  loader: 'sass-loader'
-                }
-              ]
+interface CssLoaderOptions {
+  modules?: boolean;
+  localIdentName?: string;
+}
+
+function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass-loader' | null = null) {
+  const preloaders = [
+    ...(postCssLoader
+      ? [
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function() {
+                return [resolve('autoprefixer')];
+              }
             }
-          ]
-        }
-      })
-  },
-  {
-    ...(cssLoader &&
-      postCssLoader && {
-        module: {
-          rules: [
-            {
-              test: /\.css$/,
-              enforce: 'pre',
-              exclude: [/node_modules/],
-              use: [
-                {
-                  loader: styleLoader // creates style nodes from JS strings
-                },
-                {
-                  loader: 'css-loader', // translates CSS into CommonJS
-                  options: {
+          }
+        ]
+      : []),
+    ...(preprocessor ? [preprocessor] : [])
+  ];
+
+  return [
+    {
+      loader: styleLoader // creates style nodes from JS strings
+    },
+    {
+      loader: 'css-loader', // translates CSS into CommonJS
+      options: {
+        ...cssOptions,
+        importLoaders: preloaders.length
+      }
+    },
+    ...preloaders
+  ];
+}
+
+export const createStylesOverlay = function(options: CssLoaderOptions = {}) {
+  return {
+    module: {
+      rules: [
+        ...(cssLoader
+          ? [
+              {
+                test: cssTest,
+                exclude: [/node_modules/, cssModuleTest],
+                use: createStyleLoaderRule({
+                  modules: false,
+                  localIdentName: options.localIdentName || defaultIdentName
+                }),
+                sideEffects: true
+              },
+              {
+                test: cssModuleTest,
+                exclude: [/node_modules/],
+                use: createStyleLoaderRule({
+                  modules: true,
+                  localIdentName: options.localIdentName || defaultIdentName
+                })
+              }
+            ]
+          : []),
+        ...(sassLoader && cssLoader
+          ? [
+              {
+                test: sassTest,
+                exclude: [/node_modules/, sassModuleTest],
+                use: createStyleLoaderRule(
+                  {
+                    modules: false,
+                    localIdentName: options.localIdentName || defaultIdentName
+                  },
+                  'sass-loader'
+                ),
+                sideEffects: true
+              },
+              {
+                test: sassModuleTest,
+                exclude: [/node_modules/],
+                use: createStyleLoaderRule(
+                  {
                     modules: true,
-                    importLoaders: 2,
-                    localIdentName: '[name]_[local]_[hash:base64:5]',
-                    minimize: false
-                  }
-                },
-                {
-                  loader: 'postcss-loader',
-                  options: {
-                    plugins: function() {
-                      return [require('autoprefixer')];
-                    }
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      })
-  }
-);
+                    localIdentName: options.localIdentName || defaultIdentName
+                  },
+                  'sass-loader'
+                )
+              }
+            ]
+          : [])
+      ]
+    }
+  };
+};
+
+export const stylesOverlay = createStylesOverlay({
+  localIdentName: defaultIdentName
+});

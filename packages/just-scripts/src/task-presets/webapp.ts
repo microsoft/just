@@ -13,6 +13,7 @@ export function webapp() {
   task('jest:watch', jestTask({ watch: true }));
 
   task('webpack', webpackTask());
+
   task('webpack:watch', webpackDevServerTask());
 
   task('build', series('clean', 'ts', parallel('jest', 'webpack')));
