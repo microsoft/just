@@ -23,7 +23,7 @@ async function getTemplatePath(pathName: string, registry?: string) {
   }
 
   // download it from feed
-  return await downloadPackage(pathName, registry);
+  return await downloadPackage(pathName, undefined, registry);
 }
 
 export async function initCommand(argv: yargs.Arguments) {

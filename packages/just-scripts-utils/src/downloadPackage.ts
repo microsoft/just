@@ -35,7 +35,7 @@ export function _isDevMode(pkg: string): boolean {
  * @param version Version of the package to download.
  * @returns The path to the template folder within the package.
  */
-export async function downloadPackage(pkg: string, version: string = 'latest', registry?: string): Promise<string | null> {
+export async function downloadPackage(pkg: string, version: string = 'latest', registry: string | null = null): Promise<string | null> {
   if (_isDevMode(pkg) && version === 'latest') {
     return path.join(dirname || __dirname, '../../', pkg, 'template');
   }
@@ -52,6 +52,7 @@ export async function downloadPackage(pkg: string, version: string = 'latest', r
   const result = spawnSync(npmCmd, ['pack', `${pkg}@${version}`, '--no-cache', ...(registry ? ['--registry', registry] : [])], {
     cwd: pkgPath
   });
+
   if (result.error) {
     logger.error('Error fetching package');
     logger.error(result.error);
@@ -68,7 +69,7 @@ export async function downloadPackage(pkg: string, version: string = 'latest', r
     });
     return path.join(pkgPath, 'package', 'template');
   } else {
-    logger.error('Could not find downloaded tgz file for package');
+    logger.error(`Could not find downloaded tgz file ${pkgPath}`);
     return null;
   }
 }
