@@ -9,7 +9,7 @@ export * from './webpack/webpack.serve.config';
 // Webpack configs and overlays
 import { tsOverlay } from './webpack/overlays/tsOverlay';
 import { htmlOverlay } from './webpack/overlays/htmlOverlay';
-import { stylesOverlay } from './webpack/overlays/stylesOverlay';
+import { stylesOverlay, createStylesOverlay } from './webpack/overlays/stylesOverlay';
 import { fileOverlay } from './webpack/overlays/fileOverlay';
 import { displayBailoutOverlay } from './webpack/overlays/displayBailoutOverlay';
 
@@ -20,6 +20,8 @@ export const webpackOverlays = {
   file: fileOverlay,
   displayBailout: displayBailoutOverlay
 };
+
+export { tsOverlay, htmlOverlay, stylesOverlay, fileOverlay, displayBailoutOverlay, createStylesOverlay };
 
 import webpackMerge from 'webpack-merge';
 export { webpackMerge };

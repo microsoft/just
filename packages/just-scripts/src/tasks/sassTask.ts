@@ -1,8 +1,9 @@
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs';
-import { resolveCwd, TaskFunction } from 'just-task';
+import { resolveCwd, TaskFunction, logger } from 'just-task';
 import parallelLimit from 'run-parallel-limit';
+import { tryRequire } from '../tryRequire';
 
 export interface SassTaskOptions {
   createSourceModule: (fileName: string, css: string) => string;
@@ -26,12 +27,19 @@ export function sassTask(
   }
   postcssPlugins = postcssPlugins || [];
 
-  const nodeSass = require('node-sass');
-  const postcss = require('postcss');
-  const autoprefixer = require('autoprefixer');
-  const autoprefixerFn = autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie >= 11'] });
-
   return function sass(done: (err?: Error) => void) {
+    const nodeSass = tryRequire('node-sass');
+    const postcss = tryRequire('postcss');
+    const autoprefixer = tryRequire('autoprefixer');
+
+    if (!nodeSass || !postcss || !autoprefixer) {
+      logger.warn('node-sass, postcss, and autoprefixer are not installed, so this task has no effect');
+      done();
+      return;
+    }
+
+    const autoprefixerFn = autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie >= 11'] });
+
     const files = glob.sync(path.resolve(process.cwd(), 'src/**/*.scss'));
 
     if (files.length) {

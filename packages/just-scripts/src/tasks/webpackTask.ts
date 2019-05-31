@@ -2,6 +2,7 @@ import { logger, argv, resolve, resolveCwd, TaskFunction } from 'just-task';
 import fs from 'fs';
 import { encodeArgs, spawn } from 'just-scripts-utils';
 import webpackMerge from 'webpack-merge';
+import { tryRequire } from '../tryRequire';
 
 export interface WebpackTaskOptions {
   config?: string;
@@ -16,9 +17,14 @@ export interface WebpackTaskOptions {
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
-  const wp = require('webpack');
-
   return function webpack() {
+    const wp = tryRequire('webpack');
+
+    if (!wp) {
+      logger.warn('webpack is not installed, this task no effect');
+      return;
+    }
+
     logger.info(`Running Webpack`);
     const webpackConfigPath = resolveCwd((options && options.config) || 'webpack.config.js');
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
