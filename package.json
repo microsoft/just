@@ -13,7 +13,7 @@
     "start": "node ./scripts/watch.js",
     "deploy": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -a -p -b master",
     "beta": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -a -p -b beta -t beta",
-    "buddy": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -p -r http://localhost:4873"
+    "buddy": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -p -r http://localhost:4873 -t latest -a"
   },
   "keywords": [],
   "author": "",
