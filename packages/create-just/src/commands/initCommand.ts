@@ -3,8 +3,9 @@ import path from 'path';
 import { readdirSync } from 'fs';
 import fse from 'fs-extra';
 import prompts from 'prompts';
-import { execSync } from 'child_process';
+import { execSync, spawnSync } from 'child_process';
 import yargs from 'yargs';
+import os from 'os';
 
 const initCwd = process.cwd();
 
@@ -73,7 +74,8 @@ export async function initCommand(argv: yargs.Arguments) {
     if (argv.stack.includes('monorepo')) {
       rushUpdate(paths.projectPath);
     } else {
-      execSync('npm install', { stdio: 'inherit' });
+      const npmCmd = path.join(path.dirname(process.execPath), os.platform() === 'win32' ? 'npm.cmd' : 'npm');
+      spawnSync(npmCmd, ['install', ...(argv.registry ? [argv.registry] : [])], { stdio: 'inherit' });
     }
 
     try {
