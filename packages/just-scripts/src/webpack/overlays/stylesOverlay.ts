@@ -1,4 +1,5 @@
 import { resolve } from 'just-task';
+import { tryRequire } from '../../tryRequire';
 
 const styleLoader = resolve('@microsoft/loader-load-themed-styles') || resolve('style-loader');
 const sassLoader = resolve('node-sass') && resolve('sass-loader');
@@ -24,7 +25,7 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
             loader: 'postcss-loader',
             options: {
               plugins: function() {
-                return [resolve('autoprefixer')];
+                return [tryRequire('autoprefixer')];
               }
             }
           }
