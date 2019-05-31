@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 24 May 2019 17:59:43 GMT and should not be manually modified.
+This log was last generated on Fri, 31 May 2019 21:15:02 GMT and should not be manually modified.
+
+## 0.18.0
+Fri, 31 May 2019 21:15:02 GMT
+
+### Minor changes
+
+- adds css / style loader to webpack
 
 ## 0.17.0
 Fri, 24 May 2019 17:59:43 GMT
