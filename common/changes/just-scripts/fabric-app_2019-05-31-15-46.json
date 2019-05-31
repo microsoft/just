@@ -2,8 +2,8 @@
   "changes": [
     {
       "packageName": "just-scripts",
-      "comment": "Fixes stylesOverlay and make tasks tolerant of tooling's absense",
-      "type": "patch"
+      "comment": "adds css / style loader to webpack",
+      "type": "minor"
     }
   ],
   "packageName": "just-scripts",

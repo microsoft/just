@@ -3,8 +3,9 @@ import path from 'path';
 import { readdirSync } from 'fs';
 import fse from 'fs-extra';
 import prompts from 'prompts';
-import { execSync } from 'child_process';
+import { execSync, spawnSync } from 'child_process';
 import yargs from 'yargs';
+import os from 'os';
 
 const initCwd = process.cwd();
 
@@ -12,7 +13,7 @@ function checkEmptyRepo(projectPath: string) {
   return readdirSync(projectPath).length === 0;
 }
 
-async function getTemplatePath(pathName: string) {
+async function getTemplatePath(pathName: string, registry?: string) {
   if (pathName.match(/^\./)) {
     // relative to initCwd
     return path.join(initCwd, pathName, 'template');
@@ -22,7 +23,7 @@ async function getTemplatePath(pathName: string) {
   }
 
   // download it from feed
-  return await downloadPackage(pathName);
+  return await downloadPackage(pathName, undefined, registry);
 }
 
 export async function initCommand(argv: yargs.Arguments) {
@@ -65,7 +66,7 @@ export async function initCommand(argv: yargs.Arguments) {
 
   logger.info(`Initializing the repo in ${paths.projectPath}`);
 
-  const templatePath = await getTemplatePath(argv.stack);
+  const templatePath = await getTemplatePath(argv.stack, argv.registry);
 
   if (templatePath) {
     applyTemplate(templatePath, paths.projectPath, { name });
@@ -73,7 +74,8 @@ export async function initCommand(argv: yargs.Arguments) {
     if (argv.stack.includes('monorepo')) {
       rushUpdate(paths.projectPath);
     } else {
-      execSync('npm install', { stdio: 'inherit' });
+      const npmCmd = path.join(path.dirname(process.execPath), os.platform() === 'win32' ? 'npm.cmd' : 'npm');
+      spawnSync(npmCmd, ['install', ...(argv.registry ? ['--registry', argv.registry] : [])], { stdio: 'inherit' });
     }
 
     try {
