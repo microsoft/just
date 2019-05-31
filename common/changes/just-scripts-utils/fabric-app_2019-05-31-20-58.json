@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts-utils",
+      "comment": "Adds the ability to override registry in downloadPackage",
+      "type": "minor"
+    }
+  ],
+  "packageName": "just-scripts-utils",
+  "email": "kchau@microsoft.com"
+}
