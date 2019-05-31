@@ -16,7 +16,7 @@ interface CssLoaderOptions {
   localIdentName?: string;
 }
 
-function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass-loader' | null = null) {
+function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass-loader' | null = null): any {
   const preloaders = [
     ...(postCssLoader
       ? [
