@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Fri, 24 May 2019 17:59:43 GMT and should not be manually modified.
+This log was last generated on Fri, 31 May 2019 21:15:02 GMT and should not be manually modified.
+
+## 0.11.4
+Fri, 31 May 2019 21:15:02 GMT
+
+### Patches
+
+- pick up latest just-script conventions
 
 ## 0.11.3
 Fri, 24 May 2019 17:59:43 GMT

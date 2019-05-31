@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Wed, 15 May 2019 18:44:04 GMT and should not be manually modified.
+This log was last generated on Fri, 31 May 2019 21:15:02 GMT and should not be manually modified.
+
+## 0.9.0
+Fri, 31 May 2019 21:15:02 GMT
+
+### Minor changes
+
+- Allows create-just to use a different registry
 
 ## 0.8.1
 Wed, 15 May 2019 18:44:04 GMT
