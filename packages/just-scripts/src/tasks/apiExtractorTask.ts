@@ -1,21 +1,22 @@
 import { logger, TaskFunction } from 'just-task';
+import { ExtractorResult, Extractor, ExtractorConfig, IExtractorInvokeOptions } from '@microsoft/api-extractor';
 
-export function apiExtractorVerifyTask(config: any, options: any): TaskFunction {
+export function apiExtractorVerifyTask(configJsonFilePath: string, options: IExtractorInvokeOptions): TaskFunction {
   return function apiExtractorVerify() {
-    if (!apiExtractorWrapper(config, options)) {
+    if (!apiExtractorWrapper(configJsonFilePath, options).succeeded) {
       throw 'The public API file is out of date. Please run "npm run update-api" and commit the updated API file.';
     }
   };
 }
 
-export function apiExtractorUpdateTask(config: any, options: any): TaskFunction {
+export function apiExtractorUpdateTask(configJsonFilePath: string, options: IExtractorInvokeOptions): TaskFunction {
   return function apiExtractorUpdate() {
-    if (!apiExtractorWrapper(config, options)) {
+    if (!apiExtractorWrapper(configJsonFilePath, options).succeeded) {
       logger.warn(`- Update API: API file is out of date, updating...`);
-      apiExtractorWrapper(config, { ...options, localBuild: true });
+      apiExtractorWrapper(configJsonFilePath, { ...options, localBuild: true });
       logger.info(`- Update API: successfully updated API file, verifying the updates...`);
 
-      if (!apiExtractorWrapper(config, options)) {
+      if (!apiExtractorWrapper(configJsonFilePath, options).succeeded) {
         throw Error(`- Update API: failed to update API file.`);
       } else {
         logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
@@ -26,29 +27,8 @@ export function apiExtractorUpdateTask(config: any, options: any): TaskFunction 
   };
 }
 
-function mergeConfig(extractorConfig: any): any {
-  return {
-    compiler: {
-      configType: 'tsconfig',
-      rootFolder: './'
-    },
-    policies: {
-      namespaceSupport: 'conservative'
-    },
-    project: {
-      entryPointSourceFile: 'lib/index.d.ts'
-    },
-    validationRules: {
-      missingReleaseTags: 'allow' as any
-    },
-    ...extractorConfig
-  };
-}
-
-function apiExtractorWrapper(extractorConfig: any, extractorOptions: any) {
-  const { Extractor } = require('@microsoft/api-extractor');
-  const config = mergeConfig(extractorConfig);
-  logger.info(`Extracting Public API surface from '${config.project.entryPointSourceFile}'`);
-  const extractor = new Extractor(config, extractorOptions);
-  return extractor.processProject();
+function apiExtractorWrapper(configJsonFilePath: string, extractorOptions: IExtractorInvokeOptions): ExtractorResult {
+  const config = ExtractorConfig.loadFileAndPrepare(configJsonFilePath);
+  logger.info(`Extracting Public API surface from '${config.mainEntryPointFilePath}'`);
+  return Extractor.invoke(config, extractorOptions);
 }
