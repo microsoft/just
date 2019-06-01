@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 31 May 2019 22:15:26 GMT and should not be manually modified.
+This log was last generated on Sat, 01 Jun 2019 04:59:34 GMT and should not be manually modified.
+
+## 0.20.0
+Sat, 01 Jun 2019 04:59:34 GMT
+
+### Minor changes
+
+- Upgrades api-extractor task API usage
 
 ## 0.19.0
 Fri, 31 May 2019 22:15:26 GMT

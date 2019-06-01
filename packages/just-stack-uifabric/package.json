@@ -42,7 +42,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "devDependencies": {
-    "just-scripts-utils": "^0.8.0"
+    "just-scripts-utils": "^0.8.1"
   },
   "just-stack": true
 }

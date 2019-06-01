@@ -1,6 +1,13 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Fri, 31 May 2019 21:15:02 GMT and should not be manually modified.
+This log was last generated on Sat, 01 Jun 2019 04:59:34 GMT and should not be manually modified.
+
+## 0.8.1
+Sat, 01 Jun 2019 04:59:34 GMT
+
+### Patches
+
+- Fix downloadPackage tests
 
 ## 0.8.0
 Fri, 31 May 2019 21:15:02 GMT

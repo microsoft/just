@@ -2,6 +2,18 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "version": "0.8.1",
+      "tag": "just-scripts-utils_v0.8.1",
+      "date": "Sat, 01 Jun 2019 04:59:34 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix downloadPackage tests"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.8.0",
       "tag": "just-scripts-utils_v0.8.0",
       "date": "Fri, 31 May 2019 21:15:02 GMT",
