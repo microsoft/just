@@ -1,5 +1,6 @@
 import { logger, TaskFunction, resolveCwd } from 'just-task';
 import { tryRequire } from '../tryRequire';
+import { fstat } from 'fs';
 
 /** Subset of the options from IExtractorConfigOptions that are exposed via this just task */
 interface ApiExtractorOptions {
@@ -18,6 +19,8 @@ interface ApiExtractorOptions {
    */
   showVerboseMessages?: boolean;
 
+  projectFolder?: string;
+
   /**
    * By default API Extractor uses its own TypeScript compiler version to analyze your project.
    * This can often cause compiler errors due to incompatibilities between different TS versions.
@@ -26,7 +29,7 @@ interface ApiExtractorOptions {
   typescriptCompilerFolder?: string;
 
   /** The config file path */
-  configJsonFilePath: string;
+  configJsonFilePath?: string;
 }
 
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
@@ -38,7 +41,7 @@ export function apiExtractorVerifyTask(
   extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>
 ): TaskFunction;
 export function apiExtractorVerifyTask(
-  configJsonFilePathOrOption: string | ApiExtractorOptions,
+  configJsonFilePathOrOption: string | ApiExtractorOptions = {},
   extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'> = {}
 ): TaskFunction {
   const options =
@@ -51,12 +54,31 @@ export function apiExtractorVerifyTask(
 
     if (apiExtractorResult && !apiExtractorResult.succeeded) {
       throw 'The public API file is out of date. Please run the API snapshot and commit the updated API file.';
-    } else {
-      logger.warn('@microsoft/api-extractor package not detected, this task will have no effect');
     }
   };
 }
 
+/**
+ * Updates the API extractor snapshot
+ *
+ * Sample config, save this as api-extractor.json:
+ *
+ * {
+ *    "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+ *    "mainEntryPointFilePath": "<projectFolder>/lib/index.d.ts",
+ *    "docModel": {
+ *      "enabled": true
+ *    },
+ *    "dtsRollup": {
+ *      "enabled": true
+ *    },
+ *    "apiReport": {
+ *      "enabled": true
+ *    }
+ * }
+ *
+ * @param options
+ */
 export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFunction;
 /** @deprecated Use object param version */
 export function apiExtractorUpdateTask(
@@ -64,7 +86,7 @@ export function apiExtractorUpdateTask(
   extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>
 ): TaskFunction;
 export function apiExtractorUpdateTask(
-  configJsonFilePathOrOption: string | ApiExtractorOptions,
+  configJsonFilePathOrOption: string | ApiExtractorOptions = {},
   extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'> = {}
 ): TaskFunction {
   const options =
@@ -93,7 +115,12 @@ export function apiExtractorUpdateTask(
   };
 }
 
-function apiExtractorWrapper(configJsonFilePath: string, extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>) {
+function apiExtractorWrapper(configJsonFilePath: string | undefined, extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>) {
+  const path = require('path');
+  const fs = require('fs');
+
+  configJsonFilePath = configJsonFilePath || 'api-extractor.json';
+
   const apiExtractorModule = tryRequire('@microsoft/api-extractor');
 
   if (!apiExtractorModule) {
@@ -101,13 +128,20 @@ function apiExtractorWrapper(configJsonFilePath: string, extractorOptions: Omit<
     return;
   }
 
-  if (!apiExtractorModule.Exclude.invoke) {
+  if (!apiExtractorModule.Extractor.invoke) {
     logger.warn('Please update your @microsoft/api-extractor package, this task will have no effect');
+    return;
+  }
+
+  if (!fs.existsSync(configJsonFilePath)) {
+    const defaultConfig = path.join(__dirname, '../../config/apiExtractor/api-extractor.json');
+    logger.warn(`Config file not found for api-extractor! Please copy ${defaultConfig} to project root folder to try again`);
     return;
   }
 
   const { Extractor, ExtractorConfig } = apiExtractorModule;
   const config = ExtractorConfig.loadFileAndPrepare(configJsonFilePath);
+
   logger.info(`Extracting Public API surface from '${config.mainEntryPointFilePath}'`);
   return Extractor.invoke(config, extractorOptions);
 }

@@ -33,7 +33,7 @@ export function sassTask(
     const autoprefixer = tryRequire('autoprefixer');
 
     if (!nodeSass || !postcss || !autoprefixer) {
-      logger.warn('node-sass, postcss, and autoprefixer are not installed, so this task has no effect');
+      logger.warn('One of these [node-sass, postcss, autoprefixer] is not installed, so this task has no effect');
       done();
       return;
     }
