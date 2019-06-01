@@ -20,7 +20,7 @@ export function _setMockDirname(dir: string): void {
 export function _isDevMode(pkg: string): boolean {
   const projectPackageJson = readPackageJson(path.join(dirname || __dirname, '../../..'));
   if (projectPackageJson && fse.existsSync(path.join(dirname || __dirname, '../..', pkg))) {
-    return projectPackageJson.name === 'just-task';
+    return projectPackageJson.name === 'just-repo';
   }
   return false;
 }

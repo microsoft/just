@@ -2,6 +2,18 @@
   "name": "just-scripts",
   "entries": [
     {
+      "version": "0.19.0",
+      "tag": "just-scripts_v0.19.0",
+      "date": "Fri, 31 May 2019 22:15:26 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "updated apiextractor task"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.18.0",
       "tag": "just-scripts_v0.18.0",
       "date": "Fri, 31 May 2019 21:15:02 GMT",

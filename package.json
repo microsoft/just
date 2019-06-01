@@ -1,22 +1,23 @@
 {
-  "name": "just-task",
+  "name": "just-repo",
   "version": "1.0.0",
+  "private": true,
   "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node ./common/scripts/install-run-rush.js install",
-    "build": "node ./common/scripts/install-run-rush.js build",
-    "checkchange": "node ./common/scripts/install-run-rush.js change -v",
-    "test": "node ./common/scripts/install-run-rush.js test",
-    "build:docs": "node ./common/scripts/install-run-rush.js rebuild -t just-task-docs",
-    "postbuild": "node ./scripts/copyReadme.js",
-    "start": "node ./scripts/watch.js",
-    "deploy": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -a -p -b master",
     "beta": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -a -p -b beta -t beta",
-    "buddy": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -p -r http://localhost:4873 -t latest -a"
-  },
-  "keywords": [],
-  "author": "",
-  "private": true,
-  "license": "MIT"
+    "buddy": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -p -r http://localhost:4873 -t latest -a",
+    "build": "node ./common/scripts/install-run-rush.js build",
+    "postbuild": "node ./scripts/copyReadme.js",
+    "build:docs": "node ./common/scripts/install-run-rush.js rebuild -t just-task-docs",
+    "change": "node ./common/scripts/install-run-rush.js change",
+    "checkchange": "node ./common/scripts/install-run-rush.js change -v",
+    "deploy": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -a -p -b master",
+    "postinstall": "node ./common/scripts/install-run-rush.js install",
+    "start": "node ./scripts/watch.js",
+    "test": "node ./common/scripts/install-run-rush.js test"
+  }
 }
