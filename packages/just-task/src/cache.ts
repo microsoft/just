@@ -12,8 +12,17 @@ export function registerCachedTask(taskName: string) {
 }
 
 export function isCached(taskName: string) {
+  if (cachedTask.indexOf(taskName) < 0) {
+    return false;
+  }
+
   const currentHash = getHash(taskName);
   const cachePath = getCachePath();
+  const cacheFile = path.join(cachePath, 'package-deps.json');
+
+  if (!fs.existsSync(cacheFile)) {
+    return false;
+  }
 
   if (!fs.pathExistsSync(cachePath)) {
     fs.mkdirpSync(cachePath);
@@ -32,6 +41,10 @@ export function isCached(taskName: string) {
 }
 
 export function saveCache(taskName: string) {
+  if (cachedTask.indexOf(taskName) < 0) {
+    return;
+  }
+
   const cachePath = getCachePath();
 
   if (!fs.pathExistsSync(cachePath)) {
