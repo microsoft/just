@@ -1,4 +1,6 @@
-export function wrapTask(fn: any) {
+import { TaskFunction } from './interfaces';
+
+export function wrapTask(fn: any): TaskFunction {
   return function _wrapFunction(done: any) {
     let origFn = fn;
     if (fn.unwrap) {

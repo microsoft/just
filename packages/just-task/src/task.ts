@@ -2,6 +2,8 @@ import yargs from 'yargs';
 import { undertaker } from './undertaker';
 import { wrapTask } from './wrapTask';
 import { TaskFunction } from './interfaces';
+import { logger } from 'just-task-logger';
+import { registerCachedTask, isCached, saveCache } from './cache';
 
 export function task(
   firstParam: string | TaskFunction,
@@ -11,20 +13,36 @@ export function task(
   const argCount = arguments.length;
 
   if (argCount === 1 && typeof firstParam === 'string') {
-    return undertaker.task(firstParam);
+    return undertaker.task(firstParam) as TaskFunction;
   } else if (argCount === 2 && isString(firstParam) && isString(secondParam)) {
     // task('default', 'build');
-    undertaker.task(firstParam, undertaker.series(secondParam));
+
+    const theTask = undertaker.series(secondParam);
+    undertaker.task(firstParam, theTask);
     yargs.command(getCommandModule(firstParam, ''));
   } else if (argCount === 2 && isString(firstParam) && isTaskFunction(secondParam)) {
     // task('pretter', prettierTask());
     // task('custom', () => { ... });
-    undertaker.task(firstParam, wrapTask(secondParam as TaskFunction));
+    const wrapped = wrapTask(secondParam as TaskFunction) as TaskFunction;
+    wrapped.cached = () => {
+      registerCachedTask(firstParam);
+    };
+
+    undertaker.task(firstParam, wrapped);
     yargs.command(getCommandModule(firstParam, ''));
+
+    return wrapped;
   } else if (argCount === 3 && isString(firstParam) && isString(secondParam) && isTaskFunction(thirdParam)) {
     // task('custom', 'describes this thing', () => { ... })
-    undertaker.task(firstParam, wrapTask(thirdParam));
+    const wrapped = wrapTask(thirdParam);
+    wrapped.cached = () => {
+      registerCachedTask(firstParam);
+    };
+
+    undertaker.task(firstParam, wrapped);
     yargs.command(getCommandModule(firstParam, secondParam));
+
+    return wrapped;
   } else {
     throw new Error('Invalid parameter given in task() function');
   }
@@ -44,7 +62,14 @@ function getCommandModule(taskName: string, describe?: string): yargs.CommandMod
     describe,
     ...(taskName === 'default' ? { aliases: ['*'] } : {}),
     handler(argvParam: any) {
-      return undertaker.parallel(taskName)(() => {});
+      if (isCached(taskName)) {
+        logger.info(`Skipped ${taskName} since it was cached`);
+        return;
+      }
+
+      return undertaker.parallel(taskName)(() => {
+        saveCache(taskName);
+      });
     }
   };
 }

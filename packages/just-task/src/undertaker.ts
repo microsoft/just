@@ -3,6 +3,7 @@ import { logger } from './logger';
 import chalk from 'chalk';
 import { wrapTask } from './wrapTask';
 import { Task } from './interfaces';
+import { clearCache } from './cache';
 
 const undertaker = new Undertaker();
 const NS_PER_SEC = 1e9;
@@ -82,6 +83,9 @@ undertaker.on('error', function(args: any) {
     }
 
     logger.error(chalk.yellow('------------------------------------'));
+
+    clearCache();
+
     process.exitCode = 1;
   } else if (shouldLog(args)) {
     const duration = args.duration;
