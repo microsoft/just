@@ -1,4 +1,4 @@
-import { getPackageDeps } from '@microsoft/package-deps-hash';
+import { getPackageDeps, IPackageDeps } from '@microsoft/package-deps-hash';
 import { argv } from './option';
 import { resolveCwd } from './resolve';
 import fs from 'fs-extra';
@@ -6,9 +6,16 @@ import path from 'path';
 import { logger } from 'just-task-logger';
 
 const cachedTask: string[] = [];
+const CacheFileName = 'package-deps.json';
 
 export function registerCachedTask(taskName: string) {
   cachedTask.push(taskName);
+}
+
+export function clearCache() {
+  const cachePath = getCachePath();
+  const cacheFile = path.join(cachePath, CacheFileName);
+  fs.removeSync(cacheFile);
 }
 
 export function isCached(taskName: string) {
@@ -18,26 +25,24 @@ export function isCached(taskName: string) {
 
   const currentHash = getHash(taskName);
   const cachePath = getCachePath();
-  const cacheFile = path.join(cachePath, 'package-deps.json');
+  const cacheFile = path.join(cachePath, CacheFileName);
 
   if (!fs.existsSync(cacheFile)) {
     return false;
   }
 
-  if (!fs.pathExistsSync(cachePath)) {
-    fs.mkdirpSync(cachePath);
-  }
+  let shouldCache: boolean = false;
 
   try {
-    const cachedHash = JSON.parse(fs.readFileSync(path.join(cachePath, 'package-deps.json')).toString());
+    const cachedHash = JSON.parse(fs.readFileSync(path.join(cachePath, CacheFileName)).toString());
 
     // TODO: make a more robust comparison
-    return JSON.stringify(currentHash) === JSON.stringify(cachedHash);
+    shouldCache = JSON.stringify(currentHash) === JSON.stringify(cachedHash);
   } catch (e) {
     logger.warn('Invalid package-deps.json detected');
   }
 
-  return false;
+  return shouldCache;
 }
 
 export function saveCache(taskName: string) {
@@ -51,7 +56,11 @@ export function saveCache(taskName: string) {
     fs.mkdirpSync(cachePath);
   }
 
-  fs.writeFileSync(path.join(cachePath, 'package-deps.json'), JSON.stringify(getHash(taskName)));
+  const cacheHash = getHash(taskName);
+
+  if (cacheHash) {
+    fs.writeFileSync(path.join(cachePath, 'package-deps.json'), JSON.stringify(cacheHash));
+  }
 }
 
 function getCachePath() {
@@ -60,13 +69,63 @@ function getCachePath() {
   return path.join(rootPath, 'node_modules/.just');
 }
 
-function getHash(taskName: string) {
+interface CacheHash {
+  args: { [arg: string]: string };
+  taskName: string;
+  hash: IPackageDeps;
+}
+
+function getHash(taskName: string): CacheHash | null {
   const { $0: scriptNameArg, ...args } = argv();
-  const hash = getPackageDeps();
+
+  const gitRoot = findGitRoot();
+
+  if (!gitRoot) {
+    return null;
+  }
+
+  const hash = getPackageDeps(gitRoot);
+
+  const cwd = process.cwd();
+
+  const files: typeof hash.files = {};
+
+  Object.keys(hash.files).forEach(file => {
+    if (isChildOf(file, cwd) || file.indexOf('shrinkwrap.yml') || file.indexOf('package-lock.json') || file.indexOf('yarn.lock')) {
+      files[file] = hash.files[file];
+    }
+  });
+
+  hash.files = files;
 
   return {
     args,
     taskName,
     hash
   };
+}
+
+function isChildOf(child: string, parent: string) {
+  const relativePath = path.relative(child, parent);
+  return /^[.\/\\]+$/.test(relativePath);
+}
+
+function findGitRoot() {
+  let cwd = process.cwd();
+  let root = path.parse(cwd).root;
+  let found = false;
+  while (!found && cwd !== root) {
+    if (fs.pathExistsSync(path.join(cwd, '.git'))) {
+      found = true;
+      break;
+    }
+
+    cwd = path.dirname(cwd);
+  }
+
+  if (found) {
+    return path.join(cwd);
+  }
+
+  return null;
 }
