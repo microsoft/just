@@ -91,7 +91,15 @@ function getHash(taskName: string): CacheHash | null {
   const files: typeof hash.files = {};
 
   Object.keys(hash.files).forEach(file => {
-    if (isChildOf(file, cwd) || file.indexOf('shrinkwrap.yml') || file.indexOf('package-lock.json') || file.indexOf('yarn.lock')) {
+    const basename = path.basename(file);
+
+    if (
+      isChildOf(file, cwd) ||
+      basename === 'shrinkwrap.yml' ||
+      basename === 'package-lock.json' ||
+      basename === 'yarn.lock' ||
+      basename === 'pnpmfile.js'
+    ) {
       files[file] = hash.files[file];
     }
   });
