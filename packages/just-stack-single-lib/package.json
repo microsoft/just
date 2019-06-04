@@ -1,6 +1,6 @@
 {
   "name": "just-stack-single-lib",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "just-stack": true,
   "description": "Just stack for basic Node library",
   "repository": {
@@ -26,7 +26,7 @@
     "@types/jest": "^24.0.0",
     "jest": "^24.0.0",
     "just-scripts": "^0.20.0",
-    "just-task": "^0.9.9",
+    "just-task": "^0.10.0",
     "ts-jest": "^24.0.1",
     "tslib": "^1.9.3",
     "typescript": "^3.2.4"

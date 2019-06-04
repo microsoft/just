@@ -2,6 +2,18 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "version": "0.8.7",
+      "tag": "just-stack-single-lib_v0.8.7",
+      "date": "Tue, 04 Jun 2019 15:55:03 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"just-task\" from `^0.9.9` to `^0.10.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.8.6",
       "tag": "just-stack-single-lib_v0.8.6",
       "date": "Sat, 01 Jun 2019 04:59:34 GMT",

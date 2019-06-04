@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Wed, 15 May 2019 18:44:04 GMT and should not be manually modified.
+This log was last generated on Tue, 04 Jun 2019 15:55:03 GMT and should not be manually modified.
+
+## 0.10.0
+Tue, 04 Jun 2019 15:55:03 GMT
+
+### Minor changes
+
+- Adds cache capability
 
 ## 0.9.9
 Wed, 15 May 2019 18:44:04 GMT

@@ -2,6 +2,18 @@
   "name": "just-task",
   "entries": [
     {
+      "version": "0.10.0",
+      "tag": "just-task_v0.10.0",
+      "date": "Tue, 04 Jun 2019 15:55:03 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Adds cache capability"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.9.9",
       "tag": "just-task_v0.9.9",
       "date": "Wed, 15 May 2019 18:44:04 GMT",
