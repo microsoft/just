@@ -1,4 +1,4 @@
-import { task, series, parallel } from 'just-task';
+import { task, series, parallel, chain } from 'just-task';
 import { cleanTask, tscTask, jestTask, upgradeStackTask, defaultCleanPaths } from '../tasks';
 
 export function lib() {
@@ -13,6 +13,7 @@ export function lib() {
   task('jest:watch', jestTask({ watch: true }));
 
   task('build', series('clean', 'ts', 'jest'));
+
   task('test', series('clean', 'jest'));
   task('start', series('clean', 'ts:watch'));
   task('start-test', series('clean', 'jest:watch'));

@@ -8,16 +8,23 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "beta": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -a -p -b beta -t beta",
-    "buddy": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -p -r http://localhost:4873 -t latest -a",
-    "build": "node ./common/scripts/install-run-rush.js build",
+    "build": "lerna run --stream build",
     "postbuild": "node ./scripts/copyReadme.js",
-    "build:docs": "node ./common/scripts/install-run-rush.js rebuild -t just-task-docs",
-    "change": "node ./common/scripts/install-run-rush.js change",
-    "checkchange": "node ./common/scripts/install-run-rush.js change -v",
-    "deploy": "node ./common/scripts/install-run-rush.js build && node ./common/scripts/install-run-rush.js publish -a -p -b master",
-    "postinstall": "node ./common/scripts/install-run-rush.js install",
+    "build:docs": "lerna run build just-task-docs",
+    "change": "beachball change",
+    "checkchange": "beachball check",
+    "publish:beachball": "beachball publish",
     "start": "node ./scripts/watch.js",
-    "test": "node ./common/scripts/install-run-rush.js test"
+    "test": "lerna run test"
+  },
+  "devDependencies": {
+    "lerna": "^3.13.2",
+    "beachball": "^1.3.1"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "scripts"
+    ]
   }
 }

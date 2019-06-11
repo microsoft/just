@@ -11,8 +11,6 @@
     "editor.formatOnSave": false
   },
   "files.associations": {
-    "rush.json": "jsonc",
-    "**/common/config/rush/*.json": "jsonc",
     "**/package.json.hbs": "json",
     "**/*.json.hbs": "jsonc",
     "**/README.md.hbs": "markdown"

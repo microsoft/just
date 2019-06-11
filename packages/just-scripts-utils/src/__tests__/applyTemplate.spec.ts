@@ -35,7 +35,7 @@ function throwOnWarnOrError() {
 
 // Helper that throws an error. Used as a mock implementation to make particular methods throw.
 const thrownErrorMsg = 'oh no';
-function throwError() {
+function throwError(): string[] {
   throw new Error(thrownErrorMsg);
 }
 
@@ -71,7 +71,7 @@ describe('_writeHbsFile', () => {
 
   it('throws on write error', () => {
     jest.spyOn(fse, 'readFileSync').mockReturnValueOnce(helloTemplate);
-    jest.spyOn(fse, 'writeFileSync').mockImplementationOnce(throwError);
+    jest.spyOn(fse, 'writeFileSync').mockImplementationOnce(throwError as any);
     expect(() => {
       _writeHbsFile('template/test.txt.hbs', 'project/test.txt.hbs', { name: 'world' });
     }).toThrow(new RegExp(thrownErrorMsg));
@@ -108,7 +108,7 @@ describe('_processFileFromTemplate', () => {
       project: {}
     });
     jest.spyOn(logger, 'warn').mockImplementation(fakeWarn);
-    jest.spyOn(fse, 'statSync').mockImplementationOnce(throwError);
+    jest.spyOn(fse, 'statSync').mockImplementationOnce(throwError as any);
 
     const result = _processFileFromTemplate('foo.txt', 'template', 'project');
     expect(fakeWarn).toHaveBeenCalledTimes(1);

@@ -21,17 +21,17 @@ steps:
     displayName: git config
 
   - script: |
-      npm install
-    displayName: 'npm install'
+      yarn
+    displayName: 'yarn'
 
   - script: |
-      npm run checkchange
+      yarn checkchange
     displayName: 'check change files'
 
   - script: |
-      npm run build
+      yarn build
     displayName: 'build'
 
   - script: |
-      npm test
+      yarn test
     displayName: 'test'
