@@ -13,7 +13,7 @@
     "build:docs": "lerna run build just-task-docs",
     "change": "beachball change",
     "checkchange": "beachball check",
-    "deploy": "lerna run build && beachball publish",
+    "publish:beachball": "beachball publish",
     "start": "node ./scripts/watch.js",
     "test": "lerna run test"
   },

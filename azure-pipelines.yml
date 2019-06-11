@@ -12,11 +12,6 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '10.x'
-    displayName: 'Install Node.js'
-
   - script: |
       git config user.email "kchau@microsoft.com"
       git config user.name "kchau@microsoft.com"
@@ -24,21 +19,21 @@ steps:
     displayName: 'git config'
 
   - script: |
-      npm install
-    displayName: 'npm install'
+      yarn
+    displayName: 'yarn'
 
   - script: |
-      npm run checkchange
+      yarn checkchange
     displayName: 'check change files'
 
   - script: |
-      npm run build
+      yarn build
     displayName: 'build'
 
   - script: |
-      npm test
+      yarn test
     displayName: 'test'
 
   - script: |
-      node ./common/scripts/install-run-rush.js publish -a -p -b master -n $(npm.authtoken)
-    displayName: 'rush publish'
+      yarn publish:beachball -- -n $(npm.authtoken)
+    displayName: 'beachball publish'
