@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node ../just-task/lib/cli.js build"
+    "build": "just build"
   },
   "keywords": [],
   "author": "",
