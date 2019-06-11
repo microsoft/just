@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "just build"
+    "build": "just-scripts build"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "just-task": ">=0.10.0 <1.0.0",
     "just-scripts": ">=0.20.0 <1.0.0",
     "typescript": "~3.4.4"
   }
