@@ -10,6 +10,6 @@
   "author": "",
   "dependencies": {
     "cpx": "^1.5.0",
-    "jest-cli": "^23.0.0"
+    "@jest/reporters": "^24.8.0"
   }
 }
