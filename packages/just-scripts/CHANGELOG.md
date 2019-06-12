@@ -1,6 +1,13 @@
 # Changelog - just-scripts
 
-This log was last generated on Wed, 12 Jun 2019 02:03:29 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Jun 2019 22:24:44 GMT and should not be manually modified.
+
+## 0.21.0
+Wed, 12 Jun 2019 22:24:44 GMT
+
+### Minor
+
+- supports tsc build project ref mode (kchau@microsoft.com)
 
 ## 0.20.0
 Wed, 12 Jun 2019 02:03:29 GMT

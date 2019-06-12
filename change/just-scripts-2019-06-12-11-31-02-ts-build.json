@@ -1,8 +1,0 @@
-{
-  "comment": "supports tsc build project ref mode",
-  "type": "minor",
-  "packageName": "just-scripts",
-  "email": "kchau@microsoft.com",
-  "commit": "0279043cfdbb34a839cd1b7b9f889682f41301a0",
-  "date": "2019-06-12T18:31:02.038Z"
-}
