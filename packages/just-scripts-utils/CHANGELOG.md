@@ -1,6 +1,9 @@
 # Changelog - just-scripts-utils
 
-This log was last generated on Wed, 12 Jun 2019 01:49:55 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Jun 2019 02:03:29 GMT and should not be manually modified.
+
+## 0.8.1
+Wed, 12 Jun 2019 02:03:29 GMT
 
 ## 0.8.1
 Wed, 12 Jun 2019 01:49:55 GMT
