@@ -1,8 +1,0 @@
-{
-  "comment": "fixing the build for example-lib",
-  "type": "none",
-  "packageName": "example-lib",
-  "email": "kchau@microsoft.com",
-  "commit": "4112b42ee6d0ea0b02fbc1293b1d19cc9354ac57",
-  "date": "2019-06-11T21:16:39.908Z"
-}

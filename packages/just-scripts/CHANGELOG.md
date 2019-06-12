@@ -1,6 +1,9 @@
-# Change Log - just-scripts
+# Changelog - just-scripts
 
-This log was last generated on Sat, 01 Jun 2019 04:59:34 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Jun 2019 01:49:55 GMT and should not be manually modified.
+
+## 0.20.0
+Wed, 12 Jun 2019 01:49:55 GMT
 
 ## 0.20.0
 Sat, 01 Jun 2019 04:59:34 GMT
