@@ -1,0 +1,8 @@
+{
+  "comment": "adds a bit more rigor to support build deps invalidation of cache",
+  "type": "minor",
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com",
+  "commit": "fd73fc1618d327e026b8aba49933c11d49c7eba9",
+  "date": "2019-06-13T21:01:51.898Z"
+}
