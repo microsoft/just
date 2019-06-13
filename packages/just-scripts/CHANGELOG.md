@@ -1,6 +1,13 @@
 # Changelog - just-scripts
 
-This log was last generated on Thu, 13 Jun 2019 21:16:34 GMT and should not be manually modified.
+This log was last generated on Thu, 13 Jun 2019 21:35:38 GMT and should not be manually modified.
+
+## 0.22.0
+Thu, 13 Jun 2019 21:35:38 GMT
+
+### Minor
+
+- makes clean also clean out the cache (kchau@microsoft.com)
 
 ## 0.21.1
 Thu, 13 Jun 2019 21:16:34 GMT
