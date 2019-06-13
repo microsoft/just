@@ -1,0 +1,8 @@
+{
+  "comment": "makes clean also clean out the cache",
+  "type": "minor",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "commit": "fc911a5973bacb904cd97328acc11ea8c4d182e9",
+  "date": "2019-06-13T21:23:42.293Z"
+}

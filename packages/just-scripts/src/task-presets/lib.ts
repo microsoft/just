@@ -18,5 +18,7 @@ export function lib() {
   task('start', series('clean', 'ts:watch'));
   task('start-test', series('clean', 'jest:watch'));
 
+  task('rebuild', series('clean', 'build'));
+
   task('upgrade-stack', upgradeStackTask());
 }
