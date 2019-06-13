@@ -33,15 +33,20 @@ export function cleanTask(pathsOrOptions: string[] | CleanTaskOptions = {}, limi
   }
   limit = limit || 5;
 
-  return function clean(done: (err?: Error) => void) {
+  return function clean(done: (err: Error | null) => void) {
     logger.info(`Removing [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}]`);
 
-    const cleanTasks = paths.map(
-      cleanPath =>
-        function(cb: (error: Error) => void) {
-          fse.remove(cleanPath, cb);
-        }
-    );
+    const cleanTasks = paths
+      .map(
+        cleanPath =>
+          function(cb: (error: Error | null) => void) {
+            fse.remove(cleanPath, cb);
+          }
+      )
+      .concat((cb: (error: Error | null) => void) => {
+        const justTempDir = 'node_modules/.just';
+        fse.unlink(path.join(justTempDir, 'package-deps.json'), cb);
+      });
 
     parallelLimit(cleanTasks, limit!, done);
   };
