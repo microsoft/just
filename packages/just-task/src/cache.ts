@@ -4,6 +4,9 @@ import { resolveCwd } from './resolve';
 import fs from 'fs-extra';
 import path from 'path';
 import { logger } from 'just-task-logger';
+import { findPackageRoot } from './package/findPackageRoot';
+import { findGitRoot } from './package/findGitRoot';
+import { findDependents } from './package/findDependents';
 
 const cachedTask: string[] = [];
 const CacheFileName = 'package-deps.json';
@@ -59,7 +62,7 @@ export function saveCache(taskName: string) {
   const cacheHash = getHash(taskName);
 
   if (cacheHash) {
-    fs.writeFileSync(path.join(cachePath, 'package-deps.json'), JSON.stringify(cacheHash));
+    fs.writeFileSync(path.join(cachePath, 'package-deps.json'), JSON.stringify(cacheHash, null, 2));
   }
 }
 
@@ -73,6 +76,7 @@ interface CacheHash {
   args: { [arg: string]: string };
   taskName: string;
   hash: IPackageDeps;
+  dependentHashTimestamps: { [pkgName: string]: number };
 }
 
 function getHash(taskName: string): CacheHash | null {
@@ -94,7 +98,7 @@ function getHash(taskName: string): CacheHash | null {
     const basename = path.basename(file);
 
     if (
-      isChildOf(file, cwd) ||
+      isChildOf(path.join(gitRoot, file), cwd) ||
       basename === 'shrinkwrap.yml' ||
       basename === 'package-lock.json' ||
       basename === 'yarn.lock' ||
@@ -109,7 +113,8 @@ function getHash(taskName: string): CacheHash | null {
   return {
     args,
     taskName,
-    hash
+    hash,
+    dependentHashTimestamps: getDependentHashTimestamps()
   };
 }
 
@@ -118,22 +123,20 @@ function isChildOf(child: string, parent: string) {
   return /^[.\/\\]+$/.test(relativePath);
 }
 
-function findGitRoot() {
-  let cwd = process.cwd();
-  let root = path.parse(cwd).root;
-  let found = false;
-  while (!found && cwd !== root) {
-    if (fs.pathExistsSync(path.join(cwd, '.git'))) {
-      found = true;
-      break;
+function getDependentHashTimestamps() {
+  const dependentPkgPaths = findDependents();
+
+  const timestampsByPackage: { [pkgName: string]: number } = {};
+
+  for (const pkgDepInfo of dependentPkgPaths) {
+    const pkgPath = pkgDepInfo.path;
+    const depHashFile = path.join(pkgPath, 'node_modules/.just', CacheFileName);
+
+    if (fs.existsSync(depHashFile)) {
+      const stat = fs.statSync(depHashFile);
+      timestampsByPackage[pkgDepInfo.name] = stat.mtimeMs;
     }
-
-    cwd = path.dirname(cwd);
   }
 
-  if (found) {
-    return path.join(cwd);
-  }
-
-  return null;
+  return timestampsByPackage;
 }
