@@ -6,7 +6,6 @@ import fs from 'fs';
 export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean };
 
 export function tscTask(options: TscTaskOptions): TaskFunction {
-  const tsConfigFile = resolveCwd('./tsconfig.json');
   const tscCmd = resolve('typescript/lib/tsc.js');
 
   if (!tscCmd) {
@@ -18,7 +17,7 @@ export function tscTask(options: TscTaskOptions): TaskFunction {
     options = { ...options, ...getProjectOrBuildOptions(options) };
 
     if (isValidProject(options)) {
-      logger.info(`Running ${tscCmd} with ${options.project}`);
+      logger.info(`Running ${tscCmd} with ${options.project || options.build}`);
 
       const args = Object.keys(options).reduce(
         (args, option) => {
@@ -53,7 +52,7 @@ export function tscWatchTask(options: TscTaskOptions): TaskFunction {
 
   return function tscWatch() {
     if (isValidProject(options)) {
-      logger.info(`Running ${tscCmd} with ${options.project} in watch mode`);
+      logger.info(`Running ${tscCmd} with ${options.project || options.build} in watch mode`);
 
       const args = Object.keys(options).reduce(
         (args, option) => {
@@ -78,13 +77,13 @@ export function tscWatchTask(options: TscTaskOptions): TaskFunction {
 }
 
 function getProjectOrBuildOptions(options: TscTaskOptions) {
-  const tsConfigFile = resolveCwd('./tsconfig.json');
+  const tsConfigFile = resolveCwd('./tsconfig.json') || 'tsconfig.json';
   const result: { [option: string]: string | boolean } = {};
 
   if (options.project) {
-    result.project = options && typeof options.project === 'string' ? options.project : tsConfigFile || true;
+    result.project = options && typeof options.project === 'string' ? options.project : tsConfigFile;
   } else if (options.build) {
-    result.build = options && typeof options.build === 'string' ? options.build : tsConfigFile || true;
+    result.build = options && typeof options.build === 'string' ? options.build : tsConfigFile;
   } else if (tsConfigFile) {
     result.project = tsConfigFile;
   }
