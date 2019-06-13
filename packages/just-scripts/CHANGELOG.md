@@ -1,6 +1,13 @@
 # Changelog - just-scripts
 
-This log was last generated on Wed, 12 Jun 2019 22:24:44 GMT and should not be manually modified.
+This log was last generated on Thu, 13 Jun 2019 21:16:34 GMT and should not be manually modified.
+
+## 0.21.1
+Thu, 13 Jun 2019 21:16:34 GMT
+
+### Patches
+
+- fixes the running message (kchau@microsoft.com)
 
 ## 0.21.0
 Wed, 12 Jun 2019 22:24:44 GMT

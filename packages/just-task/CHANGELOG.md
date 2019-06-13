@@ -1,6 +1,13 @@
-# Change Log - just-task
+# Changelog - just-task
 
-This log was last generated on Tue, 04 Jun 2019 15:55:03 GMT and should not be manually modified.
+This log was last generated on Thu, 13 Jun 2019 21:16:34 GMT and should not be manually modified.
+
+## 0.11.0
+Thu, 13 Jun 2019 21:16:34 GMT
+
+### Minor
+
+- adds a bit more rigor to support build deps invalidation of cache (kchau@microsoft.com)
 
 ## 0.10.0
 Tue, 04 Jun 2019 15:55:03 GMT
