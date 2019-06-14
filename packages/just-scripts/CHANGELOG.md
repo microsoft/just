@@ -1,6 +1,13 @@
 # Changelog - just-scripts
 
-This log was last generated on Thu, 13 Jun 2019 21:35:38 GMT and should not be manually modified.
+This log was last generated on Fri, 14 Jun 2019 17:24:38 GMT and should not be manually modified.
+
+## 0.22.1
+Fri, 14 Jun 2019 17:24:38 GMT
+
+### Patches
+
+- Don't override default webpack extensions (kchau@microsoft.com)
 
 ## 0.22.0
 Thu, 13 Jun 2019 21:35:38 GMT
