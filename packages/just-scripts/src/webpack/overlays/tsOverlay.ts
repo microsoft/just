@@ -4,7 +4,7 @@ const ForkTsCheckerPlugin = tryRequire('fork-ts-checker-webpack-plugin');
 
 export const tsOverlay = {
   resolve: {
-    extensions: ['.wasm', '.mjs', '.js', '.jsx', '.ts', '.tsx', '.json']
+    extensions: ['.wasm', '.mjs', '.js', '.ts', '.tsx', '.json']
   },
   module: {
     rules: [
