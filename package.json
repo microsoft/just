@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "lerna": "^3.13.2",
-    "beachball": "^1.4.0"
+    "beachball": "^1.5.0"
   },
   "workspaces": {
     "packages": [
