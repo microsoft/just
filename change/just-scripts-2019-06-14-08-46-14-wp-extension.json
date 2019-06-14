@@ -1,0 +1,8 @@
+{
+  "comment": "Don't override default webpack extensions",
+  "type": "patch",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "commit": "a05f170edb86de8c3129129f68220761a266130b",
+  "date": "2019-06-14T15:46:14.260Z"
+}
