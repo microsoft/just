@@ -1,4 +1,3 @@
-import path from 'path';
 import {
   logger,
   applyTemplate,
@@ -8,10 +7,11 @@ import {
   findMonoRepoRootPath,
   readPackageJson
 } from 'just-scripts-utils';
-import prompts from 'prompts';
-import fse from 'fs-extra';
 import { argv, TaskFunction } from 'just-task';
 import { findInstalledStacks } from '../monorepo/findInstalledStacks';
+import fse from 'fs-extra';
+import path from 'path';
+import prompts from 'prompts';
 
 export function addPackageTask(): TaskFunction {
   return async function addPackage() {
