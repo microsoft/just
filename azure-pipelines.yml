@@ -40,5 +40,5 @@ steps:
     displayName: 'test'
 
   - script: |
-      yarn publish:beachball -- -n $(npm.authtoken) -y
+      yarn publish:beachball -n $(npm.authtoken) -y
     displayName: 'beachball publish'
