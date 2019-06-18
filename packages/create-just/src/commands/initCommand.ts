@@ -47,7 +47,8 @@ export async function initCommand(argv: yargs.Arguments) {
     let response = await prompts({
       type: 'text',
       name: 'name',
-      message: 'What is the name of the repo to create?'
+      message: 'What is the name of the repo to create?',
+      validate: (name) => !name ? false : true
     });
     name = response.name;
     paths.projectPath = path.join(paths.projectPath, name);
