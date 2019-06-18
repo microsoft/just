@@ -2040,10 +2040,10 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-beachball@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/beachball/-/beachball-1.6.2.tgz#08c7cc53083da74d25b9c5a6a9f6690451a1e687"
-  integrity sha512-LDYbrQ8drlGPwFF88a75/nnbRenzD9wJXuU8y5byvlc1OIBAt2VDeq5R+9ZmOm57jNHk4nXvYGMxvgFcT3/ICA==
+beachball@^1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/beachball/-/beachball-1.6.3.tgz#c7432c96a40e00445f4babe8d896d0c9d3db06e4"
+  integrity sha512-Ik845Sxzk+h++klqFDa3IzwNZ+mJSyoFRX3pXWjBVrHLBeSzzYQ1UStTElRyI3qjxzujjIeymY7Vg5PFM0dOvA==
   dependencies:
     fs-extra "^8.0.1"
     glob "^7.1.4"
