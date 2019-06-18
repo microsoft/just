@@ -1,6 +1,13 @@
 # Changelog - just-scripts
 
-This log was last generated on Fri, 14 Jun 2019 17:24:38 GMT and should not be manually modified.
+This log was last generated on Tue, 18 Jun 2019 05:17:16 GMT and should not be manually modified.
+
+## 0.23.0
+Tue, 18 Jun 2019 05:17:16 GMT
+
+### Minor
+
+- New task: ESLint (kchau@microsoft.com)
 
 ## 0.22.1
 Fri, 14 Jun 2019 17:24:38 GMT
