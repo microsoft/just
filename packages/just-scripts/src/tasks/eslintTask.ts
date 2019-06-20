@@ -7,23 +7,28 @@ export interface EsLintTaskOptions {
   configPath?: string;
   ignorePath?: string;
   fix?: boolean;
+  extensions?: string;
+  noEslintRc?: boolean;
   maxWarnings?: number;
 }
 
 export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
   return function eslint() {
+    const { files, configPath, ignorePath, fix, extensions, noEslintRc, maxWarnings } = options;
     const eslintCmd = resolve('eslint/bin/eslint.js');
-    const eslintConfigPath = (options && options.configPath) || resolveCwd('.eslintrc');
+    const eslintConfigPath = configPath || resolveCwd('.eslintrc');
     if (eslintCmd && eslintConfigPath && fs.existsSync(eslintConfigPath)) {
-      const eslintIgnorePath = (options && options.ignorePath) || resolveCwd('.eslintignore');
+      const eslintIgnorePath = ignorePath || resolveCwd('.eslintignore');
 
       const eslintArgs = [
         eslintCmd,
-        ...(options && options.files ? options.files : ['.']),
-        ...(eslintConfigPath ? ['--config', eslintConfigPath, '--no-eslintrc'] : []),
+        ...(files ? files : ['.']),
+        ...['--ext', extensions ? extensions : '.js,.jsx,.ts,.tsx'],
+        ...(noEslintRc ? '--no-eslintrc' : []),
+        ...(eslintConfigPath ? ['--config', eslintConfigPath] : []),
         ...(eslintIgnorePath ? ['--ignore-path', eslintIgnorePath] : []),
-        ...(options && options.fix ? ['--fix'] : []),
-        ...(options && options.maxWarnings ? ['--max-warnings', `${options.maxWarnings}`] : []),
+        ...(fix ? ['--fix'] : []),
+        ...(maxWarnings ? ['--max-warnings', `${maxWarnings}`] : []),
         '--color'
       ];
 
