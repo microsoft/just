@@ -1,6 +1,13 @@
-# Change Log - just-stack-uifabric
+# Changelog - just-stack-uifabric
 
-This log was last generated on Fri, 31 May 2019 21:15:02 GMT and should not be manually modified.
+This log was last generated on Thu, 20 Jun 2019 23:00:24 GMT and should not be manually modified.
+
+## 0.12.0
+Thu, 20 Jun 2019 23:00:24 GMT
+
+### Minor
+
+- Upgrade UI Fabric in just-stack-uifabric to 7 (kchau@microsoft.com)
 
 ## 0.11.4
 Fri, 31 May 2019 21:15:02 GMT

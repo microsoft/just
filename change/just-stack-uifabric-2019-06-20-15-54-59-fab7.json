@@ -1,8 +1,0 @@
-{
-  "comment": "Upgrade UI Fabric in just-stack-uifabric to 7",
-  "type": "minor",
-  "packageName": "just-stack-uifabric",
-  "email": "kchau@microsoft.com",
-  "commit": "b785112c03f063b71d936ff052470817019267d4",
-  "date": "2019-06-20T22:54:59.172Z"
-}
