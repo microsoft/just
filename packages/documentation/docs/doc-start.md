@@ -33,4 +33,4 @@ That's all!
 
 ## Next Steps
 
-Learn about how to [compose tasks in just-task.js](composition.md)
+Learn how to [compose tasks in just-task.js](composition.md)

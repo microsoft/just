@@ -8,23 +8,25 @@ sidebar_label: Command line arguments
 
 ## Reading arguments
 
-To read the arguments passed in from command line, use the `this.argv` object provided by `yargs`.
+To read the arguments passed in from command line, use the `argv()` function provided by `yargs`.
 
 ```js
+const { task, argv } = require('just-task');
+
 task('pillageMeArgs', function() {
-  logger.info('a bunch of aarrrrrrgs', this.argv);
+  logger.info('a bunch of aarrrrrrgs', argv());
 });
 ```
 
 ## Describe the task with `option()`
 
 ```js
-const { task, logger, option } = require('just-task');
+const { task, logger, option, argv } = require('just-task');
 
 option('name');
 
 task('blimey', 'An exclamation of surprise.', function() {
-  logger.info(`blimey! ${this.argv.name}`);
+  logger.info(`blimey! ${argv().name}`);
 });
 ```
 
