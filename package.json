@@ -18,8 +18,11 @@
     "test": "lerna run test"
   },
   "devDependencies": {
-    "lerna": "^3.13.2",
-    "beachball": "^1.6.4"
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "beachball": "^1.6.4",
+    "eslint": "^6.0.1",
+    "lerna": "^3.13.2"
   },
   "workspaces": {
     "packages": [

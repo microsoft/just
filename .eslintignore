@@ -1,0 +1,5 @@
+node_modules
+packages/*/lib
+packages/*/dist
+jest.config.js
+packages/just-stack-monorepo/template/common/scripts
