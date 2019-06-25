@@ -24,7 +24,7 @@ task('build', series('clean', 'babel'));
 
 When you trigger `just build`, the `clean` task will run and complete before `babel` task is run.
 
-## Runny tasks in parallel
+## Running tasks in parallel
 
 To take advantage of multi-core CPUs on our machines, we can run several tasks in parallel. Simply use the `parallel()` function.
 
