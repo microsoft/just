@@ -4,8 +4,8 @@ This page contains the contributing guidelines.
 ## Setup
 ### prerequisite
 - Node.js installed. 
- _Note: Node 6 or greater would be better for "best results"._
-- Package manager - [yarn](https://yarnpkg.com/en/docs/getting-started) or [npm](https://docs.npmjs.com/)
+ _Note: Node v8.0.0 (LTS) or greater would be better for "best results"._
+- Package manager - [yarn](https://yarnpkg.com/en/docs/getting-started)
 
 
 
@@ -14,15 +14,6 @@ This page contains the contributing guidelines.
 -   `git clone <your-clone-url> && cd just`
 
 ### Dependency Installation
-
-- Using npm
-```bash
-$ npm install
-$ npm run build
-$ npm link
-```
-
-
 - Using yarn
 ```bash
 $ yarn  
@@ -33,17 +24,34 @@ $ yarn link
 ### Running and Testing locally
 
 **To run this with node**
-- Using npm
-```bash
-$ npm run start
-```
-- Using yarn
+
 ```bash
 $ yarn start
 ```
 
 **To test the project** 
 
-- Using npm
 ```bash
-$ npm run test
+$ yarn test
+```
+
+## Naming a branch
+
+Making a branch in your fork for your contribution is helpful in the following ways:
+
+-   It allows you to submit more than one contribution in a single PR.
+-   It allows us to identify what your contribution is about from the branch name.
+
+You will want to checkout the `master` branch locally before creating your new branch.
+
+There are two types of branches:
+
+-   Feature
+-   Bugfix
+-   Docs
+
+**Format**
+
+`Feature/<feature-name>`
+
+`Bugfix/<fix-type>`
