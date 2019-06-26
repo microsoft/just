@@ -15,7 +15,8 @@
     "checkchange": "beachball check",
     "publish:beachball": "beachball publish",
     "start": "node ./scripts/watch.js",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "lint": "eslint packages --ext .ts,.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.11.0",

@@ -1,7 +1,8 @@
+/*eslint @typescript-eslint/camelcase: ["error", {allow: ["child_process"]}]*/
 import mockfs from 'mock-fs';
 import fs from 'fs';
 import path from 'path';
-import child_process, { SpawnSyncOptions } from 'child_process';
+import child_process from 'child_process';
 import tar from 'tar';
 import { paths } from '../paths';
 import { logger } from '../logger';

@@ -1,4 +1,4 @@
-import { task, series, parallel, chain } from 'just-task';
+import { task, series, parallel } from 'just-task';
 import { cleanTask, tscTask, jestTask, upgradeStackTask, defaultCleanPaths } from '../tasks';
 
 export function lib() {

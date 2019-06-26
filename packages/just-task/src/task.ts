@@ -61,7 +61,7 @@ function getCommandModule(taskName: string, describe?: string): yargs.CommandMod
     command: taskName,
     describe,
     ...(taskName === 'default' ? { aliases: ['*'] } : {}),
-    handler(argvParam: any) {
+    handler(_argvParam: any) {
       if (isCached(taskName)) {
         logger.info(`Skipped ${taskName} since it was cached`);
         return;

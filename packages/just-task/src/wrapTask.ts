@@ -10,7 +10,7 @@ export function wrapTask(fn: any): TaskFunction {
     if (origFn.length > 0) {
       (fn as any).call(null, done);
     } else {
-      let results = (origFn as any).call();
+      const results = (origFn as any).call();
 
       // The result is a function, we will assume that this is a task function to be called
       if (results && typeof results === 'function') {

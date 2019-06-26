@@ -24,6 +24,7 @@ export function rushUpdate(cwd: string): void {
 export function readRushJson(rootPath: string): RushJson | undefined {
   const rushJsonPath = path.join(rootPath, 'rush.json');
   const contents = _justReadRushJson(rushJsonPath);
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return _parseRushJson(contents!);
 }
 
@@ -34,6 +35,7 @@ export function readRushJson(rootPath: string): RushJson | undefined {
  */
 export function rushAddPackage(packageName: string, rootPath: string): void {
   const rushJsonPath = path.join(rootPath, 'rush.json');
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const oldContents = _justReadRushJson(rushJsonPath)!;
   const rushJson = _parseRushJson(oldContents);
   if (!rushJson) {

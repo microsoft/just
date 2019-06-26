@@ -42,15 +42,16 @@ export async function initCommand(argv: yargs.Arguments) {
     argv.stack = stack;
   }
 
-  let name: string = '';
+  let name = '';
   if (!argv.name && !checkEmptyRepo(paths.projectPath)) {
-    let response = await prompts({
+    const response = await prompts({
       type: 'text',
       name: 'name',
       message: 'What is the name of the repo to create?',
       validate: (name) => !name ? false : true
     });
     name = response.name;
+    // eslint-disable-next-line require-atomic-updates
     paths.projectPath = path.join(paths.projectPath, name);
   } else if (!argv.name) {
     name = path.basename(paths.projectPath);

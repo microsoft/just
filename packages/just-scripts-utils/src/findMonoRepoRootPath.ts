@@ -12,12 +12,11 @@ import { readPackageJson } from './readPackageJson';
  */
 export function findMonoRepoRootPath(): string | null {
   const { projectPath } = paths;
-  let found = false;
   let currentPath = projectPath;
 
   const { root } = path.parse(projectPath);
 
-  while (!found && currentPath !== root) {
+  while (currentPath !== root) {
     const rushConfigFile = path.join(currentPath, 'rush.json');
 
     // Determine the monorepo by either presence of rush.json or package.json that has a just.stack of just-stack-monorepo

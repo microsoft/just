@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import { resolve, logger, resolveCwd, TaskFunction, option } from 'just-task';
+import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { exec, encodeArgs, spawn } from 'just-scripts-utils';
 import fs from 'fs';
 

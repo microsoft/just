@@ -52,7 +52,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
             webpackConfigs = [webpackConfigs];
           }
 
-          const { config, ...restConfig } = options || { config: null };
+          const { ...restConfig } = options || { config: null };
           webpackConfigs = webpackConfigs.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
 
           wp(webpackConfigs, (err: Error, stats: any) => {
@@ -62,7 +62,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
             }
 
             if (err || stats.hasErrors()) {
-              let errorStats = stats.toJson('errors-only');
+              const errorStats = stats.toJson('errors-only');
               errorStats.errors.forEach((error: any) => {
                 logger.error(error);
               });

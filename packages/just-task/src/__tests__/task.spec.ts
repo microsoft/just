@@ -1,5 +1,5 @@
 import { task } from '../task';
-import { parallel, undertaker, series } from '../undertaker';
+import { parallel, undertaker } from '../undertaker';
 import { JustTaskRegistry } from '../JustTaskRegistry';
 import { logger } from '../logger';
 import yargsMock from './__mocks__/yargs';
@@ -51,7 +51,7 @@ describe('task', () => {
     const testFunction = jest.fn(() => {});
 
     task('test', function() {
-      let result = testFunction();
+      const result = testFunction();
       return Promise.resolve(result);
     });
 
