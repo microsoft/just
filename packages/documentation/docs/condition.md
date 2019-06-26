@@ -48,7 +48,7 @@ task('test', function() {
   // run babel over some files
 });
 
-task('build', series('clean', 'babel', condition('test', () => !argv()['skip-test']));
+task('build', series('clean', 'babel', condition('test', () => !argv()['skip-test'])));
 ```
 
 Now you can skip the test task by passing an argument like this:

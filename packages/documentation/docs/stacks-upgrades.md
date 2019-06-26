@@ -4,7 +4,7 @@ title: Upgrading Repos
 sidebar_label: Upgrading Repos
 ---
 
-`just-stack` is unique in that it tries to solve the template synchronization problem. When a repository has been scaffolded, generally the repository takes on a life of its own. There is no way for the template authors to help the generated repositories consume any updates. `just-stack` employs a strategy of tracking diffs between template ugprades to be applied to existing repositories.
+`just-stack` is unique in that it tries to solve the template synchronization problem. When a repository has been scaffolded, generally the repository takes on a life of its own. There is no way for the template authors to help the generated repositories consume any updates. `just-stack` employs a strategy of tracking diffs between template upgrades to be applied to existing repositories.
 
 For example, suppose there was a repository named `kittens` that was scaffolded from the `just-stack-single-lib`:
 
