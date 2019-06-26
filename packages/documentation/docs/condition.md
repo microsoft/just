@@ -4,7 +4,7 @@ title: Controlling Task Flow with Conditionals
 sidebar_label: Conditionals
 ---
 
-Sometimes a `just-task.js` would include tasks that are skipped depending on the arguments that are given. Use a `condition()` function to decide to run a task or to skip it.
+Sometimes a `just-task.js` includes tasks that are skipped depending on the arguments that are given. Use a `condition()` function to decide to run a task or to skip it.
 
 ## Running tasks in a series
 
@@ -59,4 +59,4 @@ $ just build --skip-test
 
 ## Next Steps
 
-Learn about [higher order task function](thunk.md)
+Learn about [higher order task functions](thunk.md)
