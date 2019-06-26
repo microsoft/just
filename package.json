@@ -10,7 +10,7 @@
   "scripts": {
     "build": "lerna run --stream build",
     "postbuild": "node ./scripts/copyReadme.js",
-    "build:docs": "lerna run build just-task-docs",
+    "build:docs": "lerna run --scope just-task-docs build",
     "change": "beachball change",
     "checkchange": "beachball check",
     "publish:beachball": "beachball publish",
@@ -24,6 +24,7 @@
   "workspaces": {
     "packages": [
       "packages/*",
+      "packages/documentation/website",
       "scripts"
     ]
   }
