@@ -29,7 +29,7 @@ async function getTemplatePath(pathName: string, registry?: string) {
 export async function initCommand(argv: yargs.Arguments) {
   // TODO: autosuggest just-stack-* packages from npmjs.org
   if (!argv.stack) {
-    let response = await prompts({
+    const { stack } = await prompts({
       type: 'select',
       name: 'stack',
       message: 'What type of repo to create?',
@@ -39,7 +39,7 @@ export async function initCommand(argv: yargs.Arguments) {
         { title: 'Basic library', value: 'just-stack-single-lib' }
       ]
     });
-    argv.stack = response.stack;
+    argv.stack = stack;
   }
 
   let name: string = '';
@@ -47,7 +47,8 @@ export async function initCommand(argv: yargs.Arguments) {
     let response = await prompts({
       type: 'text',
       name: 'name',
-      message: 'What is the name of the repo to create?'
+      message: 'What is the name of the repo to create?',
+      validate: (name) => !name ? false : true
     });
     name = response.name;
     paths.projectPath = path.join(paths.projectPath, name);
