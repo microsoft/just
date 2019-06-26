@@ -16,26 +16,26 @@ All the documentation is online at https://microsoft.github.io/just/
 
 # Building
 
-This README contains only the instructions on how to build and contribute to the project. This is a monorepo that uses the [rush](https://rushjs.io) monorepo management utility. To get started, simply run the following:
+This README contains only the instructions on how to build and contribute to the project. This is a monorepo that uses the [lerna](https://github.com/lerna/lerna) monorepo management utility. To get started, simply run the following:
 
-`npm install`
+`yarn`
 
 and build all the packages this way:
 
-`npm run build`
+`yarn build`
 
 Development is usually done one package at a time. So go into each package and develop with the innerloop npm script:
 
 ```
 cd packages/just-task
-npm run dev
+yarn dev
 ```
 
 Tests are run with the `test` npm script:
 
 ```
 cd packages/just-task
-npm test
+yarn test
 ```
 
 # Packages
