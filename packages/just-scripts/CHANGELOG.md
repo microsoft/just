@@ -1,6 +1,13 @@
 # Changelog - just-scripts
 
-This log was last generated on Tue, 18 Jun 2019 06:34:34 GMT and should not be manually modified.
+This log was last generated on Wed, 26 Jun 2019 02:35:13 GMT and should not be manually modified.
+
+## 0.24.0
+Wed, 26 Jun 2019 02:35:13 GMT
+
+### Minor
+
+- Add extensions option Move no-eslintrc as seperate option Code cleanup (mmoe@stibosystems.com)
 
 ## 0.23.1
 Tue, 18 Jun 2019 06:34:34 GMT
