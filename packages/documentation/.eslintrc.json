@@ -3,8 +3,5 @@
     "ecmaFeatures": {
       "jsx": true
     }
-  },
-  "rules": {
-    "@typescript-eslint/no-unused-vars": "off"
   }
 }

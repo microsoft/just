@@ -38,6 +38,8 @@ export function tscTask(options: TscTaskOptions): TaskFunction {
     } else {
       Promise.resolve();
     }
+
+    return;
   };
 }
 
@@ -73,6 +75,8 @@ export function tscWatchTask(options: TscTaskOptions): TaskFunction {
     } else {
       Promise.resolve();
     }
+
+    return;
   };
 }
 

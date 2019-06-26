@@ -4,7 +4,7 @@ import yargs from 'yargs';
 
 const originalEmitWarning = process.emitWarning;
 
-(process.emitWarning as any) = function emitWarning(this: any, warning: string, type: string, code: string, _ctor?: Function) {
+(process.emitWarning as any) = function emitWarning(this: any, _warning: string, _type: string, code: string, _ctor?: Function) {
   if (code === 'DEP0097') {
     // Undertaker uses a deprecated approach that causes NodeJS 10 to print
     // this warning to stderr:

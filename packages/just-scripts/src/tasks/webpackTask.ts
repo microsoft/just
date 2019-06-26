@@ -76,6 +76,8 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     } else {
       logger.info('webpack.config.js not found, skipping webpack');
     }
+
+    return;
   };
 }
 

@@ -82,7 +82,7 @@ describe('downloadPackage', () => {
     });
     // cause npm pack to "error"
     jest.spyOn(child_process, 'spawnSync').mockImplementationOnce(
-      (cmd: string, args?: readonly string[]): ReturnType<typeof child_process.spawnSync> => {
+      (_cmd: string, args?: readonly string[]): ReturnType<typeof child_process.spawnSync> => {
         expect(args).toContain(`${pkg}@latest`);
         return { error: new Error('fail'), pid: 100, output: [], signal: '', status: 1, stderr: Buffer.from(''), stdout: Buffer.from('') };
       }
@@ -112,7 +112,7 @@ describe('downloadPackage', () => {
     });
 
     // fake the result of npm pack
-    jest.spyOn(child_process, 'spawnSync').mockImplementationOnce((cmd: string, args?: readonly string[]) => {
+    jest.spyOn(child_process, 'spawnSync').mockImplementationOnce((_cmd: string, args?: readonly string[]) => {
       expect(args).toContain(`${pkg}@${version}`);
       // instead of downloading a tarball, create one in the expected spot
       tar.create({ sync: true, gzip: true, file: path.join(fakeTemp, pkg, 'result.tgz') }, [pkg]);

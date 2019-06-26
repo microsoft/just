@@ -1,11 +1,7 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "outDir": "lib",
-    "strict": true,
-    "esModuleInterop": true
+    "outDir": "lib"
   },
   "include": ["src/index.ts"]
 }
