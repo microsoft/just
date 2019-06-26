@@ -1,0 +1,8 @@
+{
+  "comment": "Add extensions option Move no-eslintrc as seperate option Code cleanup",
+  "type": "minor",
+  "packageName": "just-scripts",
+  "email": "mmoe@stibosystems.com",
+  "commit": "d2d1f94c184551d240c0b185919185e7d5ce7d2d",
+  "date": "2019-06-20T06:56:11.232Z"
+}
