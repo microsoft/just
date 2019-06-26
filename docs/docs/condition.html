@@ -93,7 +93,7 @@ task(<span class="hljs-string">'test'</span>, <span class="hljs-function"><span 
   <span class="hljs-comment">// run babel over some files</span>
 });
 
-task(<span class="hljs-string">'build'</span>, series(<span class="hljs-string">'clean'</span>, <span class="hljs-string">'babel'</span>, condition(<span class="hljs-string">'test'</span>, () =&gt; !argv()[<span class="hljs-string">'skip-test'</span>]));
+task(<span class="hljs-string">'build'</span>, series(<span class="hljs-string">'clean'</span>, <span class="hljs-string">'babel'</span>, condition(<span class="hljs-string">'test'</span>, () =&gt; !argv()[<span class="hljs-string">'skip-test'</span>])));
 </code></pre>
 <p>Now you can skip the test task by passing an argument like this:</p>
 <pre><code class="hljs css language-sh">$ just build --skip-test
