@@ -16,26 +16,26 @@ All the documentation is online at https://microsoft.github.io/just/
 
 # Building
 
-This README contains only the instructions on how to build and contribute to the project. This is a monorepo that uses the [rush](https://rushjs.io) monorepo management utility. To get started, simply run the following:
+This README contains only the instructions on how to build and contribute to the project. This is a monorepo that uses the [lerna](https://github.com/lerna/lerna) monorepo management utility. To get started, simply run the following:
 
-`npm install`
+`yarn`
 
 and build all the packages this way:
 
-`npm run build`
+`yarn build`
 
 Development is usually done one package at a time. So go into each package and develop with the innerloop npm script:
 
 ```
 cd packages/just-task
-npm run dev
+yarn dev
 ```
 
 Tests are run with the `test` npm script:
 
 ```
 cd packages/just-task
-npm test
+yarn test
 ```
 
 # Packages
@@ -54,7 +54,7 @@ npm test
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
+the rights to use your contribution. For details, visit https://cla.microsoft.com. Please refer [Contribution guide](https://github.com/microsoft/just/.github/CONTRIBUTING.md) for more details
 
 When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
 a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
