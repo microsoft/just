@@ -12,7 +12,7 @@ Typically, logging tasks look like the following:
 
 ## Usage
 
-To log within the task, simply use the `logger` object off of `this` inside a task function.
+To log within the task, simply use the `info()` function off of the `logger` object inside a task function.
 
 ```js
 const { task, logger } = require('just-task');

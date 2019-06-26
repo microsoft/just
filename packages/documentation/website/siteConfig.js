@@ -29,7 +29,7 @@ const siteConfig = {
   organizationName: 'Microsoft',
 
   // For no header links in the top nav bar -> headerLinks: [],
-  headerLinks: [{ doc: 'doc-start', label: 'Documentation' }, { page: 'help', label: 'Help' }],
+  headerLinks: [{ doc: 'doc-start', label: 'Documentation' }, { href: 'https://github.com/microsoft/just', label: 'GitHub' }],
 
   // If you have users set above, you add it here:
   users,
