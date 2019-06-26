@@ -18,7 +18,6 @@ This page contains the contributing guidelines.
 ```bash
 $ yarn  
 $ yarn build
-$ yarn link
 ```
 
 ### Running and Testing locally
