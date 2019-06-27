@@ -12,7 +12,7 @@ export function task(
 ): TaskFunction | void {
   const argCount = arguments.length;
 
-  if (argCount === 1 && typeof firstParam === 'string') {
+  if (argCount === 1 && isString(firstParam)) {
     return undertaker.task(firstParam) as TaskFunction;
   } else if (argCount === 2 && isString(firstParam) && isString(secondParam)) {
     // task('default', 'build');
