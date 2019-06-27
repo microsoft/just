@@ -5,16 +5,13 @@ import webpackMerge from 'webpack-merge';
 import { Configuration } from 'webpack';
 import { tryRequire } from '../tryRequire';
 
-export interface WebpackTaskOptions {
+export interface WebpackTaskOptions extends Configuration {
   config?: string;
 
   /** true to output to stats.json; a string to output to a file */
   outputStats?: boolean | string;
 
   mode?: 'production' | 'development';
-
-  // can contain other config values which are passed on to webpack
-  [key: string]: any;
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
