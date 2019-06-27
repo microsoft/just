@@ -8,7 +8,7 @@ module.exports = () => {
   });
 
   task('ts', function() {
-    logger.info('Here we can run build steps like Babel or Typescript');
+    logger.info('Here we can run build steps like Babel or TypeScript');
   });
 
   task('tslint', function() {
