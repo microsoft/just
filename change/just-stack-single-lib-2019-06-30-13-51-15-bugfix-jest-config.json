@@ -1,0 +1,8 @@
+{
+  "comment": "fix(jest-config): moved the jest config to package.json",
+  "type": "patch",
+  "packageName": "just-stack-single-lib",
+  "email": "anik220798@gmail.com",
+  "commit": "c3fadc5ab5ceff3c6d7692a5acdcd84954dc0ef7",
+  "date": "2019-06-30T08:21:10.246Z"
+}
