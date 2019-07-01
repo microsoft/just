@@ -36,7 +36,7 @@ export function isCached(taskName: string) {
     return false;
   }
 
-  let shouldCache: boolean = false;
+  let shouldCache = false;
 
   try {
     const cachedHash = JSON.parse(fs.readFileSync(path.join(cachePath, CacheFileName)).toString());
@@ -69,6 +69,7 @@ export function saveCache(taskName: string) {
 }
 
 function getCachePath() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const packageJsonFilePath = resolveCwd('package.json')!;
   const rootPath = path.dirname(packageJsonFilePath);
   return path.join(rootPath, 'node_modules/.just');
@@ -82,7 +83,7 @@ interface CacheHash {
 }
 
 function getHash(taskName: string): CacheHash | null {
-  const { $0: scriptNameArg, ...args } = argv();
+  const { ...args } = argv();
 
   const gitRoot = findGitRoot();
 

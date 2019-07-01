@@ -12,4 +12,5 @@ export function readPackageJson(folderPath: string): PackageJson | undefined {
   if (fse.existsSync(packageJsonPath)) {
     return fse.readJsonSync(packageJsonPath, { throws: false }) || undefined;
   }
+  return undefined;
 }

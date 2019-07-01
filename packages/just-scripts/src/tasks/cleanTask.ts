@@ -48,6 +48,7 @@ export function cleanTask(pathsOrOptions: string[] | CleanTaskOptions = {}, limi
         cb(null);
       });
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     parallelLimit(cleanTasks, limit!, done);
   };
 }

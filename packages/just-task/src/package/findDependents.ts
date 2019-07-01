@@ -28,6 +28,7 @@ function getDepsPaths(pkgPath: string): DepInfo[] {
 
     return deps
       .map(dep => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const depPackageJson = resolveCwd(path.join(dep, 'package.json'))!;
 
         if (!depPackageJson) {
@@ -44,9 +45,9 @@ function getDepsPaths(pkgPath: string): DepInfo[] {
 }
 
 function collectAllDependentPaths(pkgPath: string, collected: Set<DepInfo> = new Set<DepInfo>()) {
-  let depPaths = getDepsPaths(pkgPath);
+  const depPaths = getDepsPaths(pkgPath);
 
-  for (let depPath of depPaths) {
+  for (const depPath of depPaths) {
     collectAllDependentPaths(depPath.path, collected);
   }
 

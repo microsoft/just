@@ -25,7 +25,7 @@ describe('exec', () => {
   const stderrPipe = jest.fn();
   beforeAll(() => {
     jest.spyOn(cp, 'exec').mockImplementation(
-      (cmd: string, opts: any, callback: any): cp.ChildProcess => {
+      (_cmd: string, _opts: any, callback: any): cp.ChildProcess => {
         setTimeout(() => {
           callback(...execResult!);
         }, 0);

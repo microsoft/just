@@ -1,3 +1,4 @@
+/*eslint @typescript-eslint/camelcase: ["error", {allow: ["patch_obj"]}]*/
 import { patch_obj } from 'diff-match-patch';
 
 export interface DiffInfo {

@@ -63,8 +63,10 @@ describe('_tryResolve', () => {
     mockfs({
       a: {
         'b.js': '', // wrong
+        // eslint-disable-next-line @typescript-eslint/camelcase
         node_modules: { 'b.js': '' } // right
       },
+      // eslint-disable-next-line @typescript-eslint/camelcase
       node_modules: { 'b.js': '' } // wrong
     });
     expect(_tryResolve('b', 'a')).toContain('a/node_modules/b.js');
@@ -72,6 +74,7 @@ describe('_tryResolve', () => {
 
   it('resolves path with /', () => {
     mockfs({
+      // eslint-disable-next-line @typescript-eslint/camelcase
       a: { node_modules: { b: { 'c.js': '' } } }
     });
     expect(_tryResolve('b/c', 'a')).toContain('a/node_modules/b/c.js');

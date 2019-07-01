@@ -9,8 +9,8 @@ const undertaker = new Undertaker();
 const NS_PER_SEC = 1e9;
 
 let topLevelTask: string | undefined = undefined;
-let errorReported: boolean = false;
-let tasksInProgress: { [key: string]: boolean } = {};
+let errorReported = false;
+const tasksInProgress: { [key: string]: boolean } = {};
 
 const colors = [chalk.cyanBright, chalk.magentaBright, chalk.blueBright, chalk.greenBright, chalk.yellowBright];
 const taskColor: { [taskName: string]: number } = {};

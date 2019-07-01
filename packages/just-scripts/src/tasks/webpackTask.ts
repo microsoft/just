@@ -2,18 +2,16 @@ import { logger, argv, resolve, resolveCwd, TaskFunction } from 'just-task';
 import fs from 'fs';
 import { encodeArgs, spawn } from 'just-scripts-utils';
 import webpackMerge from 'webpack-merge';
+import { Configuration } from 'webpack';
 import { tryRequire } from '../tryRequire';
 
-export interface WebpackTaskOptions {
+export interface WebpackTaskOptions extends Configuration {
   config?: string;
 
   /** true to output to stats.json; a string to output to a file */
   outputStats?: boolean | string;
 
   mode?: 'production' | 'development';
-
-  // can contain other config values which are passed on to webpack
-  [key: string]: any;
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
@@ -38,7 +36,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
           const configLoader = require(webpackConfigPath);
 
-          let webpackConfigs;
+          let webpackConfigs: Configuration[];
 
           // If the loaded webpack config is a function
           // call it with the original process.argv arguments from build.js.
@@ -52,7 +50,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
             webpackConfigs = [webpackConfigs];
           }
 
-          const { config, ...restConfig } = options || { config: null };
+          const { ...restConfig } = options || {};
           webpackConfigs = webpackConfigs.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
 
           wp(webpackConfigs, (err: Error, stats: any) => {
@@ -62,7 +60,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
             }
 
             if (err || stats.hasErrors()) {
-              let errorStats = stats.toJson('errors-only');
+              const errorStats = stats.toJson('errors-only');
               errorStats.errors.forEach((error: any) => {
                 logger.error(error);
               });
@@ -76,6 +74,8 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     } else {
       logger.info('webpack.config.js not found, skipping webpack');
     }
+
+    return;
   };
 }
 

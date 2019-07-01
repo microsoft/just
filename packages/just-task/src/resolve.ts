@@ -68,7 +68,7 @@ export function resolve(moduleName: string, cwd?: string): string | null {
   const allResolvePaths = [cwd, ...(configFilePath ? [configFilePath] : []), ...resolvePaths];
   let resolved: string | null = null;
 
-  for (let tryPath of allResolvePaths) {
+  for (const tryPath of allResolvePaths) {
     resolved = _tryResolve(moduleName, tryPath);
     if (resolved) {
       return resolved;

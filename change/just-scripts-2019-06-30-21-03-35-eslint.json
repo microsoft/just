@@ -1,0 +1,8 @@
+{
+  "comment": "introduce ESLint to sources",
+  "type": "patch",
+  "packageName": "just-scripts",
+  "email": "43081j@users.noreply.github.com",
+  "commit": "19211c379e02315b1e6b542544ab5e424148b162",
+  "date": "2019-06-30T21:02:26.758Z"
+}
