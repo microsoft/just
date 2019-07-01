@@ -51,7 +51,6 @@ export async function initCommand(argv: yargs.Arguments) {
       validate: (name) => !name ? false : true
     });
     name = response.name;
-    // eslint-disable-next-line require-atomic-updates
     paths.projectPath = path.join(paths.projectPath, name);
   } else if (!argv.name) {
     name = path.basename(paths.projectPath);
