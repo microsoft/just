@@ -4,7 +4,6 @@ import { resolveCwd } from './resolve';
 import fs from 'fs-extra';
 import path from 'path';
 import { logger } from 'just-task-logger';
-import { findPackageRoot } from './package/findPackageRoot';
 import { findGitRoot } from './package/findGitRoot';
 import { findDependents } from './package/findDependents';
 
@@ -18,7 +17,10 @@ export function registerCachedTask(taskName: string) {
 export function clearCache() {
   const cachePath = getCachePath();
   const cacheFile = path.join(cachePath, CacheFileName);
-  fs.removeSync(cacheFile);
+
+  if (fs.existsSync(cacheFile)) {
+    fs.removeSync(cacheFile);
+  }
 }
 
 export function isCached(taskName: string) {

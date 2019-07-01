@@ -4,5 +4,6 @@ export * from './interfaces';
 export { condition } from './condition';
 export { addResolvePath, resetResolvePaths, resolve, resolveCwd } from './resolve';
 export { option, argv } from './option';
+export { clearCache } from './cache';
 export * from './logger';
 export * from './chain';
