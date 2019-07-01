@@ -1,0 +1,8 @@
+{
+  "comment": "fixes build cache so packages can have different path name than package name",
+  "type": "patch",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "commit": "03b82b3605d5ba3f46f9220b4a06a2e856253e0d",
+  "date": "2019-07-01T18:17:16.259Z"
+}
