@@ -1,6 +1,13 @@
 # Changelog - just-scripts
 
-This log was last generated on Wed, 26 Jun 2019 02:35:13 GMT and should not be manually modified.
+This log was last generated on Mon, 01 Jul 2019 18:55:04 GMT and should not be manually modified.
+
+## 0.24.1
+Mon, 01 Jul 2019 18:55:04 GMT
+
+### Patches
+
+- fixes build cache so packages can have different path name than package name (kchau@microsoft.com)
 
 ## 0.24.0
 Wed, 26 Jun 2019 02:35:13 GMT
