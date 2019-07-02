@@ -1,0 +1,8 @@
+{
+  "comment": "making build cache more accurately determine deps that aren't using just",
+  "type": "patch",
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com",
+  "commit": "da5bb63fd925bea5a1344ce75a871af0df22742a",
+  "date": "2019-07-02T18:46:58.150Z"
+}
