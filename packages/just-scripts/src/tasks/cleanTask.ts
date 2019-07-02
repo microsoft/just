@@ -1,7 +1,7 @@
 import fse from 'fs-extra';
 import parallelLimit from 'run-parallel-limit';
 import path from 'path';
-import { logger, TaskFunction } from 'just-task';
+import { logger, TaskFunction, clearCache } from 'just-task';
 
 export interface CleanTaskOptions {
   /**
@@ -44,10 +44,11 @@ export function cleanTask(pathsOrOptions: string[] | CleanTaskOptions = {}, limi
           }
       )
       .concat((cb: (error: Error | null) => void) => {
-        const justTempDir = 'node_modules/.just';
-        fse.unlink(path.join(justTempDir, 'package-deps.json'), cb);
+        clearCache();
+        cb(null);
       });
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     parallelLimit(cleanTasks, limit!, done);
   };
 }

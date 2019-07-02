@@ -4,7 +4,6 @@ import { resolveCwd } from './resolve';
 import fs from 'fs-extra';
 import path from 'path';
 import { logger } from 'just-task-logger';
-import { findPackageRoot } from './package/findPackageRoot';
 import { findGitRoot } from './package/findGitRoot';
 import { findDependents } from './package/findDependents';
 
@@ -18,7 +17,10 @@ export function registerCachedTask(taskName: string) {
 export function clearCache() {
   const cachePath = getCachePath();
   const cacheFile = path.join(cachePath, CacheFileName);
-  fs.removeSync(cacheFile);
+
+  if (fs.existsSync(cacheFile)) {
+    fs.removeSync(cacheFile);
+  }
 }
 
 export function isCached(taskName: string) {
@@ -34,7 +36,7 @@ export function isCached(taskName: string) {
     return false;
   }
 
-  let shouldCache: boolean = false;
+  let shouldCache = false;
 
   try {
     const cachedHash = JSON.parse(fs.readFileSync(path.join(cachePath, CacheFileName)).toString());
@@ -67,6 +69,7 @@ export function saveCache(taskName: string) {
 }
 
 function getCachePath() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const packageJsonFilePath = resolveCwd('package.json')!;
   const rootPath = path.dirname(packageJsonFilePath);
   return path.join(rootPath, 'node_modules/.just');
@@ -80,7 +83,7 @@ interface CacheHash {
 }
 
 function getHash(taskName: string): CacheHash | null {
-  const { $0: scriptNameArg, ...args } = argv();
+  const { ...args } = argv();
 
   const gitRoot = findGitRoot();
 

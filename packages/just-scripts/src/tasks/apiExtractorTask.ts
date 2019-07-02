@@ -1,6 +1,5 @@
-import { logger, TaskFunction, resolveCwd } from 'just-task';
+import { logger, TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
-import { fstat } from 'fs';
 
 /** Subset of the options from IExtractorConfigOptions that are exposed via this just task */
 interface ApiExtractorOptions {

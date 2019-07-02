@@ -36,15 +36,16 @@ export function addPackageTask(): TaskFunction {
     // TODO: do validation that the path is indeed a monorepo
     const installedStacks = findInstalledStacks(rootPath);
 
-    let response = args.stack
+    const response = args.stack
       ? { stack: args.stack }
       : await prompts({
-          type: 'select',
-          name: 'stack',
-          message: 'What type of package to add to the repo?',
-          choices: installedStacks.map(stack => ({ title: stack.description, value: stack.name }))
-        });
+        type: 'select',
+        name: 'stack',
+        message: 'What type of package to add to the repo?',
+        choices: installedStacks.map(stack => ({ title: stack.description, value: stack.name }))
+      });
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const selectedStack = installedStacks.find(stack => stack.name === response.stack)!;
 
     if (!selectedStack) {

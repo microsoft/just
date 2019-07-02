@@ -1,6 +1,9 @@
 # Changelog - create-just
 
-This log was last generated on Wed, 26 Jun 2019 22:14:30 GMT and should not be manually modified.
+This log was last generated on Mon, 01 Jul 2019 20:15:20 GMT and should not be manually modified.
+
+## 0.9.1
+Mon, 01 Jul 2019 20:15:20 GMT
 
 ## 0.9.1
 Wed, 26 Jun 2019 22:14:30 GMT

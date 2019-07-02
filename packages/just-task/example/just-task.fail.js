@@ -17,9 +17,7 @@ module.exports = () => {
   });
 
   task('webpack', () => {
-    const someVar = Math.random();
-
-    return function(done) {
+    return function() {
       return new Promise((resolve, reject) => {
         cp.exec('node ./longprocess.js', (error, stdout, stderr) => (error ? reject(stderr) : resolve(stdout)));
       });

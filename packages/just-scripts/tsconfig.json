@@ -1,13 +1,7 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es2015",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "declaration": true,
     "outDir": "lib",
-    "strict": true,
-    "strictBindCallApply": false,
-    "esModuleInterop": true,
     "sourceMap": true
   },
   "include": ["src", "typings/*.d.ts"]

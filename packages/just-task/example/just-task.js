@@ -29,7 +29,7 @@ module.exports = () => {
   task('webpack:promise', () => {
     const someVar = Math.random();
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       logger.info('Webpack bundling files', someVar);
       setTimeout(() => {
         resolve();

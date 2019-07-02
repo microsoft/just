@@ -1,6 +1,20 @@
 # Changelog - just-task
 
-This log was last generated on Thu, 13 Jun 2019 21:16:34 GMT and should not be manually modified.
+This log was last generated on Mon, 01 Jul 2019 20:15:20 GMT and should not be manually modified.
+
+## 0.11.2
+Mon, 01 Jul 2019 20:15:20 GMT
+
+### Patches
+
+- introduce ESLint to sources (43081j@users.noreply.github.com)
+
+## 0.11.1
+Mon, 01 Jul 2019 18:55:04 GMT
+
+### Patches
+
+- fixes build cache so packages can have different path name than package name (kchau@microsoft.com)
 
 ## 0.11.0
 Thu, 13 Jun 2019 21:16:34 GMT
