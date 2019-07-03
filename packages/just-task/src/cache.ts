@@ -138,6 +138,9 @@ function getDependentHashTimestamps() {
     if (fs.existsSync(depHashFile)) {
       const stat = fs.statSync(depHashFile);
       timestampsByPackage[pkgDepInfo.name] = stat.mtimeMs;
+    } else {
+      // always updated if no hash file is found for dependants
+      timestampsByPackage[pkgDepInfo.name] = new Date().getTime();
     }
   }
 
