@@ -2,6 +2,20 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Thu, 04 Jul 2019 02:04:13 GMT",
+      "tag": "just-task_v0.12.0",
+      "version": "0.12.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "added a no-op detection for packages that aren't build and have no scripts",
+            "author": "kchau@microsoft.com",
+            "commit": "f30bc061508c03671e9bc01cbeb5fb444ca71b6c"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.10.0",
       "tag": "just-task_v0.10.0",
       "date": "Tue, 04 Jun 2019 15:55:03 GMT",
