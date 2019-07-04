@@ -134,11 +134,12 @@ function getDependentHashTimestamps() {
   for (const pkgDepInfo of dependentPkgPaths) {
     const pkgPath = pkgDepInfo.path;
     const depHashFile = path.join(pkgPath, 'node_modules/.just', CacheFileName);
+    const depPackageJson = JSON.parse(fs.readFileSync(path.join(pkgPath, 'package.json'), 'utf-8'));
 
     if (fs.existsSync(depHashFile)) {
       const stat = fs.statSync(depHashFile);
       timestampsByPackage[pkgDepInfo.name] = stat.mtimeMs;
-    } else {
+    } else if (depPackageJson.scripts) {
       // always updated if no hash file is found for dependants
       timestampsByPackage[pkgDepInfo.name] = new Date().getTime();
     }
