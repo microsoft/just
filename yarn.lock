@@ -2891,14 +2891,14 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-beachball@^1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/beachball/-/beachball-1.6.4.tgz#dca0518795ddee1d2d0e2612939a4ae912742292"
-  integrity sha512-nknAvyINlU2hOHdaTbR0gVOolBAnTK6TQsim8zsImi45S/5ChwUrtA2jEsLYXRtCQU5/PBalytlDb3s+tqKJEQ==
+beachball@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/beachball/-/beachball-1.9.2.tgz#960f2141b5aa2f6d8ba6aada207698c11c1c632a"
+  integrity sha512-wOvfOhtP7vcdVOGKKXwVmmbmrznF00nOCnudlZ8L8cQBva/wDZNPOZ3Fx1623HKbtDu+dlvvZAdeipYdEt5kDQ==
   dependencies:
     fs-extra "^8.0.1"
+    git-url-parse "^11.1.2"
     glob "^7.1.4"
-    minimatch "^3.0.4"
     prompts "~2.1.0"
     semver "^6.1.1"
     yargs-parser "^13.1.0"
