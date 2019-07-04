@@ -1,8 +1,0 @@
-{
-  "comment": "added a no-op detection for packages that aren't build and have no scripts",
-  "type": "minor",
-  "packageName": "just-task-scripts",
-  "email": "kchau@microsoft.com",
-  "commit": "f30bc061508c03671e9bc01cbeb5fb444ca71b6c",
-  "date": "2019-07-04T00:45:37.540Z"
-}
