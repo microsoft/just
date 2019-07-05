@@ -30,12 +30,12 @@
         "sidebar_label": "Jest"
       },
       "scripts-ts": {
-        "title": "Typescript",
-        "sidebar_label": "Typescript"
+        "title": "TypeScript",
+        "sidebar_label": "TypeScript"
       },
       "scripts-tslint": {
-        "title": "Typescript Lint",
-        "sidebar_label": "Typescript Lint"
+        "title": "TypeScript Lint",
+        "sidebar_label": "TypeScript Lint"
       },
       "scripts-webpack": {
         "title": "Webpack",
