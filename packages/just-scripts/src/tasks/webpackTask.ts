@@ -1,9 +1,10 @@
-import { logger, argv, resolve, resolveCwd, TaskFunction } from 'just-task';
-import fs from 'fs';
-import { encodeArgs, spawn } from 'just-scripts-utils';
-import webpackMerge from 'webpack-merge';
+// // WARNING: Careful about add more imports - only import types from webpack
 import { Configuration } from 'webpack';
+import { encodeArgs, spawn } from 'just-scripts-utils';
+import { logger, argv, resolve, resolveCwd, TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
+import fs from 'fs';
+import webpackMerge from 'webpack-merge';
 
 export interface WebpackTaskOptions extends Configuration {
   config?: string;
@@ -15,7 +16,7 @@ export interface WebpackTaskOptions extends Configuration {
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
-  return function webpack() {
+  return async function webpack() {
     const wp = tryRequire('webpack');
 
     if (!wp) {
@@ -28,47 +29,45 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
 
     if (webpackConfigPath && fs.existsSync(webpackConfigPath)) {
+      const configLoader = require(webpackConfigPath);
+
+      let webpackConfigs: Configuration[];
+
+      // If the loaded webpack config is a function
+      // call it with the original process.argv arguments from build.js.
+      if (typeof configLoader == 'function') {
+        webpackConfigs = configLoader(argv());
+      } else {
+        webpackConfigs = configLoader;
+      }
+
+      if (!Array.isArray(webpackConfigs)) {
+        webpackConfigs = [webpackConfigs];
+      }
+
+      // Convert everything to promises first to make sure we resolve all promises
+      const webpackConfigPromises = await Promise.all(webpackConfigs.map(webpackConfig => Promise.resolve(webpackConfig)));
+
+      const { ...restConfig } = options || {};
+
+      webpackConfigs = webpackConfigPromises.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
+
       return new Promise((resolve, reject) => {
-        fs.exists(webpackConfigPath, isFileExists => {
-          if (!isFileExists) {
-            return reject(`Cannot find webpack configuration file`);
+        wp(webpackConfigs, (err: Error, stats: any) => {
+          if (options && options.outputStats) {
+            const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
+            fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
           }
 
-          const configLoader = require(webpackConfigPath);
-
-          let webpackConfigs: Configuration[];
-
-          // If the loaded webpack config is a function
-          // call it with the original process.argv arguments from build.js.
-          if (typeof configLoader == 'function') {
-            webpackConfigs = configLoader(argv());
+          if (err || stats.hasErrors()) {
+            const errorStats = stats.toJson('errors-only');
+            errorStats.errors.forEach((error: any) => {
+              logger.error(error);
+            });
+            reject(`Webpack failed with ${errorStats.errors.length} error(s).`);
           } else {
-            webpackConfigs = configLoader;
+            resolve();
           }
-
-          if (!Array.isArray(webpackConfigs)) {
-            webpackConfigs = [webpackConfigs];
-          }
-
-          const { ...restConfig } = options || {};
-          webpackConfigs = webpackConfigs.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
-
-          wp(webpackConfigs, (err: Error, stats: any) => {
-            if (options && options.outputStats) {
-              const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
-              fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
-            }
-
-            if (err || stats.hasErrors()) {
-              const errorStats = stats.toJson('errors-only');
-              errorStats.errors.forEach((error: any) => {
-                logger.error(error);
-              });
-              reject(`Webpack failed with ${errorStats.errors.length} error(s).`);
-            } else {
-              resolve();
-            }
-          });
         });
       });
     } else {
