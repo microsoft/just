@@ -3,6 +3,8 @@ import path from 'path';
 import { resolveCwd } from '../resolve';
 import { findPackageRoot } from './findPackageRoot';
 import { logger } from 'just-task-logger';
+import { findGitRoot } from './findGitRoot';
+import { isChildOf } from '../paths';
 
 interface DepInfo {
   name: string;
@@ -14,6 +16,7 @@ export function findDependents() {
 }
 
 function getDepsPaths(pkgPath: string): DepInfo[] {
+  const gitRoot = findGitRoot();
   const packageJsonFile = path.join(pkgPath, 'package.json');
 
   try {
@@ -37,7 +40,7 @@ function getDepsPaths(pkgPath: string): DepInfo[] {
 
         return { name: dep, path: path.dirname(fs.realpathSync(depPackageJson)) };
       })
-      .filter(p => p && p.path.indexOf('node_modules') === -1) as DepInfo[];
+      .filter(p => p && p.path.indexOf('node_modules') === -1 && isChildOf(p.path, gitRoot)) as DepInfo[];
   } catch (e) {
     logger.error(`Invalid package.json detected at ${packageJsonFile} `, e);
     return [];

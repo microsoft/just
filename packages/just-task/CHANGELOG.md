@@ -1,6 +1,20 @@
-# Changelog - just-task
+# Change Log - just-task
 
-This log was last generated on Mon, 01 Jul 2019 20:15:20 GMT and should not be manually modified.
+This log was last generated on Thu, 04 Jul 2019 02:04:13 GMT and should not be manually modified.
+
+## 0.12.0
+Thu, 04 Jul 2019 02:04:13 GMT
+
+### Minor changes
+
+- added a no-op detection for packages that aren't build and have no scripts (kchau@microsoft.com)
+
+## 0.11.3
+Tue, 02 Jul 2019 20:19:42 GMT
+
+### Patches
+
+- making build cache more accurately determine deps that aren't using just (kchau@microsoft.com)
 
 ## 0.11.2
 Mon, 01 Jul 2019 20:15:20 GMT
