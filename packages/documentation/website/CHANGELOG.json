@@ -1,0 +1,19 @@
+{
+  "name": "just-task-docs",
+  "entries": [
+    {
+      "date": "Fri, 05 Jul 2019 16:59:55 GMT",
+      "tag": "just-task-docs_v0.0.2",
+      "version": "0.0.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Uppercase the S in TypeScript",
+            "author": "orta.therox@gmail.com",
+            "commit": "6a81b5b8cab4f3dccfe3408e300ac4bc70c4719f"
+          }
+        ]
+      }
+    }
+  ]
+}

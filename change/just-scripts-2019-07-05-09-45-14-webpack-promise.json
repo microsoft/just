@@ -1,8 +1,0 @@
-{
-  "comment": "allow webpacktask to take in promises inside the module exports",
-  "type": "minor",
-  "packageName": "just-scripts",
-  "email": "kchau@microsoft.com",
-  "commit": "46f75cd04ae78e4d93b392e30d9b4970bdb04217",
-  "date": "2019-07-05T16:45:14.177Z"
-}

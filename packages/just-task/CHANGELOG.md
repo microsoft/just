@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Thu, 04 Jul 2019 02:04:13 GMT and should not be manually modified.
+This log was last generated on Fri, 05 Jul 2019 16:59:55 GMT and should not be manually modified.
+
+## 0.12.1
+Fri, 05 Jul 2019 16:59:55 GMT
+
+### Patches
+
+- Uppercase the S in TypeScript (orta.therox@gmail.com)
 
 ## 0.12.0
 Thu, 04 Jul 2019 02:04:13 GMT
