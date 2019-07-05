@@ -4,9 +4,9 @@ title: Webpack
 sidebar_label: Webpack
 ---
 
-Webpack is the Javascript, CSS and asset bundler that powers some of the largest Web applications. Just Scripts comes with great integration with Webpack out of the box. All of the power of Webpack comes at the cost of complexity in its configuration. The bundler actually comes with great defaults. However, it takes some non-trivial amount of config to make it work with transpilers like Typescript.
+Webpack is the Javascript, CSS and asset bundler that powers some of the largest Web applications. Just Scripts comes with great integration with Webpack out of the box. All of the power of Webpack comes at the cost of complexity in its configuration. The bundler actually comes with great defaults. However, it takes some non-trivial amount of config to make it work with transpilers like TypeScript.
 
-`just-scripts` exports a flexible Webpack `just-task` task function. Unlike `create-react-app`, `just-scripts` does not require ejecting to allow customizations of the Webpack configuration. `just-scripts` abstracts the complexity of the configuration with what is known as "Overlays". For example, to add support of Typescript transpilation, several parts of the configuration needs to be changed to support the various parts of building with Typescript.
+`just-scripts` exports a flexible Webpack `just-task` task function. Unlike `create-react-app`, `just-scripts` does not require ejecting to allow customizations of the Webpack configuration. `just-scripts` abstracts the complexity of the configuration with what is known as "Overlays". For example, to add support of TypeScript transpilation, several parts of the configuration needs to be changed to support the various parts of building with TypeScript.
 
 This task function will look for two files at the root of the project:
 
@@ -37,4 +37,4 @@ These overlays are not configurable (for now), but they do provide a great basel
 - `fileOverlay`: This adds the `file-loader` to allow loading SVG, PNG, GIF, JPG files
 - `htmlOverlay`: This adds the `html-webpack-plugin` that generates the right code to include scripts and other assets into your `index.html`
 - `stylesOverlay`: This adds styling support for both CSS and Sass
-- `tsOverlay`: This adds a `ts-loader` transpilation support for Typescript files while configuring a `fork-ts-checker-webpack-plugin` for typechecking in a separate process for the fastest compilation experience
+- `tsOverlay`: This adds a `ts-loader` transpilation support for TypeScript files while configuring a `fork-ts-checker-webpack-plugin` for typechecking in a separate process for the fastest compilation experience
