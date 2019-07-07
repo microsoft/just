@@ -7,7 +7,7 @@
 `Just` is a library that organizes build tasks for your JS projects. It consists of
 
 - a build task build definition library
-- sane preset build flows for node and browser projects featuring Typescript, Webpack and jest
+- sane preset build flows for node and browser projects featuring TypeScript, Webpack and jest
 - project scaffold tool that generates no-ejection needed repos that tracks template changes
 
 # Documentation

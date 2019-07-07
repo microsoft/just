@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import { resolve, logger, resolveCwd, TaskFunction, option } from 'just-task';
+import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { exec, encodeArgs, spawn } from 'just-scripts-utils';
 import fs from 'fs';
 
@@ -38,6 +38,8 @@ export function tscTask(options: TscTaskOptions): TaskFunction {
     } else {
       Promise.resolve();
     }
+
+    return;
   };
 }
 
@@ -73,6 +75,8 @@ export function tscWatchTask(options: TscTaskOptions): TaskFunction {
     } else {
       Promise.resolve();
     }
+
+    return;
   };
 }
 

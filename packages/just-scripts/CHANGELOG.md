@@ -1,6 +1,27 @@
-# Changelog - just-scripts
+# Change Log - just-scripts
 
-This log was last generated on Wed, 26 Jun 2019 02:35:13 GMT and should not be manually modified.
+This log was last generated on Fri, 05 Jul 2019 16:59:55 GMT and should not be manually modified.
+
+## 0.25.0
+Fri, 05 Jul 2019 16:59:55 GMT
+
+### Minor changes
+
+- allow webpacktask to take in promises inside the module exports (kchau@microsoft.com)
+
+## 0.24.2
+Mon, 01 Jul 2019 20:15:20 GMT
+
+### Patches
+
+- introduce ESLint to sources (43081j@users.noreply.github.com)
+
+## 0.24.1
+Mon, 01 Jul 2019 18:55:04 GMT
+
+### Patches
+
+- fixes build cache so packages can have different path name than package name (kchau@microsoft.com)
 
 ## 0.24.0
 Wed, 26 Jun 2019 02:35:13 GMT

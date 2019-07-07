@@ -60,6 +60,7 @@ export function sassTask(
                 } else {
                   const css = result.css.toString();
 
+                  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                   postcss([autoprefixerFn, ...postcssPlugins!])
                     .process(css, { from: fileName })
                     .then((result: { css: string }) => {
@@ -84,7 +85,7 @@ function requireResolvePackageUrl(packageUrl: string) {
   return resolveCwd(fullName) || resolveCwd(path.join(path.dirname(fullName), `_${path.basename(fullName)}`));
 }
 
-function patchSassUrl(url: string, prev: string, done: any) {
+function patchSassUrl(url: string, _prev: string, _done: any) {
   let newUrl: string = url;
 
   if (url[0] === '~') {

@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 05 Jul 2019 16:59:55 GMT",
+      "tag": "just-scripts_v0.25.0",
+      "version": "0.25.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "allow webpacktask to take in promises inside the module exports",
+            "author": "kchau@microsoft.com",
+            "commit": "46f75cd04ae78e4d93b392e30d9b4970bdb04217"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.20.0",
       "tag": "just-scripts_v0.20.0",
       "date": "Sat, 01 Jun 2019 04:59:34 GMT",

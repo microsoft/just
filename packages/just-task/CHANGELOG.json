@@ -2,6 +2,34 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 05 Jul 2019 16:59:55 GMT",
+      "tag": "just-task_v0.12.1",
+      "version": "0.12.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Uppercase the S in TypeScript",
+            "author": "orta.therox@gmail.com",
+            "commit": "6a81b5b8cab4f3dccfe3408e300ac4bc70c4719f"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 04 Jul 2019 02:04:13 GMT",
+      "tag": "just-task_v0.12.0",
+      "version": "0.12.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "added a no-op detection for packages that aren't build and have no scripts",
+            "author": "kchau@microsoft.com",
+            "commit": "f30bc061508c03671e9bc01cbeb5fb444ca71b6c"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.10.0",
       "tag": "just-task_v0.10.0",
       "date": "Tue, 04 Jun 2019 15:55:03 GMT",

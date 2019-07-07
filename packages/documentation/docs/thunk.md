@@ -26,7 +26,7 @@ option('amd');
 task('build', () => tscTask({ module: argv().amd ? 'amd' : 'commonjs' }));
 ```
 
-Now the build task can take in an argument and perform Typescript compilation for different modes:
+Now the build task can take in an argument and perform TypeScript compilation for different modes:
 
 ```sh
 $ just build --amd

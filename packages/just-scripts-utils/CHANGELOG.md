@@ -1,6 +1,13 @@
 # Changelog - just-scripts-utils
 
-This log was last generated on Wed, 12 Jun 2019 02:03:29 GMT and should not be manually modified.
+This log was last generated on Mon, 01 Jul 2019 20:15:20 GMT and should not be manually modified.
+
+## 0.8.2
+Mon, 01 Jul 2019 20:15:20 GMT
+
+### Patches
+
+- introduce ESLint to sources (43081j@users.noreply.github.com)
 
 ## 0.8.1
 Wed, 12 Jun 2019 02:03:29 GMT

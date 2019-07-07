@@ -15,11 +15,15 @@
     "checkchange": "beachball check",
     "publish:beachball": "beachball publish",
     "start": "node ./scripts/watch.js",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "lint": "eslint packages --ext .ts,.js"
   },
   "devDependencies": {
-    "lerna": "^3.13.2",
-    "beachball": "^1.6.4"
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "beachball": "^1.9.2",
+    "eslint": "^6.0.1",
+    "lerna": "^3.13.2"
   },
   "workspaces": {
     "packages": [

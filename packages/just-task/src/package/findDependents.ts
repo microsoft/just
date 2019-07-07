@@ -3,6 +3,8 @@ import path from 'path';
 import { resolveCwd } from '../resolve';
 import { findPackageRoot } from './findPackageRoot';
 import { logger } from 'just-task-logger';
+import { findGitRoot } from './findGitRoot';
+import { isChildOf } from '../paths';
 
 interface DepInfo {
   name: string;
@@ -14,6 +16,7 @@ export function findDependents() {
 }
 
 function getDepsPaths(pkgPath: string): DepInfo[] {
+  const gitRoot = findGitRoot();
   const packageJsonFile = path.join(pkgPath, 'package.json');
 
   try {
@@ -28,10 +31,16 @@ function getDepsPaths(pkgPath: string): DepInfo[] {
 
     return deps
       .map(dep => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const depPackageJson = resolveCwd(path.join(dep, 'package.json'))!;
+
+        if (!depPackageJson) {
+          return null;
+        }
+
         return { name: dep, path: path.dirname(fs.realpathSync(depPackageJson)) };
       })
-      .filter(p => p.path.indexOf('node_modules') === -1);
+      .filter(p => p && p.path.indexOf('node_modules') === -1 && isChildOf(p.path, gitRoot)) as DepInfo[];
   } catch (e) {
     logger.error(`Invalid package.json detected at ${packageJsonFile} `, e);
     return [];
@@ -39,10 +48,10 @@ function getDepsPaths(pkgPath: string): DepInfo[] {
 }
 
 function collectAllDependentPaths(pkgPath: string, collected: Set<DepInfo> = new Set<DepInfo>()) {
-  let depPaths = getDepsPaths(pkgPath);
+  const depPaths = getDepsPaths(pkgPath);
 
-  for (let depPath of depPaths) {
-    collectAllDependentPaths(depPath.name, collected);
+  for (const depPath of depPaths) {
+    collectAllDependentPaths(depPath.path, collected);
   }
 
   collected = new Set([...depPaths, ...collected]);

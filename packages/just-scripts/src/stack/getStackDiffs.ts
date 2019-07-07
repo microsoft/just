@@ -17,7 +17,9 @@ export async function getSingleStackDiffs(stack: string, fromVersion: string, to
     toVersion
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const fromPath = packagePaths[0]!;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const toPath = packagePaths[1]!;
   const globbedFiles = glob.sync('**/*', { cwd: toPath, nodir: true, dot: true });
   const dmp = new DiffMatchPatch();

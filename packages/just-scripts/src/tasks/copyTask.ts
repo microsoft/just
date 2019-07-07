@@ -16,6 +16,7 @@ export interface CopyTaskOptions {
   limit?: number;
 }
 
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 export function copyTask(options: CopyTaskOptions): TaskFunction;
 /** @deprecated Use object param version */
 export function copyTask(paths: string[] | undefined, dest: string, limit?: number): TaskFunction;
@@ -72,6 +73,7 @@ export function copyTask(optionsOrPaths: CopyTaskOptions | string[] | undefined,
     parallelLimit(copyTasks, limit!, done);
   };
 }
+/* eslint-enable @typescript-eslint/no-non-null-assertion */
 
 function getBasePath(pattern: string) {
   const parts = path.resolve(pattern).split(/[\/\\]/g);
