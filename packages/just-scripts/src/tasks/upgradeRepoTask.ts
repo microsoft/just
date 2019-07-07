@@ -6,6 +6,9 @@ import { getStackDiffs } from '../stack/getStackDiffs';
 import { applyStackDiffs } from '../stack/applyStackDiffs';
 import { getResolvedStackVersions } from '../stack/getResolvedStackVersions';
 
+/**
+ * @returns TaskFunction
+ */
 export function upgradeRepoTask(): TaskFunction {
   return async function upgradeRepo() {
     const rootPath = findMonoRepoRootPath();

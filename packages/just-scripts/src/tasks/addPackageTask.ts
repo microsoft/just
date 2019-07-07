@@ -13,6 +13,9 @@ import fse from 'fs-extra';
 import path from 'path';
 import prompts from 'prompts';
 
+/**
+ * @returns TaskFunction
+ */
 export function addPackageTask(): TaskFunction {
   return async function addPackage() {
     const args = argv();

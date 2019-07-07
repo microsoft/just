@@ -20,6 +20,13 @@ export interface CopyTaskOptions {
 export function copyTask(options: CopyTaskOptions): TaskFunction;
 /** @deprecated Use object param version */
 export function copyTask(paths: string[] | undefined, dest: string, limit?: number): TaskFunction;
+
+/**
+ * @param  {CopyTaskOptions|string[]|undefined} optionsOrPaths
+ * @param  {string} dest?
+ * @param  {number} limit?
+ * @returns TaskFunction
+ */
 export function copyTask(optionsOrPaths: CopyTaskOptions | string[] | undefined, dest?: string, limit?: number): TaskFunction {
   let paths: string[] = [];
   if (Array.isArray(optionsOrPaths)) {
@@ -75,6 +82,9 @@ export function copyTask(optionsOrPaths: CopyTaskOptions | string[] | undefined,
 }
 /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
+/**
+ * @param  {string} pattern
+ */
 function getBasePath(pattern: string) {
   const parts = path.resolve(pattern).split(/[\/\\]/g);
   const relativePathParts = [];

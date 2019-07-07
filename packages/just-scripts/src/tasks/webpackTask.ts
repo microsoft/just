@@ -15,6 +15,10 @@ export interface WebpackTaskOptions extends Configuration {
   mode?: 'production' | 'development';
 }
 
+/**
+ * @param  {WebpackTaskOptions} options?
+ * @returns TaskFunction
+ */
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   return async function webpack() {
     const wp = tryRequire('webpack');
@@ -78,6 +82,9 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   };
 }
 
+/**
+ * @param  {WebpackTaskOptions} options?
+ */
 export function webpackDevServerTask(options?: WebpackTaskOptions) {
   const configPath = resolveCwd((options && options.config) || 'webpack.serve.config.js');
   const cmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');

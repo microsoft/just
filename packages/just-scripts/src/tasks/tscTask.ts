@@ -5,6 +5,10 @@ import fs from 'fs';
 
 export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean };
 
+/**
+ * @param  {TscTaskOptions} options
+ * @returns TaskFunction
+ */
 export function tscTask(options: TscTaskOptions): TaskFunction {
   const tscCmd = resolve('typescript/lib/tsc.js');
 
@@ -43,6 +47,10 @@ export function tscTask(options: TscTaskOptions): TaskFunction {
   };
 }
 
+/**
+ * @param  {TscTaskOptions} options
+ * @returns TaskFunction
+ */
 export function tscWatchTask(options: TscTaskOptions): TaskFunction {
   const tscCmd = resolve('typescript/lib/tsc.js');
 
@@ -80,6 +88,9 @@ export function tscWatchTask(options: TscTaskOptions): TaskFunction {
   };
 }
 
+/**
+ * @param  {TscTaskOptions} options
+ */
 function getProjectOrBuildOptions(options: TscTaskOptions) {
   const tsConfigFile = resolveCwd('./tsconfig.json') || 'tsconfig.json';
   const result: { [option: string]: string | boolean } = {};
@@ -95,6 +106,9 @@ function getProjectOrBuildOptions(options: TscTaskOptions) {
   return result;
 }
 
+/**
+ * @param  {TscTaskOptions} options
+ */
 function isValidProject(options: TscTaskOptions) {
   return (options.project && fs.existsSync(options.project as string)) || (options.build && fs.existsSync(options.build as string));
 }

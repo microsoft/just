@@ -16,7 +16,10 @@ export interface JestTaskOptions {
    */
   nodeArgs?: string[];
 }
-
+/**
+ * @param  {JestTaskOptions={}} options
+ * @returns TaskFunction
+ */
 export function jestTask(options: JestTaskOptions = {}): TaskFunction {
   const jestConfigFile = resolveCwd('./jest.config.js');
 

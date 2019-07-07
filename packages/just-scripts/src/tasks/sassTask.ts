@@ -12,8 +12,15 @@ export interface SassTaskOptions {
 }
 
 export function sassTask(options: SassTaskOptions): TaskFunction;
+
 /** @deprecated Use object param version */
 export function sassTask(createSourceModule: (fileName: string, css: string) => string, postcssPlugins?: any[]): TaskFunction;
+
+/**
+ * @param  {SassTaskOptions|((fileName:string} optionsOrCreateSourceModule
+ * @param  {string} css
+ * @returns TaskFunction
+ */
 export function sassTask(
   optionsOrCreateSourceModule: SassTaskOptions | ((fileName: string, css: string) => string),
   postcssPlugins?: any[]
@@ -80,6 +87,9 @@ export function sassTask(
   };
 }
 
+/**
+ * @param  {string} packageUrl
+ */
 function requireResolvePackageUrl(packageUrl: string) {
   const fullName = packageUrl + (packageUrl.endsWith('.scss') ? '' : '.scss');
   return resolveCwd(fullName) || resolveCwd(path.join(path.dirname(fullName), `_${path.basename(fullName)}`));

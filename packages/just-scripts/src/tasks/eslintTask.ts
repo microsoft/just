@@ -11,7 +11,10 @@ export interface EsLintTaskOptions {
   noEslintRc?: boolean;
   maxWarnings?: number;
 }
-
+/**
+ * @param  {EsLintTaskOptions={}} options
+ * @returns TaskFunction
+ */
 export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
   return function eslint() {
     const { files, configPath, ignorePath, fix, extensions, noEslintRc, maxWarnings } = options;

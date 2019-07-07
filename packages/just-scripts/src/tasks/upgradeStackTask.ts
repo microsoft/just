@@ -5,6 +5,9 @@ import { getStackDiffs } from '../stack/getStackDiffs';
 import { applyStackDiffs } from '../stack/applyStackDiffs';
 import { getResolvedStackVersions } from '../stack/getResolvedStackVersions';
 
+/**
+ * @returns TaskFunction
+ */
 export function upgradeStackTask(): TaskFunction {
   return async function upgradeStack() {
     const rootPath = process.cwd();

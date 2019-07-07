@@ -15,14 +15,27 @@ export interface CleanTaskOptions {
    */
   limit?: number;
 }
-
+/**
+ * @returns string[]
+ */
 export function defaultCleanPaths(): string[] {
   return ['lib', 'temp', 'dist', 'coverage'];
 }
 
+/**
+ * @param  {CleanTaskOptions} options?
+ * @returns TaskFunction
+ */
 export function cleanTask(options?: CleanTaskOptions): TaskFunction;
+
 /** @deprecated Use object param version */
 export function cleanTask(paths?: string[], limit?: number): TaskFunction;
+
+/**
+ * @param  {string[]|CleanTaskOptions={}} pathsOrOptions
+ * @param  {number} limit?
+ * @returns TaskFunction
+ */
 export function cleanTask(pathsOrOptions: string[] | CleanTaskOptions = {}, limit?: number): TaskFunction {
   let paths: string[];
   if (Array.isArray(pathsOrOptions)) {

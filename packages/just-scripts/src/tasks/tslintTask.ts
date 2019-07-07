@@ -8,6 +8,10 @@ export interface TsLintTaskOptions {
   fix?: boolean;
 }
 
+/**
+ * @param  {TsLintTaskOptions={}} options
+ * @returns TaskFunction
+ */
 export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
   const projectFile = resolveCwd('./tsconfig.json');
 

@@ -17,7 +17,9 @@ interface PrettierTaskOptions {
   ignorePath?: string;
   configPath?: string;
 }
-
+/**
+ * @param  {PrettierTaskOptions={}} options
+ */
 export function prettierTask(options: PrettierTaskOptions = {}) {
   const prettierBin = resolve('prettier/bin-prettier.js');
 
@@ -37,7 +39,9 @@ export function prettierTask(options: PrettierTaskOptions = {}) {
     logger.warn('Prettier is not available, ignoring this task');
   };
 }
-
+/**
+ * @param  {PrettierTaskOptions={}} options
+ */
 export function prettierCheckTask(options: PrettierTaskOptions = {}) {
   const prettierBin = resolve('prettier/bin-prettier.js');
 
@@ -57,7 +61,9 @@ export function prettierCheckTask(options: PrettierTaskOptions = {}) {
     logger.warn('Prettier is not available, ignoring this task');
   };
 }
-
+/**
+ * @param  {PrettierContext} context
+ */
 function runPrettierAsync(context: PrettierContext) {
   const MaxFileEntriesPerChunk = 20;
   const { prettierBin, configPath, ignorePath, files, check } = context;

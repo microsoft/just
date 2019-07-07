@@ -32,13 +32,23 @@ interface ApiExtractorOptions {
 }
 
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
-
+/**
+ * @param  {ApiExtractorOptions} options
+ * @returns TaskFunction
+ */
 export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFunction;
 /** @deprecated Use object param version */
 export function apiExtractorVerifyTask(
   configJsonFilePath: string,
   extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>
 ): TaskFunction;
+
+/**
+ * @param  {string|ApiExtractorOptions={}} configJsonFilePathOrOption
+ * @param  {Omit<ApiExtractorOptions} extractorOptions
+ * @param  {} 'configJsonFilePath'>={}
+ * @returns TaskFunction
+ */
 export function apiExtractorVerifyTask(
   configJsonFilePathOrOption: string | ApiExtractorOptions = {},
   extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'> = {}
@@ -78,12 +88,24 @@ export function apiExtractorVerifyTask(
  *
  * @param options
  */
+/**
+ * @param  {ApiExtractorOptions} options
+ * @returns TaskFunction
+ */
 export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFunction;
+
 /** @deprecated Use object param version */
 export function apiExtractorUpdateTask(
   configJsonFilePath: string,
   extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>
 ): TaskFunction;
+
+/**
+ * @param  {string|ApiExtractorOptions={}} configJsonFilePathOrOption
+ * @param  {Omit<ApiExtractorOptions} extractorOptions
+ * @param  {} 'configJsonFilePath'>={}
+ * @returns TaskFunction
+ */
 export function apiExtractorUpdateTask(
   configJsonFilePathOrOption: string | ApiExtractorOptions = {},
   extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'> = {}
@@ -114,6 +136,11 @@ export function apiExtractorUpdateTask(
   };
 }
 
+/**
+ * @param  {string|undefined} configJsonFilePath
+ * @param  {Omit<ApiExtractorOptions} extractorOptions
+ * @param  {} 'configJsonFilePath'>
+ */
 function apiExtractorWrapper(configJsonFilePath: string | undefined, extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>) {
   const path = require('path');
   const fs = require('fs');
