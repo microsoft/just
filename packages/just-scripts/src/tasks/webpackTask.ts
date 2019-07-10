@@ -13,6 +13,12 @@ export interface WebpackTaskOptions extends Configuration {
   outputStats?: boolean | string;
 
   mode?: 'production' | 'development';
+
+  /**
+   * Arguments to be passed into a spawn call for webpack dev server. This can be used to do things
+   * like increase the heap space for the JS engine to address out of memory issues.
+   */
+  nodeArgs?: string[];
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
@@ -78,16 +84,16 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   };
 }
 
-export function webpackDevServerTask(options?: WebpackTaskOptions) {
+export function webpackDevServerTask(options: WebpackTaskOptions = {}) {
   const configPath = resolveCwd((options && options.config) || 'webpack.serve.config.js');
-  const cmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
+  const devServerCmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
 
   return function webpackDevServer() {
-    if (cmd && configPath && fs.existsSync(configPath)) {
-      const mode = (options && options.mode) || 'development';
-      const args = [cmd, '--config', configPath, '--open', '--mode', mode];
+    if (devServerCmd && configPath && fs.existsSync(configPath)) {
+      const mode = options.mode || 'development';
+      const args = [...(options.nodeArgs || []), devServerCmd, '--config', configPath, '--open', '--mode', mode];
 
-      logger.info(cmd, encodeArgs(args).join(' '));
+      logger.info(devServerCmd, encodeArgs(args).join(' '));
       return spawn(process.execPath, args, { stdio: 'inherit' });
     } else {
       logger.warn('no webpack.serve.config.js configuration found, skipping');
