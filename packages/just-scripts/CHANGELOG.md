@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 10 Jul 2019 16:41:03 GMT and should not be manually modified.
+This log was last generated on Wed, 10 Jul 2019 19:56:39 GMT and should not be manually modified.
+
+## 0.25.2
+Wed, 10 Jul 2019 19:56:39 GMT
+
+### Patches
+
+- Only pass valid webpack options to webpack (1581488+christiango@users.noreply.github.com)
 
 ## 0.25.1
 Wed, 10 Jul 2019 16:41:03 GMT
