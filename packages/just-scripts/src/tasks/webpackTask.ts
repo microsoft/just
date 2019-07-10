@@ -80,14 +80,14 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
 export function webpackDevServerTask(options?: WebpackTaskOptions) {
   const configPath = resolveCwd((options && options.config) || 'webpack.serve.config.js');
-  const cmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
+  const webpackDevServerCmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
 
   return function webpackDevServer() {
-    if (cmd && configPath && fs.existsSync(configPath)) {
+    if (webpackDevServerCmd && configPath && fs.existsSync(configPath)) {
       const mode = (options && options.mode) || 'development';
-      const args = [cmd, '--config', configPath, '--open', '--mode', mode];
+      const args = [webpackDevServerCmd, '--config', configPath, '--open', '--mode', mode];
 
-      logger.info(cmd, encodeArgs(args).join(' '));
+      logger.info(webpackDevServerCmd, encodeArgs(args).join(' '));
       return spawn(process.execPath, args, { stdio: 'inherit' });
     } else {
       logger.warn('no webpack.serve.config.js configuration found, skipping');
