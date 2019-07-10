@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Wed, 10 Jul 2019 16:41:03 GMT",
+      "tag": "just-scripts_v0.25.1",
+      "version": "0.25.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add ability to set node args for webpack dev server",
+            "author": "1581488+christiango@users.noreply.github.com",
+            "commit": "b4158f2abd49e9d453a4e910f2fe4229c0f1bed3"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 05 Jul 2019 16:59:55 GMT",
       "tag": "just-scripts_v0.25.0",
       "version": "0.25.0",

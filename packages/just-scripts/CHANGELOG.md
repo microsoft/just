@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 05 Jul 2019 16:59:55 GMT and should not be manually modified.
+This log was last generated on Wed, 10 Jul 2019 16:41:03 GMT and should not be manually modified.
+
+## 0.25.1
+Wed, 10 Jul 2019 16:41:03 GMT
+
+### Patches
+
+- Add ability to set node args for webpack dev server (1581488+christiango@users.noreply.github.com)
 
 ## 0.25.0
 Fri, 05 Jul 2019 16:59:55 GMT
