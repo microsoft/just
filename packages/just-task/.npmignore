@@ -1,7 +1,0 @@
-src
-CHANGELOG.*
-*.tgz
-*.log
-package-deps.json
-jest.config.js
-tsconfig.json
