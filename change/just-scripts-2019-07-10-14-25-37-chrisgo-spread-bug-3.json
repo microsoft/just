@@ -1,0 +1,8 @@
+{
+  "comment": "Only pass valid webpack options to webpack",
+  "type": "patch",
+  "packageName": "just-scripts",
+  "email": "1581488+christiango@users.noreply.github.com",
+  "commit": "97f699d46f96b051d9ffa66e9c72f11f11a20825",
+  "date": "2019-07-10T18:25:37.102Z"
+}
