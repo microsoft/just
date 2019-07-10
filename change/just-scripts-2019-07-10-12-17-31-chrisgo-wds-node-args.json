@@ -1,0 +1,8 @@
+{
+  "comment": "Add ability to set node args for webpack dev server",
+  "type": "patch",
+  "packageName": "just-scripts",
+  "email": "1581488+christiango@users.noreply.github.com",
+  "commit": "b4158f2abd49e9d453a4e910f2fe4229c0f1bed3",
+  "date": "2019-07-10T16:17:31.149Z"
+}
