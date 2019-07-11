@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 05 Jul 2019 16:59:55 GMT and should not be manually modified.
+This log was last generated on Thu, 11 Jul 2019 17:08:46 GMT and should not be manually modified.
+
+## 0.12.2
+Thu, 11 Jul 2019 17:08:46 GMT
+
+### Patches
+
+- speeding up build cache (kchau@microsoft.com)
 
 ## 0.12.1
 Fri, 05 Jul 2019 16:59:55 GMT
