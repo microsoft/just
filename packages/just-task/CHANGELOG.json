@@ -2,6 +2,20 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Thu, 11 Jul 2019 19:35:28 GMT",
+      "tag": "just-task_v0.13.0",
+      "version": "0.13.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "returns a wrapped task even when doing a task('foo', 'bar') form",
+            "author": "kchau@microsoft.com",
+            "commit": "3f466076ccaffee68e6149d1b4b906ebe7f1de0e"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 11 Jul 2019 17:08:46 GMT",
       "tag": "just-task_v0.12.2",
       "version": "0.12.2",
