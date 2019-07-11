@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { resolveCwd } from '../resolve';
 import { findPackageRoot } from './findPackageRoot';
-import { logger } from 'just-task-logger';
+import { logger, mark } from 'just-task-logger';
 import { findGitRoot } from './findGitRoot';
 import { isChildOf } from '../paths';
 
@@ -12,7 +12,10 @@ interface DepInfo {
 }
 
 export function findDependents() {
-  return collectAllDependentPaths(findPackageRoot());
+  mark('cache:findDependents');
+  const results = collectAllDependentPaths(findPackageRoot());
+  logger.perf('cache:findDependents');
+  return results;
 }
 
 function getDepsPaths(pkgPath: string): DepInfo[] {
@@ -48,13 +51,18 @@ function getDepsPaths(pkgPath: string): DepInfo[] {
 }
 
 function collectAllDependentPaths(pkgPath: string, collected: Set<DepInfo> = new Set<DepInfo>()) {
+  mark(`collectAllDependentPaths:${pkgPath}`);
+
   const depPaths = getDepsPaths(pkgPath);
+  depPaths.forEach(depPath => collected.add(depPath));
 
   for (const depPath of depPaths) {
-    collectAllDependentPaths(depPath.path, collected);
+    if (!collected.has(depPath)) {
+      collectAllDependentPaths(depPath.path, collected);
+    }
   }
 
-  collected = new Set([...depPaths, ...collected]);
+  logger.perf(`collectAllDependentPaths:${pkgPath}`);
 
   return collected;
 }

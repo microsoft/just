@@ -3,7 +3,7 @@ import { argv } from './option';
 import { resolveCwd } from './resolve';
 import fs from 'fs-extra';
 import path from 'path';
-import { logger } from 'just-task-logger';
+import { logger, mark } from 'just-task-logger';
 import { findGitRoot } from './package/findGitRoot';
 import { findDependents } from './package/findDependents';
 
@@ -83,6 +83,8 @@ interface CacheHash {
 }
 
 function getHash(taskName: string): CacheHash | null {
+  mark('cache:getHash');
+
   const { ...args } = argv();
 
   const gitRoot = findGitRoot();
@@ -91,13 +93,13 @@ function getHash(taskName: string): CacheHash | null {
     return null;
   }
 
-  const hash = getPackageDeps(gitRoot);
+  const packageDeps = getPackageDeps(gitRoot);
 
   const cwd = process.cwd();
 
-  const files: typeof hash.files = {};
+  const files: typeof packageDeps.files = {};
 
-  Object.keys(hash.files).forEach(file => {
+  Object.keys(packageDeps.files).forEach(file => {
     const basename = path.basename(file);
 
     if (
@@ -107,18 +109,22 @@ function getHash(taskName: string): CacheHash | null {
       basename === 'yarn.lock' ||
       basename === 'pnpmfile.js'
     ) {
-      files[file] = hash.files[file];
+      files[file] = packageDeps.files[file];
     }
   });
 
-  hash.files = files;
+  packageDeps.files = files;
 
-  return {
+  const hash = {
     args,
     taskName,
-    hash,
+    hash: packageDeps,
     dependentHashTimestamps: getDependentHashTimestamps()
   };
+
+  logger.perf('cache:getHash');
+
+  return hash;
 }
 
 function isChildOf(child: string, parent: string) {
@@ -127,6 +133,7 @@ function isChildOf(child: string, parent: string) {
 }
 
 function getDependentHashTimestamps() {
+  mark('cache:getDependentHashTimestamps');
   const dependentPkgPaths = findDependents();
 
   const timestampsByPackage: { [pkgName: string]: number } = {};
@@ -144,6 +151,8 @@ function getDependentHashTimestamps() {
       timestampsByPackage[pkgDepInfo.name] = new Date().getTime();
     }
   }
+
+  logger.perf('cache:getDependentHashTimestamps');
 
   return timestampsByPackage;
 }
