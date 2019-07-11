@@ -1,0 +1,8 @@
+{
+  "comment": "speeding up build cache",
+  "type": "minor",
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com",
+  "commit": "41f35e4f9c771f2ffb96d0f5ea8cfb1eb1475afc",
+  "date": "2019-07-11T17:01:28.490Z"
+}
