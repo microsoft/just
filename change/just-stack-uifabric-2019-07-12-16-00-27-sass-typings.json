@@ -1,0 +1,8 @@
+{
+  "comment": "added sass and css typings for css modules",
+  "type": "patch",
+  "packageName": "just-stack-uifabric",
+  "email": "mgodbolt@microsoft.com",
+  "commit": "7db92db09f9fbd6eb4fea43e7d20cd985aa12436",
+  "date": "2019-07-12T23:00:27.801Z"
+}
