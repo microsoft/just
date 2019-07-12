@@ -1,6 +1,13 @@
-# Changelog - just-stack-uifabric
+# Change Log - just-stack-uifabric
 
-This log was last generated on Thu, 20 Jun 2019 23:00:24 GMT and should not be manually modified.
+This log was last generated on Fri, 12 Jul 2019 23:29:37 GMT and should not be manually modified.
+
+## 0.12.1
+Fri, 12 Jul 2019 23:29:37 GMT
+
+### Patches
+
+- added sass and css typings for css modules (mgodbolt@microsoft.com)
 
 ## 0.12.0
 Thu, 20 Jun 2019 23:00:24 GMT
