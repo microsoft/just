@@ -16,7 +16,7 @@ export function webpackCliInitTask(
     const init = tryRequire("@webpack-cli/init").default;
     if (!init) {
       logger.warn(
-        "webpack-cli init requires three dependencies: @webpack-cli/init (preferred - as a devDependency )"
+        "webpack-cli init requires three dependencies: @webpack-cli/init (preferred - as a devDependency)"
       );
       return;
     }
