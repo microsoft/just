@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tscTask using 'tscTask' function using 'build' option where 'build' is custom path and tsconfig.json exists execs expected command 1`] = `
+Array [
+  "\${programFiles}/nodejs/node.exe",
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--build",
+  "a/custom/path/tsconfig.json",
+]
+`;
+
+exports[`tscTask using 'tscTask' function using 'project' option where 'project' is custom path and tsconfig.json exists execs expected command 1`] = `
+Array [
+  "\${programFiles}/nodejs/node.exe",
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--project",
+  "a/custom/path/tsconfig.json",
+]
+`;
+
+exports[`tscTask using 'tscTask' function using a boolean switch execs expected command 1`] = `
+Array [
+  "\${programFiles}/nodejs/node.exe",
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--allowJs",
+  "--project",
+  "\${packageRoot}/tsconfig.json",
+]
+`;
+
+exports[`tscTask using 'tscTask' function using a combination of switches execs expected command 1`] = `
+Array [
+  "\${programFiles}/nodejs/node.exe",
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--allowJs",
+  "--build",
+  "tsconfig.json",
+  "--outDir",
+  "some/out/path",
+]
+`;
+
+exports[`tscTask using 'tscTask' function with empty options and tsconfig.json exists at package root execs expected command 1`] = `
+Array [
+  "\${programFiles}/nodejs/node.exe",
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--project",
+  "\${packageRoot}/tsconfig.json",
+]
+`;
