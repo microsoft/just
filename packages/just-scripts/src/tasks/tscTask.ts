@@ -35,11 +35,8 @@ export function tscTask(options: TscTaskOptions): TaskFunction {
       const cmd = encodeArgs([process.execPath, ...args]).join(' ');
       logger.info(`Executing: ${cmd}`);
       return exec(cmd);
-    } else {
-      Promise.resolve();
     }
-
-    return;
+    return Promise.resolve();
   };
 }
 

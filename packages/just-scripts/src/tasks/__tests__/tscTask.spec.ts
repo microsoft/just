@@ -1,16 +1,22 @@
 import mockfs from 'mock-fs';
+import asyncDoneAsCallback from 'async-done';
 import { resolve } from 'path';
-import { encodeArgs } from 'just-scripts-utils';
+import { promisify } from 'util';
+import { encodeArgs, exec } from 'just-scripts-utils';
 import { Arguments } from 'yargs';
 import { logger, TaskFunction, TaskContext } from 'just-task';
 import { tscTask } from '../tscTask';
+
+const asyncDone = promisify(asyncDoneAsCallback);
+const relativeRepoRoot = '../..';
 
 // Jest will hoist these before the imports above, so these modules will be mocked first
 jest.mock('just-scripts-utils/lib/exec', mockExecFactory);
 jest.mock('just-task/lib/logger');
 
 /**
- * Mock factory for the `just-scripts-utils/lib/exec` module.
+ * Mock factory for the `just-scripts-utils/lib/exec` module. We don't want to really exec or spawn anything,
+ * but we do want the rest of the exports to work.
  */
 function mockExecFactory() {
   const originalModule = jest.requireActual('just-scripts-utils/lib/exec');
@@ -19,6 +25,7 @@ function mockExecFactory() {
     ...originalModule,
     encodeArgs: jest
       .fn((cmdArgs: string[]) => {
+        // Spy on encodeArgs, but keep its original implementation
         return originalModule.encodeArgs(cmdArgs);
       })
       .mockName('encodeArgs'),
@@ -40,26 +47,34 @@ function mockExecFactory() {
 /**
  * Wrapper to call task function for the test.
  */
-function callTaskFunction(fn: TaskFunction, argv?: Arguments) {
+function wrapTaskFunction(fn: TaskFunction, argv?: Arguments) {
   const argvOurs = argv || { _: [], $0: '' };
   const context: TaskContext = {
     argv: argvOurs,
     logger
   };
   const taskRet = (fn as any).call(context, (_err: any) => {});
-  return Promise.resolve(taskRet);
+  return taskRet;
 }
 
 /**
- * Returns the composition of the `tsc.js` Node module in `mock-fs` terms necessary for Node's
+ * Call the task the way real code does.
+ */
+function callTaskForTest(fn: TaskFunction, argv?: Arguments) {
+  return asyncDone(() => {
+    return wrapTaskFunction(fn, argv);
+  });
+}
+
+/**
+ * Returns the composition of the `tsc.js` Node module in terms `mock-fs` understands, which is necessary for Node's
  * module loader to succeed.
  */
-function mockFsTsc() {
+function mockFsTsc(relativeRootPathToNodeModules: string) {
   // Relative to cwd when the test runs
-  const relativeRepoRoot = '../..';
   const mockFsConfig: { [key: string]: any } = {};
-  mockFsConfig[`${relativeRepoRoot}/node_modules/typescript/lib/tsc.js`] = 'a file';
-  mockFsConfig[`${relativeRepoRoot}/node_modules/typescript/package.json`] = 'a file';
+  mockFsConfig[`${relativeRootPathToNodeModules}/node_modules/typescript/lib/tsc.js`] = 'a file';
+  mockFsConfig[`${relativeRootPathToNodeModules}/node_modules/typescript/package.json`] = 'a file';
   return mockFsConfig;
 }
 
@@ -95,26 +110,88 @@ function normalizeCmdArgs(cmdArgs: string[]) {
 describe(`tscTask`, () => {
   afterEach(() => {
     jest.clearAllMocks();
+    mockfs.restore();
   });
 
-  describe(`with tsconfig.json and no options`, () => {
-    it(`execs expected command line`, () => {
+  describe(`with empty options`, () => {
+    describe(`and tsconfig.json at package root`, () => {
+      it(`execs expected command`, () => {
+        mockfs({
+          ...mockFsTsc(relativeRepoRoot),
+          'tsconfig.json': 'a file'
+        });
+        const task = tscTask({});
+        expect.assertions(3);
+        return callTaskForTest(task).then(() => {
+          // Restore mockfs so snapshots work
+          mockfs.restore();
+          expect(exec).toHaveBeenCalled();
+          // Inspect the call to `encodeArgs` since it is easier to strip out repo-specific path values.
+          expect(encodeArgs).toHaveBeenCalled();
+          const actualCmdArgs = normalizeCmdArgs((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
+          expect(actualCmdArgs).toMatchInlineSnapshot(`
+            Array [
+              "\${programFiles}/nodejs/node.exe",
+              "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+              "--project",
+              "\${packageRoot}/tsconfig.json",
+            ]
+          `);
+        });
+      });
+    });
+
+    describe(`and no tsconfig.json at package root`, () => {
+      it(`does not exec command`, () => {
+        mockfs({
+          ...mockFsTsc(relativeRepoRoot)
+        });
+        const task = tscTask({});
+        expect.assertions(1);
+        return callTaskForTest(task).then(() => {
+          expect(exec).not.toHaveBeenCalled();
+        });
+      });
+    });
+  });
+
+  describe(`where repo has TypeScript installed`, () => {
+    it(`execs command`, () => {
       mockfs({
-        ...mockFsTsc(),
+        ...mockFsTsc(relativeRepoRoot),
         'tsconfig.json': 'a file'
       });
       const task = tscTask({});
-      expect.assertions(3);
-      return callTaskFunction(task).then(() => {
-        // Restore mockfs so snapshots work
-        mockfs.restore();
-        // Inspect the call to `encodeArgs` since it is easier to strip out repo-specific path values.
-        expect(encodeArgs).toHaveBeenCalled();
-        const encodeArgsSpy = encodeArgs as jest.Mock<any>;
-        expect(encodeArgsSpy).toHaveBeenCalled();
-        const actualCmdArgs = normalizeCmdArgs(encodeArgsSpy.mock.calls[0][0]);
-        expect(actualCmdArgs).toMatchSnapshot();
+      expect.assertions(1);
+      return callTaskForTest(task).then(() => {
+        expect(exec).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe(`where package has TypeScript installed`, () => {
+    it(`execs command`, () => {
+      mockfs({
+        ...mockFsTsc('.'),
+        'tsconfig.json': 'a file'
+      });
+      const task = tscTask({});
+      expect.assertions(1);
+      return callTaskForTest(task).then(() => {
+        expect(exec).toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe(`where repo and package do not have TypeScript installed`, () => {
+    it(`returns error`, () => {
+      mockfs({
+        'tsconfig.json': 'a file'
+      });
+      expect.assertions(1);
+      expect(() => {
+        tscTask({});
+      }).toThrow('cannot find tsc');
     });
   });
 });
