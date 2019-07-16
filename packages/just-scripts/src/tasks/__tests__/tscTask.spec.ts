@@ -49,13 +49,13 @@ describe(`tscTask`, () => {
           expect(encodeArgs).toHaveBeenCalled();
           const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
           expect(actualCmdArgs).toMatchInlineSnapshot(`
-            Array [
-              "\${programFiles}/nodejs/node.exe",
-              "\${repoRoot}/node_modules/typescript/lib/tsc.js",
-              "--project",
-              "\${packageRoot}/tsconfig.json",
-            ]
-          `);
+                        Array [
+                          "\${programFiles}/nodejs/node.exe",
+                          "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+                          "--project",
+                          "\${packageRoot}/tsconfig.json",
+                        ]
+                    `);
         });
       });
     });
@@ -94,13 +94,13 @@ describe(`tscTask`, () => {
             expect(encodeArgs).toHaveBeenCalled();
             const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
             expect(actualCmdArgs).toMatchInlineSnapshot(`
-              Array [
-                "\${programFiles}/nodejs/node.exe",
-                "\${repoRoot}/node_modules/typescript/lib/tsc.js",
-                "--project",
-                "a/custom/path/tsconfig.json",
-              ]
-            `);
+                            Array [
+                              "\${programFiles}/nodejs/node.exe",
+                              "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+                              "--project",
+                              "a/custom/path/tsconfig.json",
+                            ]
+                        `);
           });
         });
       });
@@ -140,13 +140,13 @@ describe(`tscTask`, () => {
             expect(encodeArgs).toHaveBeenCalled();
             const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
             expect(actualCmdArgs).toMatchInlineSnapshot(`
-              Array [
-                "\${programFiles}/nodejs/node.exe",
-                "\${repoRoot}/node_modules/typescript/lib/tsc.js",
-                "--build",
-                "a/custom/path/tsconfig.json",
-              ]
-            `);
+                            Array [
+                              "\${programFiles}/nodejs/node.exe",
+                              "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+                              "--build",
+                              "a/custom/path/tsconfig.json",
+                            ]
+                        `);
           });
         });
       });
@@ -182,12 +182,42 @@ describe(`tscTask`, () => {
         expect(encodeArgs).toHaveBeenCalled();
         const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
         expect(actualCmdArgs).toMatchInlineSnapshot(`
+                    Array [
+                      "\${programFiles}/nodejs/node.exe",
+                      "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+                      "--allowJs",
+                      "--project",
+                      "\${packageRoot}/tsconfig.json",
+                    ]
+                `);
+      });
+    });
+  });
+
+  describe(`using a combination of switches`, () => {
+    it(`execs expected command`, () => {
+      mockfs({
+        ...mockFsTsc(),
+        'tsconfig.json': 'a file'
+      });
+      const task = tscTask({ allowJs: true, build: 'tsconfig.json', outDir: 'some/out/path' });
+      expect.assertions(3);
+      return callTaskForTest(task).then(() => {
+        // Restore mockfs so snapshots work
+        mockfs.restore();
+        expect(exec).toHaveBeenCalled();
+        // Inspect the call to `encodeArgs` since it is easier to strip out repo-specific path values.
+        expect(encodeArgs).toHaveBeenCalled();
+        const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
+        expect(actualCmdArgs).toMatchInlineSnapshot(`
           Array [
             "\${programFiles}/nodejs/node.exe",
             "\${repoRoot}/node_modules/typescript/lib/tsc.js",
             "--allowJs",
-            "--project",
-            "\${packageRoot}/tsconfig.json",
+            "--build",
+            "tsconfig.json",
+            "--outDir",
+            "some/out/path",
           ]
         `);
       });
