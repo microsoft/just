@@ -69,11 +69,8 @@ export function tscWatchTask(options: TscTaskOptions): TaskFunction {
       const cmd = [...args, '--watch'];
       logger.info(encodeArgs(cmd).join(' '));
       return spawn(process.execPath, cmd, { stdio: 'inherit' });
-    } else {
-      Promise.resolve();
     }
-
-    return;
+    return Promise.resolve();
   };
 }
 
