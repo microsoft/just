@@ -145,7 +145,7 @@ describe(`tscTask`, () => {
         mockfs({
           ...mockFsTsc()
         });
-        const task = given.tscTaskFn({ project: 'a/custom/path/tsconfig.json' });
+        const task = given.tscTaskFn({ build: 'a/custom/path/tsconfig.json' });
         expect.assertions(1);
         return callTaskForTest(task).then(() => {
           expect(expected.execOrSpawnSpy).not.toHaveBeenCalled();
