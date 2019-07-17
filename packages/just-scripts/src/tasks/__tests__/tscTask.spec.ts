@@ -50,120 +50,110 @@ describe(`tscTask`, () => {
     ['tscTask', { tscTaskFn: tscTask }, { execOrSpawnSpy: exec as jest.Mock<any> }],
     ['tscWatchTask', { tscTaskFn: tscWatchTask }, { execOrSpawnSpy: spawn as jest.Mock<any> }]
   ])(`using '%s' function`, (_name, given, expected) => {
-    describe(`with empty options`, () => {
-      describe(`and tsconfig.json exists at package root`, () => {
-        it(`execs expected command`, () => {
-          mockfs({
-            ...mockFsTsc(),
+    describe(`with empty options and tsconfig.json exists at package root`, () => {
+      it(`execs expected command`, () => {
+        mockfs({
+          ...mockFsTsc(),
+          'tsconfig.json': 'a file'
+        });
+        const task = given.tscTaskFn({});
+        expect.assertions(3);
+        return callTaskForTest(task).then(() => {
+          // Restore mockfs so snapshots work
+          mockfs.restore();
+          expect(expected.execOrSpawnSpy).toHaveBeenCalled();
+          // Inspect the call to `encodeArgs` since it is easier to strip out repo-specific path values.
+          expect(encodeArgs).toHaveBeenCalled();
+          const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
+          expect(actualCmdArgs).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe(`with empty options and tsconfig.json does not exist at package root`, () => {
+      it(`does not exec command`, () => {
+        mockfs({
+          ...mockFsTsc()
+        });
+        const task = given.tscTaskFn({});
+        expect.assertions(1);
+        return callTaskForTest(task).then(() => {
+          expect(expected.execOrSpawnSpy).not.toHaveBeenCalled();
+        });
+      });
+    });
+
+    describe(`with 'project' option where 'project' is custom path and tsconfig.json exists`, () => {
+      it(`execs expected command`, () => {
+        mockfs({
+          ...mockFsTsc(),
+          'a/custom/path': {
             'tsconfig.json': 'a file'
-          });
-          const task = given.tscTaskFn({});
-          expect.assertions(3);
-          return callTaskForTest(task).then(() => {
-            // Restore mockfs so snapshots work
-            mockfs.restore();
-            expect(expected.execOrSpawnSpy).toHaveBeenCalled();
-            // Inspect the call to `encodeArgs` since it is easier to strip out repo-specific path values.
-            expect(encodeArgs).toHaveBeenCalled();
-            const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
-            expect(actualCmdArgs).toMatchSnapshot();
-          });
+          }
         });
-      });
-
-      describe(`and tsconfig.json does not exist at package root`, () => {
-        it(`does not exec command`, () => {
-          mockfs({
-            ...mockFsTsc()
-          });
-          const task = given.tscTaskFn({});
-          expect.assertions(1);
-          return callTaskForTest(task).then(() => {
-            expect(expected.execOrSpawnSpy).not.toHaveBeenCalled();
-          });
+        const task = given.tscTaskFn({ project: 'a/custom/path/tsconfig.json' });
+        expect.assertions(3);
+        return callTaskForTest(task).then(() => {
+          // Restore mockfs so snapshots work
+          mockfs.restore();
+          expect(expected.execOrSpawnSpy).toHaveBeenCalled();
+          // Inspect the call to `encodeArgs` since it is easier to strip out repo-specific path values.
+          expect(encodeArgs).toHaveBeenCalled();
+          const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
+          expect(actualCmdArgs).toMatchSnapshot();
         });
       });
     });
 
-    describe(`using 'project' option`, () => {
-      describe(`where 'project' is custom path`, () => {
-        describe(`and tsconfig.json exists`, () => {
-          it(`execs expected command`, () => {
-            mockfs({
-              ...mockFsTsc(),
-              'a/custom/path': {
-                'tsconfig.json': 'a file'
-              }
-            });
-            const task = given.tscTaskFn({ project: 'a/custom/path/tsconfig.json' });
-            expect.assertions(3);
-            return callTaskForTest(task).then(() => {
-              // Restore mockfs so snapshots work
-              mockfs.restore();
-              expect(expected.execOrSpawnSpy).toHaveBeenCalled();
-              // Inspect the call to `encodeArgs` since it is easier to strip out repo-specific path values.
-              expect(encodeArgs).toHaveBeenCalled();
-              const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
-              expect(actualCmdArgs).toMatchSnapshot();
-            });
-          });
+    describe(`with 'project' option where 'project' is custom path and tsconfig.json does not exist`, () => {
+      it(`does not exec command`, () => {
+        mockfs({
+          ...mockFsTsc()
         });
-
-        describe(`and tsconfig.json does not exist`, () => {
-          it(`does not exec command`, () => {
-            mockfs({
-              ...mockFsTsc()
-            });
-            const task = given.tscTaskFn({ project: 'a/custom/path/tsconfig.json' });
-            expect.assertions(1);
-            return callTaskForTest(task).then(() => {
-              expect(expected.execOrSpawnSpy).not.toHaveBeenCalled();
-            });
-          });
+        const task = given.tscTaskFn({ project: 'a/custom/path/tsconfig.json' });
+        expect.assertions(1);
+        return callTaskForTest(task).then(() => {
+          expect(expected.execOrSpawnSpy).not.toHaveBeenCalled();
         });
       });
     });
 
-    describe(`using 'build' option`, () => {
-      describe(`where 'build' is custom path`, () => {
-        describe(`and tsconfig.json exists`, () => {
-          it(`execs expected command`, () => {
-            mockfs({
-              ...mockFsTsc(),
-              'a/custom/path': {
-                'tsconfig.json': 'a file'
-              }
-            });
-            const task = given.tscTaskFn({ build: 'a/custom/path/tsconfig.json' });
-            expect.assertions(3);
-            return callTaskForTest(task).then(() => {
-              // Restore mockfs so snapshots work
-              mockfs.restore();
-              expect(expected.execOrSpawnSpy).toHaveBeenCalled();
-              // Inspect the call to `encodeArgs` since it is easier to strip out repo-specific path values.
-              expect(encodeArgs).toHaveBeenCalled();
-              const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
-              expect(actualCmdArgs).toMatchSnapshot();
-            });
-          });
+    describe(`with 'build' option where 'build' is custom path and tsconfig.json exists`, () => {
+      it(`execs expected command`, () => {
+        mockfs({
+          ...mockFsTsc(),
+          'a/custom/path': {
+            'tsconfig.json': 'a file'
+          }
         });
-
-        describe(`and tsconfig.json does not exist`, () => {
-          it(`does not exec command`, () => {
-            mockfs({
-              ...mockFsTsc()
-            });
-            const task = given.tscTaskFn({ project: 'a/custom/path/tsconfig.json' });
-            expect.assertions(1);
-            return callTaskForTest(task).then(() => {
-              expect(expected.execOrSpawnSpy).not.toHaveBeenCalled();
-            });
-          });
+        const task = given.tscTaskFn({ build: 'a/custom/path/tsconfig.json' });
+        expect.assertions(3);
+        return callTaskForTest(task).then(() => {
+          // Restore mockfs so snapshots work
+          mockfs.restore();
+          expect(expected.execOrSpawnSpy).toHaveBeenCalled();
+          // Inspect the call to `encodeArgs` since it is easier to strip out repo-specific path values.
+          expect(encodeArgs).toHaveBeenCalled();
+          const actualCmdArgs = normalizeCmdArgsForTest((encodeArgs as jest.Mock<any>).mock.calls[0][0]);
+          expect(actualCmdArgs).toMatchSnapshot();
         });
       });
     });
 
-    describe(`using a boolean switch`, () => {
+    describe(`with 'build' option where 'build' is custom path and tsconfig.json does not exist`, () => {
+      it(`does not exec command`, () => {
+        mockfs({
+          ...mockFsTsc()
+        });
+        const task = given.tscTaskFn({ project: 'a/custom/path/tsconfig.json' });
+        expect.assertions(1);
+        return callTaskForTest(task).then(() => {
+          expect(expected.execOrSpawnSpy).not.toHaveBeenCalled();
+        });
+      });
+    });
+
+    describe(`with a boolean switch`, () => {
       it(`execs expected command`, () => {
         mockfs({
           ...mockFsTsc(),
@@ -183,7 +173,7 @@ describe(`tscTask`, () => {
       });
     });
 
-    describe(`using a combination of switches`, () => {
+    describe(`with a combination of switches`, () => {
       it(`execs expected command`, () => {
         mockfs({
           ...mockFsTsc(),
