@@ -2,7 +2,7 @@
 
 exports[`tscTask using 'tscTask' function with 'build' option where 'build' is custom path and tsconfig.json exists execs expected command 1`] = `
 Array [
-  "\${programFiles}/nodejs/node.exe",
+  "\${nodeExePath}",
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
   "--build",
   "a/custom/path/tsconfig.json",
@@ -11,7 +11,7 @@ Array [
 
 exports[`tscTask using 'tscTask' function with 'project' option where 'project' is custom path and tsconfig.json exists execs expected command 1`] = `
 Array [
-  "\${programFiles}/nodejs/node.exe",
+  "\${nodeExePath}",
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
   "--project",
   "a/custom/path/tsconfig.json",
@@ -20,7 +20,7 @@ Array [
 
 exports[`tscTask using 'tscTask' function with a boolean switch execs expected command 1`] = `
 Array [
-  "\${programFiles}/nodejs/node.exe",
+  "\${nodeExePath}",
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
   "--allowJs",
   "--project",
@@ -30,7 +30,7 @@ Array [
 
 exports[`tscTask using 'tscTask' function with a combination of switches execs expected command 1`] = `
 Array [
-  "\${programFiles}/nodejs/node.exe",
+  "\${nodeExePath}",
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
   "--allowJs",
   "--build",
@@ -42,7 +42,7 @@ Array [
 
 exports[`tscTask using 'tscTask' function with empty options and tsconfig.json exists at package root execs expected command 1`] = `
 Array [
-  "\${programFiles}/nodejs/node.exe",
+  "\${nodeExePath}",
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
   "--project",
   "\${packageRoot}/tsconfig.json",

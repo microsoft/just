@@ -6,7 +6,7 @@ import { resolve } from 'path';
 export function normalizeCmdArgsForTest(cmdArgs: string[]) {
   const packageRootDir = process.cwd();
   const repoRootDir = resolve(packageRootDir, '../..');
-  const programFilesDir = process.env['ProgramFiles'];
+  const nodePath = process.execPath;
 
   if (!cmdArgs) {
     return cmdArgs;
@@ -14,8 +14,8 @@ export function normalizeCmdArgsForTest(cmdArgs: string[]) {
 
   return cmdArgs.map(arg => {
     let newArg = undefined;
-    if (programFilesDir && arg.indexOf(programFilesDir) >= 0) {
-      newArg = arg.replace(programFilesDir, '${programFiles}');
+    if (arg.indexOf(nodePath) >= 0) {
+      newArg = arg.replace(nodePath, '${nodeExePath}');
     } else if (arg.indexOf(packageRootDir) >= 0) {
       newArg = arg.replace(packageRootDir, '${packageRoot}');
     } else if (arg.indexOf(repoRootDir) >= 0) {
