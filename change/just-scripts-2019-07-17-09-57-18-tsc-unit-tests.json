@@ -1,0 +1,8 @@
+{
+  "comment": "Add unit tests for tscTask",
+  "type": "patch",
+  "packageName": "just-scripts",
+  "email": "ScottHysom@users.noreply.github.com",
+  "commit": "f23c59e573b5330564314d3ea8dcc2230208986f",
+  "date": "2019-07-17T16:57:18.191Z"
+}
