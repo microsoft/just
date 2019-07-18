@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 18 Jul 2019 17:09:22 GMT and should not be manually modified.
+This log was last generated on Thu, 18 Jul 2019 18:05:47 GMT and should not be manually modified.
+
+## 0.25.4
+Thu, 18 Jul 2019 18:05:47 GMT
+
+### Patches
+
+- Add unit tests for tscTask (ScottHysom@users.noreply.github.com)
 
 ## 0.25.3
 Thu, 18 Jul 2019 17:09:22 GMT

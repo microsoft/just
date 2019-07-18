@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 18 Jul 2019 18:05:47 GMT",
+      "tag": "just-scripts_v0.25.4",
+      "version": "0.25.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add unit tests for tscTask",
+            "author": "ScottHysom@users.noreply.github.com",
+            "commit": "f23c59e573b5330564314d3ea8dcc2230208986f"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 18 Jul 2019 17:09:22 GMT",
       "tag": "just-scripts_v0.25.3",
       "version": "0.25.3",
