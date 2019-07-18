@@ -5,7 +5,7 @@ import fs from 'fs';
 
 export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean };
 
-export function tscTask(options: TscTaskOptions): TaskFunction {
+export function tscTask(options: TscTaskOptions = {}): TaskFunction {
   const tscCmd = resolve('typescript/lib/tsc.js');
 
   if (!tscCmd) {
@@ -40,7 +40,7 @@ export function tscTask(options: TscTaskOptions): TaskFunction {
   };
 }
 
-export function tscWatchTask(options: TscTaskOptions): TaskFunction {
+export function tscWatchTask(options: TscTaskOptions = {}): TaskFunction {
   const tscCmd = resolve('typescript/lib/tsc.js');
 
   if (!tscCmd) {

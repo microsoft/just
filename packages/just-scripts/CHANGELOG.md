@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 10 Jul 2019 19:56:39 GMT and should not be manually modified.
+This log was last generated on Thu, 18 Jul 2019 17:09:22 GMT and should not be manually modified.
+
+## 0.25.3
+Thu, 18 Jul 2019 17:09:22 GMT
+
+### Patches
+
+- fix: added default arguments (anik220798@gmail.com)
 
 ## 0.25.2
 Wed, 10 Jul 2019 19:56:39 GMT
