@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 18 Jul 2019 17:09:22 GMT",
+      "tag": "just-scripts_v0.25.3",
+      "version": "0.25.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix: added default arguments",
+            "author": "anik220798@gmail.com",
+            "commit": "6f1034448f1761544d0cb88b27d31ab9654c8d22"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 10 Jul 2019 19:56:39 GMT",
       "tag": "just-scripts_v0.25.2",
       "version": "0.25.2",
