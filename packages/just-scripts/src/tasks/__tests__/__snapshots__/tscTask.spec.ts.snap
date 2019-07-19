@@ -9,6 +9,17 @@ Array [
 ]
 `;
 
+exports[`tscTask using 'tscTask' function with 'build' option where 'build' is multiple paths and they all exist execs expected command 1`] = `
+Array [
+  "\${nodeExePath}",
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--build",
+  "project/a/tsconfig.json",
+  "project/b/tsconfig.json",
+  "project/c/tsconfig.json",
+]
+`;
+
 exports[`tscTask using 'tscTask' function with 'project' option where 'project' is custom path and tsconfig.json exists execs expected command 1`] = `
 Array [
   "\${nodeExePath}",
@@ -18,7 +29,16 @@ Array [
 ]
 `;
 
-exports[`tscTask using 'tscTask' function with a boolean switch execs expected command 1`] = `
+exports[`tscTask using 'tscTask' function with a boolean 'false' switch execs expected command 1`] = `
+Array [
+  "\${nodeExePath}",
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--project",
+  "\${packageRoot}/tsconfig.json",
+]
+`;
+
+exports[`tscTask using 'tscTask' function with a boolean 'true' switch execs expected command 1`] = `
 Array [
   "\${nodeExePath}",
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
@@ -40,10 +60,43 @@ Array [
 ]
 `;
 
-exports[`tscTask using 'tscTask' function with empty options and tsconfig.json exists at package root execs expected command 1`] = `
+exports[`tscTask using 'tscTask' function with empty options execs expected command 1`] = `
 Array [
   "\${nodeExePath}",
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--project",
+  "\${packageRoot}/tsconfig.json",
+]
+`;
+
+exports[`tscTask using 'tscTask' function with no arguments execs expected command 1`] = `
+Array [
+  "\${nodeExePath}",
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--project",
+  "\${packageRoot}/tsconfig.json",
+]
+`;
+
+exports[`tscTask using 'tscTask' function with string array option execs expected command 1`] = `
+Array [
+  "\${nodeExePath}",
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--lib",
+  "es6",
+  "dom",
+  "esnext.intl",
+  "--project",
+  "\${packageRoot}/tsconfig.json",
+]
+`;
+
+exports[`tscTask using 'tscTask' function with string value option execs expected command 1`] = `
+Array [
+  "\${nodeExePath}",
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--module",
+  "ESNext",
   "--project",
   "\${packageRoot}/tsconfig.json",
 ]
@@ -58,6 +111,17 @@ Array [
 ]
 `;
 
+exports[`tscTask using 'tscWatchTask' function with 'build' option where 'build' is multiple paths and they all exist execs expected command 1`] = `
+Array [
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--build",
+  "project/a/tsconfig.json",
+  "project/b/tsconfig.json",
+  "project/c/tsconfig.json",
+  "--watch",
+]
+`;
+
 exports[`tscTask using 'tscWatchTask' function with 'project' option where 'project' is custom path and tsconfig.json exists execs expected command 1`] = `
 Array [
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
@@ -67,7 +131,16 @@ Array [
 ]
 `;
 
-exports[`tscTask using 'tscWatchTask' function with a boolean switch execs expected command 1`] = `
+exports[`tscTask using 'tscWatchTask' function with a boolean 'false' switch execs expected command 1`] = `
+Array [
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--project",
+  "\${packageRoot}/tsconfig.json",
+  "--watch",
+]
+`;
+
+exports[`tscTask using 'tscWatchTask' function with a boolean 'true' switch execs expected command 1`] = `
 Array [
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
   "--allowJs",
@@ -89,9 +162,42 @@ Array [
 ]
 `;
 
-exports[`tscTask using 'tscWatchTask' function with empty options and tsconfig.json exists at package root execs expected command 1`] = `
+exports[`tscTask using 'tscWatchTask' function with empty options execs expected command 1`] = `
 Array [
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--project",
+  "\${packageRoot}/tsconfig.json",
+  "--watch",
+]
+`;
+
+exports[`tscTask using 'tscWatchTask' function with no arguments execs expected command 1`] = `
+Array [
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--project",
+  "\${packageRoot}/tsconfig.json",
+  "--watch",
+]
+`;
+
+exports[`tscTask using 'tscWatchTask' function with string array option execs expected command 1`] = `
+Array [
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--lib",
+  "es6",
+  "dom",
+  "esnext.intl",
+  "--project",
+  "\${packageRoot}/tsconfig.json",
+  "--watch",
+]
+`;
+
+exports[`tscTask using 'tscWatchTask' function with string value option execs expected command 1`] = `
+Array [
+  "\${repoRoot}/node_modules/typescript/lib/tsc.js",
+  "--module",
+  "ESNext",
   "--project",
   "\${packageRoot}/tsconfig.json",
   "--watch",
