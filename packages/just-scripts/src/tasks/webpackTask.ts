@@ -13,6 +13,12 @@ export interface WebpackTaskOptions extends Configuration {
   outputStats?: boolean | string;
 
   mode?: 'production' | 'development';
+
+  /**
+   * Arguments to be passed into a spawn call for webpack dev server. This can be used to do things
+   * like increase the heap space for the JS engine to address out of memory issues.
+   */
+  nodeArgs?: string[];
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
@@ -48,7 +54,10 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
       // Convert everything to promises first to make sure we resolve all promises
       const webpackConfigPromises = await Promise.all(webpackConfigs.map(webpackConfig => Promise.resolve(webpackConfig)));
 
-      const { ...restConfig } = options || {};
+      // We support passing in arbitrary webpack config options that we need to merge with any read configs.
+      // To do this, we need to filter out the properties that aren't valid config options and then run webpack merge.
+      // A better long term solution here would be to have an option called webpackConfigOverrides instead of extending the configuration object.
+      const { config, outputStats, nodeArgs, ...restConfig } = options || ({} as WebpackTaskOptions);
 
       webpackConfigs = webpackConfigPromises.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
 
@@ -78,16 +87,16 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   };
 }
 
-export function webpackDevServerTask(options?: WebpackTaskOptions) {
+export function webpackDevServerTask(options: WebpackTaskOptions = {}) {
   const configPath = resolveCwd((options && options.config) || 'webpack.serve.config.js');
-  const cmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
+  const devServerCmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
 
   return function webpackDevServer() {
-    if (cmd && configPath && fs.existsSync(configPath)) {
-      const mode = (options && options.mode) || 'development';
-      const args = [cmd, '--config', configPath, '--open', '--mode', mode];
+    if (devServerCmd && configPath && fs.existsSync(configPath)) {
+      const mode = options.mode || 'development';
+      const args = [...(options.nodeArgs || []), devServerCmd, '--config', configPath, '--open', '--mode', mode];
 
-      logger.info(cmd, encodeArgs(args).join(' '));
+      logger.info(devServerCmd, encodeArgs(args).join(' '));
       return spawn(process.execPath, args, { stdio: 'inherit' });
     } else {
       logger.warn('no webpack.serve.config.js configuration found, skipping');

@@ -5,7 +5,7 @@ import fs from 'fs';
 
 export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean };
 
-export function tscTask(options: TscTaskOptions): TaskFunction {
+export function tscTask(options: TscTaskOptions = {}): TaskFunction {
   const tscCmd = resolve('typescript/lib/tsc.js');
 
   if (!tscCmd) {
@@ -35,15 +35,12 @@ export function tscTask(options: TscTaskOptions): TaskFunction {
       const cmd = encodeArgs([process.execPath, ...args]).join(' ');
       logger.info(`Executing: ${cmd}`);
       return exec(cmd);
-    } else {
-      Promise.resolve();
     }
-
-    return;
+    return Promise.resolve();
   };
 }
 
-export function tscWatchTask(options: TscTaskOptions): TaskFunction {
+export function tscWatchTask(options: TscTaskOptions = {}): TaskFunction {
   const tscCmd = resolve('typescript/lib/tsc.js');
 
   if (!tscCmd) {
@@ -72,11 +69,8 @@ export function tscWatchTask(options: TscTaskOptions): TaskFunction {
       const cmd = [...args, '--watch'];
       logger.info(encodeArgs(cmd).join(' '));
       return spawn(process.execPath, cmd, { stdio: 'inherit' });
-    } else {
-      Promise.resolve();
     }
-
-    return;
+    return Promise.resolve();
   };
 }
 

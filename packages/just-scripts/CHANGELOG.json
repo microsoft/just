@@ -2,6 +2,62 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 18 Jul 2019 18:05:47 GMT",
+      "tag": "just-scripts_v0.25.4",
+      "version": "0.25.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add unit tests for tscTask",
+            "author": "ScottHysom@users.noreply.github.com",
+            "commit": "f23c59e573b5330564314d3ea8dcc2230208986f"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 18 Jul 2019 17:09:22 GMT",
+      "tag": "just-scripts_v0.25.3",
+      "version": "0.25.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix: added default arguments",
+            "author": "anik220798@gmail.com",
+            "commit": "6f1034448f1761544d0cb88b27d31ab9654c8d22"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 10 Jul 2019 19:56:39 GMT",
+      "tag": "just-scripts_v0.25.2",
+      "version": "0.25.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Only pass valid webpack options to webpack",
+            "author": "1581488+christiango@users.noreply.github.com",
+            "commit": "97f699d46f96b051d9ffa66e9c72f11f11a20825"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 10 Jul 2019 16:41:03 GMT",
+      "tag": "just-scripts_v0.25.1",
+      "version": "0.25.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add ability to set node args for webpack dev server",
+            "author": "1581488+christiango@users.noreply.github.com",
+            "commit": "b4158f2abd49e9d453a4e910f2fe4229c0f1bed3"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 05 Jul 2019 16:59:55 GMT",
       "tag": "just-scripts_v0.25.0",
       "version": "0.25.0",
