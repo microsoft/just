@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 19 Jul 2019 22:44:26 GMT",
+      "tag": "just-scripts_v0.26.0",
+      "version": "0.26.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Support string array options.",
+            "author": "ScottHysom@users.noreply.github.com",
+            "commit": "4632a549f0141c4574565aa546b793bc6a4faa3e"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 18 Jul 2019 18:05:47 GMT",
       "tag": "just-scripts_v0.25.4",
       "version": "0.25.4",
