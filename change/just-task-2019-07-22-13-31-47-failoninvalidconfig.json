@@ -1,0 +1,8 @@
+{
+  "comment": "fail the build if it has invalid config",
+  "type": "patch",
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com",
+  "commit": "5b647b256a97f3ab7cb667ae72412774a9679448",
+  "date": "2019-07-22T20:31:47.909Z"
+}

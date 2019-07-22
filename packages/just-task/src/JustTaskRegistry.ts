@@ -26,6 +26,7 @@ export class JustTaskRegistry extends UndertakerRegistry {
       } catch (e) {
         logger.error(`Invalid configuration file: ${configFile}`);
         logger.error(`Error: ${e.message || e}`);
+        process.exit(1);
       }
     } else {
       logger.error(
