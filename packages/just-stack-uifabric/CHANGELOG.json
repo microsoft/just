@@ -2,6 +2,20 @@
   "name": "just-stack-uifabric",
   "entries": [
     {
+      "date": "Fri, 12 Jul 2019 23:29:37 GMT",
+      "tag": "just-stack-uifabric_v0.12.1",
+      "version": "0.12.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "added sass and css typings for css modules",
+            "author": "mgodbolt@microsoft.com",
+            "commit": "7db92db09f9fbd6eb4fea43e7d20cd985aa12436"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.4",
       "tag": "just-stack-uifabric_v0.11.4",
       "date": "Fri, 31 May 2019 21:15:02 GMT",

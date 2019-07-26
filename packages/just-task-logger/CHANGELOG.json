@@ -2,6 +2,20 @@
   "name": "just-task-logger",
   "entries": [
     {
+      "date": "Thu, 11 Jul 2019 17:08:46 GMT",
+      "tag": "just-task-logger_v0.3.0",
+      "version": "0.3.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "adding perf logging",
+            "author": "kchau@microsoft.com",
+            "commit": "41f35e4f9c771f2ffb96d0f5ea8cfb1eb1475afc"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.1",
       "tag": "just-task-logger_v0.2.1",
       "date": "Wed, 15 May 2019 18:44:04 GMT",

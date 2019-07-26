@@ -1,6 +1,6 @@
 import yargs from 'yargs';
 import fs from 'fs';
-import { logger } from './logger';
+import { logger, mark } from './logger';
 
 import UndertakerRegistry from 'undertaker-registry';
 import Undertaker from 'undertaker';
@@ -15,6 +15,8 @@ export class JustTaskRegistry extends UndertakerRegistry {
     // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
     const configFile = [yargs.argv.config, './just.config.js', './just-task.js'].reduce((value, entry) => value || resolve(entry));
 
+    mark('registry:configModule');
+
     if (configFile && fs.existsSync(configFile)) {
       try {
         const configModule = require(configFile);
@@ -24,6 +26,7 @@ export class JustTaskRegistry extends UndertakerRegistry {
       } catch (e) {
         logger.error(`Invalid configuration file: ${configFile}`);
         logger.error(`Error: ${e.message || e}`);
+        process.exit(1);
       }
     } else {
       logger.error(
@@ -31,6 +34,8 @@ export class JustTaskRegistry extends UndertakerRegistry {
         `Please create a file called "just.config.js" in the root of the project next to "package.json".`
       );
     }
+
+    logger.perf('registry:configModule');
 
     if (!validateCommands(yargs)) {
       process.exit(1);

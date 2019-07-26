@@ -1,6 +1,6 @@
 {
   "name": "just-task",
-  "version": "0.12.1",
+  "version": "0.13.1",
   "description": "Build task definition library",
   "keywords": [],
   "repository": {
@@ -23,7 +23,7 @@
     "@microsoft/package-deps-hash": "^2.2.153",
     "chalk": "^2.4.1",
     "fs-extra": "^7.0.1",
-    "just-task-logger": ">=0.2.1 <1.0.0",
+    "just-task-logger": ">=0.3.0 <1.0.0",
     "resolve": "^1.8.1",
     "undertaker": "^1.2.0",
     "undertaker-registry": "^1.0.1",

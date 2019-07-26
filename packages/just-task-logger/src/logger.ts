@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import yargs from 'yargs';
+import { getDeltaAndClearMark } from './perf';
 
 function logInternal(method: 'info' | 'warn' | 'error', symbol: string, ...args: any[]) {
   const now = new Date();
@@ -19,6 +20,8 @@ export interface Logger {
   warn(...args: any[]): void;
   /** Log to `console.error` with a timestamp. */
   error(...args: any[]): void;
+  /** Log perf marker data to `consold.info` with timestamp, only if verbose is enabled */
+  perf(marker: string, ...args: any[]): void;
 }
 
 const emptySquare = '\u25a1';
@@ -44,5 +47,17 @@ export const logger: Logger = {
 
   error(...args: any[]) {
     logInternal('error', chalk.redBright('x'), ...args);
+  },
+
+  perf(marker: string, ...args: any[]) {
+    if (logger.enableVerbose) {
+      const delta = getDeltaAndClearMark(marker);
+
+      if (delta) {
+        const ns = delta[0] * 1e9 + delta[1];
+        const deltaMsg = `${ns / 1e9}s`;
+        logInternal('info', chalk.cyan(square), `mark(${chalk.cyanBright(marker)}): took ${chalk.cyanBright(deltaMsg)}`, ...args);
+      }
+    }
   }
 };

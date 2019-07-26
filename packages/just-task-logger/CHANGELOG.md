@@ -1,6 +1,13 @@
-# Changelog - just-task-logger
+# Change Log - just-task-logger
 
-This log was last generated on Mon, 01 Jul 2019 20:15:20 GMT and should not be manually modified.
+This log was last generated on Thu, 11 Jul 2019 17:08:46 GMT and should not be manually modified.
+
+## 0.3.0
+Thu, 11 Jul 2019 17:08:46 GMT
+
+### Minor changes
+
+- adding perf logging (kchau@microsoft.com)
 
 ## 0.2.1
 Mon, 01 Jul 2019 20:15:20 GMT
