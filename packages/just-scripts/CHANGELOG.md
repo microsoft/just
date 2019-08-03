@@ -1,6 +1,55 @@
-# Changelog - just-scripts
+# Change Log - just-scripts
 
-This log was last generated on Mon, 01 Jul 2019 18:55:04 GMT and should not be manually modified.
+This log was last generated on Fri, 19 Jul 2019 22:44:26 GMT and should not be manually modified.
+
+## 0.26.0
+Fri, 19 Jul 2019 22:44:26 GMT
+
+### Minor changes
+
+- Support string array options. (ScottHysom@users.noreply.github.com)
+
+## 0.25.4
+Thu, 18 Jul 2019 18:05:47 GMT
+
+### Patches
+
+- Add unit tests for tscTask (ScottHysom@users.noreply.github.com)
+
+## 0.25.3
+Thu, 18 Jul 2019 17:09:22 GMT
+
+### Patches
+
+- fix: added default arguments (anik220798@gmail.com)
+
+## 0.25.2
+Wed, 10 Jul 2019 19:56:39 GMT
+
+### Patches
+
+- Only pass valid webpack options to webpack (1581488+christiango@users.noreply.github.com)
+
+## 0.25.1
+Wed, 10 Jul 2019 16:41:03 GMT
+
+### Patches
+
+- Add ability to set node args for webpack dev server (1581488+christiango@users.noreply.github.com)
+
+## 0.25.0
+Fri, 05 Jul 2019 16:59:55 GMT
+
+### Minor changes
+
+- allow webpacktask to take in promises inside the module exports (kchau@microsoft.com)
+
+## 0.24.2
+Mon, 01 Jul 2019 20:15:20 GMT
+
+### Patches
+
+- introduce ESLint to sources (43081j@users.noreply.github.com)
 
 ## 0.24.1
 Mon, 01 Jul 2019 18:55:04 GMT

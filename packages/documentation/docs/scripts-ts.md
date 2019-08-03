@@ -1,14 +1,14 @@
 ---
 id: scripts-ts
-title: Typescript
-sidebar_label: Typescript
+title: TypeScript
+sidebar_label: TypeScript
 ---
 
-Typescript is a very popular compiler that allows developers to use modern ES6 features as well as a very mature typing system. The benefits are so great that it has become one of the first presets supported by the `just-scripts` library.
+TypeScript is a very popular compiler that allows developers to use modern ES6 features as well as a very mature typing system. The benefits are so great that it has become one of the first presets supported by the `just-scripts` library.
 
-Given a library with Typescript source code, it might be desirable to have multiple output formats for different audiences. By default, the `tscTask()` function looks for the `tsconfig.json` present in the project root. The preset higher order function can take in an option that overrides compilation options. The Typescript compiler options are passed to the `tsc.js` script.
+Given a library with TypeScript source code, it might be desirable to have multiple output formats for different audiences. By default, the `tscTask()` function looks for the `tsconfig.json` present in the project root. The preset higher order function can take in an option that overrides compilation options. The TypeScript compiler options are passed to the `tsc.js` script.
 
-A list of available options are located at the [Typescript documentation site](http://www.typescriptlang.org/docs/handbook/compiler-options.html). The options passed into the preset function will be passed in as command line arguments as a string.
+A list of available options are located at the [TypeScript documentation site](http://www.typescriptlang.org/docs/handbook/compiler-options.html). The options passed into the preset function will be passed in as command line arguments as a string.
 
 ```tsx
 // just-task.js

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 // TODO: fill out the typing for this
 declare module 'npm-registry-fetch' {
   interface Options {}

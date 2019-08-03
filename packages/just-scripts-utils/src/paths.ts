@@ -1,7 +1,7 @@
 import path from 'path';
 import os from 'os';
 
-let projectPath: string = '';
+let projectPath = '';
 
 export const paths = {
   /**

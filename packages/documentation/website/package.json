@@ -1,6 +1,6 @@
 {
   "name": "just-task-docs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",

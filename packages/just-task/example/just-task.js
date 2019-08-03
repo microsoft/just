@@ -8,7 +8,7 @@ module.exports = () => {
   });
 
   task('ts', function() {
-    logger.info('Here we can run build steps like Babel or Typescript');
+    logger.info('Here we can run build steps like Babel or TypeScript');
   });
 
   task('tslint', function() {
@@ -29,7 +29,7 @@ module.exports = () => {
   task('webpack:promise', () => {
     const someVar = Math.random();
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       logger.info('Webpack bundling files', someVar);
       setTimeout(() => {
         resolve();

@@ -3,7 +3,7 @@ import { argv } from './option';
 import { resolveCwd } from './resolve';
 import fs from 'fs-extra';
 import path from 'path';
-import { logger } from 'just-task-logger';
+import { logger, mark } from 'just-task-logger';
 import { findGitRoot } from './package/findGitRoot';
 import { findDependents } from './package/findDependents';
 
@@ -36,7 +36,7 @@ export function isCached(taskName: string) {
     return false;
   }
 
-  let shouldCache: boolean = false;
+  let shouldCache = false;
 
   try {
     const cachedHash = JSON.parse(fs.readFileSync(path.join(cachePath, CacheFileName)).toString());
@@ -69,6 +69,7 @@ export function saveCache(taskName: string) {
 }
 
 function getCachePath() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const packageJsonFilePath = resolveCwd('package.json')!;
   const rootPath = path.dirname(packageJsonFilePath);
   return path.join(rootPath, 'node_modules/.just');
@@ -82,7 +83,9 @@ interface CacheHash {
 }
 
 function getHash(taskName: string): CacheHash | null {
-  const { $0: scriptNameArg, ...args } = argv();
+  mark('cache:getHash');
+
+  const { ...args } = argv();
 
   const gitRoot = findGitRoot();
 
@@ -90,13 +93,13 @@ function getHash(taskName: string): CacheHash | null {
     return null;
   }
 
-  const hash = getPackageDeps(gitRoot);
+  const packageDeps = getPackageDeps(gitRoot);
 
   const cwd = process.cwd();
 
-  const files: typeof hash.files = {};
+  const files: typeof packageDeps.files = {};
 
-  Object.keys(hash.files).forEach(file => {
+  Object.keys(packageDeps.files).forEach(file => {
     const basename = path.basename(file);
 
     if (
@@ -106,18 +109,22 @@ function getHash(taskName: string): CacheHash | null {
       basename === 'yarn.lock' ||
       basename === 'pnpmfile.js'
     ) {
-      files[file] = hash.files[file];
+      files[file] = packageDeps.files[file];
     }
   });
 
-  hash.files = files;
+  packageDeps.files = files;
 
-  return {
+  const hash = {
     args,
     taskName,
-    hash,
+    hash: packageDeps,
     dependentHashTimestamps: getDependentHashTimestamps()
   };
+
+  logger.perf('cache:getHash');
+
+  return hash;
 }
 
 function isChildOf(child: string, parent: string) {
@@ -126,6 +133,7 @@ function isChildOf(child: string, parent: string) {
 }
 
 function getDependentHashTimestamps() {
+  mark('cache:getDependentHashTimestamps');
   const dependentPkgPaths = findDependents();
 
   const timestampsByPackage: { [pkgName: string]: number } = {};
@@ -133,12 +141,18 @@ function getDependentHashTimestamps() {
   for (const pkgDepInfo of dependentPkgPaths) {
     const pkgPath = pkgDepInfo.path;
     const depHashFile = path.join(pkgPath, 'node_modules/.just', CacheFileName);
+    const depPackageJson = JSON.parse(fs.readFileSync(path.join(pkgPath, 'package.json'), 'utf-8'));
 
     if (fs.existsSync(depHashFile)) {
       const stat = fs.statSync(depHashFile);
       timestampsByPackage[pkgDepInfo.name] = stat.mtimeMs;
+    } else if (depPackageJson.scripts) {
+      // always updated if no hash file is found for dependants
+      timestampsByPackage[pkgDepInfo.name] = new Date().getTime();
     }
   }
+
+  logger.perf('cache:getDependentHashTimestamps');
 
   return timestampsByPackage;
 }

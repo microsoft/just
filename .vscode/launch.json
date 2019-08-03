@@ -8,10 +8,10 @@
       "name": "Debug test",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceRoot}/packages/just-scripts-utils/node_modules/jest/bin/jest.js",
-      "cwd": "${fileDirname}",
+      "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+      "cwd": "${workspaceFolder}/packages/just-scripts",
       "args": ["-i", "--runInBand"],
-      "runtimeArgs": ["--nolazy", "--debug"],
+      "runtimeArgs": ["--nolazy"],
       "env": {
         "NODE_ENV": "development"
       },

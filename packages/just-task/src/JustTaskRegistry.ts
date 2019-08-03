@@ -1,6 +1,6 @@
 import yargs from 'yargs';
 import fs from 'fs';
-import { logger } from './logger';
+import { logger, mark } from './logger';
 
 import UndertakerRegistry from 'undertaker-registry';
 import Undertaker from 'undertaker';
@@ -9,11 +9,13 @@ import { resolve } from './resolve';
 export class JustTaskRegistry extends UndertakerRegistry {
   private hasDefault: boolean = false;
 
-  init(taker: Undertaker) {
+  public init(taker: Undertaker) {
     super.init(taker);
 
     // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
-    let configFile = [yargs.argv.config, './just.config.js', './just-task.js'].reduce((value, entry) => value || resolve(entry));
+    const configFile = [yargs.argv.config, './just.config.js', './just-task.js'].reduce((value, entry) => value || resolve(entry));
+
+    mark('registry:configModule');
 
     if (configFile && fs.existsSync(configFile)) {
       try {
@@ -24,6 +26,7 @@ export class JustTaskRegistry extends UndertakerRegistry {
       } catch (e) {
         logger.error(`Invalid configuration file: ${configFile}`);
         logger.error(`Error: ${e.message || e}`);
+        process.exit(1);
       }
     } else {
       logger.error(
@@ -31,6 +34,8 @@ export class JustTaskRegistry extends UndertakerRegistry {
         `Please create a file called "just.config.js" in the root of the project next to "package.json".`
       );
     }
+
+    logger.perf('registry:configModule');
 
     if (!validateCommands(yargs)) {
       process.exit(1);
@@ -41,7 +46,7 @@ export class JustTaskRegistry extends UndertakerRegistry {
     }
   }
 
-  set<TTaskFunction>(taskName: string, fn: TTaskFunction): TTaskFunction {
+  public set<TTaskFunction>(taskName: string, fn: TTaskFunction): TTaskFunction {
     super.set(taskName, fn);
 
     if (taskName === 'default') {

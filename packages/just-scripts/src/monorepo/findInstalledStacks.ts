@@ -14,8 +14,10 @@ export function findInstalledStacks(rootPath: string) {
     .map(stack => [stack, path.join(scriptsPath, 'node_modules', stack)]);
 
   return stacks.map<StackInfo>(([stack, stackPath]) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const packageJson = readPackageJson(stackPath)!; // already checked existence above
     return {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       description: packageJson.description!,
       name: stack,
       version: packageJson.version,

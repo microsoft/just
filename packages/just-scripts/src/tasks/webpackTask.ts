@@ -1,10 +1,12 @@
-import { logger, argv, resolve, resolveCwd, TaskFunction } from 'just-task';
-import fs from 'fs';
+// // WARNING: Careful about add more imports - only import types from webpack
+import { Configuration } from 'webpack';
 import { encodeArgs, spawn } from 'just-scripts-utils';
-import webpackMerge from 'webpack-merge';
+import { logger, argv, resolve, resolveCwd, TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
+import fs from 'fs';
+import webpackMerge from 'webpack-merge';
 
-export interface WebpackTaskOptions {
+export interface WebpackTaskOptions extends Configuration {
   config?: string;
 
   /** true to output to stats.json; a string to output to a file */
@@ -12,12 +14,15 @@ export interface WebpackTaskOptions {
 
   mode?: 'production' | 'development';
 
-  // can contain other config values which are passed on to webpack
-  [key: string]: any;
+  /**
+   * Arguments to be passed into a spawn call for webpack dev server. This can be used to do things
+   * like increase the heap space for the JS engine to address out of memory issues.
+   */
+  nodeArgs?: string[];
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
-  return function webpack() {
+  return async function webpack() {
     const wp = tryRequire('webpack');
 
     if (!wp) {
@@ -30,65 +35,68 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
 
     if (webpackConfigPath && fs.existsSync(webpackConfigPath)) {
+      const configLoader = require(webpackConfigPath);
+
+      let webpackConfigs: Configuration[];
+
+      // If the loaded webpack config is a function
+      // call it with the original process.argv arguments from build.js.
+      if (typeof configLoader == 'function') {
+        webpackConfigs = configLoader(argv());
+      } else {
+        webpackConfigs = configLoader;
+      }
+
+      if (!Array.isArray(webpackConfigs)) {
+        webpackConfigs = [webpackConfigs];
+      }
+
+      // Convert everything to promises first to make sure we resolve all promises
+      const webpackConfigPromises = await Promise.all(webpackConfigs.map(webpackConfig => Promise.resolve(webpackConfig)));
+
+      // We support passing in arbitrary webpack config options that we need to merge with any read configs.
+      // To do this, we need to filter out the properties that aren't valid config options and then run webpack merge.
+      // A better long term solution here would be to have an option called webpackConfigOverrides instead of extending the configuration object.
+      const { config, outputStats, nodeArgs, ...restConfig } = options || ({} as WebpackTaskOptions);
+
+      webpackConfigs = webpackConfigPromises.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
+
       return new Promise((resolve, reject) => {
-        fs.exists(webpackConfigPath, isFileExists => {
-          if (!isFileExists) {
-            return reject(`Cannot find webpack configuration file`);
+        wp(webpackConfigs, (err: Error, stats: any) => {
+          if (options && options.outputStats) {
+            const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
+            fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
           }
 
-          const configLoader = require(webpackConfigPath);
-
-          let webpackConfigs;
-
-          // If the loaded webpack config is a function
-          // call it with the original process.argv arguments from build.js.
-          if (typeof configLoader == 'function') {
-            webpackConfigs = configLoader(argv());
+          if (err || stats.hasErrors()) {
+            const errorStats = stats.toJson('errors-only');
+            errorStats.errors.forEach((error: any) => {
+              logger.error(error);
+            });
+            reject(`Webpack failed with ${errorStats.errors.length} error(s).`);
           } else {
-            webpackConfigs = configLoader;
+            resolve();
           }
-
-          if (!Array.isArray(webpackConfigs)) {
-            webpackConfigs = [webpackConfigs];
-          }
-
-          const { config, ...restConfig } = options || { config: null };
-          webpackConfigs = webpackConfigs.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
-
-          wp(webpackConfigs, (err: Error, stats: any) => {
-            if (options && options.outputStats) {
-              const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
-              fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
-            }
-
-            if (err || stats.hasErrors()) {
-              let errorStats = stats.toJson('errors-only');
-              errorStats.errors.forEach((error: any) => {
-                logger.error(error);
-              });
-              reject(`Webpack failed with ${errorStats.errors.length} error(s).`);
-            } else {
-              resolve();
-            }
-          });
         });
       });
     } else {
       logger.info('webpack.config.js not found, skipping webpack');
     }
+
+    return;
   };
 }
 
-export function webpackDevServerTask(options?: WebpackTaskOptions) {
+export function webpackDevServerTask(options: WebpackTaskOptions = {}) {
   const configPath = resolveCwd((options && options.config) || 'webpack.serve.config.js');
-  const cmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
+  const devServerCmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
 
   return function webpackDevServer() {
-    if (cmd && configPath && fs.existsSync(configPath)) {
-      const mode = (options && options.mode) || 'development';
-      const args = [cmd, '--config', configPath, '--open', '--mode', mode];
+    if (devServerCmd && configPath && fs.existsSync(configPath)) {
+      const mode = options.mode || 'development';
+      const args = [...(options.nodeArgs || []), devServerCmd, '--config', configPath, '--open', '--mode', mode];
 
-      logger.info(cmd, encodeArgs(args).join(' '));
+      logger.info(devServerCmd, encodeArgs(args).join(' '));
       return spawn(process.execPath, args, { stdio: 'inherit' });
     } else {
       logger.warn('no webpack.serve.config.js configuration found, skipping');

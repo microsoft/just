@@ -17,9 +17,15 @@ export function task(
   } else if (argCount === 2 && isString(firstParam) && isString(secondParam)) {
     // task('default', 'build');
 
-    const theTask = undertaker.series(secondParam);
-    undertaker.task(firstParam, theTask);
+    const wrapped = wrapTask(undertaker.series(secondParam));
+    wrapped.cached = () => {
+      registerCachedTask(firstParam);
+    };
+
+    undertaker.task(firstParam, wrapped);
     yargs.command(getCommandModule(firstParam, ''));
+
+    return wrapped;
   } else if (argCount === 2 && isString(firstParam) && isTaskFunction(secondParam)) {
     // task('pretter', prettierTask());
     // task('custom', () => { ... });
@@ -61,7 +67,7 @@ function getCommandModule(taskName: string, describe?: string): yargs.CommandMod
     command: taskName,
     describe,
     ...(taskName === 'default' ? { aliases: ['*'] } : {}),
-    handler(argvParam: any) {
+    handler(_argvParam: any) {
       if (isCached(taskName)) {
         logger.info(`Skipped ${taskName} since it was cached`);
         return;

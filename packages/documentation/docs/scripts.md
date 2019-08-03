@@ -4,7 +4,7 @@ title: Just Scripts
 sidebar_label: Just Scripts
 ---
 
-Unlike other build libraries, Just strives to be useful from the beginning. You can choose to write your own tasks that call other Node.js tools like Typescript, jest, and webpack. However, Just includes some script functions to get you up and running immediately. The included tasks are enough to have a very productive environment without dictating a certain stack to be used with Just.
+Unlike other build libraries, Just strives to be useful from the beginning. You can choose to write your own tasks that call other Node.js tools like TypeScript, jest, and webpack. However, Just includes some script functions to get you up and running immediately. The included tasks are enough to have a very productive environment without dictating a certain stack to be used with Just.
 
 > NOTE: even though `just-scripts` interacts with `typescript`, it does not take `typescript` as a dependency. It assumes that the developers will include that in their own projects. This gives `just-scripts` the flexibility of targeting many different versions of individual build tools without imposing a version on the consumers.
 
@@ -25,8 +25,8 @@ task('ts:commonjs', tscTask({ module: 'commonjs' }));
 task('ts:esnext', tscTask({ module: 'esnext' }));
 ```
 
-Something like this will give you two separate Typescript compilation task functions that produce different kinds of module output format.
+Something like this will give you two separate TypeScript compilation task functions that produce different kinds of module output format.
 
 ## Next Steps
 
-Learn about the [Typescript](scripts-ts.md)
+Learn about the [TypeScript](scripts-ts.md)

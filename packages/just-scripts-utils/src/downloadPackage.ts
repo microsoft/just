@@ -7,7 +7,7 @@ import path from 'path';
 import { readPackageJson } from './readPackageJson';
 import { logger } from './logger';
 
-let dirname: string = '';
+let dirname = '';
 /** For testing purposes only. */
 export function _setMockDirname(dir: string): void {
   dirname = dir;

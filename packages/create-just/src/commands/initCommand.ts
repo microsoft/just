@@ -42,9 +42,9 @@ export async function initCommand(argv: yargs.Arguments) {
     argv.stack = stack;
   }
 
-  let name: string = '';
+  let name = '';
   if (!argv.name && !checkEmptyRepo(paths.projectPath)) {
-    let response = await prompts({
+    const response = await prompts({
       type: 'text',
       name: 'name',
       message: 'What is the name of the repo to create?',

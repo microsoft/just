@@ -9,7 +9,7 @@ module.exports = () => {
   });
 
   task('ts', function() {
-    logger.info('Here we can run build steps like Babel or Typescript');
+    logger.info('Here we can run build steps like Babel or TypeScript');
   });
 
   task('tslint', function() {
@@ -17,9 +17,7 @@ module.exports = () => {
   });
 
   task('webpack', () => {
-    const someVar = Math.random();
-
-    return function(done) {
+    return function() {
       return new Promise((resolve, reject) => {
         cp.exec('node ./longprocess.js', (error, stdout, stderr) => (error ? reject(stderr) : resolve(stdout)));
       });

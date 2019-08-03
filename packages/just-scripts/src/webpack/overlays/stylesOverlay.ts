@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import { resolve } from 'just-task';
 import { tryRequire } from '../../tryRequire';
 

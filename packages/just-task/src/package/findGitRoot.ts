@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs-extra';
 
-let gitRootCache: string = '';
+let gitRootCache = '';
 
 export function findGitRoot() {
   if (gitRootCache) {
@@ -9,7 +9,7 @@ export function findGitRoot() {
   }
 
   let cwd = process.cwd();
-  let root = path.parse(cwd).root;
+  const root = path.parse(cwd).root;
   let found = false;
   while (!found && cwd !== root) {
     if (fs.pathExistsSync(path.join(cwd, '.git'))) {
