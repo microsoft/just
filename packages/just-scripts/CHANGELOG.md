@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 18 Jul 2019 18:05:47 GMT and should not be manually modified.
+This log was last generated on Fri, 19 Jul 2019 22:44:26 GMT and should not be manually modified.
+
+## 0.26.0
+Fri, 19 Jul 2019 22:44:26 GMT
+
+### Minor changes
+
+- Support string array options. (ScottHysom@users.noreply.github.com)
 
 ## 0.25.4
 Thu, 18 Jul 2019 18:05:47 GMT

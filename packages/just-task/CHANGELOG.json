@@ -2,6 +2,20 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Mon, 22 Jul 2019 20:51:44 GMT",
+      "tag": "just-task_v0.13.1",
+      "version": "0.13.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fail the build if it has invalid config",
+            "author": "kchau@microsoft.com",
+            "commit": "5b647b256a97f3ab7cb667ae72412774a9679448"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 11 Jul 2019 19:35:28 GMT",
       "tag": "just-task_v0.13.0",
       "version": "0.13.0",

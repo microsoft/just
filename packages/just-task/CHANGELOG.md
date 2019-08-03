@@ -1,6 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Thu, 11 Jul 2019 19:35:28 GMT and should not be manually modified.
+This log was last generated on Mon, 22 Jul 2019 20:51:44 GMT and should not be manually modified.
+
+## 0.13.1
+Mon, 22 Jul 2019 20:51:44 GMT
+
+### Patches
+
+- fail the build if it has invalid config (kchau@microsoft.com)
 
 ## 0.13.0
 Thu, 11 Jul 2019 19:35:28 GMT
