@@ -37,7 +37,7 @@ export function _isDevMode(pkg: string): boolean {
  */
 export async function downloadPackage(pkg: string, version: string = 'latest', registry: string | null = null): Promise<string | null> {
   if (_isDevMode(pkg) && version === 'latest') {
-    return path.join(dirname || __dirname, '../../', pkg, 'template');
+    return path.join(dirname || __dirname, '../../', pkg);
   }
 
   const npmCmd = os.platform() === 'win32' ? 'npm.cmd' : 'npm';
@@ -67,7 +67,7 @@ export async function downloadPackage(pkg: string, version: string = 'latest', r
       file: path.join(pkgPath, pkgFile),
       cwd: pkgPath
     });
-    return path.join(pkgPath, 'package', 'template');
+    return path.join(pkgPath, 'package');
   } else {
     logger.error(`Could not find downloaded tgz file ${pkgPath}`);
     return null;

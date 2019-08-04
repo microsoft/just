@@ -14,4 +14,4 @@ export const basicWebpackConfig: any = {
   }
 };
 
-export const webpackConfig: any = merge(basicWebpackConfig, stylesOverlay, tsOverlay, fileOverlay, displayBailoutOverlay);
+export const webpackConfig: any = merge(basicWebpackConfig, stylesOverlay(), tsOverlay(), fileOverlay(), displayBailoutOverlay());

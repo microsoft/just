@@ -1,4 +1,4 @@
-export const fileOverlay = {
+export const fileOverlay = () => ({
   module: {
     rules: [
       {
@@ -7,4 +7,4 @@ export const fileOverlay = {
       }
     ]
   }
-};
+});

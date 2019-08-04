@@ -1,11 +1,12 @@
-import { paths, logger, applyTemplate, prettyPrintMarkdown, rushUpdate, downloadPackage } from 'just-scripts-utils';
+import { paths, logger, prettyPrintMarkdown, downloadPackage } from 'just-scripts-utils';
 import path from 'path';
 import { readdirSync } from 'fs';
 import fse from 'fs-extra';
 import prompts from 'prompts';
-import { execSync, spawnSync } from 'child_process';
+import { execSync } from 'child_process';
 import yargs from 'yargs';
-import os from 'os';
+import { getPlopGenerator, getGeneratorArgs, runGenerator } from '../plop';
+import * as pkg from '../packageManager';
 
 const initCwd = process.cwd();
 
@@ -13,19 +14,27 @@ function checkEmptyRepo(projectPath: string) {
   return readdirSync(projectPath).length === 0;
 }
 
-async function getTemplatePath(pathName: string, registry?: string) {
+async function getStackPath(pathName: string, registry?: string) {
   if (pathName.match(/^\./)) {
     // relative to initCwd
-    return path.join(initCwd, pathName, 'template');
+    return path.join(initCwd, pathName);
   } else if (pathName.match(/\//)) {
     // absolute path
-    return path.join(pathName, 'template');
+    return pathName;
   }
 
   // download it from feed
   return await downloadPackage(pathName, undefined, registry);
 }
 
+/**
+ * Init involves these steps:
+ * 1. pick stack
+ * 2. pick name
+ * 3. plop!
+ * 4. git init and commit
+ * 5. yarn install
+ */
 export async function initCommand(argv: yargs.Arguments) {
   // TODO: autosuggest just-stack-* packages from npmjs.org
   if (!argv.stack) {
@@ -33,11 +42,7 @@ export async function initCommand(argv: yargs.Arguments) {
       type: 'select',
       name: 'stack',
       message: 'What type of repo to create?',
-      choices: [
-        { title: 'Monorepo', value: 'just-stack-monorepo' },
-        { title: 'UI Fabric React Application', value: 'just-stack-uifabric' },
-        { title: 'Basic library', value: 'just-stack-single-lib' }
-      ]
+      choices: [{ title: 'React App', value: 'just-stack-react' }, { title: 'Monorepo', value: 'just-stack-monorepo' }]
     });
     argv.stack = stack;
   }
@@ -48,7 +53,7 @@ export async function initCommand(argv: yargs.Arguments) {
       type: 'text',
       name: 'name',
       message: 'What is the name of the repo to create?',
-      validate: (name) => !name ? false : true
+      validate: name => (!name ? false : true)
     });
     name = response.name;
     paths.projectPath = path.join(paths.projectPath, name);
@@ -59,33 +64,29 @@ export async function initCommand(argv: yargs.Arguments) {
     paths.projectPath = path.join(paths.projectPath, name);
   }
 
-  if (!fse.pathExistsSync(paths.projectPath)) {
-    fse.mkdirpSync(paths.projectPath);
-  }
+  const stackPath = await getStackPath(argv.stack, argv.registry);
+  const generator = getPlopGenerator(stackPath!, paths.projectPath);
+  const generatorArgs = await getGeneratorArgs(generator, argv);
 
-  process.chdir(paths.projectPath);
+  console.log(`
+stack path: ${stackPath}
+project path: ${paths.projectPath}
+stack: ${argv.stack}
+`);
+
+  runGenerator(generator, generatorArgs);
 
   logger.info(`Initializing the repo in ${paths.projectPath}`);
 
-  const templatePath = await getTemplatePath(argv.stack, argv.registry);
+  pkg.install(argv.registry, process.cwd());
 
-  if (templatePath) {
-    applyTemplate(templatePath, paths.projectPath, { name });
-
-    if (argv.stack.includes('monorepo')) {
-      rushUpdate(paths.projectPath);
-    } else {
-      const npmCmd = path.join(path.dirname(process.execPath), os.platform() === 'win32' ? 'npm.cmd' : 'npm');
-      spawnSync(npmCmd, ['install', ...(argv.registry ? ['--registry', argv.registry] : [])], { stdio: 'inherit' });
-    }
-
-    try {
-      execSync('git init');
-      execSync('git add .');
-      execSync('git commit -m "initial commit"');
-    } catch (e) {
-      logger.warn('Looks like you may not have git installed or there was some sort of error initializing the git repo');
-      logger.info(`
+  try {
+    execSync('git init');
+    execSync('git add .');
+    execSync('git commit -m "initial commit"');
+  } catch (e) {
+    logger.warn('Looks like you may not have git installed or there was some sort of error initializing the git repo');
+    logger.info(`
 Please make sure you have git installed and then issue the following:
 
   cd ${paths.projectPath}
@@ -94,15 +95,12 @@ Please make sure you have git installed and then issue the following:
   git commit -m "initial commit"
 
 `);
-    }
+  }
 
-    logger.info('All Set!');
+  logger.info('All Set!');
 
-    const readmeFile = path.join(paths.projectPath, 'README.md');
-    if (fse.existsSync(readmeFile)) {
-      logger.info('\n' + prettyPrintMarkdown(fse.readFileSync(readmeFile).toString()));
-    }
-  } else {
-    logger.error('Having trouble downloading and extracting the template package');
+  const readmeFile = path.join(paths.projectPath, 'README.md');
+  if (fse.existsSync(readmeFile)) {
+    logger.info('\n' + prettyPrintMarkdown(fse.readFileSync(readmeFile).toString()));
   }
 }

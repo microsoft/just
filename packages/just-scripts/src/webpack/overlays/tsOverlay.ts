@@ -2,7 +2,7 @@ import { tryRequire } from '../../tryRequire';
 
 const ForkTsCheckerPlugin = tryRequire('fork-ts-checker-webpack-plugin');
 
-export const tsOverlay = {
+export const tsOverlay = () => ({
   resolve: {
     extensions: ['.wasm', '.mjs', '.js', '.ts', '.tsx', '.json']
   },
@@ -21,4 +21,4 @@ export const tsOverlay = {
     ]
   },
   plugins: [...(ForkTsCheckerPlugin ? [new ForkTsCheckerPlugin()] : [])]
-};
+});
