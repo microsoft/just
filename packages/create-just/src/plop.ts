@@ -4,6 +4,8 @@ import { convertToBypass } from './args';
 
 export function getPlopGenerator(plopfilePath: string, destBasePath: string) {
   const plopfile = path.join(plopfilePath, 'plopfile.js');
+
+  console.log(plopfile);
   const plop = nodePlop(plopfile, { destBasePath, force: false });
   return plop.getGenerator('repo') as any;
 }

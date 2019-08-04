@@ -64,6 +64,8 @@ export async function initCommand(argv: yargs.Arguments) {
     paths.projectPath = path.join(paths.projectPath, name);
   }
 
+  argv.name = name;
+
   const stackPath = await getStackPath(argv.stack, argv.registry);
   const generator = getPlopGenerator(stackPath!, paths.projectPath);
   const generatorArgs = await getGeneratorArgs(generator, argv);
@@ -74,16 +76,16 @@ project path: ${paths.projectPath}
 stack: ${argv.stack}
 `);
 
-  runGenerator(generator, generatorArgs);
+  await runGenerator(generator, generatorArgs);
 
   logger.info(`Initializing the repo in ${paths.projectPath}`);
 
-  pkg.install(argv.registry, process.cwd());
+  pkg.install(argv.registry, paths.projectPath);
 
   try {
-    execSync('git init');
-    execSync('git add .');
-    execSync('git commit -m "initial commit"');
+    execSync('git init', { cwd: paths.projectPath });
+    execSync('git add .', { cwd: paths.projectPath });
+    execSync('git commit -m "initial commit"', { cwd: paths.projectPath });
   } catch (e) {
     logger.warn('Looks like you may not have git installed or there was some sort of error initializing the git repo');
     logger.info(`

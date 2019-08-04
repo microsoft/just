@@ -10,7 +10,7 @@ module.exports = function(plop) {
     actions: [
       {
         type: 'addMany',
-        templateFiles: ['plop-templates/react/**/*.*'],
+        templateFiles: ['plop-templates/**/*.*', 'plop-templates/**/.*'],
         destination: '.'
       }
     ]
