@@ -1,6 +1,13 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Mon, 05 Aug 2019 06:10:22 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 07:19:36 GMT and should not be manually modified.
+
+## 0.9.1
+Mon, 05 Aug 2019 07:19:36 GMT
+
+### Patches
+
+- upgrade just-scripts (kchau@microsoft.com)
 
 ## 0.9.0
 Mon, 05 Aug 2019 06:10:22 GMT

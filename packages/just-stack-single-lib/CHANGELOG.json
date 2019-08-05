@@ -2,6 +2,20 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 07:19:36 GMT",
+      "tag": "just-stack-single-lib_v0.9.1",
+      "version": "0.9.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "upgrade just-scripts",
+            "author": "kchau@microsoft.com",
+            "commit": "c5266d86f95d3ecd7410ab4ca9218136cf0994e0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 06:10:22 GMT",
       "tag": "just-stack-single-lib_v0.9.0",
       "version": "0.9.0",

@@ -2,6 +2,20 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 07:19:36 GMT",
+      "tag": "create-just_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "run yarn before plop",
+            "author": "kchau@microsoft.com",
+            "commit": "c5266d86f95d3ecd7410ab4ca9218136cf0994e0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 06:49:27 GMT",
       "tag": "create-just_v1.0.2",
       "version": "1.0.2",

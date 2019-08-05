@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Mon, 05 Aug 2019 06:49:27 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 07:19:36 GMT and should not be manually modified.
+
+## 1.0.3
+Mon, 05 Aug 2019 07:19:36 GMT
+
+### Patches
+
+- run yarn before plop (kchau@microsoft.com)
 
 ## 1.0.2
 Mon, 05 Aug 2019 06:49:27 GMT
