@@ -14,9 +14,5 @@
   "main": "index.js",
   "dependencies": {
     "just-plop-helpers": "^1.1.0"
-  },
-  "devDependencies": {
-    "just-plop-helpers": "^1.1.0"
-  },
-  "commentAboutDependencies": "devDependencies are used in create-just when bootstrapping a repo, they might contain duplicate dependencies and is expected"
+  }
 }

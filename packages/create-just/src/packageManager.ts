@@ -20,8 +20,3 @@ export function install(registry: string, cwd: string) {
     return spawnSync(getNpm(), ['install', ...registryArgs], { stdio: 'inherit', cwd });
   }
 }
-
-export function installDevOnly(registry: string, cwd: string) {
-  const registryArgs = registry ? ['--registry', registry] : [];
-  return spawnSync(getNpm(), ['install', '--only=dev', ...registryArgs], { stdio: 'inherit', cwd });
-}

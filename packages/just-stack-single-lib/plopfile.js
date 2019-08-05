@@ -1,6 +1,6 @@
 module.exports = function(plop) {
   plop.load('just-plop-helpers');
-  plop.setGenerator('repo', {
+  plop.setGenerator('repo:just-stack-single-lib', {
     actions: [
       {
         type: 'addMany',
