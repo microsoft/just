@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "bumps the create-just dep",
-  "packageName": "create-uifabric",
-  "email": "kchau@microsoft.com",
-  "commit": "8b3cf4a53e1af0c963ec971ceac3b3bcbb5bc60d",
-  "date": "2019-08-05T18:42:41.254Z"
-}
