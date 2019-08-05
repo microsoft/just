@@ -1,6 +1,6 @@
 {
-  "type": "major",
-  "comment": "upgrading to major 1.0.0",
+  "type": "minor",
+  "comment": "initial commit",
   "packageName": "just-plop-helpers",
   "email": "kchau@microsoft.com",
   "commit": "04c3adea4ad2f76411ada5da61e384b63462a8aa",
