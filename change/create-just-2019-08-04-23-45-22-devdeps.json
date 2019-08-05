@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "convert devdeps to deps",
-  "packageName": "create-just",
-  "email": "kchau@microsoft.com",
-  "commit": "10846a1bda2123cd8bb74a65d068ab966cafd354",
-  "date": "2019-08-05T06:45:22.535Z"
-}

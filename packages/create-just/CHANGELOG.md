@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Mon, 05 Aug 2019 06:38:54 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 06:49:27 GMT and should not be manually modified.
+
+## 1.0.2
+Mon, 05 Aug 2019 06:49:27 GMT
+
+### Patches
+
+- convert devdeps to deps (kchau@microsoft.com)
 
 ## 1.0.1
 Mon, 05 Aug 2019 06:38:54 GMT

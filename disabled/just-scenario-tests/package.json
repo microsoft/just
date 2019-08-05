@@ -15,7 +15,7 @@
     "@types/node": "^10.12.18",
     "@types/jest": "^23.3.13",
     "@types/fs-extra": "^5.0.5",
-    "create-just": "1.0.1",
+    "create-just": "1.0.2",
     "just-scripts": ">=0.27.0 <1.0.0",
     "just-stack-monorepo": "0.7.0",
     "just-stack-single-lib": "0.9.0",
