@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "get rid of webpack for create-just",
+  "packageName": "create-uifabric",
+  "email": "kchau@microsoft.com",
+  "commit": "7b81b54f516e5f56c6f5e0e1a5632412b42271b5",
+  "date": "2019-08-05T06:24:07.414Z"
+}
