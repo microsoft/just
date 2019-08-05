@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Revert the installdev only thing",
+  "packageName": "create-just",
+  "email": "kchau@microsoft.com",
+  "commit": "55e3a663c6cea638ef3ec5e4ecef2fad92c8c3a2",
+  "date": "2019-08-05T18:01:25.923Z"
+}
