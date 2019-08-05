@@ -6,10 +6,10 @@
   "module": "lib/index.js",
   "scripts": {
     "build": "just-scripts build",
+    "change": "beachball change",
     "just": "just-scripts",
     "start": "just-scripts start",
-    "test": "just-scripts test",
-    "change": "beachball change"
+    "test": "just-scripts test"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -19,6 +19,7 @@
     "@types/jest": "^24.0.16",
     "beachball": "^1.11.5",
     "jest": "^24.8.0",
+    "just-plop-helpers": "^1.0.0",
     "just-scripts": "^0.27.0",
     "typescript": "^3.5.3"
   }

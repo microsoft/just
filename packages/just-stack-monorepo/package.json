@@ -12,5 +12,8 @@
     "just-stack"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "just-plop-helpers": "^1.0.0"
+  }
 }

@@ -1,4 +1,5 @@
 module.exports = function(plop) {
+  plop.load('just-plop-helpers');
   plop.setGenerator('repo:just-stack-monorepo', {
     actions: [
       {
@@ -7,6 +8,11 @@ module.exports = function(plop) {
         base: 'plop-templates/repo',
         destination: '.',
         force: true
+      },
+      {
+        type: 'rename',
+        src: 'gitignore',
+        dest: '.gitignore'
       }
     ]
   });

@@ -1,6 +1,8 @@
 const fs = require('fs');
 
 module.exports = function(plop) {
+  plop.load('just-plop-helpers');
+
   const packageJson = JSON.parse(fs.readFileSync(require.resolve('package.json', { paths: [process.cwd()] })));
 
   plop.setGenerator('react-package', {
@@ -21,6 +23,11 @@ module.exports = function(plop) {
         data: {
           repoName: packageJson.name
         }
+      },
+      {
+        type: 'rename',
+        src: 'gitignore',
+        dest: '.gitignore'
       }
     ]
   });
