@@ -2,6 +2,20 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 06:38:54 GMT",
+      "tag": "create-just_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "get rid of webpack for create-just",
+            "author": "kchau@microsoft.com",
+            "commit": "7b81b54f516e5f56c6f5e0e1a5632412b42271b5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 06:10:22 GMT",
       "tag": "create-just_v1.0.0",
       "version": "1.0.0",

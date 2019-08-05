@@ -2,6 +2,20 @@
   "name": "create-uifabric",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 06:38:54 GMT",
+      "tag": "create-uifabric_v0.2.5",
+      "version": "0.2.5",
+      "comments": {
+        "patch": [
+          {
+            "comment": "get rid of webpack for create-just",
+            "author": "kchau@microsoft.com",
+            "commit": "7b81b54f516e5f56c6f5e0e1a5632412b42271b5"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.4",
       "tag": "create-uifabric_v0.2.4",
       "date": "Fri, 31 May 2019 21:15:02 GMT",

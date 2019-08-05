@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Mon, 05 Aug 2019 06:10:22 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 06:38:54 GMT and should not be manually modified.
+
+## 1.0.1
+Mon, 05 Aug 2019 06:38:54 GMT
+
+### Patches
+
+- get rid of webpack for create-just (kchau@microsoft.com)
 
 ## 1.0.0
 Mon, 05 Aug 2019 06:10:22 GMT

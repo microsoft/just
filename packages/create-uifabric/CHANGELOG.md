@@ -1,6 +1,13 @@
 # Change Log - create-uifabric
 
-This log was last generated on Fri, 31 May 2019 21:15:02 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 06:38:54 GMT and should not be manually modified.
+
+## 0.2.5
+Mon, 05 Aug 2019 06:38:54 GMT
+
+### Patches
+
+- get rid of webpack for create-just (kchau@microsoft.com)
 
 ## 0.2.4
 Fri, 31 May 2019 21:15:02 GMT
