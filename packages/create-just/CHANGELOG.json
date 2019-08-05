@@ -2,6 +2,20 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 17:34:19 GMT",
+      "tag": "create-just_v1.1.0",
+      "version": "1.1.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "making init only install devdeps for the stack - should make this faster",
+            "author": "kchau@microsoft.com",
+            "commit": "04c3adea4ad2f76411ada5da61e384b63462a8aa"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 07:19:36 GMT",
       "tag": "create-just_v1.0.3",
       "version": "1.0.3",

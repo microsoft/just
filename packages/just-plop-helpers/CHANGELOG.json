@@ -1,0 +1,19 @@
+{
+  "name": "just-plop-helpers",
+  "entries": [
+    {
+      "date": "Mon, 05 Aug 2019 17:34:19 GMT",
+      "tag": "just-plop-helpers_v1.1.0",
+      "version": "1.1.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "initial commit",
+            "author": "kchau@microsoft.com",
+            "commit": "04c3adea4ad2f76411ada5da61e384b63462a8aa"
+          }
+        ]
+      }
+    }
+  ]
+}

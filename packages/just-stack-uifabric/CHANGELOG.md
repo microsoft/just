@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Mon, 05 Aug 2019 07:34:29 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 17:34:19 GMT and should not be manually modified.
+
+## 1.0.0
+Mon, 05 Aug 2019 17:34:19 GMT
+
+### Major
+
+- upgrading to major 1.0.0 (kchau@microsoft.com)
 
 ## 0.13.2
 Mon, 05 Aug 2019 07:34:29 GMT

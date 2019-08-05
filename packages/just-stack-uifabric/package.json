@@ -1,6 +1,6 @@
 {
   "name": "just-stack-uifabric",
-  "version": "0.13.2",
+  "version": "1.0.0",
   "description": "Just stack for UI Fabric application with React",
   "keywords": [
     "just-stack"
@@ -13,7 +13,7 @@
   "author": "kchau@microsoft.com",
   "devDependencies": {
     "node-plop": "^0.19.0",
-    "just-stack-react": "^0.3.2"
+    "just-stack-react": "^1.0.0"
   },
   "commentAboutDependencies": "devDependencies are used in create-just when bootstrapping a repo, they might contain duplicate dependencies and is expected"
 }

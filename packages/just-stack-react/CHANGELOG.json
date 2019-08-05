@@ -2,6 +2,20 @@
   "name": "just-stack-react",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 17:34:19 GMT",
+      "tag": "just-stack-react_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "major": [
+          {
+            "comment": "upgrading to major 1.0.0",
+            "author": "kchau@microsoft.com",
+            "commit": "04c3adea4ad2f76411ada5da61e384b63462a8aa"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 07:34:29 GMT",
       "tag": "just-stack-react_v0.3.2",
       "version": "0.3.2",
