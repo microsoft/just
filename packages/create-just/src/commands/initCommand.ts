@@ -111,10 +111,10 @@ Please make sure you have git installed and then issue the following:
 
   logger.info('All Set!');
 
-  showNextSteps(argv);
+  showNextSteps(argv, stackName);
 }
 
-function showNextSteps(argv: any) {
+function showNextSteps(argv: any, stackName: string) {
   logger.info(
     prettyPrintMarkdown(`
 You have successfully created a new repo based on the '${argv.stack}' template!
@@ -122,7 +122,7 @@ You have successfully created a new repo based on the '${argv.stack}' template!
 ## Keeping Up-to-date
 You can keep your build tools up-to-date by updating these two devDependencies:
 
-* ${argv.stack}
+* ${stackName}
 * just-scripts
 
 ## Next Steps
