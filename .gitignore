@@ -18,3 +18,5 @@ temp
 *.tgz
 *.tar
 *.gz
+
+package-lock.json

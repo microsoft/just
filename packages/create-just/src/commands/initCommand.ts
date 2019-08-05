@@ -76,16 +76,14 @@ export async function initCommand(argv: yargs.Arguments) {
   argv.name = name;
 
   const stackPath = await getStackPath(argv.stack, argv.registry);
-  pkg.install(argv.registry, stackPath!);
   const stackName = getStackName(stackPath!);
+
+  logger.info(`Installing dev dependencies for the stack "${stackName}`);
+  pkg.installDevOnly(argv.registry, stackPath!);
+
   const generator = getPlopGenerator(stackPath!, paths.projectPath, stackName);
 
-  logger.info(`Code Generation Information:
-
-  project path: ${paths.projectPath}
-  stack: ${stackName}
-
-`);
+  logger.info(`Running "${stackName}" code generation actions inside: ${paths.projectPath}`);
 
   await runGenerator(generator, argv);
 
@@ -108,6 +106,7 @@ Please make sure you have git installed and then issue the following:
     git commit -m "initial commit"
 
 `);
+    process.exit(1);
   }
 
   logger.info('All Set!');

@@ -4,14 +4,7 @@
   "license": "MIT",
   "main": "lib-commonjs/index.js",
   "module": "lib/index.js",
-  "scripts": {
-    "build": "just-scripts build",
-    "just": "just-scripts",
-    "start": "just-scripts start",
-    "test": "just-scripts test",
-    "change": "beachball change"
-  },
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
@@ -19,7 +12,12 @@
     "@types/jest": "^24.0.16",
     "beachball": "^1.11.5",
     "jest": "^24.8.0",
+    "just-plop-helpers": "^1.0.0",
     "just-scripts": "^0.27.0",
     "typescript": "^3.5.3"
-  }
+  },
+  "devDependencies": {
+    "just-plop-helpers": "^1.0.0"
+  },
+  "commentAboutDependencies": "devDependencies are used in create-just when bootstrapping a repo, they might contain duplicate dependencies and is expected"
 }

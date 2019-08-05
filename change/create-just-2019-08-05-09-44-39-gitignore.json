@@ -1,0 +1,8 @@
+{
+  "type": "minor",
+  "comment": "making init only install devdeps for the stack - should make this faster",
+  "packageName": "create-just",
+  "email": "kchau@microsoft.com",
+  "commit": "04c3adea4ad2f76411ada5da61e384b63462a8aa",
+  "date": "2019-08-05T16:44:19.895Z"
+}

@@ -22,6 +22,7 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.8.0",
     "jest-expect-message": "^1.0.2",
+    "just-plop-helpers": "^1.0.0",
     "node-sass": "^4.11.0",
     "plop": "^2.4.0",
     "postcss": "^7.0.13",
@@ -33,5 +34,9 @@
     "webpack": "~4.29.5",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
-  }
+  },
+  "devDependencies": {
+    "just-plop-helpers": "^1.0.0"
+  },
+  "commentAboutDependencies": "devDependencies are used in create-just when bootstrapping a repo, they might contain duplicate dependencies and is expected"
 }
