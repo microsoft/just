@@ -1,5 +1,3 @@
 CHANGELOG.*
 *.log
-package-deps.json
-/template.spec.js
-/jest.config.js
+ndoe_modules
