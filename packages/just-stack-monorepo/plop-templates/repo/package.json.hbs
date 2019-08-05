@@ -1,0 +1,20 @@
+{
+  "name": "{{name}}",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "workspaces": ["packages/*", "scripts"],
+  "devDependencies": {
+    "just-stack-monorepo": "^0.6.2",
+    "lerna": "^3.13.2",
+    "beachball": "^1.11.5",
+    "plop": "^2.4.0"
+  },
+  "scripts": {
+    "build": "lerna run build --stream",
+    "test": "lerna run test --stream",
+    "change": "beachball change",
+    "gen": "plop"
+  }
+}

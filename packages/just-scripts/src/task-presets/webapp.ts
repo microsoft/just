@@ -1,27 +1,26 @@
 import { task, series, parallel } from 'just-task';
-import { cleanTask, tscTask, jestTask, webpackTask, webpackDevServerTask, upgradeStackTask, defaultCleanPaths } from '../tasks';
+import { cleanTask, tscTask, jestTask, webpackTask, webpackDevServerTask, defaultCleanPaths, tslintTask } from '../tasks';
 
 export function webapp() {
   task('clean', cleanTask([...defaultCleanPaths(), 'lib-commonjs']));
 
-  task('ts:commonjs', tscTask({ module: 'commonjs', outDir: 'lib-commonjs' }));
   task('ts:esm', tscTask({ module: 'esnext', outDir: 'lib' }));
   task('ts:watch', tscTask({ module: 'esnext', outDir: 'lib', watch: true }));
-  task('ts', parallel('ts:commonjs', 'ts:esm'));
+  task('ts', parallel('ts:esm'));
 
   task('jest', jestTask());
   task('jest:watch', jestTask({ watch: true }));
+
+  task('tslint', tslintTask());
 
   task('webpack', webpackTask());
 
   task('webpack:watch', webpackDevServerTask());
 
-  task('build', series('clean', 'ts', parallel('jest', 'webpack')));
-  task('test', series('clean', 'jest'));
-  task('start', series('clean', 'webpack:watch'));
-  task('start-test', series('clean', 'jest:watch'));
+  task('build', series('ts', 'webpack'));
+  task('test', series('jest'));
+  task('start', series('webpack:watch'));
+  task('start-test', series('jest:watch'));
 
   task('rebuild', series('clean', 'build'));
-
-  task('upgrade-stack', upgradeStackTask());
 }

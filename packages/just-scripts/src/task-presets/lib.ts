@@ -1,5 +1,5 @@
 import { task, series, parallel } from 'just-task';
-import { cleanTask, tscTask, jestTask, upgradeStackTask, defaultCleanPaths } from '../tasks';
+import { cleanTask, tscTask, jestTask, defaultCleanPaths, tslintTask } from '../tasks';
 
 export function lib() {
   task('clean', cleanTask([...defaultCleanPaths(), 'lib-commonjs']));
@@ -12,13 +12,14 @@ export function lib() {
   task('jest', jestTask());
   task('jest:watch', jestTask({ watch: true }));
 
-  task('build', series('clean', 'ts', 'jest'));
+  task('tslint', tslintTask());
 
-  task('test', series('clean', 'jest'));
+  task('build', series('ts'));
+  task('test', series('jest'));
+  task('lint', series('tslint'));
+
   task('start', series('clean', 'ts:watch'));
-  task('start-test', series('clean', 'jest:watch'));
+  task('start-test', series('jest:watch'));
 
   task('rebuild', series('clean', 'build'));
-
-  task('upgrade-stack', upgradeStackTask());
 }

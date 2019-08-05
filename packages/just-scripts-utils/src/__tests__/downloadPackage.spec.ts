@@ -66,10 +66,10 @@ describe('downloadPackage', () => {
     expect(_isDevMode('foo')).toBe(false);
   });
 
-  it('returns local template path in dev mode', async () => {
+  it('returns local path in dev mode', async () => {
     const pkg = 'just-stack-monorepo';
     const result = await downloadPackage(pkg);
-    expect(result).toBe(path.join(__dirname, '../../..', pkg, 'template'));
+    expect(result).toBe(path.join(__dirname, '../../..', pkg));
   });
 
   it('removes previous download and handles npm pack errors', async () => {
@@ -120,6 +120,6 @@ describe('downloadPackage', () => {
     });
 
     const result = await downloadPackage(pkg, version);
-    expect(result).toBe(path.join(fakeTemp, pkg, 'package/template'));
+    expect(result).toBe(path.join(fakeTemp, pkg, 'package'));
   });
 });

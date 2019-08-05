@@ -14,7 +14,7 @@
     "change": "beachball change",
     "checkchange": "beachball check",
     "publish:beachball": "beachball publish",
-    "start": "node ./scripts/watch.js",
+    "start": "lerna run start --parallel",
     "test": "lerna run test",
     "lint": "eslint packages --ext .ts,.js"
   },

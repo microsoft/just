@@ -23,5 +23,6 @@ module.exports = {
   node: {
     __dirname: false
   },
+  devtool: 'none',
   stats: 'errors-only'
 };

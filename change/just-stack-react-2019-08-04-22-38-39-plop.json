@@ -1,0 +1,8 @@
+{
+  "type": "minor",
+  "comment": "code gen subsequent packages",
+  "packageName": "just-stack-react",
+  "email": "kchau@microsoft.com",
+  "commit": "2ea4e433c300ed8323aaab0fcf03f927ba8ab78b",
+  "date": "2019-08-05T05:38:31.984Z"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "{{name}}-single",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "lib-commonjs/index.js",
+  "module": "lib/index.js",
+  "scripts": {
+    "build": "just-scripts build",
+    "just": "just-scripts",
+    "start": "just-scripts start",
+    "test": "just-scripts test",
+    "change": "npx beachball change",
+    "gen": "npx plop"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "just-stack-react": "^0.1.0",
+    "just-scripts": "^0.26.0"
+  }
+}

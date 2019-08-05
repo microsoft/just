@@ -1,7 +1,25 @@
-import yargs from 'yargs';
+import parser from 'yargs-parser';
 import { initCommand } from './commands/initCommand';
+import { initialize } from './getEnvInfo';
 
-yargs
+const args = parser(process.argv.slice(2), {
+  alias: {
+    name: ['n'],
+    stack: ['s'],
+    registry: ['r']
+  }
+});
+
+if (args._.length > 0) {
+  args.name = args._[0];
+}
+
+(async () => {
+  await initialize();
+  initCommand(args);
+})();
+
+/*yargs
   .command({
     aliases: '*',
     command: 'init [name]',
@@ -13,3 +31,4 @@ yargs
     handler: initCommand
   })
   .help().argv;
+*/

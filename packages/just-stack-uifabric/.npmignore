@@ -1,5 +1,5 @@
 CHANGELOG.*
 *.log
 package-deps.json
-template.spec.js
-jest.config.js
+/template.spec.js
+/jest.config.js

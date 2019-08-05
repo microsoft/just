@@ -12,22 +12,25 @@
   },
   "scripts": {
     "build": "npx webpack",
-    "start": "npx webpack --watch --progress --display minimal --mode development"
+    "start": "npx webpack --watch --progress --display minimal --mode development",
+    "watch": "tsc -w --preserveWatchOutput"
   },
   "keywords": [],
   "author": "",
   "devDependencies": {
     "@types/node": "^10.12.18",
     "@types/prompts": "^1.2.0",
-    "@types/yargs": "12.0.1",
+    "@types/yargs-parser": "^13.0.0",
     "@types/fs-extra": "^5.0.4",
-    "typescript": "~3.4.4",
+    "envinfo": "^7.3.1",
+    "typescript": "~3.5.3",
     "fs-extra": "^7.0.1",
     "prompts": "^2.0.1",
-    "yargs": "^12.0.5",
+    "yargs-parser": "^13.1.1",
+    "node-plop": "^0.19.0",
     "webpack": "~4.29.5",
     "webpack-cli": "^3.2.1",
-    "ts-loader": "^5.3.3",
+    "ts-loader": "^6.0.4",
     "just-scripts-utils": ">=0.8.2 <1.0.0"
   }
 }

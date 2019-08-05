@@ -14,4 +14,4 @@ export const basicWebpackServeConfig: any = {
   }
 };
 
-export const webpackServeConfig: any = merge(basicWebpackServeConfig, stylesOverlay, tsOverlay, fileOverlay);
+export const webpackServeConfig: any = merge(basicWebpackServeConfig, stylesOverlay(), tsOverlay(), fileOverlay());
