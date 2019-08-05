@@ -6,10 +6,7 @@
     "type": "git",
     "url": "https://github.com/microsoft/just"
   },
-  "scripts": {
-    "build": ""
-  },
-  "main": "dist/create-uifabric.js",
+  "main": "lib/index.js",
   "bin": {
     "create-uifabric": "bin/create-uifabric.js"
   },
@@ -17,9 +14,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "create-just": "1.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^10.12.18"
+    "create-just": "^1.0.0"
   }
 }

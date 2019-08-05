@@ -6,13 +6,12 @@
     "type": "git",
     "url": "https://github.com/microsoft/just"
   },
-  "main": "dist/create-just.js",
+  "main": "lib/index.js",
   "bin": {
     "create-just": "bin/create-just.js"
   },
   "scripts": {
-    "build": "npx webpack",
-    "start": "npx webpack --watch --progress --display minimal --mode development",
+    "build": "tsc",
     "watch": "tsc -w --preserveWatchOutput"
   },
   "keywords": [],
@@ -28,9 +27,6 @@
     "prompts": "^2.0.1",
     "yargs-parser": "^13.1.1",
     "node-plop": "^0.19.0",
-    "webpack": "~4.29.5",
-    "webpack-cli": "^3.2.1",
-    "ts-loader": "^6.0.4",
     "just-scripts-utils": ">=0.8.3 <1.0.0"
   }
 }
