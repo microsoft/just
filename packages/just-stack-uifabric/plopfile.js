@@ -1,17 +1,26 @@
 const fs = require('fs');
 const path = require('path');
+const nodePlop = require('node-plop');
 
 module.exports = function(plop) {
-  plop.load('just-stack-uifabric/plopfile.js');
-  plop.setGenerator('repo:just-stack-react', {
+  const reactPlop = nodePlop(require.resolve('just-stack-react/plopfile.js'), {
+    destBasePath: plop.getDestBasePath(),
+    force: true
+  });
+
+  plop.setGenerator('repo:just-stack-uifabric', {
+    prompts: [],
     actions: [
-      answers => {
-        const reactGenerator = plop.getGenerator('repo:just-stack-uifabric');
-        reactGenerator.runActions(answers);
+      async data => {
+        const reactGenerator = reactPlop.getGenerator('repo:just-stack-react');
+        const results = await reactGenerator.runActions(data);
+        if (results.changes) {
+          return results.changes.map(change => change.path).join('\n');
+        }
       },
       {
         type: 'addMany',
-        templateFiles: ['plop-templates/**/*.*', 'plop-templates/**/.*'],
+        templateFiles: ['plop-templates/**'],
         destination: '.',
         force: true
       },
@@ -21,6 +30,7 @@ module.exports = function(plop) {
         const packageJson = JSON.parse(fs.readFileSync(path.join(basePath, 'package.json')));
         packageJson.dependencies['office-ui-fabric-react'] = '^7.0.0';
         fs.writeFileSync(path.join(basePath, 'package.json'), JSON.stringify(packageJson, null, 2));
+        return 'Added UI Fabric dependency';
       }
     ]
   });
