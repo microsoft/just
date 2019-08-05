@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fixing the plopfile to copy all files including gitignore",
-  "packageName": "just-stack-monorepo",
-  "email": "kchau@microsoft.com",
-  "commit": "2d24920a1f5e0dec0036687cbe86998219555dee",
-  "date": "2019-08-05T18:45:14.909Z"
-}

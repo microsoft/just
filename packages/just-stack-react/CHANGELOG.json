@@ -2,6 +2,20 @@
   "name": "just-stack-react",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 18:46:25 GMT",
+      "tag": "just-stack-react_v1.0.2",
+      "version": "1.0.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixing the plopfile to copy all files including gitignore",
+            "author": "kchau@microsoft.com",
+            "commit": "2d24920a1f5e0dec0036687cbe86998219555dee"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 18:07:34 GMT",
       "tag": "just-stack-react_v1.0.1",
       "version": "1.0.1",
