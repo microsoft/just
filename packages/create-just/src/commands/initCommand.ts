@@ -1,11 +1,10 @@
 import { paths, logger, prettyPrintMarkdown, downloadPackage } from 'just-scripts-utils';
 import path from 'path';
-import { readdirSync } from 'fs';
-import fse from 'fs-extra';
+import { readdirSync, readFileSync } from 'fs';
 import prompts from 'prompts';
 import { execSync } from 'child_process';
 import yargs from 'yargs';
-import { getPlopGenerator, getGeneratorArgs, runGenerator } from '../plop';
+import { getPlopGenerator, runGenerator } from '../plop';
 import * as pkg from '../packageManager';
 
 const initCwd = process.cwd();
@@ -14,11 +13,16 @@ function checkEmptyRepo(projectPath: string) {
   return readdirSync(projectPath).length === 0;
 }
 
+function getStackName(stackPath: string) {
+  const packageJson = JSON.parse(readFileSync(path.join(stackPath, 'package.json'), 'utf-8'));
+  return packageJson.name;
+}
+
 async function getStackPath(pathName: string, registry?: string) {
   if (pathName.match(/^\./)) {
     // relative to initCwd
     return path.join(initCwd, pathName);
-  } else if (pathName.match(/\//)) {
+  } else if (pathName.match(/^\//)) {
     // absolute path
     return pathName;
   }
@@ -42,7 +46,12 @@ export async function initCommand(argv: yargs.Arguments) {
       type: 'select',
       name: 'stack',
       message: 'What type of repo to create?',
-      choices: [{ title: 'React App', value: 'just-stack-react' }, { title: 'Monorepo', value: 'just-stack-monorepo' }]
+      choices: [
+        { title: 'React App', value: 'just-stack-react' },
+        { title: 'UI Fabric (React)', value: 'just-stack-uifabric' },
+        { title: 'Basic TypeScript', value: 'just-stack-single-lib' },
+        { title: 'Monorepo', value: 'just-stack-monorepo' }
+      ]
     });
     argv.stack = stack;
   }
@@ -67,16 +76,17 @@ export async function initCommand(argv: yargs.Arguments) {
   argv.name = name;
 
   const stackPath = await getStackPath(argv.stack, argv.registry);
-  const generator = getPlopGenerator(stackPath!, paths.projectPath);
-  const generatorArgs = await getGeneratorArgs(generator, argv);
+  const stackName = getStackName(stackPath!);
+  const generator = getPlopGenerator(stackPath!, paths.projectPath, stackName);
 
-  console.log(`
-stack path: ${stackPath}
-project path: ${paths.projectPath}
-stack: ${argv.stack}
+  logger.info(`Code Generation Information:
+
+  project path: ${paths.projectPath}
+  stack: ${stackName}
+
 `);
 
-  await runGenerator(generator, generatorArgs);
+  await runGenerator(generator, argv);
 
   logger.info(`Initializing the repo in ${paths.projectPath}`);
 
@@ -91,18 +101,43 @@ stack: ${argv.stack}
     logger.info(`
 Please make sure you have git installed and then issue the following:
 
-  cd ${paths.projectPath}
-  git init
-  git add .
-  git commit -m "initial commit"
+    cd ${paths.projectPath}
+    git init
+    git add .
+    git commit -m "initial commit"
 
 `);
   }
 
   logger.info('All Set!');
 
-  const readmeFile = path.join(paths.projectPath, 'README.md');
-  if (fse.existsSync(readmeFile)) {
-    logger.info('\n' + prettyPrintMarkdown(fse.readFileSync(readmeFile).toString()));
-  }
+  showNextSteps(argv);
+}
+
+function showNextSteps(argv: any) {
+  logger.info(
+    prettyPrintMarkdown(`
+You have successfully created a new repo based on the '${argv.stack}' template!
+
+## Keeping Up-to-date
+You can keep your build tools up-to-date by updating these two devDependencies:
+
+* ${argv.stack}
+* just-scripts
+
+## Next Steps
+
+To start developing code, you can start the innerloop dev server:
+
+    cd ${paths.projectPath}
+    ${pkg.getYarn() ? 'yarn' : 'npm install'}
+    ${pkg.getYarn() ? 'yarn' : 'npm'} start
+
+You can build your project in production mode with these commands:
+
+    cd ${paths.projectPath}
+    ${pkg.getYarn() ? 'yarn' : 'npm run'} build
+
+`)
+  );
 }

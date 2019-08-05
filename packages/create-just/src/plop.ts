@@ -1,36 +1,33 @@
 import nodePlop from 'node-plop';
 import path from 'path';
-import { convertToBypass } from './args';
+import { logger } from 'just-task-logger';
 
-export function getPlopGenerator(plopfilePath: string, destBasePath: string) {
+export function getPlopGenerator(plopfilePath: string, destBasePath: string, stackName: string) {
   const plopfile = path.join(plopfilePath, 'plopfile.js');
-
-  console.log(plopfile);
   const plop = nodePlop(plopfile, { destBasePath, force: false });
-  return plop.getGenerator('repo') as any;
+  let generator = plop.getGenerator(`repo:${stackName}`) as any;
+  if (!generator) {
+    generator = plop.getGenerator('repo') as any;
+  }
+
+  return generator;
 }
 
-export async function getGeneratorArgs(generator: any, args: any) {
-  // run all the generator actions using the data specified
-  return await generator.runPrompts(convertToBypass(generator, args));
-}
-
-export async function runGenerator(generator: any, answers: any) {
-  const results = await generator.runActions(answers, {
+export async function runGenerator(generator: any, args: any) {
+  const results = await generator.runActions(args, {
     onComment: (comment: string) => {
-      console.log(comment);
+      logger.info(comment);
     }
   });
 
   if (results.failures && results.failures.length > 0) {
-    console.error('Error: ' + results.failures[0].error);
-    return;
+    throw new Error('Error: ' + results.failures[0].error);
   }
 
   // do something after the actions have run
   for (let change of results.changes) {
     if (change.path) {
-      console.log(change.path);
+      logger.info(change.path);
     }
   }
 }

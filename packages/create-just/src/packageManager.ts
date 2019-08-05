@@ -1,7 +1,7 @@
 import { spawnSync } from 'child_process';
 import { getEnvInfo } from './getEnvInfo';
 
-function getYarn() {
+export function getYarn() {
   const yarnInfo = getEnvInfo().Binaries.Yarn;
   return yarnInfo && yarnInfo.path;
 }

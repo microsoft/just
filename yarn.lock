@@ -3228,6 +3228,18 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+beachball@^1.11.5:
+  version "1.11.5"
+  resolved "https://registry.yarnpkg.com/beachball/-/beachball-1.11.5.tgz#4b5ee60a6517f211bdafa9a8485a32160029761a"
+  integrity sha512-5W3TjLy40VnGnL7Cg8y6oqybPsKe3j1InGe+Nj6UcF51wpJoYpNxm4Akm1RS9us5y265PlEh1CaiPtpoWTx0/A==
+  dependencies:
+    fs-extra "^8.0.1"
+    git-url-parse "^11.1.2"
+    glob "^7.1.4"
+    prompts "~2.1.0"
+    semver "^6.1.1"
+    yargs-parser "^13.1.0"
+
 beachball@^1.9.2:
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/beachball/-/beachball-1.9.2.tgz#960f2141b5aa2f6d8ba6aada207698c11c1c632a"
@@ -12897,11 +12909,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typescript@^3.2.4:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.1.tgz#ba72a6a600b2158139c5dd8850f700e231464202"
-  integrity sha512-64HkdiRv1yYZsSe4xC1WVgamNigVYjlssIoaH2HcZF0+ijsk5YK2g0G34w9wJkze8+5ow4STd22AynfO6ZYYLw==
 
 typescript@^3.5.3, typescript@~3.5.3:
   version "3.5.3"

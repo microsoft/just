@@ -8,7 +8,7 @@
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "typeRoots": ["node_modules/@types", "node_modules/just-stack-react/node_modules/@types"]
+    "typeRoots": ["node_modules/@types", "node_modules/just-stack-single-lib/node_modules/@types"]
   },
 
   "include": ["src"]

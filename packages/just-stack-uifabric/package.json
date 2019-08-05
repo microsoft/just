@@ -40,9 +40,5 @@
     "webpack": "~4.29.5",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
-  },
-  "devDependencies": {
-    "just-scripts-utils": "^0.8.2"
-  },
-  "just-stack": true
+  }
 }
