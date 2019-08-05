@@ -4,13 +4,6 @@
   "license": "MIT",
   "main": "lib-commonjs/index.js",
   "module": "lib/index.js",
-  "scripts": {
-    "build": "just-scripts build",
-    "change": "beachball change",
-    "just": "just-scripts",
-    "start": "just-scripts start",
-    "test": "just-scripts test"
-  },
   "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",

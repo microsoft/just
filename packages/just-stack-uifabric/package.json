@@ -12,8 +12,8 @@
   "license": "MIT",
   "author": "kchau@microsoft.com",
   "devDependencies": {
-    "just-stack-react": "^0.3.2",
-    "node-plop": "^0.19.0"
+    "node-plop": "^0.19.0",
+    "just-stack-react": "^0.3.2"
   },
   "commentAboutDependencies": "devDependencies are used in create-just when bootstrapping a repo, they might contain duplicate dependencies and is expected"
 }
