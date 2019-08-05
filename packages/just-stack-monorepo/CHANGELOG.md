@@ -1,6 +1,27 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Mon, 05 Aug 2019 07:34:29 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 18:46:25 GMT and should not be manually modified.
+
+## 1.0.2
+Mon, 05 Aug 2019 18:46:25 GMT
+
+### Patches
+
+- fixing the plopfile to copy all files including gitignore (kchau@microsoft.com)
+
+## 1.0.1
+Mon, 05 Aug 2019 18:07:34 GMT
+
+### Patches
+
+- Revert the installdev only thing (kchau@microsoft.com)
+
+## 1.0.0
+Mon, 05 Aug 2019 17:34:19 GMT
+
+### Major
+
+- upgrading to major 1.0.0 (kchau@microsoft.com)
 
 ## 0.7.1
 Mon, 05 Aug 2019 07:34:29 GMT
