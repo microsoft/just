@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Mon, 05 Aug 2019 06:10:22 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 07:02:51 GMT and should not be manually modified.
+
+## 0.13.1
+Mon, 05 Aug 2019 07:02:51 GMT
+
+### Patches
+
+- adding node plop (kchau@microsoft.com)
 
 ## 0.13.0
 Mon, 05 Aug 2019 06:10:22 GMT

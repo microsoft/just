@@ -2,6 +2,20 @@
   "name": "just-stack-uifabric",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 07:02:51 GMT",
+      "tag": "just-stack-uifabric_v0.13.1",
+      "version": "0.13.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "adding node plop",
+            "author": "kchau@microsoft.com",
+            "commit": "44021ad5b7c02f1a33939a7486df6646310d1934"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 06:10:22 GMT",
       "tag": "just-stack-uifabric_v0.13.0",
       "version": "0.13.0",
