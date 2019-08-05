@@ -13,6 +13,6 @@
   "author": "",
   "main": "index.js",
   "dependencies": {
-    "just-plop-helpers": "^1.1.0"
+    "just-plop-helpers": "^1.1.1"
   }
 }

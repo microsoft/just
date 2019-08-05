@@ -22,7 +22,7 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.8.0",
     "jest-expect-message": "^1.0.2",
-    "just-plop-helpers": "^1.1.0",
+    "just-plop-helpers": "^1.1.1",
     "node-sass": "^4.11.0",
     "plop": "^2.4.0",
     "postcss": "^7.0.13",

@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "adding a defaultinclude option to make sure actiontypes are shared",
-  "packageName": "just-plop-helpers",
-  "email": "kchau@microsoft.com",
-  "commit": "bd9712ef158c843fbf3c20d01d066f1a9f123e55",
-  "date": "2019-08-05T18:35:41.245Z"
-}
