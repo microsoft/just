@@ -1,6 +1,6 @@
 import { paths, logger, prettyPrintMarkdown, downloadPackage } from 'just-scripts-utils';
 import path from 'path';
-import { readdirSync, readFileSync } from 'fs';
+import { readdirSync, readFileSync, existsSync } from 'fs';
 import prompts from 'prompts';
 import { execSync } from 'child_process';
 import yargs from 'yargs';
@@ -130,7 +130,6 @@ You can keep your build tools up-to-date by updating these two devDependencies:
 To start developing code, you can start the innerloop dev server:
 
     cd ${paths.projectPath}
-    ${pkg.getYarn() ? 'yarn' : 'npm install'}
     ${pkg.getYarn() ? 'yarn' : 'npm'} start
 
 You can build your project in production mode with these commands:
@@ -138,6 +137,13 @@ You can build your project in production mode with these commands:
     cd ${paths.projectPath}
     ${pkg.getYarn() ? 'yarn' : 'npm run'} build
 
-`)
+${existsSync(path.join(paths.projectPath, 'plopfile.js')) &&
+  `
+This repository contains code generators that can be triggered by:
+
+    cd ${paths.projectPath}
+    ${pkg.getYarn() ? 'yarn' : 'npm run'} gen
+
+`}`)
   );
 }
