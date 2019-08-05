@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "upgrade just-scripts",
+  "packageName": "just-stack-react",
+  "email": "kchau@microsoft.com",
+  "commit": "c5266d86f95d3ecd7410ab4ca9218136cf0994e0",
+  "date": "2019-08-05T07:13:55.544Z"
+}

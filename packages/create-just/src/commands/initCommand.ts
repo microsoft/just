@@ -76,6 +76,7 @@ export async function initCommand(argv: yargs.Arguments) {
   argv.name = name;
 
   const stackPath = await getStackPath(argv.stack, argv.registry);
+  pkg.install(argv.registry, stackPath!);
   const stackName = getStackName(stackPath!);
   const generator = getPlopGenerator(stackPath!, paths.projectPath, stackName);
 
