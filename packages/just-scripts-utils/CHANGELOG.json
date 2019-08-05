@@ -2,6 +2,20 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 06:10:22 GMT",
+      "tag": "just-scripts-utils_v0.8.3",
+      "version": "0.8.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Switches to using plop.js for codegen",
+            "author": "kchau@microsoft.com",
+            "commit": "2ea4e433c300ed8323aaab0fcf03f927ba8ab78b"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.8.1",
       "tag": "just-scripts-utils_v0.8.1",
       "date": "Sat, 01 Jun 2019 04:59:34 GMT",

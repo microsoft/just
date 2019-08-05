@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Fri, 12 Jul 2019 23:29:37 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 06:10:22 GMT and should not be manually modified.
+
+## 0.13.0
+Mon, 05 Aug 2019 06:10:22 GMT
+
+### Minor changes
+
+- Switches to using plop.js for codegen (kchau@microsoft.com)
 
 ## 0.12.1
 Fri, 12 Jul 2019 23:29:37 GMT

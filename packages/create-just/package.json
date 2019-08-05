@@ -1,6 +1,6 @@
 {
   "name": "create-just",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "description": "Create a new repository using Just",
   "repository": {
     "type": "git",
@@ -31,6 +31,6 @@
     "webpack": "~4.29.5",
     "webpack-cli": "^3.2.1",
     "ts-loader": "^6.0.4",
-    "just-scripts-utils": ">=0.8.2 <1.0.0"
+    "just-scripts-utils": ">=0.8.3 <1.0.0"
   }
 }

@@ -1,6 +1,13 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Sat, 01 Jun 2019 04:59:34 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 06:10:22 GMT and should not be manually modified.
+
+## 0.7.0
+Mon, 05 Aug 2019 06:10:22 GMT
+
+### Minor changes
+
+- Switched to Lerna (kchau@microsoft.com)
 
 ## 0.6.20
 Sat, 01 Jun 2019 04:59:34 GMT

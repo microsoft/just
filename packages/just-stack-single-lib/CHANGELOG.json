@@ -2,6 +2,20 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 06:10:22 GMT",
+      "tag": "just-stack-single-lib_v0.9.0",
+      "version": "0.9.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Switches to using plop.js for codegen",
+            "author": "kchau@microsoft.com",
+            "commit": "2ea4e433c300ed8323aaab0fcf03f927ba8ab78b"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.8.7",
       "tag": "just-stack-single-lib_v0.8.7",
       "date": "Tue, 04 Jun 2019 15:55:03 GMT",

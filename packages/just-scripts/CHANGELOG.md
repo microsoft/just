@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 19 Jul 2019 22:44:26 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 06:10:22 GMT and should not be manually modified.
+
+## 0.27.0
+Mon, 05 Aug 2019 06:10:22 GMT
+
+### Minor changes
+
+- Getting rid of defunct just-stack / monorepo tasks (kchau@microsoft.com)
 
 ## 0.26.0
 Fri, 19 Jul 2019 22:44:26 GMT

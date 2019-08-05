@@ -1,6 +1,13 @@
-# Changelog - create-just
+# Change Log - create-just
 
-This log was last generated on Mon, 01 Jul 2019 20:15:20 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 06:10:22 GMT and should not be manually modified.
+
+## 1.0.0
+Mon, 05 Aug 2019 06:10:22 GMT
+
+### Major
+
+- Switches to using plop.js for codegen (kchau@microsoft.com)
 
 ## 0.9.1
 Mon, 01 Jul 2019 20:15:20 GMT

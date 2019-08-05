@@ -2,6 +2,20 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 06:10:22 GMT",
+      "tag": "just-stack-monorepo_v0.7.0",
+      "version": "0.7.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Switched to Lerna",
+            "author": "kchau@microsoft.com",
+            "commit": "2ea4e433c300ed8323aaab0fcf03f927ba8ab78b"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.20",
       "tag": "just-stack-monorepo_v0.6.20",
       "date": "Sat, 01 Jun 2019 04:59:34 GMT",

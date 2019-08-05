@@ -2,6 +2,20 @@
   "name": "just-stack-uifabric",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 06:10:22 GMT",
+      "tag": "just-stack-uifabric_v0.13.0",
+      "version": "0.13.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Switches to using plop.js for codegen",
+            "author": "kchau@microsoft.com",
+            "commit": "2ea4e433c300ed8323aaab0fcf03f927ba8ab78b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 12 Jul 2019 23:29:37 GMT",
       "tag": "just-stack-uifabric_v0.12.1",
       "version": "0.12.1",

@@ -2,6 +2,20 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 06:10:22 GMT",
+      "tag": "create-just_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "major": [
+          {
+            "comment": "Switches to using plop.js for codegen",
+            "author": "kchau@microsoft.com",
+            "commit": "2ea4e433c300ed8323aaab0fcf03f927ba8ab78b"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.9.0",
       "tag": "create-just_v0.9.0",
       "date": "Fri, 31 May 2019 21:15:02 GMT",

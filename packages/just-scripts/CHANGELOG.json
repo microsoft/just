@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 06:10:22 GMT",
+      "tag": "just-scripts_v0.27.0",
+      "version": "0.27.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Getting rid of defunct just-stack / monorepo tasks",
+            "author": "kchau@microsoft.com",
+            "commit": "2ea4e433c300ed8323aaab0fcf03f927ba8ab78b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 19 Jul 2019 22:44:26 GMT",
       "tag": "just-scripts_v0.26.0",
       "version": "0.26.0",

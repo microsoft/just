@@ -1,0 +1,19 @@
+{
+  "name": "just-stack-react",
+  "entries": [
+    {
+      "date": "Mon, 05 Aug 2019 06:10:22 GMT",
+      "tag": "just-stack-react_v0.3.0",
+      "version": "0.3.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "code gen subsequent packages",
+            "author": "kchau@microsoft.com",
+            "commit": "2ea4e433c300ed8323aaab0fcf03f927ba8ab78b"
+          }
+        ]
+      }
+    }
+  ]
+}

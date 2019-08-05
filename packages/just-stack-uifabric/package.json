@@ -1,6 +1,6 @@
 {
   "name": "just-stack-uifabric",
-  "version": "0.12.1",
+  "version": "0.13.0",
   "description": "Just stack for UI Fabric application with React",
   "keywords": [
     "just-stack"
@@ -12,6 +12,6 @@
   "license": "MIT",
   "author": "kchau@microsoft.com",
   "dependencies": {
-    "just-stack-react": "^0.2.0"
+    "just-stack-react": "^0.3.0"
   }
 }
