@@ -1,6 +1,13 @@
 # Change Log - just-stack-react
 
-This log was last generated on Mon, 05 Aug 2019 17:34:19 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 18:07:34 GMT and should not be manually modified.
+
+## 1.0.1
+Mon, 05 Aug 2019 18:07:34 GMT
+
+### Patches
+
+- Revert the installdev only thing (kchau@microsoft.com)
 
 ## 1.0.0
 Mon, 05 Aug 2019 17:34:19 GMT

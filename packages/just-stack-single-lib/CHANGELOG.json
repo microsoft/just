@@ -2,6 +2,20 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 18:07:34 GMT",
+      "tag": "just-stack-single-lib_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Revert the installdev only thing",
+            "author": "kchau@microsoft.com",
+            "commit": "55e3a663c6cea638ef3ec5e4ecef2fad92c8c3a2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 17:34:19 GMT",
       "tag": "just-stack-single-lib_v1.0.0",
       "version": "1.0.0",
