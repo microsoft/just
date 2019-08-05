@@ -1,5 +1,4 @@
 CHANGELOG.*
 *.log
-package-deps.json
-/template.spec.js
-/jest.config.js
+node_modules
+!**/plop-templates/.gitignore

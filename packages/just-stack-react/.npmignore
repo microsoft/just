@@ -1,4 +1,4 @@
 CHANGELOG.*
 *.log
 node_modules
-
+!**/plop-templates/.gitignore
