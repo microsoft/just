@@ -1,6 +1,13 @@
 # Change Log - just-stack-react
 
-This log was last generated on Mon, 05 Aug 2019 07:19:36 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 07:34:29 GMT and should not be manually modified.
+
+## 0.3.2
+Mon, 05 Aug 2019 07:34:29 GMT
+
+### Patches
+
+- make sure we don't ignore gitignore (kchau@microsoft.com)
 
 ## 0.3.1
 Mon, 05 Aug 2019 07:19:36 GMT

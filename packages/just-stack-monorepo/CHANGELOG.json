@@ -2,6 +2,20 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 07:34:29 GMT",
+      "tag": "just-stack-monorepo_v0.7.1",
+      "version": "0.7.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "make sure we don't ignore gitignore",
+            "author": "kchau@microsoft.com",
+            "commit": "ca03a3b52727af488f175a0608bffc1d4dbaac96"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 06:10:22 GMT",
       "tag": "just-stack-monorepo_v0.7.0",
       "version": "0.7.0",

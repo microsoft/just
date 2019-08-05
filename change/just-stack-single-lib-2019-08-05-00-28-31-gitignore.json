@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "make sure we don't ignore gitignore",
-  "packageName": "just-stack-single-lib",
-  "email": "kchau@microsoft.com",
-  "commit": "ca03a3b52727af488f175a0608bffc1d4dbaac96",
-  "date": "2019-08-05T07:28:30.952Z"
-}

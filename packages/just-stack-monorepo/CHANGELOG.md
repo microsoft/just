@@ -1,6 +1,13 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Mon, 05 Aug 2019 06:10:22 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2019 07:34:29 GMT and should not be manually modified.
+
+## 0.7.1
+Mon, 05 Aug 2019 07:34:29 GMT
+
+### Patches
+
+- make sure we don't ignore gitignore (kchau@microsoft.com)
 
 ## 0.7.0
 Mon, 05 Aug 2019 06:10:22 GMT

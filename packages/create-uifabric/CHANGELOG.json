@@ -2,6 +2,20 @@
   "name": "create-uifabric",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2019 07:34:29 GMT",
+      "tag": "create-uifabric_v0.2.6",
+      "version": "0.2.6",
+      "comments": {
+        "patch": [
+          {
+            "comment": "update create-just dep",
+            "author": "kchau@microsoft.com",
+            "commit": "7514f8439481dcffa12bfbd6359da3a1dbc97e9e"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 06:38:54 GMT",
       "tag": "create-uifabric_v0.2.5",
       "version": "0.2.5",
