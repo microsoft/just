@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "adding a just-plop-helper load for the parent as well",
+  "packageName": "create-just",
+  "email": "kchau@microsoft.com",
+  "commit": "7b60548eaed6311b98ec9d602e118caadcc63e9b",
+  "date": "2019-08-06T05:10:08.069Z"
+}
