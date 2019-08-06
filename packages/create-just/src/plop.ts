@@ -8,7 +8,8 @@ export async function getPlopGenerator(plopfilePath: string, destBasePath: strin
   const plop = nodePlop(plopfile, { destBasePath, force: false });
 
   // Automatically inject some plop helpers
-  (plop as any).load('just-plop-helpers');
+  const justPlopHelpers = require.resolve('just-plop-helpers');
+  (plop as any).load(justPlopHelpers);
 
   let generator = plop.getGenerator(`repo:${stackName}`) as any;
 
