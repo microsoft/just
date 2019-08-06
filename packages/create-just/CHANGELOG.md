@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Tue, 06 Aug 2019 04:07:38 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Aug 2019 04:54:48 GMT and should not be manually modified.
+
+## 1.1.3
+Tue, 06 Aug 2019 04:54:48 GMT
+
+### Patches
+
+- make plop load of helpers work (kchau@microsoft.com)
 
 ## 1.1.2
 Tue, 06 Aug 2019 04:07:38 GMT

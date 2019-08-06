@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "make plop load of helpers work",
-  "packageName": "create-uifabric",
-  "email": "kchau@microsoft.com",
-  "commit": "ad409ec8e0066c31465aaf8122c8e87557bfffe5",
-  "date": "2019-08-06T04:49:16.621Z"
-}

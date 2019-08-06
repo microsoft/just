@@ -1,6 +1,13 @@
 # Change Log - create-uifabric
 
-This log was last generated on Mon, 05 Aug 2019 18:42:59 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Aug 2019 04:54:48 GMT and should not be manually modified.
+
+## 0.2.8
+Tue, 06 Aug 2019 04:54:48 GMT
+
+### Patches
+
+- make plop load of helpers work (kchau@microsoft.com)
 
 ## 0.2.7
 Mon, 05 Aug 2019 18:42:59 GMT
