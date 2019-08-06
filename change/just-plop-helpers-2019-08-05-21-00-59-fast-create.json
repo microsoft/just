@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Speeds up the codegen process to only yarn once",
+  "comment": "Added an addDependency action",
   "packageName": "just-plop-helpers",
   "email": "kchau@microsoft.com",
   "commit": "16305f61c97d0f51aaad21302758fbb554e0afc9",
