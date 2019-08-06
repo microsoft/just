@@ -2,6 +2,34 @@
   "name": "create-uifabric",
   "entries": [
     {
+      "date": "Tue, 06 Aug 2019 05:21:55 GMT",
+      "tag": "create-uifabric_v0.2.9",
+      "version": "0.2.9",
+      "comments": {
+        "patch": [
+          {
+            "comment": "bump create-just",
+            "author": "kchau@microsoft.com",
+            "commit": "56d1abcbd8df97cf68ab8e8e95b89dc238dc691e"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 06 Aug 2019 04:54:48 GMT",
+      "tag": "create-uifabric_v0.2.8",
+      "version": "0.2.8",
+      "comments": {
+        "patch": [
+          {
+            "comment": "make plop load of helpers work",
+            "author": "kchau@microsoft.com",
+            "commit": "ad409ec8e0066c31465aaf8122c8e87557bfffe5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 18:42:59 GMT",
       "tag": "create-uifabric_v0.2.7",
       "version": "0.2.7",

@@ -77,12 +77,7 @@ export async function initCommand(argv: yargs.Arguments) {
 
   const stackPath = await getStackPath(argv.stack, argv.registry);
   const stackName = getStackName(stackPath!);
-
-  logger.info(`Installing dependencies for the stack "${stackName}" itself in order to run code generation`);
-
-  pkg.install(argv.registry, stackPath!);
-
-  const generator = getPlopGenerator(stackPath!, paths.projectPath, stackName);
+  const generator = await getPlopGenerator(stackPath!, paths.projectPath, stackName);
 
   logger.info(`Running "${stackName}" code generation actions inside: ${paths.projectPath}`);
 

@@ -1,5 +1,4 @@
 module.exports = function(plop) {
-  plop.load('just-plop-helpers');
   plop.setGenerator('repo:just-stack-monorepo', {
     actions: [
       {

@@ -1,6 +1,6 @@
 {
   "name": "create-uifabric",
-  "version": "0.2.7",
+  "version": "0.2.9",
   "description": "Create a new UI Fabric repository using Just",
   "repository": {
     "type": "git",
@@ -14,6 +14,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "create-just": "^1.1.1"
+    "create-just": "^1.1.4"
   }
 }

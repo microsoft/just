@@ -1,6 +1,6 @@
 {
   "name": "just-stack-monorepo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Just stack for monorepo using Rush",
   "keywords": [
     "just-stack"
@@ -13,6 +13,7 @@
   "author": "",
   "main": "index.js",
   "dependencies": {
-    "just-plop-helpers": "^1.1.1"
+    "plop": "^2.4.0",
+    "just-plop-helpers": "^1.1.2"
   }
 }

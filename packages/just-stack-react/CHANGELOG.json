@@ -2,6 +2,20 @@
   "name": "just-stack-react",
   "entries": [
     {
+      "date": "Tue, 06 Aug 2019 04:07:38 GMT",
+      "tag": "just-stack-react_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Speeds up the codegen process to only yarn once",
+            "author": "kchau@microsoft.com",
+            "commit": "16305f61c97d0f51aaad21302758fbb554e0afc9"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 05 Aug 2019 18:46:25 GMT",
       "tag": "just-stack-react_v1.0.2",
       "version": "1.0.2",

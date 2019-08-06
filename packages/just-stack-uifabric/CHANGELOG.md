@@ -1,6 +1,13 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Mon, 05 Aug 2019 18:07:34 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Aug 2019 04:07:38 GMT and should not be manually modified.
+
+## 1.0.2
+Tue, 06 Aug 2019 04:07:38 GMT
+
+### Patches
+
+- Speeds up the codegen process to only yarn once (kchau@microsoft.com)
 
 ## 1.0.1
 Mon, 05 Aug 2019 18:07:34 GMT

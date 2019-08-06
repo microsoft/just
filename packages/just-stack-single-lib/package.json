@@ -1,6 +1,6 @@
 {
   "name": "just-stack-single-lib",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "main": "lib-commonjs/index.js",
   "module": "lib/index.js",
@@ -12,8 +12,9 @@
     "@types/jest": "^24.0.16",
     "beachball": "^1.11.5",
     "jest": "^24.8.0",
-    "just-plop-helpers": "^1.1.1",
+    "just-plop-helpers": "^1.1.2",
     "just-scripts": "^0.27.0",
+    "plop": "^2.4.0",
     "typescript": "^3.5.3"
   }
 }
