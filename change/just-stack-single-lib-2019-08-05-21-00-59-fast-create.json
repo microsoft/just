@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Speeds up the codegen process to only yarn once",
-  "packageName": "just-stack-single-lib",
-  "email": "kchau@microsoft.com",
-  "commit": "16305f61c97d0f51aaad21302758fbb554e0afc9",
-  "date": "2019-08-06T04:00:58.035Z"
-}
