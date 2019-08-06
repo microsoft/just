@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "make plop load of helpers work",
+  "packageName": "create-just",
+  "email": "kchau@microsoft.com",
+  "commit": "74dd4d68d3b5375dae2079d13b8bd392943ea9cb",
+  "date": "2019-08-06T04:48:55.716Z"
+}
