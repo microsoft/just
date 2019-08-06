@@ -1,6 +1,6 @@
 {
   "name": "create-uifabric",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Create a new UI Fabric repository using Just",
   "repository": {
     "type": "git",

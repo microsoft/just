@@ -1,6 +1,13 @@
 # Change Log - create-uifabric
 
-This log was last generated on Tue, 06 Aug 2019 04:54:48 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Aug 2019 05:21:55 GMT and should not be manually modified.
+
+## 0.2.9
+Tue, 06 Aug 2019 05:21:55 GMT
+
+### Patches
+
+- bump create-just (kchau@microsoft.com)
 
 ## 0.2.8
 Tue, 06 Aug 2019 04:54:48 GMT
