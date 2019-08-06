@@ -1,6 +1,13 @@
 # Change Log - create-uifabric
 
-This log was last generated on Tue, 06 Aug 2019 05:21:55 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Aug 2019 19:55:07 GMT and should not be manually modified.
+
+## 0.2.10
+Tue, 06 Aug 2019 19:55:07 GMT
+
+### Patches
+
+- bump create-just, fixes npm install (kchau@microsoft.com)
 
 ## 0.2.9
 Tue, 06 Aug 2019 05:21:55 GMT

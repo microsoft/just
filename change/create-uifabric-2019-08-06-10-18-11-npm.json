@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "bump create-just, fixes npm install",
-  "packageName": "create-uifabric",
-  "email": "kchau@microsoft.com",
-  "commit": "4a89b06321fcf9223fa2c4a00b4cd96ad4ea81de",
-  "date": "2019-08-06T17:18:11.576Z"
-}
