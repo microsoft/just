@@ -1,5 +1,6 @@
 import envinfo from 'envinfo';
 import os from 'os';
+import path from 'path';
 
 let envInfoCache: { Binaries: { Yarn: any; npm: any } };
 
@@ -13,20 +14,25 @@ export const initialize = async () => {
       {
         Binaries: ['Yarn', 'npm']
       },
-      { json: true, showNotFound: true }
+      { json: true, showNotFound: false }
     )
   );
 
-  envInfoCache.Binaries.Yarn.path = envInfoCache.Binaries.Yarn && expandHome(envInfoCache.Binaries.Yarn.path);
-  envInfoCache.Binaries.npm.path = envInfoCache.Binaries.npm && expandHome(envInfoCache.Binaries.npm.path);
+  if (envInfoCache.Binaries.Yarn) {
+    envInfoCache.Binaries.Yarn.path = expandHome(envInfoCache.Binaries.Yarn.path);
+  }
+
+  if (envInfoCache.Binaries.npm) {
+    envInfoCache.Binaries.npm.path = expandHome(envInfoCache.Binaries.npm.path);
+  }
 
   return envInfoCache;
 };
 
-function expandHome(path: string) {
-  if (path.startsWith('~/')) {
-    return path.replace('~/', os.homedir() + '/');
+function expandHome(pathString: string) {
+  if (pathString.startsWith('~' + path.sep)) {
+    return pathString.replace('~', os.homedir());
   }
 
-  return path;
+  return pathString;
 }

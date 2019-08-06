@@ -1,11 +1,11 @@
-import { paths, logger, prettyPrintMarkdown, downloadPackage } from 'just-scripts-utils';
-import path from 'path';
-import { readdirSync, readFileSync, existsSync } from 'fs';
-import prompts from 'prompts';
 import { execSync } from 'child_process';
-import yargs from 'yargs';
 import { getPlopGenerator, runGenerator } from '../plop';
+import { paths, logger, prettyPrintMarkdown, downloadPackage } from 'just-scripts-utils';
+import { readdirSync, readFileSync, existsSync } from 'fs';
 import * as pkg from '../packageManager';
+import path from 'path';
+import prompts from 'prompts';
+import yargs from 'yargs';
 
 const initCwd = process.cwd();
 
@@ -50,7 +50,7 @@ export async function initCommand(argv: yargs.Arguments) {
         { title: 'React App', value: 'just-stack-react' },
         { title: 'UI Fabric (React)', value: 'just-stack-uifabric' },
         { title: 'Basic TypeScript', value: 'just-stack-single-lib' },
-        { title: 'Monorepo', value: 'just-stack-monorepo' }
+        ...(pkg.getYarn() ? [{ title: 'Monorepo', value: 'just-stack-monorepo' }] : [])
       ]
     });
     argv.stack = stack;
