@@ -15,13 +15,11 @@ module.exports = function(plop) {
         destination: '.',
         force: true
       },
-      answers => {
-        // Modifies the package.json a bit
-        const basePath = plop.getDestBasePath();
-        const packageJson = JSON.parse(fs.readFileSync(path.join(basePath, 'package.json')));
-        packageJson.dependencies['office-ui-fabric-react'] = '^7.0.0';
-        fs.writeFileSync(path.join(basePath, 'package.json'), JSON.stringify(packageJson, null, 2));
-        return 'Added UI Fabric dependency';
+      {
+        type: 'addDependency',
+        dependencies: {
+          'office-ui-fabric-react': '^7.0.0'
+        }
       }
     ]
   });

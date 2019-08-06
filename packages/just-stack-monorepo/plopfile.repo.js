@@ -1,8 +1,6 @@
 const fs = require('fs');
 
 module.exports = function(plop) {
-  plop.load('just-plop-helpers');
-
   const packageJson = JSON.parse(fs.readFileSync(require.resolve('package.json', { paths: [process.cwd()] })));
 
   plop.setGenerator('react-package', {

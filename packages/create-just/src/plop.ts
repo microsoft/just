@@ -6,9 +6,13 @@ import { downloadPackage } from 'just-scripts-utils';
 export async function getPlopGenerator(plopfilePath: string, destBasePath: string, stackName: string) {
   const plopfile = path.join(plopfilePath, 'plopfile.js');
   const plop = nodePlop(plopfile, { destBasePath, force: false });
-  plop.load('just-plop-helpers', { force: true, destBasePath }, true);
+
+  // Automatically inject some plop helpers
+  (plop as any).load('just-plop-helpers');
+
   let generator = plop.getGenerator(`repo:${stackName}`) as any;
 
+  // Automatically inject a task of running the repo:parent actions
   if (generator.parent) {
     plop.setActionType('repo:parent', async (answers, _config, _plop) => {
       const parentPlopPath = (await downloadPackage(generator.parent))!;
