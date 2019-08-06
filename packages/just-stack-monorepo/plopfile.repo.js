@@ -23,11 +23,6 @@ module.exports = function(plop) {
         data: {
           repoName: packageJson.name
         }
-      },
-      {
-        type: 'rename',
-        src: 'gitignore',
-        dest: '.gitignore'
       }
     ]
   });

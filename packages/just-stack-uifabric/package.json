@@ -10,9 +10,5 @@
     "url": "https://github.com/microsoft/just"
   },
   "license": "MIT",
-  "author": "kchau@microsoft.com",
-  "dependencies": {
-    "node-plop": "^0.19.0",
-    "just-stack-react": "^1.0.1"
-  }
+  "author": "kchau@microsoft.com"
 }
