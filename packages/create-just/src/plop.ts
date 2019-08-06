@@ -19,8 +19,12 @@ export async function getPlopGenerator(plopfilePath: string, destBasePath: strin
       const parentPlopPath = (await downloadPackage(generator.parent))!;
       const parentPlopFilePath = path.join(parentPlopPath, 'plopfile.js');
       const parentPlop = nodePlop(parentPlopFilePath, { destBasePath, force: false });
+
+      (parentPlop as any).load(justPlopHelpers);
+
       const parentGenerator = parentPlop.getGenerator(`repo:${generator.parent}`) as any;
       const results = await parentGenerator.runActions(answers);
+
       if (results.changes) {
         return results.changes.map(change => change.path).join('\n');
       }
