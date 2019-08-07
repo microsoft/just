@@ -1,8 +1,0 @@
-{
-  "comment": "add resolvePluginsPath option, make it possible to set maxWarnings to 0",
-  "type": "minor",
-  "packageName": "just-scripts",
-  "email": "andrewh@microsoft.com",
-  "commit": "986346455fe33c3ff1de70404d679cf18c60806c",
-  "date": "2019-08-05T18:21:26.706Z"
-}
