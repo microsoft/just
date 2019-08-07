@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fixes npm init uifabric",
-  "packageName": "create-just",
-  "email": "kchau@microsoft.com",
-  "commit": "985a5b733c4407e84c35dfd8756ec4b43e2cae81",
-  "date": "2019-08-06T17:17:40.258Z"
-}

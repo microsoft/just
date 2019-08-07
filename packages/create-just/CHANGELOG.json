@@ -2,6 +2,20 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Tue, 06 Aug 2019 19:55:07 GMT",
+      "tag": "create-just_v1.1.5",
+      "version": "1.1.5",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixes npm init uifabric",
+            "author": "kchau@microsoft.com",
+            "commit": "985a5b733c4407e84c35dfd8756ec4b43e2cae81"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Aug 2019 05:13:55 GMT",
       "tag": "create-just_v1.1.4",
       "version": "1.1.4",

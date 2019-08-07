@@ -1,6 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Tue, 06 Aug 2019 05:13:55 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Aug 2019 19:55:07 GMT and should not be manually modified.
+
+## 1.1.5
+Tue, 06 Aug 2019 19:55:07 GMT
+
+### Patches
+
+- fixes npm init uifabric (kchau@microsoft.com)
 
 ## 1.1.4
 Tue, 06 Aug 2019 05:13:55 GMT

@@ -2,6 +2,20 @@
   "name": "create-uifabric",
   "entries": [
     {
+      "date": "Tue, 06 Aug 2019 19:55:07 GMT",
+      "tag": "create-uifabric_v0.2.10",
+      "version": "0.2.10",
+      "comments": {
+        "patch": [
+          {
+            "comment": "bump create-just, fixes npm install",
+            "author": "kchau@microsoft.com",
+            "commit": "4a89b06321fcf9223fa2c4a00b4cd96ad4ea81de"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Aug 2019 05:21:55 GMT",
       "tag": "create-uifabric_v0.2.9",
       "version": "0.2.9",
