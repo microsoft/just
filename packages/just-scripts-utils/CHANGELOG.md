@@ -1,6 +1,13 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Mon, 05 Aug 2019 06:10:22 GMT and should not be manually modified.
+This log was last generated on Tue, 13 Aug 2019 21:00:51 GMT and should not be manually modified.
+
+## 0.8.4
+Tue, 13 Aug 2019 21:00:51 GMT
+
+### Patches
+
+- Upgraded marked to 0.7.0 and marked-terminal to 3.3.0 (altinokd@microsoft.com)
 
 ## 0.8.3
 Mon, 05 Aug 2019 06:10:22 GMT

@@ -1,8 +1,0 @@
-{
-  "comment": "Upgraded marked to 0.7.0 and marked-terminal to 3.3.0",
-  "type": "patch",
-  "packageName": "just-scripts-utils",
-  "email": "altinokd@microsoft.com",
-  "commit": "003c41cf6d3d3ac5bce48c6966475fcb6ceb7406",
-  "date": "2019-08-13T18:03:40.563Z"
-}
