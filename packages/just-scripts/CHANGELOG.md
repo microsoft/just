@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 07 Aug 2019 22:11:38 GMT and should not be manually modified.
+This log was last generated on Wed, 14 Aug 2019 18:36:20 GMT and should not be manually modified.
+
+## 0.28.1
+Wed, 14 Aug 2019 18:36:20 GMT
+
+### Patches
+
+- Update just-scripts-utils version (altinokd@microsoft.com)
 
 ## 0.28.0
 Wed, 07 Aug 2019 22:11:38 GMT
