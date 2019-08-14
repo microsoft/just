@@ -12,7 +12,7 @@ module.exports = plop => {
       {
         type: 'add',
         templateFile: 'plop-templates/component/component.tsx.hbs',
-        path: 'src/components/{{pascalCase componentName}}.tsx'
+        path: 'src/components/\{{pascalCase componentName}}.tsx'
       }
     ]
   });

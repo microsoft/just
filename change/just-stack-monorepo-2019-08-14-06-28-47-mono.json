@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Making generators work for monorepo",
+  "packageName": "just-stack-monorepo",
+  "email": "kchau@microsoft.com",
+  "commit": "e39d2f430e180189c1532d12312d58bd90c9f2e6",
+  "date": "2019-08-14T04:28:47.566Z"
+}
