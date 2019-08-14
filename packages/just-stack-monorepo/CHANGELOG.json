@@ -2,6 +2,20 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "date": "Wed, 14 Aug 2019 04:37:37 GMT",
+      "tag": "just-stack-monorepo_v1.0.4",
+      "version": "1.0.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Making generators work for monorepo",
+            "author": "kchau@microsoft.com",
+            "commit": "e39d2f430e180189c1532d12312d58bd90c9f2e6"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Aug 2019 04:07:38 GMT",
       "tag": "just-stack-monorepo_v1.0.3",
       "version": "1.0.3",

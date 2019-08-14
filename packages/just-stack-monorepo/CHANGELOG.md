@@ -1,6 +1,13 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Tue, 06 Aug 2019 04:07:38 GMT and should not be manually modified.
+This log was last generated on Wed, 14 Aug 2019 04:37:37 GMT and should not be manually modified.
+
+## 1.0.4
+Wed, 14 Aug 2019 04:37:37 GMT
+
+### Patches
+
+- Making generators work for monorepo (kchau@microsoft.com)
 
 ## 1.0.3
 Tue, 06 Aug 2019 04:07:38 GMT
