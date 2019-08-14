@@ -17,7 +17,7 @@
     "@types/fs-extra": "^5.0.5",
     "create-just": "1.1.5",
     "just-scripts": ">=0.28.0 <1.0.0",
-    "just-stack-monorepo": "1.0.3",
+    "just-stack-monorepo": "1.0.4",
     "just-stack-single-lib": "1.0.2",
     "just-stack-uifabric": "1.0.2",
     "just-scripts-utils": ">=0.8.4 <1.0.0",
