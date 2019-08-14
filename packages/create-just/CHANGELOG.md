@@ -1,6 +1,76 @@
-# Changelog - create-just
+# Change Log - create-just
 
-This log was last generated on Mon, 01 Jul 2019 20:15:20 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Aug 2019 19:55:07 GMT and should not be manually modified.
+
+## 1.1.5
+Tue, 06 Aug 2019 19:55:07 GMT
+
+### Patches
+
+- fixes npm init uifabric (kchau@microsoft.com)
+
+## 1.1.4
+Tue, 06 Aug 2019 05:13:55 GMT
+
+### Patches
+
+- adding a just-plop-helper load for the parent as well (kchau@microsoft.com)
+
+## 1.1.3
+Tue, 06 Aug 2019 04:54:48 GMT
+
+### Patches
+
+- make plop load of helpers work (kchau@microsoft.com)
+
+## 1.1.2
+Tue, 06 Aug 2019 04:07:38 GMT
+
+### Patches
+
+- Speeds up the codegen process to only yarn once (kchau@microsoft.com)
+
+## 1.1.1
+Mon, 05 Aug 2019 18:07:34 GMT
+
+### Patches
+
+- Revert the installdev only thing (kchau@microsoft.com)
+
+## 1.1.0
+Mon, 05 Aug 2019 17:34:19 GMT
+
+### Minor changes
+
+- making init only install devdeps for the stack - should make this faster (kchau@microsoft.com)
+
+## 1.0.3
+Mon, 05 Aug 2019 07:19:36 GMT
+
+### Patches
+
+- run yarn before plop (kchau@microsoft.com)
+
+## 1.0.2
+Mon, 05 Aug 2019 06:49:27 GMT
+
+### Patches
+
+- convert devdeps to deps (kchau@microsoft.com)
+
+## 1.0.1
+Mon, 05 Aug 2019 06:38:54 GMT
+
+### Patches
+
+- get rid of webpack for create-just (kchau@microsoft.com)
+
+## 1.0.0
+Mon, 05 Aug 2019 06:10:22 GMT
+
+### Major
+
+- Switches to using plop.js for codegen (kchau@microsoft.com)
 
 ## 0.9.1
 Mon, 01 Jul 2019 20:15:20 GMT

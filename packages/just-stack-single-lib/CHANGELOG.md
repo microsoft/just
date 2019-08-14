@@ -1,6 +1,48 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Tue, 04 Jun 2019 15:55:03 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Aug 2019 04:07:38 GMT and should not be manually modified.
+
+## 1.0.2
+Tue, 06 Aug 2019 04:07:38 GMT
+
+### Patches
+
+- Speeds up the codegen process to only yarn once (kchau@microsoft.com)
+
+## 1.0.1
+Mon, 05 Aug 2019 18:07:34 GMT
+
+### Patches
+
+- Revert the installdev only thing (kchau@microsoft.com)
+
+## 1.0.0
+Mon, 05 Aug 2019 17:34:19 GMT
+
+### Major
+
+- upgrading to major 1.0.0 (kchau@microsoft.com)
+
+## 0.9.2
+Mon, 05 Aug 2019 07:34:29 GMT
+
+### Patches
+
+- make sure we don't ignore gitignore (kchau@microsoft.com)
+
+## 0.9.1
+Mon, 05 Aug 2019 07:19:36 GMT
+
+### Patches
+
+- upgrade just-scripts (kchau@microsoft.com)
+
+## 0.9.0
+Mon, 05 Aug 2019 06:10:22 GMT
+
+### Minor changes
+
+- Switches to using plop.js for codegen (kchau@microsoft.com)
 
 ## 0.8.7
 Tue, 04 Jun 2019 15:55:03 GMT

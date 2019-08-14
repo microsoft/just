@@ -1,6 +1,48 @@
 # Change Log - create-uifabric
 
-This log was last generated on Fri, 31 May 2019 21:15:02 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Aug 2019 19:55:07 GMT and should not be manually modified.
+
+## 0.2.10
+Tue, 06 Aug 2019 19:55:07 GMT
+
+### Patches
+
+- bump create-just, fixes npm install (kchau@microsoft.com)
+
+## 0.2.9
+Tue, 06 Aug 2019 05:21:55 GMT
+
+### Patches
+
+- bump create-just (kchau@microsoft.com)
+
+## 0.2.8
+Tue, 06 Aug 2019 04:54:48 GMT
+
+### Patches
+
+- make plop load of helpers work (kchau@microsoft.com)
+
+## 0.2.7
+Mon, 05 Aug 2019 18:42:59 GMT
+
+### Patches
+
+- bumps the create-just dep (kchau@microsoft.com)
+
+## 0.2.6
+Mon, 05 Aug 2019 07:34:29 GMT
+
+### Patches
+
+- update create-just dep (kchau@microsoft.com)
+
+## 0.2.5
+Mon, 05 Aug 2019 06:38:54 GMT
+
+### Patches
+
+- get rid of webpack for create-just (kchau@microsoft.com)
 
 ## 0.2.4
 Fri, 31 May 2019 21:15:02 GMT

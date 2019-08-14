@@ -2,6 +2,34 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Tue, 13 Aug 2019 21:00:51 GMT",
+      "tag": "just-scripts-utils_v0.8.4",
+      "version": "0.8.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Upgraded marked to 0.7.0 and marked-terminal to 3.3.0",
+            "author": "altinokd@microsoft.com",
+            "commit": "003c41cf6d3d3ac5bce48c6966475fcb6ceb7406"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 05 Aug 2019 06:10:22 GMT",
+      "tag": "just-scripts-utils_v0.8.3",
+      "version": "0.8.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Switches to using plop.js for codegen",
+            "author": "kchau@microsoft.com",
+            "commit": "2ea4e433c300ed8323aaab0fcf03f927ba8ab78b"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.8.1",
       "tag": "just-scripts-utils_v0.8.1",
       "date": "Sat, 01 Jun 2019 04:59:34 GMT",

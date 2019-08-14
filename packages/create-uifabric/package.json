@@ -1,15 +1,12 @@
 {
   "name": "create-uifabric",
-  "version": "0.2.4",
+  "version": "0.2.10",
   "description": "Create a new UI Fabric repository using Just",
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/just"
   },
-  "scripts": {
-    "build": ""
-  },
-  "main": "dist/create-uifabric.js",
+  "main": "lib/index.js",
   "bin": {
     "create-uifabric": "bin/create-uifabric.js"
   },
@@ -17,9 +14,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "create-just": "0.9.1"
-  },
-  "devDependencies": {
-    "@types/node": "^10.12.18"
+    "create-just": "^1.1.5"
   }
 }

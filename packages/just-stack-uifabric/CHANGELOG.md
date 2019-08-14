@@ -1,6 +1,48 @@
 # Change Log - just-stack-uifabric
 
-This log was last generated on Fri, 12 Jul 2019 23:29:37 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Aug 2019 04:07:38 GMT and should not be manually modified.
+
+## 1.0.2
+Tue, 06 Aug 2019 04:07:38 GMT
+
+### Patches
+
+- Speeds up the codegen process to only yarn once (kchau@microsoft.com)
+
+## 1.0.1
+Mon, 05 Aug 2019 18:07:34 GMT
+
+### Patches
+
+- Revert the installdev only thing (kchau@microsoft.com)
+
+## 1.0.0
+Mon, 05 Aug 2019 17:34:19 GMT
+
+### Major
+
+- upgrading to major 1.0.0 (kchau@microsoft.com)
+
+## 0.13.2
+Mon, 05 Aug 2019 07:34:29 GMT
+
+### Patches
+
+- make sure we don't ignore gitignore (kchau@microsoft.com)
+
+## 0.13.1
+Mon, 05 Aug 2019 07:02:51 GMT
+
+### Patches
+
+- adding node plop (kchau@microsoft.com)
+
+## 0.13.0
+Mon, 05 Aug 2019 06:10:22 GMT
+
+### Minor changes
+
+- Switches to using plop.js for codegen (kchau@microsoft.com)
 
 ## 0.12.1
 Fri, 12 Jul 2019 23:29:37 GMT

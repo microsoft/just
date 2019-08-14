@@ -107,6 +107,7 @@ export const createStylesOverlay = function(options: CssLoaderOptions = {}) {
   };
 };
 
-export const stylesOverlay = createStylesOverlay({
-  localIdentName: defaultIdentName
-});
+export const stylesOverlay = () =>
+  createStylesOverlay({
+    localIdentName: defaultIdentName
+  });

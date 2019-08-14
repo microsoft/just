@@ -1,6 +1,55 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Sat, 01 Jun 2019 04:59:34 GMT and should not be manually modified.
+This log was last generated on Wed, 14 Aug 2019 04:37:37 GMT and should not be manually modified.
+
+## 1.0.4
+Wed, 14 Aug 2019 04:37:37 GMT
+
+### Patches
+
+- Making generators work for monorepo (kchau@microsoft.com)
+
+## 1.0.3
+Tue, 06 Aug 2019 04:07:38 GMT
+
+### Patches
+
+- Speeds up the codegen process to only yarn once (kchau@microsoft.com)
+
+## 1.0.2
+Mon, 05 Aug 2019 18:46:25 GMT
+
+### Patches
+
+- fixing the plopfile to copy all files including gitignore (kchau@microsoft.com)
+
+## 1.0.1
+Mon, 05 Aug 2019 18:07:34 GMT
+
+### Patches
+
+- Revert the installdev only thing (kchau@microsoft.com)
+
+## 1.0.0
+Mon, 05 Aug 2019 17:34:19 GMT
+
+### Major
+
+- upgrading to major 1.0.0 (kchau@microsoft.com)
+
+## 0.7.1
+Mon, 05 Aug 2019 07:34:29 GMT
+
+### Patches
+
+- make sure we don't ignore gitignore (kchau@microsoft.com)
+
+## 0.7.0
+Mon, 05 Aug 2019 06:10:22 GMT
+
+### Minor changes
+
+- Switched to Lerna (kchau@microsoft.com)
 
 ## 0.6.20
 Sat, 01 Jun 2019 04:59:34 GMT

@@ -1,6 +1,20 @@
-# Changelog - just-scripts-utils
+# Change Log - just-scripts-utils
 
-This log was last generated on Mon, 01 Jul 2019 20:15:20 GMT and should not be manually modified.
+This log was last generated on Tue, 13 Aug 2019 21:00:51 GMT and should not be manually modified.
+
+## 0.8.4
+Tue, 13 Aug 2019 21:00:51 GMT
+
+### Patches
+
+- Upgraded marked to 0.7.0 and marked-terminal to 3.3.0 (altinokd@microsoft.com)
+
+## 0.8.3
+Mon, 05 Aug 2019 06:10:22 GMT
+
+### Patches
+
+- Switches to using plop.js for codegen (kchau@microsoft.com)
 
 ## 0.8.2
 Mon, 01 Jul 2019 20:15:20 GMT

@@ -2,6 +2,34 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Wed, 07 Aug 2019 22:11:38 GMT",
+      "tag": "just-scripts_v0.28.0",
+      "version": "0.28.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "add resolvePluginsPath option, make it possible to set maxWarnings to 0",
+            "author": "andrewh@microsoft.com",
+            "commit": "986346455fe33c3ff1de70404d679cf18c60806c"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 05 Aug 2019 06:10:22 GMT",
+      "tag": "just-scripts_v0.27.0",
+      "version": "0.27.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Getting rid of defunct just-stack / monorepo tasks",
+            "author": "kchau@microsoft.com",
+            "commit": "2ea4e433c300ed8323aaab0fcf03f927ba8ab78b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 19 Jul 2019 22:44:26 GMT",
       "tag": "just-scripts_v0.26.0",
       "version": "0.26.0",
