@@ -67,7 +67,7 @@ cd monorepo
 ```
 yarn gen app
 yarn
-cd packaegs/app
+cd packages/app
 yarn start
 ```
 
