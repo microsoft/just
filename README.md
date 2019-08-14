@@ -107,7 +107,8 @@ import { Foo } from './components/Foo';
 
 export default () => (
   <div>
-    This is a <Foo />
+    A message from Foo:
+    <Foo />
   </div>
 );
 ```
