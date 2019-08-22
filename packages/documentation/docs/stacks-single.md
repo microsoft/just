@@ -4,7 +4,7 @@ title: Single Stack
 sidebar_label: Single Stack
 ---
 
-The simplest kind of projects are the single package repositories. Out of the box, `just` can create a single package library or a batteries-included web application. The generated repository will use the `just-task` library to manage its build definitions. You can customize the build task flow by editing the `just-task.js` at the root of the generated repository.
+The simplest kind of projects are the single package repositories. Out of the box, `just` can create a single package library or a batteries-included web application. The generated repository will use the `just` library to manage its build definitions. You can customize the build task flow by editing the `just.config.js` at the root of the generated repository.
 
 To get started, have a look at the `README.md` at the root of the newly generated repository. Some of the common commands are listed here.
 

@@ -7,7 +7,8 @@ sidebar_label: Just Stacks
 Just also provides what we call "stacks" to complete the workflow of building a repository. Just Stacks provides:
 
 1. a project generator for single package or monorepo repository via `create-just`
-2. a set of `just-task`s to help keep the generated project up-to-date with the template that generated the project
+2. generated repo depends on a `stack` like `just-stack-react` and `just-stack-monorepo` which provides all the devDependencies needed to build those stacks
+3. these `stack`s also take `just-scripts` as a dependency which gives the repos the necessary build scripting for different parts of the stack (compiler, test runner, and bundler)
 
 ## Generate a new project
 

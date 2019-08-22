@@ -7,13 +7,13 @@ sidebar_label: Getting Started
 `Just` is a build task definition library. It stands on the shoulders of two excellent and well tested libraries: undertaker and yargs. We encourage developers to make `just` available locally instead of installing `just` as a global tool.
 
 ```sh
-npm i -D just-task
+npm i -D just-scripts
 ```
 
-Place some task definitions inside `just-task.js` in your root folder (next to package.json):
+Place some task definitions inside `just.config.js` in your root folder (next to package.json):
 
 ```js
-const { task, option, logger, argv } = require('just-task');
+const { task, option, logger, argv } = require('just-scripts');
 
 option('name', { default: 'world' });
 
@@ -33,4 +33,4 @@ That's all!
 
 ## Next Steps
 
-Learn how to [compose tasks in just-task.js](composition.md)
+Learn how to [compose tasks in just](composition.md)
