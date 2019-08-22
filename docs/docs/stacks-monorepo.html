@@ -57,33 +57,33 @@
               }
             });
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/kenotron/just-task/tree/master/packages/documentation/docs/stacks-monorepo.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Monorepo Stack</h1></header><article><div><span><p>When there are many highly related packages that are usually developed together, it makes sense to put them in the same repository. This ensures that those changes are atomic and can be released together in one go. When we put multiple packages inside a single repository, we call this a monorepo.</p>
-<p>Just uses the <a href="https://rushjs.io">Rush</a> library to manage monorepos. This library handles linking lots of little packages together to ensure a sane developer experience. Rush is powerful, but it does not provide opinions about what kind of packages are scaffolded inside the monorepo. Just Stacks provides this for Rush monorepos.</p>
+<p>Just uses the <a href="https://lerna.js.org">Lerna</a> library to manage monorepos together with <a href="https://yarnpkg.com/lang/en/docs/workspaces/">yarn workspaces</a>. Those libraries handles linking monorepo packages together to ensure a sane developer experience. Lerna is powerful, but it does not provide opinions about what kind of packages are scaffolded inside the monorepo. Just Stacks provides this for the monorepo.</p>
+<h1><a class="anchor" aria-hidden="true" id="prerequisites"></a><a href="#prerequisites" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisites</h1>
+<p>Yarn is a prerequisite in using the monorepo stack. Install it like so:</p>
+<pre><code class="hljs">npm <span class="hljs-keyword">install</span> -g yarn
+</code></pre>
+<h1><a class="anchor" aria-hidden="true" id="getting-started-with-the-monorepo"></a><a href="#getting-started-with-the-monorepo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Getting Started with the MonoRepo</h1>
 <p>After creating a monorepo, you can create packages, incrementally build all the packages, and even upgrade the packages according to changes from the templates by an <a href="/just/docs/stacks-upgrades">upgrade process</a>.</p>
 <h1><a class="anchor" aria-hidden="true" id="installing-dependencies"></a><a href="#installing-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installing dependencies</h1>
-<p>Installing dependencies is the job of the Rush monorepo manager. By default node.js comes with the <code>npm</code> package manager. We can simply do this:</p>
-<pre><code class="hljs">npm <span class="hljs-keyword">install</span>
+<p>Installing dependencies is the job of Yarn. Install all dependencies and bootstrap the monorepo like so:</p>
+<pre><code class="hljs"><span class="hljs-attribute">yarn</span>
 </code></pre>
-<p>We have hooked up Rush's installation process with the <code>npm install</code> script for convenience.</p>
 <blockquote>
-<p>Like the single package stacks, don't forget to run <code>npm install</code> after you do a <code>git pull</code></p>
+<p>Like the single package stacks, don't forget to run <code>yarn</code> after you do a <code>git pull</code></p>
 </blockquote>
 <h1><a class="anchor" aria-hidden="true" id="building-monorepo"></a><a href="#building-monorepo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Building monorepo</h1>
 <p>To build all the packages, simply run the <code>build</code> npm script. Previously built packages will not be built. We call this incremental builds:</p>
-<pre><code class="hljs">npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
-</code></pre>
+<pre><code class="hljs"><span class="hljs-symbol">yarn</span> <span class="hljs-keyword">build
+</span></code></pre>
 <p>To develop with an innerloop experience, go inside the individual package and type:</p>
 <pre><code class="hljs"><span class="hljs-built_in">cd</span> packages/foo
-npm <span class="hljs-built_in">start</span>
+yarn <span class="hljs-built_in">start</span>
 </code></pre>
 <h1><a class="anchor" aria-hidden="true" id="adding-a-new-package-into-the-repo"></a><a href="#adding-a-new-package-into-the-repo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding a new package into the repo</h1>
-<p>Rush actually requires a few steps to add a new package to its monorepo. <code>just-scripts</code> for monorepo fills this gap by providing a scaffolding experience similar to that of a <code>npm init just</code> call like when the monorepo was generated. Simply run this at the root of the monorepo:</p>
-<pre><code class="hljs">npm run<span class="hljs-built_in"> add-package
-</span></code></pre>
-<p>After picking a package name and a package type, the new package will be placed under <code>packages/</code> directory. Make sure you run an update to make sure deps and symlink are established by Rush:</p>
-<pre><code class="hljs">npm <span class="hljs-keyword">run</span><span class="bash"> update</span>
+<p>Out of the box, the monorepo stack provides a mechanism to create new packages using the <a href="https://plopjs.com">plop.js</a> utility. Simply run this to generate a new package:</p>
+<pre><code class="hljs"><span class="hljs-attribute">yarn gen</span>
 </code></pre>
-<h1><a class="anchor" aria-hidden="true" id="adding-updating-or-removing-a-dependency-to-a-package-inside-the-monorepo"></a><a href="#adding-updating-or-removing-a-dependency-to-a-package-inside-the-monorepo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding, updating, or removing a dependency to a package inside the monorepo</h1>
-<p>To modify a dependency after a package already exists inside the monorepo, modify the package's <code>package.json</code> to include the dependency. Then run the update command to retrieve the dependencies:</p>
-<pre><code class="hljs">npm <span class="hljs-keyword">run</span><span class="bash"> update</span>
+<p>After picking a package name and a package type, the new package will be placed under <code>packages/</code> directory. Make sure you update deps and symlink are established by Yarn:</p>
+<pre><code class="hljs"><span class="hljs-attribute">yarn</span>
 </code></pre>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/just/docs/stacks-single"><span class="arrow-prev">← </span><span>Single Stack</span></a><a class="docs-next button" href="/just/docs/stacks-upgrades"><span>Upgrading Repos</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019</section></footer></div></body></html>
