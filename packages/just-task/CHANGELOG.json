@@ -2,6 +2,20 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Mon, 26 Aug 2019 22:53:18 GMT",
+      "tag": "just-task_v0.13.2",
+      "version": "0.13.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "caching algo changed so it is faster",
+            "author": "kchau@microsoft.com",
+            "commit": "ab2a2d3ce2a4b0008de05c3d6a92555136d889dc"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 22 Jul 2019 20:51:44 GMT",
       "tag": "just-task_v0.13.1",
       "version": "0.13.1",
