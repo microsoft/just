@@ -1,6 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 14 Aug 2019 18:36:20 GMT and should not be manually modified.
+This log was last generated on Mon, 26 Aug 2019 17:08:08 GMT and should not be manually modified.
+
+## 0.28.2
+Mon, 26 Aug 2019 17:08:08 GMT
+
+### Patches
+
+- adds a forceexit flag to make sure timeouts don't hang the runner (kchau@microsoft.com)
 
 ## 0.28.1
 Wed, 14 Aug 2019 18:36:20 GMT

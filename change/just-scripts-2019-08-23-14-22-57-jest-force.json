@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "adds a forceexit flag to make sure timeouts don't hang the runner",
-  "packageName": "just-scripts",
-  "email": "kchau@microsoft.com",
-  "commit": "1eaa0fd3bacc82c58d85dd02c53f3af5aa70eb79",
-  "date": "2019-08-23T21:22:57.600Z"
-}
