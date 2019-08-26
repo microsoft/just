@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "caching algo changed so it is faster",
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com",
+  "commit": "ab2a2d3ce2a4b0008de05c3d6a92555136d889dc",
+  "date": "2019-08-26T22:44:10.128Z"
+}

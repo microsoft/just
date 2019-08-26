@@ -4,8 +4,9 @@ import { resolveCwd } from './resolve';
 import fs from 'fs-extra';
 import path from 'path';
 import { logger, mark } from 'just-task-logger';
-import { findGitRoot } from './package/findGitRoot';
 import { findDependents } from './package/findDependents';
+import { findGitRoot } from './package/findGitRoot';
+import { spawnSync } from 'child_process';
 
 const cachedTask: string[] = [];
 const CacheFileName = 'package-deps.json';
@@ -68,10 +69,14 @@ export function saveCache(taskName: string) {
   }
 }
 
-function getCachePath() {
+function getPackageRootPath() {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const packageJsonFilePath = resolveCwd('package.json')!;
-  const rootPath = path.dirname(packageJsonFilePath);
+  return path.dirname(packageJsonFilePath);
+}
+
+function getCachePath() {
+  const rootPath = getPackageRootPath();
   return path.join(rootPath, 'node_modules/.just');
 }
 
@@ -82,38 +87,51 @@ interface CacheHash {
   dependentHashTimestamps: { [pkgName: string]: number };
 }
 
+function getLockFileHashes(): { [file: string]: string } {
+  const results: { [file: string]: string } = {};
+
+  const lockFiles = ['shrinkwrap.yml', 'package-lock.json', 'yarn.lock', 'pnpmfile.js'];
+  const gitRoot = findGitRoot();
+  const lsFileResults = spawnSync('git', ['ls-files', ...lockFiles], { cwd: gitRoot });
+  if (lsFileResults.status !== 0) {
+    return {};
+  }
+
+  const foundLockFiles = lsFileResults.stdout
+    .toString()
+    .split(/\n/)
+    .map(l => l.trim());
+
+  const hashResults = spawnSync('git', ['hash-object', ...foundLockFiles], { cwd: gitRoot });
+
+  if (hashResults.status !== 0) {
+    return {};
+  }
+
+  const hashes = hashResults.stdout
+    .toString()
+    .split(/\n/)
+    .map(l => l.trim());
+
+  foundLockFiles.forEach((foundLockFile, index) => {
+    results[foundLockFile] = hashes[index];
+  });
+
+  return results;
+}
+
 function getHash(taskName: string): CacheHash | null {
   mark('cache:getHash');
 
   const { ...args } = argv();
 
-  const gitRoot = findGitRoot();
+  const packageRootPath = getPackageRootPath();
 
-  if (!gitRoot) {
-    return null;
-  }
+  const packageDeps = getPackageDeps(packageRootPath);
 
-  const packageDeps = getPackageDeps(gitRoot);
+  const lockFileHashes = getLockFileHashes();
 
-  const cwd = process.cwd();
-
-  const files: typeof packageDeps.files = {};
-
-  Object.keys(packageDeps.files).forEach(file => {
-    const basename = path.basename(file);
-
-    if (
-      isChildOf(path.join(gitRoot, file), cwd) ||
-      basename === 'shrinkwrap.yml' ||
-      basename === 'package-lock.json' ||
-      basename === 'yarn.lock' ||
-      basename === 'pnpmfile.js'
-    ) {
-      files[file] = packageDeps.files[file];
-    }
-  });
-
-  packageDeps.files = files;
+  packageDeps.files = { ...packageDeps.files, ...lockFileHashes };
 
   const hash = {
     args,
@@ -125,11 +143,6 @@ function getHash(taskName: string): CacheHash | null {
   logger.perf('cache:getHash');
 
   return hash;
-}
-
-function isChildOf(child: string, parent: string) {
-  const relativePath = path.relative(child, parent);
-  return /^[.\/\\]+$/.test(relativePath);
 }
 
 function getDependentHashTimestamps() {
