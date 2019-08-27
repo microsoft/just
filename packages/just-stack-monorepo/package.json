@@ -1,6 +1,6 @@
 {
   "name": "just-stack-monorepo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Just stack for monorepo using Rush",
   "keywords": [
     "just-stack"
