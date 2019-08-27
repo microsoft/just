@@ -1,7 +1,13 @@
 # Change Log - just-stack-single-lib
 
-This log was last generated on Tue, 06 Aug 2019 04:07:38 GMT and should not be manually modified.
+This log was last generated on Tue, 27 Aug 2019 03:39:24 GMT and should not be manually modified.
 
+## 1.0.3
+Tue, 27 Aug 2019 03:39:24 GMT
+
+### Patches
+
+- bump beachball (kchau@microsoft.com)
 ## 1.0.2
 Tue, 06 Aug 2019 04:07:38 GMT
 

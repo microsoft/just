@@ -2,6 +2,20 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "date": "Tue, 27 Aug 2019 03:39:24 GMT",
+      "tag": "just-stack-monorepo_v1.0.5",
+      "version": "1.0.5",
+      "comments": {
+        "patch": [
+          {
+            "comment": "bump beachball",
+            "author": "kchau@microsoft.com",
+            "commit": "80cfddb5342d0409a9ebe1309686be9fdcd23b90"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 14 Aug 2019 04:37:37 GMT",
       "tag": "just-stack-monorepo_v1.0.4",
       "version": "1.0.4",
