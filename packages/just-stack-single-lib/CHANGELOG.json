@@ -2,6 +2,20 @@
   "name": "just-stack-single-lib",
   "entries": [
     {
+      "date": "Tue, 27 Aug 2019 03:39:24 GMT",
+      "tag": "just-stack-single-lib_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "bump beachball",
+            "author": "kchau@microsoft.com",
+            "commit": "80cfddb5342d0409a9ebe1309686be9fdcd23b90"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Aug 2019 04:07:38 GMT",
       "tag": "just-stack-single-lib_v1.0.2",
       "version": "1.0.2",
