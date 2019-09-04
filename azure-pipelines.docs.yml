@@ -39,5 +39,7 @@ steps:
   - script: |
       git add docs
       git commit -m "update docs"
-      git push -u origin master
+      git fetch origin
+      git merge origin/master
+      git push -u origin HEAD:master
     displayName: 'publish docs'
