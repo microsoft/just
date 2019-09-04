@@ -4,7 +4,7 @@ title: Getting Started with Just
 sidebar_label: Getting Started
 ---
 
-`Just` is a build task definition library. It stands on the shoulders of two excellent and well tested libraries: undertaker and yargs. We encourage developers to make `just` available locally instead of installing `just` as a global tool.
+`Just` simplifies your life in managing build tasks. It stands on the shoulders of excellent and well tested libraries: undertaker, yargs, and plop.js. We encourage developers to make `just-scripts` available locally instead of installing `just-scripts` as a global tool.
 
 ```sh
 npm i -D just-scripts
