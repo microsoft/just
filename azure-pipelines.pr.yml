@@ -4,7 +4,14 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 pr:
-  - master
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - docs
+      - packages/documentation
+      - README.md
 
 pool:
   vmImage: 'Ubuntu-16.04'
