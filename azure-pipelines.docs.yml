@@ -3,15 +3,15 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-pr:
+pr: none
+
+trigger:
   branches:
     include:
       - master
   paths:
-    exclude:
-      - docs
+    include:
       - packages/documentation
-      - README.md
 
 pool:
   vmImage: 'Ubuntu-16.04'
@@ -25,20 +25,21 @@ steps:
   - script: |
       git config user.email "kchau@microsoft.com"
       git config user.name "kchau@microsoft.com"
-    displayName: git config
+      git remote set-url origin https://$(github.user):$(github.pat)@github.com/microsoft/just.git
+    displayName: 'git config'
 
   - script: |
       yarn
     displayName: 'yarn'
 
   - script: |
-      yarn checkchange
-    displayName: 'check change files'
+      yarn build:docs
+    displayName: 'build docs'
 
   - script: |
-      yarn build
-    displayName: 'build'
-
-  - script: |
-      yarn test
-    displayName: 'test'
+      git add docs
+      git commit -m "update docs"
+      git fetch origin
+      git merge origin/master
+      git push -u origin HEAD:master
+    displayName: 'publish docs'
