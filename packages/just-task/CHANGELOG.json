@@ -2,6 +2,20 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Mon, 16 Sep 2019 19:57:52 GMT",
+      "tag": "just-task_v0.13.3",
+      "version": "0.13.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Remove void from task() return type",
+            "author": "elcraig@microsoft.com",
+            "commit": "1cf24fd5e464d5045688b4d542cc2027e0e176cc"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 26 Aug 2019 22:53:18 GMT",
       "tag": "just-task_v0.13.2",
       "version": "0.13.2",

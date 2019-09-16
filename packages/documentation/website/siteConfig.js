@@ -73,7 +73,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  editUrl: 'https://github.com/kenotron/just-task/tree/master/packages/documentation/docs/'
+  editUrl: 'https://github.com/microsoft/just/tree/master/packages/documentation/docs/'
 };
 
 module.exports = siteConfig;

@@ -5,11 +5,7 @@ import { TaskFunction } from './interfaces';
 import { logger } from 'just-task-logger';
 import { registerCachedTask, isCached, saveCache } from './cache';
 
-export function task(
-  firstParam: string | TaskFunction,
-  secondParam?: string | TaskFunction,
-  thirdParam?: TaskFunction
-): TaskFunction | void {
+export function task(firstParam: string | TaskFunction, secondParam?: string | TaskFunction, thirdParam?: TaskFunction): TaskFunction {
   const argCount = arguments.length;
 
   if (argCount === 1 && typeof firstParam === 'string') {
