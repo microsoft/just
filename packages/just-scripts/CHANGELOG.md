@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 26 Aug 2019 17:08:08 GMT and should not be manually modified.
+This log was last generated on Mon, 16 Sep 2019 23:39:13 GMT and should not be manually modified.
 
+## 0.28.3
+Mon, 16 Sep 2019 23:39:13 GMT
+
+### Patches
+
+- fixes styleoverlay (kchau@microsoft.com)
 ## 0.28.2
 Mon, 26 Aug 2019 17:08:08 GMT
 

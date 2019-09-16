@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 16 Sep 2019 23:39:13 GMT",
+      "tag": "just-scripts_v0.28.3",
+      "version": "0.28.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixes styleoverlay",
+            "author": "kchau@microsoft.com",
+            "commit": "9b93e3942e2aff9ae8693b8964d8319fcc2ae335"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 26 Aug 2019 17:08:08 GMT",
       "tag": "just-scripts_v0.28.2",
       "version": "0.28.2",
