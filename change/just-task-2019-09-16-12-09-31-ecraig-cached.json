@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Remove void from task() return type",
+  "packageName": "just-task",
+  "email": "elcraig@microsoft.com",
+  "commit": "1cf24fd5e464d5045688b4d542cc2027e0e176cc",
+  "date": "2019-09-16T19:09:31.852Z"
+}
