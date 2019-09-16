@@ -35,6 +35,17 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
     ...(preprocessor ? [preprocessor] : [])
   ];
 
+  const moduleOptions = cssOptions.localIdentName
+    ? {
+        modules: {
+          mode: 'local',
+          localIdentName: cssOptions.localIdentName
+        }
+      }
+    : {
+        modules: cssOptions.modules
+      };
+
   return [
     {
       loader: styleLoader // creates style nodes from JS strings
@@ -42,7 +53,7 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
     {
       loader: 'css-loader', // translates CSS into CommonJS
       options: {
-        ...cssOptions,
+        ...moduleOptions,
         importLoaders: preloaders.length
       }
     },
