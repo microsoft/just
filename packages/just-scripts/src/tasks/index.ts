@@ -12,3 +12,4 @@ export * from './upgradeStackTask';
 export * from './copyInstructionsTask';
 export * from './prettierTask';
 export * from './eslintTask';
+export * from './webpackCLITask';
