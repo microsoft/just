@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 16 Sep 2019 23:39:13 GMT and should not be manually modified.
+This log was last generated on Tue, 17 Sep 2019 19:23:34 GMT and should not be manually modified.
 
+## 0.29.0
+Tue, 17 Sep 2019 19:23:34 GMT
+
+### Minor changes
+
+- feat: added webpack-cli tasks init, more to come (anik220798@gmail.com)
 ## 0.28.3
 Mon, 16 Sep 2019 23:39:13 GMT
 
