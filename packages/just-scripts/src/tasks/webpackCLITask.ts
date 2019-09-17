@@ -9,7 +9,7 @@ import { tryRequire } from '../tryRequire';
  * @returns TaskFunction
  */
 export function webpackCliInitTask(customScaffold?: string, auto: Boolean = false): TaskFunction {
-  return async function webpackCli() {
+  return function webpackCli() {
     const init = tryRequire('@webpack-cli/init').default;
     if (!init) {
       logger.warn('webpack-cli init requires three dependencies: @webpack-cli/init (preferred - as a devDependency)');
