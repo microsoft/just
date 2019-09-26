@@ -61,10 +61,12 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <img
-              src={`${siteConfig.baseUrl}img/sample.png`}
-              srcSet={`${siteConfig.baseUrl}img/sample.png, ${siteConfig.baseUrl}img/sample-2x.png 2x`}
-            />
+            <div>
+              <img
+                src={`${siteConfig.baseUrl}img/sample.png`}
+                srcSet={`${siteConfig.baseUrl}img/sample.png, ${siteConfig.baseUrl}img/sample-2x.png 2x`}
+              />
+            </div>
           </PromoSection>
           <PromoSection>
             <Button href={docUrl('doc-start.html', language)}>Let's Get Started!</Button>
