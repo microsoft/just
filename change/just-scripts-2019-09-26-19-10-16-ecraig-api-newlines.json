@@ -1,8 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add option to fix API report file newlines",
-  "packageName": "just-scripts",
-  "email": "elcraig@microsoft.com",
-  "commit": "e79daebd09eb7f8f39622cade3d2bd38b0b593f0",
-  "date": "2019-09-27T02:10:16.862Z"
-}
