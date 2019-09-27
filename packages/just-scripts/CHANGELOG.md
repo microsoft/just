@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 27 Sep 2019 17:06:38 GMT and should not be manually modified.
+This log was last generated on Fri, 27 Sep 2019 23:36:14 GMT and should not be manually modified.
 
+## 0.31.1
+Fri, 27 Sep 2019 23:36:14 GMT
+
+### Patches
+
+- fixes tsoverlay checkeroption to be empty (odbuild@microsoft.com)
 ## 0.31.0
 Fri, 27 Sep 2019 17:06:38 GMT
 

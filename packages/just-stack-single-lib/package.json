@@ -13,7 +13,7 @@
     "beachball": "^1.11.5",
     "jest": "^24.8.0",
     "just-plop-helpers": "^1.1.2",
-    "just-scripts": "^0.31.0",
+    "just-scripts": "^0.31.1",
     "plop": "^2.4.0",
     "typescript": "^3.5.3"
   }

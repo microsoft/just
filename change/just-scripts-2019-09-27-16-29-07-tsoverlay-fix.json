@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fixes tsoverlay checkeroption to be empty",
-  "packageName": "just-scripts",
-  "email": "odbuild@microsoft.com",
-  "commit": "ed1df82eafbed9f7576f00665dd6705a32064dcf",
-  "date": "2019-09-27T23:29:07.841Z"
-}
