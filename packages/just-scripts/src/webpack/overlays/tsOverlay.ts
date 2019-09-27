@@ -3,7 +3,7 @@ import { tryRequire } from '../../tryRequire';
 
 const ForkTsCheckerPlugin = tryRequire('fork-ts-checker-webpack-plugin');
 
-interface LoaderOptions {
+export interface TsLoaderOptions {
   configFile: string;
   transpileOnly: boolean;
   onlyCompileBundledFiles: boolean;
@@ -17,7 +17,7 @@ interface LoaderOptions {
   projectReferences: boolean;
 }
 
-interface CheckerOptions {
+export interface TsCheckerOptions {
   typescript: string;
   tsconfig: string;
   compilerOptions: object;
@@ -44,9 +44,9 @@ interface CheckerOptions {
   resolveTypeReferenceDirectiveModule: string;
 }
 
-interface TsOverlayOptions {
-  loaderOptions?: Partial<LoaderOptions>;
-  checkerOptions?: Partial<CheckerOptions>;
+export interface TsOverlayOptions {
+  loaderOptions?: Partial<TsLoaderOptions>;
+  checkerOptions?: Partial<TsCheckerOptions>;
 }
 
 export const tsOverlay = (overlayOptions?: TsOverlayOptions) => {
