@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 27 Sep 2019 16:10:48 GMT",
+      "tag": "just-scripts_v0.30.0",
+      "version": "0.30.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add option to fix API report file newlines",
+            "author": "elcraig@microsoft.com",
+            "commit": "e79daebd09eb7f8f39622cade3d2bd38b0b593f0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 17 Sep 2019 19:23:34 GMT",
       "tag": "just-scripts_v0.29.0",
       "version": "0.29.0",

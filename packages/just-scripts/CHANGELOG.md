@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 17 Sep 2019 19:23:34 GMT and should not be manually modified.
+This log was last generated on Fri, 27 Sep 2019 16:10:48 GMT and should not be manually modified.
 
+## 0.30.0
+Fri, 27 Sep 2019 16:10:48 GMT
+
+### Minor changes
+
+- Add option to fix API report file newlines (elcraig@microsoft.com)
 ## 0.29.0
 Tue, 17 Sep 2019 19:23:34 GMT
 
