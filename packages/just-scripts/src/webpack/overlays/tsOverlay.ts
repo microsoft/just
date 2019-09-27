@@ -56,9 +56,7 @@ export const tsOverlay = (overlayOptions?: TsOverlayOptions) => {
     transpileOnly: true
   };
 
-  overlayOptions.checkerOptions = overlayOptions.loaderOptions || {
-    transpileOnly: true
-  };
+  overlayOptions.checkerOptions = overlayOptions.checkerOptions || {};
 
   return {
     resolve: {
