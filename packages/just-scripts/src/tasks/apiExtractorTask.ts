@@ -1,7 +1,13 @@
 import { logger, TaskFunction } from 'just-task';
+import fs from 'fs';
+import glob from 'glob';
+import path from 'path';
 import { tryRequire } from '../tryRequire';
 
-/** Subset of the options from IExtractorConfigOptions that are exposed via this just task */
+/**
+ * Subset of the options from IExtractorConfigOptions that are exposed via this just task,
+ * plus additional options specific to the task.
+ */
 interface ApiExtractorOptions {
   /**
    * Indicates that API Extractor is running as part of a local build, e.g. on developer's
@@ -29,6 +35,18 @@ interface ApiExtractorOptions {
 
   /** The config file path */
   configJsonFilePath?: string;
+
+  /**
+   * API Extractor uses CRLF newlines by default and adds trailing spaces after empty comment lines,
+   * both of which can add excessive noise to diffs. Set this option to true to post-process the
+   * API Extractor .md file to fix these issues (newline type will be inferred from the type used in
+   * the config file).
+   *
+   * NOTE: This option assumes the default paths for the API file: `${process.cwd()}/temp/*.api.md`
+   * when verifying, or `${process.cwd()}/etc/*.api.md` when updating. If you don't use those paths,
+   * import and manually call `fixApiFileNewlines()` instead.
+   */
+  fixNewlines?: boolean;
 }
 
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
@@ -49,7 +67,7 @@ export function apiExtractorVerifyTask(
       : { ...configJsonFilePathOrOption };
 
   return function apiExtractorVerify() {
-    const apiExtractorResult = apiExtractorWrapper(options.configJsonFilePath, options);
+    const apiExtractorResult = apiExtractorWrapper(options);
 
     if (apiExtractorResult && !apiExtractorResult.succeeded) {
       throw 'The public API file is out of date. Please run the API snapshot and commit the updated API file.';
@@ -60,8 +78,8 @@ export function apiExtractorVerifyTask(
 /**
  * Updates the API extractor snapshot
  *
- * Sample config, save this as api-extractor.json:
- *
+ * Sample config which should be saved as api-extractor.json:
+ * ```
  * {
  *    "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
  *    "mainEntryPointFilePath": "<projectFolder>/lib/index.d.ts",
@@ -75,8 +93,7 @@ export function apiExtractorVerifyTask(
  *      "enabled": true
  *    }
  * }
- *
- * @param options
+ * ```
  */
 export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFunction;
 /** @deprecated Use object param version */
@@ -94,15 +111,15 @@ export function apiExtractorUpdateTask(
       : { ...configJsonFilePathOrOption };
 
   return function apiExtractorUpdate() {
-    const apiExtractorResult = apiExtractorWrapper(options.configJsonFilePath, options);
+    const apiExtractorResult = apiExtractorWrapper(options);
 
     if (apiExtractorResult) {
       if (!apiExtractorResult.succeeded) {
         logger.warn(`- Update API: API file is out of date, updating...`);
-        apiExtractorWrapper(options.configJsonFilePath, { ...options, localBuild: true });
+        apiExtractorWrapper({ ...options, localBuild: true });
         logger.info(`- Update API: successfully updated API file, verifying the updates...`);
 
-        if (!apiExtractorWrapper(options.configJsonFilePath, options).succeeded) {
+        if (!apiExtractorWrapper(options).succeeded) {
           throw Error(`- Update API: failed to update API file.`);
         } else {
           logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
@@ -114,11 +131,8 @@ export function apiExtractorUpdateTask(
   };
 }
 
-function apiExtractorWrapper(configJsonFilePath: string | undefined, extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>) {
-  const path = require('path');
-  const fs = require('fs');
-
-  configJsonFilePath = configJsonFilePath || 'api-extractor.json';
+function apiExtractorWrapper(options: ApiExtractorOptions) {
+  const { configJsonFilePath = 'api-extractor.json', fixNewlines, ...extractorOptions } = options;
 
   const apiExtractorModule = tryRequire('@microsoft/api-extractor');
 
@@ -133,7 +147,7 @@ function apiExtractorWrapper(configJsonFilePath: string | undefined, extractorOp
   }
 
   if (!fs.existsSync(configJsonFilePath)) {
-    const defaultConfig = path.join(__dirname, '../../config/apiExtractor/api-extractor.json');
+    const defaultConfig = path.resolve(__dirname, '../../config/apiExtractor/api-extractor.json');
     logger.warn(`Config file not found for api-extractor! Please copy ${defaultConfig} to project root folder to try again`);
     return;
   }
@@ -142,5 +156,35 @@ function apiExtractorWrapper(configJsonFilePath: string | undefined, extractorOp
   const config = ExtractorConfig.loadFileAndPrepare(configJsonFilePath);
 
   logger.info(`Extracting Public API surface from '${config.mainEntryPointFilePath}'`);
-  return Extractor.invoke(config, extractorOptions);
+  const result = Extractor.invoke(config, extractorOptions);
+
+  if (fixNewlines) {
+    const apiGlob = path.join(process.cwd(), `${options.localBuild ? 'etc' : 'temp'}/*.api.md`);
+    const files = glob.sync(apiGlob);
+    if (files[0]) {
+      fixApiFileNewlines(files[0], configJsonFilePath);
+    } else {
+      logger.warn(
+        'API Extractor task options requested fixing newlines, but an API file was not found ' +
+          `under the default path of ${apiGlob}. Please manually call fixApiFileNewlines() instead.`
+      );
+    }
+  }
+  return result;
+}
+
+/**
+ * Update the newlines of the API report file to be consistent with other files in the repo,
+ * and remove trailing spaces.
+ * @param apiFilePath - Path to the API report file
+ * @param sampleFilePath - Path to another file to infer newlines from
+ */
+export function fixApiFileNewlines(apiFilePath: string, sampleFilePath: string): void {
+  // Infer newline type from the one used in the config file
+  const sampleFile = fs.readFileSync(sampleFilePath).toString();
+  const newline = sampleFile.match(/\r?\n/)![0];
+  const contents = fs.readFileSync(apiFilePath).toString();
+  // Replace newlines. Also remove trailing spaces (second regex gets a trailing space on the
+  // last line of the file).
+  fs.writeFileSync(apiFilePath, contents.replace(/ ?\r?\n/g, newline).replace(/ $/, ''));
 }
