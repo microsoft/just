@@ -1,5 +1,5 @@
 {
-  "type": "patch",
+  "type": "minor",
   "comment": "run yarn install on stack before plop",
   "packageName": "create-just",
   "email": "acoates@microsoft.com",

@@ -115,7 +115,7 @@ Please make sure you have git installed and then issue the following:
 }
 
 function showNextSteps(argv: any, stackName: string, stackPath: string) {
-  const postInitPath = path.join(stackPath, 'PostInit.md');
+  const postInitPath = path.join(stackPath, 'post-create-just.md');
   const nextStepsMd = existsSync(postInitPath)
     ? readFileSync(postInitPath, 'utf-8').toString()
     : `
