@@ -111,11 +111,11 @@ Please make sure you have git installed and then issue the following:
 
   logger.info('All Set!');
 
-  showNextSteps(argv, stackName, paths.projectPath);
+  showNextSteps(argv, stackName, stackPath);
 }
 
-function showNextSteps(argv: any, stackName: string, projectPath: string) {
-  const postInitPath = path.join(projectPath, 'PostInit.md');
+function showNextSteps(argv: any, stackName: string, stackPath: string) {
+  const postInitPath = path.join(stackPath, 'PostInit.md');
   const nextStepsMd = existsSync(postInitPath)
     ? readFileSync(postInitPath, 'utf-8').toString()
     : `
