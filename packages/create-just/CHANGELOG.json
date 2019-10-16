@@ -2,6 +2,20 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Wed, 16 Oct 2019 22:14:13 GMT",
+      "tag": "create-just_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "run yarn install on stack before plop",
+            "author": "acoates@microsoft.com",
+            "commit": "28fc8c7160f69ffd6c4412086e5c092983b0a908"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 16 Oct 2019 20:54:23 GMT",
       "tag": "create-just_v1.1.6",
       "version": "1.1.6",

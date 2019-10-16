@@ -1,8 +1,0 @@
-{
-  "type": "minor",
-  "comment": "run yarn install on stack before plop",
-  "packageName": "create-just",
-  "email": "acoates@microsoft.com",
-  "commit": "28fc8c7160f69ffd6c4412086e5c092983b0a908",
-  "date": "2019-10-16T19:56:38.489Z"
-}
