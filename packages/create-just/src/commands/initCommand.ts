@@ -111,7 +111,7 @@ Please make sure you have git installed and then issue the following:
 
   logger.info('All Set!');
 
-  showNextSteps(argv, stackName, stackPath);
+  showNextSteps(argv, stackName, stackPath!);
 }
 
 function showNextSteps(argv: any, stackName: string, stackPath: string) {
