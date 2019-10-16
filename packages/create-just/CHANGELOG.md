@@ -1,7 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Tue, 06 Aug 2019 19:55:07 GMT and should not be manually modified.
+This log was last generated on Wed, 16 Oct 2019 20:54:23 GMT and should not be manually modified.
 
+## 1.1.6
+Wed, 16 Oct 2019 20:54:23 GMT
+
+### Patches
+
+- fixes windows support with plop (kchau@microsoft.com)
 ## 1.1.5
 Tue, 06 Aug 2019 19:55:07 GMT
 

@@ -1,6 +1,6 @@
 {
   "name": "just-stack-single-lib",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "main": "lib-commonjs/index.js",
   "module": "lib/index.js",

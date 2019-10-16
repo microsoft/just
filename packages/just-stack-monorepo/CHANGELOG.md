@@ -1,7 +1,13 @@
 # Change Log - just-stack-monorepo
 
-This log was last generated on Tue, 27 Aug 2019 03:39:24 GMT and should not be manually modified.
+This log was last generated on Wed, 16 Oct 2019 20:54:23 GMT and should not be manually modified.
 
+## 1.0.6
+Wed, 16 Oct 2019 20:54:23 GMT
+
+### Patches
+
+- fixes windows support with plop (kchau@microsoft.com)
 ## 1.0.5
 Tue, 27 Aug 2019 03:39:24 GMT
 

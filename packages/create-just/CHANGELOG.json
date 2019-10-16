@@ -2,6 +2,20 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Wed, 16 Oct 2019 20:54:23 GMT",
+      "tag": "create-just_v1.1.6",
+      "version": "1.1.6",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixes windows support with plop",
+            "author": "kchau@microsoft.com",
+            "commit": "b6c6dae18fe68eaf868a4c8087b6e768ddd02467"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Aug 2019 19:55:07 GMT",
       "tag": "create-just_v1.1.5",
       "version": "1.1.5",
