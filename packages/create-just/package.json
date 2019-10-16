@@ -1,6 +1,6 @@
 {
   "name": "create-just",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Create a new repository using Just",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "prompts": "^2.0.1",
     "yargs-parser": "^13.1.1",
     "just-plop-helpers": "^1.1.2",
-    "node-plop": "^0.19.0",
+    "node-plop": "^0.20.0",
     "just-scripts-utils": ">=0.8.4 <1.0.0"
   }
 }

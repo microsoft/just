@@ -2,6 +2,20 @@
   "name": "just-stack-monorepo",
   "entries": [
     {
+      "date": "Wed, 16 Oct 2019 20:54:23 GMT",
+      "tag": "just-stack-monorepo_v1.0.6",
+      "version": "1.0.6",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixes windows support with plop",
+            "author": "kchau@microsoft.com",
+            "commit": "b6c6dae18fe68eaf868a4c8087b6e768ddd02467"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 27 Aug 2019 03:39:24 GMT",
       "tag": "just-stack-monorepo_v1.0.5",
       "version": "1.0.5",
