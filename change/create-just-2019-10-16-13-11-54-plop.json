@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "fixes windows support with plop",
+  "packageName": "create-just",
+  "email": "kchau@microsoft.com",
+  "commit": "b6c6dae18fe68eaf868a4c8087b6e768ddd02467",
+  "date": "2019-10-16T20:11:41.673Z",
+  "file": "/Users/ken/workspace/just/change/create-just-2019-10-16-13-11-54-plop.json"
+}
