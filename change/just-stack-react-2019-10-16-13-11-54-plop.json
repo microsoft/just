@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": "fixes windows support with plop",
+  "packageName": "just-stack-react",
+  "email": "kchau@microsoft.com",
+  "commit": "b6c6dae18fe68eaf868a4c8087b6e768ddd02467",
+  "date": "2019-10-16T20:11:52.509Z",
+  "file": "/Users/ken/workspace/just/change/just-stack-react-2019-10-16-13-11-54-plop.json"
+}
