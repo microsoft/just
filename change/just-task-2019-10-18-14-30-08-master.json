@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "use full resolve logic for ts-node",
-  "packageName": "just-task",
-  "email": "kchau@microsoft.com",
-  "commit": "9171350465973efb378571d4920d9b7a7308a7c0",
-  "date": "2019-10-18T21:30:08.434Z"
-}

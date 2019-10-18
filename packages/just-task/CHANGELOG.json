@@ -2,6 +2,20 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 18 Oct 2019 21:33:45 GMT",
+      "tag": "just-task_v0.14.1",
+      "version": "0.14.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "use full resolve logic for ts-node",
+            "author": "kchau@microsoft.com",
+            "commit": "9171350465973efb378571d4920d9b7a7308a7c0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 18 Oct 2019 19:52:03 GMT",
       "tag": "just-task_v0.14.0",
       "version": "0.14.0",

@@ -1,7 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 18 Oct 2019 19:52:03 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Oct 2019 21:33:45 GMT and should not be manually modified.
 
+## 0.14.1
+Fri, 18 Oct 2019 21:33:45 GMT
+
+### Patches
+
+- use full resolve logic for ts-node (kchau@microsoft.com)
 ## 0.14.0
 Fri, 18 Oct 2019 19:52:03 GMT
 
