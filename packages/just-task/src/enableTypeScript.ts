@@ -6,7 +6,19 @@ export function enableTypeScript({ transpileOnly = true }) {
   if (tsNodeModule) {
     const tsNode = require(tsNodeModule);
     tsNode.register({
-      transpileOnly
+      transpileOnly,
+      skipProject: true,
+      compilerOptions: {
+        target: 'esnext',
+        module: 'commonjs',
+        strict: false,
+        isolatedModules: true,
+        skipLibCheck: true,
+        skipDefaultLibCheck: true,
+        moduleResolution: 'node',
+        allowJs: true
+      },
+      files: ['just.config.ts']
     });
   } else {
     logger.error(`In order to use TypeScript with just.config.ts, you need to install "ts-node" module:
