@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 18 Oct 2019 20:08:37 GMT",
+      "tag": "just-scripts_v0.32.0",
+      "version": "0.32.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "bumps just-task dependency",
+            "author": "kchau@microsoft.com",
+            "commit": "4ef262043b5096f42b4dac8d5fec1ebd401d242c"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 27 Sep 2019 23:36:14 GMT",
       "tag": "just-scripts_v0.31.1",
       "version": "0.31.1",

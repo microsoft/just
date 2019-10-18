@@ -1,7 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Wed, 16 Oct 2019 22:14:13 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Oct 2019 20:08:37 GMT and should not be manually modified.
 
+## 1.2.2
+Fri, 18 Oct 2019 20:08:37 GMT
+
+### Patches
+
+- If a custom registry is specified, add an .npmrc file, that forces auth (acoates@microsoft.com)
 ## 1.2.0
 Wed, 16 Oct 2019 22:14:13 GMT
 

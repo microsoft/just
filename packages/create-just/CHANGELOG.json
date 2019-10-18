@@ -2,6 +2,20 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Fri, 18 Oct 2019 20:08:37 GMT",
+      "tag": "create-just_v1.2.2",
+      "version": "1.2.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "If a custom registry is specified, add an .npmrc file, that forces auth",
+            "author": "acoates@microsoft.com",
+            "commit": "4b8f1a2d21bebb08281ff530329e0708cf4a5cca"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 16 Oct 2019 22:14:13 GMT",
       "tag": "create-just_v1.2.0",
       "version": "1.2.0",
