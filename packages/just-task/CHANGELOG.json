@@ -2,6 +2,20 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 18 Oct 2019 21:58:37 GMT",
+      "tag": "just-task_v0.14.2",
+      "version": "0.14.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "esModuleInterop is important to have as true",
+            "author": "kchau@microsoft.com",
+            "commit": "bb1a7467dde2a989444ef50c1d8aa650e9f6f77a"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 18 Oct 2019 21:33:45 GMT",
       "tag": "just-task_v0.14.1",
       "version": "0.14.1",

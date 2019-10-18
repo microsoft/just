@@ -1,7 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 18 Oct 2019 21:33:45 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Oct 2019 21:58:37 GMT and should not be manually modified.
 
+## 0.14.2
+Fri, 18 Oct 2019 21:58:37 GMT
+
+### Patches
+
+- esModuleInterop is important to have as true (kchau@microsoft.com)
 ## 0.14.1
 Fri, 18 Oct 2019 21:33:45 GMT
 

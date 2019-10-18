@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "esModuleInterop is important to have as true",
-  "packageName": "just-task",
-  "email": "kchau@microsoft.com",
-  "commit": "bb1a7467dde2a989444ef50c1d8aa650e9f6f77a",
-  "date": "2019-10-18T21:54:54.372Z"
-}
