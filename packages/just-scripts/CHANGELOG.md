@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 18 Oct 2019 20:08:37 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Oct 2019 22:08:36 GMT and should not be manually modified.
 
+## 0.32.1
+Fri, 18 Oct 2019 22:08:36 GMT
+
+### Patches
+
+- bump just-task (kchau@microsoft.com)
 ## 0.32.0
 Fri, 18 Oct 2019 20:08:37 GMT
 

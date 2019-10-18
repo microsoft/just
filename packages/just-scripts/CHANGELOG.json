@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 18 Oct 2019 22:08:36 GMT",
+      "tag": "just-scripts_v0.32.1",
+      "version": "0.32.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "bump just-task",
+            "author": "kchau@microsoft.com",
+            "commit": "2221e316d26c402d4bf51f83780fdeee5407e558"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 18 Oct 2019 20:08:37 GMT",
       "tag": "just-scripts_v0.32.0",
       "version": "0.32.0",
