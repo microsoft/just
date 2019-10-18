@@ -12,11 +12,11 @@ export function enableTypeScript({ transpileOnly = true }) {
         target: 'esnext',
         module: 'commonjs',
         strict: false,
-        isolatedModules: true,
         skipLibCheck: true,
         skipDefaultLibCheck: true,
         moduleResolution: 'node',
-        allowJs: true
+        allowJs: true,
+        esModuleInterop: true
       },
       files: ['just.config.ts']
     });
