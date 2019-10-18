@@ -1,8 +1,0 @@
-{
-  "type": "minor",
-  "comment": "adds support for typescript just.config.ts",
-  "packageName": "just-task",
-  "email": "kchau@microsoft.com",
-  "commit": "5f069e01d297080bfdb2e59a5e8f7dac368a6fa6",
-  "date": "2019-10-18T17:54:14.388Z"
-}
