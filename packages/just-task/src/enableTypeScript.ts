@@ -1,8 +1,8 @@
-import { resolveCwd } from './resolve';
+import { resolve } from './resolve';
 import { logger } from 'just-task-logger';
 
 export function enableTypeScript({ transpileOnly = true }) {
-  const tsNodeModule = resolveCwd('ts-node');
+  const tsNodeModule = resolve('ts-node');
   if (tsNodeModule) {
     const tsNode = require(tsNodeModule);
     tsNode.register({
