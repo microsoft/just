@@ -78,6 +78,7 @@ export async function initCommand(argv: yargs.Arguments) {
   const stackPath = await getStackPath(argv.stack, argv.registry);
 
   logger.info(`Installing stack dependencies in ${stackPath}`);
+  pkg.ensureNpmrcIfRequired(argv.registry, stackPath!);
   pkg.install(argv.registry, stackPath!);
 
   const stackName = getStackName(stackPath!);
