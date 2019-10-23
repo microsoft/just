@@ -1,0 +1,8 @@
+{
+  "type": "minor",
+  "comment": "Add a \"project\" option to the tslint task",
+  "packageName": "just-scripts",
+  "email": "matthias.klass@gmail.com",
+  "commit": "701baa709fe5bb0716800a597b8b5e78b3a0806e",
+  "date": "2019-10-23T10:54:50.207Z"
+}
