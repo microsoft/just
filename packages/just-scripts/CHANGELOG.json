@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Wed, 23 Oct 2019 15:48:00 GMT",
+      "tag": "just-scripts_v0.33.0",
+      "version": "0.33.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add a \"project\" option to the tslint task",
+            "author": "matthias.klass@gmail.com",
+            "commit": "701baa709fe5bb0716800a597b8b5e78b3a0806e"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 18 Oct 2019 22:08:36 GMT",
       "tag": "just-scripts_v0.32.1",
       "version": "0.32.1",

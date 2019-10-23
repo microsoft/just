@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 18 Oct 2019 22:08:36 GMT and should not be manually modified.
+This log was last generated on Wed, 23 Oct 2019 15:48:00 GMT and should not be manually modified.
 
+## 0.33.0
+Wed, 23 Oct 2019 15:48:00 GMT
+
+### Minor changes
+
+- Add a "project" option to the tslint task (matthias.klass@gmail.com)
 ## 0.32.1
 Fri, 18 Oct 2019 22:08:36 GMT
 
