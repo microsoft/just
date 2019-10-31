@@ -1,0 +1,8 @@
+{
+  "type": "minor",
+  "comment": "adds a plain old webpack-cli task",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "commit": "5cff5c789291cba91aeb85bcb12755c4028f8567",
+  "date": "2019-10-31T21:05:01.057Z"
+}
