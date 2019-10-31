@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 23 Oct 2019 15:48:00 GMT and should not be manually modified.
+This log was last generated on Thu, 31 Oct 2019 21:15:50 GMT and should not be manually modified.
 
+## 0.34.0
+Thu, 31 Oct 2019 21:15:50 GMT
+
+### Minor changes
+
+- adds a plain old webpack-cli task (kchau@microsoft.com)
 ## 0.33.0
 Wed, 23 Oct 2019 15:48:00 GMT
 

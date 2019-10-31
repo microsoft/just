@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 31 Oct 2019 21:15:50 GMT",
+      "tag": "just-scripts_v0.34.0",
+      "version": "0.34.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "adds a plain old webpack-cli task",
+            "author": "kchau@microsoft.com",
+            "commit": "5cff5c789291cba91aeb85bcb12755c4028f8567"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 23 Oct 2019 15:48:00 GMT",
       "tag": "just-scripts_v0.33.0",
       "version": "0.33.0",
