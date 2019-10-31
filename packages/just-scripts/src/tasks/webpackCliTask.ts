@@ -1,42 +1,44 @@
-import { logger, TaskFunction } from 'just-task';
-import { tryRequire } from '../tryRequire';
+import { logger, TaskFunction, resolve } from 'just-task';
+import { spawn } from 'just-scripts-utils';
+
+export interface WebpackCliTaskOptions {
+  /**
+   * Arguments for webpack-cli (e.g. --display-errors)
+   */
+  webpackCliArgs?: string[];
+
+  /**
+   * Arguments to be passed into a spawn call for webpack dev server. This can be used to do things
+   * like increase the heap space for the JS engine to address out of memory issues.
+   */
+  nodeArgs?: string[];
+}
 
 /**
- * webpackCliInitTask - task for webpack-cli init command
+ * webpackCliTask - task for running webpack as a cli command
  *
  * @param  {string} customScaffold? - to pass any webpack-scaffold
  * @param  {Boolean=false} auto - to pass the --auto flag, which will generate a default webpack.config.js
  * @returns TaskFunction
  */
-export function webpackCliInitTask(customScaffold?: string, auto: Boolean = false): TaskFunction {
+export function webpackCliTask(options?: WebpackCliTaskOptions): TaskFunction {
+  const webpackCliCmd = resolve('webpack-cli/bin/cli.js');
+
+  if (!webpackCliCmd) {
+    throw new Error('cannot find webpack-cli, please install it');
+  }
+
   return function webpackCli() {
-    const init = tryRequire('@webpack-cli/init').default;
-    if (!init) {
-      logger.warn('webpack-cli init requires three dependencies: @webpack-cli/init (preferred - as a devDependency)');
-      return;
-    }
-    logger.info(`Running Webpack-cli init `);
-    if (typeof customScaffold === 'undefined') {
-      if (auto) {
-        try {
-          init(null, null, null, '--auto');
-        } catch (error) {
-          throw `Webpack-cli init failed with ${error.length} error(s).`;
-        }
-      } else {
-        try {
-          init();
-        } catch (error) {
-          throw `Webpack-cli init failed with ${error.length} error(s).`;
-        }
-      }
-    } else {
-      logger.info(`Running the Scaffold ${customScaffold}`);
-      try {
-        init(null, null, customScaffold);
-      } catch (error) {
-        throw `Webpack-cli init failed with ${error.length} error(s).`;
-      }
-    }
+    logger.info(`Running webpack-cli as a node process`);
+
+    const args = [
+      ...(options && options.nodeArgs ? options.nodeArgs : []),
+      webpackCliCmd,
+      ...(options && options.webpackCliArgs ? options.webpackCliArgs : [])
+    ];
+
+    logger.info(`webpack-cli arguments: ${process.execPath} ${args.join(' ')}`);
+
+    return spawn(process.execPath, args, { stdio: 'inherit' });
   };
 }
