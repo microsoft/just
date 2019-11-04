@@ -1,6 +1,6 @@
 {
   "name": "create-just",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Create a new repository using Just",
   "repository": {
     "type": "git",
