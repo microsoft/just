@@ -36,7 +36,6 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         '--passWithNoTests',
         '--colors',
         // This generates a warning from jest CLI, but it can be safely ignored
-        '--forceExit',
         ...(options.runInBand ? ['--runInBand'] : []),
         ...(options.coverage ? ['--coverage'] : []),
         ...(options.watch ? ['--watch'] : []),

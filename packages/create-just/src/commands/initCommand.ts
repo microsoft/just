@@ -140,14 +140,17 @@ You can build your project in production mode with these commands:
     cd ${paths.projectPath}
     ${pkg.getYarn() ? 'yarn' : 'npm run'} build
 
-${existsSync(path.join(paths.projectPath, 'plopfile.js')) &&
-  `
+${
+  existsSync(path.join(paths.projectPath, 'plopfile.js'))
+    ? `
 This repository contains code generators that can be triggered by:
 
     cd ${paths.projectPath}
     ${pkg.getYarn() ? 'yarn' : 'npm run'} gen
 
-`}`;
+`
+    : ''
+}`;
 
   logger.info(prettyPrintMarkdown(nextStepsMd));
 }
