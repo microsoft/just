@@ -1,0 +1,20 @@
+name: 'Close stale issues'
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_ACTION_PAT }}
+          stale-issue-message: 'Issues seem to have gone stale.'
+          stale-pr-message: 'The PR seem to have gone stale.'
+          days-before-stale: 21
+          days-before-close: 3
+          stale-issue-label: 'stale-issue'
+          exempt-issue-label: 'awaiting-approval'
+          stale-pr-label: 'stale-pr'
+          exempt-pr-label: 'awaiting-approval'

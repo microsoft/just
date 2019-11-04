@@ -1,9 +1,7 @@
-**Is your feature request related to a problem? Please describe.**
+## Overview
 
-**Describe the solution you'd like**
+## Rationale
 
-<!-- Here comes your feature -->
-<!-- Mention the libraries or dependencies you are going to use -->
-<!-- Files you are going to change -->
+## Pros and Cons
 
-**Additional context**
+## Estimated Work Area
