@@ -2,6 +2,20 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Mon, 04 Nov 2019 20:25:32 GMT",
+      "tag": "create-just_v1.2.3",
+      "version": "1.2.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixes so console.log at the end doesn't say \"false\"",
+            "author": "kchau@microsoft.com",
+            "commit": "542764b6ea6562c36a4e0890ac920f6597ebf7f2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 18 Oct 2019 20:08:37 GMT",
       "tag": "create-just_v1.2.2",
       "version": "1.2.2",

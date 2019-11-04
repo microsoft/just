@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 31 Oct 2019 21:15:50 GMT and should not be manually modified.
+This log was last generated on Mon, 04 Nov 2019 20:25:32 GMT and should not be manually modified.
 
+## 0.34.1
+Mon, 04 Nov 2019 20:25:32 GMT
+
+### Patches
+
+- get rid of force exit for jest task as it masks the real test problems (kchau@microsoft.com)
 ## 0.34.0
 Thu, 31 Oct 2019 21:15:50 GMT
 

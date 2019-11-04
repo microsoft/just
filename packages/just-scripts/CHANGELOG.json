@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 04 Nov 2019 20:25:32 GMT",
+      "tag": "just-scripts_v0.34.1",
+      "version": "0.34.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "get rid of force exit for jest task as it masks the real test problems",
+            "author": "kchau@microsoft.com",
+            "commit": "542764b6ea6562c36a4e0890ac920f6597ebf7f2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 31 Oct 2019 21:15:50 GMT",
       "tag": "just-scripts_v0.34.0",
       "version": "0.34.0",

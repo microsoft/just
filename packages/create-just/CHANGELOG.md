@@ -1,7 +1,13 @@
 # Change Log - create-just
 
-This log was last generated on Fri, 18 Oct 2019 20:08:37 GMT and should not be manually modified.
+This log was last generated on Mon, 04 Nov 2019 20:25:32 GMT and should not be manually modified.
 
+## 1.2.3
+Mon, 04 Nov 2019 20:25:32 GMT
+
+### Patches
+
+- Fixes so console.log at the end doesn't say "false" (kchau@microsoft.com)
 ## 1.2.2
 Fri, 18 Oct 2019 20:08:37 GMT
 

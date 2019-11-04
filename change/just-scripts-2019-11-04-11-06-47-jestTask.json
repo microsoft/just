@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "get rid of force exit for jest task as it masks the real test problems",
-  "packageName": "just-scripts",
-  "email": "kchau@microsoft.com",
-  "commit": "542764b6ea6562c36a4e0890ac920f6597ebf7f2",
-  "date": "2019-11-04T19:06:47.899Z"
-}

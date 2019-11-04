@@ -14,6 +14,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "create-just": "^1.2.2"
+    "create-just": "^1.2.3"
   }
 }
