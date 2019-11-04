@@ -2,6 +2,48 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Fri, 18 Oct 2019 20:08:37 GMT",
+      "tag": "create-just_v1.2.2",
+      "version": "1.2.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "If a custom registry is specified, add an .npmrc file, that forces auth",
+            "author": "acoates@microsoft.com",
+            "commit": "4b8f1a2d21bebb08281ff530329e0708cf4a5cca"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 16 Oct 2019 22:14:13 GMT",
+      "tag": "create-just_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "run yarn install on stack before plop",
+            "author": "acoates@microsoft.com",
+            "commit": "28fc8c7160f69ffd6c4412086e5c092983b0a908"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 16 Oct 2019 20:54:23 GMT",
+      "tag": "create-just_v1.1.6",
+      "version": "1.1.6",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixes windows support with plop",
+            "author": "kchau@microsoft.com",
+            "commit": "b6c6dae18fe68eaf868a4c8087b6e768ddd02467"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Aug 2019 19:55:07 GMT",
       "tag": "create-just_v1.1.5",
       "version": "1.1.5",

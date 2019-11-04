@@ -1,7 +1,55 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 16 Sep 2019 23:39:13 GMT and should not be manually modified.
+This log was last generated on Thu, 31 Oct 2019 21:15:50 GMT and should not be manually modified.
 
+## 0.34.0
+Thu, 31 Oct 2019 21:15:50 GMT
+
+### Minor changes
+
+- adds a plain old webpack-cli task (kchau@microsoft.com)
+## 0.33.0
+Wed, 23 Oct 2019 15:48:00 GMT
+
+### Minor changes
+
+- Add a "project" option to the tslint task (matthias.klass@gmail.com)
+## 0.32.1
+Fri, 18 Oct 2019 22:08:36 GMT
+
+### Patches
+
+- bump just-task (kchau@microsoft.com)
+## 0.32.0
+Fri, 18 Oct 2019 20:08:37 GMT
+
+### Minor changes
+
+- bumps just-task dependency (kchau@microsoft.com)
+## 0.31.1
+Fri, 27 Sep 2019 23:36:14 GMT
+
+### Patches
+
+- fixes tsoverlay checkeroption to be empty (odbuild@microsoft.com)
+## 0.31.0
+Fri, 27 Sep 2019 17:06:38 GMT
+
+### Minor changes
+
+- adding loaderoptions for tsoverlay (odbuild@microsoft.com)
+## 0.30.0
+Fri, 27 Sep 2019 16:10:48 GMT
+
+### Minor changes
+
+- Add option to fix API report file newlines (elcraig@microsoft.com)
+## 0.29.0
+Tue, 17 Sep 2019 19:23:34 GMT
+
+### Minor changes
+
+- feat: added webpack-cli tasks init, more to come (anik220798@gmail.com)
 ## 0.28.3
 Mon, 16 Sep 2019 23:39:13 GMT
 

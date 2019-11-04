@@ -5,11 +5,12 @@ import fs from 'fs';
 
 export interface TsLintTaskOptions {
   config?: string;
+  project?: string;
   fix?: boolean;
 }
 
 export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
-  const projectFile = resolveCwd('./tsconfig.json');
+  const projectFile = options.project || resolveCwd('./tsconfig.json');
 
   return function tslint() {
     const tslintCmd = resolve('tslint/lib/tslintCli.js');

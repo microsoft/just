@@ -2,6 +2,48 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 18 Oct 2019 21:58:37 GMT",
+      "tag": "just-task_v0.14.2",
+      "version": "0.14.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "esModuleInterop is important to have as true",
+            "author": "kchau@microsoft.com",
+            "commit": "bb1a7467dde2a989444ef50c1d8aa650e9f6f77a"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 18 Oct 2019 21:33:45 GMT",
+      "tag": "just-task_v0.14.1",
+      "version": "0.14.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "use full resolve logic for ts-node",
+            "author": "kchau@microsoft.com",
+            "commit": "9171350465973efb378571d4920d9b7a7308a7c0"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 18 Oct 2019 19:52:03 GMT",
+      "tag": "just-task_v0.14.0",
+      "version": "0.14.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "adds support for typescript just.config.ts",
+            "author": "kchau@microsoft.com",
+            "commit": "5f069e01d297080bfdb2e59a5e8f7dac368a6fa6"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 16 Sep 2019 19:57:52 GMT",
       "tag": "just-task_v0.13.3",
       "version": "0.13.3",

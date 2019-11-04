@@ -1,7 +1,25 @@
 # Change Log - just-task
 
-This log was last generated on Mon, 16 Sep 2019 19:57:52 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Oct 2019 21:58:37 GMT and should not be manually modified.
 
+## 0.14.2
+Fri, 18 Oct 2019 21:58:37 GMT
+
+### Patches
+
+- esModuleInterop is important to have as true (kchau@microsoft.com)
+## 0.14.1
+Fri, 18 Oct 2019 21:33:45 GMT
+
+### Patches
+
+- use full resolve logic for ts-node (kchau@microsoft.com)
+## 0.14.0
+Fri, 18 Oct 2019 19:52:03 GMT
+
+### Minor changes
+
+- adds support for typescript just.config.ts (kchau@microsoft.com)
 ## 0.13.3
 Mon, 16 Sep 2019 19:57:52 GMT
 

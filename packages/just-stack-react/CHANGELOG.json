@@ -2,6 +2,20 @@
   "name": "just-stack-react",
   "entries": [
     {
+      "date": "Wed, 16 Oct 2019 20:54:23 GMT",
+      "tag": "just-stack-react_v1.0.4",
+      "version": "1.0.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixes windows support with plop",
+            "author": "kchau@microsoft.com",
+            "commit": "b6c6dae18fe68eaf868a4c8087b6e768ddd02467"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Aug 2019 04:07:38 GMT",
       "tag": "just-stack-react_v1.0.3",
       "version": "1.0.3",

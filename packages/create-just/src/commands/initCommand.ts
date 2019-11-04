@@ -76,6 +76,11 @@ export async function initCommand(argv: yargs.Arguments) {
   argv.name = name;
 
   const stackPath = await getStackPath(argv.stack, argv.registry);
+
+  logger.info(`Installing stack dependencies in ${stackPath}`);
+  pkg.ensureNpmrcIfRequired(argv.registry, stackPath!);
+  pkg.install(argv.registry, stackPath!);
+
   const stackName = getStackName(stackPath!);
   const generator = await getPlopGenerator(stackPath!, paths.projectPath, stackName);
 
@@ -107,12 +112,14 @@ Please make sure you have git installed and then issue the following:
 
   logger.info('All Set!');
 
-  showNextSteps(argv, stackName);
+  showNextSteps(argv, stackName, stackPath!);
 }
 
-function showNextSteps(argv: any, stackName: string) {
-  logger.info(
-    prettyPrintMarkdown(`
+function showNextSteps(argv: any, stackName: string, stackPath: string) {
+  const postInitPath = path.join(stackPath, 'post-create-just.md');
+  const nextStepsMd = existsSync(postInitPath)
+    ? readFileSync(postInitPath, 'utf-8').toString()
+    : `
 You have successfully created a new repo based on the '${argv.stack}' template!
 
 ## Keeping Up-to-date
@@ -140,6 +147,7 @@ This repository contains code generators that can be triggered by:
     cd ${paths.projectPath}
     ${pkg.getYarn() ? 'yarn' : 'npm run'} gen
 
-`}`)
-  );
+`}`;
+
+  logger.info(prettyPrintMarkdown(nextStepsMd));
 }

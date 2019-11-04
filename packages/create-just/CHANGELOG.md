@@ -1,7 +1,25 @@
 # Change Log - create-just
 
-This log was last generated on Tue, 06 Aug 2019 19:55:07 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Oct 2019 20:08:37 GMT and should not be manually modified.
 
+## 1.2.2
+Fri, 18 Oct 2019 20:08:37 GMT
+
+### Patches
+
+- If a custom registry is specified, add an .npmrc file, that forces auth (acoates@microsoft.com)
+## 1.2.0
+Wed, 16 Oct 2019 22:14:13 GMT
+
+### Minor changes
+
+- run yarn install on stack before plop (acoates@microsoft.com)
+## 1.1.6
+Wed, 16 Oct 2019 20:54:23 GMT
+
+### Patches
+
+- fixes windows support with plop (kchau@microsoft.com)
 ## 1.1.5
 Tue, 06 Aug 2019 19:55:07 GMT
 

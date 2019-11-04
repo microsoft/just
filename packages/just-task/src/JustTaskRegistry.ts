@@ -1,10 +1,12 @@
 import yargs from 'yargs';
 import fs from 'fs';
+import path from 'path';
 import { logger, mark } from './logger';
 
 import UndertakerRegistry from 'undertaker-registry';
 import Undertaker from 'undertaker';
 import { resolve } from './resolve';
+import { enableTypeScript } from './enableTypeScript';
 
 export class JustTaskRegistry extends UndertakerRegistry {
   private hasDefault: boolean = false;
@@ -13,11 +15,19 @@ export class JustTaskRegistry extends UndertakerRegistry {
     super.init(taker);
 
     // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
-    const configFile = [yargs.argv.config, './just.config.js', './just-task.js'].reduce((value, entry) => value || resolve(entry));
+    const configFile = [yargs.argv.config, './just.config.js', './just-task.js', './just.config.ts'].reduce(
+      (value, entry) => value || resolve(entry)
+    );
 
     mark('registry:configModule');
 
     if (configFile && fs.existsSync(configFile)) {
+      const ext = path.extname(configFile);
+      if (ext === '.ts' || ext === '.tsx') {
+        // TODO: add option to do typechecking as well
+        enableTypeScript({ transpileOnly: true });
+      }
+
       try {
         const configModule = require(configFile);
         if (typeof configModule === 'function') {

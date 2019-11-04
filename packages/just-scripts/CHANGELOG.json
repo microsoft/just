@@ -2,6 +2,118 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 31 Oct 2019 21:15:50 GMT",
+      "tag": "just-scripts_v0.34.0",
+      "version": "0.34.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "adds a plain old webpack-cli task",
+            "author": "kchau@microsoft.com",
+            "commit": "5cff5c789291cba91aeb85bcb12755c4028f8567"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 23 Oct 2019 15:48:00 GMT",
+      "tag": "just-scripts_v0.33.0",
+      "version": "0.33.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add a \"project\" option to the tslint task",
+            "author": "matthias.klass@gmail.com",
+            "commit": "701baa709fe5bb0716800a597b8b5e78b3a0806e"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 18 Oct 2019 22:08:36 GMT",
+      "tag": "just-scripts_v0.32.1",
+      "version": "0.32.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "bump just-task",
+            "author": "kchau@microsoft.com",
+            "commit": "2221e316d26c402d4bf51f83780fdeee5407e558"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 18 Oct 2019 20:08:37 GMT",
+      "tag": "just-scripts_v0.32.0",
+      "version": "0.32.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "bumps just-task dependency",
+            "author": "kchau@microsoft.com",
+            "commit": "4ef262043b5096f42b4dac8d5fec1ebd401d242c"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 27 Sep 2019 23:36:14 GMT",
+      "tag": "just-scripts_v0.31.1",
+      "version": "0.31.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixes tsoverlay checkeroption to be empty",
+            "author": "odbuild@microsoft.com",
+            "commit": "ed1df82eafbed9f7576f00665dd6705a32064dcf"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 27 Sep 2019 17:06:38 GMT",
+      "tag": "just-scripts_v0.31.0",
+      "version": "0.31.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "adding loaderoptions for tsoverlay",
+            "author": "odbuild@microsoft.com",
+            "commit": "bcb1f45b53956000e9fe03e6eff84c1f27d9375a"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 27 Sep 2019 16:10:48 GMT",
+      "tag": "just-scripts_v0.30.0",
+      "version": "0.30.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add option to fix API report file newlines",
+            "author": "elcraig@microsoft.com",
+            "commit": "e79daebd09eb7f8f39622cade3d2bd38b0b593f0"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 17 Sep 2019 19:23:34 GMT",
+      "tag": "just-scripts_v0.29.0",
+      "version": "0.29.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "feat: added webpack-cli tasks init, more to come",
+            "author": "anik220798@gmail.com",
+            "commit": "912936dffcb2680426283c8f2a1560a957fb5f0c"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 16 Sep 2019 23:39:13 GMT",
       "tag": "just-scripts_v0.28.3",
       "version": "0.28.3",
