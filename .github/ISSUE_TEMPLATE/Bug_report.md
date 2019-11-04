@@ -1,13 +1,7 @@
-**Describe the bug**
+## Overview
 
-**What is the current behavior?**
+## Repro Steps
 
-**To Reproduce**
+## Actual Behavior
 
-<!-- Steps to reproduce the behavior: -->
-
-**Expected behavior**
-
-**Additional context**
-
-<!-- Like version for dependencies used , OS type etc -->
+## Expected Behavior
