@@ -1,0 +1,8 @@
+{
+  "type": "minor",
+  "comment": "adding environment variable support for jestTask",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "commit": "4103cf008ce832c8551cd0bf11d4ae08db5c297c",
+  "date": "2019-11-07T03:48:32.563Z"
+}
