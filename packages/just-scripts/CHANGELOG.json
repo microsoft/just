@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 07 Nov 2019 04:07:08 GMT",
+      "tag": "just-scripts_v0.35.0",
+      "version": "0.35.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "adding environment variable support for jestTask",
+            "author": "kchau@microsoft.com",
+            "commit": "4103cf008ce832c8551cd0bf11d4ae08db5c297c"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 04 Nov 2019 20:25:32 GMT",
       "tag": "just-scripts_v0.34.1",
       "version": "0.34.1",

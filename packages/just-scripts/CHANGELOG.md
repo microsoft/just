@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 04 Nov 2019 20:25:32 GMT and should not be manually modified.
+This log was last generated on Thu, 07 Nov 2019 04:07:08 GMT and should not be manually modified.
 
+## 0.35.0
+Thu, 07 Nov 2019 04:07:08 GMT
+
+### Minor changes
+
+- adding environment variable support for jestTask (kchau@microsoft.com)
 ## 0.34.1
 Mon, 04 Nov 2019 20:25:32 GMT
 
