@@ -19,6 +19,11 @@ export interface WebpackTaskOptions extends Configuration {
    * like increase the heap space for the JS engine to address out of memory issues.
    */
   nodeArgs?: string[];
+
+  /**
+   * Environment variables to be passed to the webpack-dev-server
+   */
+  env?: NodeJS.ProcessEnv;
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
@@ -97,7 +102,7 @@ export function webpackDevServerTask(options: WebpackTaskOptions = {}) {
       const args = [...(options.nodeArgs || []), devServerCmd, '--config', configPath, '--open', '--mode', mode];
 
       logger.info(devServerCmd, encodeArgs(args).join(' '));
-      return spawn(process.execPath, args, { stdio: 'inherit' });
+      return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
     } else {
       logger.warn('no webpack.serve.config.js configuration found, skipping');
       return Promise.resolve();

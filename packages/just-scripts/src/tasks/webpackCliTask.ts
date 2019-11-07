@@ -12,6 +12,11 @@ export interface WebpackCliTaskOptions {
    * like increase the heap space for the JS engine to address out of memory issues.
    */
   nodeArgs?: string[];
+
+  /**
+   * Environment variables to be passed to the webpack-cli
+   */
+  env?: NodeJS.ProcessEnv;
 }
 
 /**
@@ -21,7 +26,7 @@ export interface WebpackCliTaskOptions {
  * @param  {Boolean=false} auto - to pass the --auto flag, which will generate a default webpack.config.js
  * @returns TaskFunction
  */
-export function webpackCliTask(options?: WebpackCliTaskOptions): TaskFunction {
+export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunction {
   const webpackCliCmd = resolve('webpack-cli/bin/cli.js');
 
   if (!webpackCliCmd) {
@@ -39,6 +44,6 @@ export function webpackCliTask(options?: WebpackCliTaskOptions): TaskFunction {
 
     logger.info(`webpack-cli arguments: ${process.execPath} ${args.join(' ')}`);
 
-    return spawn(process.execPath, args, { stdio: 'inherit' });
+    return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
   };
 }
