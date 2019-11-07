@@ -26,7 +26,7 @@ export interface WebpackCliTaskOptions {
  * @param  {Boolean=false} auto - to pass the --auto flag, which will generate a default webpack.config.js
  * @returns TaskFunction
  */
-export function webpackCliTask(options?: WebpackCliTaskOptions): TaskFunction {
+export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunction {
   const webpackCliCmd = resolve('webpack-cli/bin/cli.js');
 
   if (!webpackCliCmd) {
