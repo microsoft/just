@@ -15,6 +15,11 @@ export interface JestTaskOptions {
    * Arguments to be passed into a spawn call for jest
    */
   nodeArgs?: string[];
+
+  /**
+   * Environment variables to be passed to the jest runner
+   */
+  env?: NodeJS.ProcessEnv;
 }
 
 export function jestTask(options: JestTaskOptions = {}): TaskFunction {
@@ -44,7 +49,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
 
       logger.info(cmd, encodeArgs(args).join(' '));
 
-      return spawn(cmd, args, { stdio: 'inherit' });
+      return spawn(cmd, args, { stdio: 'inherit', env: options.env });
     } else {
       logger.warn('no jest configuration found, skipping jest');
       return Promise.resolve();
