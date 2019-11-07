@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "office-ui-fabric-react": "^6.109.0",
-    "@uifabric/experiments": "^6.41.0",
+    "@uifabric/experiments": "^7.18.3",
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
   },
