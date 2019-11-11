@@ -1,14 +1,15 @@
 import { logger, TaskFunction } from 'just-task';
-import fs from 'fs';
-import glob from 'glob';
+import fs from 'fs-extra';
 import path from 'path';
 import { tryRequire } from '../tryRequire';
+// This is a TYPING ONLY import from <root>/typings/api-extractor.d.ts
+import * as ApiExtractorTypes from '@microsoft/api-extractor';
 
 /**
- * Subset of the options from IExtractorConfigOptions that are exposed via this just task,
+ * Subset of the options from `IExtractorConfigOptions` that are exposed via this just task,
  * plus additional options specific to the task.
  */
-interface ApiExtractorOptions {
+export interface ApiExtractorOptions {
   /**
    * Indicates that API Extractor is running as part of a local build, e.g. on developer's
    * machine. This disables certain validation that would normally be performed
@@ -40,13 +41,27 @@ interface ApiExtractorOptions {
    * API Extractor uses CRLF newlines by default and adds trailing spaces after empty comment lines,
    * both of which can add excessive noise to diffs. Set this option to true to post-process the
    * API Extractor .md file to fix these issues (newline type will be inferred from the type used in
-   * the config file).
-   *
-   * NOTE: This option assumes the default paths for the API file: `${process.cwd()}/temp/*.api.md`
-   * when verifying, or `${process.cwd()}/etc/*.api.md` when updating. If you don't use those paths,
-   * import and manually call `fixApiFileNewlines()` instead.
+   * the config file). It will also remove trailing spaces.
    */
   fixNewlines?: boolean;
+
+  /**
+   * Callback after api-extractor is invoked.
+   * @param result - Result of invoking api-extractor. Actual type is `ExtractorResult` from `@microsoft/api-extractor`.
+   * @param extractorOptions - Options with which api-extractor was invoked. Actual type is `IExtractorInvokeOptions`.
+   */
+  onResult?: (result: any, extractorOptions: any) => void;
+}
+
+interface ApiExtractorContext {
+  /** Original options */
+  options: ApiExtractorOptions;
+  /** Just the options to pass to api-extractor */
+  extractorOptions: ApiExtractorTypes.IExtractorInvokeOptions;
+  /** Loaded config file */
+  config: ApiExtractorTypes.ExtractorConfig;
+  /** Actual api-extractor module */
+  apiExtractorModule: typeof ApiExtractorTypes;
 }
 
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
@@ -67,10 +82,13 @@ export function apiExtractorVerifyTask(
       : { ...configJsonFilePathOrOption };
 
   return function apiExtractorVerify() {
-    const apiExtractorResult = apiExtractorWrapper(options);
+    const context = initApiExtractor(options);
+    if (context) {
+      const apiExtractorResult = apiExtractorWrapper(context);
 
-    if (apiExtractorResult && !apiExtractorResult.succeeded) {
-      throw new Error('The public API file is out of date. Please run the API snapshot and commit the updated API file.');
+      if (apiExtractorResult && !apiExtractorResult.succeeded) {
+        throw new Error('The public API file is out of date. Please run the API snapshot and commit the updated API file.');
+      }
     }
   };
 }
@@ -81,17 +99,17 @@ export function apiExtractorVerifyTask(
  * Sample config which should be saved as api-extractor.json:
  * ```
  * {
- *    "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
- *    "mainEntryPointFilePath": "<projectFolder>/lib/index.d.ts",
- *    "docModel": {
- *      "enabled": true
- *    },
- *    "dtsRollup": {
- *      "enabled": true
- *    },
- *    "apiReport": {
- *      "enabled": true
- *    }
+ *   "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+ *   "mainEntryPointFilePath": "<projectFolder>/lib/index.d.ts",
+ *   "docModel": {
+ *     "enabled": true
+ *   },
+ *   "dtsRollup": {
+ *     "enabled": true
+ *   },
+ *   "apiReport": {
+ *     "enabled": true
+ *   }
  * }
  * ```
  */
@@ -111,40 +129,48 @@ export function apiExtractorUpdateTask(
       : { ...configJsonFilePathOrOption };
 
   return function apiExtractorUpdate() {
-    const apiExtractorResult = apiExtractorWrapper(options);
+    const context = initApiExtractor(options);
+    if (context) {
+      const apiExtractorResult = apiExtractorWrapper(context);
 
-    if (apiExtractorResult) {
-      if (!apiExtractorResult.succeeded) {
-        logger.warn(`- Update API: API file is out of date, updating...`);
-        apiExtractorWrapper({ ...options, localBuild: true });
-        logger.info(`- Update API: successfully updated API file, verifying the updates...`);
+      if (apiExtractorResult) {
+        if (!apiExtractorResult.succeeded) {
+          logger.warn(`- Update API: API file is out of date, updating...`);
+          fs.copyFileSync(context.config.reportTempFilePath, context.config.reportFilePath);
 
-        if (!apiExtractorWrapper(options).succeeded) {
-          throw new Error(`- Update API: failed to update API file.`);
+          logger.info(`- Update API: successfully updated API file, verifying the updates...`);
+
+          if (!apiExtractorWrapper(context)!.succeeded) {
+            throw new Error(`- Update API: failed to verify API updates.`);
+          } else {
+            logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
+          }
         } else {
-          logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
+          logger.info(`- Update API: API file is already up to date, no update needed.`);
         }
-      } else {
-        logger.info(`- Update API: API file is already up to date, no update needed.`);
       }
     }
   };
 }
 
-function apiExtractorWrapper(options: ApiExtractorOptions) {
-  const { configJsonFilePath = 'api-extractor.json', fixNewlines, ...extractorOptions } = options;
-
-  const apiExtractorModule = tryRequire('@microsoft/api-extractor');
+/**
+ * Load the api-extractor module (if available) and the config file.
+ */
+function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | undefined {
+  const apiExtractorModule: typeof ApiExtractorTypes = tryRequire('@microsoft/api-extractor');
 
   if (!apiExtractorModule) {
-    logger.warn('@microsoft/api-extractor package not detected, this task will have no effect');
+    logger.warn('@microsoft/api-extractor package not detected. This task will have no effect.');
     return;
   }
 
   if (!apiExtractorModule.Extractor.invoke) {
-    logger.warn('Please update your @microsoft/api-extractor package, this task will have no effect');
+    logger.warn('Please update your @microsoft/api-extractor package. This task will have no effect.');
     return;
   }
+
+  const { ExtractorConfig } = apiExtractorModule;
+  const { configJsonFilePath = ExtractorConfig.FILENAME, fixNewlines, onResult, ...extractorOptions } = options;
 
   if (!fs.existsSync(configJsonFilePath)) {
     const defaultConfig = path.resolve(__dirname, '../../config/apiExtractor/api-extractor.json');
@@ -152,23 +178,27 @@ function apiExtractorWrapper(options: ApiExtractorOptions) {
     return;
   }
 
-  const { Extractor, ExtractorConfig } = apiExtractorModule;
   const config = ExtractorConfig.loadFileAndPrepare(configJsonFilePath);
+
+  return { apiExtractorModule, config, extractorOptions, options };
+}
+
+function apiExtractorWrapper({
+  apiExtractorModule,
+  config,
+  extractorOptions,
+  options
+}: ApiExtractorContext): ApiExtractorTypes.ExtractorResult | undefined {
+  const { Extractor } = apiExtractorModule;
 
   logger.info(`Extracting Public API surface from '${config.mainEntryPointFilePath}'`);
   const result = Extractor.invoke(config, extractorOptions);
+  if (options.onResult) {
+    options.onResult(result, extractorOptions);
+  }
 
-  if (fixNewlines) {
-    const apiGlob = path.join(process.cwd(), `${options.localBuild ? 'etc' : 'temp'}/*.api.md`);
-    const files = glob.sync(apiGlob);
-    if (files[0]) {
-      fixApiFileNewlines(files[0], { sampleFilePath: configJsonFilePath });
-    } else {
-      logger.warn(
-        'API Extractor task options requested fixing newlines, but an API file was not found ' +
-          `under the default path of ${apiGlob}. Please manually call fixApiFileNewlines() instead.`
-      );
-    }
+  if (options.fixNewlines) {
+    fixApiFileNewlines(options.localBuild ? config.reportFilePath : config.reportTempFilePath, { sampleFilePath: config.apiJsonFilePath });
   }
   return result;
 }
