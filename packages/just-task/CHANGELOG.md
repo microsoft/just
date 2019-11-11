@@ -1,7 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 18 Oct 2019 21:58:37 GMT and should not be manually modified.
+This log was last generated on Mon, 11 Nov 2019 21:09:42 GMT and should not be manually modified.
 
+## 0.14.3
+Mon, 11 Nov 2019 21:09:42 GMT
+
+### Patches
+
+- Show full stack on config file errors (elcraig@microsoft.com)
 ## 0.14.2
 Fri, 18 Oct 2019 21:58:37 GMT
 

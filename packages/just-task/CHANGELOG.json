@@ -2,6 +2,20 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Mon, 11 Nov 2019 21:09:42 GMT",
+      "tag": "just-task_v0.14.3",
+      "version": "0.14.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Show full stack on config file errors",
+            "author": "elcraig@microsoft.com",
+            "commit": "e61ad577a23ef0b5c600def216e0101cc5ecb6a2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 18 Oct 2019 21:58:37 GMT",
       "tag": "just-task_v0.14.2",
       "version": "0.14.2",

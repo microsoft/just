@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 07 Nov 2019 04:07:08 GMT and should not be manually modified.
+This log was last generated on Mon, 11 Nov 2019 21:09:42 GMT and should not be manually modified.
 
+## 0.36.0
+Mon, 11 Nov 2019 21:09:42 GMT
+
+### Minor changes
+
+- api-extractor task: add callback to access ExtractorResult, add typings, improve logic (elcraig@microsoft.com)
 ## 0.35.0
 Thu, 07 Nov 2019 04:07:08 GMT
 

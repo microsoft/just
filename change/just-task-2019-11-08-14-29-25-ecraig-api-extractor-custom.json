@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Show full stack on config file errors",
-  "packageName": "just-task",
-  "email": "elcraig@microsoft.com",
-  "commit": "e61ad577a23ef0b5c600def216e0101cc5ecb6a2",
-  "date": "2019-11-08T22:29:25.336Z"
-}

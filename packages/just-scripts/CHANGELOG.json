@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 11 Nov 2019 21:09:42 GMT",
+      "tag": "just-scripts_v0.36.0",
+      "version": "0.36.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "api-extractor task: add callback to access ExtractorResult, add typings, improve logic",
+            "author": "elcraig@microsoft.com",
+            "commit": "e61ad577a23ef0b5c600def216e0101cc5ecb6a2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 07 Nov 2019 04:07:08 GMT",
       "tag": "just-scripts_v0.35.0",
       "version": "0.35.0",
