@@ -10,6 +10,7 @@ export interface JestTaskOptions {
   updateSnapshot?: boolean;
   watch?: boolean;
   colors?: boolean;
+  passWithNoTests?: boolean;
   u?: boolean;
   _?: string[];
 
@@ -39,8 +40,8 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         jestCmd,
         '--config',
         configFile,
-        '--passWithNoTests',
-        ...(options.colors && supportsColor.stdout ? ['--colors'] : []),
+        ...(options.passWithNoTests ? ['--passWithNoTests'] : []),
+        ...(options.colors !== false && supportsColor.stdout ? ['--colors'] : []),
         ...(options.runInBand ? ['--runInBand'] : []),
         ...(options.coverage ? ['--coverage'] : []),
         ...(options.watch ? ['--watch'] : []),
