@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Wed, 13 Nov 2019 19:42:46 GMT",
+      "tag": "just-scripts_v0.36.1",
+      "version": "0.36.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "adding options to turn off colors",
+            "author": "kchau@microsoft.com",
+            "commit": "6bef9ddc217da5484e4dd0e29cb42903081fa45a"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 11 Nov 2019 21:09:42 GMT",
       "tag": "just-scripts_v0.36.0",
       "version": "0.36.0",

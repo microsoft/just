@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 11 Nov 2019 21:09:42 GMT and should not be manually modified.
+This log was last generated on Wed, 13 Nov 2019 19:42:46 GMT and should not be manually modified.
 
+## 0.36.1
+Wed, 13 Nov 2019 19:42:46 GMT
+
+### Patches
+
+- adding options to turn off colors (kchau@microsoft.com)
 ## 0.36.0
 Mon, 11 Nov 2019 21:09:42 GMT
 
