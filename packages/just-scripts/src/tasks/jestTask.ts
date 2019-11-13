@@ -1,6 +1,7 @@
 import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { spawn, encodeArgs } from 'just-scripts-utils';
 import { existsSync } from 'fs';
+import supportsColor from 'supports-color';
 
 export interface JestTaskOptions {
   config?: string;
@@ -8,6 +9,7 @@ export interface JestTaskOptions {
   coverage?: boolean;
   updateSnapshot?: boolean;
   watch?: boolean;
+  colors?: boolean;
   u?: boolean;
   _?: string[];
 
@@ -32,14 +34,13 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
     if (configFile && jestCmd && existsSync(configFile)) {
       logger.info(`Running Jest`);
       const cmd = process.execPath;
-
       const args = [
         ...(options.nodeArgs || []),
         jestCmd,
         '--config',
         configFile,
         '--passWithNoTests',
-        '--colors',
+        ...(options.colors && supportsColor.stdout ? ['--colors'] : []),
         ...(options.runInBand ? ['--runInBand'] : []),
         ...(options.coverage ? ['--coverage'] : []),
         ...(options.watch ? ['--watch'] : []),

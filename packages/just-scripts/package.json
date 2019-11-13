@@ -24,9 +24,11 @@
     "npm-registry-fetch": "^3.9.0",
     "prompts": "^2.0.1",
     "run-parallel-limit": "^1.0.5",
+    "supports-color": "^7.1.0",
     "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
+    "@types/supports-color": "5.3.0",
     "@types/diff-match-patch": "1.0.32",
     "@types/fs-extra": "^5.0.4",
     "@types/glob": "^7.1.1",
