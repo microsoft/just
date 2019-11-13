@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "adding options to turn off colors",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "commit": "6bef9ddc217da5484e4dd0e29cb42903081fa45a",
+  "date": "2019-11-13T18:36:58.238Z"
+}
