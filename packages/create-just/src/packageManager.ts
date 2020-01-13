@@ -28,9 +28,11 @@ ${registry}:always-auth=true`
 export function install(registry: string, cwd: string) {
   const registryArgs = registry ? ['--registry', registry] : [];
 
-  if (getYarn()) {
-    return spawnSync(getYarn(), ['install', ...registryArgs], { stdio: 'inherit', cwd });
-  } else {
-    return spawnSync(getNpm(), ['install', ...registryArgs], { stdio: 'inherit', cwd });
+  const result = spawnSync(getYarn() || getNpm(), ['install', ...registryArgs], { stdio: 'inherit', cwd });
+
+  if (result.error) {
+    throw result.error;
   }
+
+  return result;
 }
