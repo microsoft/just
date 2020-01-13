@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Failures on install should be fatal",
+  "packageName": "create-just",
+  "email": "acoates@microsoft.com",
+  "commit": "8f5f8a2e9ad1e709c1eebc13c378677c49df545e",
+  "date": "2020-01-13T22:26:04.295Z"
+}
