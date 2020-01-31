@@ -1,0 +1,8 @@
+{
+  "type": "none",
+  "comment": "Use Node's path so that tests don't fail in Windows clients.",
+  "packageName": "just-task",
+  "email": "jagore@microsoft.com",
+  "commit": "cb6b3efcbf278c6cf57f611e208e68dad31ff29d",
+  "date": "2020-01-31T21:38:21.551Z"
+}
