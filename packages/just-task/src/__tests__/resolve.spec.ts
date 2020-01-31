@@ -1,4 +1,5 @@
 import mockfs from 'mock-fs';
+import path from 'path';
 import yargsMock from './__mocks__/yargs/yargs';
 import {
   _isFileNameLike,
@@ -56,7 +57,7 @@ describe('_tryResolve', () => {
       a: { 'b.txt': '' }, // right
       'b.txt': '' // wrong
     });
-    expect(_tryResolve('b.txt', 'a')).toContain('a/b.txt');
+    expect(_tryResolve('b.txt', 'a')).toContain(path.join('a', 'b.txt'));
   });
 
   it('resolves non-filename relative to node_modules in basedir', () => {
@@ -69,7 +70,7 @@ describe('_tryResolve', () => {
       // eslint-disable-next-line @typescript-eslint/camelcase
       node_modules: { 'b.js': '' } // wrong
     });
-    expect(_tryResolve('b', 'a')).toContain('a/node_modules/b.js');
+    expect(_tryResolve('b', 'a')).toContain(path.join('a', 'node_modules', 'b.js'));
   });
 
   it('resolves path with /', () => {
@@ -77,7 +78,7 @@ describe('_tryResolve', () => {
       // eslint-disable-next-line @typescript-eslint/camelcase
       a: { node_modules: { b: { 'c.js': '' } } }
     });
-    expect(_tryResolve('b/c', 'a')).toContain('a/node_modules/b/c.js');
+    expect(_tryResolve('b/c', 'a')).toContain(path.join('a', 'node_modules', 'b', 'c.js'));
   });
 });
 
@@ -95,7 +96,7 @@ describe('resolveCwd', () => {
       'b.txt': '' // wrong
     });
     jest.spyOn(process, 'cwd').mockReturnValueOnce('a');
-    expect(resolveCwd('b.txt')).toContain('a/b.txt');
+    expect(resolveCwd('b.txt')).toContain(path.join('a', 'b.txt'));
   });
 
   it('uses provided cwd', () => {
@@ -103,7 +104,7 @@ describe('resolveCwd', () => {
       a: { 'b.txt': '' }, // right
       'b.txt': '' // wrong
     });
-    expect(resolveCwd('b.txt', 'a')).toContain('a/b.txt');
+    expect(resolveCwd('b.txt', 'a')).toContain(path.join('a', 'b.txt'));
   });
 
   it('ignores resolvePaths', () => {
@@ -128,7 +129,7 @@ describe('resolve', () => {
       'b.txt': '' // wrong
     });
     jest.spyOn(process, 'cwd').mockReturnValueOnce('a');
-    expect(resolve('b.txt')).toContain('a/b.txt');
+    expect(resolve('b.txt')).toContain(path.join('a', 'b.txt'));
   });
 
   it('uses provided cwd', () => {
@@ -137,7 +138,7 @@ describe('resolve', () => {
       'b.txt': '', // wrong
       c: { 'b.txt': '' }
     });
-    expect(resolve('b.txt', 'a')).toContain('a/b.txt');
+    expect(resolve('b.txt', 'a')).toContain(path.join('a', 'b.txt'));
   });
 
   it('uses dirname of --config arg', () => {
@@ -145,7 +146,7 @@ describe('resolve', () => {
       a: { 'b.txt': '' }
     });
     yargsMock.argv.config = 'a/just-task.js';
-    expect(resolve('b.txt')).toContain('a/b.txt');
+    expect(resolve('b.txt')).toContain(path.join('a', 'b.txt'));
   });
 
   it('uses resolvePaths for file', () => {
@@ -155,7 +156,7 @@ describe('resolve', () => {
     });
     addResolvePath('a');
     addResolvePath('c');
-    expect(resolve('b.txt')).toContain('c/b.txt');
+    expect(resolve('b.txt')).toContain(path.join('c', 'b.txt'));
   });
 
   it('prefers provided cwd', () => {
@@ -167,6 +168,6 @@ describe('resolve', () => {
     });
     yargsMock.argv.config = 'a/just-task.js';
     addResolvePath('c');
-    expect(resolve('b.txt', 'd')).toContain('d/b.txt');
+    expect(resolve('b.txt', 'd')).toContain(path.join('d', 'b.txt'));
   });
 });
