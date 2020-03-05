@@ -1,5 +1,5 @@
 import { spawnSync } from 'child_process';
-import { repoInfo } from './repoInfo';
+import { findGitRoot } from './repoInfo';
 
 function cleanGitStdout(stdout: Buffer): string[] {
   return stdout
@@ -7,10 +7,6 @@ function cleanGitStdout(stdout: Buffer): string[] {
     .split(/\n/)
     .map(l => l.trim())
     .filter(v => v);
-}
-
-export function findGitRoot(): string {
-  return repoInfo().rootPath;
 }
 
 export function gitListFiles(root: string | undefined, scope: string[]): string[] {

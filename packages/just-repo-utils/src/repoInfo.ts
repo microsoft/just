@@ -7,32 +7,44 @@ import fse from 'fs-extra';
 let _repoInfo: RepoInfo | undefined = undefined;
 
 /**
+ * Everyone seems to have one of these, so this is a common implementation that can
+ * be leveraged by different utilities.
+ *
+ * @param cb - callback function to execute at each level.  A true result for the callback will
+ * cancel the walk and return the current path at the time it was cancelled.
+ */
+export function findGitRoot(cb?: (current: string) => boolean | undefined): string {
+  let cwd = process.cwd();
+  const root = path.parse(cwd).root;
+
+  while (cwd !== root) {
+    if ((cb && cb(cwd)) || fse.existsSync(path.join(cwd, '.git'))) {
+      return cwd;
+    }
+    cwd = path.dirname(cwd);
+  }
+  throw 'No repository root found!';
+}
+
+/**
  * Retrieve info for the repository.  This will walk up from the current working directory
- * until it finds a lerna.json, rush.json, or the git root.
+ * until it finds the git root and then prepare loaders for various monorepo config files
  */
 export function repoInfo(): RepoInfo {
   if (_repoInfo) {
     return _repoInfo;
   }
 
-  let cwd = process.cwd();
-  const root = path.parse(cwd).root;
-  while (cwd !== root) {
-    // walk up to the git root
-    if (fse.existsSync(path.join(cwd, '.git'))) {
-      const getRushJson = getConfigLoader<RushJson>(cwd, 'rush.json', loadCJson);
-      const getLernaJson = getConfigLoader<LernaJson>(cwd, 'lerna.json');
-      const isMonoRepo = getRushJson || getLernaJson;
-      _repoInfo = {
-        rootPath: cwd,
-        getRushJson,
-        getLernaJson,
-        getPackageJson: getConfigLoader<PackageJson>(cwd, 'package.json')!,
-        ...(isMonoRepo && { monorepo: getRushJson ? 'rush' : 'lerna' })
-      }
-      return _repoInfo;
-    }
-    cwd = path.dirname(cwd);
-  }
-  throw ('No repository root found!');
+  const rootPath = findGitRoot();
+  const getRushJson = getConfigLoader<RushJson>(rootPath, 'rush.json', loadCJson);
+  const getLernaJson = getConfigLoader<LernaJson>(rootPath, 'lerna.json');
+  const isMonoRepo = getRushJson || getLernaJson;
+  _repoInfo = {
+    rootPath: rootPath,
+    getRushJson,
+    getLernaJson,
+    getPackageJson: getConfigLoader<PackageJson>(rootPath, 'package.json')!,
+    ...(isMonoRepo && { monorepo: getRushJson ? 'rush' : 'lerna' })
+  };
+  return _repoInfo;
 }
