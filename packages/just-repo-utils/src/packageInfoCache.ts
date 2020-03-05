@@ -4,6 +4,7 @@ import { PackageInfo } from './interfaces/packageInfoTypes';
 import { getConfigLoader, readJsonConfig } from './readConfigs';
 import { PackageJson, PackageJsonLoader } from './interfaces/configTypes';
 import fs from 'fs-extra';
+import path from 'path';
 
 interface ISerializablePackageEntry {
   path: string;
@@ -67,6 +68,12 @@ export function cachePackageInfo(pkgInfo: PackageInfo): void {
     hash: getRepoHashKey(repo.rootPath),
     packages: getSerializableRepoPackages(pkgInfo)
   }
+  // ensure the directory is created
+  const cacheDir = path.dirname(cachePath);
+  if (!fs.pathExistsSync(cacheDir)) {
+    fs.mkdirpSync(cacheDir);
+  }
+  // now write out the cache file
   fs.writeFileSync(cachePath, JSON.stringify(toJson, null, 2));
   _packageInfo = pkgInfo;
 }
