@@ -5,7 +5,8 @@ function cleanGitStdout(stdout: Buffer): string[] {
   return stdout
     .toString()
     .split(/\n/)
-    .map(l => l.trim());
+    .map(l => l.trim())
+    .filter(v => v);
 }
 
 export function findGitRoot(): string {
