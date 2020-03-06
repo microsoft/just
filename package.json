@@ -8,7 +8,7 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "build": "lerna run --stream build",
+    "build": "lerna run --ignore just-task-docs --stream build",
     "postbuild": "node ./scripts/copyReadme.js",
     "build:docs": "lerna run --scope just-task-docs build",
     "change": "beachball change",
