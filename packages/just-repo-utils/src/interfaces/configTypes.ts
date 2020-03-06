@@ -55,6 +55,9 @@ export interface PackageJson {
   peerDependencies?: Dependencies;
   keywords?: string;
   just?: {
+    /** Indicator that this package should be treated as the root */
+    root?: boolean;
+
     /** Stack that the package is tracking */
     stack?: string;
   };

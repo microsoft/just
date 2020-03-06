@@ -1,10 +1,25 @@
 import { getConfigLoader, loadCJson } from './readConfigs';
-import { LernaJson, RushJson, PackageJson } from './interfaces/configTypes';
-import { RepoInfo } from './interfaces/repoInfoTypes';
+import { LernaJson, RushJson, PackageJson, PackageJsonLoader } from './interfaces/configTypes';
+import { RepoInfo, FindRootCallback } from './interfaces/repoInfoTypes';
 import path from 'path';
 import fse from 'fs-extra';
 
 let _repoInfo: RepoInfo | undefined = undefined;
+
+/**
+ * A more comprehensive check for repo root.  This will check the just section of package.json to
+ * see if this has been flagged as a root or if it is using the monorepo stack.  It will also check
+ * for rush.json or lerna.json.  Any of these should be treated as the repository root.
+ *
+ * @param cwd - current working directory to test
+ * @param loader - loader function for
+ */
+function isRepoRoot(cwd: string, config?: PackageJson): boolean | undefined {
+  const just = config && config.just;
+  const isRootFromJust = just && (just.root || (just.stack && just.stack === 'just-stack-monorepo'));
+  const isRootFromMonorepoConfigs = config && (fse.existsSync(path.join(cwd, 'rush.json')) || fse.existsSync(path.join(cwd, 'lerna.json')));
+  return isRootFromJust || isRootFromMonorepoConfigs;
+}
 
 /**
  * Finds the root of the git repository, i.e. where .git resides
@@ -12,7 +27,7 @@ let _repoInfo: RepoInfo | undefined = undefined;
  * @param cb - callback function to execute at each level.  A true result for the callback will
  * cancel the walk and return the current path at the time it was cancelled.
  */
-export function findGitRoot(cb?: (current: string) => boolean | void): string {
+export function findGitRoot(cb?: FindRootCallback): string {
   let cwd = process.cwd();
   const root = path.parse(cwd).root;
 
@@ -26,6 +41,31 @@ export function findGitRoot(cb?: (current: string) => boolean | void): string {
 }
 
 /**
+ * helper for finding the repository root that also returns the package loader so that it can be
+ * retained for use later.
+ *
+ * @param cb - standard findGitRoot/findRepoRoot callback
+ */
+function findRepoRootWithConfig(cb?: FindRootCallback): [string, PackageJsonLoader | undefined] {
+  let loader: PackageJsonLoader | undefined = undefined;
+  const path = findGitRoot(cwd => {
+    loader = getConfigLoader<PackageJson>(cwd, 'package.json');
+    return (cb && cb(cwd)) || isRepoRoot(cwd, loader && loader());
+  });
+  return [path, loader];
+}
+
+/**
+ * Finds the root of the repository, will handle various end conditions such as git root,
+ * rush/lerna config existence, or certain just settings in package.json
+ *
+ * @param cb - callback function of the same type as for findGitRoot
+ */
+export function findRepoRoot(cb?: FindRootCallback): string {
+  return findRepoRootWithConfig(cb)[0];
+}
+
+/**
  * Retrieve info for the repository.  This will walk up from the current working directory
  * until it finds the git root and then prepare loaders for various monorepo config files.
  *
@@ -36,7 +76,7 @@ export function getRepoInfo(): RepoInfo {
     return _repoInfo;
   }
 
-  const rootPath = findGitRoot();
+  const [rootPath, packageLoader] = findRepoRootWithConfig();
   const getRushJson = getConfigLoader<RushJson>(rootPath, 'rush.json', loadCJson);
   const getLernaJson = getConfigLoader<LernaJson>(rootPath, 'lerna.json');
   const isMonoRepo = getRushJson || getLernaJson;
@@ -44,7 +84,7 @@ export function getRepoInfo(): RepoInfo {
     rootPath: rootPath,
     getRushJson,
     getLernaJson,
-    getPackageJson: getConfigLoader<PackageJson>(rootPath, 'package.json')!,
+    getPackageJson: packageLoader!,
     ...(isMonoRepo && { monorepo: getRushJson ? 'rush' : 'lerna' })
   };
   return _repoInfo;

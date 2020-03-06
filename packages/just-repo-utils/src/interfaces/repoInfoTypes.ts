@@ -1,6 +1,12 @@
 import { PackageJsonLoader, RushJsonLoader, LernaJsonLoader } from './configTypes';
 
 /**
+ * callback function for walking to the root.  Returning true will cancel the walk at
+ * that point, a false or no return result will keep walking.
+ */
+export type FindRootCallback = (cwd: string) => boolean | void;
+
+/**
  * types of supported monorepos
  */
 export type MonorepoType = 'lerna' | 'rush';
