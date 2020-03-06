@@ -32,6 +32,15 @@ export interface PackageInfoOptions {
    * omitted this is assumed to be the package in process.cwd()
    */
   target?: string;
+
+  /**
+   * normally a package is a dependency if it is in dependencies or devDependencies as these
+   * two are effectively the same from a repository package install perspective.  (i.e. changing
+   * from one to the other won't change the yarn lockfile)
+   *
+   * Specifying one of these will narrow the returned results
+   */
+  dependencyType?: 'dependencies' | 'devDependencies';
 }
 
 export interface PackageInfo {
@@ -49,7 +58,7 @@ export interface PackageInfo {
    * Return a filtered PackageInfo for either targeting the name of a package or the
    * package in the current working directory
    */
-  dependencies: (target?: string) => PackageInfo;
+  dependencies: (options?: PackageInfoOptions) => PackageInfo;
 
   /**
    * Raw entry table for clients who want to do name to path mappings or have access to the package

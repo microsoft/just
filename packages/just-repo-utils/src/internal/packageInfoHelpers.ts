@@ -1,5 +1,5 @@
 import { PackageJson, PackageJsonLoader, RushProject } from '../interfaces/configTypes';
-import { PackageEntries, PackageEntry, PackageInfo } from '../interfaces/packageInfoTypes';
+import { PackageEntries, PackageEntry, PackageInfo, PackageInfoOptions } from '../interfaces/packageInfoTypes';
 import { getConfigLoader, readPackageJson } from '../readConfigs';
 import { normalizeToUnixPath } from '../normalizeToUnixPath';
 import path from 'path';
@@ -58,12 +58,15 @@ export function buildPackageInfoFromRushProjects(root: string, projects: RushPro
   return results;
 }
 
-function addRecursiveDependencies(collector: PackageEntries, entry: PackageEntry): void {
+function findRecursiveDependencies(collector: PackageEntries, entry: PackageEntry, depType?: PackageInfoOptions['dependencyType']): void {
   const dependencies = entry.dependencies;
   Object.keys(dependencies).forEach(dep => {
     if (!collector[dep]) {
-      collector[dep] = dependencies[dep];
-      addRecursiveDependencies(collector, dependencies[dep]);
+      const configDeps = depType && entry.getConfig()[depType];
+      if (!depType || (configDeps && configDeps[dep])) {
+        collector[dep] = dependencies[dep];
+        findRecursiveDependencies(collector, dependencies[dep], depType);
+      }
     }
   });
 }
@@ -72,12 +75,12 @@ export function infoFromEntries(entries: PackageEntries): PackageInfo {
   return {
     paths: () => Object.keys(entries).map(pkgName => normalizeToUnixPath(entries[pkgName].path)),
     names: () => Object.keys(entries),
-    dependencies: (target?: string) => {
-      target = target || readPackageJson(process.cwd())!.name;
+    dependencies: (options?: PackageInfoOptions) => {
+      const target = (options && options.target) || readPackageJson(process.cwd())!.name;
       const baseEntry = entries[target];
       const collector: PackageEntries = {};
       if (baseEntry) {
-        addRecursiveDependencies(collector, baseEntry);
+        findRecursiveDependencies(collector, baseEntry, options ? options.dependencyType : undefined);
       }
       return infoFromEntries(collector);
     },

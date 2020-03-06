@@ -85,4 +85,19 @@ describe('packageInfo', () => {
     const info = getPackageInfo();
     expect(comparableEntries(info.entries)).toMatchSnapshot();
   });
+
+  test('dependency graph', () => {
+    const info = getPackageInfo().dependencies({ target: 'just-scripts' });
+    expect(comparableEntries(info.entries)).toMatchSnapshot();
+  });
+
+  test('dependency graph with filters', () => {
+    const info = getPackageInfo().dependencies({ target: 'just-scripts', dependencyType: 'dependencies' });
+    expect(comparableEntries(info.entries)).toMatchSnapshot();
+  });
+
+  test('dependency graph with devDependency filter', () => {
+    const info = getPackageInfo().dependencies({ target: 'just-scripts', dependencyType: 'devDependencies' });
+    expect(comparableEntries(info.entries)).toMatchSnapshot();
+  });
 });

@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`packageInfo dependency graph 1`] = `
+Object {
+  "just-scripts-utils": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-scripts-utils",
+  },
+  "just-task": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-task",
+  },
+  "just-task-logger": Object {
+    "dependencies": Object {},
+    "path": "/packages/just-task-logger",
+  },
+}
+`;
+
+exports[`packageInfo dependency graph with devDependency filter 1`] = `Object {}`;
+
+exports[`packageInfo dependency graph with filters 1`] = `
+Object {
+  "just-scripts-utils": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-scripts-utils",
+  },
+  "just-task": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-task",
+  },
+  "just-task-logger": Object {
+    "dependencies": Object {},
+    "path": "/packages/just-task-logger",
+  },
+}
+`;
+
 exports[`packageInfo info matches snapshot 1`] = `
 Object {
   "create-just": Object {

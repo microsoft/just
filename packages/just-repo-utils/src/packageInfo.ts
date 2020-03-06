@@ -26,5 +26,5 @@ export function getPackageInfo(options?: PackageInfoOptions): PackageInfo {
 
 export function getDependentPackageInfo(options?: PackageInfoOptions): PackageInfo {
   options = options || {};
-  return getPackageInfo(options).dependencies(options.target);
+  return getPackageInfo(options).dependencies(options);
 }
