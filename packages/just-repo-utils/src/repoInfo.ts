@@ -13,7 +13,7 @@ let _repoInfo: RepoInfo | undefined = undefined;
  * @param cb - callback function to execute at each level.  A true result for the callback will
  * cancel the walk and return the current path at the time it was cancelled.
  */
-export function findGitRoot(cb?: (current: string) => boolean | undefined): string {
+export function findGitRoot(cb?: (current: string) => boolean | void): string {
   let cwd = process.cwd();
   const root = path.parse(cwd).root;
 

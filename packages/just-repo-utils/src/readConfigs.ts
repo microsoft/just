@@ -13,7 +13,7 @@ export function loadJson<T = object>(pkgPath: string): T {
     // this emits a warning for the bad file, then returns null (though that is against the return
     // signature)  This allows a caller to handle null but will mimic { throws: false } behavior
     logger.warn(`Invalid ${pkgPath.split(path.sep).pop()} detected.`);
-    return undefined as unknown as T;
+    return (undefined as unknown) as T;
   }
 }
 
@@ -27,7 +27,7 @@ export function loadCJson<T = object>(pkgPath: string): T {
     // this emits a warning for the bad file, then returns null (though that is against the return
     // signature)  This allows a caller to handle null but will mimic { throws: false } behavior
     logger.warn(`Invalid ${pkgPath.split(path.sep).pop()} detected.`);
-    return undefined as unknown as T;
+    return (undefined as unknown) as T;
   }
 }
 
@@ -70,12 +70,12 @@ export function readJsonConfig<T = object>(folder: string, name?: string, onLoad
 export function getConfigLoader<T = object>(folder: string, name?: string, onLoad?: LoaderFn<T>): ConfigLoader<T> | undefined {
   onLoad = onLoad || loadJson;
   return ifConfig<ConfigLoader<T>>(folder, name, pkgPath => {
-    let _storage: T | undefined = undefined;
+    let _storage: { config?: T } = {};
     return () => {
-      if (!_storage) {
-        _storage = fse.readJsonSync(pkgPath, { throws: false });
+      if (!_storage.config) {
+        _storage.config = fse.readJsonSync(pkgPath, { throws: false });
       }
-      return _storage as T;
+      return _storage.config as T;
     };
   });
 }
@@ -87,4 +87,3 @@ export function getConfigLoader<T = object>(folder: string, name?: string, onLoa
 export function readPackageJson(folder: string): PackageJson | undefined {
   return readJsonConfig<PackageJson>(folder, 'package.json');
 }
-
