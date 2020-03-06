@@ -7,8 +7,7 @@ import fse from 'fs-extra';
 let _repoInfo: RepoInfo | undefined = undefined;
 
 /**
- * Everyone seems to have one of these, so this is a common implementation that can
- * be leveraged by different utilities.
+ * Finds the root of the git repository, i.e. where .git resides
  *
  * @param cb - callback function to execute at each level.  A true result for the callback will
  * cancel the walk and return the current path at the time it was cancelled.
