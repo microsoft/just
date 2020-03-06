@@ -1,5 +1,5 @@
 import { gitListFiles, gitHashObject } from './gitUtils';
-import { repoInfo } from './repoInfo';
+import { getRepoInfo } from './repoInfo';
 import path from 'path';
 import fs from 'fs-extra';
 
@@ -56,6 +56,6 @@ export function getRepoHashKey(rootPath: string): string {
  * @param useRoot - if true will find the repo root, if false or omitted will work from the current working directory
  */
 export function getCachePath(fileName: string, useRoot?: boolean): string {
-  const basePath = useRoot ? repoInfo().rootPath : process.cwd();
+  const basePath = useRoot ? getRepoInfo().rootPath : process.cwd();
   return path.join(basePath, 'node_modules/.just', fileName);
 }

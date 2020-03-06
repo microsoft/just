@@ -7,8 +7,7 @@ import fse from 'fs-extra';
 let _repoInfo: RepoInfo | undefined = undefined;
 
 /**
- * Everyone seems to have one of these, so this is a common implementation that can
- * be leveraged by different utilities.
+ * Finds the root of the git repository, i.e. where .git resides
  *
  * @param cb - callback function to execute at each level.  A true result for the callback will
  * cancel the walk and return the current path at the time it was cancelled.
@@ -28,9 +27,11 @@ export function findGitRoot(cb?: (current: string) => boolean | void): string {
 
 /**
  * Retrieve info for the repository.  This will walk up from the current working directory
- * until it finds the git root and then prepare loaders for various monorepo config files
+ * until it finds the git root and then prepare loaders for various monorepo config files.
+ *
+ * Note that this uses in-module caching to avoid traversing unnecessarily.
  */
-export function repoInfo(): RepoInfo {
+export function getRepoInfo(): RepoInfo {
   if (_repoInfo) {
     return _repoInfo;
   }

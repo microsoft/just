@@ -1,7 +1,7 @@
 import { PackageJson, PackageJsonLoader, RushProject } from '../interfaces/configTypes';
 import { PackageEntries, PackageEntry, PackageInfo } from '../interfaces/packageInfoTypes';
 import { getConfigLoader, readPackageJson } from '../readConfigs';
-import { normalizePath } from '../normalizePath';
+import { normalizeToUnixPath } from '../normalizeToUnixPath';
 import path from 'path';
 import glob from 'glob';
 
@@ -10,7 +10,7 @@ function buildPackageInfo(root: string, pkgPath: string, pkgJsonName?: string): 
   const getConfig = getConfigLoader<PackageJson>(pkgJsonPath) as PackageJsonLoader;
   return {
     [getConfig().name]: {
-      path: normalizePath(path.dirname(pkgJsonPath)),
+      path: normalizeToUnixPath(path.dirname(pkgJsonPath)),
       getConfig,
       dependencies: {}
     }
@@ -70,7 +70,7 @@ function addRecursiveDependencies(collector: PackageEntries, entry: PackageEntry
 
 export function infoFromEntries(entries: PackageEntries): PackageInfo {
   return {
-    paths: () => Object.keys(entries).map(pkgName => normalizePath(entries[pkgName].path)),
+    paths: () => Object.keys(entries).map(pkgName => normalizeToUnixPath(entries[pkgName].path)),
     names: () => Object.keys(entries),
     dependencies: (target?: string) => {
       target = target || readPackageJson(process.cwd())!.name;

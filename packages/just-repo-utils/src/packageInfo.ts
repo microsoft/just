@@ -1,5 +1,5 @@
 import { PackageInfoOptions, PackageInfo } from './interfaces/packageInfoTypes';
-import { repoInfo } from './repoInfo';
+import { getRepoInfo } from './repoInfo';
 
 /**
  * retrieves information about the packages in the repository
@@ -11,7 +11,7 @@ export function getPackageInfo(options?: PackageInfoOptions): PackageInfo {
   const { strategy = 'normal' } = options || {};
   let repoPackageInfo = strategy === 'normal' && retrievePackageInfo();
   if (!repoPackageInfo) {
-    const repo = repoInfo();
+    const repo = getRepoInfo();
     if (repo.getLernaJson) {
       repoPackageInfo = buildPackageInfoFromGlobs(repo.rootPath, repo.getLernaJson().packages);
     } else if (repo.getRushJson) {

@@ -2,9 +2,9 @@ import { PackageEntries } from '../interfaces/packageInfoTypes';
 import { getPackageInfo } from '../packageInfo';
 import { getRepoPackagesFromSerializableForm, getSerializableRepoPackages } from '../internal/packageInfoCache';
 import { findGitRoot } from '../repoInfo';
-import { normalizePath } from '../normalizePath';
+import { normalizeToUnixPath } from '../normalizeToUnixPath';
 
-const _rootPath = normalizePath(findGitRoot());
+const _rootPath = normalizeToUnixPath(findGitRoot());
 
 function trimPath(rootPath: string, fullPath: string): string {
   const index = fullPath.indexOf(rootPath);

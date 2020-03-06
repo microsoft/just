@@ -1,4 +1,4 @@
-import { repoInfo } from '../repoInfo';
+import { getRepoInfo } from '../repoInfo';
 import { getRepoHashKey, getCachePath } from '../cacheUtils';
 import { PackageEntries } from '../interfaces/packageInfoTypes';
 import { getConfigLoader, readJsonConfig } from '../readConfigs';
@@ -66,7 +66,7 @@ export function getRepoPackagesFromSerializableForm(info: ISerializableRepoPacka
  * @param pkgInfo - package info to save in a cache file
  */
 export function cachePackageInfo(pkgInfo: PackageEntries): void {
-  const repo = repoInfo();
+  const repo = getRepoInfo();
   const toJson: IPackageInfoCacheJson = {
     hash: getRepoHashKey(repo.rootPath),
     packages: getSerializableRepoPackages(pkgInfo)
@@ -84,7 +84,7 @@ export function cachePackageInfo(pkgInfo: PackageEntries): void {
  * this attempts to load package info from a JSON cache file
  */
 export function retrievePackageInfo(): PackageEntries | undefined {
-  const repo = repoInfo();
+  const repo = getRepoInfo();
   const jsonData = readJsonConfig<IPackageInfoCacheJson>(cachePath);
   if (jsonData && jsonData.hash == getRepoHashKey(repo.rootPath)) {
     return getRepoPackagesFromSerializableForm(jsonData.packages);

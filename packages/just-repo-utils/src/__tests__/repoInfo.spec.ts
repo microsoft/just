@@ -1,4 +1,4 @@
-import { findGitRoot, repoInfo } from '../repoInfo';
+import { findGitRoot, getRepoInfo } from '../repoInfo';
 
 describe('findGitRoot', () => {
   test('find git root exists', () => {
@@ -36,11 +36,11 @@ describe('findGitRoot', () => {
 describe('repoInfo', () => {
   test('repoInfo includes the correct root', () => {
     const root = findGitRoot();
-    expect(repoInfo().rootPath).toEqual(root);
+    expect(getRepoInfo().rootPath).toEqual(root);
   });
 
   test('repo info finds monorepo info', () => {
-    const info = repoInfo();
+    const info = getRepoInfo();
     expect(info.monorepo).toEqual('lerna');
     expect(info.getLernaJson).toBeDefined();
     expect(info.getRushJson).toBeUndefined();
@@ -48,10 +48,10 @@ describe('repoInfo', () => {
   });
 
   test('repoInfo can load lerna config', () => {
-    expect(repoInfo().getLernaJson!().packages).toBeDefined();
+    expect(getRepoInfo().getLernaJson!().packages).toBeDefined();
   });
 
   test('repoInfo can load root package json', () => {
-    expect(repoInfo().getPackageJson().name).toEqual('just-repo');
+    expect(getRepoInfo().getPackageJson().name).toEqual('just-repo');
   });
 });
