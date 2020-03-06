@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`packageInfo dependency graph 1`] = `
+Object {
+  "just-scripts-utils": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-scripts-utils",
+  },
+  "just-task": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-task",
+  },
+  "just-task-logger": Object {
+    "dependencies": Object {},
+    "path": "/packages/just-task-logger",
+  },
+}
+`;
+
+exports[`packageInfo dependency graph with devDependency filter 1`] = `Object {}`;
+
+exports[`packageInfo dependency graph with filters 1`] = `
+Object {
+  "just-scripts-utils": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-scripts-utils",
+  },
+  "just-task": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-task",
+  },
+  "just-task-logger": Object {
+    "dependencies": Object {},
+    "path": "/packages/just-task-logger",
+  },
+}
+`;
+
+exports[`packageInfo info matches snapshot 1`] = `
+Object {
+  "create-just": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-plop-helpers": Object {},
+      },
+      "1": Object {
+        "just-scripts-utils": Object {},
+      },
+    },
+    "path": "/packages/create-just",
+  },
+  "create-uifabric": Object {
+    "dependencies": Object {
+      "0": Object {
+        "create-just": Object {},
+      },
+    },
+    "path": "/packages/create-uifabric",
+  },
+  "example-lib": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-scripts": Object {},
+      },
+    },
+    "path": "/packages/example-lib",
+  },
+  "just-plop-helpers": Object {
+    "dependencies": Object {},
+    "path": "/packages/just-plop-helpers",
+  },
+  "just-repo-utils": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-repo-utils",
+  },
+  "just-scripts": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-scripts-utils": Object {},
+      },
+      "1": Object {
+        "just-task": Object {},
+      },
+    },
+    "path": "/packages/just-scripts",
+  },
+  "just-scripts-utils": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-scripts-utils",
+  },
+  "just-stack-monorepo": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-plop-helpers": Object {},
+      },
+    },
+    "path": "/packages/just-stack-monorepo",
+  },
+  "just-stack-react": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-plop-helpers": Object {},
+      },
+    },
+    "path": "/packages/just-stack-react",
+  },
+  "just-stack-single-lib": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-plop-helpers": Object {},
+      },
+      "1": Object {
+        "just-scripts": Object {},
+      },
+    },
+    "path": "/packages/just-stack-single-lib",
+  },
+  "just-stack-uifabric": Object {
+    "dependencies": Object {},
+    "path": "/packages/just-stack-uifabric",
+  },
+  "just-task": Object {
+    "dependencies": Object {
+      "0": Object {
+        "just-task-logger": Object {},
+      },
+    },
+    "path": "/packages/just-task",
+  },
+  "just-task-docs": Object {
+    "dependencies": Object {},
+    "path": "/packages/documentation/website",
+  },
+  "just-task-logger": Object {
+    "dependencies": Object {},
+    "path": "/packages/just-task-logger",
+  },
+  "just-task-scripts": Object {
+    "dependencies": Object {},
+    "path": "/scripts",
+  },
+}
+`;
+
+exports[`packageInfo names 1`] = `
+Array [
+  "create-just",
+  "create-uifabric",
+  "example-lib",
+  "just-plop-helpers",
+  "just-repo-utils",
+  "just-scripts-utils",
+  "just-scripts",
+  "just-stack-monorepo",
+  "just-stack-react",
+  "just-stack-single-lib",
+  "just-stack-uifabric",
+  "just-task-logger",
+  "just-task",
+  "just-task-docs",
+  "just-task-scripts",
+]
+`;
+
+exports[`packageInfo paths 1`] = `
+Array [
+  "/packages/create-just",
+  "/packages/create-uifabric",
+  "/packages/example-lib",
+  "/packages/just-plop-helpers",
+  "/packages/just-repo-utils",
+  "/packages/just-scripts-utils",
+  "/packages/just-scripts",
+  "/packages/just-stack-monorepo",
+  "/packages/just-stack-react",
+  "/packages/just-stack-single-lib",
+  "/packages/just-stack-uifabric",
+  "/packages/just-task-logger",
+  "/packages/just-task",
+  "/packages/documentation/website",
+  "/scripts",
+]
+`;
