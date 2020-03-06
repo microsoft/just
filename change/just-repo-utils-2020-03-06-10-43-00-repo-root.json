@@ -1,8 +1,0 @@
-{
-  "type": "minor",
-  "comment": "add more general findRepoRoot utility",
-  "packageName": "just-repo-utils",
-  "email": "jasonmo@microsoft.com",
-  "commit": "0bde961ce85a7ce1a2b1c6cbb0109451fd6685a1",
-  "date": "2020-03-06T18:43:00.414Z"
-}

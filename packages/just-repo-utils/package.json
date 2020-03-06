@@ -1,6 +1,6 @@
 {
   "name": "just-repo-utils",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Utilities for gathering info about the current repository",
   "repository": {
     "type": "git",

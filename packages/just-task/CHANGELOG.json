@@ -2,6 +2,20 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 06 Mar 2020 19:44:20 GMT",
+      "tag": "just-task_v0.14.3",
+      "version": "0.14.3",
+      "comments": {
+        "none": [
+          {
+            "comment": "Use Node's path so that tests don't fail in Windows clients.",
+            "author": "jagore@microsoft.com",
+            "commit": "cb6b3efcbf278c6cf57f611e208e68dad31ff29d"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 11 Nov 2019 21:09:42 GMT",
       "tag": "just-task_v0.14.3",
       "version": "0.14.3",

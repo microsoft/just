@@ -1,0 +1,24 @@
+{
+  "name": "just-repo-utils",
+  "entries": [
+    {
+      "date": "Fri, 06 Mar 2020 19:44:20 GMT",
+      "tag": "just-repo-utils_v0.2.0",
+      "version": "0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "add repo utils project",
+            "author": "jasonmo@microsoft.com",
+            "commit": "245d9ba06f989ae569fbe2e5fe531c7cad5cfb20"
+          },
+          {
+            "comment": "add more general findRepoRoot utility",
+            "author": "jasonmo@microsoft.com",
+            "commit": "0bde961ce85a7ce1a2b1c6cbb0109451fd6685a1"
+          }
+        ]
+      }
+    }
+  ]
+}
