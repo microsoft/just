@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/stale@v1
         with:
-          repo-token: ${{ secrets.GITHUB_ACTION_PAT }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           stale-issue-message: 'Issues seem to have gone stale.'
           stale-pr-message: 'The PR seem to have gone stale.'
           days-before-stale: 21
