@@ -10,8 +10,8 @@ jobs:
       - uses: actions/stale@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          stale-issue-message: 'Issues seem to have gone stale.'
-          stale-pr-message: 'The PR seem to have gone stale.'
+          stale-issue-message: 'Issue seems to have gone stale.'
+          stale-pr-message: 'This PR seems to have gone stale.'
           days-before-stale: 21
           days-before-close: 3
           stale-issue-label: 'stale-issue'
