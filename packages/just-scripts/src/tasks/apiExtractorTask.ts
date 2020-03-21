@@ -2,46 +2,22 @@ import { logger, TaskFunction } from 'just-task';
 import fs from 'fs-extra';
 import path from 'path';
 import { tryRequire } from '../tryRequire';
-// This is a TYPING ONLY import from <root>/typings/api-extractor.d.ts
-import * as ApiExtractorTypes from '@microsoft/api-extractor';
+import * as ApiExtractorTypes from './api-extractor.d';
+
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 /**
- * Subset of the options from `IExtractorConfigOptions` that are exposed via this just task,
- * plus additional options specific to the task.
+ * Options from `IExtractorConfigOptions` plus additional options specific to the task.
  */
-export interface ApiExtractorOptions {
-  /**
-   * Indicates that API Extractor is running as part of a local build, e.g. on developer's
-   * machine. This disables certain validation that would normally be performed
-   * for a ship/production build. For example, the *.api.md report file is
-   * automatically updated in a local build.
-   *
-   * The default value is false.
-   */
-  localBuild?: boolean;
-
-  /**
-   * If true, API Extractor will include {@link ExtractorLogLevel.Verbose} messages in its output.
-   */
-  showVerboseMessages?: boolean;
-
+export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeOptions {
+  /** @deprecated Does not appear to be used */
   projectFolder?: string;
-
-  /**
-   * By default API Extractor uses its own TypeScript compiler version to analyze your project.
-   * This can often cause compiler errors due to incompatibilities between different TS versions.
-   * Use this option to specify the folder path for your compiler version.
-   */
-  typescriptCompilerFolder?: string;
 
   /** The config file path */
   configJsonFilePath?: string;
 
   /**
-   * API Extractor uses CRLF newlines by default and adds trailing spaces after empty comment lines,
-   * both of which can add excessive noise to diffs. Set this option to true to post-process the
-   * API Extractor .md file to fix these issues (newline type will be inferred from the type used in
-   * the config file). It will also remove trailing spaces.
+   * @deprecated Update API Extractor and use option `newlineKind: 'os'`.
    */
   fixNewlines?: boolean;
 
@@ -131,7 +107,7 @@ export function apiExtractorUpdateTask(
   return function apiExtractorUpdate() {
     const context = initApiExtractor(options);
     if (context) {
-      const apiExtractorResult = apiExtractorWrapper(context);
+      let apiExtractorResult = apiExtractorWrapper(context);
 
       if (apiExtractorResult) {
         if (!apiExtractorResult.succeeded) {
@@ -140,7 +116,8 @@ export function apiExtractorUpdateTask(
 
           logger.info(`- Update API: successfully updated API file, verifying the updates...`);
 
-          if (!apiExtractorWrapper(context)!.succeeded) {
+          apiExtractorResult = apiExtractorWrapper(context);
+          if (!apiExtractorResult || !apiExtractorResult.succeeded) {
             throw new Error(`- Update API: failed to verify API updates.`);
           } else {
             logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
@@ -155,6 +132,7 @@ export function apiExtractorUpdateTask(
 
 /**
  * Load the api-extractor module (if available) and the config file.
+ * Returns undefined if api-extractor or the config file couldn't be found.
  */
 function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | undefined {
   const apiExtractorModule: typeof ApiExtractorTypes = tryRequire('@microsoft/api-extractor');
