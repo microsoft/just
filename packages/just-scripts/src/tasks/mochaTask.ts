@@ -77,7 +77,7 @@ export function mochaTask(options: MochaTaskOptions = {}): TaskFunction {
 
       return spawn(cmd, args, { stdio: 'inherit', env: options.env });
     } else {
-      logger.warn('no mocha configuration found, skipping mocha');
+      logger.warn('no mocha command found, skipping mocha');
       return Promise.resolve();
     }
   };
