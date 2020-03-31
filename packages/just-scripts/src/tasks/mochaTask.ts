@@ -44,7 +44,7 @@ export function mochaTask(options: MochaTaskOptions = {}): TaskFunction {
     undefined;
 
   return function mocha() {
-    const mochaCmd = resolve('mocha/bin/mocha.js');
+    const mochaCmd = resolve('mocha/bin/mocha');
     const configFile = options.config || mochaConfigFile;
 
     if (mochaCmd) {
