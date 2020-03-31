@@ -7,12 +7,16 @@ import UndertakerRegistry from 'undertaker-registry';
 import Undertaker from 'undertaker';
 import { resolve } from './resolve';
 import { enableTypeScript } from './enableTypeScript';
+import { TaskDefinitionRecord } from './TaskDefinitionRecord';
 
 export class JustTaskRegistry extends UndertakerRegistry {
   private hasDefault: boolean = false;
+  taker?: Undertaker;
 
   public init(taker: Undertaker) {
     super.init(taker);
+
+    this.taker = taker;
 
     // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
     const configFile = [yargs.argv.config, './just.config.js', './just-task.js', './just.config.ts'].reduce(
@@ -59,6 +63,9 @@ export class JustTaskRegistry extends UndertakerRegistry {
   public set<TTaskFunction>(taskName: string, fn: TTaskFunction): TTaskFunction {
     super.set(taskName, fn);
 
+    if (this.taker) {
+      this.taker.emit('define', new TaskDefinitionRecord(taskName, getTruncatedStackTrace()));
+    }
     if (taskName === 'default') {
       this.hasDefault = true;
     }
@@ -112,4 +119,18 @@ function recommendCommands(cmd: string, potentialCommands: string[]) {
   }
 
   return recommended;
+}
+
+function getTruncatedStackTrace(): string {
+  const stack = new Error().stack;
+  if (!stack) return '';
+  const lines = stack.split('\n');
+  const searchString = __dirname;
+  let lastInstanceOfJustTask = 0;
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].indexOf(searchString) >= 0) {
+      lastInstanceOfJustTask = i;
+    }
+  }
+  return lines.slice(lastInstanceOfJustTask + 1).join('\n');
 }

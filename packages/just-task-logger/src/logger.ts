@@ -29,7 +29,7 @@ const square = '\u25a0';
 const triangle = '\u25b2';
 
 export const logger: Logger = {
-  enableVerbose: !!yargs.argv.verbose,
+  enableVerbose: !!yargs.argv.verbose || !!process.env.JUST_VERBOSE,
 
   verbose(...args: any[]) {
     if (logger.enableVerbose) {

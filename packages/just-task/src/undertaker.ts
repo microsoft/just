@@ -4,6 +4,7 @@ import chalk from 'chalk';
 import { wrapTask } from './wrapTask';
 import { Task } from './interfaces';
 import { clearCache } from './cache';
+import { TaskDefinitionRecord } from './TaskDefinitionRecord';
 
 const undertaker = new Undertaker();
 const NS_PER_SEC = 1e9;
@@ -11,7 +12,7 @@ const NS_PER_SEC = 1e9;
 let topLevelTask: string | undefined = undefined;
 let errorReported = false;
 const tasksInProgress: { [key: string]: boolean } = {};
-
+const taskDefinitions: { [key: string]: TaskDefinitionRecord } = {};
 const colors = [chalk.cyanBright, chalk.magentaBright, chalk.blueBright, chalk.greenBright, chalk.yellowBright];
 const taskColor: { [taskName: string]: number } = {};
 let colorIndex = 0;
@@ -35,6 +36,11 @@ function colorizeTaskName(taskName: string) {
   return colors[taskColor[taskName]](taskName);
 }
 
+undertaker.on('define', (args: any) => {
+  const taskDefinition = args as TaskDefinitionRecord;
+  taskDefinitions[taskDefinition.name] = taskDefinition;
+});
+
 undertaker.on('start', function(args: any) {
   if (shouldLog(args)) {
     if (!topLevelTask) {
@@ -44,6 +50,10 @@ undertaker.on('start', function(args: any) {
     tasksInProgress[args.name] = true;
 
     logger.info(`started '${colorizeTaskName(args.name)}'`);
+    const taskDefinition = taskDefinitions[args.name];
+    if (taskDefinition) {
+      logger.verbose(taskDefinition.trace);
+    }
   }
 });
 

@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Verbose logs the location of a task definition.",
+  "packageName": "just-task",
+  "email": "jdh@microsoft.com",
+  "commit": "c9fad5e956827b7e14ca4df0f8e7530e6eb1559b",
+  "date": "2020-03-31T17:56:33.323Z"
+}
