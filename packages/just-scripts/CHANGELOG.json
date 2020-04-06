@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 06 Apr 2020 21:43:56 GMT",
+      "tag": "just-scripts_v0.37.0",
+      "version": "0.37.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Adds a new set of tar create and extract tasks",
+            "author": "kchau@microsoft.com",
+            "commit": "d8c91d78ed4337dbb8a592f388e382a8dd3628a2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 13 Nov 2019 19:42:46 GMT",
       "tag": "just-scripts_v0.36.1",
       "version": "0.36.1",

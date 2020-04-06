@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 13 Nov 2019 19:42:46 GMT and should not be manually modified.
+This log was last generated on Mon, 06 Apr 2020 21:43:56 GMT and should not be manually modified.
 
+## 0.37.0
+Mon, 06 Apr 2020 21:43:56 GMT
+
+### Minor changes
+
+- Adds a new set of tar create and extract tasks (kchau@microsoft.com)
 ## 0.36.1
 Wed, 13 Nov 2019 19:42:46 GMT
 

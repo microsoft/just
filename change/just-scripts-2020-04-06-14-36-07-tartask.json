@@ -1,8 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Adds a new set of tar create and extract tasks",
-  "packageName": "just-scripts",
-  "email": "kchau@microsoft.com",
-  "commit": "d8c91d78ed4337dbb8a592f388e382a8dd3628a2",
-  "date": "2020-04-06T21:36:07.923Z"
-}
