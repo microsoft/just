@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "another take on tar task using tar-fs instead because it can actually handle large amounts of data",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "commit": "b5c1b57062e97a6780c5c30d27f81e9c5298bedf",
+  "date": "2020-04-07T17:29:33.135Z"
+}
