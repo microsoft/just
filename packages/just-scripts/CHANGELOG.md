@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 06 Apr 2020 21:43:56 GMT and should not be manually modified.
+This log was last generated on Tue, 07 Apr 2020 17:35:38 GMT and should not be manually modified.
 
+## 0.37.1
+Tue, 07 Apr 2020 17:35:38 GMT
+
+### Patches
+
+- another take on tar task using tar-fs instead because it can actually handle large amounts of data (kchau@microsoft.com)
 ## 0.37.0
 Mon, 06 Apr 2020 21:43:56 GMT
 

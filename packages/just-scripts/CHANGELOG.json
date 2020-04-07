@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 07 Apr 2020 17:35:38 GMT",
+      "tag": "just-scripts_v0.37.1",
+      "version": "0.37.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "another take on tar task using tar-fs instead because it can actually handle large amounts of data",
+            "author": "kchau@microsoft.com",
+            "commit": "b5c1b57062e97a6780c5c30d27f81e9c5298bedf"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 06 Apr 2020 21:43:56 GMT",
       "tag": "just-scripts_v0.37.0",
       "version": "0.37.0",
