@@ -1,6 +1,8 @@
 import { undertaker } from './undertaker';
-import { JustTaskRegistry } from './JustTaskRegistry';
-import yargs from 'yargs';
+import { option, parseCommand } from './option';
+import { logger } from 'just-task-logger';
+import { TaskFunction } from './interfaces';
+import { readConfig } from './config';
 
 const originalEmitWarning = process.emitWarning;
 
@@ -17,15 +19,33 @@ const originalEmitWarning = process.emitWarning;
   return originalEmitWarning.apply(this, arguments);
 };
 
-yargs
-  .option({ config: { describe: 'path to a just-task.js file (includes the file name)' } })
-  .usage('$0 <cmd> [options]')
-  .updateStrings({
-    'Commands:': 'Tasks:\n'
-  });
+function showHelp() {
+  const tasks = undertaker.registry().tasks();
 
-const registry = new JustTaskRegistry();
+  console.log('All the tasks that are available to just:');
 
-undertaker.registry(registry);
+  for (const [name, wrappedTask] of Object.entries(tasks)) {
+    const unwrapped = (wrappedTask as any).unwrap ? (wrappedTask as any).unwrap() : (wrappedTask as TaskFunction);
+    const description = (unwrapped as TaskFunction).description;
+    console.log(`  ${name}${description ? `: ${description}` : ''}`);
+  }
+}
 
-yargs.parse();
+// Define a built-in option of "config" so users can specify which path to choose for configurations
+option('config', { describe: 'path to a just configuration file (includes the file name, e.g. /path/to/just.config.ts)' });
+
+readConfig();
+
+const registry = undertaker.registry();
+
+const command = parseCommand();
+
+if (command) {
+  if (registry.get(command)) {
+    undertaker.series(registry.get(command))(() => {});
+  } else {
+    logger.error(`Command not defined: ${command}`);
+  }
+} else {
+  showHelp();
+}

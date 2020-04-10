@@ -1,6 +1,7 @@
 import { task } from '../task';
 import { parallel, undertaker } from '../undertaker';
-import { JustTaskRegistry } from '../JustTaskRegistry';
+import UndertakerRegistry from 'undertaker-registry';
+
 import { logger } from '../logger';
 import yargsMock from './__mocks__/yargs';
 import path from 'path';
@@ -12,7 +13,7 @@ describe('task', () => {
   });
 
   beforeEach(() => {
-    undertaker.registry(new JustTaskRegistry());
+    undertaker.registry(new UndertakerRegistry());
   });
 
   afterAll(() => {
