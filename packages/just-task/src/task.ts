@@ -1,9 +1,7 @@
-import yargs from 'yargs';
 import { undertaker } from './undertaker';
 import { wrapTask } from './wrapTask';
 import { TaskFunction } from './interfaces';
-import { logger } from 'just-task-logger';
-import { registerCachedTask, isCached, saveCache } from './cache';
+import { registerCachedTask } from './cache';
 
 export function task(firstParam: string | TaskFunction, secondParam?: string | TaskFunction, thirdParam?: TaskFunction): TaskFunction {
   const argCount = arguments.length;
@@ -19,7 +17,6 @@ export function task(firstParam: string | TaskFunction, secondParam?: string | T
     };
 
     undertaker.task(firstParam, wrapped);
-    yargs.command(getCommandModule(firstParam, ''));
 
     return wrapped;
   } else if (argCount === 2 && isString(firstParam) && isTaskFunction(secondParam)) {
@@ -31,7 +28,6 @@ export function task(firstParam: string | TaskFunction, secondParam?: string | T
     };
 
     undertaker.task(firstParam, wrapped);
-    yargs.command(getCommandModule(firstParam, ''));
 
     return wrapped;
   } else if (argCount === 3 && isString(firstParam) && isString(secondParam) && isTaskFunction(thirdParam)) {
@@ -41,8 +37,9 @@ export function task(firstParam: string | TaskFunction, secondParam?: string | T
       registerCachedTask(firstParam);
     };
 
+    wrapped.description = secondParam;
+
     undertaker.task(firstParam, wrapped);
-    yargs.command(getCommandModule(firstParam, secondParam));
 
     return wrapped;
   } else {
@@ -56,22 +53,4 @@ function isString(param: string | TaskFunction | undefined): param is string {
 
 function isTaskFunction(param: string | TaskFunction | undefined): param is TaskFunction {
   return typeof param === 'function';
-}
-
-function getCommandModule(taskName: string, describe?: string): yargs.CommandModule {
-  return {
-    command: taskName,
-    describe,
-    ...(taskName === 'default' ? { aliases: ['*'] } : {}),
-    handler(_argvParam: any) {
-      if (isCached(taskName)) {
-        logger.info(`Skipped ${taskName} since it was cached`);
-        return;
-      }
-
-      return undertaker.parallel(taskName)(() => {
-        saveCache(taskName);
-      });
-    }
-  };
 }

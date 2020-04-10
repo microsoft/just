@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Jest now can take a positional arg to run a certain test pattern",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "commit": "565e98494de5bae050cdc04365dee0a0aef638d8",
+  "date": "2020-04-10T04:31:34.381Z"
+}

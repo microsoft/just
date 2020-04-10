@@ -1,0 +1,8 @@
+{
+  "type": "minor",
+  "comment": "Replace yargs with yargs-parser, taking over the command parsing",
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com",
+  "commit": "565e98494de5bae050cdc04365dee0a0aef638d8",
+  "date": "2020-04-10T04:31:52.506Z"
+}
