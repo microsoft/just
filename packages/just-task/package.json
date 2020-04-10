@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w --preserveWatchOutput",
+    "start": "tsc -w --preserveWatchOutput",
     "start-test": "jest --watch",
     "test": "jest"
   },
