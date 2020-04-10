@@ -1,14 +1,8 @@
 import mockfs from 'mock-fs';
 import path from 'path';
-import yargsMock from './__mocks__/yargs/yargs';
-import {
-  _isFileNameLike,
-  _tryResolve,
-  resetResolvePaths,
-  resolveCwd,
-  addResolvePath,
-  resolve
-} from '../resolve';
+import { _isFileNameLike, _tryResolve, resetResolvePaths, resolveCwd, addResolvePath, resolve } from '../resolve';
+
+import * as option from '../option';
 
 describe('_isFileNameLike', () => {
   it('returns false for empty input', () => {
@@ -83,6 +77,10 @@ describe('_tryResolve', () => {
 });
 
 describe('resolveCwd', () => {
+  beforeEach(() => {
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: undefined } as any));
+  });
+
   afterEach(() => {
     mockfs.restore();
     resetResolvePaths();
@@ -117,9 +115,10 @@ describe('resolveCwd', () => {
 });
 
 describe('resolve', () => {
+  jest.spyOn(option, 'argv').mockImplementation(() => ({ config: undefined } as any));
+
   afterEach(() => {
     mockfs.restore();
-    yargsMock.argv.config = undefined;
     resetResolvePaths();
   });
 
@@ -145,7 +144,9 @@ describe('resolve', () => {
     mockfs({
       a: { 'b.txt': '' }
     });
-    yargsMock.argv.config = 'a/just-task.js';
+
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' } as any));
+
     expect(resolve('b.txt')).toContain(path.join('a', 'b.txt'));
   });
 
@@ -166,7 +167,9 @@ describe('resolve', () => {
       d: { 'b.txt': '' }, // wrong
       'b.txt': '' // wrong
     });
-    yargsMock.argv.config = 'a/just-task.js';
+
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' } as any));
+
     addResolvePath('c');
     expect(resolve('b.txt', 'd')).toContain(path.join('d', 'b.txt'));
   });
