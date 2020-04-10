@@ -1,8 +1,0 @@
-{
-  "type": "none",
-  "comment": "fix up initCommand with new yargs types",
-  "packageName": "create-just",
-  "email": "kchau@microsoft.com",
-  "commit": "565e98494de5bae050cdc04365dee0a0aef638d8",
-  "date": "2020-04-10T04:31:08.848Z"
-}

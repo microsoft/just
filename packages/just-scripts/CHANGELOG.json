@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 10 Apr 2020 20:34:02 GMT",
+      "tag": "just-scripts_v0.37.2",
+      "version": "0.37.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Jest now can take a positional arg to run a certain test pattern",
+            "author": "kchau@microsoft.com",
+            "commit": "565e98494de5bae050cdc04365dee0a0aef638d8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 07 Apr 2020 17:35:38 GMT",
       "tag": "just-scripts_v0.37.1",
       "version": "0.37.1",

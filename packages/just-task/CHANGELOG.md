@@ -1,7 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Mon, 11 Nov 2019 21:09:42 GMT and should not be manually modified.
+This log was last generated on Fri, 10 Apr 2020 20:34:02 GMT and should not be manually modified.
 
+## 0.15.0
+Fri, 10 Apr 2020 20:34:02 GMT
+
+### Minor changes
+
+- Replace yargs with yargs-parser, taking over the command parsing (kchau@microsoft.com)
 ## 0.14.3
 Mon, 11 Nov 2019 21:09:42 GMT
 
