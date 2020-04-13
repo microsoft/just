@@ -1,0 +1,8 @@
+{
+  "type": "minor",
+  "comment": "Make API Extractor task accept all API Extractor options, and deprecate fixNewlines. Add shared Jest reporter.",
+  "packageName": "just-scripts",
+  "email": "elcraig@microsoft.com",
+  "commit": "91c6179993b4cc25076b8511b4d5d4726cd402d4",
+  "date": "2020-03-21T00:57:26.080Z"
+}
