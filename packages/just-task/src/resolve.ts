@@ -1,12 +1,6 @@
 import { sync as resolveSync } from 'resolve';
 import path from 'path';
-
-// It is important to keep this line like this:
-// 1. it cannot be an import because TS will try to do type checks which isn't available in @types/yargs
-// 2. this breaks a require.cache, which is needed because we need a new instance of yargs to check the config
-//    - this is because of the timing of when tasks are defined vs when this resolve is called the first time
-//      to figure out config path)
-const yargsFn = require('yargs/yargs');
+import { argv } from './option';
 
 let resolvePaths: string[] = [__dirname];
 
@@ -62,7 +56,8 @@ export function resolve(moduleName: string, cwd?: string): string | null {
   if (!cwd) {
     cwd = process.cwd();
   }
-  const configArg = yargsFn(process.argv.slice(1).filter(a => a !== '--help')).argv.config;
+
+  const configArg = argv().config;
   const configFilePath = configArg ? path.resolve(path.dirname(configArg)) : undefined;
 
   const allResolvePaths = [cwd, ...(configFilePath ? [configFilePath] : []), ...resolvePaths];

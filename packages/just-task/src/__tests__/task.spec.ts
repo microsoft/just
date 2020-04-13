@@ -1,22 +1,24 @@
 import { task } from '../task';
 import { parallel, undertaker } from '../undertaker';
-import { JustTaskRegistry } from '../JustTaskRegistry';
+import UndertakerRegistry from 'undertaker-registry';
+
 import { logger } from '../logger';
-import yargsMock from './__mocks__/yargs';
 import path from 'path';
+
+import * as option from '../option';
 
 describe('task', () => {
   beforeAll(() => {
-    yargsMock.argv.config = path.resolve(__dirname, '__mocks__/just-task.js');
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: path.resolve(__dirname, '__mocks__/just-task.js') } as any));
     jest.spyOn(logger, 'info').mockImplementation(() => undefined);
   });
 
   beforeEach(() => {
-    undertaker.registry(new JustTaskRegistry());
+    undertaker.registry(new UndertakerRegistry());
   });
 
   afterAll(() => {
-    yargsMock.argv.config = undefined;
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' } as any));
     jest.restoreAllMocks();
   });
 

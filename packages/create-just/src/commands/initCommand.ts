@@ -39,7 +39,7 @@ async function getStackPath(pathName: string, registry?: string) {
  * 4. git init and commit
  * 5. yarn install
  */
-export async function initCommand(argv: yargs.Arguments) {
+export async function initCommand(argv: yargs.Arguments<{ [key: string]: string }>) {
   // TODO: autosuggest just-stack-* packages from npmjs.org
   if (!argv.stack) {
     const { stack } = await prompts({

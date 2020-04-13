@@ -1,7 +1,25 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 13 Nov 2019 19:42:46 GMT and should not be manually modified.
+This log was last generated on Fri, 10 Apr 2020 20:34:02 GMT and should not be manually modified.
 
+## 0.37.2
+Fri, 10 Apr 2020 20:34:02 GMT
+
+### Patches
+
+- Jest now can take a positional arg to run a certain test pattern (kchau@microsoft.com)
+## 0.37.1
+Tue, 07 Apr 2020 17:35:38 GMT
+
+### Patches
+
+- another take on tar task using tar-fs instead because it can actually handle large amounts of data (kchau@microsoft.com)
+## 0.37.0
+Mon, 06 Apr 2020 21:43:56 GMT
+
+### Minor changes
+
+- Adds a new set of tar create and extract tasks (kchau@microsoft.com)
 ## 0.36.1
 Wed, 13 Nov 2019 19:42:46 GMT
 
