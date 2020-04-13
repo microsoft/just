@@ -26,9 +26,9 @@ export interface WebpackTaskOptions extends Configuration {
   env?: NodeJS.ProcessEnv;
 
   /**
-   * If set to true, webpack will not open browser page automatically when running the dev server
+   * If set to true, webpack will open browser page automatically when running the dev server
    */
-  noOpen?: boolean;
+  open?: boolean;
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
@@ -104,7 +104,7 @@ export function webpackDevServerTask(options: WebpackTaskOptions = {}) {
   return function webpackDevServer() {
     if (devServerCmd && configPath && fs.existsSync(configPath)) {
       const mode = options.mode || 'development';
-      const open = options.noOpen ? '' : '--open';
+      const open = options.open ? '--open' : '';
       const args = [...(options.nodeArgs || []), devServerCmd, '--config', configPath, open, '--mode', mode];
 
       logger.info(devServerCmd, encodeArgs(args).join(' '));
