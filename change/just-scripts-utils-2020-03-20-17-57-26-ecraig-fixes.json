@@ -1,8 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add execSync utility",
-  "packageName": "just-scripts-utils",
-  "email": "elcraig@microsoft.com",
-  "commit": "91c6179993b4cc25076b8511b4d5d4726cd402d4",
-  "date": "2020-03-21T00:57:01.249Z"
-}
