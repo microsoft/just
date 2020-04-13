@@ -2,6 +2,20 @@
   "name": "create-just",
   "entries": [
     {
+      "date": "Fri, 10 Apr 2020 20:34:02 GMT",
+      "tag": "create-just_v1.2.3",
+      "version": "1.2.3",
+      "comments": {
+        "none": [
+          {
+            "comment": "fix up initCommand with new yargs types",
+            "author": "kchau@microsoft.com",
+            "commit": "565e98494de5bae050cdc04365dee0a0aef638d8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 04 Nov 2019 20:25:32 GMT",
       "tag": "create-just_v1.2.3",
       "version": "1.2.3",

@@ -30,6 +30,6 @@ function executeSingleCopyInstruction(copyInstruction: CopyInstruction) {
 
   // perform text merge operation.
   return Promise.all(sourceFileNames.map(fileName => readFile(fileName))).then(fileContents => {
-    writeFile(copyInstruction.destinationFilePath, fileContents.join('\n'));
+    return writeFile(copyInstruction.destinationFilePath, fileContents.join('\n'));
   });
 }

@@ -1,9 +1,12 @@
 import cp from 'child_process';
+import path from 'path';
 
 export interface ExecError extends cp.ExecException {
   stdout?: string;
   stderr?: string;
 }
+
+const SEPARATOR = process.platform === 'win32' ? ';' : ':';
 
 /**
  * Execute a command.
@@ -58,6 +61,29 @@ export function encodeArgs(cmdArgs: string[]) {
 
     return arg;
   });
+}
+
+/**
+ * Execute a command synchronously.
+ *
+ * @param cmd  Command to execute
+ * @param cwd Working directory in which to run the command (default: `process.cwd()`)
+ * @param returnOutput If true, return the command's output. If false/unspecified,
+ * inherit stdio from the parent process (so the child's output goes to the console).
+ * @returns If `returnOutput` is true, returns the command's output. Otherwise returns undefined.
+ */
+export function execSync(cmd: string, cwd?: string, returnOutput?: boolean): string | undefined {
+  cwd = cwd || process.cwd();
+
+  const env = { ...process.env };
+  env.PATH = path.resolve('./node_modules/.bin') + SEPARATOR + env.PATH;
+
+  const output = cp.execSync(cmd, {
+    cwd,
+    env,
+    stdio: returnOutput ? undefined : 'inherit'
+  });
+  return returnOutput ? (output || '').toString('utf8') : undefined;
 }
 
 /**

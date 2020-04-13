@@ -2,6 +2,20 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 10 Apr 2020 20:34:02 GMT",
+      "tag": "just-task_v0.15.0",
+      "version": "0.15.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Replace yargs with yargs-parser, taking over the command parsing",
+            "author": "kchau@microsoft.com",
+            "commit": "565e98494de5bae050cdc04365dee0a0aef638d8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 06 Mar 2020 19:44:20 GMT",
       "tag": "just-task_v0.14.3",
       "version": "0.14.3",

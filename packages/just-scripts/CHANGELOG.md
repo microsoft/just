@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 07 Apr 2020 17:35:38 GMT and should not be manually modified.
+This log was last generated on Fri, 10 Apr 2020 20:34:02 GMT and should not be manually modified.
 
+## 0.37.2
+Fri, 10 Apr 2020 20:34:02 GMT
+
+### Patches
+
+- Jest now can take a positional arg to run a certain test pattern (kchau@microsoft.com)
 ## 0.37.1
 Tue, 07 Apr 2020 17:35:38 GMT
 

@@ -1,4 +1,4 @@
-import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
+import { resolve, logger, resolveCwd, TaskFunction, argv } from 'just-task';
 import { spawn, encodeArgs } from 'just-scripts-utils';
 import { existsSync } from 'fs';
 import supportsColor from 'supports-color';
@@ -11,6 +11,8 @@ export interface JestTaskOptions {
   watch?: boolean;
   colors?: boolean;
   passWithNoTests?: boolean;
+  testPathPattern?: string;
+  testNamePattern?: string;
   u?: boolean;
   _?: string[];
 
@@ -35,6 +37,10 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
     if (configFile && jestCmd && existsSync(configFile)) {
       logger.info(`Running Jest`);
       const cmd = process.execPath;
+
+      const positional = argv()._.slice(1);
+      options = { ...options, ...{ ...argv(), _: positional } };
+
       const args = [
         ...(options.nodeArgs || []),
         jestCmd,
@@ -45,6 +51,8 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.runInBand ? ['--runInBand'] : []),
         ...(options.coverage ? ['--coverage'] : []),
         ...(options.watch ? ['--watch'] : []),
+        ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
+        ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
         ...(options._ || [])
       ].filter(arg => !!arg) as Array<string>;
