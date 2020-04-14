@@ -2,6 +2,20 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Mon, 13 Apr 2020 15:57:30 GMT",
+      "tag": "just-scripts-utils_v0.9.0",
+      "version": "0.9.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add execSync utility",
+            "author": "elcraig@microsoft.com",
+            "commit": "91c6179993b4cc25076b8511b4d5d4726cd402d4"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Aug 2019 21:00:51 GMT",
       "tag": "just-scripts-utils_v0.8.4",
       "version": "0.8.4",

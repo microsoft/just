@@ -1,7 +1,13 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Tue, 13 Aug 2019 21:00:51 GMT and should not be manually modified.
+This log was last generated on Mon, 13 Apr 2020 15:57:30 GMT and should not be manually modified.
 
+## 0.9.0
+Mon, 13 Apr 2020 15:57:30 GMT
+
+### Minor changes
+
+- Add execSync utility (elcraig@microsoft.com)
 ## 0.8.4
 Tue, 13 Aug 2019 21:00:51 GMT
 
