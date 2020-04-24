@@ -1,6 +1,6 @@
 import mockfs from 'mock-fs';
 import path from 'path';
-import { _isFileNameLike, _tryResolve, resetResolvePaths, resolveCwd, addResolvePath, resolve } from '../resolve';
+import { _isFileNameLike, _tryResolve, resetResolvePaths, resolveCwd, addResolvePath, resolve, _getResolvePaths } from '../resolve';
 
 import * as option from '../option';
 
@@ -73,6 +73,22 @@ describe('_tryResolve', () => {
       a: { node_modules: { b: { 'c.js': '' } } }
     });
     expect(_tryResolve('b/c', 'a')).toContain(path.join('a', 'node_modules', 'b', 'c.js'));
+  });
+});
+
+describe('_getResolvePaths', () => {
+  afterEach(() => {
+    resetResolvePaths();
+  });
+
+  it('uses resolvePaths for before __dirname', () => {
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'config/just-task.js' } as any));
+    addResolvePath('custom1');
+    addResolvePath('custom2');
+
+    const paths = _getResolvePaths('cwd');
+
+    expect(paths.map(p => path.basename(p))).toEqual(['cwd', 'config', 'custom1', 'custom2', 'src']);
   });
 });
 
