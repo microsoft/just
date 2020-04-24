@@ -79,7 +79,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
           }
 
           if (err || stats.hasErrors()) {
-            logger.error(stats.toString({ colors: true }));
+            logger.error(stats.toString({ children: webpackConfigs.map(c => c.stats) }));
             reject(`Webpack failed with ${stats.toJson('errors-only').errors.length} error(s).`);
           } else {
             resolve();
