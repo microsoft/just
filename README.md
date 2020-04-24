@@ -37,6 +37,18 @@ cd packages/just-task
 yarn test
 ```
 
+# Making Changes
+
+When you make a meaningful change in this repo, make sure to create a "change file" by running:
+
+```
+yarn change
+```
+
+What this does is to ask you for a description of your change and a change type. You could specify a minor or patch change.
+
+Minor changes are for backwards compatible new features while patches are for bug fixes with no API changes.
+
 # Packages
 
 | Package            | Description                                                                             |
