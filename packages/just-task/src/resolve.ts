@@ -2,21 +2,21 @@ import { sync as resolveSync } from 'resolve';
 import path from 'path';
 import { argv } from './option';
 
-let resolvePaths: string[] = [__dirname];
+let customResolvePaths: string[] = [];
 
 /**
  * Add a path to the list used by `resolve()`.
  * @param pathName Path to add
  */
 export function addResolvePath(pathName: string): void {
-  resolvePaths.push(pathName);
+  customResolvePaths.push(pathName);
 }
 
 /**
  * Reset the list of paths used by `resolve()`.
  */
 export function resetResolvePaths(): void {
-  resolvePaths = [__dirname];
+  customResolvePaths = [];
 }
 
 /**
@@ -60,7 +60,7 @@ export function resolve(moduleName: string, cwd?: string): string | null {
   const configArg = argv().config;
   const configFilePath = configArg ? path.resolve(path.dirname(configArg)) : undefined;
 
-  const allResolvePaths = [cwd, ...(configFilePath ? [configFilePath] : []), ...resolvePaths];
+  const allResolvePaths = [cwd, ...(configFilePath ? [configFilePath] : []), ...customResolvePaths, __dirname];
   let resolved: string | null = null;
 
   for (const tryPath of allResolvePaths) {
