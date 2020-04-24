@@ -1,0 +1,8 @@
+{
+  "type": "minor",
+  "comment": "Add 'noOpen' flag to tell webpack not to open browser page.",
+  "packageName": "just-scripts",
+  "email": "kinhln@microsoft.com",
+  "commit": "104906e172e8379fd8e14f3b13cacd635eaaeb5f",
+  "date": "2020-04-13T14:01:07.082Z"
+}

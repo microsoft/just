@@ -9,7 +9,7 @@ export function enableTypeScript({ transpileOnly = true }) {
       transpileOnly,
       skipProject: true,
       compilerOptions: {
-        target: 'esnext',
+        target: 'es2017',
         module: 'commonjs',
         strict: false,
         skipLibCheck: true,

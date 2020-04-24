@@ -1,7 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 10 Apr 2020 20:34:02 GMT and should not be manually modified.
+This log was last generated on Fri, 24 Apr 2020 16:46:48 GMT and should not be manually modified.
 
+## 0.15.1
+Fri, 24 Apr 2020 16:46:48 GMT
+
+### Patches
+
+- change target in enableTypeScript (imjuni@gmail.com)
 ## 0.15.0
 Fri, 10 Apr 2020 20:34:02 GMT
 
