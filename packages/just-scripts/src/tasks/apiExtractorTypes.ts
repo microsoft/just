@@ -1047,5 +1047,3 @@ export declare interface IExtractorMessagesConfig {
    */
   tsdocMessageReporting?: IConfigMessageReportingTable;
 }
-
-export {};
