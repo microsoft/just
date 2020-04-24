@@ -79,11 +79,8 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
           }
 
           if (err || stats.hasErrors()) {
-            const errorStats = stats.toJson('errors-only');
-            errorStats.errors.forEach((error: any) => {
-              logger.error(error);
-            });
-            reject(`Webpack failed with ${errorStats.errors.length} error(s).`);
+            logger.error(stats.toString({ colors: true }));
+            reject(`Webpack failed with ${stats.toJson('errors-only').errors.length} error(s).`);
           } else {
             resolve();
           }
