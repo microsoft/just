@@ -1,0 +1,8 @@
+{
+  "type": "minor",
+  "comment": "Pretty print webpack stats on error instead of printing JSON",
+  "packageName": "just-scripts",
+  "email": "email not defined",
+  "commit": "7187551b0606494f14a8ee2b9a9bb05498a91803",
+  "date": "2020-04-24T17:52:38.140Z"
+}
