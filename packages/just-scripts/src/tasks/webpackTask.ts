@@ -24,6 +24,11 @@ export interface WebpackTaskOptions extends Configuration {
    * Environment variables to be passed to the webpack-dev-server
    */
   env?: NodeJS.ProcessEnv;
+
+  /**
+   * If set to true, webpack will open browser page automatically when running the dev server
+   */
+  open?: boolean;
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
@@ -99,7 +104,8 @@ export function webpackDevServerTask(options: WebpackTaskOptions = {}) {
   return function webpackDevServer() {
     if (devServerCmd && configPath && fs.existsSync(configPath)) {
       const mode = options.mode || 'development';
-      const args = [...(options.nodeArgs || []), devServerCmd, '--config', configPath, '--open', '--mode', mode];
+      const open = options.open ? '--open' : '';
+      const args = [...(options.nodeArgs || []), devServerCmd, '--config', configPath, open, '--mode', mode];
 
       logger.info(devServerCmd, encodeArgs(args).join(' '));
       return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
