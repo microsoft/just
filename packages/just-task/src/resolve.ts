@@ -44,6 +44,21 @@ export function _tryResolve(moduleName: string, basedir: string): string | null 
 }
 
 /**
+ * Exported for testing only.
+ * @private
+ */
+export function _getResolvePaths(cwd?: string): string[] {
+  if (!cwd) {
+    cwd = process.cwd();
+  }
+
+  const configArg = argv().config;
+  const configFilePath = configArg ? path.resolve(path.dirname(configArg)) : undefined;
+
+  return [cwd, ...(configFilePath ? [configFilePath] : []), ...customResolvePaths, __dirname];
+}
+
+/**
  * Resolve a module. Resolution will be tried starting from `cwd`, the location of a config file
  * passed using the `--config` command line arg, and any paths added using `addResolvePath`.
  * @param moduleName Module name to resolve. Anything which appears to be a file name (contains .
@@ -53,14 +68,7 @@ export function _tryResolve(moduleName: string, basedir: string): string | null 
  * @returns The module path, or null if the module can't be resolved.
  */
 export function resolve(moduleName: string, cwd?: string): string | null {
-  if (!cwd) {
-    cwd = process.cwd();
-  }
-
-  const configArg = argv().config;
-  const configFilePath = configArg ? path.resolve(path.dirname(configArg)) : undefined;
-
-  const allResolvePaths = [cwd, ...(configFilePath ? [configFilePath] : []), ...customResolvePaths, __dirname];
+  const allResolvePaths = _getResolvePaths(cwd);
   let resolved: string | null = null;
 
   for (const tryPath of allResolvePaths) {
