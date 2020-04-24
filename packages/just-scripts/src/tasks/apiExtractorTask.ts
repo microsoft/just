@@ -2,7 +2,7 @@ import { logger, TaskFunction } from 'just-task';
 import fs from 'fs-extra';
 import path from 'path';
 import { tryRequire } from '../tryRequire';
-import * as ApiExtractorTypes from './api-extractor.d';
+import * as ApiExtractorTypes from './apiExtractorTypes';
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 

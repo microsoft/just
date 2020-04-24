@@ -21,7 +21,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
-    "beachball": "^1.12.1",
+    "beachball": "^1.30.2",
     "eslint": "^6.0.1",
     "lerna": "^3.13.2"
   },
