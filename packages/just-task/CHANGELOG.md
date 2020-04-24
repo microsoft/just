@@ -1,7 +1,13 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 24 Apr 2020 16:46:48 GMT and should not be manually modified.
+This log was last generated on Fri, 24 Apr 2020 17:48:46 GMT and should not be manually modified.
 
+## 0.16.0
+Fri, 24 Apr 2020 17:48:46 GMT
+
+### Minor changes
+
+- Resolve from custom resolve paths before Just location (email not defined)
 ## 0.15.1
 Fri, 24 Apr 2020 16:46:48 GMT
 

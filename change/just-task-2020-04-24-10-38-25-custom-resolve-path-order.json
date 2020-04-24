@@ -1,8 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Resolve from custom resolve paths before Just location",
-  "packageName": "just-task",
-  "email": "email not defined",
-  "commit": "490035421b6af3c5af6149d07863080b75ea612d",
-  "date": "2020-04-24T17:38:25.709Z"
-}
