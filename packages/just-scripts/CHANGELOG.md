@@ -1,7 +1,13 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 13 Apr 2020 15:57:30 GMT and should not be manually modified.
+This log was last generated on Fri, 24 Apr 2020 17:42:34 GMT and should not be manually modified.
 
+## 0.39.0
+Fri, 24 Apr 2020 17:42:34 GMT
+
+### Minor changes
+
+- Add 'noOpen' flag to tell webpack not to open browser page. (kinhln@microsoft.com)
 ## 0.38.0
 Mon, 13 Apr 2020 15:57:30 GMT
 
