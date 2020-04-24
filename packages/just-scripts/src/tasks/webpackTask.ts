@@ -52,7 +52,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
       // If the loaded webpack config is a function
       // call it with the original process.argv arguments from build.js.
       if (typeof configLoader == 'function') {
-        webpackConfigs = configLoader(argv());
+        webpackConfigs = configLoader(argv().env, argv());
       } else {
         webpackConfigs = configLoader;
       }
