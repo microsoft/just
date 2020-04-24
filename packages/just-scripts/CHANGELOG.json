@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 24 Apr 2020 17:42:34 GMT",
+      "tag": "just-scripts_v0.39.0",
+      "version": "0.39.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add 'noOpen' flag to tell webpack not to open browser page.",
+            "author": "kinhln@microsoft.com",
+            "commit": "104906e172e8379fd8e14f3b13cacd635eaaeb5f"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 13 Apr 2020 15:57:30 GMT",
       "tag": "just-scripts_v0.38.0",
       "version": "0.38.0",
