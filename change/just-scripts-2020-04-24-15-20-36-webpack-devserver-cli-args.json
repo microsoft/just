@@ -1,8 +1,0 @@
-{
-  "type": "minor",
-  "comment": "webpackDevServerTask passes through webpackCliArgs to webpack-dev-server",
-  "packageName": "just-scripts",
-  "email": "iancra@microsoft.com",
-  "commit": "43716961d199545aeb4315a6ac360beed46297b1",
-  "date": "2020-04-24T22:20:36.460Z"
-}

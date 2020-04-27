@@ -1,6 +1,23 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 24 Apr 2020 17:42:34 GMT and should not be manually modified.
+This log was last generated on Mon, 27 Apr 2020 18:15:47 GMT and should not be manually modified.
+
+<!-- Start content -->
+
+## 0.40.0
+
+Mon, 27 Apr 2020 18:15:47 GMT
+
+### Minor changes
+
+- Pretty print webpack stats on error instead of printing JSON (email not defined)
+- Fix args passed to webpack.config.js function to match webpack spec (email not defined)
+- webpackDevServerTask passes through webpackCliArgs to webpack-dev-server (iancra@microsoft.com)
+
+### Patches
+
+- bumping just-task dependency (kchau@microsoft.com)
+- Fix API Extractor types (elcraig@microsoft.com)
 
 ## 0.39.0
 Fri, 24 Apr 2020 17:42:34 GMT
@@ -538,4 +555,3 @@ Mon, 21 Jan 2019 02:21:01 GMT
 ### Minor changes
 
 - uses script utils
-

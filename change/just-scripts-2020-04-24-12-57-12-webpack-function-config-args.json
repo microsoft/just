@@ -1,8 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Fix args passed to webpack.config.js function to match webpack spec",
-  "packageName": "just-scripts",
-  "email": "email not defined",
-  "commit": "a0538ce665958ce61d23e7bc5d6d64d1b1c06a92",
-  "date": "2020-04-24T19:57:12.024Z"
-}

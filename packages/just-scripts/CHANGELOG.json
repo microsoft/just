@@ -2,6 +2,47 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 27 Apr 2020 18:15:47 GMT",
+      "tag": "just-scripts_v0.40.0",
+      "version": "0.40.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Pretty print webpack stats on error instead of printing JSON",
+            "author": "email not defined",
+            "commit": "5dc44be50047aa57a8fb9fe7f92443aeb4f88107",
+            "package": "just-scripts"
+          },
+          {
+            "comment": "Fix args passed to webpack.config.js function to match webpack spec",
+            "author": "email not defined",
+            "commit": "b8cfa1ff498131e03069aaa317a6581159922f2d",
+            "package": "just-scripts"
+          },
+          {
+            "comment": "webpackDevServerTask passes through webpackCliArgs to webpack-dev-server",
+            "author": "iancra@microsoft.com",
+            "commit": "65d6fc26cc549d419d0cac42ba91679666a408ad",
+            "package": "just-scripts"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "bumping just-task dependency",
+            "author": "kchau@microsoft.com",
+            "commit": "b713a6d8a60f4541f5ad773ae29e98b4cab45a5f",
+            "package": "just-scripts"
+          },
+          {
+            "comment": "Fix API Extractor types",
+            "author": "elcraig@microsoft.com",
+            "commit": "09e94ec56c0b27339e0bc0a11bae0ce4f257585b",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 24 Apr 2020 17:42:34 GMT",
       "tag": "just-scripts_v0.39.0",
       "version": "0.39.0",
