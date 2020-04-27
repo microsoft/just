@@ -1,7 +1,6 @@
 // // WARNING: Careful about add more imports - only import types from webpack
 import { Configuration } from 'webpack';
-import { encodeArgs, spawn } from 'just-scripts-utils';
-import { logger, argv, resolve, resolveCwd, TaskFunction } from 'just-task';
+import { logger, argv, resolveCwd, TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import fs from 'fs';
 import webpackMerge from 'webpack-merge';
@@ -11,8 +10,6 @@ export interface WebpackTaskOptions extends Configuration {
 
   /** true to output to stats.json; a string to output to a file */
   outputStats?: boolean | string;
-
-  mode?: 'production' | 'development';
 
   /**
    * Arguments to be passed into a spawn call for webpack dev server. This can be used to do things
@@ -24,11 +21,6 @@ export interface WebpackTaskOptions extends Configuration {
    * Environment variables to be passed to the webpack-dev-server
    */
   env?: NodeJS.ProcessEnv;
-
-  /**
-   * If set to true, webpack will open browser page automatically when running the dev server
-   */
-  open?: boolean;
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
@@ -91,24 +83,5 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     }
 
     return;
-  };
-}
-
-export function webpackDevServerTask(options: WebpackTaskOptions = {}) {
-  const configPath = resolveCwd((options && options.config) || 'webpack.serve.config.js');
-  const devServerCmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
-
-  return function webpackDevServer() {
-    if (devServerCmd && configPath && fs.existsSync(configPath)) {
-      const mode = options.mode || 'development';
-      const open = options.open ? '--open' : '';
-      const args = [...(options.nodeArgs || []), devServerCmd, '--config', configPath, open, '--mode', mode];
-
-      logger.info(devServerCmd, encodeArgs(args).join(' '));
-      return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
-    } else {
-      logger.warn('no webpack.serve.config.js configuration found, skipping');
-      return Promise.resolve();
-    }
   };
 }
