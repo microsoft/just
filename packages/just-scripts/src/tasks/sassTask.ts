@@ -4,7 +4,6 @@ import fs from 'fs';
 import { resolveCwd, TaskFunction, logger } from 'just-task';
 import parallelLimit from 'run-parallel-limit';
 import { tryRequire } from '../tryRequire';
-
 export interface SassTaskOptions {
   createSourceModule: (fileName: string, css: string) => string;
   // Because we do not statically import postcssPlugin package, we cannot enforce type of postcssPlugins
@@ -32,6 +31,7 @@ export function sassTask(
     const postcss = tryRequire('postcss');
     const autoprefixer = tryRequire('autoprefixer');
     const postcssRtl = tryRequire('postcss-rtl');
+    const cssnano = tryRequire('cssnano');
 
     if (!nodeSass || !postcss || !autoprefixer) {
       logger.warn('One of these [node-sass, postcss, autoprefixer] is not installed, so this task has no effect');
@@ -51,7 +51,6 @@ export function sassTask(
             nodeSass.render(
               {
                 file: fileName,
-                outputStyle: 'compressed',
                 importer: patchSassUrl,
                 includePaths: [path.resolve(process.cwd(), 'node_modules')],
               },
@@ -62,7 +61,7 @@ export function sassTask(
                   const css = result.css.toString();
 
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                  postcss([autoprefixerFn, postcssRtlFn, ...postcssPlugins!])
+                  postcss([autoprefixerFn, postcssRtlFn, ...postcssPlugins!, cssnano()])
                     .process(css, { from: fileName })
                     .then((result: { css: string }) => {
                       fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, result.css));
