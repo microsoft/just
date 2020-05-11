@@ -40,7 +40,6 @@ export function sassTask(
     }
 
     const autoprefixerFn = autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie >= 11'] });
-    const postcssRtlFn = postcssRtl({});
     const files = glob.sync(path.resolve(process.cwd(), 'src/**/*.scss'));
 
     if (files.length) {
@@ -61,7 +60,23 @@ export function sassTask(
                   const css = result.css.toString();
 
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                  postcss([autoprefixerFn, postcssRtlFn, ...postcssPlugins!, cssnano()])
+                  const plugins = [autoprefixerFn, ...postcssPlugins!];
+
+                  // If the rtl plugin exists, insert it after autoprefix.
+                  if (postcssRtl) {
+                    plugins.splice(1, 0, postcssRtl({}));
+                  } else {
+                    logger.warn('It is highly recommended to install the postcss-rtl plugin so that directional styles will flip.');
+                  }
+
+                  // If css nano exists, add it to the end of the chain.
+                  if (cssnano) {
+                    plugins.push(cssnano());
+                  } else {
+                    logger.warn('It is highly recommended to install the cssnano plugin so that css will minify correctly.');
+                  }
+
+                  postcss(plugins)
                     .process(css, { from: fileName })
                     .then((result: { css: string }) => {
                       fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, result.css));
