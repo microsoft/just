@@ -64,16 +64,16 @@ export function sassTask(
 
                   // If the rtl plugin exists, insert it after autoprefix.
                   if (postcssRtl) {
-                    plugins.splice(1, 0, postcssRtl({}));
+                    plugins.splice(plugins.indexOf(autoprefixerFn) + 1, 0, postcssRtl({}));
                   } else {
-                    logger.warn('Please install missing dependency "postcss-rtl" plugin so that directional styles will flip.');
+                    logger.warn('Recommended: install missing dependency "postcss-rtl" plugin to automate directional css flipping.');
                   }
 
                   // If css nano exists, add it to the end of the chain.
                   if (cssnano) {
                     plugins.push(cssnano());
                   } else {
-                    logger.warn('Please install missing dependency "cssnano" plugin so that css will minify correctly.');
+                    logger.warn('Recommended: install missing dependency "cssnano" plugin so that css will minify.');
                   }
 
                   postcss(plugins)
