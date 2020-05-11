@@ -4,7 +4,6 @@ import fs from 'fs';
 import { resolveCwd, TaskFunction, logger } from 'just-task';
 import parallelLimit from 'run-parallel-limit';
 import { tryRequire } from '../tryRequire';
-
 export interface SassTaskOptions {
   createSourceModule: (fileName: string, css: string) => string;
   // Because we do not statically import postcssPlugin package, we cannot enforce type of postcssPlugins
@@ -31,6 +30,8 @@ export function sassTask(
     const nodeSass = tryRequire('node-sass');
     const postcss = tryRequire('postcss');
     const autoprefixer = tryRequire('autoprefixer');
+    const postcssRtl = tryRequire('postcss-rtl');
+    const cssnano = tryRequire('cssnano');
 
     if (!nodeSass || !postcss || !autoprefixer) {
       logger.warn('One of these [node-sass, postcss, autoprefixer] is not installed, so this task has no effect');
@@ -39,20 +40,18 @@ export function sassTask(
     }
 
     const autoprefixerFn = autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie >= 11'] });
-
     const files = glob.sync(path.resolve(process.cwd(), 'src/**/*.scss'));
 
     if (files.length) {
       const tasks = files.map(
-        fileName =>
-          function(cb: any) {
+        (fileName: string) =>
+          function (cb: any) {
             fileName = path.resolve(fileName);
             nodeSass.render(
               {
                 file: fileName,
-                outputStyle: 'compressed',
                 importer: patchSassUrl,
-                includePaths: [path.resolve(process.cwd(), 'node_modules')]
+                includePaths: [path.resolve(process.cwd(), 'node_modules')],
               },
               (err: Error, result: { css: Buffer }) => {
                 if (err) {
@@ -61,7 +60,23 @@ export function sassTask(
                   const css = result.css.toString();
 
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                  postcss([autoprefixerFn, ...postcssPlugins!])
+                  const plugins = [autoprefixerFn, ...postcssPlugins!];
+
+                  // If the rtl plugin exists, insert it after autoprefix.
+                  if (postcssRtl) {
+                    plugins.splice(plugins.indexOf(autoprefixerFn) + 1, 0, postcssRtl({}));
+                  } else {
+                    logger.info('Recommended: install missing dependency "postcss-rtl" plugin to automate directional css flipping.');
+                  }
+
+                  // If css nano exists, add it to the end of the chain.
+                  if (cssnano) {
+                    plugins.push(cssnano());
+                  } else {
+                    logger.info('Recommended: install missing dependency "cssnano" plugin so that css will minify.');
+                  }
+
+                  postcss(plugins)
                     .process(css, { from: fileName })
                     .then((result: { css: string }) => {
                       fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, result.css));
