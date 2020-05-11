@@ -66,14 +66,14 @@ export function sassTask(
                   if (postcssRtl) {
                     plugins.splice(1, 0, postcssRtl({}));
                   } else {
-                    logger.warn('It is highly recommended to install the postcss-rtl plugin so that directional styles will flip.');
+                    logger.warn('Please install missing dependency "postcss-rtl" plugin so that directional styles will flip.');
                   }
 
                   // If css nano exists, add it to the end of the chain.
                   if (cssnano) {
                     plugins.push(cssnano());
                   } else {
-                    logger.warn('It is highly recommended to install the cssnano plugin so that css will minify correctly.');
+                    logger.warn('Please install missing dependency "cssnano" plugin so that css will minify correctly.');
                   }
 
                   postcss(plugins)
