@@ -66,14 +66,14 @@ export function sassTask(
                   if (postcssRtl) {
                     plugins.splice(plugins.indexOf(autoprefixerFn) + 1, 0, postcssRtl({}));
                   } else {
-                    logger.warn('Recommended: install missing dependency "postcss-rtl" plugin to automate directional css flipping.');
+                    logger.info('Recommended: install missing dependency "postcss-rtl" plugin to automate directional css flipping.');
                   }
 
                   // If css nano exists, add it to the end of the chain.
                   if (cssnano) {
                     plugins.push(cssnano());
                   } else {
-                    logger.warn('Recommended: install missing dependency "cssnano" plugin so that css will minify.');
+                    logger.info('Recommended: install missing dependency "cssnano" plugin so that css will minify.');
                   }
 
                   postcss(plugins)
