@@ -72,7 +72,7 @@ export function findRepoRoot(cb?: FindRootCallback, options?: RepoInfoOptions): 
  * Note that this uses in-module caching to avoid traversing unnecessarily.
  */
 export function getRepoInfo(options?: RepoInfoOptions): RepoInfo {
-  if (_repoInfo) {
+  if (_repoInfo && (!options || !options.cwd)) {
     return _repoInfo;
   }
 
