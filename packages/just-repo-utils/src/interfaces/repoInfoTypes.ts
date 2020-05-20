@@ -30,3 +30,11 @@ export interface RepoInfo {
   /** loader function to get the parsed lerna json */
   getLernaJson?: LernaJsonLoader;
 }
+
+/**
+ * Options for querying repository info
+ */
+export interface RepoInfoOptions {
+  /** current working directory to start from */
+  cwd?: string;
+}

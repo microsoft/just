@@ -1,4 +1,5 @@
 import { PackageJsonLoader } from './configTypes';
+import { RepoInfoOptions } from './repoInfoTypes';
 
 export interface PackageEntry {
   path: string;
@@ -21,7 +22,7 @@ export type CacheStrategy = 'normal' | 'no-cache' | 'update';
 /**
  * optional options for package info routines
  */
-export interface PackageInfoOptions {
+export interface PackageInfoOptions extends RepoInfoOptions {
   /**
    * caching strategy to use for package info queries, defaults to 'normal'
    */

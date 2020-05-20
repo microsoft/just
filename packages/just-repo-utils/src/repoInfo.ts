@@ -1,6 +1,6 @@
 import { getConfigLoader, loadCJson } from './readConfigs';
 import { LernaJson, RushJson, PackageJson, PackageJsonLoader } from './interfaces/configTypes';
-import { RepoInfo, FindRootCallback } from './interfaces/repoInfoTypes';
+import { RepoInfo, FindRootCallback, RepoInfoOptions } from './interfaces/repoInfoTypes';
 import path from 'path';
 import fse from 'fs-extra';
 
@@ -27,8 +27,8 @@ function isRepoRoot(cwd: string, config?: PackageJson): boolean | undefined {
  * @param cb - callback function to execute at each level.  A true result for the callback will
  * cancel the walk and return the current path at the time it was cancelled.
  */
-export function findGitRoot(cb?: FindRootCallback): string {
-  let cwd = process.cwd();
+export function findGitRoot(cb?: FindRootCallback, options?: RepoInfoOptions): string {
+  let cwd = (options && options.cwd) || process.cwd();
   const root = path.parse(cwd).root;
 
   while (cwd !== root) {
@@ -46,12 +46,12 @@ export function findGitRoot(cb?: FindRootCallback): string {
  *
  * @param cb - standard findGitRoot/findRepoRoot callback
  */
-function findRepoRootWithConfig(cb?: FindRootCallback): [string, PackageJsonLoader | undefined] {
+function findRepoRootWithConfig(cb?: FindRootCallback, options?: RepoInfoOptions): [string, PackageJsonLoader | undefined] {
   let loader: PackageJsonLoader | undefined = undefined;
   const path = findGitRoot(cwd => {
     loader = getConfigLoader<PackageJson>(cwd, 'package.json');
     return (cb && cb(cwd)) || isRepoRoot(cwd, loader && loader());
-  });
+  }, options);
   return [path, loader];
 }
 
@@ -61,8 +61,8 @@ function findRepoRootWithConfig(cb?: FindRootCallback): [string, PackageJsonLoad
  *
  * @param cb - callback function of the same type as for findGitRoot
  */
-export function findRepoRoot(cb?: FindRootCallback): string {
-  return findRepoRootWithConfig(cb)[0];
+export function findRepoRoot(cb?: FindRootCallback, options?: RepoInfoOptions): string {
+  return findRepoRootWithConfig(cb, options)[0];
 }
 
 /**
@@ -71,12 +71,12 @@ export function findRepoRoot(cb?: FindRootCallback): string {
  *
  * Note that this uses in-module caching to avoid traversing unnecessarily.
  */
-export function getRepoInfo(): RepoInfo {
+export function getRepoInfo(options?: RepoInfoOptions): RepoInfo {
   if (_repoInfo) {
     return _repoInfo;
   }
 
-  const [rootPath, packageLoader] = findRepoRootWithConfig();
+  const [rootPath, packageLoader] = findRepoRootWithConfig(undefined, options);
   const getRushJson = getConfigLoader<RushJson>(rootPath, 'rush.json', loadCJson);
   const getLernaJson = getConfigLoader<LernaJson>(rootPath, 'lerna.json');
   const isMonoRepo = getRushJson || getLernaJson;
