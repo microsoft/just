@@ -1,0 +1,8 @@
+{
+  "type": "minor",
+  "comment": "add ability to query packages or roots from a different working directory",
+  "packageName": "just-repo-utils",
+  "email": "jasonmo@microsoft.com",
+  "dependentChangeType": "patch",
+  "date": "2020-05-20T21:44:17.284Z"
+}
