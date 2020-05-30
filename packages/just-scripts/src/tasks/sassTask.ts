@@ -70,6 +70,8 @@ export function sassTask(
                   // If css nano exists, add it to the end of the chain.
                   if (cssnano) {
                     plugins.push(cssnano());
+                  } else {
+                    logger.info('Recommended: install missing dependency "cssnano" plugin so that css will minify.');
                   }
 
                   postcss(plugins)
