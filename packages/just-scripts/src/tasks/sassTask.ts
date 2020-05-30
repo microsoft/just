@@ -45,13 +45,13 @@ export function sassTask(
     if (files.length) {
       const tasks = files.map(
         (fileName: string) =>
-          function (cb: any) {
+          function(cb: any) {
             fileName = path.resolve(fileName);
             nodeSass.render(
               {
                 file: fileName,
                 importer: patchSassUrl,
-                includePaths: [path.resolve(process.cwd(), 'node_modules')],
+                includePaths: [path.resolve(process.cwd(), 'node_modules')]
               },
               (err: Error, result: { css: Buffer }) => {
                 if (err) {
@@ -65,15 +65,11 @@ export function sassTask(
                   // If the rtl plugin exists, insert it after autoprefix.
                   if (postcssRtl) {
                     plugins.splice(plugins.indexOf(autoprefixerFn) + 1, 0, postcssRtl({}));
-                  } else {
-                    logger.info('Recommended: install missing dependency "postcss-rtl" plugin to automate directional css flipping.');
                   }
 
                   // If css nano exists, add it to the end of the chain.
                   if (cssnano) {
                     plugins.push(cssnano());
-                  } else {
-                    logger.info('Recommended: install missing dependency "cssnano" plugin so that css will minify.');
                   }
 
                   postcss(plugins)
