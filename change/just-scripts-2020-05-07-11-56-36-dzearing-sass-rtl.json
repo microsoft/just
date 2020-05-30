@@ -1,6 +1,6 @@
 {
   "type": "minor",
-  "comment": "Adding directional support to sass pipeline.",
+  "comment": "Removing sass warnings about missing plugins.",
   "packageName": "just-scripts",
   "email": "dzearing@microsoft.com",
   "dependentChangeType": "patch",
