@@ -2,6 +2,29 @@
   "name": "just-repo-utils",
   "entries": [
     {
+      "date": "Mon, 01 Jun 2020 23:29:27 GMT",
+      "tag": "just-repo-utils_v0.4.0",
+      "version": "0.4.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "add ability to query packages or roots from a different working directory",
+            "author": "jasonmo@microsoft.com",
+            "commit": "d180ac84619e8e81c963db4e87fa628b24c73cc0",
+            "package": "just-repo-utils"
+          }
+        ],
+        "none": [
+          {
+            "comment": "fix publish",
+            "author": "kchau@microsoft.com",
+            "commit": "b2f8a8e1672ec695bb02e45929c819a3d9265eb7",
+            "package": "just-repo-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 06 Mar 2020 19:44:20 GMT",
       "tag": "just-repo-utils_v0.2.0",
       "version": "0.2.0",

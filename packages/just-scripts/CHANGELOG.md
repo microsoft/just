@@ -1,8 +1,17 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 11 May 2020 20:26:03 GMT and should not be manually modified.
+This log was last generated on Mon, 01 Jun 2020 23:29:27 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.42.0
+
+Mon, 01 Jun 2020 23:29:27 GMT
+
+### Minor changes
+
+- Removing sass warnings about missing plugins. (dzearing@microsoft.com)
+- Use updated options to autoprefixer (jdh@microsoft.com)
 
 ## 0.41.0
 

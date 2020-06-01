@@ -2,6 +2,27 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 01 Jun 2020 23:29:27 GMT",
+      "tag": "just-scripts_v0.42.0",
+      "version": "0.42.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Removing sass warnings about missing plugins.",
+            "author": "dzearing@microsoft.com",
+            "commit": "a4833e99a82b985f5396466121091b1f430befdd",
+            "package": "just-scripts"
+          },
+          {
+            "comment": "Use updated options to autoprefixer",
+            "author": "jdh@microsoft.com",
+            "commit": "3540b9b51b8bd6b95fe061fa31db7fed875243f7",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 11 May 2020 20:26:03 GMT",
       "tag": "just-scripts_v0.41.0",
       "version": "0.41.0",
