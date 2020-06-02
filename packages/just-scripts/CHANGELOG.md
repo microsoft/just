@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 01 Jun 2020 23:29:27 GMT and should not be manually modified.
+This log was last generated on Tue, 02 Jun 2020 20:33:23 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.43.0
+
+Tue, 02 Jun 2020 20:33:23 GMT
+
+### Minor changes
+
+- eslint task: fix config resolution and add options (elcraig@microsoft.com)
 
 ## 0.42.0
 

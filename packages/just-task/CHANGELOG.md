@@ -1,6 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 24 Apr 2020 17:48:46 GMT and should not be manually modified.
+This log was last generated on Tue, 02 Jun 2020 20:33:23 GMT and should not be manually modified.
+
+<!-- Start content -->
+
+## 0.17.0
+
+Tue, 02 Jun 2020 20:33:23 GMT
+
+### Minor changes
+
+- resolve: add extensions option (elcraig@microsoft.com)
 
 ## 0.16.0
 Fri, 24 Apr 2020 17:48:46 GMT
@@ -417,4 +427,3 @@ Mon, 03 Dec 2018 00:54:11 GMT
 Sun, 02 Dec 2018 03:50:30 GMT
 
 *Initial release*
-

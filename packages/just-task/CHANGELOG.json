@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Tue, 02 Jun 2020 20:33:23 GMT",
+      "tag": "just-task_v0.17.0",
+      "version": "0.17.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "resolve: add extensions option",
+            "author": "elcraig@microsoft.com",
+            "commit": "1b6923634240502651343c37b4b14891a0f3fa3d",
+            "package": "just-task"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 24 Apr 2020 17:48:46 GMT",
       "tag": "just-task_v0.16.0",
       "version": "0.16.0",

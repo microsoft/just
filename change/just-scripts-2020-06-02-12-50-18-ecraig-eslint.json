@@ -1,8 +1,0 @@
-{
-  "type": "minor",
-  "comment": "eslint task: fix config resolution and add options",
-  "packageName": "just-scripts",
-  "email": "elcraig@microsoft.com",
-  "dependentChangeType": "patch",
-  "date": "2020-06-02T19:49:55.437Z"
-}

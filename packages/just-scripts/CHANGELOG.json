@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 02 Jun 2020 20:33:23 GMT",
+      "tag": "just-scripts_v0.43.0",
+      "version": "0.43.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "eslint task: fix config resolution and add options",
+            "author": "elcraig@microsoft.com",
+            "commit": "1b6923634240502651343c37b4b14891a0f3fa3d",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 01 Jun 2020 23:29:27 GMT",
       "tag": "just-scripts_v0.42.0",
       "version": "0.42.0",
