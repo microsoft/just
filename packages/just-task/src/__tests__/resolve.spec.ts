@@ -35,7 +35,7 @@ describe('_tryResolve', () => {
   });
 
   it('does not throw', () => {
-    expect(_tryResolve('foo', 'bar')).toBeNull();
+    expect(_tryResolve('foo', { cwd: 'bar' })).toBeNull();
     expect(_tryResolve(undefined as any, undefined as any)).toBeNull();
   });
 
@@ -43,7 +43,7 @@ describe('_tryResolve', () => {
     mockfs({
       a: { 'b.txt': '' }
     });
-    expect(_tryResolve('b.txt', process.cwd())).toBeNull();
+    expect(_tryResolve('b.txt', { cwd: process.cwd() })).toBeNull();
   });
 
   it('resolves filename relative to basedir', () => {
@@ -51,7 +51,7 @@ describe('_tryResolve', () => {
       a: { 'b.txt': '' }, // right
       'b.txt': '' // wrong
     });
-    expect(_tryResolve('b.txt', 'a')).toContain(path.join('a', 'b.txt'));
+    expect(_tryResolve('b.txt', { cwd: 'a' })).toContain(path.join('a', 'b.txt'));
   });
 
   it('resolves non-filename relative to node_modules in basedir', () => {
@@ -64,7 +64,7 @@ describe('_tryResolve', () => {
       // eslint-disable-next-line @typescript-eslint/camelcase
       node_modules: { 'b.js': '' } // wrong
     });
-    expect(_tryResolve('b', 'a')).toContain(path.join('a', 'node_modules', 'b.js'));
+    expect(_tryResolve('b', { cwd: 'a' })).toContain(path.join('a', 'node_modules', 'b.js'));
   });
 
   it('resolves path with /', () => {
@@ -72,7 +72,7 @@ describe('_tryResolve', () => {
       // eslint-disable-next-line @typescript-eslint/camelcase
       a: { node_modules: { b: { 'c.js': '' } } }
     });
-    expect(_tryResolve('b/c', 'a')).toContain(path.join('a', 'node_modules', 'b', 'c.js'));
+    expect(_tryResolve('b/c', { cwd: 'a' })).toContain(path.join('a', 'node_modules', 'b', 'c.js'));
   });
 });
 
