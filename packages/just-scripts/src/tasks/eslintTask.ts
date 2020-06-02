@@ -2,6 +2,10 @@ import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { encodeArgs, spawn } from 'just-scripts-utils';
 import fs from 'fs';
 
+/**
+ * Task options generally follow ESLint CLI options explained here:
+ * https://eslint.org/docs/user-guide/command-line-interface
+ */
 export interface EsLintTaskOptions {
   files?: string[];
   configPath?: string;
@@ -11,13 +15,34 @@ export interface EsLintTaskOptions {
   extensions?: string;
   noEslintRc?: boolean;
   maxWarnings?: number;
+  cache?: boolean;
+  cacheLocation?: string;
+  /**
+   * Upon lint completion, display a table of the 10 slowest rules
+   * (see https://eslint.org/docs/developer-guide/working-with-rules-deprecated#per-rule-performance).
+   */
+  timing?: boolean;
 }
 
 export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
   return function eslint() {
-    const { files, configPath, ignorePath, fix, extensions, noEslintRc, maxWarnings, resolvePluginsPath } = options;
+    const {
+      files,
+      configPath,
+      ignorePath,
+      fix,
+      extensions,
+      noEslintRc,
+      maxWarnings,
+      resolvePluginsPath,
+      cache,
+      cacheLocation,
+      timing
+    } = options;
     const eslintCmd = resolve('eslint/bin/eslint.js');
-    const eslintConfigPath = configPath || resolveCwd('.eslintrc');
+    // Try all possible extensions in the order listed here: https://eslint.org/docs/user-guide/configuring#configuration-file-formats
+    const eslintConfigPath = configPath || resolveCwd('.eslintrc', { extensions: ['.js', '.cjs', '.yaml', '.yml', '.json'] });
+
     if (eslintCmd && eslintConfigPath && fs.existsSync(eslintConfigPath)) {
       const eslintIgnorePath = ignorePath || resolveCwd('.eslintignore');
 
@@ -31,11 +56,13 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         ...(resolvePluginsPath ? ['--resolve-plugins-relative-to', resolvePluginsPath] : []),
         ...(fix ? ['--fix'] : []),
         ...(maxWarnings !== undefined ? ['--max-warnings', `${maxWarnings}`] : []),
+        ...(cache ? ['--cache'] : []),
+        ...(cacheLocation ? ['--cache-location', cacheLocation] : []),
         '--color'
       ];
 
       logger.info(encodeArgs(eslintArgs).join(' '));
-      return spawn(process.execPath, eslintArgs, { stdio: 'inherit' });
+      return spawn(process.execPath, eslintArgs, { stdio: 'inherit', ...(timing && { TIMING: '1' }) });
     } else {
       return Promise.resolve();
     }
