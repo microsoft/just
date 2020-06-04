@@ -3,7 +3,9 @@ import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { exec, encodeArgs, spawn } from 'just-scripts-utils';
 import fs from 'fs';
 
-export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean | string[] };
+export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean | string[] } & {
+  nodeArgs?: string[];
+};
 
 /**
  * Returns a task that runs the TSC CLI.
@@ -92,18 +94,23 @@ function isValidProject(options: TscTaskOptions) {
  * Returns an array of CLI arguments for TSC given the `options`.
  */
 function argsFromOptions(tscCmd: string, options: TscTaskOptions): string[] {
-  return Object.keys(options).reduce(
-    (currentArgs, option) => {
-      const optionValue = options[option];
-      if (typeof optionValue === 'string') {
-        return currentArgs.concat(['--' + option, optionValue]);
-      } else if (typeof optionValue === 'boolean' && optionValue) {
-        return currentArgs.concat(['--' + option]);
-      } else if (Array.isArray(optionValue)) {
-        return currentArgs.concat(['--' + option, ...optionValue]);
-      }
-      return currentArgs;
-    },
-    [tscCmd]
-  );
+  const { nodeArgs, ...rest } = options;
+
+  return [
+    ...(nodeArgs ? nodeArgs : []),
+    ...Object.keys(rest).reduce(
+      (currentArgs, option) => {
+        const optionValue = options[option];
+        if (typeof optionValue === 'string') {
+          return currentArgs.concat(['--' + option, optionValue]);
+        } else if (typeof optionValue === 'boolean' && optionValue) {
+          return currentArgs.concat(['--' + option]);
+        } else if (Array.isArray(optionValue)) {
+          return currentArgs.concat(['--' + option, ...optionValue]);
+        }
+        return currentArgs;
+      },
+      [tscCmd]
+    )
+  ];
 }

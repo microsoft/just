@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "adding nodeArgs arg to tscTask",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "dependentChangeType": "patch",
+  "date": "2020-06-04T22:30:23.140Z"
+}
