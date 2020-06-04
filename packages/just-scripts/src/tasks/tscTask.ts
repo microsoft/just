@@ -3,7 +3,9 @@ import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { exec, encodeArgs, spawn } from 'just-scripts-utils';
 import fs from 'fs';
 
-export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean | string[] };
+export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean | string[] } & {
+  nodeArgs?: string[];
+};
 
 /**
  * Returns a task that runs the TSC CLI.
@@ -22,7 +24,12 @@ export function tscTask(options: TscTaskOptions = {}): TaskFunction {
     if (isValidProject(options)) {
       logger.info(`Running ${tscCmd} with ${options.project || options.build}`);
 
-      const args = argsFromOptions(tscCmd, options);
+      let args = argsFromOptions(tscCmd, options);
+
+      if (options.nodeArgs) {
+        args = args.concat(options.nodeArgs, options.nodeArgs);
+      }
+
       const cmd = encodeArgs([process.execPath, ...args]).join(' ');
       logger.info(`Executing: ${cmd}`);
       return exec(cmd);
@@ -92,7 +99,9 @@ function isValidProject(options: TscTaskOptions) {
  * Returns an array of CLI arguments for TSC given the `options`.
  */
 function argsFromOptions(tscCmd: string, options: TscTaskOptions): string[] {
-  return Object.keys(options).reduce(
+  const { nodeArgs: _, ...rest } = options;
+
+  return Object.keys(rest).reduce(
     (currentArgs, option) => {
       const optionValue = options[option];
       if (typeof optionValue === 'string') {
