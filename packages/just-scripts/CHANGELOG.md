@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 04 Jun 2020 22:11:04 GMT and should not be manually modified.
+This log was last generated on Thu, 04 Jun 2020 22:56:59 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.43.2
+
+Thu, 04 Jun 2020 22:56:59 GMT
+
+### Patches
+
+- adding nodeArgs arg to tscTask (kchau@microsoft.com)
 
 ## 0.43.1
 

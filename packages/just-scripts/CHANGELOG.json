@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 04 Jun 2020 22:56:59 GMT",
+      "tag": "just-scripts_v0.43.2",
+      "version": "0.43.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "adding nodeArgs arg to tscTask",
+            "author": "kchau@microsoft.com",
+            "commit": "b8dbbb9e965235bd736897efa6081211fd503061",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 04 Jun 2020 22:11:04 GMT",
       "tag": "just-scripts_v0.43.1",
       "version": "0.43.1",
