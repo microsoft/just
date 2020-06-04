@@ -31,7 +31,7 @@ export function sassTask(
     const postcss = tryRequire('postcss');
     const autoprefixer = tryRequire('autoprefixer');
     const postcssRtl = tryRequire('postcss-rtl');
-    const cssnano = tryRequire('cssnano');
+    const clean = tryRequire('postcss-clean');
 
     if (!nodeSass || !postcss || !autoprefixer) {
       logger.warn('One of these [node-sass, postcss, autoprefixer] is not installed, so this task has no effect');
@@ -67,9 +67,9 @@ export function sassTask(
                     plugins.splice(plugins.indexOf(autoprefixerFn) + 1, 0, postcssRtl({}));
                   }
 
-                  // If css nano exists, add it to the end of the chain.
-                  if (cssnano) {
-                    plugins.push(cssnano());
+                  // If postcss-clean exists, add it to the end of the chain.
+                  if (clean) {
+                    plugins.push(clean());
                   }
 
                   postcss(plugins)
