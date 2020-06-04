@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Replacing cssnano with postcss-clean, which is more reliable.",
-  "packageName": "just-scripts",
-  "email": "dzearing@microsoft.com",
-  "dependentChangeType": "patch",
-  "date": "2020-06-04T21:58:15.984Z"
-}

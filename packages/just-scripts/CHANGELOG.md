@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 02 Jun 2020 20:33:23 GMT and should not be manually modified.
+This log was last generated on Thu, 04 Jun 2020 22:11:04 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.43.1
+
+Thu, 04 Jun 2020 22:11:04 GMT
+
+### Patches
+
+- Replacing cssnano with postcss-clean, which is more reliable. (dzearing@microsoft.com)
 
 ## 0.43.0
 

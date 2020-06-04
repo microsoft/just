@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 04 Jun 2020 22:11:04 GMT",
+      "tag": "just-scripts_v0.43.1",
+      "version": "0.43.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Replacing cssnano with postcss-clean, which is more reliable.",
+            "author": "dzearing@microsoft.com",
+            "commit": "cf8b0b6a10094cb758f3fff3e055dce5e4419fc9",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 02 Jun 2020 20:33:23 GMT",
       "tag": "just-scripts_v0.43.0",
       "version": "0.43.0",
