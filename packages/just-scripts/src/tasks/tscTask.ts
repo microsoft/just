@@ -24,12 +24,7 @@ export function tscTask(options: TscTaskOptions = {}): TaskFunction {
     if (isValidProject(options)) {
       logger.info(`Running ${tscCmd} with ${options.project || options.build}`);
 
-      let args = argsFromOptions(tscCmd, options);
-
-      if (Array.isArray(options.nodeArgs) && options.nodeArgs.length > 0) {
-        args = options.nodeArgs.concat(args);
-      }
-
+      const args = argsFromOptions(tscCmd, options);
       const cmd = encodeArgs([process.execPath, ...args]).join(' ');
       logger.info(`Executing: ${cmd}`);
       return exec(cmd);
@@ -99,20 +94,23 @@ function isValidProject(options: TscTaskOptions) {
  * Returns an array of CLI arguments for TSC given the `options`.
  */
 function argsFromOptions(tscCmd: string, options: TscTaskOptions): string[] {
-  const { nodeArgs: _, ...rest } = options;
+  const { nodeArgs, ...rest } = options;
 
-  return Object.keys(rest).reduce(
-    (currentArgs, option) => {
-      const optionValue = options[option];
-      if (typeof optionValue === 'string') {
-        return currentArgs.concat(['--' + option, optionValue]);
-      } else if (typeof optionValue === 'boolean' && optionValue) {
-        return currentArgs.concat(['--' + option]);
-      } else if (Array.isArray(optionValue)) {
-        return currentArgs.concat(['--' + option, ...optionValue]);
-      }
-      return currentArgs;
-    },
-    [tscCmd]
-  );
+  return [
+    ...(nodeArgs ? nodeArgs : []),
+    ...Object.keys(rest).reduce(
+      (currentArgs, option) => {
+        const optionValue = options[option];
+        if (typeof optionValue === 'string') {
+          return currentArgs.concat(['--' + option, optionValue]);
+        } else if (typeof optionValue === 'boolean' && optionValue) {
+          return currentArgs.concat(['--' + option]);
+        } else if (Array.isArray(optionValue)) {
+          return currentArgs.concat(['--' + option, ...optionValue]);
+        }
+        return currentArgs;
+      },
+      [tscCmd]
+    )
+  ];
 }
