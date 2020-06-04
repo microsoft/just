@@ -26,8 +26,8 @@ export function tscTask(options: TscTaskOptions = {}): TaskFunction {
 
       let args = argsFromOptions(tscCmd, options);
 
-      if (options.nodeArgs) {
-        args = args.concat(options.nodeArgs, options.nodeArgs);
+      if (Array.isArray(options.nodeArgs) && options.nodeArgs.length > 0) {
+        args = options.nodeArgs.concat(args);
       }
 
       const cmd = encodeArgs([process.execPath, ...args]).join(' ');
