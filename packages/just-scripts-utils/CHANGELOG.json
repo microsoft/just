@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Fri, 12 Jun 2020 00:43:50 GMT",
+      "tag": "just-scripts-utils_v0.9.1",
+      "version": "0.9.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix downloadPackage unit test on clients running Node 12.",
+            "author": "jagore@microsoft.com",
+            "commit": "e4bcba65f863450ec4d82f6de24591e6eec82948",
+            "package": "just-scripts-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 13 Apr 2020 15:57:30 GMT",
       "tag": "just-scripts-utils_v0.9.0",
       "version": "0.9.0",

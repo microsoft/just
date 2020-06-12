@@ -1,6 +1,16 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Mon, 13 Apr 2020 15:57:30 GMT and should not be manually modified.
+This log was last generated on Fri, 12 Jun 2020 00:43:50 GMT and should not be manually modified.
+
+<!-- Start content -->
+
+## 0.9.1
+
+Fri, 12 Jun 2020 00:43:50 GMT
+
+### Patches
+
+- Fix downloadPackage unit test on clients running Node 12. (jagore@microsoft.com)
 
 ## 0.9.0
 Mon, 13 Apr 2020 15:57:30 GMT
@@ -168,4 +178,3 @@ Mon, 21 Jan 2019 02:21:01 GMT
 ### Minor changes
 
 - new publish!
-

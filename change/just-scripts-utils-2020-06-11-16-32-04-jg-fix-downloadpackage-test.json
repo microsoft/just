@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix downloadPackage unit test on clients running Node 12.",
-  "packageName": "just-scripts-utils",
-  "email": "jagore@microsoft.com",
-  "dependentChangeType": "patch",
-  "date": "2020-06-11T23:32:04.473Z"
-}
