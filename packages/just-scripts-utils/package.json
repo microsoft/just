@@ -40,9 +40,12 @@
     "@types/node": "^10.12.18",
     "@types/semver": "^5.5.0",
     "@types/tar": "^4.0.0",
+    "@types/tar-fs": "^1.16.1",
     "@types/yargs": "12.0.1",
+    "gunzip-maybe": "^1.4.2",
     "jest": "^24.0.0",
     "mock-fs": "^4.8.0",
+    "tar-fs": "^2.1.0",
     "ts-jest": "^24.0.1",
     "typescript": "~3.4.4"
   }
