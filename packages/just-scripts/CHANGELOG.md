@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 04 Jun 2020 22:56:59 GMT and should not be manually modified.
+This log was last generated on Wed, 17 Jun 2020 20:52:36 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.43.4
+
+Wed, 17 Jun 2020 20:52:36 GMT
+
+### Patches
+
+- Add unit tests for copy task. (jagore@microsoft.com)
 
 ## 0.43.2
 

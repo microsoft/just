@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Wed, 17 Jun 2020 20:52:36 GMT",
+      "tag": "just-scripts_v0.43.4",
+      "version": "0.43.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add unit tests for copy task.",
+            "author": "jagore@microsoft.com",
+            "commit": "5775b68e2060339d0a521178dc6b13639a2b0225",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 04 Jun 2020 22:56:59 GMT",
       "tag": "just-scripts_v0.43.2",
       "version": "0.43.2",
