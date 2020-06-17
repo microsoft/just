@@ -110,19 +110,6 @@ describe('executeCopyInstructions functional tests', () => {
   //   expect(fs.existsSync(destFilePath)).toBeTruthy();
   //   expect(fs.readFileSync(destFilePath).toString()).toEqual(sourceFileContents1);
   // });
-
-  it('copies duplicate sources to empty dest without generating an exception', async () => {
-    const copyInstruction = {
-      sourceFilePath: sourceFilePath1,
-      destinationFilePath: destFilePath
-    };
-
-    // Unchecked duplicate copy instructions will cause an EBUSY: resource busy or locked
-    // as the copy instructions attempt to write to the same file.
-    await executeCopyInstructions({
-      copyInstructions: Array(100).fill(copyInstruction)
-    });
-  });
 });
 
 // These tests test scenarios where multiple instructions end up deleting and overwriting the same
