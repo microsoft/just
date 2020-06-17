@@ -1,5 +1,5 @@
 {
-  "type": "none",
+  "type": "patch",
   "comment": "Add unit tests for copy task.",
   "packageName": "just-scripts",
   "email": "jagore@microsoft.com",
