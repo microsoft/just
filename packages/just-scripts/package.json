@@ -16,6 +16,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc -w --preserveWatchOutput",
+    "start-test": "jest --watch",
     "test": "jest",
     "test:update": "jest --updateSnapshot"
   },
