@@ -130,6 +130,7 @@ describe('executeCopyInstructions functional tests', () => {
 // EBUSY exceptions. We may want just to handle these types of conditions eventually, most
 // likely by having an optional validation step. Documentation should also be added to executeCopyInstructions
 // detailing caution and error scenarios.
+// These tests require 'tmp' and '@types/tmp` dev dependencies.
 // describe('executeCopyInstructions I/O exception tests', () => {
 //   let destDir: DirResult;
 //   let sourceFile: FileResult;
