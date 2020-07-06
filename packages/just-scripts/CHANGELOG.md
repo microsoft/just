@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 17 Jun 2020 20:52:36 GMT and should not be manually modified.
+This log was last generated on Mon, 06 Jul 2020 19:35:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.44.0
+
+Mon, 06 Jul 2020 19:35:46 GMT
+
+### Minor changes
+
+- Export spawn util. (jagore@microsoft.com)
 
 ## 0.43.4
 
