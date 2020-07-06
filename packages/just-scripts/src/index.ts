@@ -40,3 +40,5 @@ export { CopyInstruction, CopyConfig } from './copy/CopyInstruction';
 export { copyInstructions };
 
 export * from 'just-task';
+
+export { spawn } from 'just-scripts-utils';
