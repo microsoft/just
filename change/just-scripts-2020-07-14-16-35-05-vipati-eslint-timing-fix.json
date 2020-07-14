@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Setting Timing value to environment variable.",
+  "packageName": "just-scripts",
+  "email": "vipati@microsoft.com",
+  "dependentChangeType": "patch",
+  "date": "2020-07-14T23:35:05.852Z"
+}
