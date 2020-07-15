@@ -62,7 +62,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
       ];
 
       logger.info(encodeArgs(eslintArgs).join(' '));
-      return spawn(process.execPath, eslintArgs, { stdio: 'inherit', ...(timing && { TIMING: '1' }) });
+      return spawn(process.execPath, eslintArgs, { stdio: 'inherit', ...(timing && { env: { TIMING: '1' } }) });
     } else {
       return Promise.resolve();
     }
