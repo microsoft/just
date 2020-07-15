@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 06 Jul 2020 19:35:46 GMT and should not be manually modified.
+This log was last generated on Wed, 15 Jul 2020 00:35:09 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.44.1
+
+Wed, 15 Jul 2020 00:35:09 GMT
+
+### Patches
+
+- ESLint task: Setting Timing value to environment variable. (vipati@microsoft.com)
 
 ## 0.44.0
 

@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Wed, 15 Jul 2020 00:35:09 GMT",
+      "tag": "just-scripts_v0.44.1",
+      "version": "0.44.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "ESLint task: Setting Timing value to environment variable.",
+            "author": "vipati@microsoft.com",
+            "commit": "6e86cac5cf029b814e25d6d97678e8ea75a238f8",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 06 Jul 2020 19:35:46 GMT",
       "tag": "just-scripts_v0.44.0",
       "version": "0.44.0",
