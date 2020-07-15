@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Setting Timing value to environment variable.",
+  "comment": "ESLint task: Setting Timing value to environment variable.",
   "packageName": "just-scripts",
   "email": "vipati@microsoft.com",
   "dependentChangeType": "patch",
