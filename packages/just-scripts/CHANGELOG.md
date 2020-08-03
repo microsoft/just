@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 15 Jul 2020 00:35:09 GMT and should not be manually modified.
+This log was last generated on Mon, 03 Aug 2020 16:59:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.44.2
+
+Mon, 03 Aug 2020 16:59:40 GMT
+
+### Patches
+
+- Remove 'npm-registry-fetch' dependency (rezha@microsoft.com)
 
 ## 0.44.1
 

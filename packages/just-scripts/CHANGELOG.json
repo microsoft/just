@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 03 Aug 2020 16:59:40 GMT",
+      "tag": "just-scripts_v0.44.2",
+      "version": "0.44.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Remove 'npm-registry-fetch' dependency",
+            "author": "rezha@microsoft.com",
+            "commit": "9ae4262d57a2956d3c3943e5f7844460c7019269",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 15 Jul 2020 00:35:09 GMT",
       "tag": "just-scripts_v0.44.1",
       "version": "0.44.1",
