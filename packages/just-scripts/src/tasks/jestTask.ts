@@ -40,7 +40,6 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
       const cmd = process.execPath;
 
       const positional = argv()._.slice(1);
-      options = { ...options, ...{ ...argv(), _: positional } };
 
       const args = [
         ...(options.nodeArgs || []),
@@ -56,7 +55,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
-        ...(options._ || []),
+        ...(options._ || []).concat(positional),
       ].filter((arg) => !!arg) as Array<string>;
 
       logger.info(cmd, encodeArgs(args).join(' '));
