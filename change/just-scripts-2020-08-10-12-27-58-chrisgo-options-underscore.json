@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Don't overwrite options._ in jestTask",
+  "packageName": "just-scripts",
+  "email": "1581488+christiango@users.noreply.github.com",
+  "dependentChangeType": "patch",
+  "date": "2020-08-10T19:27:58.860Z"
+}
