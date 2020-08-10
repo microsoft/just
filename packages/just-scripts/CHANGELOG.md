@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 10 Aug 2020 19:24:56 GMT and should not be manually modified.
+This log was last generated on Mon, 10 Aug 2020 19:39:57 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.44.4
+
+Mon, 10 Aug 2020 19:39:57 GMT
+
+### Patches
+
+- Don't overwrite options._ in jestTask (1581488+christiango@users.noreply.github.com)
 
 ## 0.44.3
 
