@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 10 Aug 2020 19:24:56 GMT",
+      "tag": "just-scripts_v0.44.3",
+      "version": "0.44.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add support for --clearCache to jest task",
+            "author": "1581488+christiango@users.noreply.github.com",
+            "commit": "cfcbb9bca286d83bdea655f667fe5ebfebeeff3f",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 03 Aug 2020 16:59:40 GMT",
       "tag": "just-scripts_v0.44.2",
       "version": "0.44.2",
