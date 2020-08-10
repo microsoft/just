@@ -11,6 +11,7 @@ export interface JestTaskOptions {
   watch?: boolean;
   colors?: boolean;
   passWithNoTests?: boolean;
+  clearCache?: boolean;
   testPathPattern?: string;
   testNamePattern?: string;
   u?: boolean;
@@ -47,6 +48,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         '--config',
         configFile,
         ...(options.passWithNoTests ? ['--passWithNoTests'] : []),
+        ...(options.clearCache ? ['--clearCache'] : []),
         ...(options.colors !== false && supportsColor.stdout ? ['--colors'] : []),
         ...(options.runInBand ? ['--runInBand'] : []),
         ...(options.coverage ? ['--coverage'] : []),
@@ -54,8 +56,8 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
-        ...(options._ || [])
-      ].filter(arg => !!arg) as Array<string>;
+        ...(options._ || []),
+      ].filter((arg) => !!arg) as Array<string>;
 
       logger.info(cmd, encodeArgs(args).join(' '));
 
