@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Wed, 16 Sep 2020 00:18:39 GMT",
+      "tag": "just-scripts_v0.44.5",
+      "version": "0.44.5",
+      "comments": {
+        "patch": [
+          {
+            "comment": "API extractor task: create destination directory if it doesn't exist",
+            "author": "elcraig@microsoft.com",
+            "commit": "a828a58f5e392376321cc0a766f75f1959780a86",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 10 Aug 2020 19:39:57 GMT",
       "tag": "just-scripts_v0.44.4",
       "version": "0.44.4",

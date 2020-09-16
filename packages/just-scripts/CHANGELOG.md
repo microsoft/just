@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 10 Aug 2020 19:39:57 GMT and should not be manually modified.
+This log was last generated on Wed, 16 Sep 2020 00:18:39 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.44.5
+
+Wed, 16 Sep 2020 00:18:39 GMT
+
+### Patches
+
+- API extractor task: create destination directory if it doesn't exist (elcraig@microsoft.com)
 
 ## 0.44.4
 
