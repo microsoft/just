@@ -112,6 +112,7 @@ export function apiExtractorUpdateTask(
       if (apiExtractorResult) {
         if (!apiExtractorResult.succeeded) {
           logger.warn(`- Update API: API file is out of date, updating...`);
+          fs.mkdirpSync(path.dirname(context.config.reportFilePath)); // ensure destination exists
           fs.copyFileSync(context.config.reportTempFilePath, context.config.reportFilePath);
 
           logger.info(`- Update API: successfully updated API file, verifying the updates...`);
