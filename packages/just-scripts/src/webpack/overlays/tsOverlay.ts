@@ -1,8 +1,6 @@
 import ts from 'typescript';
 import { tryRequire } from '../../tryRequire';
 
-const ForkTsCheckerPlugin = tryRequire('fork-ts-checker-webpack-plugin');
-
 export interface TsLoaderOptions {
   configFile: string;
   transpileOnly: boolean;
@@ -50,6 +48,8 @@ export interface TsOverlayOptions {
 }
 
 export const tsOverlay = (overlayOptions?: TsOverlayOptions) => {
+  const ForkTsCheckerPlugin = tryRequire('fork-ts-checker-webpack-plugin');
+
   overlayOptions = overlayOptions || {};
 
   overlayOptions.loaderOptions = overlayOptions.loaderOptions || {

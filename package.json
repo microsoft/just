@@ -8,22 +8,22 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "build": "lerna run --ignore just-task-docs --stream build",
+    "build": "lage build --scope !just-task-docs",
     "postbuild": "node ./scripts/copyReadme.js",
-    "build:docs": "lerna run --scope just-task-docs build",
+    "build:docs": "yarn workspace just-task-docs build",
     "change": "beachball change",
     "checkchange": "beachball check",
     "publish:beachball": "beachball publish",
-    "start": "lerna run start --parallel",
-    "test": "lerna run test",
+    "start": "lage start",
+    "test": "lage test",
     "lint": "eslint packages --ext .ts,.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
-    "beachball": "^1.30.2",
+    "beachball": "^1.36.0",
     "eslint": "^6.0.1",
-    "lerna": "^3.13.2"
+    "lage": "^0.19.8"
   },
   "workspaces": {
     "packages": [
