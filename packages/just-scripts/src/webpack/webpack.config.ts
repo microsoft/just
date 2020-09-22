@@ -2,7 +2,6 @@ import path from 'path';
 import merge from 'webpack-merge';
 import { tsOverlay } from './overlays/tsOverlay';
 import { fileOverlay } from './overlays/fileOverlay';
-import { displayBailoutOverlay } from './overlays/displayBailoutOverlay';
 import { stylesOverlay } from './overlays/stylesOverlay';
 
 export const basicWebpackConfig: any = {
@@ -14,4 +13,6 @@ export const basicWebpackConfig: any = {
   }
 };
 
-export const webpackConfig: any = merge(basicWebpackConfig, stylesOverlay(), tsOverlay(), fileOverlay(), displayBailoutOverlay());
+export const webpackConfig = (config: any) => {
+  return merge(basicWebpackConfig, stylesOverlay(), tsOverlay(), fileOverlay(), config);
+};

@@ -2,11 +2,6 @@
 import { resolve } from 'just-task';
 import { tryRequire } from '../../tryRequire';
 
-const styleLoader = resolve('@microsoft/loader-load-themed-styles') || resolve('style-loader');
-const sassLoader = resolve('node-sass') && resolve('sass-loader');
-const cssLoader = resolve('css-loader');
-const postCssLoader = resolve('postcss-loader');
-
 const cssTest = /\.css$/;
 const cssModuleTest = /\.module\.css$/;
 const sassTest = /\.(scss|sass)$/;
@@ -19,6 +14,9 @@ interface CssLoaderOptions {
 }
 
 function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass-loader' | null = null): any {
+  const styleLoader = resolve('@microsoft/loader-load-themed-styles') || resolve('style-loader');
+  const postCssLoader = resolve('postcss-loader');
+
   const preloaders = [
     ...(postCssLoader
       ? [
@@ -62,6 +60,9 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
 }
 
 export const createStylesOverlay = function(options: CssLoaderOptions = {}) {
+  const sassLoader = resolve('node-sass') && resolve('sass-loader');
+  const cssLoader = resolve('css-loader');
+
   return {
     module: {
       rules: [

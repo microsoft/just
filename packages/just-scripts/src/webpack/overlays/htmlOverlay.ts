@@ -1,7 +1,8 @@
 import { tryRequire } from '../../tryRequire';
 
-const HtmlWebpackPlugin = tryRequire('html-webpack-plugin');
-
-export const htmlOverlay = (options: any) => ({
-  plugins: [...(HtmlWebpackPlugin ? [new HtmlWebpackPlugin(options)] : [])]
-});
+export const htmlOverlay = (options: any) => {
+  const HtmlWebpackPlugin = tryRequire('html-webpack-plugin');
+  return {
+    plugins: [...(HtmlWebpackPlugin ? [new HtmlWebpackPlugin(options)] : [])]
+  };
+};
