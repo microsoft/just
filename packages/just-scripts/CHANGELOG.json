@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 22 Sep 2020 23:11:37 GMT",
+      "tag": "just-scripts_v0.44.6",
+      "version": "0.44.6",
+      "comments": {
+        "patch": [
+          {
+            "comment": "making just-scripts the most screaming fast thing",
+            "author": "kchau@microsoft.com",
+            "commit": "ced544d1ca61468a6fc577eb3daecb8274f5550d",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 16 Sep 2020 00:18:39 GMT",
       "tag": "just-scripts_v0.44.5",
       "version": "0.44.5",

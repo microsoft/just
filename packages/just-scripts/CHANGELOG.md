@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 16 Sep 2020 00:18:39 GMT and should not be manually modified.
+This log was last generated on Tue, 22 Sep 2020 23:11:37 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.44.6
+
+Tue, 22 Sep 2020 23:11:37 GMT
+
+### Patches
+
+- making just-scripts the most screaming fast thing (kchau@microsoft.com)
 
 ## 0.44.5
 

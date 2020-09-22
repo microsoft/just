@@ -2,6 +2,21 @@
   "name": "just-repo-utils",
   "entries": [
     {
+      "date": "Tue, 22 Sep 2020 23:11:37 GMT",
+      "tag": "just-repo-utils_v0.4.0",
+      "version": "0.4.0",
+      "comments": {
+        "none": [
+          {
+            "comment": "moving to contribs folder",
+            "author": "kchau@microsoft.com",
+            "commit": "ced544d1ca61468a6fc577eb3daecb8274f5550d",
+            "package": "just-repo-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 01 Jun 2020 23:29:27 GMT",
       "tag": "just-repo-utils_v0.4.0",
       "version": "0.4.0",
