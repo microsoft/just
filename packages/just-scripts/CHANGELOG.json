@@ -2,6 +2,20 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 24 Sep 2020 21:26:58 GMT",
+      "tag": "just-scripts_v0.44.7",
+      "version": "0.44.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "kchau@microsoft.com",
+            "commit": "041c8e253af2b93cb16263b6ffc37e16b8a26884",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 22 Sep 2020 23:11:37 GMT",
       "tag": "just-scripts_v0.44.6",
       "version": "0.44.6",

@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 22 Sep 2020 23:11:37 GMT and should not be manually modified.
+This log was last generated on Thu, 24 Sep 2020 21:26:58 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.44.7
+
+Thu, 24 Sep 2020 21:26:58 GMT
+
+### Patches
+
+- undefined (kchau@microsoft.com)
 
 ## 0.44.6
 
