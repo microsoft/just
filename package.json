@@ -13,7 +13,7 @@
     "build:docs": "yarn workspace just-task-docs build",
     "change": "beachball change",
     "checkchange": "beachball check",
-    "publish:beachball": "beachball publish",
+    "release": "beachball publish",
     "start": "lage start",
     "test": "lage test",
     "lint": "eslint packages --ext .ts,.js"
@@ -23,7 +23,8 @@
     "@typescript-eslint/parser": "^1.11.0",
     "beachball": "^1.36.0",
     "eslint": "^6.0.1",
-    "lage": "^0.19.8"
+    "lage": "^0.19.8",
+    "ghpages": "^0.0.10"
   },
   "workspaces": {
     "packages": [
