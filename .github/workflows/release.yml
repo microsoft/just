@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - run: yarn lage build test
+      - run: yarn lage build test --scope !just-task-docs
       - run: |
           git config user.email "kchau@microsoft.com"
           git config user.name "Ken Chau"
