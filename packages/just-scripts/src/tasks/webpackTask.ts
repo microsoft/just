@@ -12,15 +12,14 @@ export interface WebpackTaskOptions extends Configuration {
   outputStats?: boolean | string;
 
   /**
-   * Arguments to be passed into a spawn call for webpack dev server. This can be used to do things
-   * like increase the heap space for the JS engine to address out of memory issues.
-   */
-  nodeArgs?: string[];
-
-  /**
    * Environment variables to be passed to the webpack-dev-server
    */
   env?: NodeJS.ProcessEnv;
+
+  /**
+   * Optional callback triggered on compile
+   */
+  onCompile?: (err: Error, stats: any) => void | Promise<void>;
 }
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
@@ -59,12 +58,20 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
       // We support passing in arbitrary webpack config options that we need to merge with any read configs.
       // To do this, we need to filter out the properties that aren't valid config options and then run webpack merge.
       // A better long term solution here would be to have an option called webpackConfigOverrides instead of extending the configuration object.
-      const { config, outputStats, nodeArgs, ...restConfig } = options || ({} as WebpackTaskOptions);
+      const { config, outputStats, ...restConfig } = options || ({} as WebpackTaskOptions);
 
       webpackConfigs = webpackConfigPromises.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
 
       return new Promise((resolve, reject) => {
-        wp(webpackConfigs, (err: Error, stats: any) => {
+        wp(webpackConfigs, async (err: Error, stats: any) => {
+          if (options && options.onCompile) {
+            const results = options.onCompile(err, stats);
+
+            if (typeof results === 'object' && results.then) {
+              await results;
+            }
+          }
+
           if (options && options.outputStats) {
             const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
             fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));

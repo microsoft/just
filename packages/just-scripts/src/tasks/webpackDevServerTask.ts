@@ -8,6 +8,12 @@ import { WebpackCliTaskOptions } from './webpackCliTask';
 export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Configuration {
   config?: string;
 
+  /**
+   * Arguments to be passed into a spawn call for webpack dev server. This can be used to do things
+   * like increase the heap space for the JS engine to address out of memory issues.
+   */
+  nodeArgs?: string[];
+
   mode?: 'production' | 'development';
 
   /**
