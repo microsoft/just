@@ -32,21 +32,21 @@
     "@types/fs-extra": "^5.0.4",
     "@types/glob": "^7.1.1",
     "@types/handlebars": "^4.0.39",
-    "@types/jest": "^26.0.14",
+    "@types/jest": "^23.3.13",
     "@types/jju": "^1.4.0",
     "@types/marked": "^0.6.0",
     "@types/marked-terminal": "^3.1.1",
-    "@types/mock-fs": "^4.10.0",
+    "@types/mock-fs": "^3.6.30",
     "@types/node": "^10.12.18",
     "@types/semver": "^5.5.0",
     "@types/tar": "^4.0.0",
     "@types/tar-fs": "^1.16.1",
     "@types/yargs": "12.0.1",
     "gunzip-maybe": "^1.4.2",
-    "jest": "~26.4",
-    "mock-fs": "^4.13.0",
+    "jest": "^24.0.0",
+    "mock-fs": "^4.8.0",
     "tar-fs": "^2.1.0",
-    "ts-jest": "~26.4",
-    "typescript": "^4.0.3"
+    "ts-jest": "^24.0.1",
+    "typescript": "~3.4.4"
   }
 }

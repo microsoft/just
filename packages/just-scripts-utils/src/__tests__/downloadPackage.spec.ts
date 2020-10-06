@@ -5,7 +5,7 @@ import * as path from 'path';
 import child_process = require('child_process');
 import * as tar from 'tar-fs';
 // @ts-ignore no @types/gunzip-maybe
-import gunzip from 'gunzip-maybe';
+import * as gunzip from 'gunzip-maybe';
 import { paths } from '../paths';
 import { logger } from '../logger';
 import { _isDevMode, downloadPackage, _setMockDirname } from '../downloadPackage';
