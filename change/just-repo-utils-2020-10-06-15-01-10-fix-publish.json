@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "fixes publish",
+  "packageName": "just-repo-utils",
+  "email": "kchau@microsoft.com",
+  "dependentChangeType": "patch",
+  "date": "2020-10-06T22:01:06.837Z"
+}
