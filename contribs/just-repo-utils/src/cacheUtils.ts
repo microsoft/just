@@ -1,7 +1,7 @@
 import { gitListFiles, gitHashObject } from './gitUtils';
 import { getRepoInfo } from './repoInfo';
-import path from 'path';
-import fs from 'fs-extra';
+import * as path from 'path';
+import * as fs from 'fs-extra';
 
 /**
  * Processes the list of files (or globs), returns a set, then returns hash keys for those files

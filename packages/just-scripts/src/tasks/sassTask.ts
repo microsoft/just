@@ -1,9 +1,10 @@
-import glob from 'glob';
-import path from 'path';
-import fs from 'fs';
+import * as glob from 'glob';
+import * as path from 'path';
+import * as fs from 'fs';
 import { resolveCwd, TaskFunction, logger } from 'just-task';
-import parallelLimit from 'run-parallel-limit';
 import { tryRequire } from '../tryRequire';
+import parallelLimit = require('run-parallel-limit');
+
 export interface SassTaskOptions {
   createSourceModule: (fileName: string, css: string) => string;
   // Because we do not statically import postcssPlugin package, we cannot enforce type of postcssPlugins

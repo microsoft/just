@@ -1,4 +1,4 @@
-import mockfs from 'mock-fs';
+import mockfs = require('mock-fs');
 import { paths } from '../paths';
 import { findMonoRepoRootPath } from '../findMonoRepoRootPath';
 

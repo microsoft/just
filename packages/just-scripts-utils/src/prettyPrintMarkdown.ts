@@ -1,5 +1,5 @@
-import marked from 'marked';
-import TerminalRenderer from 'marked-terminal';
+import marked = require('marked');
+import TerminalRenderer = require('marked-terminal');
 
 /**
  * Pretty print markdown content for display in a terminal.

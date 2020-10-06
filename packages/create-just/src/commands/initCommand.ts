@@ -3,9 +3,9 @@ import { getPlopGenerator, runGenerator } from '../plop';
 import { paths, logger, prettyPrintMarkdown, downloadPackage } from 'just-scripts-utils';
 import { readdirSync, readFileSync, existsSync } from 'fs';
 import * as pkg from '../packageManager';
-import path from 'path';
-import prompts from 'prompts';
-import yargs from 'yargs';
+import * as path from 'path';
+import { Arguments } from 'yargs';
+import prompts = require('prompts');
 
 const initCwd = process.cwd();
 
@@ -39,7 +39,7 @@ async function getStackPath(pathName: string, registry?: string) {
  * 4. git init and commit
  * 5. yarn install
  */
-export async function initCommand(argv: yargs.Arguments<{ [key: string]: string }>) {
+export async function initCommand(argv: Arguments<{ [key: string]: string }>) {
   // TODO: autosuggest just-stack-* packages from npmjs.org
   if (!argv.stack) {
     const { stack } = await prompts({

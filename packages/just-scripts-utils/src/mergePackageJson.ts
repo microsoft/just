@@ -1,5 +1,5 @@
-import semver from 'semver';
 import { PackageJson } from './interfaces/PackageJson';
+import semver = require('semver');
 
 /**
  * Merges an incoming package.json with an original semantically. It can only handle merging
@@ -47,10 +47,7 @@ export function mergePackageJson(original: PackageJson, incoming: PackageJson): 
  * @param originalVersion The original dep version (default 0.0.0)
  * @param incomingVersion The incoming dep version
  */
-export function _shouldUpdateDep(
-  originalVersion: string | undefined,
-  incomingVersion: string
-): boolean {
+export function _shouldUpdateDep(originalVersion: string | undefined, incomingVersion: string): boolean {
   const strippedOriginalVersion = (originalVersion || '0.0.0').replace(/^[~^]/, '');
   const strippedIncomingVersion = incomingVersion.replace(/^[~^]/, '');
 

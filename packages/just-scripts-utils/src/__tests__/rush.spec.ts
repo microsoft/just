@@ -1,7 +1,7 @@
-import fs from 'fs';
-import mockfs from 'mock-fs';
-import jju from 'jju';
+import * as fs from 'fs';
 import { _justReadRushJson, _parseRushJson, rushAddPackage } from '../rush';
+import mockfs = require('mock-fs');
+import jju = require('jju');
 
 const rushJsonStrNoProjects = `{
   // this is a comment

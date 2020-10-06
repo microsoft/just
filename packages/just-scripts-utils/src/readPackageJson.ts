@@ -1,6 +1,6 @@
-import path from 'path';
-import fse from 'fs-extra';
+import * as path from 'path';
 import { PackageJson } from './interfaces/PackageJson';
+import fse = require('fs-extra');
 
 /**
  * Reads and parses the package.json file from the given folder.

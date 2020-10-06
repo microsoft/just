@@ -1,5 +1,5 @@
 import { Arguments } from 'yargs';
-import * as Undertaker from 'undertaker';
+import { TaskFunctionParams } from 'undertaker';
 import { Logger } from './logger';
 import { Duplex } from 'stream';
 
@@ -10,7 +10,7 @@ export interface TaskContext {
   logger: Logger;
 }
 
-export interface TaskFunction extends Undertaker.TaskFunctionParams {
+export interface TaskFunction extends TaskFunctionParams {
   (this: TaskContext, done: (error?: any) => void): void | Duplex | NodeJS.Process | Promise<never> | any;
   cached?: () => void;
   description?: string;

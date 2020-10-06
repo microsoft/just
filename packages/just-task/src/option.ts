@@ -1,4 +1,5 @@
-import parser, { Options, Arguments } from 'yargs-parser';
+import { Options, Arguments } from 'yargs-parser';
+import parser = require('yargs-parser');
 
 export interface OptionConfig {
   /** Aliases for the argument, can be a string or array */

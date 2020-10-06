@@ -1,8 +1,8 @@
 import { getConfigLoader, loadCJson } from './readConfigs';
 import { LernaJson, RushJson, PackageJson, PackageJsonLoader } from './interfaces/configTypes';
 import { RepoInfo, FindRootCallback, RepoInfoOptions } from './interfaces/repoInfoTypes';
-import path from 'path';
-import fse from 'fs-extra';
+import * as path from 'path';
+import * as fse from 'fs-extra';
 
 let _repoInfo: RepoInfo | undefined = undefined;
 

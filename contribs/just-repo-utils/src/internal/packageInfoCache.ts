@@ -3,8 +3,8 @@ import { getRepoHashKey, getCachePath } from '../cacheUtils';
 import { PackageEntries } from '../interfaces/packageInfoTypes';
 import { getConfigLoader, readJsonConfig } from '../readConfigs';
 import { PackageJson, PackageJsonLoader } from '../interfaces/configTypes';
-import fs from 'fs-extra';
-import path from 'path';
+import * as fs from 'fs-extra';
+import * as path from 'path';
 
 interface ISerializablePackageEntry {
   path: string;

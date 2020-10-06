@@ -1,5 +1,5 @@
 import { encodeArgs, exec, ExecError } from '../exec';
-import cp from 'child_process';
+import * as cp from 'child_process';
 import { Readable } from 'stream';
 
 describe('encodeArgs', () => {

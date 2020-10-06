@@ -19,8 +19,8 @@
     "lint": "eslint packages --ext .ts,.js"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^1.11.0",
-    "@typescript-eslint/parser": "^1.11.0",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
     "beachball": "^1.36.1",
     "eslint": "^6.0.1",
     "lage": "^0.19.8",
