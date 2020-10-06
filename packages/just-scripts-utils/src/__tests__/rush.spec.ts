@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import fs = require('fs');
 import { _justReadRushJson, _parseRushJson, rushAddPackage } from '../rush';
 import mockfs = require('mock-fs');
 import jju = require('jju');
@@ -120,7 +120,7 @@ describe('readRushJson', () => {
     });
 
     // cause a fake update error
-    jest.spyOn(jju, 'update', 'get').mockImplementationOnce(throwError);
+    jest.spyOn(jju, 'update' as never, 'get').mockImplementationOnce(throwError);
     rushAddPackage('b', 'root');
     expect(consoleError).toHaveBeenCalled();
     expect(fs.readFileSync('root/rush.json').toString()).toEqual(rushJsonStr);

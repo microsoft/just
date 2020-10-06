@@ -2,7 +2,7 @@
 import mockfs = require('mock-fs');
 import * as fs from 'fs';
 import * as path from 'path';
-import * as child_process from 'child_process';
+import child_process = require('child_process');
 import * as tar from 'tar-fs';
 // @ts-ignore no @types/gunzip-maybe
 import gunzip from 'gunzip-maybe';

@@ -1,5 +1,5 @@
-import * as fse from 'fs-extra';
-import * as glob from 'glob';
+import fse = require('fs-extra');
+import glob = require('glob');
 import * as path from 'path';
 import { _processFileFromTemplate, _writeHbsFile, applyTemplate } from '../applyTemplate';
 import { logger } from '../logger';

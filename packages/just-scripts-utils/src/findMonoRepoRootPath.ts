@@ -1,7 +1,7 @@
 import { paths } from './paths';
-import * as path from 'path';
 import { readPackageJson } from './readPackageJson';
-import * as fse from 'fs-extra';
+import * as path from 'path';
+import fse = require('fs-extra');
 
 /**
  * Find the path of a monorepo root relative to the project being generated/updated (as defined

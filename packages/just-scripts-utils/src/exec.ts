@@ -1,5 +1,5 @@
 import * as cp from 'child_process';
-import * as path from 'path';
+import { resolve } from 'path';
 
 export interface ExecError extends cp.ExecException {
   stdout?: string;
@@ -76,7 +76,7 @@ export function execSync(cmd: string, cwd?: string, returnOutput?: boolean): str
   cwd = cwd || process.cwd();
 
   const env = { ...process.env };
-  env.PATH = path.resolve('./node_modules/.bin') + SEPARATOR + env.PATH;
+  env.PATH = resolve('./node_modules/.bin') + SEPARATOR + env.PATH;
 
   const output = cp.execSync(cmd, {
     cwd,
