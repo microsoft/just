@@ -2,6 +2,29 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 06 Oct 2020 23:06:25 GMT",
+      "tag": "just-scripts_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Remove implicit SDI usage",
+            "author": "darthtrevino@gmail.com",
+            "commit": "2301badd04f2581b262ff7ec304f612c717efc8c",
+            "package": "just-scripts"
+          }
+        ],
+        "major": [
+          {
+            "comment": "removed just-stack-*",
+            "author": "kchau@microsoft.com",
+            "commit": "7f6c1c32d5715a33b2a8be066796e941b4d9558b",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 24 Sep 2020 21:26:58 GMT",
       "tag": "just-scripts_v0.44.7",
       "version": "0.44.7",
