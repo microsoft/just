@@ -6,6 +6,7 @@
     "type": "git",
     "url": "https://github.com/microsoft/just"
   },
+  "private": true,
   "main": "./lib/index.js",
   "scripts": {
     "build": "tsc",
