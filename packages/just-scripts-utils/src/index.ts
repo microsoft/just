@@ -1,4 +1,3 @@
-export { downloadPackage } from './downloadPackage';
 export * from './exec';
 export * from './findMonoRepoRootPath';
 export * from './interfaces/PackageJson';
@@ -9,4 +8,3 @@ export * from './paths';
 export * from './prettyPrintMarkdown';
 export * from './readPackageJson';
 export { readRushJson, rushAddPackage, rushUpdate } from './rush';
-export { applyTemplate } from './applyTemplate';

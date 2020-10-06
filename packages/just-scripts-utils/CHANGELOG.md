@@ -1,8 +1,21 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Fri, 12 Jun 2020 00:43:50 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Oct 2020 23:06:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.0
+
+Tue, 06 Oct 2020 23:06:25 GMT
+
+### Major changes
+
+- removed just-stack-* (kchau@microsoft.com)
+
+### Patches
+
+- Remove implicit SDI usage (darthtrevino@gmail.com)
+- fixes publish (kchau@microsoft.com)
 
 ## 0.9.1
 
