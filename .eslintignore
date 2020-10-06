@@ -5,3 +5,4 @@ jest.config.js
 packages/just-stack-monorepo/template/common/scripts
 packages/example-lib
 packages/documentation/website/build
+.yarn/

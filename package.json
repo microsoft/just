@@ -23,8 +23,8 @@
     "@typescript-eslint/parser": "^1.11.0",
     "beachball": "^1.36.1",
     "eslint": "^6.0.1",
-    "lage": "^0.19.8",
-    "ghpages": "^0.0.10"
+    "ghpages": "^0.0.10",
+    "lage": "^0.19.8"
   },
   "workspaces": {
     "packages": [
