@@ -4,6 +4,7 @@ import { logger, argv, resolveCwd, TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import fs from 'fs';
 import webpackMerge from 'webpack-merge';
+import { findWebpackConfig } from '../webpack/findWebpackConfig';
 
 export interface WebpackTaskOptions extends Configuration {
   config?: string;
@@ -32,7 +33,9 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     }
 
     logger.info(`Running Webpack`);
-    const webpackConfigPath = resolveCwd((options && options.config) || 'webpack.config.js');
+
+    let webpackConfigPath = findWebpackConfig('webpack.config.js', options && options.config);
+
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
 
     if (webpackConfigPath && fs.existsSync(webpackConfigPath)) {

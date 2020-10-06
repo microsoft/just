@@ -1,5 +1,8 @@
 import { logger, TaskFunction, resolve } from 'just-task';
 import { spawn } from 'just-scripts-utils';
+import { getTsNodeWebpackEnv } from '../webpack/getTsNodeWebpackEnv';
+import { findConfigFile } from 'typescript';
+import { findWebpackConfig } from '../webpack/findWebpackConfig';
 
 export interface WebpackCliTaskOptions {
   /**
@@ -17,6 +20,16 @@ export interface WebpackCliTaskOptions {
    * Environment variables to be passed to the webpack-cli
    */
   env?: NodeJS.ProcessEnv;
+
+  /**
+   * The tsconfig file to pass to ts-node for Typescript config
+   */
+  tsconfig?: string;
+
+  /**
+   * Transpile the config only
+   */
+  transpileOnly?: boolean;
 }
 
 /**
@@ -42,7 +55,19 @@ export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunctio
       ...(options && options.webpackCliArgs ? options.webpackCliArgs : [])
     ];
 
+    let configPath = findWebpackConfig('webpack.config.js');
+
+    if (options.webpackCliArgs) {
+      const configIndex = options.webpackCliArgs.indexOf('--config');
+      const configPathAvailable = configIndex > -1 && options.webpackCliArgs.length > configIndex + 2;
+      if (configPathAvailable) {
+        configPath = options.webpackCliArgs[configIndex + 1];
+      }
+    }
+
     logger.info(`webpack-cli arguments: ${process.execPath} ${args.join(' ')}`);
+
+    options.env = { ...options.env, ...getTsNodeWebpackEnv(configPath, options.tsconfig, options.transpileOnly) };
 
     return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
   };
