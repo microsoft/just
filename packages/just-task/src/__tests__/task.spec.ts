@@ -1,11 +1,9 @@
 import { task } from '../task';
 import { parallel, undertaker } from '../undertaker';
-import UndertakerRegistry from 'undertaker-registry';
-
 import { logger } from '../logger';
-import path from 'path';
-
+import * as path from 'path';
 import * as option from '../option';
+import UndertakerRegistry = require('undertaker-registry');
 
 describe('task', () => {
   beforeAll(() => {

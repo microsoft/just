@@ -1,5 +1,5 @@
-import path from 'path';
-import os from 'os';
+import * as path from 'path';
+import * as os from 'os';
 import { paths } from '../paths';
 
 describe('paths', () => {

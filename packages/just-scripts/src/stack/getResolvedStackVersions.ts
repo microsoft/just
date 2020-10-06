@@ -1,7 +1,7 @@
 import { getAvailableStacks } from './getAvailableStacks';
 import { resolve } from 'just-task';
 import { readPackageJson } from 'just-scripts-utils';
-import path from 'path';
+import * as path from 'path';
 
 /**
  * Get resolved stack versions, for monorepo, pass in the /scripts, for others, pass in the rootPath

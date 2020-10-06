@@ -1,7 +1,7 @@
-import fs from 'fs';
-import mockfs from 'mock-fs';
-import jju from 'jju';
+import fs = require('fs');
 import { _justReadRushJson, _parseRushJson, rushAddPackage } from '../rush';
+import mockfs = require('mock-fs');
+import jju = require('jju');
 
 const rushJsonStrNoProjects = `{
   // this is a comment
@@ -120,7 +120,7 @@ describe('readRushJson', () => {
     });
 
     // cause a fake update error
-    jest.spyOn(jju, 'update', 'get').mockImplementationOnce(throwError);
+    jest.spyOn(jju, 'update' as never, 'get').mockImplementationOnce(throwError);
     rushAddPackage('b', 'root');
     expect(consoleError).toHaveBeenCalled();
     expect(fs.readFileSync('root/rush.json').toString()).toEqual(rushJsonStr);

@@ -2,7 +2,7 @@ import { PackageJson, PackageJsonLoader, RushProject } from '../interfaces/confi
 import { PackageEntries, PackageEntry, PackageInfo, PackageInfoOptions } from '../interfaces/packageInfoTypes';
 import { getConfigLoader, readPackageJson } from '../readConfigs';
 import { normalizeToUnixPath } from '../normalizeToUnixPath';
-import path from 'path';
+import * as path from 'path';
 import glob from 'glob';
 
 function buildPackageInfo(root: string, pkgPath: string, pkgJsonName?: string): PackageEntries {

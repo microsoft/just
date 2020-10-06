@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 import { resolveCwd } from '../resolve';
 import { findPackageRoot } from './findPackageRoot';
 import { logger, mark } from 'just-task-logger';

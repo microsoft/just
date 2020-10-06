@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 
 /**
  * take a path, call path.normalize, then make sure it uses forward slashes

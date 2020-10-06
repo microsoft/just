@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Remove implicit SDI usage",
+  "packageName": "just-repo-utils",
+  "email": "darthtrevino@gmail.com",
+  "dependentChangeType": "patch",
+  "date": "2020-10-06T13:08:28.868Z"
+}

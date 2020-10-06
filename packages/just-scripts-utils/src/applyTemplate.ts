@@ -1,7 +1,7 @@
-import glob from 'glob';
-import path from 'path';
-import fse from 'fs-extra';
-import handlebars from 'handlebars';
+import * as glob from 'glob';
+import * as path from 'path';
+import * as fse from 'fs-extra';
+import * as handlebars from 'handlebars';
 import { logger } from './logger';
 
 export interface ApplyTemplateResult {

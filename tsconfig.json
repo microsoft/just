@@ -13,6 +13,7 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "esModuleInterop": true
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": false
   }
 }

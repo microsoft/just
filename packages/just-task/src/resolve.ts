@@ -1,5 +1,5 @@
 import { sync as resolveSync } from 'resolve';
-import path from 'path';
+import * as path from 'path';
 import { argv } from './option';
 
 export interface ResolveOptions {

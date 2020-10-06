@@ -1,4 +1,4 @@
-import mockfs from 'mock-fs';
+import mockfs = require('mock-fs');
 import { encodeArgs, exec, spawn } from 'just-scripts-utils';
 import { TaskFunction } from 'just-task';
 import { tscTask, tscWatchTask, TscTaskOptions } from '../tscTask';

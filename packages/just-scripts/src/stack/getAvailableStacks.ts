@@ -1,5 +1,5 @@
 import { readPackageJson } from 'just-scripts-utils';
-import path from 'path';
+import * as path from 'path';
 
 export function getAvailableStacks(rootPath: string) {
   const packageJson = readPackageJson(rootPath);

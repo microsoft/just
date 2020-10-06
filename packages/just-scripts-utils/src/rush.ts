@@ -1,9 +1,9 @@
 import { spawnSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import jju from 'jju';
+import * as fs from 'fs';
+import * as path from 'path';
 import { logger } from './logger';
 import { RushJson } from './interfaces/RushJson';
+import jju = require('jju');
 
 /**
  * Runs rush update.
