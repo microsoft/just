@@ -1,4 +1,4 @@
-import asyncDoneAsCallback from 'async-done';
+import asyncDoneAsCallback = require('async-done');
 import { promisify } from 'util';
 import { Arguments } from 'yargs';
 import { logger, TaskFunction, TaskContext } from 'just-task';

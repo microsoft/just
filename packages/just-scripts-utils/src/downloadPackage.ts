@@ -1,9 +1,9 @@
 import { spawnSync } from 'child_process';
 import { paths } from './paths';
-import os from 'os';
-import fse from 'fs-extra';
-import tar from 'tar';
-import path from 'path';
+import * as os from 'os';
+import * as fse from 'fs-extra';
+import * as tar from 'tar';
+import * as path from 'path';
 import { readPackageJson } from './readPackageJson';
 import { logger } from './logger';
 

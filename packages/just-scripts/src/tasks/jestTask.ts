@@ -1,7 +1,7 @@
 import { resolve, logger, resolveCwd, TaskFunction, argv } from 'just-task';
 import { spawn, encodeArgs } from 'just-scripts-utils';
 import { existsSync } from 'fs';
-import supportsColor from 'supports-color';
+import * as supportsColor from 'supports-color';
 
 export interface JestTaskOptions {
   config?: string;
@@ -55,8 +55,8 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
-        ...(options._ || []).concat(positional),
-      ].filter((arg) => !!arg) as Array<string>;
+        ...(options._ || []).concat(positional)
+      ].filter(arg => !!arg) as Array<string>;
 
       logger.info(cmd, encodeArgs(args).join(' '));
 

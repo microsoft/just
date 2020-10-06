@@ -9,9 +9,9 @@ import {
 } from 'just-scripts-utils';
 import { argv, TaskFunction } from 'just-task';
 import { findInstalledStacks } from '../monorepo/findInstalledStacks';
-import fse from 'fs-extra';
-import path from 'path';
-import prompts from 'prompts';
+import * as fse from 'fs-extra';
+import * as path from 'path';
+import prompts = require('prompts');
 
 export function addPackageTask(): TaskFunction {
   return async function addPackage() {
@@ -39,11 +39,11 @@ export function addPackageTask(): TaskFunction {
     const response = args.stack
       ? { stack: args.stack }
       : await prompts({
-        type: 'select',
-        name: 'stack',
-        message: 'What type of package to add to the repo?',
-        choices: installedStacks.map(stack => ({ title: stack.description, value: stack.name }))
-      });
+          type: 'select',
+          name: 'stack',
+          message: 'What type of package to add to the repo?',
+          choices: installedStacks.map(stack => ({ title: stack.description, value: stack.name }))
+        });
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const selectedStack = installedStacks.find(stack => stack.name === response.stack)!;

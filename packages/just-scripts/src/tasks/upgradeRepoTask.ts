@@ -1,5 +1,5 @@
 import { findMonoRepoRootPath, readRushJson, readPackageJson, logger } from 'just-scripts-utils';
-import path from 'path';
+import * as path from 'path';
 import { TaskFunction } from 'just-task';
 import { writeLockFile } from '../stack/lockfile';
 import { getStackDiffs } from '../stack/getStackDiffs';

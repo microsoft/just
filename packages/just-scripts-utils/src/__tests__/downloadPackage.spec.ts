@@ -1,11 +1,11 @@
 /*eslint @typescript-eslint/camelcase: ["error", {allow: ["child_process"]}]*/
-import mockfs from 'mock-fs';
-import fs from 'fs';
-import path from 'path';
-import child_process from 'child_process';
-import tar from 'tar-fs';
+import mockfs = require('mock-fs');
+import * as fs from 'fs';
+import * as path from 'path';
+import child_process = require('child_process');
+import * as tar from 'tar-fs';
 // @ts-ignore no @types/gunzip-maybe
-import gunzip from 'gunzip-maybe';
+import * as gunzip from 'gunzip-maybe';
 import { paths } from '../paths';
 import { logger } from '../logger';
 import { _isDevMode, downloadPackage, _setMockDirname } from '../downloadPackage';
@@ -117,7 +117,10 @@ describe('downloadPackage', () => {
     jest.spyOn(child_process, 'spawnSync').mockImplementationOnce((_cmd: string, args?: readonly string[]) => {
       expect(args).toContain(`${pkg}@${version}`);
       // instead of downloading a tarball, create one in the expected spot
-      tar.pack(pkg).pipe(gunzip()).pipe(fs.createWriteStream(path.join(fakeTemp, pkg, 'result.tgz')));
+      tar
+        .pack(pkg)
+        .pipe(gunzip())
+        .pipe(fs.createWriteStream(path.join(fakeTemp, pkg, 'result.tgz')));
       return { pid: 100, output: [], signal: '', status: 0, stderr: Buffer.from(''), stdout: Buffer.from('') };
     });
 

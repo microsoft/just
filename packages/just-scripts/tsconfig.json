@@ -4,5 +4,6 @@
     "outDir": "lib",
     "sourceMap": true
   },
-  "include": ["src", "typings/*.d.ts"]
+  "include": ["src", "typings/*.d.ts"],
+  "exclude": ["**/__tests__/**"]
 }

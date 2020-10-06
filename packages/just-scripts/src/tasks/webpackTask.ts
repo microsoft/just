@@ -2,8 +2,8 @@
 import { Configuration } from 'webpack';
 import { logger, argv, resolveCwd, TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
-import fs from 'fs';
-import webpackMerge from 'webpack-merge';
+import * as fs from 'fs';
+import webpackMerge = require('webpack-merge');
 
 export interface WebpackTaskOptions extends Configuration {
   config?: string;

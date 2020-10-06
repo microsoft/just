@@ -1,6 +1,6 @@
-import path from 'path';
-import fs from 'fs';
-import mockfs from 'mock-fs';
+import * as path from 'path';
+import * as fs from 'fs';
+import mockfs = require('mock-fs');
 // import { dirSync, fileSync, DirResult, FileResult } from 'tmp';
 import { executeCopyInstructions } from '../executeCopyInstructions';
 
@@ -20,10 +20,9 @@ describe('executeCopyInstructions functional tests', () => {
     mockfs({
       [sourceDir]: {
         [sourceFile1]: sourceFileContents1,
-        [sourceFile2]: sourceFileContents2,
+        [sourceFile2]: sourceFileContents2
       },
-      [destDir]: {
-      }
+      [destDir]: {}
     });
   });
 
@@ -40,9 +39,7 @@ describe('executeCopyInstructions functional tests', () => {
     expect(fs.existsSync(destFilePath)).toBeFalsy();
 
     await executeCopyInstructions({
-      copyInstructions: [
-        copyInstruction
-      ]
+      copyInstructions: [copyInstruction]
     });
 
     expect(fs.existsSync(destFilePath)).toBeTruthy();
@@ -58,9 +55,7 @@ describe('executeCopyInstructions functional tests', () => {
     expect(fs.existsSync(destFilePath)).toBeFalsy();
 
     await executeCopyInstructions({
-      copyInstructions: [
-        copyInstruction
-      ]
+      copyInstructions: [copyInstruction]
     });
 
     expect(fs.existsSync(destFilePath)).toBeTruthy();
@@ -78,9 +73,7 @@ describe('executeCopyInstructions functional tests', () => {
     expect(fs.existsSync(destFilePath)).toBeFalsy();
 
     await executeCopyInstructions({
-      copyInstructions: [
-        copyInstruction
-      ]
+      copyInstructions: [copyInstruction]
     });
 
     expect(fs.existsSync(destFilePath)).toBeTruthy();

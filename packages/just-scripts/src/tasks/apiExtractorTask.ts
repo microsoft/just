@@ -1,6 +1,6 @@
 import { logger, TaskFunction } from 'just-task';
-import fs from 'fs-extra';
-import path from 'path';
+import * as fs from 'fs-extra';
+import * as path from 'path';
 import { tryRequire } from '../tryRequire';
 import * as ApiExtractorTypes from './apiExtractorTypes';
 

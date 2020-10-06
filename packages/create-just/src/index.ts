@@ -1,4 +1,4 @@
-import parser from 'yargs-parser';
+import parser = require('yargs-parser');
 import { initCommand } from './commands/initCommand';
 import { initialize } from './getEnvInfo';
 

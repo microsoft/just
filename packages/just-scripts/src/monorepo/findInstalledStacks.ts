@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import { StackInfo } from '../stack/StackInfo';
 import { readPackageJson } from 'just-scripts-utils';
 import { getAvailableStacks } from '../stack/getAvailableStacks';

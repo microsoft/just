@@ -1,5 +1,5 @@
-import mockfs from 'mock-fs';
 import { readPackageJson } from '../readPackageJson';
+import mockfs = require('mock-fs');
 
 describe('readPackageJson', () => {
   const testDir = 'testDir';

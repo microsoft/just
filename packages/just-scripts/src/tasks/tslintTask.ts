@@ -1,7 +1,7 @@
 import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { exec, encodeArgs } from 'just-scripts-utils';
-import path from 'path';
-import fs from 'fs';
+import * as path from 'path';
+import * as fs from 'fs';
 
 export interface TsLintTaskOptions {
   config?: string;
@@ -18,14 +18,7 @@ export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
     if (projectFile && tslintCmd && fs.existsSync(projectFile)) {
       logger.info(`Running tslint`);
 
-      const args = [
-        '--project',
-        projectFile,
-        '-t',
-        'stylish',
-        '-r',
-        path.dirname(resolve('tslint-microsoft-contrib') || '')
-      ];
+      const args = ['--project', projectFile, '-t', 'stylish', '-r', path.dirname(resolve('tslint-microsoft-contrib') || '')];
 
       if (options.fix) {
         args.push('--fix');

@@ -1,6 +1,6 @@
 import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { encodeArgs, spawn } from 'just-scripts-utils';
-import fs from 'fs';
+import * as fs from 'fs';
 
 /**
  * Task options generally follow ESLint CLI options explained here:

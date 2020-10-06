@@ -1,9 +1,9 @@
-import Undertaker from 'undertaker';
 import { logger } from './logger';
 import chalk from 'chalk';
 import { wrapTask } from './wrapTask';
 import { Task } from './interfaces';
 import { clearCache } from './cache';
+import Undertaker = require('undertaker');
 
 const undertaker = new Undertaker();
 const NS_PER_SEC = 1e9;

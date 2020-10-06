@@ -1,7 +1,7 @@
-import fs from 'fs-extra';
-import glob from 'glob';
+import * as fs from 'fs-extra';
+import * as glob from 'glob';
 import { downloadPackage, logger } from 'just-scripts-utils';
-import path from 'path';
+import * as path from 'path';
 import { DiffInfo } from './DiffInfo';
 import { diff_match_patch as DiffMatchPatch, patch_obj as Patch, Diff } from 'diff-match-patch';
 import { StackVersions } from './StackVersions';

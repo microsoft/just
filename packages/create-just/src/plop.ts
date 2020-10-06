@@ -1,5 +1,5 @@
 import nodePlop from 'node-plop';
-import path from 'path';
+import * as path from 'path';
 import { logger } from 'just-task-logger';
 import { downloadPackage } from 'just-scripts-utils';
 

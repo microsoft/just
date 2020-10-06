@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import { resolveCwd } from '../resolve';
 
 export function findPackageRoot() {

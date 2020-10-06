@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import yargs from 'yargs';
+import { argv } from 'yargs';
 import { getDeltaAndClearMark } from './perf';
 
 function logInternal(method: 'info' | 'warn' | 'error', symbol: string, ...args: any[]) {
@@ -29,7 +29,7 @@ const square = '\u25a0';
 const triangle = '\u25b2';
 
 export const logger: Logger = {
-  enableVerbose: !!yargs.argv.verbose,
+  enableVerbose: !!argv.verbose,
 
   verbose(...args: any[]) {
     if (logger.enableVerbose) {
