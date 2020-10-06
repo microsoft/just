@@ -1,5 +1,5 @@
-import cp from 'child_process';
-import path from 'path';
+import * as cp from 'child_process';
+import * as path from 'path';
 
 export interface ExecError extends cp.ExecException {
   stdout?: string;

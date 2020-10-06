@@ -1,5 +1,5 @@
 import { Arguments } from 'yargs';
-import Undertaker from 'undertaker';
+import * as Undertaker from 'undertaker';
 import { Logger } from './logger';
 import { Duplex } from 'stream';
 

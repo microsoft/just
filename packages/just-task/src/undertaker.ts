@@ -1,4 +1,4 @@
-import Undertaker from 'undertaker';
+import * as Undertaker from 'undertaker';
 import { logger } from './logger';
 import chalk from 'chalk';
 import { wrapTask } from './wrapTask';

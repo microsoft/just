@@ -32,7 +32,7 @@ export {
   TsLoaderOptions
 };
 
-import webpackMerge from 'webpack-merge';
+import * as webpackMerge from 'webpack-merge';
 export { webpackMerge };
 
 import * as copyInstructions from './copy/CopyInstruction';
