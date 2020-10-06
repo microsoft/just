@@ -23,7 +23,7 @@
     "jest": "^24.8.0",
     "jest-expect-message": "^1.0.2",
     "just-plop-helpers": "^1.1.2",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "plop": "^2.5.0",
     "postcss": "^7.0.13",
     "postcss-loader": "^3.0.0",
