@@ -1,8 +1,20 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 24 Sep 2020 21:26:58 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Oct 2020 23:06:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.0
+
+Tue, 06 Oct 2020 23:06:25 GMT
+
+### Major changes
+
+- removed just-stack-* (kchau@microsoft.com)
+
+### Patches
+
+- Remove implicit SDI usage (darthtrevino@gmail.com)
 
 ## 0.44.7
 

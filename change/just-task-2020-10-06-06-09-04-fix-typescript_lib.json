@@ -1,8 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Remove implicit SDI usage",
-  "packageName": "just-task",
-  "email": "darthtrevino@gmail.com",
-  "dependentChangeType": "patch",
-  "date": "2020-10-06T13:09:04.299Z"
-}
