@@ -24,7 +24,7 @@
     "bach": "^1.2.0",
     "chalk": "^2.4.1",
     "fs-extra": "^7.0.1",
-    "just-task-logger": ">=0.3.1 <1.0.0",
+    "just-task-logger": ">=0.3.2 <1.0.0",
     "resolve": "^1.8.1",
     "undertaker": "^1.2.1",
     "undertaker-registry": "^1.0.1",

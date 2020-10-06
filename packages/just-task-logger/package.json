@@ -1,6 +1,6 @@
 {
   "name": "just-task-logger",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Logger for Just scripts and tasks",
   "repository": {
     "type": "git",
