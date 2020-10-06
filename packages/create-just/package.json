@@ -26,7 +26,7 @@
     "typescript": "~3.5.3",
     "fs-extra": "^7.0.1",
     "prompts": "^2.0.1",
-    "yargs-parser": "^13.1.1",
+    "yargs-parser": "^13.1.2",
     "just-plop-helpers": "^1.1.2",
     "node-plop": "^0.20.0",
     "just-scripts-utils": ">=0.9.1 <1.0.0"

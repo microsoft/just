@@ -28,7 +28,7 @@
     "resolve": "^1.8.1",
     "undertaker": "^1.2.1",
     "undertaker-registry": "^1.0.1",
-    "yargs-parser": "^18.1.2"
+    "yargs-parser": "^13.1.2"
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.4",
