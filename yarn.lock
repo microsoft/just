@@ -1965,13 +1965,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/handlebars@npm:^4.0.39":
-  version: 4.0.40
-  resolution: "@types/handlebars@npm:4.0.40"
-  checksum: 7397a3924a62d823580f3b1270267785b674eae094b4d50961226765720a3e0b93a22139b3fda609c7e3a59677e55cf6ff202ac7699ff9f6fc62ff9e68a96cba
-  languageName: node
-  linkType: hard
-
 "@types/handlebars@npm:^4.1.0":
   version: 4.1.0
   resolution: "@types/handlebars@npm:4.1.0"
@@ -10649,7 +10642,6 @@ fsevents@~2.1.2:
   dependencies:
     "@types/fs-extra": ^5.0.4
     "@types/glob": ^7.1.1
-    "@types/handlebars": ^4.0.39
     "@types/jest": ^23.3.13
     "@types/jju": ^1.4.0
     "@types/marked": ^0.6.0

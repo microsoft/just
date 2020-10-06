@@ -31,7 +31,6 @@
   "devDependencies": {
     "@types/fs-extra": "^5.0.4",
     "@types/glob": "^7.1.1",
-    "@types/handlebars": "^4.0.39",
     "@types/jest": "^23.3.13",
     "@types/jju": "^1.4.0",
     "@types/marked": "^0.6.0",
