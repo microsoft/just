@@ -10821,6 +10821,7 @@ fsevents@~2.1.2:
     prompts: ^2.0.1
     run-parallel-limit: ^1.0.5
     supports-color: ^7.1.0
+    ts-jest: ^24.0.1
     typescript: ~3.8.3
     webpack-merge: ^4.2.1
   bin:
