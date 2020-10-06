@@ -1,6 +1,6 @@
 import { encodeArgs, exec, ExecError } from '../exec';
-import cp from 'child_process';
 import { Readable } from 'stream';
+import cp = require('child_process');
 
 describe('encodeArgs', () => {
   it('encodes things with spaces with double quotes', () => {

@@ -1,7 +1,7 @@
 import { spawnSync } from 'child_process';
 import { getEnvInfo } from './getEnvInfo';
 import { existsSync, writeFileSync } from 'fs';
-import path from 'path';
+import * as path from 'path';
 
 export function getYarn() {
   const yarnInfo = getEnvInfo().Binaries.Yarn;

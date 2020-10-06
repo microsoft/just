@@ -1,8 +1,8 @@
 import { DiffInfo } from './DiffInfo';
 import { diff_match_patch as DiffMatchPatch } from 'diff-match-patch';
-import glob from 'glob';
-import fs from 'fs';
-import path from 'path';
+import * as glob from 'glob';
+import * as fs from 'fs';
+import * as path from 'path';
 import { logger } from 'just-task';
 
 export function applyStackDiffs(projectPath: string, diffInfo: DiffInfo) {

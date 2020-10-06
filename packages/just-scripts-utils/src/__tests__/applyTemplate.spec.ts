@@ -1,9 +1,9 @@
-import mockfs from 'mock-fs';
-import fse from 'fs-extra';
-import glob from 'glob';
-import path from 'path';
+import fse = require('fs-extra');
+import glob = require('glob');
+import * as path from 'path';
 import { _processFileFromTemplate, _writeHbsFile, applyTemplate } from '../applyTemplate';
 import { logger } from '../logger';
+import mockfs = require('mock-fs');
 
 // Example handlebars templates
 const helloTemplate = 'Hello {{name}}';

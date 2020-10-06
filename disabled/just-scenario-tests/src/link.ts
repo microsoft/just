@@ -1,6 +1,6 @@
 // Links up all the just-* packages for testing
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 export function link(monorepoPath: string, toolsPath: string) {
   const scriptsPath = path.join(monorepoPath, 'scripts');

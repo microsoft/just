@@ -1,7 +1,7 @@
-import ts from 'typescript';
+import * as ts from 'typescript';
 import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
 import { exec, encodeArgs, spawn } from 'just-scripts-utils';
-import fs from 'fs';
+import * as fs from 'fs';
 
 export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean | string[] } & {
   nodeArgs?: string[];

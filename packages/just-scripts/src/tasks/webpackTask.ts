@@ -1,9 +1,9 @@
 // // WARNING: Careful about add more imports - only import types from webpack
 import { Configuration } from 'webpack';
-import { logger, argv, resolveCwd, TaskFunction } from 'just-task';
+import { logger, argv, TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
-import fs from 'fs';
-import webpackMerge from 'webpack-merge';
+import * as fs from 'fs';
+import webpackMerge = require('webpack-merge');
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 
 export interface WebpackTaskOptions extends Configuration {
@@ -56,14 +56,14 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
       }
 
       // Convert everything to promises first to make sure we resolve all promises
-      const webpackConfigPromises = await Promise.all(webpackConfigs.map(webpackConfig => Promise.resolve(webpackConfig)));
+      const webpackConfigPromises = await Promise.all(webpackConfigs.map((webpackConfig) => Promise.resolve(webpackConfig)));
 
       // We support passing in arbitrary webpack config options that we need to merge with any read configs.
       // To do this, we need to filter out the properties that aren't valid config options and then run webpack merge.
       // A better long term solution here would be to have an option called webpackConfigOverrides instead of extending the configuration object.
       const { config, outputStats, ...restConfig } = options || ({} as WebpackTaskOptions);
 
-      webpackConfigs = webpackConfigPromises.map(webpackConfig => webpackMerge(webpackConfig, restConfig));
+      webpackConfigs = webpackConfigPromises.map((webpackConfig) => webpackMerge(webpackConfig, restConfig));
 
       return new Promise((resolve, reject) => {
         wp(webpackConfigs, async (err: Error, stats: any) => {
@@ -81,7 +81,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
           }
 
           if (err || stats.hasErrors()) {
-            logger.error(stats.toString({ children: webpackConfigs.map(c => c.stats) }));
+            logger.error(stats.toString({ children: webpackConfigs.map((c) => c.stats) }));
             reject(`Webpack failed with ${stats.toJson('errors-only').errors.length} error(s).`);
           } else {
             resolve();

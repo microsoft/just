@@ -1,5 +1,5 @@
-import path from 'path';
-import merge from 'webpack-merge';
+import * as path from 'path';
+import merge = require('webpack-merge');
 import { tsOverlay } from './overlays/tsOverlay';
 import { fileOverlay } from './overlays/fileOverlay';
 import { stylesOverlay } from './overlays/stylesOverlay';

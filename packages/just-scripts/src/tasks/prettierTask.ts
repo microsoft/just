@@ -1,7 +1,7 @@
 import { logger, resolve } from 'just-task';
 import { spawn } from 'just-scripts-utils';
 import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
-import path from 'path';
+import * as path from 'path';
 import { arrayify } from '../arrayUtils/arrayify';
 
 interface PrettierContext {

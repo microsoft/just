@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Remove implicit SDI usage",
+  "packageName": "just-stack-react",
+  "email": "darthtrevino@gmail.com",
+  "dependentChangeType": "patch",
+  "date": "2020-10-06T13:08:56.226Z"
+}

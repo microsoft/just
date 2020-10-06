@@ -1,8 +1,7 @@
-import mockfs from 'mock-fs';
-import path from 'path';
+import * as path from 'path';
 import { _isFileNameLike, _tryResolve, resetResolvePaths, resolveCwd, addResolvePath, resolve, _getResolvePaths } from '../resolve';
-
 import * as option from '../option';
+import mockfs = require('mock-fs');
 
 describe('_isFileNameLike', () => {
   it('returns false for empty input', () => {

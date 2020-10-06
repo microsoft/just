@@ -2,7 +2,7 @@
 import { Configuration } from 'webpack';
 import { encodeArgs, spawn } from 'just-scripts-utils';
 import { logger, resolve, resolveCwd } from 'just-task';
-import fs from 'fs';
+import * as fs from 'fs';
 import { WebpackCliTaskOptions } from './webpackCliTask';
 import { getTsNodeWebpackEnv } from '../webpack/getTsNodeWebpackEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
