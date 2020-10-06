@@ -23,7 +23,7 @@
     "just-stack-uifabric": "1.0.2",
     "just-scripts-utils": ">=0.9.1 <1.0.0",
     "fs-extra": "^7.0.1",
-    "ts-jest": "^24.0.1",
-    "jest": "^24.0.0"
+    "ts-jest": "^26.4",
+    "jest": "~26.4"
   }
 }
