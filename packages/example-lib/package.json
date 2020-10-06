@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "just-scripts": ">=0.44.7 <1.0.0",
+    "just-scripts": ">=0.44.8 <1.0.0",
     "typescript": "^4.0.3"
   }
 }
