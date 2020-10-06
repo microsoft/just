@@ -1,7 +1,6 @@
 import { logger, TaskFunction, resolve } from 'just-task';
 import { spawn } from 'just-scripts-utils';
 import { getTsNodeWebpackEnv } from '../webpack/getTsNodeWebpackEnv';
-import { findConfigFile } from 'typescript';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 
 export interface WebpackCliTaskOptions {
@@ -52,7 +51,7 @@ export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunctio
     const args = [
       ...(options && options.nodeArgs ? options.nodeArgs : []),
       webpackCliCmd,
-      ...(options && options.webpackCliArgs ? options.webpackCliArgs : [])
+      ...(options && options.webpackCliArgs ? options.webpackCliArgs : []),
     ];
 
     let configPath = findWebpackConfig('webpack.config.js');
