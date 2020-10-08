@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 06 Oct 2020 23:06:25 GMT and should not be manually modified.
+This log was last generated on Thu, 08 Oct 2020 21:11:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.0
+
+Thu, 08 Oct 2020 21:11:16 GMT
+
+### Minor changes
+
+- enable typescript in webpack (kchau@microsoft.com)
 
 ## 1.0.0
 

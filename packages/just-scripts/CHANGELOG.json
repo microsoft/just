@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 08 Oct 2020 21:11:16 GMT",
+      "tag": "just-scripts_v1.1.0",
+      "version": "1.1.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "enable typescript in webpack",
+            "author": "kchau@microsoft.com",
+            "commit": "a60d5ae903243b615af5e4f759e34390cb7371e3",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Oct 2020 23:06:25 GMT",
       "tag": "just-scripts_v1.0.0",
       "version": "1.0.0",
