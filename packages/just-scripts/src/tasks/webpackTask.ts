@@ -3,8 +3,10 @@ import { Configuration } from 'webpack';
 import { logger, argv, TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import * as fs from 'fs';
+import * as path from 'path';
 import webpackMerge = require('webpack-merge');
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
+import { enableTypeScript } from 'just-task/lib/enableTypeScript';
 
 export interface WebpackTaskOptions extends Configuration {
   config?: string;
@@ -16,6 +18,11 @@ export interface WebpackTaskOptions extends Configuration {
    * Environment variables to be passed to the webpack-dev-server
    */
   env?: NodeJS.ProcessEnv;
+
+  /**
+   * Transpile the config only
+   */
+  transpileOnly?: boolean;
 
   /**
    * Optional callback triggered on compile
@@ -39,7 +46,12 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
 
     if (webpackConfigPath && fs.existsSync(webpackConfigPath)) {
-      const configLoader = require(webpackConfigPath);
+      if (webpackConfigPath.endsWith('.ts')) {
+        let transpileOnly = options ? options.transpileOnly !== false : true;
+        enableTypeScript({ transpileOnly });
+      }
+
+      const configLoader = require(path.resolve(webpackConfigPath));
 
       let webpackConfigs: Configuration[];
 
