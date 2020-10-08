@@ -1,5 +1,5 @@
 {
-  "type": "patch",
+  "type": "minor",
   "comment": "enable typescript in webpack",
   "packageName": "just-scripts",
   "email": "kchau@microsoft.com",
