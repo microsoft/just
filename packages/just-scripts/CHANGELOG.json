@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 09 Oct 2020 21:11:51 GMT",
+      "tag": "just-scripts_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "adds a new nodeExecTask that optionally supports ts-node",
+            "author": "kchau@microsoft.com",
+            "commit": "3ae62a0e8f7d0cda59fd8cf584496745c2a1a9ea",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 08 Oct 2020 21:11:16 GMT",
       "tag": "just-scripts_v1.1.0",
       "version": "1.1.0",

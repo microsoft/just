@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 08 Oct 2020 21:11:16 GMT and should not be manually modified.
+This log was last generated on Fri, 09 Oct 2020 21:11:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.0
+
+Fri, 09 Oct 2020 21:11:51 GMT
+
+### Minor changes
+
+- adds a new nodeExecTask that optionally supports ts-node (kchau@microsoft.com)
 
 ## 1.1.0
 
