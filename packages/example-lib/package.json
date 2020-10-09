@@ -12,6 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "just-scripts": ">=1.1.0 <2.0.0",
+    "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
   }
 }

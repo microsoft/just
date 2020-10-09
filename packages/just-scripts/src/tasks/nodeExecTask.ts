@@ -1,4 +1,5 @@
 import { spawn, SpawnOptions } from 'child_process';
+import { logger } from 'just-task';
 import { resolveCwd, _tryResolve } from 'just-task/lib/resolve';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 
@@ -48,6 +49,9 @@ export function nodeExecTask(options: NodeExecTaskOptions) {
       options.args.unshift('-r');
 
       options.env = { ...options.env, ...getTsNodeEnv(tsconfig, transpileOnly) };
+      logger.info('Executing [TS]: ' + [nodeExecPath, ...(options.args || [])].join(' '));
+    } else {
+      logger.info('Executing: ' + [nodeExecPath, ...(options.args || [])].join(' '));
     }
 
     return spawn(nodeExecPath, options.args, { stdio: 'inherit', env: options.env, ...spawnOptions });
