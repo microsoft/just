@@ -8,12 +8,15 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "build": "lage build --scope !just-task-docs",
+    "build": "lage build",
     "postbuild": "node ./scripts/copyReadme.js",
-    "build:docs": "yarn workspace just-task-docs build",
+    "docs": "vuepress dev docs --host localhost",
+    "docs:build": "vuepress build docs",
+    "gh-pages": "gh-pages",
     "change": "beachball change",
     "checkchange": "beachball check",
     "release": "beachball publish",
+    "release:docs": "yarn docs:build && yarn gh-pages -d docs/.vuepress/dist --dotfiles",
     "start": "lage start",
     "test": "lage test",
     "lint": "eslint packages --ext .ts,.js"
@@ -24,12 +27,14 @@
     "beachball": "^1.36.1",
     "eslint": "^6.0.1",
     "lage": "^0.19.8",
-    "ghpages": "^0.0.10"
+    "vuepress": "^1.6.0",
+    "vuepress-plugin-mermaidjs": "^1.8.0",
+    "gh-pages": "^3.1.0",
+    "prettier": "^2.1.2"
   },
   "workspaces": {
     "packages": [
       "packages/*",
-      "packages/documentation/website",
       "scripts"
     ]
   }
