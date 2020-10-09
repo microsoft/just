@@ -1,4 +1,4 @@
-export function getTsNodeWebpackEnv(configPath: string, tsconfig?: string, transpileOnly?: boolean) {
+export function getTsNodeEnv(tsconfig?: string, transpileOnly?: boolean) {
   const env: { [key: string]: string | undefined } = {};
 
   if (tsconfig) {
@@ -7,7 +7,7 @@ export function getTsNodeWebpackEnv(configPath: string, tsconfig?: string, trans
     env.TS_NODE_COMPILER_OPTIONS = JSON.stringify({ module: 'commonjs', target: 'es2017', moduleResolution: 'node' });
   }
 
-  if (configPath.endsWith('.ts') && transpileOnly !== false) {
+  if (transpileOnly !== false) {
     env.TS_NODE_TRANSPILE_ONLY = 'true';
   }
 
