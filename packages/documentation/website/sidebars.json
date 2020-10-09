@@ -1,7 +1,0 @@
-{
-  "docs": {
-    "Basics": ["doc-start", "composition", "logging", "args", "condition", "thunk"],
-    "Scripts": ["scripts", "scripts-ts", "scripts-jest", "scripts-tslint", "scripts-webpack"],
-    "Stacks": ["stacks", "stacks-single", "stacks-monorepo", "stacks-upgrades"]
-  }
-}
