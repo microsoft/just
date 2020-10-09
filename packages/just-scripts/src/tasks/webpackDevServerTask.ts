@@ -4,7 +4,7 @@ import { encodeArgs, spawn } from 'just-scripts-utils';
 import { logger, resolve } from 'just-task';
 import * as fs from 'fs';
 import { WebpackCliTaskOptions } from './webpackCliTask';
-import { getTsNodeWebpackEnv } from '../webpack/getTsNodeWebpackEnv';
+import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 
 export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Configuration {
@@ -63,7 +63,7 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}) 
         args = [...args, ...options.webpackCliArgs];
       }
 
-      options.env = { ...options.env, ...getTsNodeWebpackEnv(configPath, options.tsconfig, options.transpileOnly) };
+      options.env = { ...options.env, ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)) };
 
       logger.info(process.execPath, encodeArgs(args).join(' '));
       return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
