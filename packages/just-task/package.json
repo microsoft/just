@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.4",
-    "@types/jest": "^23.3.13",
+    "@types/jest": "^26.0.14",
     "@types/mock-fs": "^3.6.30",
     "@types/node": "^10.12.18",
     "@types/resolve": "^0.0.8",
