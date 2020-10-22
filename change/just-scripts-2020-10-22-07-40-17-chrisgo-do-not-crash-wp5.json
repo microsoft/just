@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Do not crash reporting errors in Webpack 5",
+  "packageName": "just-scripts",
+  "email": "1581488+christiango@users.noreply.github.com",
+  "dependentChangeType": "patch",
+  "date": "2020-10-22T14:40:17.118Z"
+}
