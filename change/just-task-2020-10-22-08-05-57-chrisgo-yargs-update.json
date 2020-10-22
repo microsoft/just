@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Bump yargs dependency",
+  "packageName": "just-task",
+  "email": "1581488+christiango@users.noreply.github.com",
+  "dependentChangeType": "patch",
+  "date": "2020-10-22T15:05:56.981Z"
+}
