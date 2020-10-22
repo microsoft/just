@@ -89,12 +89,18 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
           if (options && options.outputStats) {
             const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
-            fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
+            fs.writeFileSync(statsFile, JSON.stringify(stats!.toJson(), null, 2));
           }
 
           if (err || stats.hasErrors()) {
-            logger.error(stats.toString({ children: webpackConfigs.map((c) => c.stats) }));
-            reject(`Webpack failed with ${stats.toJson('errors-only').errors.length} error(s).`);
+            // Stats may be undefined the the case of an error in Webpack 5
+            if (stats) {
+              logger.error(stats.toString({ children: webpackConfigs.map((c) => c.stats) }));
+              reject(`Webpack failed with ${stats.toJson('errors-only').errors.length} error(s).`);
+            } else {
+              logger.error(err.toString());
+              reject(`Webpack failed with error(s).`);
+            }
           } else {
             resolve();
           }
