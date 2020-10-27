@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Error if explicit webpack config path does not exist",
+  "packageName": "just-scripts",
+  "email": "iancra@microsoft.com",
+  "dependentChangeType": "patch",
+  "date": "2020-10-20T21:15:03.019Z"
+}

@@ -1,8 +1,9 @@
 // // WARNING: Careful about add more imports - only import types from webpack
 import { Configuration } from 'webpack';
 import { encodeArgs, spawn } from 'just-scripts-utils';
-import { logger, resolve } from 'just-task';
+import { logger, resolve, resolveCwd } from 'just-task';
 import * as fs from 'fs';
+import * as path from 'path';
 import { WebpackCliTaskOptions } from './webpackCliTask';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
@@ -46,7 +47,7 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
 }
 
 export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}) {
-  let configPath = findWebpackConfig('webpack.serve.config.js', options && options.config);
+  let configPath = options && options.config ? resolveCwd(path.join('.', options.config)) : findWebpackConfig('webpack.serve.config.js');
 
   const devServerCmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
 
@@ -68,7 +69,7 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}) 
       logger.info(process.execPath, encodeArgs(args).join(' '));
       return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
     } else {
-      logger.warn('no webpack.serve.config.js (or .ts) configuration found, skipping');
+      logger.warn(`${options?.config || 'webpack.serve.config.js'} not found, skipping`);
       return Promise.resolve();
     }
   };

@@ -1,6 +1,6 @@
 // // WARNING: Careful about add more imports - only import types from webpack
 import { Configuration } from 'webpack';
-import { logger, argv, TaskFunction } from 'just-task';
+import { logger, argv, TaskFunction, resolveCwd } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -41,7 +41,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
     logger.info(`Running Webpack`);
 
-    let webpackConfigPath = findWebpackConfig('webpack.config.js', options && options.config);
+    let webpackConfigPath = options && options.config ? resolveCwd(path.join('.', options.config)) : findWebpackConfig('webpack.config.js');
 
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
 
@@ -107,7 +107,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
         });
       });
     } else {
-      logger.info('webpack.config.js not found, skipping webpack');
+      logger.info(`${options?.config || 'webpack.config.js'} not found, skipping webpack`);
     }
 
     return;
