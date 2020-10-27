@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 22 Oct 2020 16:37:05 GMT and should not be manually modified.
+This log was last generated on Tue, 27 Oct 2020 22:47:26 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.2
+
+Tue, 27 Oct 2020 22:47:26 GMT
+
+### Patches
+
+- Error if explicit webpack config path does not exist (iancra@microsoft.com)
 
 ## 1.2.1
 
