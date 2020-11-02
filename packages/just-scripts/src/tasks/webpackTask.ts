@@ -1,6 +1,6 @@
 // // WARNING: Careful about add more imports - only import types from webpack
 import { Configuration } from 'webpack';
-import { logger, argv, TaskFunction } from 'just-task';
+import { logger, argv, TaskFunction, resolveCwd } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -41,7 +41,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
     logger.info(`Running Webpack`);
 
-    let webpackConfigPath = findWebpackConfig('webpack.config.js', options && options.config);
+    let webpackConfigPath = options && options.config ? resolveCwd(path.join('.', options.config)) : findWebpackConfig('webpack.config.js');
 
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
 
@@ -89,19 +89,25 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
           if (options && options.outputStats) {
             const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
-            fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
+            fs.writeFileSync(statsFile, JSON.stringify(stats!.toJson(), null, 2));
           }
 
           if (err || stats.hasErrors()) {
-            logger.error(stats.toString({ children: webpackConfigs.map((c) => c.stats) }));
-            reject(`Webpack failed with ${stats.toJson('errors-only').errors.length} error(s).`);
+            // Stats may be undefined the the case of an error in Webpack 5
+            if (stats) {
+              logger.error(stats.toString({ children: webpackConfigs.map((c) => c.stats) }));
+              reject(`Webpack failed with ${stats.toJson('errors-only').errors.length} error(s).`);
+            } else {
+              logger.error(err.toString());
+              reject(`Webpack failed with error(s).`);
+            }
           } else {
             resolve();
           }
         });
       });
     } else {
-      logger.info('webpack.config.js not found, skipping webpack');
+      logger.info(`${options?.config || 'webpack.config.js'} not found, skipping webpack`);
     }
 
     return;

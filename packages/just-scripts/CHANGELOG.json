@@ -2,6 +2,36 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 27 Oct 2020 22:47:26 GMT",
+      "tag": "just-scripts_v1.2.2",
+      "version": "1.2.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Error if explicit webpack config path does not exist",
+            "author": "iancra@microsoft.com",
+            "commit": "e49ea357b567c89226680cb272e4c8322cb091ca",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 22 Oct 2020 16:37:05 GMT",
+      "tag": "just-scripts_v1.2.1",
+      "version": "1.2.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Do not crash reporting errors in Webpack 5",
+            "author": "1581488+christiango@users.noreply.github.com",
+            "commit": "4e977b7ccccda83ab4bde31550c5f8aca4b3f910",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Oct 2020 21:11:51 GMT",
       "tag": "just-scripts_v1.2.0",
       "version": "1.2.0",
