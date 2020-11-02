@@ -1,8 +1,16 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Mon, 02 Nov 2020 16:42:46 GMT and should not be manually modified.
+This log was last generated on Mon, 02 Nov 2020 18:02:45 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.3
+
+Mon, 02 Nov 2020 18:02:45 GMT
+
+### Patches
+
+- Update marked dependency to latest (1581488+christiango@users.noreply.github.com)
 
 ## 1.0.2
 

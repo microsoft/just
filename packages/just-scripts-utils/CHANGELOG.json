@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Mon, 02 Nov 2020 18:02:45 GMT",
+      "tag": "just-scripts-utils_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Update marked dependency to latest",
+            "author": "1581488+christiango@users.noreply.github.com",
+            "commit": "9ca62fa5f119301a4e6ece35d872dc89d2a0b3ce",
+            "package": "just-scripts-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 02 Nov 2020 16:42:46 GMT",
       "tag": "just-scripts-utils_v1.0.2",
       "version": "1.0.2",
