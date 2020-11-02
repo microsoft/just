@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Mon, 02 Nov 2020 16:42:46 GMT",
+      "tag": "just-scripts-utils_v1.0.2",
+      "version": "1.0.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump yargs dependency",
+            "author": "1581488+christiango@users.noreply.github.com",
+            "commit": "bbbf4bb4b366c4df0cebb429c944d610b67d6d0f",
+            "package": "just-scripts-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 02 Nov 2020 16:26:27 GMT",
       "tag": "just-scripts-utils_v1.0.1",
       "version": "1.0.1",

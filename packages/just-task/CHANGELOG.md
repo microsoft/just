@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Mon, 02 Nov 2020 16:26:27 GMT and should not be manually modified.
+This log was last generated on Mon, 02 Nov 2020 16:42:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.2
+
+Mon, 02 Nov 2020 16:42:46 GMT
+
+### Patches
+
+- Bump yargs dependency (1581488+christiango@users.noreply.github.com)
 
 ## 1.0.1
 
