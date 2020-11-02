@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Update dependencies",
+  "comment": "Update marked dependency to latest",
   "packageName": "just-scripts-utils",
   "email": "1581488+christiango@users.noreply.github.com",
   "dependentChangeType": "patch",
