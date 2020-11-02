@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Mon, 02 Nov 2020 16:26:27 GMT",
+      "tag": "just-scripts-utils_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Publish src folder",
+            "author": "1581488+christiango@users.noreply.github.com",
+            "commit": "b5b171c31a995398d4bd6cbb0aa3ff2cf559afc3",
+            "package": "just-scripts-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Oct 2020 23:06:25 GMT",
       "tag": "just-scripts-utils_v1.0.0",
       "version": "1.0.0",

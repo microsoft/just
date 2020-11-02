@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 27 Oct 2020 22:47:26 GMT and should not be manually modified.
+This log was last generated on Mon, 02 Nov 2020 16:26:27 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.3
+
+Mon, 02 Nov 2020 16:26:27 GMT
+
+### Patches
+
+- Publish src folder (1581488+christiango@users.noreply.github.com)
 
 ## 1.2.2
 
