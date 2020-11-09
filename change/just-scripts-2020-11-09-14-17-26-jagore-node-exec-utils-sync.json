@@ -1,0 +1,8 @@
+{
+  "type": "patch",
+  "comment": "Use just-script-utils version of spawn in order to properly forward OOMs.",
+  "packageName": "just-scripts",
+  "email": "jagore@microsoft.com",
+  "dependentChangeType": "patch",
+  "date": "2020-11-09T22:17:26.896Z"
+}
