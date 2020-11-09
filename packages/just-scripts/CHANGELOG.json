@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 09 Nov 2020 22:25:49 GMT",
+      "tag": "just-scripts_v1.2.6",
+      "version": "1.2.6",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Use just-script-utils version of spawn in order to properly forward OOMs.",
+            "author": "jagore@microsoft.com",
+            "commit": "3534cab3494e1f88fdf47823c035bbe107a58b06",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 02 Nov 2020 16:26:27 GMT",
       "tag": "just-scripts_v1.2.3",
       "version": "1.2.3",

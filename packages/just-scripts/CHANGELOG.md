@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 02 Nov 2020 16:26:27 GMT and should not be manually modified.
+This log was last generated on Mon, 09 Nov 2020 22:25:49 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.6
+
+Mon, 09 Nov 2020 22:25:49 GMT
+
+### Patches
+
+- Use just-script-utils version of spawn in order to properly forward OOMs. (jagore@microsoft.com)
 
 ## 1.2.3
 
