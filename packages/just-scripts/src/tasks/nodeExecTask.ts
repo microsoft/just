@@ -1,4 +1,5 @@
-import { spawn, SpawnOptions } from 'child_process';
+import { SpawnOptions } from 'child_process';
+import { spawn } from 'just-scripts-utils';
 import { logger } from 'just-task';
 import { resolveCwd, _tryResolve } from 'just-task/lib/resolve';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
