@@ -48,7 +48,10 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
 }
 
 export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}): TaskFunction {
-  const configPath = options && options.config ? resolveCwd(path.join('.', options.config)) : findWebpackConfig('webpack.serve.config.js');
+  const configPath =
+    options && options.config
+      ? resolveCwd(path.join('.', options.config))
+      : findWebpackConfig('webpack.serve.config.js', 'webpack.config.js');
 
   // for webpack-cli < 4, use webpack-dev-server directly, for webpack-cli >= 4, use "webpack serve"
   const webpackCliPath = resolve('webpack-cli/package.json');
@@ -66,26 +69,26 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}):
     : [resolve('webpack-dev-server/bin/webpack-dev-server.js')!];
 
   return function webpackDevServer() {
-    if (devServerCmd && configPath && fs.existsSync(configPath)) {
-      let args = [...(options.nodeArgs || []), ...devServerCmd, '--config', configPath];
+    let args = [...(options.nodeArgs || []), ...devServerCmd];
 
-      if (options.open) {
-        args.push('--open');
-      }
-      if (options.mode) {
-        args = [...args, '--mode', options.mode];
-      }
-      if (options.webpackCliArgs) {
-        args = [...args, ...options.webpackCliArgs];
-      }
-
+    if (configPath && fs.existsSync(configPath)) {
+      args = [...args, '--config', configPath];
       options.env = { ...options.env, ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)) };
-
-      logger.info(process.execPath, encodeArgs(args).join(' '));
-      return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
-    } else {
-      logger.warn(`${options?.config || 'webpack.serve.config.js'} not found, skipping`);
-      return Promise.resolve();
     }
+
+    if (options.open) {
+      args.push('--open');
+    }
+
+    if (options.mode) {
+      args = [...args, '--mode', options.mode];
+    }
+
+    if (options.webpackCliArgs) {
+      args = [...args, ...options.webpackCliArgs];
+    }
+
+    logger.info(process.execPath, encodeArgs(args).join(' '));
+    return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
   };
 }
