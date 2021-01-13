@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "making webpackDevServerTask work with newer webpack-cli versions",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "dependentChangeType": "patch"
+}
