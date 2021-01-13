@@ -11,7 +11,7 @@ interface DepInfo {
   path: string;
 }
 
-export function findDependents() {
+export function findDependents(): Set<DepInfo> {
   mark('cache:findDependents');
   const results = collectAllDependentPaths(findPackageRoot());
   logger.perf('cache:findDependents');
@@ -29,11 +29,11 @@ function getDepsPaths(pkgPath: string): DepInfo[] {
     deps = [
       ...deps,
       ...(packageJson.dependencies ? Object.keys(packageJson.dependencies) : []),
-      ...(packageJson.devDependencies ? Object.keys(packageJson.devDependencies) : [])
+      ...(packageJson.devDependencies ? Object.keys(packageJson.devDependencies) : []),
     ];
 
     return deps
-      .map(dep => {
+      .map((dep) => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const depPackageJson = resolveCwd(path.join(dep, 'package.json'))!;
 
@@ -43,7 +43,7 @@ function getDepsPaths(pkgPath: string): DepInfo[] {
 
         return { name: dep, path: path.dirname(fs.realpathSync(depPackageJson)) };
       })
-      .filter(p => p && p.path.indexOf('node_modules') === -1 && isChildOf(p.path, gitRoot)) as DepInfo[];
+      .filter((p) => p && p.path.indexOf('node_modules') === -1 && isChildOf(p.path, gitRoot)) as DepInfo[];
   } catch (e) {
     logger.error(`Invalid package.json detected at ${packageJsonFile} `, e);
     return [];
@@ -54,7 +54,7 @@ function collectAllDependentPaths(pkgPath: string, collected: Set<DepInfo> = new
   mark(`collectAllDependentPaths:${pkgPath}`);
 
   const depPaths = getDepsPaths(pkgPath);
-  depPaths.forEach(depPath => collected.add(depPath));
+  depPaths.forEach((depPath) => collected.add(depPath));
 
   for (const depPath of depPaths) {
     if (!collected.has(depPath)) {

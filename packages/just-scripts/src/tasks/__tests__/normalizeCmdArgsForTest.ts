@@ -12,7 +12,7 @@ export function normalizeCmdArgsForTest(cmdArgs: string[]) {
     return cmdArgs;
   }
 
-  return cmdArgs.map(arg => {
+  return cmdArgs.map((arg) => {
     let newArg = undefined;
     if (arg.indexOf(nodePath) >= 0) {
       newArg = arg.replace(nodePath, '${nodeExePath}');

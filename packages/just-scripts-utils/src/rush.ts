@@ -12,7 +12,7 @@ import jju = require('jju');
 export function rushUpdate(cwd: string): void {
   spawnSync(process.execPath, ['common/scripts/install-run-rush.js', 'update'], {
     cwd,
-    stdio: 'inherit'
+    stdio: 'inherit',
   });
 }
 
@@ -48,7 +48,7 @@ export function rushAddPackage(packageName: string, rootPath: string): void {
   }
   rushJson.projects.push({
     packageName,
-    projectFolder: `packages/${packageName}`
+    projectFolder: `packages/${packageName}`,
   });
 
   try {

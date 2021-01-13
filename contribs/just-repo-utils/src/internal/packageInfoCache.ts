@@ -28,10 +28,10 @@ const cachePath = getCachePath(cacheFileName, true);
  */
 export function getSerializableRepoPackages(info: PackageEntries): ISerializableRepoPackages {
   const results: ISerializableRepoPackages = {};
-  Object.keys(info).forEach(pkgName => {
+  Object.keys(info).forEach((pkgName) => {
     results[pkgName] = {
       path: info[pkgName].path,
-      dependencies: Object.keys(info[pkgName].dependencies)
+      dependencies: Object.keys(info[pkgName].dependencies),
     };
   });
   return results;
@@ -43,18 +43,18 @@ export function getSerializableRepoPackages(info: PackageEntries): ISerializable
 export function getRepoPackagesFromSerializableForm(info: ISerializableRepoPackages): PackageEntries {
   const results: PackageEntries = {};
   // build the initial set
-  Object.keys(info).forEach(pkgName => {
+  Object.keys(info).forEach((pkgName) => {
     const entry = info[pkgName];
     results[pkgName] = {
       path: entry.path,
       getConfig: getConfigLoader<PackageJson>(entry.path, 'package.json') as PackageJsonLoader,
-      dependencies: {}
+      dependencies: {},
     };
   });
   // now link dependencies
-  Object.keys(info).forEach(pkgName => {
+  Object.keys(info).forEach((pkgName) => {
     const dependencies = results[pkgName].dependencies;
-    info[pkgName].dependencies.forEach(pkg => {
+    info[pkgName].dependencies.forEach((pkg) => {
       dependencies[pkg] = results[pkg];
     });
   });
@@ -69,7 +69,7 @@ export function cachePackageInfo(pkgInfo: PackageEntries): void {
   const repo = getRepoInfo();
   const toJson: IPackageInfoCacheJson = {
     hash: getRepoHashKey(repo.rootPath),
-    packages: getSerializableRepoPackages(pkgInfo)
+    packages: getSerializableRepoPackages(pkgInfo),
   };
   // ensure the directory is created
   const cacheDir = path.dirname(cachePath);

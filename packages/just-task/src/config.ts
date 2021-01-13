@@ -6,7 +6,7 @@ import { resolve } from './resolve';
 import { mark, logger } from 'just-task-logger';
 import { enableTypeScript } from './enableTypeScript';
 
-export function readConfig() {
+export function readConfig(): void {
   // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
   let configFile: string | null = null;
   for (const entry of [argv().config, './just.config.js', './just-task.js', './just.config.ts']) {

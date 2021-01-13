@@ -13,6 +13,6 @@
   "devDependencies": {
     "just-scripts": ">=1.2.6 <2.0.0",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "~4.1.3"
   }
 }

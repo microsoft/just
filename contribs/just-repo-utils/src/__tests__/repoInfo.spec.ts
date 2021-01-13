@@ -8,7 +8,7 @@ describe('findGitRoot', () => {
   test('findGitRoot callback basic', () => {
     let count = 0;
     const paths: string[] = [];
-    const root = findGitRoot(cur => {
+    const root = findGitRoot((cur) => {
       count++;
       paths.push(cur);
     });
@@ -19,12 +19,12 @@ describe('findGitRoot', () => {
 
   test('findGitRoot callback cancels correctly', () => {
     const paths: string[] = [];
-    findGitRoot(cur => {
+    findGitRoot((cur) => {
       paths.push(cur);
     });
     for (let i = 0; i < paths.length; i++) {
       let count = 0;
-      const stopPt = findGitRoot(_cur => {
+      const stopPt = findGitRoot((_cur) => {
         return count++ === i;
       });
       expect(stopPt).toEqual(paths[i]);

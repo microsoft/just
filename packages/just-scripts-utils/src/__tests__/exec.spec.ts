@@ -31,7 +31,7 @@ describe('exec', () => {
         }, 0);
         return {
           stdout: ({ pipe: stdoutPipe } as any) as Readable,
-          stderr: ({ pipe: stderrPipe } as any) as Readable
+          stderr: ({ pipe: stderrPipe } as any) as Readable,
         } as any;
       }
     );

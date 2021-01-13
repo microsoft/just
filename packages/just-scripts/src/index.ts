@@ -18,7 +18,7 @@ export const webpackOverlays = {
   html: htmlOverlay,
   styles: stylesOverlay,
   file: fileOverlay,
-  displayBailout: displayBailoutOverlay
+  displayBailout: displayBailoutOverlay,
 };
 
 export {
@@ -29,7 +29,7 @@ export {
   displayBailoutOverlay,
   createStylesOverlay,
   TsCheckerOptions,
-  TsLoaderOptions
+  TsLoaderOptions,
 };
 
 import * as webpackMerge from 'webpack-merge';

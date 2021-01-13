@@ -59,5 +59,5 @@ export const logger: Logger = {
         logInternal('info', chalk.cyan(square), `mark(${chalk.cyanBright(marker)}): took ${chalk.cyanBright(deltaMsg)}`, ...args);
       }
     }
-  }
+  },
 };

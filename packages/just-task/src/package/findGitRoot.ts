@@ -3,7 +3,7 @@ import * as fs from 'fs-extra';
 
 let gitRootCache = '';
 
-export function findGitRoot() {
+export function findGitRoot(): string {
   if (gitRootCache) {
     return gitRootCache;
   }

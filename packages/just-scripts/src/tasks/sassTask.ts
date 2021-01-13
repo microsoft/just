@@ -46,13 +46,13 @@ export function sassTask(
     if (files.length) {
       const tasks = files.map(
         (fileName: string) =>
-          function(cb: any) {
+          function (cb: any) {
             fileName = path.resolve(fileName);
             nodeSass.render(
               {
                 file: fileName,
                 importer: patchSassUrl,
-                includePaths: [path.resolve(process.cwd(), 'node_modules')]
+                includePaths: [path.resolve(process.cwd(), 'node_modules')],
               },
               (err: Error, result: { css: Buffer }) => {
                 if (err) {

@@ -48,7 +48,7 @@ export function findGitRoot(cb?: FindRootCallback, options?: RepoInfoOptions): s
  */
 function findRepoRootWithConfig(cb?: FindRootCallback, options?: RepoInfoOptions): [string, PackageJsonLoader | undefined] {
   let loader: PackageJsonLoader | undefined = undefined;
-  const path = findGitRoot(cwd => {
+  const path = findGitRoot((cwd) => {
     loader = getConfigLoader<PackageJson>(cwd, 'package.json');
     return (cb && cb(cwd)) || isRepoRoot(cwd, loader && loader());
   }, options);
@@ -85,7 +85,7 @@ export function getRepoInfo(options?: RepoInfoOptions): RepoInfo {
     getRushJson,
     getLernaJson,
     getPackageJson: packageLoader!,
-    ...(isMonoRepo && { monorepo: getRushJson ? 'rush' : 'lerna' })
+    ...(isMonoRepo && { monorepo: getRushJson ? 'rush' : 'lerna' }),
   };
   return _repoInfo;
 }

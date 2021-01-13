@@ -1,7 +1,7 @@
 import { resolveCwd } from 'just-task';
 import * as path from 'path';
 
-export function findWebpackConfig(target: string) {
+export function findWebpackConfig(target: string): string {
   let configPath: string = target;
 
   const haystackConfigPaths = [target, target.replace(/\.js$/, '.ts')];

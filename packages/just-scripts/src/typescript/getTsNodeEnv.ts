@@ -1,6 +1,6 @@
 import { logger } from 'just-task';
 
-export function getTsNodeEnv(tsconfig?: string, transpileOnly?: boolean) {
+export function getTsNodeEnv(tsconfig?: string, transpileOnly?: boolean): { [key: string]: string | undefined } {
   const env: { [key: string]: string | undefined } = {};
 
   if (tsconfig) {

@@ -2,6 +2,7 @@ import { undertaker, series } from './undertaker';
 
 let counter = 0;
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function chain(subjectTaskName: string) {
   return {
     before: function runBefore(taskName: string) {
@@ -18,6 +19,6 @@ export function chain(subjectTaskName: string) {
 
       undertaker.task(id, undertaker.task(taskName));
       undertaker.task(taskName, series(id, subject));
-    }
+    },
   };
 }

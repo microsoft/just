@@ -166,7 +166,7 @@ function apiExtractorWrapper({
   apiExtractorModule,
   config,
   extractorOptions,
-  options
+  options,
 }: ApiExtractorContext): ApiExtractorTypes.ExtractorResult | undefined {
   const { Extractor } = apiExtractorModule;
 

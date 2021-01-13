@@ -1,1 +1,11 @@
 **/plop-templates/**
+docs/.vuepress
+.*ignore
+*.snap
+*.png
+yarn.lock
+lib
+dist
+temp
+LICENSE
+CHANGELOG.*

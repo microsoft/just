@@ -20,42 +20,42 @@ describe('task', () => {
     jest.restoreAllMocks();
   });
 
-  it('allows synchronous tasks to be defined and be run', done => {
-    const testFunction = jest.fn(() => {});
+  it('allows synchronous tasks to be defined and be run', (done) => {
+    const testFunction = jest.fn(() => undefined);
 
-    task('test', function() {
+    task('test', function () {
       testFunction();
     });
 
-    parallel('test')(function() {
+    parallel('test')(function () {
       expect(testFunction).toBeCalledTimes(1);
       done();
     });
   });
 
-  it('allows callback-based tasks to be defined and be run', done => {
-    const testFunction = jest.fn(() => {});
+  it('allows callback-based tasks to be defined and be run', (done) => {
+    const testFunction = jest.fn(() => undefined);
 
-    task('test', function(cb) {
+    task('test', function (cb) {
       testFunction();
       cb();
     });
 
-    parallel('test')(function() {
+    parallel('test')(function () {
       expect(testFunction).toBeCalledTimes(1);
       done();
     });
   });
 
-  it('allows promise-based tasks to be defined and be run', done => {
-    const testFunction = jest.fn(() => {});
+  it('allows promise-based tasks to be defined and be run', (done) => {
+    const testFunction = jest.fn(() => undefined);
 
-    task('test', function() {
+    task('test', function () {
       const result = testFunction();
       return Promise.resolve(result);
     });
 
-    parallel('test')(function() {
+    parallel('test')(function () {
       expect(testFunction).toBeCalledTimes(1);
       done();
     });

@@ -34,12 +34,12 @@ export function cleanTask(pathsOrOptions: string[] | CleanTaskOptions = {}, limi
   limit = limit || 5;
 
   return function clean(done: (err: Error | null) => void) {
-    logger.info(`Removing [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}]`);
+    logger.info(`Removing [${paths.map((p) => path.relative(process.cwd(), p)).join(', ')}]`);
 
     const cleanTasks = paths
       .map(
-        cleanPath =>
-          function(cb: (error: Error | null) => void) {
+        (cleanPath) =>
+          function (cb: (error: Error | null) => void) {
             fse.remove(cleanPath, cb);
           }
       )

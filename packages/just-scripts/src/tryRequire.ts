@@ -1,6 +1,6 @@
 import { resolve } from 'just-task';
 
-export function tryRequire(specifier: string) {
+export function tryRequire(specifier: string): any {
   const resolved = resolve(specifier);
 
   if (!resolved) {

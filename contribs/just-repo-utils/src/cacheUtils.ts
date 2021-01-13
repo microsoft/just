@@ -14,7 +14,7 @@ export function getFileHashes(rootPath: string, files: string[]): { [file: strin
   return Object.assign(
     {},
     ...foundFiles.map((fileName: string, index: number) => ({
-      [fileName]: hashes[index]
+      [fileName]: hashes[index],
     }))
   );
 }
@@ -32,9 +32,9 @@ export function getFileHashes(rootPath: string, files: string[]): { [file: strin
  */
 export function queryTimestamps(rootPath: string, files: string[]): string[] {
   return files
-    .map(file => path.join(rootPath, file))
-    .filter(filePath => fs.existsSync(filePath))
-    .map(existingFile => String(fs.statSync(existingFile).mtimeMs));
+    .map((file) => path.join(rootPath, file))
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((existingFile) => String(fs.statSync(existingFile).mtimeMs));
 }
 
 /**

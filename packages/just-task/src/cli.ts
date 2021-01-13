@@ -6,6 +6,7 @@ import { readConfig } from './config';
 
 const originalEmitWarning = process.emitWarning;
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 (process.emitWarning as any) = function emitWarning(this: any, _warning: string, _type: string, code: string, _ctor?: Function) {
   if (code === 'DEP0097') {
     // Undertaker uses a deprecated approach that causes NodeJS 10 to print
@@ -42,7 +43,7 @@ const command = parseCommand();
 
 if (command) {
   if (registry.get(command)) {
-    undertaker.series(registry.get(command))(() => {});
+    undertaker.series(registry.get(command))(() => undefined);
   } else {
     logger.error(`Command not defined: ${command}`);
   }

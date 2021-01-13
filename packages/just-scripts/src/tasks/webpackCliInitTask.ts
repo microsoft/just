@@ -4,11 +4,10 @@ import { tryRequire } from '../tryRequire';
 /**
  * webpackCliInitTask - task for webpack-cli init command
  *
- * @param  {string} customScaffold? - to pass any webpack-scaffold
- * @param  {Boolean=false} auto - to pass the --auto flag, which will generate a default webpack.config.js
- * @returns TaskFunction
+ * @param customScaffold - to pass any webpack-scaffold
+ * @param auto - to pass the --auto flag, which will generate a default webpack.config.js
  */
-export function webpackCliInitTask(customScaffold?: string, auto: Boolean = false): TaskFunction {
+export function webpackCliInitTask(customScaffold?: string, auto = false): TaskFunction {
   return function webpackCli() {
     const init = tryRequire('@webpack-cli/init').default;
     if (!init) {

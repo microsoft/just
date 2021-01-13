@@ -25,9 +25,9 @@ export interface CopyConfig {
  * files 'dest/target/foo.js' and 'dest/target/bar.js'.
  */
 export function copyFilesToDestinationDirectory(sourceFilePaths: string | string[], destinationDirectory: string): CopyInstruction[] {
-  return arrayify(sourceFilePaths).map(sourceName => ({
+  return arrayify(sourceFilePaths).map((sourceName) => ({
     sourceFilePath: normalize(sourceName),
-    destinationFilePath: join(destinationDirectory, basename(sourceName))
+    destinationFilePath: join(destinationDirectory, basename(sourceName)),
   }));
 }
 
@@ -53,9 +53,9 @@ export function copyFilesToDestinationDirectoryWithRename(
   instrs: { sourceFilePath: string; destinationName: string }[],
   destinationDirectory: string
 ): CopyInstruction[] {
-  return instrs.map(instr => ({
+  return instrs.map((instr) => ({
     sourceFilePath: instr.sourceFilePath,
-    destinationFilePath: join(destinationDirectory, instr.destinationName)
+    destinationFilePath: join(destinationDirectory, instr.destinationName),
   }));
 }
 
@@ -73,9 +73,9 @@ export function copyFilesInDirectory(
   if (filterFunction) {
     files = files.filter(filterFunction);
   }
-  return files.map(file => ({
+  return files.map((file) => ({
     sourceFilePath: join(sourceDirectoryPath, file),
-    destinationFilePath: join(outputDirectoryPath, file)
+    destinationFilePath: join(outputDirectoryPath, file),
   }));
 }
 
@@ -87,6 +87,6 @@ export function copyFilesInDirectory(
 export function mergeFiles(sourceFilePaths: string[], destinationFilePath: string): CopyInstruction {
   return {
     sourceFilePath: sourceFilePaths,
-    destinationFilePath
+    destinationFilePath,
   };
 }

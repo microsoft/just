@@ -20,9 +20,9 @@ describe('executeCopyInstructions functional tests', () => {
     mockfs({
       [sourceDir]: {
         [sourceFile1]: sourceFileContents1,
-        [sourceFile2]: sourceFileContents2
+        [sourceFile2]: sourceFileContents2,
       },
-      [destDir]: {}
+      [destDir]: {},
     });
   });
 
@@ -33,13 +33,13 @@ describe('executeCopyInstructions functional tests', () => {
   it('executes single source copy instructions', async () => {
     const copyInstruction = {
       sourceFilePath: sourceFilePath1,
-      destinationFilePath: destFilePath
+      destinationFilePath: destFilePath,
     };
 
     expect(fs.existsSync(destFilePath)).toBeFalsy();
 
     await executeCopyInstructions({
-      copyInstructions: [copyInstruction]
+      copyInstructions: [copyInstruction],
     });
 
     expect(fs.existsSync(destFilePath)).toBeTruthy();
@@ -49,13 +49,13 @@ describe('executeCopyInstructions functional tests', () => {
   it('executes single source (arrayified) copy instructions', async () => {
     const copyInstruction = {
       sourceFilePath: [sourceFilePath1],
-      destinationFilePath: destFilePath
+      destinationFilePath: destFilePath,
     };
 
     expect(fs.existsSync(destFilePath)).toBeFalsy();
 
     await executeCopyInstructions({
-      copyInstructions: [copyInstruction]
+      copyInstructions: [copyInstruction],
     });
 
     expect(fs.existsSync(destFilePath)).toBeTruthy();
@@ -65,7 +65,7 @@ describe('executeCopyInstructions functional tests', () => {
   it('merges output', async () => {
     const copyInstruction = {
       sourceFilePath: [sourceFilePath1, sourceFilePath2],
-      destinationFilePath: destFilePath
+      destinationFilePath: destFilePath,
     };
 
     const expectedOutput = [sourceFileContents1, sourceFileContents2].join('\n');
@@ -73,7 +73,7 @@ describe('executeCopyInstructions functional tests', () => {
     expect(fs.existsSync(destFilePath)).toBeFalsy();
 
     await executeCopyInstructions({
-      copyInstructions: [copyInstruction]
+      copyInstructions: [copyInstruction],
     });
 
     expect(fs.existsSync(destFilePath)).toBeTruthy();

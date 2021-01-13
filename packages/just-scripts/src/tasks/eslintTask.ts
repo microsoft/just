@@ -37,7 +37,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
       resolvePluginsPath,
       cache,
       cacheLocation,
-      timing
+      timing,
     } = options;
     const eslintCmd = resolve('eslint/bin/eslint.js');
     // Try all possible extensions in the order listed here: https://eslint.org/docs/user-guide/configuring#configuration-file-formats
@@ -58,7 +58,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         ...(maxWarnings !== undefined ? ['--max-warnings', `${maxWarnings}`] : []),
         ...(cache ? ['--cache'] : []),
         ...(cacheLocation ? ['--cache-location', cacheLocation] : []),
-        '--color'
+        '--color',
       ];
 
       logger.info(encodeArgs(eslintArgs).join(' '));

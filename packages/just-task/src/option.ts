@@ -39,21 +39,17 @@ export interface OptionConfig {
   describe?: string;
 }
 
-let argOptions: Options = {};
+const argOptions: Options = {};
 const descriptions: { [key: string]: string } = {};
 const processArgs = process.argv.slice(2);
 
-export function option(key: string, options: OptionConfig = {}) {
+export function option(key: string, options: OptionConfig = {}): void {
   const booleanArgs = ['array', 'boolean', 'count', 'normalize', 'string', 'number'] as const;
   const assignArgs = ['alias', 'coerce', 'default'] as const;
 
   for (const argName of booleanArgs) {
     if (options[argName]) {
-      if (!argOptions[argName]) {
-        argOptions[argName] = [];
-      }
-
-      const argOpts = argOptions[argName]! as string[];
+      const argOpts = (argOptions[argName] ??= []) as string[];
 
       if (argOpts.indexOf(key) === -1) {
         argOpts.push(key);
@@ -63,11 +59,7 @@ export function option(key: string, options: OptionConfig = {}) {
 
   for (const argName of assignArgs) {
     if (options[argName]) {
-      if (!argOptions[argName]) {
-        argOptions[argName] = {};
-      }
-
-      argOptions[argName]![key] = options[argName];
+      (argOptions[argName] ??= {})[key] = options[argName];
     }
   }
 

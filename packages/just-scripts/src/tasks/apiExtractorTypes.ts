@@ -93,7 +93,7 @@ export declare const enum ConsoleMessageId {
   /**
    * Used for the information printed when the "--diagnostics" flag is enabled.
    */
-  Diagnostics = 'console-diagnostics'
+  Diagnostics = 'console-diagnostics',
 }
 
 /**
@@ -288,7 +288,7 @@ export declare const enum ExtractorLogLevel {
   /**
    * The message will be discarded entirely.
    */
-  None = 'none'
+  None = 'none',
 }
 
 /**
@@ -410,7 +410,7 @@ export declare const enum ExtractorMessageCategory {
    * These strings begin with the prefix "console-".
    * Example: `console-writing-typings-file`
    */
-  Console = 'console'
+  Console = 'console',
 }
 
 /**
@@ -492,7 +492,7 @@ export declare const enum ExtractorMessageId {
   /**
    * "The property ___ has a setter but no getter."
    */
-  MissingGetter = 'ae-missing-getter'
+  MissingGetter = 'ae-missing-getter',
 }
 
 /**

@@ -32,7 +32,7 @@ export interface WebpackTaskOptions extends Configuration {
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   return async function webpack() {
-    const wp = tryRequire('webpack');
+    const wp: typeof import('webpack') = tryRequire('webpack');
 
     if (!wp) {
       logger.warn('webpack is not installed, this task no effect');
@@ -41,13 +41,14 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
     logger.info(`Running Webpack`);
 
-    let webpackConfigPath = options && options.config ? resolveCwd(path.join('.', options.config)) : findWebpackConfig('webpack.config.js');
+    const webpackConfigPath =
+      options && options.config ? resolveCwd(path.join('.', options.config)) : findWebpackConfig('webpack.config.js');
 
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
 
     if (webpackConfigPath && fs.existsSync(webpackConfigPath)) {
       if (webpackConfigPath.endsWith('.ts')) {
-        let transpileOnly = options ? options.transpileOnly !== false : true;
+        const transpileOnly = options ? options.transpileOnly !== false : true;
         enableTypeScript({ transpileOnly });
       }
 
@@ -77,7 +78,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
       webpackConfigs = webpackConfigPromises.map((webpackConfig) => webpackMerge(webpackConfig, restConfig));
 
-      return new Promise((resolve, reject) => {
+      return new Promise<void>((resolve, reject) => {
         wp(webpackConfigs, async (err: Error, stats: any) => {
           if (options && options.onCompile) {
             const results = options.onCompile(err, stats);
@@ -89,7 +90,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
           if (options && options.outputStats) {
             const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
-            fs.writeFileSync(statsFile, JSON.stringify(stats!.toJson(), null, 2));
+            fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
           }
 
           if (err || stats.hasErrors()) {

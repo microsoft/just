@@ -48,7 +48,7 @@ describe(`tscTask`, () => {
    */
   describe.each<TaskTestCase>([
     ['tscTask', { tscTaskFn: tscTask }, { execOrSpawnSpy: exec as jest.Mock<any> }],
-    ['tscWatchTask', { tscTaskFn: tscWatchTask }, { execOrSpawnSpy: spawn as jest.Mock<any> }]
+    ['tscWatchTask', { tscTaskFn: tscWatchTask }, { execOrSpawnSpy: spawn as jest.Mock<any> }],
   ])(`using '%s' function`, (_name, given, expected) => {
     /**
      * Testing arguments treatment
@@ -58,7 +58,7 @@ describe(`tscTask`, () => {
         it(`execs command`, () => {
           mockfs({
             ...mockFsTsc(),
-            'tsconfig.json': 'a file'
+            'tsconfig.json': 'a file',
           });
           const task = given.tscTaskFn();
           expect.assertions(1);
@@ -72,7 +72,7 @@ describe(`tscTask`, () => {
         it(`execs command`, () => {
           mockfs({
             ...mockFsTsc(),
-            'tsconfig.json': 'a file'
+            'tsconfig.json': 'a file',
           });
           const givenOptions = {};
           const task = given.tscTaskFn(givenOptions);
@@ -90,7 +90,7 @@ describe(`tscTask`, () => {
         beforeAll(() => {
           mockfs({
             ...mockFsTsc(),
-            'tsconfig.json': 'a file'
+            'tsconfig.json': 'a file',
           });
           const task = given.tscTaskFn(givenOptions);
           return callTaskForTest(task);
@@ -113,7 +113,7 @@ describe(`tscTask`, () => {
       it(`execs expected command`, () => {
         mockfs({
           ...mockFsTsc(),
-          'tsconfig.json': 'a file'
+          'tsconfig.json': 'a file',
         });
         const task = given.tscTaskFn();
         expect.assertions(3);
@@ -133,7 +133,7 @@ describe(`tscTask`, () => {
       it(`execs expected command`, () => {
         mockfs({
           ...mockFsTsc(),
-          'tsconfig.json': 'a file'
+          'tsconfig.json': 'a file',
         });
         const givenOptions = {};
         const task = given.tscTaskFn(givenOptions);
@@ -153,7 +153,7 @@ describe(`tscTask`, () => {
     describe(`with default options and tsconfig.json does not exist at package root`, () => {
       it(`does not exec command`, () => {
         mockfs({
-          ...mockFsTsc()
+          ...mockFsTsc(),
         });
         const task = given.tscTaskFn();
         expect.assertions(1);
@@ -168,8 +168,8 @@ describe(`tscTask`, () => {
         mockfs({
           ...mockFsTsc(),
           'a/custom/path': {
-            'tsconfig.json': 'a file'
-          }
+            'tsconfig.json': 'a file',
+          },
         });
         const givenOptions = { project: 'a/custom/path/tsconfig.json' };
         const task = given.tscTaskFn(givenOptions);
@@ -189,7 +189,7 @@ describe(`tscTask`, () => {
     describe(`with 'project' option where 'project' is custom path and tsconfig.json does not exist`, () => {
       it(`does not exec command`, () => {
         mockfs({
-          ...mockFsTsc()
+          ...mockFsTsc(),
         });
         const givenOptions = { project: 'a/custom/path/tsconfig.json' };
         const task = given.tscTaskFn(givenOptions);
@@ -205,8 +205,8 @@ describe(`tscTask`, () => {
         mockfs({
           ...mockFsTsc(),
           'a/custom/path': {
-            'tsconfig.json': 'a file'
-          }
+            'tsconfig.json': 'a file',
+          },
         });
         const givenOptions = { build: 'a/custom/path/tsconfig.json' };
         const task = given.tscTaskFn(givenOptions);
@@ -226,7 +226,7 @@ describe(`tscTask`, () => {
     describe(`with 'build' option where 'build' is custom path and tsconfig.json does not exist`, () => {
       it(`does not exec command`, () => {
         mockfs({
-          ...mockFsTsc()
+          ...mockFsTsc(),
         });
         const givenOptions = { build: 'a/custom/path/tsconfig.json' };
         const task = given.tscTaskFn(givenOptions);
@@ -242,14 +242,14 @@ describe(`tscTask`, () => {
         mockfs({
           ...mockFsTsc(),
           'project/a': {
-            'tsconfig.json': 'a file'
+            'tsconfig.json': 'a file',
           },
           'project/b': {
-            'tsconfig.json': 'a file'
+            'tsconfig.json': 'a file',
           },
           'project/c': {
-            'tsconfig.json': 'a file'
-          }
+            'tsconfig.json': 'a file',
+          },
         });
         const givenOptions = { build: ['project/a/tsconfig.json', 'project/b/tsconfig.json', 'project/c/tsconfig.json'] };
         const task = given.tscTaskFn(givenOptions);
@@ -271,8 +271,8 @@ describe(`tscTask`, () => {
         mockfs({
           ...mockFsTsc(),
           'project/a': {
-            'tsconfig.json': 'a file'
-          }
+            'tsconfig.json': 'a file',
+          },
         });
         const givenOptions = { build: ['project/a/tsconfig.json', 'project/b/tsconfig.json', 'project/c/tsconfig.json'] };
         const task = given.tscTaskFn(givenOptions);
@@ -287,7 +287,7 @@ describe(`tscTask`, () => {
       it(`execs expected command`, () => {
         mockfs({
           ...mockFsTsc(),
-          'tsconfig.json': 'a file'
+          'tsconfig.json': 'a file',
         });
         const givenOptions = { module: 'ESNext' };
         const task = given.tscTaskFn(givenOptions);
@@ -308,7 +308,7 @@ describe(`tscTask`, () => {
       it(`execs expected command`, () => {
         mockfs({
           ...mockFsTsc(),
-          'tsconfig.json': 'a file'
+          'tsconfig.json': 'a file',
         });
         const givenOptions = { lib: ['es6', 'dom', 'esnext.intl'] };
         const task = given.tscTaskFn(givenOptions);
@@ -329,7 +329,7 @@ describe(`tscTask`, () => {
       it(`execs expected command`, () => {
         mockfs({
           ...mockFsTsc(),
-          'tsconfig.json': 'a file'
+          'tsconfig.json': 'a file',
         });
         const givenOptions = { allowJs: true };
         const task = given.tscTaskFn(givenOptions);
@@ -350,7 +350,7 @@ describe(`tscTask`, () => {
       it(`execs expected command`, () => {
         mockfs({
           ...mockFsTsc(),
-          'tsconfig.json': 'a file'
+          'tsconfig.json': 'a file',
         });
         const givenOptions = { allowJs: false };
         const task = given.tscTaskFn(givenOptions);
@@ -371,7 +371,7 @@ describe(`tscTask`, () => {
       it(`execs expected command`, () => {
         mockfs({
           ...mockFsTsc(),
-          'tsconfig.json': 'a file'
+          'tsconfig.json': 'a file',
         });
         const givenOptions = { allowJs: true, build: 'tsconfig.json', outDir: 'some/out/path' };
         const task = given.tscTaskFn(givenOptions);
@@ -396,7 +396,7 @@ describe(`tscTask`, () => {
         it(`execs command`, () => {
           mockfs({
             ...mockFsTsc(),
-            'tsconfig.json': 'a file'
+            'tsconfig.json': 'a file',
           });
           const task = given.tscTaskFn();
           expect.assertions(1);
@@ -410,7 +410,7 @@ describe(`tscTask`, () => {
         it(`execs command`, () => {
           mockfs({
             ...mockFsTsc('.'),
-            'tsconfig.json': 'a file'
+            'tsconfig.json': 'a file',
           });
           const task = given.tscTaskFn();
           expect.assertions(1);
@@ -423,7 +423,7 @@ describe(`tscTask`, () => {
       describe(`where repo and package do not have TypeScript installed`, () => {
         it(`returns error`, () => {
           mockfs({
-            'tsconfig.json': 'a file'
+            'tsconfig.json': 'a file',
           });
           expect.assertions(1);
           expect(() => {

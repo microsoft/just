@@ -1,7 +1,7 @@
 import { task, series, parallel } from 'just-task';
 import { cleanTask, tscTask, jestTask, webpackTask, webpackDevServerTask, defaultCleanPaths, tslintTask } from '../tasks';
 
-export function webapp() {
+export function webapp(): void {
   task('clean', cleanTask([...defaultCleanPaths(), 'lib-commonjs']));
 
   task('ts:esm', tscTask({ module: 'esnext', outDir: 'lib' }));

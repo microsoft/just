@@ -46,14 +46,14 @@ export function exec(
  * @param cmdArgs Args to encode
  * @returns Encoded args
  */
-export function encodeArgs(cmdArgs: string[]) {
+export function encodeArgs(cmdArgs: string[]): string[] {
   // Taken from https://github.com/xxorax/node-shell-escape/blob/master/shell-escape.js
   // However, we needed to use double quotes because that's the norm in more platforms
   if (!cmdArgs) {
     return cmdArgs;
   }
 
-  return cmdArgs.map(arg => {
+  return cmdArgs.map((arg) => {
     if (/[^\w/:=-]/.test(arg)) {
       arg = `"${arg.replace(/"/g, '"\\"')}"`;
       arg = arg.replace(/^(?:"")+/g, '').replace(/\\"""/g, '\\"');
@@ -81,7 +81,7 @@ export function execSync(cmd: string, cwd?: string, returnOutput?: boolean): str
   const output = cp.execSync(cmd, {
     cwd,
     env,
-    stdio: returnOutput ? undefined : 'inherit'
+    stdio: returnOutput ? undefined : 'inherit',
   });
   return returnOutput ? (output || '').toString('utf8') : undefined;
 }
@@ -102,7 +102,7 @@ export function spawn(
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     const child = cp.spawn(cmd, args, opts);
-    child.on('exit', code => {
+    child.on('exit', (code) => {
       if (code) {
         const error = new Error('Command failed: ' + [cmd, ...args].join(' '));
         (error as any).code = code;

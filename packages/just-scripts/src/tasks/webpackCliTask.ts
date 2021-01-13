@@ -33,10 +33,6 @@ export interface WebpackCliTaskOptions {
 
 /**
  * webpackCliTask - task for running webpack as a cli command
- *
- * @param  {string} customScaffold? - to pass any webpack-scaffold
- * @param  {Boolean=false} auto - to pass the --auto flag, which will generate a default webpack.config.js
- * @returns TaskFunction
  */
 export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunction {
   const webpackCliCmd = resolve('webpack-cli/bin/cli.js');

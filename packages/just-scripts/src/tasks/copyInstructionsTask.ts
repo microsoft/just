@@ -1,5 +1,6 @@
 import { executeCopyInstructions } from '../copy/executeCopyInstructions';
 import { CopyConfig } from '../copy/CopyInstruction';
+import { TaskFunction } from 'just-task';
 
 /**
  * This is an advanced copy task that allows more advanced usage beyond simple copies.
@@ -7,7 +8,7 @@ import { CopyConfig } from '../copy/CopyInstruction';
  *
  * @param config Copy instructions configuration
  */
-export function copyInstructionsTask(config?: CopyConfig) {
+export function copyInstructionsTask(config?: CopyConfig): TaskFunction {
   return function copyInstructions() {
     return executeCopyInstructions(config);
   };

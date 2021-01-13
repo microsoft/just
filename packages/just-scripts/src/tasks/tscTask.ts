@@ -81,12 +81,9 @@ function isValidProject(options: TscTaskOptions) {
     (typeof options.project === 'string' && fs.existsSync(options.project)) ||
     (typeof options.build === 'string' && fs.existsSync(options.build)) ||
     (Array.isArray(options.build) &&
-      options.build.reduce(
-        (currentIsValid, buildPath) => {
-          return currentIsValid && typeof buildPath === 'string' && fs.existsSync(buildPath);
-        },
-        true as boolean
-      ))
+      options.build.reduce((currentIsValid, buildPath) => {
+        return currentIsValid && typeof buildPath === 'string' && fs.existsSync(buildPath);
+      }, true as boolean))
   );
 }
 
@@ -111,6 +108,6 @@ function argsFromOptions(tscCmd: string, options: TscTaskOptions): string[] {
         return currentArgs;
       },
       [tscCmd]
-    )
+    ),
   ];
 }

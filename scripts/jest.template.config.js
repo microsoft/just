@@ -7,5 +7,5 @@ module.exports = {
   setupFilesAfterEnv: ['jest-expect-message'],
   transformIgnorePatterns: ['node_modules', 'template/'],
   testPathIgnorePatterns: ['node_modules', 'template/'],
-  verbose: true
+  verbose: true,
 };

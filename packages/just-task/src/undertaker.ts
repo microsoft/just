@@ -35,7 +35,7 @@ function colorizeTaskName(taskName: string) {
   return colors[taskColor[taskName]](taskName);
 }
 
-undertaker.on('start', function(args: any) {
+undertaker.on('start', function (args: any) {
   if (shouldLog(args)) {
     if (!topLevelTask) {
       topLevelTask = args.name;
@@ -47,7 +47,7 @@ undertaker.on('start', function(args: any) {
   }
 });
 
-undertaker.on('stop', function(args: any) {
+undertaker.on('stop', function (args: any) {
   if (shouldLog(args)) {
     const duration = args.duration;
     const durationInSecs = Math.round(((duration[0] * NS_PER_SEC + duration[1]) / NS_PER_SEC) * 100) / 100;
@@ -58,7 +58,7 @@ undertaker.on('stop', function(args: any) {
   }
 });
 
-undertaker.on('error', function(args: any) {
+undertaker.on('error', function (args: any) {
   delete tasksInProgress[args.name];
 
   if (!errorReported) {
@@ -99,7 +99,7 @@ undertaker.on('error', function(args: any) {
   }
 });
 
-process.on('exit', code => {
+process.on('exit', (code) => {
   if (code !== 0) {
     logger.error(chalk.dim(`Error previously detected. See above for error messages.`));
   }
@@ -107,14 +107,14 @@ process.on('exit', code => {
   if (Object.keys(tasksInProgress).length > 0) {
     logger.error(
       `Other tasks that did not complete: [${Object.keys(tasksInProgress)
-        .map(taskName => colorizeTaskName(taskName))
+        .map((taskName) => colorizeTaskName(taskName))
         .join(', ')}]`
     );
   }
 });
 
-export function parallel(...tasks: Task[]) {
-  const newTasks = tasks.map(task => {
+export function parallel(...tasks: Task[]): Undertaker.TaskFunction {
+  const newTasks = tasks.map((task) => {
     if (typeof task === 'string') {
       return task;
     } else {
@@ -125,8 +125,8 @@ export function parallel(...tasks: Task[]) {
   return undertaker.parallel(newTasks);
 }
 
-export function series(...tasks: Task[]) {
-  const newTasks = tasks.map(task => {
+export function series(...tasks: Task[]): Undertaker.TaskFunction {
+  const newTasks = tasks.map((task) => {
     if (typeof task === 'string') {
       return task;
     } else {
