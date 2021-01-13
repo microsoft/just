@@ -1,4 +1,4 @@
-import { getPackageDeps, IPackageDeps } from '@microsoft/package-deps-hash';
+import { getPackageDeps, IPackageDeps } from '@rushstack/package-deps-hash';
 import { argv } from './option';
 import { resolveCwd } from './resolve';
 import * as fs from 'fs-extra';

@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import chalk = require('chalk');
 import { argv } from 'yargs';
 import { getDeltaAndClearMark } from './perf';
 

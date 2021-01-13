@@ -1,5 +1,5 @@
 import { logger } from '../logger';
-import chalk from 'chalk';
+import chalk = require('chalk');
 
 describe('logger', () => {
   const fakeTime = new Date().toLocaleTimeString();
@@ -11,6 +11,8 @@ describe('logger', () => {
   const consoleWarn = jest.fn();
   const consoleError = jest.fn();
 
+  const chalkLevel = chalk.level;
+
   beforeAll(() => {
     // Log entries include time, so use a constant value for testing
     jest.spyOn(Date.prototype, 'toLocaleTimeString').mockReturnValue(fakeTime);
@@ -19,7 +21,7 @@ describe('logger', () => {
     jest.spyOn(console, 'warn').mockImplementation(consoleWarn);
     jest.spyOn(console, 'error').mockImplementation(consoleError);
     // Disable chalk colors so it's easier to compare results
-    chalk.enabled = false;
+    chalk.level = 0;
   });
 
   beforeEach(() => {
@@ -28,7 +30,7 @@ describe('logger', () => {
 
   afterAll(() => {
     jest.restoreAllMocks();
-    chalk.enabled = true;
+    chalk.level = chalkLevel;
     logger.enableVerbose = false;
   });
 

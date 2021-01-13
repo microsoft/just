@@ -4,7 +4,7 @@ import { logger, argv, TaskFunction, resolveCwd } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import * as fs from 'fs';
 import * as path from 'path';
-import webpackMerge = require('webpack-merge');
+import { merge } from 'webpack-merge';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 import { enableTypeScript } from 'just-task/lib/enableTypeScript';
 
@@ -76,7 +76,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
       // A better long term solution here would be to have an option called webpackConfigOverrides instead of extending the configuration object.
       const { config, outputStats, ...restConfig } = options || ({} as WebpackTaskOptions);
 
-      webpackConfigs = webpackConfigPromises.map((webpackConfig) => webpackMerge(webpackConfig, restConfig));
+      webpackConfigs = webpackConfigPromises.map((webpackConfig) => merge(webpackConfig, restConfig));
 
       return new Promise<void>((resolve, reject) => {
         wp(webpackConfigs, async (err: Error, stats: any) => {

@@ -1,5 +1,5 @@
 import { logger } from './logger';
-import chalk from 'chalk';
+import chalk = require('chalk');
 import { wrapTask } from './wrapTask';
 import { Task } from './interfaces';
 import { clearCache } from './cache';
