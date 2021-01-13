@@ -13,15 +13,15 @@ As we have seen, tasks can be run in a series.
 ```js
 const { task, series } = require('just-task');
 
-task('clean', function() {
+task('clean', function () {
   // clean stuff
 });
 
-task('babel', function() {
+task('babel', function () {
   // run babel over some files
 });
 
-task('test', function() {
+task('test', function () {
   // run babel over some files
 });
 
@@ -36,15 +36,15 @@ const { task, series, option, argv, condition } = require('just-task');
 // First define a 'skip-test' option
 option('skip-test');
 
-task('clean', function() {
+task('clean', function () {
   // clean stuff
 });
 
-task('babel', function() {
+task('babel', function () {
   // run babel over some files
 });
 
-task('test', function() {
+task('test', function () {
   // run babel over some files
 });
 
@@ -53,8 +53,8 @@ task(
   series(
     'clean',
     'babel',
-    condition('test', () => !argv()['skip-test'])
-  )
+    condition('test', () => !argv()['skip-test']),
+  ),
 );
 ```
 

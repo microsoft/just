@@ -55,7 +55,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
-        ...(options._ || []).concat(positional)
+        ...(options._ || []).concat(positional),
       ].filter(arg => !!arg) as Array<string>;
 
       logger.info(cmd, encodeArgs(args).join(' '));

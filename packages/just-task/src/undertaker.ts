@@ -1,5 +1,5 @@
 import { logger } from './logger';
-import chalk from 'chalk';
+import chalk = require('chalk');
 import { wrapTask } from './wrapTask';
 import { Task } from './interfaces';
 import { clearCache } from './cache';
@@ -35,7 +35,7 @@ function colorizeTaskName(taskName: string) {
   return colors[taskColor[taskName]](taskName);
 }
 
-undertaker.on('start', function(args: any) {
+undertaker.on('start', function (args: any) {
   if (shouldLog(args)) {
     if (!topLevelTask) {
       topLevelTask = args.name;
@@ -47,7 +47,7 @@ undertaker.on('start', function(args: any) {
   }
 });
 
-undertaker.on('stop', function(args: any) {
+undertaker.on('stop', function (args: any) {
   if (shouldLog(args)) {
     const duration = args.duration;
     const durationInSecs = Math.round(((duration[0] * NS_PER_SEC + duration[1]) / NS_PER_SEC) * 100) / 100;
@@ -58,7 +58,7 @@ undertaker.on('stop', function(args: any) {
   }
 });
 
-undertaker.on('error', function(args: any) {
+undertaker.on('error', function (args: any) {
   delete tasksInProgress[args.name];
 
   if (!errorReported) {
@@ -108,12 +108,12 @@ process.on('exit', code => {
     logger.error(
       `Other tasks that did not complete: [${Object.keys(tasksInProgress)
         .map(taskName => colorizeTaskName(taskName))
-        .join(', ')}]`
+        .join(', ')}]`,
     );
   }
 });
 
-export function parallel(...tasks: Task[]) {
+export function parallel(...tasks: Task[]): Undertaker.TaskFunction {
   const newTasks = tasks.map(task => {
     if (typeof task === 'string') {
       return task;
@@ -125,7 +125,7 @@ export function parallel(...tasks: Task[]) {
   return undertaker.parallel(newTasks);
 }
 
-export function series(...tasks: Task[]) {
+export function series(...tasks: Task[]): Undertaker.TaskFunction {
   const newTasks = tasks.map(task => {
     if (typeof task === 'string') {
       return task;

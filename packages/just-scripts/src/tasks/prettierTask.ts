@@ -1,4 +1,4 @@
-import { logger, resolve } from 'just-task';
+import { logger, resolve, TaskFunction } from 'just-task';
 import { spawn } from 'just-scripts-utils';
 import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
 import * as path from 'path';
@@ -18,7 +18,7 @@ interface PrettierTaskOptions {
   configPath?: string;
 }
 
-export function prettierTask(options: PrettierTaskOptions = {}) {
+export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
   const prettierBin = resolve('prettier/bin-prettier.js');
 
   if (prettierBin) {
@@ -28,17 +28,17 @@ export function prettierTask(options: PrettierTaskOptions = {}) {
         ...{ configPath: options.configPath || undefined },
         ...{ ignorePath: options.ignorePath || undefined },
         ...{ files: arrayify(options.files || path.resolve(process.cwd(), '**', '*.{ts,tsx,js,jsx,json,scss,html,yml,md}')) },
-        check: false
+        check: false,
       });
     };
   }
 
-  return function() {
+  return function () {
     logger.warn('Prettier is not available, ignoring this task');
   };
 }
 
-export function prettierCheckTask(options: PrettierTaskOptions = {}) {
+export function prettierCheckTask(options: PrettierTaskOptions = {}): TaskFunction {
   const prettierBin = resolve('prettier/bin-prettier.js');
 
   if (prettierBin) {
@@ -48,12 +48,12 @@ export function prettierCheckTask(options: PrettierTaskOptions = {}) {
         ...{ configPath: options.configPath || undefined },
         ...{ ignorePath: options.ignorePath || undefined },
         ...{ files: arrayify(options.files || path.resolve(process.cwd(), '**', '*.{ts,tsx,js,jsx,json,scss,html,yml,md}')) },
-        check: true
+        check: true,
       });
     };
   }
 
-  return function() {
+  return function () {
     logger.warn('Prettier is not available, ignoring this task');
   };
 }
@@ -70,7 +70,7 @@ function runPrettierAsync(context: PrettierContext) {
       ...(configPath ? ['--config', configPath] : []),
       ...(ignorePath ? ['--ignore-path', ignorePath] : []),
       ...(check ? ['--check'] : ['--write']),
-      ...chunk
+      ...chunk,
     ];
 
     logger.info(process.execPath + ' ' + prettierArgs.join(' '));

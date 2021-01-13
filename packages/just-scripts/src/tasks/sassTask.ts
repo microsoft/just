@@ -16,7 +16,7 @@ export function sassTask(options: SassTaskOptions): TaskFunction;
 export function sassTask(createSourceModule: (fileName: string, css: string) => string, postcssPlugins?: any[]): TaskFunction;
 export function sassTask(
   optionsOrCreateSourceModule: SassTaskOptions | ((fileName: string, css: string) => string),
-  postcssPlugins?: any[]
+  postcssPlugins?: any[],
 ): TaskFunction {
   let createSourceModule: (fileName: string, css: string) => string;
   if (typeof optionsOrCreateSourceModule === 'function') {
@@ -46,13 +46,13 @@ export function sassTask(
     if (files.length) {
       const tasks = files.map(
         (fileName: string) =>
-          function(cb: any) {
+          function (cb: any) {
             fileName = path.resolve(fileName);
             nodeSass.render(
               {
                 file: fileName,
                 importer: patchSassUrl,
-                includePaths: [path.resolve(process.cwd(), 'node_modules')]
+                includePaths: [path.resolve(process.cwd(), 'node_modules')],
               },
               (err: Error, result: { css: Buffer }) => {
                 if (err) {
@@ -80,9 +80,9 @@ export function sassTask(
                       cb();
                     });
                 }
-              }
+              },
             );
-          }
+          },
       );
 
       parallelLimit(tasks, 5, done);

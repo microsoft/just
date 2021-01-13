@@ -1,4 +1,6 @@
 import * as ts from 'typescript';
+// // WARNING: Careful about add more imports - only import types from webpack
+import { Configuration } from 'webpack';
 import { tryRequire } from '../../tryRequire';
 
 export interface TsLoaderOptions {
@@ -18,11 +20,13 @@ export interface TsLoaderOptions {
 export interface TsCheckerOptions {
   typescript: string;
   tsconfig: string;
+  // eslint-disable-next-line @typescript-eslint/ban-types
   compilerOptions: object;
   tslint: string | true | undefined;
   tslintAutoFix: boolean;
   eslint: true | undefined;
   /** Options to supply to eslint https://eslint.org/docs/1.0.0/developer-guide/nodejs-api#cliengine */
+  // eslint-disable-next-line @typescript-eslint/ban-types
   eslintOptions: object;
   watch: string | string[];
   async: boolean;
@@ -47,20 +51,20 @@ export interface TsOverlayOptions {
   checkerOptions?: Partial<TsCheckerOptions>;
 }
 
-export const tsOverlay = (overlayOptions?: TsOverlayOptions) => {
+export const tsOverlay = (overlayOptions?: TsOverlayOptions): Partial<Configuration> => {
   const ForkTsCheckerPlugin = tryRequire('fork-ts-checker-webpack-plugin');
 
   overlayOptions = overlayOptions || {};
 
   overlayOptions.loaderOptions = overlayOptions.loaderOptions || {
-    transpileOnly: true
+    transpileOnly: true,
   };
 
   overlayOptions.checkerOptions = overlayOptions.checkerOptions || {};
 
   return {
     resolve: {
-      extensions: ['.wasm', '.mjs', '.js', '.ts', '.tsx', '.json']
+      extensions: ['.wasm', '.mjs', '.js', '.ts', '.tsx', '.json'],
     },
     module: {
       rules: [
@@ -68,12 +72,12 @@ export const tsOverlay = (overlayOptions?: TsOverlayOptions) => {
           test: /\.tsx?$/,
           use: {
             loader: 'ts-loader',
-            options: overlayOptions.loaderOptions
+            options: overlayOptions.loaderOptions,
           },
-          exclude: /node_modules/
-        }
-      ]
+          exclude: /node_modules/,
+        },
+      ],
     },
-    plugins: [...(ForkTsCheckerPlugin ? [new ForkTsCheckerPlugin(overlayOptions.checkerOptions)] : [])]
+    plugins: [...(ForkTsCheckerPlugin ? [new ForkTsCheckerPlugin(overlayOptions.checkerOptions)] : [])],
   };
 };

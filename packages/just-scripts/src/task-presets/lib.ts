@@ -1,7 +1,7 @@
 import { task, series, parallel } from 'just-task';
 import { cleanTask, tscTask, jestTask, defaultCleanPaths, tslintTask } from '../tasks';
 
-export function lib() {
+export function lib(): void {
   task('clean', cleanTask([...defaultCleanPaths(), 'lib-commonjs']));
 
   task('ts:commonjs', tscTask({ module: 'commonjs', outDir: 'lib-commonjs' }));

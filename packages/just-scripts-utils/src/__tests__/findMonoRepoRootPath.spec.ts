@@ -19,13 +19,13 @@ describe('findMonoRepoRootPath', () => {
         'package.json': '{}', // no just.stack
         f: {
           'package.json': packageJsonWithWrongStack,
-          g: {}
-        }
+          g: {},
+        },
       },
       '/h': {
         i: {}, // this will be the projectPath
-        j: { 'rush.json': '{}' } // rush.json is in the wrong place
-      }
+        j: { 'rush.json': '{}' }, // rush.json is in the wrong place
+      },
     });
 
     paths.projectPath = '/a';
@@ -44,7 +44,7 @@ describe('findMonoRepoRootPath', () => {
   it('works when projectPath is the monorepo root', () => {
     mockfs({
       '/a': { 'rush.json': '{}' },
-      '/b': { 'package.json': packageJsonWithJustStack }
+      '/b': { 'package.json': packageJsonWithJustStack },
     });
 
     paths.projectPath = '/a';
@@ -62,10 +62,10 @@ describe('findMonoRepoRootPath', () => {
           'package.json': '{', // invalid json
           d: {
             'package.json': packageJsonWithWrongStack,
-            e: {}
-          }
-        }
-      }
+            e: {},
+          },
+        },
+      },
     });
 
     paths.projectPath = '/a/b/c/d/e';
@@ -80,10 +80,10 @@ describe('findMonoRepoRootPath', () => {
           'package.json': '{', // invalid json
           d: {
             'package.json': packageJsonWithWrongStack,
-            e: {}
-          }
-        }
-      }
+            e: {},
+          },
+        },
+      },
     });
 
     paths.projectPath = '/a/b/c/d/e';

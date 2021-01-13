@@ -1,4 +1,4 @@
-import { getPackageDeps, IPackageDeps } from '@microsoft/package-deps-hash';
+import { getPackageDeps, IPackageDeps } from '@rushstack/package-deps-hash';
 import { argv } from './option';
 import { resolveCwd } from './resolve';
 import * as fs from 'fs-extra';
@@ -11,11 +11,11 @@ import { spawnSync } from 'child_process';
 const cachedTask: string[] = [];
 const CacheFileName = 'package-deps.json';
 
-export function registerCachedTask(taskName: string) {
+export function registerCachedTask(taskName: string): void {
   cachedTask.push(taskName);
 }
 
-export function clearCache() {
+export function clearCache(): void {
   const cachePath = getCachePath();
   const cacheFile = path.join(cachePath, CacheFileName);
 
@@ -24,7 +24,7 @@ export function clearCache() {
   }
 }
 
-export function isCached(taskName: string) {
+export function isCached(taskName: string): boolean {
   if (cachedTask.indexOf(taskName) < 0) {
     return false;
   }
@@ -51,7 +51,7 @@ export function isCached(taskName: string) {
   return shouldCache;
 }
 
-export function saveCache(taskName: string) {
+export function saveCache(taskName: string): void {
   if (cachedTask.indexOf(taskName) < 0) {
     return;
   }
@@ -137,7 +137,7 @@ function getHash(taskName: string): CacheHash | null {
     args,
     taskName,
     hash: packageDeps,
-    dependentHashTimestamps: getDependentHashTimestamps()
+    dependentHashTimestamps: getDependentHashTimestamps(),
   };
 
   logger.perf('cache:getHash');

@@ -12,9 +12,9 @@ function wrapTaskFunction(fn: TaskFunction, argv?: Arguments) {
   const argvOurs = argv || { _: [], $0: '' };
   const context: TaskContext = {
     argv: argvOurs,
-    logger
+    logger,
   };
-  const taskRet = (fn as any).call(context, (_err: any) => {});
+  const taskRet = (fn as any).call(context, (_err: any) => undefined);
   return taskRet;
 }
 

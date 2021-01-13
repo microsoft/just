@@ -27,11 +27,11 @@ function comparableEntries(entries: PackageEntries): PackageEntries {
             path: trimPath(_rootPath, entry.path),
             dependencies: Object.assign(
               {},
-              Object.keys(entry.dependencies).map(name => ({ [name]: {} }))
-            )
-          }
+              Object.keys(entry.dependencies).map(name => ({ [name]: {} })),
+            ),
+          },
         };
-      })
+      }),
   );
 }
 

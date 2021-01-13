@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import chalk = require('chalk');
 import { argv } from 'yargs';
 import { getDeltaAndClearMark } from './perf';
 
@@ -59,5 +59,5 @@ export const logger: Logger = {
         logInternal('info', chalk.cyan(square), `mark(${chalk.cyanBright(marker)}): took ${chalk.cyanBright(deltaMsg)}`, ...args);
       }
     }
-  }
+  },
 };

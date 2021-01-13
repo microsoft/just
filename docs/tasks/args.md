@@ -13,7 +13,7 @@ To read the arguments passed in from command line, use the `argv()` function pro
 ```js
 const { task, argv } = require('just-task');
 
-task('pillageMeArgs', function() {
+task('pillageMeArgs', function () {
   logger.info('a bunch of aarrrrrrgs', argv());
 });
 ```
@@ -25,7 +25,7 @@ const { task, logger, option, argv } = require('just-task');
 
 option('name');
 
-task('blimey', 'An exclamation of surprise.', function() {
+task('blimey', 'An exclamation of surprise.', function () {
   logger.info(`blimey! ${argv().name}`);
 });
 ```

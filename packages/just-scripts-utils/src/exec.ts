@@ -18,7 +18,7 @@ const SEPARATOR = process.platform === 'win32' ? ';' : ':';
  */
 export function exec(
   cmd: string,
-  opts: cp.ExecOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {}
+  opts: cp.ExecOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {},
 ): Promise<string | undefined> {
   return new Promise((resolve, reject) => {
     const child = cp.exec(cmd, opts, (error: ExecError | null, stdout?: string, stderr?: string) => {
@@ -46,7 +46,7 @@ export function exec(
  * @param cmdArgs Args to encode
  * @returns Encoded args
  */
-export function encodeArgs(cmdArgs: string[]) {
+export function encodeArgs(cmdArgs: string[]): string[] {
   // Taken from https://github.com/xxorax/node-shell-escape/blob/master/shell-escape.js
   // However, we needed to use double quotes because that's the norm in more platforms
   if (!cmdArgs) {
@@ -81,7 +81,7 @@ export function execSync(cmd: string, cwd?: string, returnOutput?: boolean): str
   const output = cp.execSync(cmd, {
     cwd,
     env,
-    stdio: returnOutput ? undefined : 'inherit'
+    stdio: returnOutput ? undefined : 'inherit',
   });
   return returnOutput ? (output || '').toString('utf8') : undefined;
 }
@@ -98,7 +98,7 @@ export function execSync(cmd: string, cwd?: string, returnOutput?: boolean): str
 export function spawn(
   cmd: string,
   args: ReadonlyArray<string> = [],
-  opts: cp.SpawnOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {}
+  opts: cp.SpawnOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {},
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     const child = cp.spawn(cmd, args, opts);

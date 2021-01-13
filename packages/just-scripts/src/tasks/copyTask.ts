@@ -40,7 +40,7 @@ export function copyTask(optionsOrPaths: CopyTaskOptions | string[] | undefined,
 
     const copyTasks: parallelLimit.Task<void>[] = [];
 
-    function helper(srcPath: string, basePath: string = '') {
+    function helper(srcPath: string, basePath = '') {
       basePath = basePath || getBasePath(srcPath);
       const matches = glob.sync(srcPath);
 

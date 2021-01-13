@@ -8,6 +8,6 @@
   "author": "",
   "dependencies": {
     "cpx": "^1.5.0",
-    "@jest/reporters": "^24.8.0"
+    "@jest/reporters": "^26.6.2"
   }
 }

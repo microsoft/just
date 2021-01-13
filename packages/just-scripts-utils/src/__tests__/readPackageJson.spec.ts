@@ -9,11 +9,11 @@ describe('readPackageJson', () => {
   beforeAll(() => {
     mockfs({
       [testDir]: {
-        'package.json': JSON.stringify({ name: testName })
+        'package.json': JSON.stringify({ name: testName }),
       },
       [badDir]: {
-        'package.json': '{' // invalid JSON
-      }
+        'package.json': '{', // invalid JSON
+      },
     });
   });
 

@@ -24,6 +24,6 @@ export function mockExecFactory() {
         // Don't spawn in real life
         return Promise.resolve();
       })
-      .mockName('spawn')
+      .mockName('spawn'),
   };
 }

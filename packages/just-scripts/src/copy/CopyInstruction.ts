@@ -27,7 +27,7 @@ export interface CopyConfig {
 export function copyFilesToDestinationDirectory(sourceFilePaths: string | string[], destinationDirectory: string): CopyInstruction[] {
   return arrayify(sourceFilePaths).map(sourceName => ({
     sourceFilePath: normalize(sourceName),
-    destinationFilePath: join(destinationDirectory, basename(sourceName))
+    destinationFilePath: join(destinationDirectory, basename(sourceName)),
   }));
 }
 
@@ -39,7 +39,7 @@ export function copyFilesToDestinationDirectory(sourceFilePaths: string | string
 export function copyFileToDestinationDirectoryWithRename(
   sourceFilePath: string,
   destinationName: string,
-  destinationDirectory: string
+  destinationDirectory: string,
 ): CopyInstruction[] {
   return [{ sourceFilePath, destinationFilePath: join(destinationDirectory, destinationName) }];
 }
@@ -51,11 +51,11 @@ export function copyFileToDestinationDirectoryWithRename(
  */
 export function copyFilesToDestinationDirectoryWithRename(
   instrs: { sourceFilePath: string; destinationName: string }[],
-  destinationDirectory: string
+  destinationDirectory: string,
 ): CopyInstruction[] {
   return instrs.map(instr => ({
     sourceFilePath: instr.sourceFilePath,
-    destinationFilePath: join(destinationDirectory, instr.destinationName)
+    destinationFilePath: join(destinationDirectory, instr.destinationName),
   }));
 }
 
@@ -66,7 +66,7 @@ export function copyFilesToDestinationDirectoryWithRename(
 export function copyFilesInDirectory(
   sourceDirectoryPath: string,
   outputDirectoryPath: string,
-  filterFunction?: (file: string) => boolean
+  filterFunction?: (file: string) => boolean,
 ): CopyInstruction[] {
   let files = readdirSync(sourceDirectoryPath);
 
@@ -75,7 +75,7 @@ export function copyFilesInDirectory(
   }
   return files.map(file => ({
     sourceFilePath: join(sourceDirectoryPath, file),
-    destinationFilePath: join(outputDirectoryPath, file)
+    destinationFilePath: join(outputDirectoryPath, file),
   }));
 }
 
@@ -87,6 +87,6 @@ export function copyFilesInDirectory(
 export function mergeFiles(sourceFilePaths: string[], destinationFilePath: string): CopyInstruction {
   return {
     sourceFilePath: sourceFilePaths,
-    destinationFilePath
+    destinationFilePath,
   };
 }

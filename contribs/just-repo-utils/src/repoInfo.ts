@@ -85,7 +85,7 @@ export function getRepoInfo(options?: RepoInfoOptions): RepoInfo {
     getRushJson,
     getLernaJson,
     getPackageJson: packageLoader!,
-    ...(isMonoRepo && { monorepo: getRushJson ? 'rush' : 'lerna' })
+    ...(isMonoRepo && { monorepo: getRushJson ? 'rush' : 'lerna' }),
   };
   return _repoInfo;
 }

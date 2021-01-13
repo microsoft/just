@@ -11,7 +11,7 @@ interface DepInfo {
   path: string;
 }
 
-export function findDependents() {
+export function findDependents(): Set<DepInfo> {
   mark('cache:findDependents');
   const results = collectAllDependentPaths(findPackageRoot());
   logger.perf('cache:findDependents');
@@ -29,7 +29,7 @@ function getDepsPaths(pkgPath: string): DepInfo[] {
     deps = [
       ...deps,
       ...(packageJson.dependencies ? Object.keys(packageJson.dependencies) : []),
-      ...(packageJson.devDependencies ? Object.keys(packageJson.devDependencies) : [])
+      ...(packageJson.devDependencies ? Object.keys(packageJson.devDependencies) : []),
     ];
 
     return deps

@@ -1,7 +1,7 @@
 // // WARNING: Careful about add more imports - only import types from webpack
 import { Configuration } from 'webpack';
 import { encodeArgs, spawn } from 'just-scripts-utils';
-import { logger, resolve, resolveCwd } from 'just-task';
+import { logger, resolve, resolveCwd, TaskFunction } from 'just-task';
 import * as fs from 'fs';
 import * as path from 'path';
 import { WebpackCliTaskOptions } from './webpackCliTask';
@@ -46,8 +46,8 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
   transpileOnly?: boolean;
 }
 
-export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}) {
-  let configPath = options && options.config ? resolveCwd(path.join('.', options.config)) : findWebpackConfig('webpack.serve.config.js');
+export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}): TaskFunction {
+  const configPath = options && options.config ? resolveCwd(path.join('.', options.config)) : findWebpackConfig('webpack.serve.config.js');
 
   const devServerCmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
 

@@ -31,7 +31,7 @@ export function getSerializableRepoPackages(info: PackageEntries): ISerializable
   Object.keys(info).forEach(pkgName => {
     results[pkgName] = {
       path: info[pkgName].path,
-      dependencies: Object.keys(info[pkgName].dependencies)
+      dependencies: Object.keys(info[pkgName].dependencies),
     };
   });
   return results;
@@ -48,7 +48,7 @@ export function getRepoPackagesFromSerializableForm(info: ISerializableRepoPacka
     results[pkgName] = {
       path: entry.path,
       getConfig: getConfigLoader<PackageJson>(entry.path, 'package.json') as PackageJsonLoader,
-      dependencies: {}
+      dependencies: {},
     };
   });
   // now link dependencies
@@ -69,7 +69,7 @@ export function cachePackageInfo(pkgInfo: PackageEntries): void {
   const repo = getRepoInfo();
   const toJson: IPackageInfoCacheJson = {
     hash: getRepoHashKey(repo.rootPath),
-    packages: getSerializableRepoPackages(pkgInfo)
+    packages: getSerializableRepoPackages(pkgInfo),
   };
   // ensure the directory is created
   const cacheDir = path.dirname(cachePath);

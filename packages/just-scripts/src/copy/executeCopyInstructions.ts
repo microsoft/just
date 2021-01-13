@@ -7,7 +7,7 @@ import { uniqueValues } from '../arrayUtils/uniqueValues';
 /**
  * Function containing the core code for the copy task with a given config.
  */
-export async function executeCopyInstructions(config: CopyConfig | undefined) {
+export async function executeCopyInstructions(config: CopyConfig | undefined): Promise<void> {
   if (config && config.copyInstructions) {
     await createDirectories(config.copyInstructions);
     await Promise.all(config.copyInstructions.map(executeSingleCopyInstruction));
@@ -16,7 +16,7 @@ export async function executeCopyInstructions(config: CopyConfig | undefined) {
 
 function createDirectories(copyInstructions: CopyInstruction[]) {
   return Promise.all(
-    uniqueValues(copyInstructions.map(instruction => dirname(instruction.destinationFilePath))).map(dirname => ensureDir(dirname))
+    uniqueValues(copyInstructions.map(instruction => dirname(instruction.destinationFilePath))).map(dirname => ensureDir(dirname)),
   );
 }
 

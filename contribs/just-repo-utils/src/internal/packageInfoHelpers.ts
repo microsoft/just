@@ -12,8 +12,8 @@ function buildPackageInfo(root: string, pkgPath: string, pkgJsonName?: string): 
     [getConfig().name]: {
       path: normalizeToUnixPath(path.dirname(pkgJsonPath)),
       getConfig,
-      dependencies: {}
-    }
+      dependencies: {},
+    },
   };
 }
 
@@ -52,7 +52,7 @@ export function buildPackageInfoFromGlobs(root: string, globs: string[]): Packag
 export function buildPackageInfoFromRushProjects(root: string, projects: RushProject[]): PackageEntries {
   const results: PackageEntries = Object.assign(
     {},
-    ...projects.map(project => buildPackageInfo(root, project.projectFolder, 'package.json'))
+    ...projects.map(project => buildPackageInfo(root, project.projectFolder, 'package.json')),
   );
   addPackageDependencies(results);
   return results;
@@ -84,6 +84,6 @@ export function infoFromEntries(entries: PackageEntries): PackageInfo {
       }
       return infoFromEntries(collector);
     },
-    entries
+    entries,
   };
 }

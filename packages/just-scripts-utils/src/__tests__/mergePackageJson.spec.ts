@@ -107,7 +107,7 @@ describe('mergePackageJson', () => {
     const original = genPackageJson({ b: 'c' });
     const incoming = genPackageJson({
       dependencies: { d: '1.0.0' },
-      devDependencies: { e: '1.0.0' }
+      devDependencies: { e: '1.0.0' },
     });
     const result = mergePackageJson(original, incoming);
     expect(result === original).toBe(false); // new object returned
@@ -117,11 +117,11 @@ describe('mergePackageJson', () => {
   it('merges in new deps and devDeps without overlap', () => {
     const original = genPackageJson({
       dependencies: { b: '1.0.0' },
-      devDependencies: { c: '1.0.0' }
+      devDependencies: { c: '1.0.0' },
     });
     const incoming = genPackageJson({
       dependencies: { d: '1.0.0' },
-      devDependencies: { e: '1.0.0' }
+      devDependencies: { e: '1.0.0' },
     });
     const result = mergePackageJson(original, incoming);
     // new object returned
@@ -132,7 +132,7 @@ describe('mergePackageJson', () => {
     expect(result.dependencies).toEqual({ ...original.dependencies, ...incoming.dependencies });
     expect(result.devDependencies).toEqual({
       ...original.devDependencies,
-      ...incoming.devDependencies
+      ...incoming.devDependencies,
     });
   });
 

@@ -73,7 +73,7 @@ export function createTarTask(options: CreateOptions = { file: 'archive.tar.gz' 
 
   const tar = require(resolvedTar);
 
-  let { entries, file, cwd, ...restOptions } = options;
+  const { entries, file, cwd, ...restOptions } = options;
 
   return function archive(done) {
     let tarStream = tar.pack(cwd, {
@@ -82,7 +82,7 @@ export function createTarTask(options: CreateOptions = { file: 'archive.tar.gz' 
       finish: () => {
         done();
       },
-      ...restOptions
+      ...restOptions,
     });
 
     if (options.gzip) {
@@ -160,8 +160,8 @@ export function extractTarTask(options: ExtractOptions = { file: 'archive.tar.gz
         finish: () => {
           done();
         },
-        ...restOptions
-      })
+        ...restOptions,
+      }),
     );
   };
 }

@@ -1,6 +1,6 @@
 import { SpawnOptions } from 'child_process';
 import { spawn } from 'just-scripts-utils';
-import { logger } from 'just-task';
+import { logger, TaskFunction } from 'just-task';
 import { resolveCwd, _tryResolve } from 'just-task/lib/resolve';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 
@@ -37,7 +37,7 @@ export interface NodeExecTaskOptions {
   spawnOptions?: SpawnOptions;
 }
 
-export function nodeExecTask(options: NodeExecTaskOptions) {
+export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction {
   return function () {
     const { spawnOptions, enableTypeScript, tsconfig, transpileOnly } = options;
 

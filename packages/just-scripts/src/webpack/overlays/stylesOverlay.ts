@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/indent */
+// // WARNING: Careful about add more imports - only import types from webpack
+import { Configuration } from 'webpack';
 import { resolve } from 'just-task';
 import { tryRequire } from '../../tryRequire';
 
@@ -23,43 +24,43 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
           {
             loader: 'postcss-loader',
             options: {
-              plugins: function() {
+              plugins: function () {
                 return [tryRequire('autoprefixer')];
-              }
-            }
-          }
+              },
+            },
+          },
         ]
       : []),
-    ...(preprocessor ? [preprocessor] : [])
+    ...(preprocessor ? [preprocessor] : []),
   ];
 
   const moduleOptions = cssOptions.localIdentName
     ? {
         modules: {
           mode: 'local',
-          localIdentName: cssOptions.localIdentName
-        }
+          localIdentName: cssOptions.localIdentName,
+        },
       }
     : {
-        modules: cssOptions.modules
+        modules: cssOptions.modules,
       };
 
   return [
     {
-      loader: styleLoader // creates style nodes from JS strings
+      loader: styleLoader, // creates style nodes from JS strings
     },
     {
       loader: 'css-loader', // translates CSS into CommonJS
       options: {
         ...moduleOptions,
-        importLoaders: preloaders.length
-      }
+        importLoaders: preloaders.length,
+      },
     },
-    ...preloaders
+    ...preloaders,
   ];
 }
 
-export const createStylesOverlay = function(options: CssLoaderOptions = {}) {
+export const createStylesOverlay = function (options: CssLoaderOptions = {}): Partial<Configuration> {
   const sassLoader = resolve('node-sass') && resolve('sass-loader');
   const cssLoader = resolve('css-loader');
 
@@ -73,18 +74,18 @@ export const createStylesOverlay = function(options: CssLoaderOptions = {}) {
                 exclude: [/node_modules/, cssModuleTest],
                 use: createStyleLoaderRule({
                   modules: false,
-                  localIdentName: options.localIdentName || defaultIdentName
+                  localIdentName: options.localIdentName || defaultIdentName,
                 }),
-                sideEffects: true
+                sideEffects: true,
               },
               {
                 test: cssModuleTest,
                 exclude: [/node_modules/],
                 use: createStyleLoaderRule({
                   modules: true,
-                  localIdentName: options.localIdentName || defaultIdentName
-                })
-              }
+                  localIdentName: options.localIdentName || defaultIdentName,
+                }),
+              },
             ]
           : []),
         ...(sassLoader && cssLoader
@@ -95,11 +96,11 @@ export const createStylesOverlay = function(options: CssLoaderOptions = {}) {
                 use: createStyleLoaderRule(
                   {
                     modules: false,
-                    localIdentName: options.localIdentName || defaultIdentName
+                    localIdentName: options.localIdentName || defaultIdentName,
                   },
-                  'sass-loader'
+                  'sass-loader',
                 ),
-                sideEffects: true
+                sideEffects: true,
               },
               {
                 test: sassModuleTest,
@@ -107,19 +108,19 @@ export const createStylesOverlay = function(options: CssLoaderOptions = {}) {
                 use: createStyleLoaderRule(
                   {
                     modules: true,
-                    localIdentName: options.localIdentName || defaultIdentName
+                    localIdentName: options.localIdentName || defaultIdentName,
                   },
-                  'sass-loader'
-                )
-              }
+                  'sass-loader',
+                ),
+              },
             ]
-          : [])
-      ]
-    }
+          : []),
+      ],
+    },
   };
 };
 
-export const stylesOverlay = () =>
+export const stylesOverlay = (): Partial<Configuration> =>
   createStylesOverlay({
-    localIdentName: defaultIdentName
+    localIdentName: defaultIdentName,
   });

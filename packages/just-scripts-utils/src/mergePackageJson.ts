@@ -19,7 +19,7 @@ export function mergePackageJson(original: PackageJson, incoming: PackageJson): 
   const newPackageJson: PackageJson = {
     ...original,
     dependencies: { ...(original.dependencies || {}) },
-    devDependencies: { ...(original.devDependencies || {}) }
+    devDependencies: { ...(original.devDependencies || {}) },
   };
 
   const depTypes = ['dependencies', 'devDependencies'];

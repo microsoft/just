@@ -1,5 +1,6 @@
 import { TaskFunction } from './interfaces';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function wrapTask(fn: any): TaskFunction {
   return function _wrapFunction(done: any) {
     let origFn = fn;

@@ -17,7 +17,7 @@ To log within the task, simply use the `info()` function off of the `logger` obj
 ```js
 const { task, logger } = require('just-task');
 
-task('needsLogging', function() {
+task('needsLogging', function () {
   logger.info('log something');
 });
 ```
@@ -29,7 +29,7 @@ If you want to log an error or warning do it with the `logger` object's `warn()`
 ```js
 const { task, logger } = require('just-task');
 
-task('needsLogging', function() {
+task('needsLogging', function () {
   logger.warn('a warning');
   logger.error('an error');
 });
@@ -40,7 +40,7 @@ If your error is meant to stop the tasks, simply throw an Error:
 ```js
 const { task, logger } = require('just-task');
 
-task('needsLogging', function() {
+task('needsLogging', function () {
   throw new Error('an error');
 });
 ```

@@ -40,7 +40,7 @@ describe('_tryResolve', () => {
 
   it('does not recurse into child dirs', () => {
     mockfs({
-      a: { 'b.txt': '' }
+      a: { 'b.txt': '' },
     });
     expect(_tryResolve('b.txt', { cwd: process.cwd() })).toBeNull();
   });
@@ -48,7 +48,7 @@ describe('_tryResolve', () => {
   it('resolves filename relative to basedir', () => {
     mockfs({
       a: { 'b.txt': '' }, // right
-      'b.txt': '' // wrong
+      'b.txt': '', // wrong
     });
     expect(_tryResolve('b.txt', { cwd: 'a' })).toContain(path.join('a', 'b.txt'));
   });
@@ -57,19 +57,16 @@ describe('_tryResolve', () => {
     mockfs({
       a: {
         'b.js': '', // wrong
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        node_modules: { 'b.js': '' } // right
+        node_modules: { 'b.js': '' }, // right
       },
-      // eslint-disable-next-line @typescript-eslint/camelcase
-      node_modules: { 'b.js': '' } // wrong
+      node_modules: { 'b.js': '' }, // wrong
     });
     expect(_tryResolve('b', { cwd: 'a' })).toContain(path.join('a', 'node_modules', 'b.js'));
   });
 
   it('resolves path with /', () => {
     mockfs({
-      // eslint-disable-next-line @typescript-eslint/camelcase
-      a: { node_modules: { b: { 'c.js': '' } } }
+      a: { node_modules: { b: { 'c.js': '' } } },
     });
     expect(_tryResolve('b/c', { cwd: 'a' })).toContain(path.join('a', 'node_modules', 'b', 'c.js'));
   });
@@ -106,7 +103,7 @@ describe('resolveCwd', () => {
   it('defaults to searching relative to process cwd', () => {
     mockfs({
       a: { 'b.txt': '' }, // right
-      'b.txt': '' // wrong
+      'b.txt': '', // wrong
     });
     jest.spyOn(process, 'cwd').mockReturnValueOnce('a');
     expect(resolveCwd('b.txt')).toContain(path.join('a', 'b.txt'));
@@ -115,14 +112,14 @@ describe('resolveCwd', () => {
   it('uses provided cwd', () => {
     mockfs({
       a: { 'b.txt': '' }, // right
-      'b.txt': '' // wrong
+      'b.txt': '', // wrong
     });
     expect(resolveCwd('b.txt', 'a')).toContain(path.join('a', 'b.txt'));
   });
 
   it('ignores resolvePaths', () => {
     mockfs({
-      a: { 'b.txt': '' }
+      a: { 'b.txt': '' },
     });
     addResolvePath('a');
     expect(resolveCwd('b.txt')).toBeNull();
@@ -140,7 +137,7 @@ describe('resolve', () => {
   it('defaults to searching relative to process cwd', () => {
     mockfs({
       a: { 'b.txt': '' }, // right
-      'b.txt': '' // wrong
+      'b.txt': '', // wrong
     });
     jest.spyOn(process, 'cwd').mockReturnValueOnce('a');
     expect(resolve('b.txt')).toContain(path.join('a', 'b.txt'));
@@ -150,14 +147,14 @@ describe('resolve', () => {
     mockfs({
       a: { 'b.txt': '' }, // right
       'b.txt': '', // wrong
-      c: { 'b.txt': '' }
+      c: { 'b.txt': '' },
     });
     expect(resolve('b.txt', 'a')).toContain(path.join('a', 'b.txt'));
   });
 
   it('uses dirname of --config arg', () => {
     mockfs({
-      a: { 'b.txt': '' }
+      a: { 'b.txt': '' },
     });
 
     jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' } as any));
@@ -168,7 +165,7 @@ describe('resolve', () => {
   it('uses resolvePaths for file', () => {
     mockfs({
       a: {},
-      c: { 'b.txt': '' }
+      c: { 'b.txt': '' },
     });
     addResolvePath('a');
     addResolvePath('c');
@@ -180,7 +177,7 @@ describe('resolve', () => {
       a: { 'b.txt': '' }, // right
       c: { 'b.txt': '' }, // wrong
       d: { 'b.txt': '' }, // wrong
-      'b.txt': '' // wrong
+      'b.txt': '', // wrong
     });
 
     jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' } as any));

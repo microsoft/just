@@ -20,7 +20,7 @@ const { task, option, logger, argv } = require('just-scripts');
 
 option('name', { default: 'world' });
 
-task('sayhello', function() {
+task('sayhello', function () {
   logger.info(argv().name);
 });
 ```
@@ -41,7 +41,7 @@ import { task, option, logger, argv } from 'just-scripts';
 
 option('name', { default: 'world' });
 
-task('sayhello', function() {
+task('sayhello', function () {
   logger.info(argv().name);
 });
 ```

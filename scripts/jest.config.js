@@ -11,7 +11,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       tsConfig: path.resolve(process.cwd(), 'tsconfig.json'),
-      packageJson: path.resolve(process.cwd(), 'package.json')
-    }
-  }
+      packageJson: path.resolve(process.cwd(), 'package.json'),
+    },
+  },
 };

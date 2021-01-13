@@ -22,5 +22,5 @@ export const paths = {
    */
   tempPath(...segments: string[]): string {
     return path.resolve(os.tmpdir(), 'just-stack', ...segments);
-  }
+  },
 };

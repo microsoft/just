@@ -39,9 +39,9 @@ export function cleanTask(pathsOrOptions: string[] | CleanTaskOptions = {}, limi
     const cleanTasks = paths
       .map(
         cleanPath =>
-          function(cb: (error: Error | null) => void) {
+          function (cb: (error: Error | null) => void) {
             fse.remove(cleanPath, cb);
-          }
+          },
       )
       .concat((cb: (error: Error | null) => void) => {
         clearCache();

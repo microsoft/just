@@ -11,11 +11,11 @@ Once a project gets a bit more complex, a build step might consist of multiple s
 ```js
 const { task, series } = require('just-task');
 
-task('clean', function() {
+task('clean', function () {
   // clean stuff
 });
 
-task('babel', function() {
+task('babel', function () {
   // run babel over some files
 });
 
@@ -31,11 +31,11 @@ To take advantage of multi-core CPUs on our machines, we can run several tasks i
 ```js
 const { task, parallel } = require('just-task');
 
-task('babel', function() {
+task('babel', function () {
   // run babel babel over some files
 });
 
-task('lint', function() {
+task('lint', function () {
   // run eslint over some files
 });
 
@@ -49,11 +49,11 @@ The most powerful feature of `just-task` is its ability to compose tasks by nest
 ```js
 const { task, parallel, series } = require('just-task');
 
-task('babel', function() {
+task('babel', function () {
   // run babel babel over some files
 });
 
-task('lint', function() {
+task('lint', function () {
   // run eslint over some files
 });
 

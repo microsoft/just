@@ -40,7 +40,7 @@ describe('_justReadRushJson', () => {
   beforeAll(() => {
     mockfs({
       root: { 'rush.json': rushJsonStr },
-      badRoot: {}
+      badRoot: {},
     });
   });
 
@@ -79,7 +79,7 @@ describe('readRushJson', () => {
     const consoleError = jest.fn();
     jest.spyOn(console, 'error').mockImplementation(consoleError);
     mockfs({
-      root: { 'rush.json': '{' }
+      root: { 'rush.json': '{' },
     });
 
     rushAddPackage('b', 'root');
@@ -97,7 +97,7 @@ describe('readRushJson', () => {
 
     mockfs({
       root1: { 'rush.json': rushJsonStrNoProjects }, // no projects yet
-      root2: { 'rush.json': rushJsonStr } // already has a project
+      root2: { 'rush.json': rushJsonStr }, // already has a project
     });
 
     rushAddPackage('a', 'root1');
@@ -116,7 +116,7 @@ describe('readRushJson', () => {
     };
 
     mockfs({
-      root: { 'rush.json': rushJsonStr }
+      root: { 'rush.json': rushJsonStr },
     });
 
     // cause a fake update error
