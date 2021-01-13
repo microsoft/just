@@ -46,6 +46,7 @@ if (command) {
     undertaker.series(registry.get(command))(() => undefined);
   } else {
     logger.error(`Command not defined: ${command}`);
+    process.exitCode = 1;
   }
 } else {
   showHelp();

@@ -52,6 +52,10 @@ export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunctio
 
     let configPath = findWebpackConfig('webpack.config.js');
 
+    if (configPath) {
+      options.env = { ...options.env, ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)) };
+    }
+
     if (options.webpackCliArgs) {
       const configIndex = options.webpackCliArgs.indexOf('--config');
       const configPathAvailable = configIndex > -1 && options.webpackCliArgs.length > configIndex + 2;
@@ -61,8 +65,6 @@ export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunctio
     }
 
     logger.info(`webpack-cli arguments: ${process.execPath} ${args.join(' ')}`);
-
-    options.env = { ...options.env, ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)) };
 
     return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
   };

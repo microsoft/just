@@ -7,6 +7,7 @@ import * as path from 'path';
 import { WebpackCliTaskOptions } from './webpackCliTask';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
+import * as semver from 'semver';
 
 export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Configuration {
   /**
@@ -47,30 +48,47 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
 }
 
 export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}): TaskFunction {
-  const configPath = options && options.config ? resolveCwd(path.join('.', options.config)) : findWebpackConfig('webpack.serve.config.js');
+  const configPath =
+    options && options.config
+      ? resolveCwd(path.join('.', options.config))
+      : findWebpackConfig('webpack.serve.config.js', 'webpack.config.js');
 
-  const devServerCmd = resolve('webpack-dev-server/bin/webpack-dev-server.js');
+  // for webpack-cli < 4, use webpack-dev-server directly, for webpack-cli >= 4, use "webpack serve"
+  const webpackCliPath = resolve('webpack-cli/package.json');
+
+  if (!webpackCliPath) {
+    throw new Error('Missing webpack-cli package. Please install webpack-cli as a devDependency.');
+  }
+
+  const webpackCliVersion = JSON.parse(fs.readFileSync(webpackCliPath, 'utf-8')).version;
+
+  const useWebpackServe = semver.gte(webpackCliVersion, '4.0.0');
+
+  const devServerCmd = useWebpackServe
+    ? [resolve('webpack/bin/webpack.js')!, 'serve']
+    : [resolve('webpack-dev-server/bin/webpack-dev-server.js')!];
 
   return function webpackDevServer() {
-    if (devServerCmd && configPath && fs.existsSync(configPath)) {
-      let args = [...(options.nodeArgs || []), devServerCmd, '--config', configPath];
-      if (options.open) {
-        args.push('--open');
-      }
-      if (options.mode) {
-        args = [...args, '--mode', options.mode];
-      }
-      if (options.webpackCliArgs) {
-        args = [...args, ...options.webpackCliArgs];
-      }
+    let args = [...(options.nodeArgs || []), ...devServerCmd];
 
+    if (configPath && fs.existsSync(configPath)) {
+      args = [...args, '--config', configPath];
       options.env = { ...options.env, ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)) };
-
-      logger.info(process.execPath, encodeArgs(args).join(' '));
-      return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
-    } else {
-      logger.warn(`${options?.config || 'webpack.serve.config.js'} not found, skipping`);
-      return Promise.resolve();
     }
+
+    if (options.open) {
+      args.push('--open');
+    }
+
+    if (options.mode) {
+      args = [...args, '--mode', options.mode];
+    }
+
+    if (options.webpackCliArgs) {
+      args = [...args, ...options.webpackCliArgs];
+    }
+
+    logger.info(process.execPath, encodeArgs(args).join(' '));
+    return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
   };
 }
