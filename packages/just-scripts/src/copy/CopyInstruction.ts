@@ -25,7 +25,7 @@ export interface CopyConfig {
  * files 'dest/target/foo.js' and 'dest/target/bar.js'.
  */
 export function copyFilesToDestinationDirectory(sourceFilePaths: string | string[], destinationDirectory: string): CopyInstruction[] {
-  return arrayify(sourceFilePaths).map((sourceName) => ({
+  return arrayify(sourceFilePaths).map(sourceName => ({
     sourceFilePath: normalize(sourceName),
     destinationFilePath: join(destinationDirectory, basename(sourceName)),
   }));
@@ -39,7 +39,7 @@ export function copyFilesToDestinationDirectory(sourceFilePaths: string | string
 export function copyFileToDestinationDirectoryWithRename(
   sourceFilePath: string,
   destinationName: string,
-  destinationDirectory: string
+  destinationDirectory: string,
 ): CopyInstruction[] {
   return [{ sourceFilePath, destinationFilePath: join(destinationDirectory, destinationName) }];
 }
@@ -51,9 +51,9 @@ export function copyFileToDestinationDirectoryWithRename(
  */
 export function copyFilesToDestinationDirectoryWithRename(
   instrs: { sourceFilePath: string; destinationName: string }[],
-  destinationDirectory: string
+  destinationDirectory: string,
 ): CopyInstruction[] {
-  return instrs.map((instr) => ({
+  return instrs.map(instr => ({
     sourceFilePath: instr.sourceFilePath,
     destinationFilePath: join(destinationDirectory, instr.destinationName),
   }));
@@ -66,14 +66,14 @@ export function copyFilesToDestinationDirectoryWithRename(
 export function copyFilesInDirectory(
   sourceDirectoryPath: string,
   outputDirectoryPath: string,
-  filterFunction?: (file: string) => boolean
+  filterFunction?: (file: string) => boolean,
 ): CopyInstruction[] {
   let files = readdirSync(sourceDirectoryPath);
 
   if (filterFunction) {
     files = files.filter(filterFunction);
   }
-  return files.map((file) => ({
+  return files.map(file => ({
     sourceFilePath: join(sourceDirectoryPath, file),
     destinationFilePath: join(outputDirectoryPath, file),
   }));

@@ -16,7 +16,7 @@ export function sassTask(options: SassTaskOptions): TaskFunction;
 export function sassTask(createSourceModule: (fileName: string, css: string) => string, postcssPlugins?: any[]): TaskFunction;
 export function sassTask(
   optionsOrCreateSourceModule: SassTaskOptions | ((fileName: string, css: string) => string),
-  postcssPlugins?: any[]
+  postcssPlugins?: any[],
 ): TaskFunction {
   let createSourceModule: (fileName: string, css: string) => string;
   if (typeof optionsOrCreateSourceModule === 'function') {
@@ -80,9 +80,9 @@ export function sassTask(
                       cb();
                     });
                 }
-              }
+              },
             );
-          }
+          },
       );
 
       parallelLimit(tasks, 5, done);

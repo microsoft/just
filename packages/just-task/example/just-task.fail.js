@@ -48,9 +48,9 @@ module.exports = () => {
         condition('ts', () => {
           return argv().production;
         }),
-        parallel('webpack', 'webpack:promise')
-      )
-    )
+        parallel('webpack', 'webpack:promise'),
+      ),
+    ),
   );
 
   task('default', parallel('cond'));

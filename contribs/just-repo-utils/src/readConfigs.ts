@@ -69,7 +69,7 @@ export function readJsonConfig<T = object>(folder: string, name?: string, onLoad
  */
 export function getConfigLoader<T = object>(folder: string, name?: string, onLoad?: LoaderFn<T>): ConfigLoader<T> | undefined {
   onLoad = onLoad || loadJson;
-  return ifConfig<ConfigLoader<T>>(folder, name, (pkgPath) => {
+  return ifConfig<ConfigLoader<T>>(folder, name, pkgPath => {
     let _storage: { config?: T } = {};
     return () => {
       if (!_storage.config) {

@@ -20,7 +20,7 @@ function buildPackageInfo(root: string, pkgPath: string, pkgJsonName?: string): 
 function buildPackageInfoForGlob(root: string, pkgGlob: string): PackageEntries {
   const matchPattern = pkgGlob + '/package.json';
   const globOptions = { cwd: root, ignore: '**/node_modules/**' };
-  return Object.assign({}, ...glob.sync(matchPattern, globOptions).map((subPath) => buildPackageInfo(root, subPath)));
+  return Object.assign({}, ...glob.sync(matchPattern, globOptions).map(subPath => buildPackageInfo(root, subPath)));
 }
 
 function addPackageDependencyBranch(repoInfo: PackageEntries, pkg: PackageEntry, key: string): void {
@@ -28,7 +28,7 @@ function addPackageDependencyBranch(repoInfo: PackageEntries, pkg: PackageEntry,
   const section = config[key];
   const dependencies = pkg.dependencies;
   if (section) {
-    Object.keys(section).forEach((dependency) => {
+    Object.keys(section).forEach(dependency => {
       if (repoInfo[dependency] && !dependencies[dependency]) {
         dependencies[dependency] = repoInfo[dependency];
       }
@@ -37,14 +37,14 @@ function addPackageDependencyBranch(repoInfo: PackageEntries, pkg: PackageEntry,
 }
 
 function addPackageDependencies(info: PackageEntries): void {
-  Object.keys(info).forEach((pkg) => {
+  Object.keys(info).forEach(pkg => {
     addPackageDependencyBranch(info, info[pkg], 'dependencies');
     addPackageDependencyBranch(info, info[pkg], 'devDependencies');
   });
 }
 
 export function buildPackageInfoFromGlobs(root: string, globs: string[]): PackageEntries {
-  const results: PackageEntries = Object.assign({}, ...globs.map((glob) => buildPackageInfoForGlob(root, glob)));
+  const results: PackageEntries = Object.assign({}, ...globs.map(glob => buildPackageInfoForGlob(root, glob)));
   addPackageDependencies(results);
   return results;
 }
@@ -52,7 +52,7 @@ export function buildPackageInfoFromGlobs(root: string, globs: string[]): Packag
 export function buildPackageInfoFromRushProjects(root: string, projects: RushProject[]): PackageEntries {
   const results: PackageEntries = Object.assign(
     {},
-    ...projects.map((project) => buildPackageInfo(root, project.projectFolder, 'package.json'))
+    ...projects.map(project => buildPackageInfo(root, project.projectFolder, 'package.json')),
   );
   addPackageDependencies(results);
   return results;
@@ -60,7 +60,7 @@ export function buildPackageInfoFromRushProjects(root: string, projects: RushPro
 
 function findRecursiveDependencies(collector: PackageEntries, entry: PackageEntry, depType?: PackageInfoOptions['dependencyType']): void {
   const dependencies = entry.dependencies;
-  Object.keys(dependencies).forEach((dep) => {
+  Object.keys(dependencies).forEach(dep => {
     if (!collector[dep]) {
       const configDeps = depType && entry.getConfig()[depType];
       if (!depType || (configDeps && configDeps[dep])) {
@@ -73,7 +73,7 @@ function findRecursiveDependencies(collector: PackageEntries, entry: PackageEntr
 
 export function infoFromEntries(entries: PackageEntries): PackageInfo {
   return {
-    paths: () => Object.keys(entries).map((pkgName) => normalizeToUnixPath(entries[pkgName].path)),
+    paths: () => Object.keys(entries).map(pkgName => normalizeToUnixPath(entries[pkgName].path)),
     names: () => Object.keys(entries),
     dependencies: (options?: PackageInfoOptions) => {
       const target = (options && options.target) || readPackageJson(process.cwd())!.name;

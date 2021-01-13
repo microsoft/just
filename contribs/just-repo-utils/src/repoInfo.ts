@@ -48,7 +48,7 @@ export function findGitRoot(cb?: FindRootCallback, options?: RepoInfoOptions): s
  */
 function findRepoRootWithConfig(cb?: FindRootCallback, options?: RepoInfoOptions): [string, PackageJsonLoader | undefined] {
   let loader: PackageJsonLoader | undefined = undefined;
-  const path = findGitRoot((cwd) => {
+  const path = findGitRoot(cwd => {
     loader = getConfigLoader<PackageJson>(cwd, 'package.json');
     return (cb && cb(cwd)) || isRepoRoot(cwd, loader && loader());
   }, options);

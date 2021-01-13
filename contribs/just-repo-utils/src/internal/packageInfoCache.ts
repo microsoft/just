@@ -28,7 +28,7 @@ const cachePath = getCachePath(cacheFileName, true);
  */
 export function getSerializableRepoPackages(info: PackageEntries): ISerializableRepoPackages {
   const results: ISerializableRepoPackages = {};
-  Object.keys(info).forEach((pkgName) => {
+  Object.keys(info).forEach(pkgName => {
     results[pkgName] = {
       path: info[pkgName].path,
       dependencies: Object.keys(info[pkgName].dependencies),
@@ -43,7 +43,7 @@ export function getSerializableRepoPackages(info: PackageEntries): ISerializable
 export function getRepoPackagesFromSerializableForm(info: ISerializableRepoPackages): PackageEntries {
   const results: PackageEntries = {};
   // build the initial set
-  Object.keys(info).forEach((pkgName) => {
+  Object.keys(info).forEach(pkgName => {
     const entry = info[pkgName];
     results[pkgName] = {
       path: entry.path,
@@ -52,9 +52,9 @@ export function getRepoPackagesFromSerializableForm(info: ISerializableRepoPacka
     };
   });
   // now link dependencies
-  Object.keys(info).forEach((pkgName) => {
+  Object.keys(info).forEach(pkgName => {
     const dependencies = results[pkgName].dependencies;
-    info[pkgName].dependencies.forEach((pkg) => {
+    info[pkgName].dependencies.forEach(pkg => {
       dependencies[pkg] = results[pkg];
     });
   });

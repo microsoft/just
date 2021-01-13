@@ -98,7 +98,7 @@ export const createStylesOverlay = function (options: CssLoaderOptions = {}): Pa
                     modules: false,
                     localIdentName: options.localIdentName || defaultIdentName,
                   },
-                  'sass-loader'
+                  'sass-loader',
                 ),
                 sideEffects: true,
               },
@@ -110,7 +110,7 @@ export const createStylesOverlay = function (options: CssLoaderOptions = {}): Pa
                     modules: true,
                     localIdentName: options.localIdentName || defaultIdentName,
                   },
-                  'sass-loader'
+                  'sass-loader',
                 ),
               },
             ]

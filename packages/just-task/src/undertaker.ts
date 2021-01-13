@@ -99,7 +99,7 @@ undertaker.on('error', function (args: any) {
   }
 });
 
-process.on('exit', (code) => {
+process.on('exit', code => {
   if (code !== 0) {
     logger.error(chalk.dim(`Error previously detected. See above for error messages.`));
   }
@@ -107,14 +107,14 @@ process.on('exit', (code) => {
   if (Object.keys(tasksInProgress).length > 0) {
     logger.error(
       `Other tasks that did not complete: [${Object.keys(tasksInProgress)
-        .map((taskName) => colorizeTaskName(taskName))
-        .join(', ')}]`
+        .map(taskName => colorizeTaskName(taskName))
+        .join(', ')}]`,
     );
   }
 });
 
 export function parallel(...tasks: Task[]): Undertaker.TaskFunction {
-  const newTasks = tasks.map((task) => {
+  const newTasks = tasks.map(task => {
     if (typeof task === 'string') {
       return task;
     } else {
@@ -126,7 +126,7 @@ export function parallel(...tasks: Task[]): Undertaker.TaskFunction {
 }
 
 export function series(...tasks: Task[]): Undertaker.TaskFunction {
-  const newTasks = tasks.map((task) => {
+  const newTasks = tasks.map(task => {
     if (typeof task === 'string') {
       return task;
     } else {

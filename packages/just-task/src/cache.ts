@@ -100,7 +100,7 @@ function getLockFileHashes(): { [file: string]: string } {
   const foundLockFiles = lsFileResults.stdout
     .toString()
     .split(/\n/)
-    .map((l) => l.trim());
+    .map(l => l.trim());
 
   const hashResults = spawnSync('git', ['hash-object', ...foundLockFiles], { cwd: gitRoot });
 
@@ -111,7 +111,7 @@ function getLockFileHashes(): { [file: string]: string } {
   const hashes = hashResults.stdout
     .toString()
     .split(/\n/)
-    .map((l) => l.trim());
+    .map(l => l.trim());
 
   foundLockFiles.forEach((foundLockFile, index) => {
     results[foundLockFile] = hashes[index];

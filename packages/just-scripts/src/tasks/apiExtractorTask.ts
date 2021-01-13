@@ -46,11 +46,11 @@ export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFuncti
 /** @deprecated Use object param version */
 export function apiExtractorVerifyTask(
   configJsonFilePath: string,
-  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>
+  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>,
 ): TaskFunction;
 export function apiExtractorVerifyTask(
   configJsonFilePathOrOption: string | ApiExtractorOptions = {},
-  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'> = {}
+  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'> = {},
 ): TaskFunction {
   const options =
     typeof configJsonFilePathOrOption === 'string'
@@ -93,11 +93,11 @@ export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFuncti
 /** @deprecated Use object param version */
 export function apiExtractorUpdateTask(
   configJsonFilePath: string,
-  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>
+  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>,
 ): TaskFunction;
 export function apiExtractorUpdateTask(
   configJsonFilePathOrOption: string | ApiExtractorOptions = {},
-  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'> = {}
+  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'> = {},
 ): TaskFunction {
   const options =
     typeof configJsonFilePathOrOption === 'string'

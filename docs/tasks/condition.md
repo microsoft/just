@@ -53,8 +53,8 @@ task(
   series(
     'clean',
     'babel',
-    condition('test', () => !argv()['skip-test'])
-  )
+    condition('test', () => !argv()['skip-test']),
+  ),
 );
 ```
 

@@ -32,7 +32,7 @@ export function copyTask(optionsOrPaths: CopyTaskOptions | string[] | undefined,
   limit = limit || 15;
 
   return function copy(done: (err?: Error) => void) {
-    logger.info(`Copying [${paths.map((p) => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`);
+    logger.info(`Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`);
 
     if (!fse.existsSync(dest!)) {
       fse.mkdirpSync(dest!);
@@ -44,7 +44,7 @@ export function copyTask(optionsOrPaths: CopyTaskOptions | string[] | undefined,
       basePath = basePath || getBasePath(srcPath);
       const matches = glob.sync(srcPath);
 
-      matches.forEach((matchedPath) => {
+      matches.forEach(matchedPath => {
         if (fse.existsSync(matchedPath)) {
           const stat = fse.statSync(matchedPath);
           if (stat.isDirectory()) {
@@ -54,7 +54,7 @@ export function copyTask(optionsOrPaths: CopyTaskOptions | string[] | undefined,
 
         const relativePath = path.relative(basePath, matchedPath);
 
-        copyTasks.push((cb) => {
+        copyTasks.push(cb => {
           const readStream = fse.createReadStream(matchedPath);
           const destPath = path.join(dest!, relativePath);
 
@@ -63,13 +63,13 @@ export function copyTask(optionsOrPaths: CopyTaskOptions | string[] | undefined,
           }
 
           readStream.pipe(fse.createWriteStream(destPath));
-          readStream.on('error', (err) => cb(err));
+          readStream.on('error', err => cb(err));
           readStream.on('end', cb);
         });
       });
     }
 
-    paths.forEach((copyPath) => helper(copyPath));
+    paths.forEach(copyPath => helper(copyPath));
     parallelLimit(copyTasks, limit!, done);
   };
 }

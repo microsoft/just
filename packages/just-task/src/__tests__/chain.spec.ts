@@ -3,7 +3,7 @@ import { chain } from '../chain';
 import { parallel } from '../undertaker';
 
 describe('chain', () => {
-  it('allows tasks to be injected before another one after definition', (done) => {
+  it('allows tasks to be injected before another one after definition', done => {
     const callOrder: number[] = [];
 
     const test1Function = jest.fn(() => {
@@ -25,7 +25,7 @@ describe('chain', () => {
     });
   });
 
-  it('allows tasks to be injected after another one', (done) => {
+  it('allows tasks to be injected after another one', done => {
     const callOrder: number[] = [];
 
     const test1Function = jest.fn(() => {

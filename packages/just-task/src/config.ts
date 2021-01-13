@@ -38,7 +38,7 @@ export function readConfig(): void {
   } else {
     logger.error(
       `Cannot find config file "${configFile}".`,
-      `Please create a file called "just.config.js" in the root of the project next to "package.json".`
+      `Please create a file called "just.config.js" in the root of the project next to "package.json".`,
     );
   }
 

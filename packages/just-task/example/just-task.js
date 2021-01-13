@@ -29,7 +29,7 @@ module.exports = () => {
   task('webpack:promise', () => {
     const someVar = Math.random();
 
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       logger.info('Webpack bundling files', someVar);
       setTimeout(() => {
         resolve();
@@ -48,9 +48,9 @@ module.exports = () => {
         condition('ts', () => {
           return argv().production;
         }),
-        parallel('webpack', 'webpack:promise')
-      )
-    )
+        parallel('webpack', 'webpack:promise'),
+      ),
+    ),
   );
 
   task('default', parallel('cond'));

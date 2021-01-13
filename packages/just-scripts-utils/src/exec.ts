@@ -18,7 +18,7 @@ const SEPARATOR = process.platform === 'win32' ? ';' : ':';
  */
 export function exec(
   cmd: string,
-  opts: cp.ExecOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {}
+  opts: cp.ExecOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {},
 ): Promise<string | undefined> {
   return new Promise((resolve, reject) => {
     const child = cp.exec(cmd, opts, (error: ExecError | null, stdout?: string, stderr?: string) => {
@@ -53,7 +53,7 @@ export function encodeArgs(cmdArgs: string[]): string[] {
     return cmdArgs;
   }
 
-  return cmdArgs.map((arg) => {
+  return cmdArgs.map(arg => {
     if (/[^\w/:=-]/.test(arg)) {
       arg = `"${arg.replace(/"/g, '"\\"')}"`;
       arg = arg.replace(/^(?:"")+/g, '').replace(/\\"""/g, '\\"');
@@ -98,11 +98,11 @@ export function execSync(cmd: string, cwd?: string, returnOutput?: boolean): str
 export function spawn(
   cmd: string,
   args: ReadonlyArray<string> = [],
-  opts: cp.SpawnOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {}
+  opts: cp.SpawnOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {},
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     const child = cp.spawn(cmd, args, opts);
-    child.on('exit', (code) => {
+    child.on('exit', code => {
       if (code) {
         const error = new Error('Command failed: ' + [cmd, ...args].join(' '));
         (error as any).code = code;

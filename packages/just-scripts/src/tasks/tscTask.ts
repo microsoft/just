@@ -107,7 +107,7 @@ function argsFromOptions(tscCmd: string, options: TscTaskOptions): string[] {
         }
         return currentArgs;
       },
-      [tscCmd]
+      [tscCmd],
     ),
   ];
 }

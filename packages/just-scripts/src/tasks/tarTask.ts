@@ -161,7 +161,7 @@ export function extractTarTask(options: ExtractOptions = { file: 'archive.tar.gz
           done();
         },
         ...restOptions,
-      })
+      }),
     );
   };
 }

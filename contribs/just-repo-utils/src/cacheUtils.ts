@@ -15,7 +15,7 @@ export function getFileHashes(rootPath: string, files: string[]): { [file: strin
     {},
     ...foundFiles.map((fileName: string, index: number) => ({
       [fileName]: hashes[index],
-    }))
+    })),
   );
 }
 
@@ -32,9 +32,9 @@ export function getFileHashes(rootPath: string, files: string[]): { [file: strin
  */
 export function queryTimestamps(rootPath: string, files: string[]): string[] {
   return files
-    .map((file) => path.join(rootPath, file))
-    .filter((filePath) => fs.existsSync(filePath))
-    .map((existingFile) => String(fs.statSync(existingFile).mtimeMs));
+    .map(file => path.join(rootPath, file))
+    .filter(filePath => fs.existsSync(filePath))
+    .map(existingFile => String(fs.statSync(existingFile).mtimeMs));
 }
 
 /**
@@ -45,7 +45,7 @@ export function queryTimestamps(rootPath: string, files: string[]): string[] {
  */
 export function getRepoHashKey(rootPath: string): string {
   return queryTimestamps(rootPath, ['shrinkwrap.yml', 'package-lock.json', 'yarn.lock', 'pnpmfile.js', 'rush.json', 'lerna.json']).join(
-    '-'
+    '-',
   );
 }
 

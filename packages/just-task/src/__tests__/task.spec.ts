@@ -20,7 +20,7 @@ describe('task', () => {
     jest.restoreAllMocks();
   });
 
-  it('allows synchronous tasks to be defined and be run', (done) => {
+  it('allows synchronous tasks to be defined and be run', done => {
     const testFunction = jest.fn(() => undefined);
 
     task('test', function () {
@@ -33,7 +33,7 @@ describe('task', () => {
     });
   });
 
-  it('allows callback-based tasks to be defined and be run', (done) => {
+  it('allows callback-based tasks to be defined and be run', done => {
     const testFunction = jest.fn(() => undefined);
 
     task('test', function (cb) {
@@ -47,7 +47,7 @@ describe('task', () => {
     });
   });
 
-  it('allows promise-based tasks to be defined and be run', (done) => {
+  it('allows promise-based tasks to be defined and be run', done => {
     const testFunction = jest.fn(() => undefined);
 
     task('test', function () {

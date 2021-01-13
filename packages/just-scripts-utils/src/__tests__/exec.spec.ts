@@ -33,7 +33,7 @@ describe('exec', () => {
           stdout: ({ pipe: stdoutPipe } as any) as Readable,
           stderr: ({ pipe: stderrPipe } as any) as Readable,
         } as any;
-      }
+      },
     );
   });
 
@@ -68,7 +68,7 @@ describe('exec', () => {
           expect(result.stderr).toBe('oh no');
           expect(result.message).toBe('error');
           expect(result.code).toBe(3);
-        }
+        },
       )
       .catch(() => {
         // If this fails, it means the promise was resolved not rejected

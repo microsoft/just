@@ -24,11 +24,11 @@ export function mergePackageJson(original: PackageJson, incoming: PackageJson): 
 
   const depTypes = ['dependencies', 'devDependencies'];
   let packageJsonModified = false;
-  depTypes.forEach((depType) => {
+  depTypes.forEach(depType => {
     const incomingDeps = incoming[depType] || {};
     const originalDeps = original[depType] || {};
 
-    Object.keys(incomingDeps).forEach((dep) => {
+    Object.keys(incomingDeps).forEach(dep => {
       // TODO: should this handle deleting deps that exist in originalDeps but not incomingDeps?
       if (_shouldUpdateDep(originalDeps[dep], incomingDeps[dep])) {
         newPackageJson[depType][dep] = incomingDeps[dep];

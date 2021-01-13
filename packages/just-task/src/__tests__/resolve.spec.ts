@@ -84,7 +84,7 @@ describe('_getResolvePaths', () => {
 
     const paths = _getResolvePaths('cwd');
 
-    expect(paths.map((p) => path.basename(p))).toEqual(['cwd', 'config', 'custom1', 'custom2', 'src']);
+    expect(paths.map(p => path.basename(p))).toEqual(['cwd', 'config', 'custom1', 'custom2', 'src']);
   });
 });
 

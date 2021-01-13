@@ -20,25 +20,25 @@ function comparableEntries(entries: PackageEntries): PackageEntries {
     {},
     ...Object.keys(entries)
       .sort()
-      .map((name) => {
+      .map(name => {
         const entry = entries[name];
         return {
           [name]: {
             path: trimPath(_rootPath, entry.path),
             dependencies: Object.assign(
               {},
-              Object.keys(entry.dependencies).map((name) => ({ [name]: {} }))
+              Object.keys(entry.dependencies).map(name => ({ [name]: {} })),
             ),
           },
         };
-      })
+      }),
   );
 }
 
 describe('packageInfo', () => {
   test('load with no-cache', () => {
     const info = getPackageInfo({ strategy: 'no-cache' });
-    Object.keys(info.entries).forEach((name) => {
+    Object.keys(info.entries).forEach(name => {
       const entry = info.entries[name];
       const config = entry.getConfig();
       expect(config.name).toEqual(name);
@@ -47,7 +47,7 @@ describe('packageInfo', () => {
 
   test('load with cache', () => {
     const info = getPackageInfo({ strategy: 'normal' });
-    Object.keys(info.entries).forEach((name) => {
+    Object.keys(info.entries).forEach(name => {
       const entry = info.entries[name];
       const config = entry.getConfig();
       expect(config.name).toEqual(name);
@@ -72,7 +72,7 @@ describe('packageInfo', () => {
   test('paths', () => {
     const paths = getPackageInfo()
       .paths()
-      .map((path) => trimPath(_rootPath, path));
+      .map(path => trimPath(_rootPath, path));
     expect(paths).toMatchSnapshot();
   });
 

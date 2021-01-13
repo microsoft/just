@@ -5,8 +5,8 @@ function cleanGitStdout(stdout: Buffer): string[] {
   return stdout
     .toString()
     .split(/\n/)
-    .map((l) => l.trim())
-    .filter((v) => v);
+    .map(l => l.trim())
+    .filter(v => v);
 }
 
 export function gitListFiles(root: string | undefined, scope: string[]): string[] {
