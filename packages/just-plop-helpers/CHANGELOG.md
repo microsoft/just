@@ -1,6 +1,16 @@
 # Change Log - just-plop-helpers
 
-This log was last generated on Tue, 06 Aug 2019 04:07:38 GMT and should not be manually modified.
+This log was last generated on Wed, 13 Jan 2021 23:22:52 GMT and should not be manually modified.
+
+<!-- Start content -->
+
+## 1.2.0
+
+Wed, 13 Jan 2021 23:22:52 GMT
+
+### Minor changes
+
+- Update typescript and other dependencies (elcraig@microsoft.com)
 
 ## 1.1.2
 Tue, 06 Aug 2019 04:07:38 GMT

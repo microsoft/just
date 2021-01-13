@@ -2,6 +2,21 @@
   "name": "just-plop-helpers",
   "entries": [
     {
+      "date": "Wed, 13 Jan 2021 23:22:52 GMT",
+      "tag": "just-plop-helpers_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Update typescript and other dependencies",
+            "author": "elcraig@microsoft.com",
+            "commit": "560caa2639b064a15764d7b5b58b64b620b59c35",
+            "package": "just-plop-helpers"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Aug 2019 04:07:38 GMT",
       "tag": "just-plop-helpers_v1.1.2",
       "version": "1.1.2",

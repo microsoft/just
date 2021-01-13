@@ -2,6 +2,29 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Wed, 13 Jan 2021 23:22:52 GMT",
+      "tag": "just-scripts-utils_v1.1.0",
+      "version": "1.1.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Update typescript and other dependencies",
+            "author": "elcraig@microsoft.com",
+            "commit": "560caa2639b064a15764d7b5b58b64b620b59c35",
+            "package": "just-scripts-utils"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "Bump just-task-logger to v1.1.0",
+            "author": "elcraig@microsoft.com",
+            "commit": "560caa2639b064a15764d7b5b58b64b620b59c35",
+            "package": "just-scripts-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 02 Nov 2020 18:02:45 GMT",
       "tag": "just-scripts-utils_v1.0.3",
       "version": "1.0.3",

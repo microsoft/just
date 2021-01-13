@@ -2,6 +2,35 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Wed, 13 Jan 2021 23:22:52 GMT",
+      "tag": "just-task_v1.1.0",
+      "version": "1.1.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Update typescript and other dependencies",
+            "author": "elcraig@microsoft.com",
+            "commit": "560caa2639b064a15764d7b5b58b64b620b59c35",
+            "package": "just-task"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "exit code 1 for unknown just command",
+            "author": "kchau@microsoft.com",
+            "commit": "836d241ba88ca1c7c5a4cfce52ccc0b2f4a8527d",
+            "package": "just-task"
+          },
+          {
+            "comment": "Bump just-task-logger to v1.1.0",
+            "author": "elcraig@microsoft.com",
+            "commit": "560caa2639b064a15764d7b5b58b64b620b59c35",
+            "package": "just-task"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 02 Nov 2020 16:42:46 GMT",
       "tag": "just-task_v1.0.2",
       "version": "1.0.2",

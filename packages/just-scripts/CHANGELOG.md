@@ -1,8 +1,22 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 09 Nov 2020 22:25:49 GMT and should not be manually modified.
+This log was last generated on Wed, 13 Jan 2021 23:22:52 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.3.0
+
+Wed, 13 Jan 2021 23:22:52 GMT
+
+### Minor changes
+
+- making webpackDevServerTask work with newer webpack-cli versions; webpack config are picked up more naturally like webpack-cli (kchau@microsoft.com)
+- Update typescript and other dependencies (elcraig@microsoft.com)
+
+### Patches
+
+- Bump just-scripts-utils to v1.1.0 (elcraig@microsoft.com)
+- Bump just-task to v1.1.0 (elcraig@microsoft.com)
 
 ## 1.2.6
 

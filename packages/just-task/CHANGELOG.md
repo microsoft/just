@@ -1,8 +1,21 @@
 # Change Log - just-task
 
-This log was last generated on Mon, 02 Nov 2020 16:42:46 GMT and should not be manually modified.
+This log was last generated on Wed, 13 Jan 2021 23:22:52 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.0
+
+Wed, 13 Jan 2021 23:22:52 GMT
+
+### Minor changes
+
+- Update typescript and other dependencies (elcraig@microsoft.com)
+
+### Patches
+
+- exit code 1 for unknown just command (kchau@microsoft.com)
+- Bump just-task-logger to v1.1.0 (elcraig@microsoft.com)
 
 ## 1.0.2
 

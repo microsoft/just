@@ -2,6 +2,21 @@
   "name": "just-repo-utils",
   "entries": [
     {
+      "date": "Wed, 13 Jan 2021 23:22:52 GMT",
+      "tag": "just-repo-utils_v0.4.0",
+      "version": "0.4.0",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump just-task-logger to v1.1.0",
+            "author": "elcraig@microsoft.com",
+            "commit": "560caa2639b064a15764d7b5b58b64b620b59c35",
+            "package": "just-repo-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 22 Sep 2020 23:11:37 GMT",
       "tag": "just-repo-utils_v0.4.0",
       "version": "0.4.0",

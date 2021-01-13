@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Update typescript and other dependencies",
-  "packageName": "just-scripts",
-  "email": "elcraig@microsoft.com",
-  "dependentChangeType": "patch"
-}

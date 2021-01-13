@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "exit code 1 for unknown just command",
-  "packageName": "just-task",
-  "email": "kchau@microsoft.com",
-  "dependentChangeType": "patch"
-}
