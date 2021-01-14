@@ -1,0 +1,7 @@
+{
+  "comment": "fixing release pipeline",
+  "type": "patch",
+  "packageName": "just-plop-helpers",
+  "email": "kchau@microsoft.com",
+  "dependentChangeType": "patch"
+}
