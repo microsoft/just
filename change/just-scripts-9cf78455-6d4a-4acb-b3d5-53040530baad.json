@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fixing release pipeline and the empty lib folder",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "dependentChangeType": "patch"
+}
