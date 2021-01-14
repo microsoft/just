@@ -1,8 +1,16 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Wed, 13 Jan 2021 23:22:52 GMT and should not be manually modified.
+This log was last generated on Thu, 14 Jan 2021 20:55:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.1
+
+Thu, 14 Jan 2021 20:55:06 GMT
+
+### Patches
+
+- fixing release pipeline and the empty lib folder (kchau@microsoft.com)
 
 ## 1.1.0
 

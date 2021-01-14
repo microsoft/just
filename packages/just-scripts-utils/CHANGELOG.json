@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Thu, 14 Jan 2021 20:55:06 GMT",
+      "tag": "just-scripts-utils_v1.1.1",
+      "version": "1.1.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixing release pipeline and the empty lib folder",
+            "author": "kchau@microsoft.com",
+            "commit": "dd4f1b0db3fb6ce3769ed38ebf410bcc6d4da567",
+            "package": "just-scripts-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 13 Jan 2021 23:22:52 GMT",
       "tag": "just-scripts-utils_v1.1.0",
       "version": "1.1.0",

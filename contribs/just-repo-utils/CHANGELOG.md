@@ -1,8 +1,16 @@
 # Change Log - just-repo-utils
 
-This log was last generated on Wed, 13 Jan 2021 23:22:52 GMT and should not be manually modified.
+This log was last generated on Thu, 14 Jan 2021 20:55:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.0
+
+Thu, 14 Jan 2021 20:55:06 GMT
+
+### Patches
+
+- Bump just-task-logger to v1.1.1 (kchau@microsoft.com)
 
 ## 0.4.0
 
