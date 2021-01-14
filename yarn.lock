@@ -1320,10 +1320,17 @@
     timsort "~0.3.0"
     z-schema "~3.18.3"
 
-"@rushstack/package-deps-hash@^2.4.109", "@rushstack/package-deps-hash@^2.4.48":
+"@rushstack/package-deps-hash@^2.4.48":
   version "2.4.110"
   resolved "https://registry.yarnpkg.com/@rushstack/package-deps-hash/-/package-deps-hash-2.4.110.tgz#e1016af0d1bf3a03f44ab79fcde0057b58c82ebd"
   integrity sha512-6PJaruKZJ7xCcs80F5yv9fedsZIvB5iSpWG7mkXLeMDVEJVM5vqyHs22YbqVb5UeALA3Q2Dyzaj++QIDng2DVQ==
+  dependencies:
+    "@rushstack/node-core-library" "3.35.2"
+
+"@rushstack/package-deps-hash@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@rushstack/package-deps-hash/-/package-deps-hash-3.0.2.tgz#8a74c34e28e19ae3fbf4c79a8bb9695bcfe34ec1"
+  integrity sha512-qNLr1LYQHwj9zzy9PUovwfM4GaKsEUIUzHWjQdC+9+HjZpGdxZMEZuZ5H4D+L+eWF65l6yqMzJ1UmqHuoxdA4w==
   dependencies:
     "@rushstack/node-core-library" "3.35.2"
 
