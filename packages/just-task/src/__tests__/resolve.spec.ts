@@ -1,6 +1,7 @@
 import * as path from 'path';
 import { _isFileNameLike, _tryResolve, resetResolvePaths, resolveCwd, addResolvePath, resolve, _getResolvePaths } from '../resolve';
 import * as option from '../option';
+import * as config from '../config';
 import mockfs = require('mock-fs');
 
 describe('_isFileNameLike', () => {
@@ -185,4 +186,59 @@ describe('resolve', () => {
     addResolvePath('c');
     expect(resolve('b.txt', 'd')).toContain(path.join('d', 'b.txt'));
   });
+});
+
+describe('resolveConfigFile', () => {
+  afterEach(() => {
+    mockfs.restore();
+    resetResolvePaths();
+  });
+
+  it('default chooses local config', () => {
+    mockfs({
+      config: {
+        'configArgument.ts': 'formConfig',
+        'defaultConfigArgument.ts': 'formDefaultConfig',
+      },
+      'just.config.ts': 'localConfig',
+    });
+    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: undefined } as any)
+    expect(resolvedConfig).toContain('just.config.ts');
+  });
+
+  it('config argument wins over local config and defaultConfig', () => {
+    mockfs({
+      config: {
+        'configArgument.ts': 'formConfig',
+        'defaultConfigArgument.ts': 'formDefaultConfig',
+      },
+      'just.config.ts': 'localConfig',
+    });
+    const resolvedConfig = config.resolveConfigFile({ config: './config/configArgument.ts', defaultConfig: './config/defaultConfigArgument.ts' } as any)
+    expect(resolvedConfig).toContain('configArgument.ts');
+  });
+
+  it('local config file wins over defaultConfig', () => {
+    mockfs({
+      config: {
+        'configArgument.ts': 'formConfig',
+        'defaultConfigArgument.ts': 'formDefaultConfig',
+      },
+      'just.config.ts': 'localConfig',
+    });
+    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: './config/defaultConfigArgument.ts' } as any)
+    expect(resolvedConfig).toContain('just.config.ts');
+  });
+
+  it('default config is used as last fallback', () => {
+    mockfs({
+      config: {
+        'configArgument.ts': 'formConfig',
+        'defaultConfigArgument.ts': 'formDefaultConfig',
+      },
+    });
+    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: './config/defaultConfigArgument.ts' } as any)
+    expect(resolvedConfig).toContain('defaultConfigArgument.ts');
+  });
+
 });
