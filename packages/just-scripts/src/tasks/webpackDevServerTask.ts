@@ -65,8 +65,10 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}):
   const useWebpackServe = semver.gte(webpackCliVersion, '4.0.0');
 
   const devServerCmd = useWebpackServe
-    ? [resolve('webpack/bin/webpack.js')!, 'serve']
-    : [resolve('webpack-dev-server/bin/webpack-dev-server.js')!];
+    ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      [resolve('webpack/bin/webpack.js')!, 'serve']
+    : // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      [resolve('webpack-dev-server/bin/webpack-dev-server.js')!];
 
   return function webpackDevServer() {
     let args = [...(options.nodeArgs || []), ...devServerCmd];
