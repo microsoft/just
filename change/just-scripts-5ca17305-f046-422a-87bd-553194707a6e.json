@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "fix lint error",
+  "packageName": "just-scripts",
+  "email": "elcraig@microsoft.com",
+  "dependentChangeType": "none"
+}
