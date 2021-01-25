@@ -21,7 +21,7 @@
     "test:update": "jest --updateSnapshot"
   },
   "dependencies": {
-    "@types/node": "^10.12.18",
+    "@types/node": "^14.14.22",
     "chalk": "^4.0.0",
     "diff-match-patch": "1.0.5",
     "fs-extra": "^8.0.0",
