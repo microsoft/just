@@ -35,7 +35,7 @@
     "@types/jest": "^26.0.20",
     "@types/mock-fs": "^4.13.0",
     "@types/node": "^10.12.18",
-    "@types/resolve": "^1.17.1",
+    "@types/resolve": "^1.19.0",
     "@types/undertaker": "^1.2.6",
     "@types/undertaker-registry": "^1.0.1",
     "@types/yargs-parser": "^20.2.0",
