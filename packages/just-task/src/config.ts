@@ -5,16 +5,23 @@ import { argv } from './option';
 import { resolve } from './resolve';
 import { mark, logger } from 'just-task-logger';
 import { enableTypeScript } from './enableTypeScript';
+import yargsParser = require('yargs-parser');
+
+export function resolveConfigFile(args: yargsParser.Arguments): string | null {
+
+  for (const entry of [args.config, './just.config.js', './just-task.js', './just.config.ts', args.defaultConfig]) {
+    const configFile = resolve(entry);
+    if (configFile) {
+      return configFile;
+    }
+  }
+
+  return null;
+}
 
 export function readConfig(): void {
   // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
-  let configFile: string | null = null;
-  for (const entry of [argv().config, './just.config.js', './just-task.js', './just.config.ts']) {
-    configFile = resolve(entry);
-    if (configFile) {
-      break;
-    }
-  }
+  const configFile = resolveConfigFile(argv());
 
   mark('registry:configModule');
 
