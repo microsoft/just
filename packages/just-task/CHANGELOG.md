@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Thu, 14 Jan 2021 20:55:06 GMT and should not be manually modified.
+This log was last generated on Tue, 26 Jan 2021 23:51:57 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.0
+
+Tue, 26 Jan 2021 23:51:57 GMT
+
+### Minor changes
+
+- Add support for default config override (dannyvv@microsoft.com)
 
 ## 1.1.1
 

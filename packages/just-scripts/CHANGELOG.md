@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 14 Jan 2021 20:55:06 GMT and should not be manually modified.
+This log was last generated on Tue, 26 Jan 2021 23:51:57 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.3.2
+
+Tue, 26 Jan 2021 23:51:57 GMT
+
+### Patches
+
+- Bump just-task to v1.2.0 (dannyvv@microsoft.com)
 
 ## 1.3.1
 

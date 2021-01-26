@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add support for default config override",
-  "packageName": "just-task",
-  "email": "dannyvv@microsoft.com",
-  "dependentChangeType": "patch"
-}

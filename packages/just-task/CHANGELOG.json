@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Tue, 26 Jan 2021 23:51:57 GMT",
+      "tag": "just-task_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add support for default config override",
+            "author": "dannyvv@microsoft.com",
+            "commit": "ce9494517b0cbfa53a8abd4af38ae8f5df8559a2",
+            "package": "just-task"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 14 Jan 2021 20:55:06 GMT",
       "tag": "just-task_v1.1.1",
       "version": "1.1.1",
