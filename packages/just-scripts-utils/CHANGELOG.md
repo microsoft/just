@@ -1,8 +1,16 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Thu, 14 Jan 2021 20:55:06 GMT and should not be manually modified.
+This log was last generated on Tue, 09 Feb 2021 03:08:41 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.2
+
+Tue, 09 Feb 2021 03:08:41 GMT
+
+### Patches
+
+- Bump marked to 2.0.0 (dannyvv@microsoft.com)
 
 ## 1.1.1
 

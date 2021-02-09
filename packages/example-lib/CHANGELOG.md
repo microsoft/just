@@ -1,8 +1,16 @@
 # Change Log - example-lib
 
-This log was last generated on Tue, 26 Jan 2021 23:51:57 GMT and should not be manually modified.
+This log was last generated on Tue, 09 Feb 2021 03:08:41 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.0
+
+Tue, 09 Feb 2021 03:08:41 GMT
+
+### Patches
+
+- Bump just-scripts to v1.3.3 (dannyvv@microsoft.com)
 
 ## 1.0.0
 

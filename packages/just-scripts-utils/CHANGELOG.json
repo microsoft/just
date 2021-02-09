@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Tue, 09 Feb 2021 03:08:41 GMT",
+      "tag": "just-scripts-utils_v1.1.2",
+      "version": "1.1.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump marked to 2.0.0",
+            "author": "dannyvv@microsoft.com",
+            "commit": "a26e07ee6d0625f223a986e417f35f30b739437c",
+            "package": "just-scripts-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 14 Jan 2021 20:55:06 GMT",
       "tag": "just-scripts-utils_v1.1.1",
       "version": "1.1.1",

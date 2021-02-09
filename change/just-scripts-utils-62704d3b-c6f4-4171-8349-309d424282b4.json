@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Bump marked to 2.0.0",
-  "packageName": "just-scripts-utils",
-  "email": "dannyvv@microsoft.com",
-  "dependentChangeType": "patch"
-}
