@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add silent option to jest task to match Jest CLI --silent",
-  "packageName": "just-scripts",
-  "email": "iancra@microsoft.com",
-  "dependentChangeType": "patch"
-}
