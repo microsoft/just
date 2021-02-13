@@ -12,6 +12,7 @@ export interface JestTaskOptions {
   colors?: boolean;
   passWithNoTests?: boolean;
   clearCache?: boolean;
+  silent?: boolean;
   testPathPattern?: string;
   testNamePattern?: string;
   u?: boolean;
@@ -52,6 +53,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.runInBand ? ['--runInBand'] : []),
         ...(options.coverage ? ['--coverage'] : []),
         ...(options.watch ? ['--watch'] : []),
+        ...(options.silent ? ['--silent'] : []),
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
