@@ -31,7 +31,7 @@ export interface JestTaskOptions {
 
 export function jestTask(options: JestTaskOptions = {}): TaskFunction {
   const jestConfigFile = resolveCwd('./jest.config.js');
-  const packageConfigFile = resolveCwd("./package.json");
+  const packageConfigFile = resolveCwd('./package.json');
 
   return function jest() {
     const jestCmd = resolve('jest/bin/jest.js');
