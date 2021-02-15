@@ -41,7 +41,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
     let packageConfigExists = false;
     if (configFileExists) {
       logger.verbose(`Using jest config file ${configFile}`);
-    } else if (existsSync(packageConfigFile)) {
+    } else if (packageConfigFile && existsSync(packageConfigFile)) {
       const packageConfig = JSON.parse(
         readFileSync(packageConfigFile, 'utf-8')
       );
