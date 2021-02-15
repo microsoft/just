@@ -1,6 +1,6 @@
 import { resolve, logger, resolveCwd, TaskFunction, argv } from 'just-task';
 import { spawn, encodeArgs } from 'just-scripts-utils';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import * as supportsColor from 'supports-color';
 
 export interface JestTaskOptions {
@@ -31,12 +31,27 @@ export interface JestTaskOptions {
 
 export function jestTask(options: JestTaskOptions = {}): TaskFunction {
   const jestConfigFile = resolveCwd('./jest.config.js');
+  const packageConfigFile = resolveCwd("./package.json");
 
   return function jest() {
     const jestCmd = resolve('jest/bin/jest.js');
     const configFile = options.config || jestConfigFile;
+    const configFileExists = configFile && existsSync(configFile);
 
-    if (configFile && jestCmd && existsSync(configFile)) {
+    let packageConfigExists = false;
+    if (configFileExists) {
+      logger.verbose(`Using jest config file ${configFile}`);
+    } else if (existsSync(packageConfigFile)) {
+      const packageConfig = JSON.parse(
+        readFileSync(packageConfigFile, 'utf-8')
+      );
+      if (packageConfig && packageConfig.jest) {
+        packageConfigExists = true;
+        logger.verbose(`Using jest config from package.json`);
+      }
+    }
+
+    if ((configFileExists || packageConfigExists) && jestCmd) {
       logger.info(`Running Jest`);
       const cmd = process.execPath;
 
@@ -45,8 +60,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
       const args = [
         ...(options.nodeArgs || []),
         jestCmd,
-        '--config',
-        configFile,
+        ...(configFileExists ? ['--config', configFile] : []),
         ...(options.passWithNoTests ? ['--passWithNoTests'] : []),
         ...(options.clearCache ? ['--clearCache'] : []),
         ...(options.colors !== false && supportsColor.stdout ? ['--colors'] : []),
