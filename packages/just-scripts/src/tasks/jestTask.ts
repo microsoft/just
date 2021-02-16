@@ -1,6 +1,6 @@
 import { resolve, logger, resolveCwd, TaskFunction, argv } from 'just-task';
-import { spawn, encodeArgs } from 'just-scripts-utils';
-import { existsSync, readFileSync } from 'fs';
+import { spawn, encodeArgs, readPackageJson } from 'just-scripts-utils';
+import { existsSync } from 'fs';
 import * as supportsColor from 'supports-color';
 
 export interface JestTaskOptions {
@@ -42,9 +42,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
     if (configFileExists) {
       logger.verbose(`Using jest config file ${configFile}`);
     } else if (packageConfigFile && existsSync(packageConfigFile)) {
-      const packageConfig = JSON.parse(
-        readFileSync(packageConfigFile, 'utf-8')
-      );
+      const packageConfig = readPackageJson(packageConfigFile);
       if (packageConfig && packageConfig.jest) {
         packageConfigExists = true;
         logger.verbose(`Using jest config from package.json`);
