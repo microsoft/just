@@ -31,7 +31,7 @@ export interface JestTaskOptions {
 
 export function jestTask(options: JestTaskOptions = {}): TaskFunction {
   const jestConfigFile = resolveCwd('./jest.config.js');
-  const packageConfigFile = resolveCwd('./package.json');
+  const packageConfigPath = process.cwd();
 
   return function jest() {
     const jestCmd = resolve('jest/bin/jest.js');
@@ -41,8 +41,8 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
     let packageConfigExists = false;
     if (configFileExists) {
       logger.verbose(`Using jest config file ${configFile}`);
-    } else if (packageConfigFile && existsSync(packageConfigFile)) {
-      const packageConfig = readPackageJson(packageConfigFile);
+    } else {
+      const packageConfig = readPackageJson(packageConfigPath);
       if (packageConfig && packageConfig.jest) {
         packageConfigExists = true;
         logger.verbose(`Using jest config from package.json`);
