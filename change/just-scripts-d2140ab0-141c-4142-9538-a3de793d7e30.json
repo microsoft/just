@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Add support for jest config in package.json.",
-  "packageName": "just-scripts",
-  "email": "afoxman@microsoft.com",
-  "dependentChangeType": "patch"
-}
