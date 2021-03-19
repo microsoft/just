@@ -11,13 +11,18 @@ describe('watch', () => {
     fs.mkdirSync(tmpDir, { recursive: true });
     fs.writeFileSync(changeFile, 'to be changed');
 
+    const cleanup = () => {
+      watcher.close();
+      fs.rmSync(tmpDir, { recursive: true });
+    };
+
     const callback = () => {
       try {
         expect(true).toBeTruthy();
-        watcher.close();
+        cleanup();
         done();
       } catch (error) {
-        watcher.close();
+        cleanup();
         done(error);
       }
     };
