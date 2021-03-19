@@ -10,11 +10,20 @@ task('watch', parallel('typescript:watch'));
 
 task('start', () => {
   return parallel(
-    watch(['./src/**/*.js'], () => {
-      console.log('dude js');
-    }),
-    watch(['./src/**/*.ts'], () => {
-      console.log('dude ts');
-    }),
+    () =>
+      watch(['./src/**/*.js'], () => {
+        console.log('dude js');
+      }),
+    () =>
+      watch(['./src/**/*.ts'], () => {
+        console.log('dude ts');
+      }),
   );
+});
+
+task('w', () => {
+  const watcher = watch(['./src/**/*.js']);
+  watcher.on('change', (evt, file) => {
+    console.log(file, 'is changed', evt);
+  });
 });
