@@ -13,7 +13,7 @@ describe('watch', () => {
 
     const cleanup = () => {
       watcher.close();
-      fs.rmSync(tmpDir, { recursive: true });
+      fs.rmdirSync(tmpDir, { recursive: true });
     };
 
     const callback = () => {
