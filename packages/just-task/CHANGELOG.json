@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Sat, 20 Mar 2021 00:45:10 GMT",
+      "tag": "just-task_v1.3.0",
+      "version": "1.3.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "adds a watch() API that will generate taskfunction that watches",
+            "author": "kchau@microsoft.com",
+            "commit": "a349bef58a8f3316ce20c4acf6bc0189485c7e60",
+            "package": "just-task"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 26 Jan 2021 23:51:57 GMT",
       "tag": "just-task_v1.2.0",
       "version": "1.2.0",
