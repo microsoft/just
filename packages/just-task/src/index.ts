@@ -7,3 +7,4 @@ export { option, argv } from './option';
 export { clearCache } from './cache';
 export * from './logger';
 export * from './chain';
+export * from './watch';
