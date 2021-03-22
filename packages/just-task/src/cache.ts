@@ -1,6 +1,6 @@
 import { getPackageDeps, IPackageDeps } from '@rushstack/package-deps-hash';
 import { argv } from './option';
-import { resolve } from './resolve';
+import { resolveCwd } from './resolve';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { logger, mark } from 'just-task-logger';
@@ -71,7 +71,7 @@ export function saveCache(taskName: string): void {
 
 function getPackageRootPath() {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const packageJsonFilePath = resolve('package.json')!;
+  const packageJsonFilePath = resolveCwd('package.json')!;
   return path.dirname(packageJsonFilePath);
 }
 

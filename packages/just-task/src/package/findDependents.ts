@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { resolve } from '../resolve';
+import { resolveCwd } from '../resolve';
 import { findPackageRoot } from './findPackageRoot';
 import { logger, mark } from 'just-task-logger';
 import { findGitRoot } from './findGitRoot';
@@ -35,7 +35,7 @@ function getDepsPaths(pkgPath: string): DepInfo[] {
     return deps
       .map(dep => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const depPackageJson = resolve(path.join(dep, 'package.json'))!;
+        const depPackageJson = resolveCwd(path.join(dep, 'package.json'))!;
 
         if (!depPackageJson) {
           return null;
