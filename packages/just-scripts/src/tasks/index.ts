@@ -14,3 +14,4 @@ export * from './webpackCliTask';
 export * from './webpackDevServerTask';
 export * from './tarTask';
 export * from './nodeExecTask';
+export * from './esbuildTask';
