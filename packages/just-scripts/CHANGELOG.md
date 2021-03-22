@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Sat, 20 Mar 2021 00:45:10 GMT and should not be manually modified.
+This log was last generated on Mon, 22 Mar 2021 19:48:18 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.0
+
+Mon, 22 Mar 2021 19:48:18 GMT
+
+### Minor changes
+
+- adding esbuild to just-scripts (kchau@microsoft.com)
 
 ## 1.4.2
 
