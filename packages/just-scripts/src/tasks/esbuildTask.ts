@@ -1,5 +1,5 @@
 import type { BuildOptions } from 'esbuild';
-import { resolveCwd, TaskFunction } from 'just-task';
+import { resolve, TaskFunction } from 'just-task';
 
 export type EsbuildBuildOptions = BuildOptions;
 export interface EsbuildTransformOptions {
@@ -11,7 +11,8 @@ export interface EsbuildTransformOptions {
  * creates a esbuild task function, checking for esbuild's presence; can be used for bundling or building
  */
 export function esbuildTask(options: EsbuildBuildOptions = {}): TaskFunction {
-  const esbuildModuleResolution = resolveCwd('esbuild');
+  // Resolve first from cwd, then through resolution paths
+  const esbuildModuleResolution = resolve('esbuild');
 
   if (!esbuildModuleResolution) {
     throw new Error('cannot find esbuild, please add it to your devDependencies');
