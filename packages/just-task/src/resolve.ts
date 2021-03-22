@@ -114,7 +114,7 @@ export function resolve(moduleName: string, cwdOrOptions?: string | ResolveOptio
  * @param options Resolution options, including custom cwd (defaults to `process.cwd()`)
  * @returns The module path, or null if the module can't be resolved.
  */
-export function resolveCwd(moduleName: string, options?: ResolveOptions): string | null;
+export function resolve(moduleName: string, options?: ResolveOptions): string | null;
 /**
  * Resolve a module. Resolution will *only* be tried starting from `cwd` (does not respect
  * `--config` arg or `addResolvePath`).
@@ -125,8 +125,8 @@ export function resolveCwd(moduleName: string, options?: ResolveOptions): string
  * @param cwd Working directory in which to start resolution. Defaults to `process.cwd()`.
  * @returns The module path, or null if the module can't be resolved.
  */
-export function resolveCwd(moduleName: string, cwd?: string): string | null;
-export function resolveCwd(moduleName: string, cwdOrOptions?: string | ResolveOptions): string | null {
+export function resolve(moduleName: string, cwd?: string): string | null;
+export function resolve(moduleName: string, cwdOrOptions?: string | ResolveOptions): string | null {
   let options: ResolveOptions = {};
   if (typeof cwdOrOptions === 'string') {
     options = { cwd: cwdOrOptions };
