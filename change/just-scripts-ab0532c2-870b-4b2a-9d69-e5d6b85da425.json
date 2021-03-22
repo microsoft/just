@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "adding esbuild to just-scripts",
+  "packageName": "just-scripts",
+  "email": "kchau@microsoft.com",
+  "dependentChangeType": "patch"
+}
