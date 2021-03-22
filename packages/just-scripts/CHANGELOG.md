@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 22 Mar 2021 20:32:55 GMT and should not be manually modified.
+This log was last generated on Mon, 22 Mar 2021 20:50:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.2
+
+Mon, 22 Mar 2021 20:50:50 GMT
+
+### Patches
+
+- esbuild to resolve from cwd first then resolved paths (kchau@microsoft.com)
 
 ## 1.5.1
 

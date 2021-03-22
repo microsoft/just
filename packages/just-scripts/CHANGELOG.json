@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 22 Mar 2021 20:50:50 GMT",
+      "tag": "just-scripts_v1.5.2",
+      "version": "1.5.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "esbuild to resolve from cwd first then resolved paths",
+            "author": "kchau@microsoft.com",
+            "commit": "dd8edc9126459a9be616b9c59bf4be34bd7ff56c",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 22 Mar 2021 20:32:55 GMT",
       "tag": "just-scripts_v1.5.1",
       "version": "1.5.1",

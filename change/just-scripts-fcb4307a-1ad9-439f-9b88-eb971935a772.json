@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "esbuild to resolve from cwd first then resolved paths",
-  "packageName": "just-scripts",
-  "email": "kchau@microsoft.com",
-  "dependentChangeType": "patch"
-}
