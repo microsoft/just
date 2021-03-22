@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 22 Mar 2021 19:48:18 GMT and should not be manually modified.
+This log was last generated on Mon, 22 Mar 2021 20:32:55 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.1
+
+Mon, 22 Mar 2021 20:32:55 GMT
+
+### Patches
+
+- adds esbuildTask to public API (kchau@microsoft.com)
 
 ## 1.5.0
 

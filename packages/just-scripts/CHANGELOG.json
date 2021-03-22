@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 22 Mar 2021 20:32:55 GMT",
+      "tag": "just-scripts_v1.5.1",
+      "version": "1.5.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "adds esbuildTask to public API",
+            "author": "kchau@microsoft.com",
+            "commit": "d1f4505a3f1f7ebb5eac45a508b12dac7fd35870",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 22 Mar 2021 19:48:18 GMT",
       "tag": "just-scripts_v1.5.0",
       "version": "1.5.0",

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "adds esbuildTask to public API",
-  "packageName": "just-scripts",
-  "email": "kchau@microsoft.com",
-  "dependentChangeType": "patch"
-}
