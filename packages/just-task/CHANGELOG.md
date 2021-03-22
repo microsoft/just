@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Tue, 26 Jan 2021 23:51:57 GMT and should not be manually modified.
+This log was last generated on Sat, 20 Mar 2021 00:45:10 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.3.0
+
+Sat, 20 Mar 2021 00:45:10 GMT
+
+### Minor changes
+
+- adds a watch() API that will generate taskfunction that watches (kchau@microsoft.com)
 
 ## 1.2.0
 
