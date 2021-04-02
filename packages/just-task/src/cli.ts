@@ -3,6 +3,7 @@ import { option, parseCommand } from './option';
 import { logger } from 'just-task-logger';
 import { TaskFunction } from './interfaces';
 import { readConfig } from './config';
+import { task } from './task';
 
 const originalEmitWarning = process.emitWarning;
 
@@ -34,11 +35,21 @@ function showHelp() {
 
 // Define a built-in option of "config" so users can specify which path to choose for configurations
 option('config', { describe: 'path to a just configuration file (includes the file name, e.g. /path/to/just.config.ts)' });
-option('defaultConfig', { describe: 'path to a default just configuration file that will be used when the current project does not have a just configuration file. (includes the file name, e.g. /path/to/just.config.ts)' });
-
-readConfig();
+option('defaultConfig', {
+  describe:
+    'path to a default just configuration file that will be used when the current project does not have a just configuration file. (includes the file name, e.g. /path/to/just.config.ts)',
+});
 
 const registry = undertaker.registry();
+
+const configModule = readConfig();
+
+// Support named task function as exports of a config module
+if (configModule && typeof configModule === 'object') {
+  for (const taskName of Object.keys(configModule)) {
+    task(taskName, configModule[taskName]);
+  }
+}
 
 const command = parseCommand();
 
