@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 02 Apr 2021 23:21:50 GMT",
+      "tag": "just-scripts_v1.5.3",
+      "version": "1.5.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump just-task to v1.4.0",
+            "author": "kchau@microsoft.com",
+            "commit": "8fac73c94a541d7f9b6420fbd97d3bbd1d3073a9",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 22 Mar 2021 20:50:50 GMT",
       "tag": "just-scripts_v1.5.2",
       "version": "1.5.2",

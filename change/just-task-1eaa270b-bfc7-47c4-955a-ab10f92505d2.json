@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "just now accepts ES6 module as config",
-  "packageName": "just-task",
-  "email": "kchau@microsoft.com",
-  "dependentChangeType": "patch"
-}

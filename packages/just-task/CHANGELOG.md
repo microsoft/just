@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Sat, 20 Mar 2021 00:45:10 GMT and should not be manually modified.
+This log was last generated on Fri, 02 Apr 2021 23:21:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.4.0
+
+Fri, 02 Apr 2021 23:21:50 GMT
+
+### Minor changes
+
+- just now accepts ES6 module as config (kchau@microsoft.com)
 
 ## 1.3.0
 
