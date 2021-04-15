@@ -1,4 +1,4 @@
-import { series, undertaker } from './undertaker';
+import { undertaker } from './undertaker';
 import { option, parseCommand } from './option';
 import { logger } from 'just-task-logger';
 import { TaskFunction } from './interfaces';
