@@ -47,7 +47,9 @@ const configModule = readConfig();
 // Support named task function as exports of a config module
 if (configModule && typeof configModule === 'object') {
   for (const taskName of Object.keys(configModule)) {
-    task(taskName, configModule[taskName]);
+    if (typeof configModule[taskName] == 'function') {
+      task(taskName, configModule[taskName]);
+    }
   }
 }
 
