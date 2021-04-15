@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "adding a check to make sure the tasks are registered only for task functions",
-  "packageName": "just-task",
-  "email": "kchau@microsoft.com",
-  "dependentChangeType": "patch"
-}

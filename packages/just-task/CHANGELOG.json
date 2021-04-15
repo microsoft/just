@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Thu, 15 Apr 2021 19:00:12 GMT",
+      "tag": "just-task_v1.4.1",
+      "version": "1.4.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "adding a check to make sure the tasks are registered only for task functions",
+            "author": "kchau@microsoft.com",
+            "commit": "52359d26690342474ce9e224f6bc2dfb94766089",
+            "package": "just-task"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 02 Apr 2021 23:21:50 GMT",
       "tag": "just-task_v1.4.0",
       "version": "1.4.0",
