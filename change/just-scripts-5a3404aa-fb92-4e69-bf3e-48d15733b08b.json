@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "add semver to just-scripts",
-  "packageName": "just-scripts",
-  "email": "jcreamer@microsoft.com",
-  "dependentChangeType": "patch"
-}
