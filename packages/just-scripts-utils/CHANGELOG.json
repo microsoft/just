@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Tue, 13 Jul 2021 17:19:50 GMT",
+      "tag": "just-scripts-utils_v1.1.3",
+      "version": "1.1.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Error when parallel process is terminated",
+            "author": "iancra@microsoft.com",
+            "commit": "9a06e82c44800efb1eab26b0614c9a3136889dee",
+            "package": "just-scripts-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 09 Feb 2021 03:08:41 GMT",
       "tag": "just-scripts-utils_v1.1.2",
       "version": "1.1.2",

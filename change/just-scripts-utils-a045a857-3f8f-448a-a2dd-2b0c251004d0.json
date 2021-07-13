@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Error when parallel process is terminated",
-  "packageName": "just-scripts-utils",
-  "email": "iancra@microsoft.com",
-  "dependentChangeType": "patch"
-}

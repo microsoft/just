@@ -2,6 +2,21 @@
   "name": "example-lib",
   "entries": [
     {
+      "date": "Tue, 13 Jul 2021 17:19:50 GMT",
+      "tag": "example-lib_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump just-scripts to v1.5.5",
+            "author": "iancra@microsoft.com",
+            "commit": "9a06e82c44800efb1eab26b0614c9a3136889dee",
+            "package": "example-lib"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 15 Apr 2021 19:00:12 GMT",
       "tag": "example-lib_v1.0.0",
       "version": "1.0.0",

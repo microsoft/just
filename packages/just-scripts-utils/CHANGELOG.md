@@ -1,8 +1,16 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Tue, 09 Feb 2021 03:08:41 GMT and should not be manually modified.
+This log was last generated on Tue, 13 Jul 2021 17:19:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.3
+
+Tue, 13 Jul 2021 17:19:50 GMT
+
+### Patches
+
+- Error when parallel process is terminated (iancra@microsoft.com)
 
 ## 1.1.2
 
