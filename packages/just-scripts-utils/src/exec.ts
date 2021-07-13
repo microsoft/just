@@ -102,10 +102,14 @@ export function spawn(
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     const child = cp.spawn(cmd, args, opts);
-    child.on('exit', code => {
+    child.on('exit', (code: number | null, signal: string | null) => {
       if (code) {
         const error = new Error('Command failed: ' + [cmd, ...args].join(' '));
         (error as any).code = code;
+        reject(error);
+      } else if (signal) {
+        const error = new Error(`Command terminated by signal ${signal}: ` + [cmd, ...args].join(' '));
+        (error as any).signal = signal;
         reject(error);
       } else {
         resolve();
