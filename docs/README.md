@@ -12,7 +12,7 @@ features:
     details: Like gulp, just provides parallel() and series() to fine tune task runs
   - title: No waiting for latest devDependencies
     details: just-scripts knows how to run tools, but it does not prescribe versions of the dependencies - you upgrade at your own timing!
-  - title: TypeScript suport
+  - title: TypeScript support
     details: just-scripts configurations are TypeScript-enabled, so you don't have to have a separate build step to use your build tools
   - title: Lightweight task orchestration
     details: just-task is a lightweight task orchestrator that has no streaming file system abstraction
