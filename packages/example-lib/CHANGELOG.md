@@ -1,8 +1,16 @@
 # Change Log - example-lib
 
-This log was last generated on Tue, 13 Jul 2021 21:45:44 GMT and should not be manually modified.
+This log was last generated on Wed, 04 Aug 2021 17:43:24 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.0
+
+Wed, 04 Aug 2021 17:43:24 GMT
+
+### Patches
+
+- Bump just-scripts to v1.5.7 (not specified)
 
 ## 1.0.0
 

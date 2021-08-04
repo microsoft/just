@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Wed, 04 Aug 2021 17:43:24 GMT",
+      "tag": "just-scripts-utils_v1.1.4",
+      "version": "1.1.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump tar from 6.1.0 to 6.1.6",
+            "author": "not specified",
+            "commit": "10aa4fa4fa3f05e4cd7f963d130c131026241bc2",
+            "package": "just-scripts-utils"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Jul 2021 17:19:50 GMT",
       "tag": "just-scripts-utils_v1.1.3",
       "version": "1.1.3",

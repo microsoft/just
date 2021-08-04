@@ -1,8 +1,16 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Tue, 13 Jul 2021 17:19:50 GMT and should not be manually modified.
+This log was last generated on Wed, 04 Aug 2021 17:43:24 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.4
+
+Wed, 04 Aug 2021 17:43:24 GMT
+
+### Patches
+
+- Bump tar from 6.1.0 to 6.1.6 (not specified)
 
 ## 1.1.3
 

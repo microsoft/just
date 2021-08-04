@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Wed, 04 Aug 2021 17:43:24 GMT",
+      "tag": "just-scripts_v1.5.7",
+      "version": "1.5.7",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump just-scripts-utils to v1.1.4",
+            "author": "not specified",
+            "commit": "10aa4fa4fa3f05e4cd7f963d130c131026241bc2",
+            "package": "just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Jul 2021 21:45:44 GMT",
       "tag": "just-scripts_v1.5.6",
       "version": "1.5.6",
