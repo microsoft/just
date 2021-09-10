@@ -13,6 +13,7 @@ describe('watch', () => {
 
     const cleanup = () => {
       watcher.close();
+
       fs.unlinkSync(changeFile);
       fs.rmdirSync(tmpDir);
     };
@@ -27,6 +28,7 @@ describe('watch', () => {
         done(error);
       }
     };
+
     const watcher = watch([path.join(changeFile)], callback);
 
     watcher.on('ready', () => {

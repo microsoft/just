@@ -20,7 +20,9 @@ export function wrapTask(fn: any): TaskFunction {
         return results;
       }
 
-      done();
+      if (typeof done === 'function') {
+        done();
+      }
     }
   };
 }
