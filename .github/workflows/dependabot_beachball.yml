@@ -16,6 +16,5 @@ jobs:
           # Check out the pull request HEAD
           ref: ${{ github.event.pull_request.head.sha }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-
       - run: npx beachball change --type patch --message "Bumping dependencies via dependabot"
       - run: git push origin ${{ github.event.pull_request.default_branch }}
