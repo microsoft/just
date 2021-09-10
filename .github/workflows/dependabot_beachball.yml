@@ -1,0 +1,18 @@
+## Careful not to add more to this workflow like build, install, or test
+
+name: Dependabot Workflow
+on: pull_request_target
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Check out the pull request HEAD
+          ref: ${{ github.event.pull_request.head.sha }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: npx beachball change --type patch --message "Bumping dependencies via dependabot"
+      - run: git push origin ${{ github.event.pull_request.default_branch }}
