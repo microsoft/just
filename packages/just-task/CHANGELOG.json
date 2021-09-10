@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 10 Sep 2021 23:58:46 GMT",
+      "tag": "just-task_v1.4.2",
+      "version": "1.4.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "kchau@microsoft.com",
+            "package": "just-task",
+            "comment": "changes the dep from glob-parent which is old with chokidar directly",
+            "commit": "c08ccdcce333d655504263efd18f7fc5e82da534"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 15 Apr 2021 19:00:12 GMT",
       "tag": "just-task_v1.4.1",
       "version": "1.4.1",

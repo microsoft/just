@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Thu, 15 Apr 2021 19:00:12 GMT and should not be manually modified.
+This log was last generated on Fri, 10 Sep 2021 23:58:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.4.2
+
+Fri, 10 Sep 2021 23:58:46 GMT
+
+### Patches
+
+- changes the dep from glob-parent which is old with chokidar directly (kchau@microsoft.com)
 
 ## 1.4.1
 
