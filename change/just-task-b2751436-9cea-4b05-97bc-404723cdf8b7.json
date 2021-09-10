@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "changes the dep from glob-parent which is old with chokidar directly",
+  "packageName": "just-task",
+  "email": "kchau@microsoft.com",
+  "dependentChangeType": "patch"
+}

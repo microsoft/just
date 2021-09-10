@@ -1,22 +1,30 @@
-import * as globWatch from 'glob-watcher';
-import { wrapTask } from './wrapTask';
-import { TaskFunction } from './interfaces';
 import type { WatchOptions, FSWatcher } from 'chokidar';
+import type { Stats } from 'fs';
+
+type WatchListener = (path: string, stats?: Stats) => void;
 
 export function watch(
   globs: string | string[],
-  optionsOrTaskFunction?: TaskFunction | WatchOptions | undefined,
-  taskFunction?: TaskFunction | undefined,
+  optionsOrListener?: WatchListener | WatchOptions | undefined,
+  listener?: WatchListener | undefined,
 ): FSWatcher {
+  const chokidar = require('chokidar');
+
   let options: WatchOptions = {};
-  if (typeof optionsOrTaskFunction === 'function') {
-    taskFunction = optionsOrTaskFunction;
+  if (typeof optionsOrListener === 'function') {
+    listener = optionsOrListener;
     options = {};
   } else {
-    options = optionsOrTaskFunction as WatchOptions;
+    options = optionsOrListener as WatchOptions;
   }
 
+  options = { ...options, ignoreInitial: true };
+
   // Wrapping this function teaches the glob-watcher about how to deal with sync taskFunction
-  const wrappedFunction = wrapTask(taskFunction);
-  return globWatch(globs, options, wrappedFunction) as FSWatcher;
+  const innerListener = listener!;
+  const watcher = chokidar.watch(globs, options) as FSWatcher;
+  for (const evt of ['add', 'change', 'unlink']) {
+    watcher.on(evt, innerListener);
+  }
+  return watcher;
 }
