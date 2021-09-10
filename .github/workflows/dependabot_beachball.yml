@@ -1,6 +1,6 @@
 ## Careful not to add more to this workflow like build, install, or test
 
-name: Dependabot Workflow
+name: Dependabot Beachball Workflow
 on: pull_request_target
 
 jobs:
