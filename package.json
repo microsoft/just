@@ -29,7 +29,7 @@
     "beachball": "^2.12.1",
     "eslint": "^7.18.0",
     "gh-pages": "^3.1.0",
-    "lage": "^0.27.0",
+    "lage": "^1.1.4",
     "prettier": "^2.2.1",
     "syncpack": "^5.6.10",
     "vuepress": "^1.8.2",
