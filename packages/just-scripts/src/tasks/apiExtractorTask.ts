@@ -27,6 +27,12 @@ export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeO
    * @param extractorOptions - Options with which api-extractor was invoked. Actual type is `IExtractorInvokeOptions`.
    */
   onResult?: (result: any, extractorOptions: any) => void;
+
+  /**
+   * Callback after the config file is loaded.
+   * Provides the opportunity to modify the config before running API Extractor.
+   */
+  onConfigLoaded?: (config: ApiExtractorTypes.IConfigFile) => void;
 }
 
 interface ApiExtractorContext {
@@ -157,7 +163,16 @@ function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | u
     return;
   }
 
-  const config = ExtractorConfig.loadFileAndPrepare(configJsonFilePath);
+  const rawConfig = ExtractorConfig.loadFile(configJsonFilePath);
+  // Allow modification of the config
+  options.onConfigLoaded?.(rawConfig);
+  // This follows the logic from ExtractorConfig.loadFileAndPrepare
+  // https://github.com/microsoft/rushstack/blob/1eb3d8ccf2a87b90a1038bf464b0b73fb3c7fd78/apps/api-extractor/src/api/ExtractorConfig.ts#L455
+  const config = ExtractorConfig.prepare({
+    configObject: rawConfig,
+    configObjectFullPath: path.resolve(configJsonFilePath),
+    packageJsonFullPath: path.resolve('package.json'),
+  });
 
   return { apiExtractorModule, config, extractorOptions, options };
 }
