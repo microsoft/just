@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add option to modify API Extractor config before executing",
-  "packageName": "just-scripts",
-  "email": "elcraig@microsoft.com",
-  "dependentChangeType": "patch"
-}

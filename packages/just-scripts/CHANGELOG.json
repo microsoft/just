@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 13 Dec 2021 23:44:49 GMT",
+      "tag": "just-scripts_v1.6.0",
+      "version": "1.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "comment": "Add option to modify API Extractor config before executing",
+            "commit": "9516c2f691ace70bfc1f12c863238295764a63e8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 10 Sep 2021 23:58:46 GMT",
       "tag": "just-scripts_v1.5.8",
       "version": "1.5.8",
