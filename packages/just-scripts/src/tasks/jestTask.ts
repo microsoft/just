@@ -69,8 +69,10 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
-        ...(options._ || []).concat(positional),
-      ].filter(arg => !!arg) as Array<string>;
+        // Only include the positional args if `options._` wasn't specified
+        // (to avoid possibly including them twice)
+        ...(options._ || positional),
+      ].filter(arg => !!arg) as string[];
 
       logger.info(cmd, encodeArgs(args).join(' '));
 
