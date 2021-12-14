@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 13 Dec 2021 23:44:49 GMT and should not be manually modified.
+This log was last generated on Tue, 14 Dec 2021 18:46:49 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.6.1
+
+Tue, 14 Dec 2021 18:46:49 GMT
+
+### Patches
+
+- jest: don't include positional args twice (elcraig@microsoft.com)
 
 ## 1.6.0
 

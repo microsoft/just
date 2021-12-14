@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 14 Dec 2021 18:46:49 GMT",
+      "tag": "just-scripts_v1.6.1",
+      "version": "1.6.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "comment": "jest: don't include positional args twice",
+            "commit": "f1c5a8d53353d3991c51902bb84cd99fa6ce32de"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 13 Dec 2021 23:44:49 GMT",
       "tag": "just-scripts_v1.6.0",
       "version": "1.6.0",

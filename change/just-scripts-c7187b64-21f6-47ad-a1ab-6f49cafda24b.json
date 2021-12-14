@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "jest: don't include positional args twice",
-  "packageName": "just-scripts",
-  "email": "elcraig@microsoft.com",
-  "dependentChangeType": "patch"
-}
