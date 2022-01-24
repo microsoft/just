@@ -12,7 +12,6 @@ export function prettyPrintMarkdown(content: string): string {
   }
 
   marked.setOptions({
-    // The typings for marked-terminal have not been updated in a few years, so it results in compiler errors with the newer versions of marked
     renderer: new TerminalRenderer(),
   });
   return marked(content);
