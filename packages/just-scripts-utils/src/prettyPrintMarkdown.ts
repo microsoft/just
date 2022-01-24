@@ -1,4 +1,4 @@
-import marked = require('marked');
+import {marked} from 'marked';
 import TerminalRenderer = require('marked-terminal');
 
 /**
@@ -10,9 +10,10 @@ export function prettyPrintMarkdown(content: string): string {
   if (typeof content !== 'string') {
     return '';
   }
+
   marked.setOptions({
     // The typings for marked-terminal have not been updated in a few years, so it results in compiler errors with the newer versions of marked
-    renderer: new TerminalRenderer() as any,
+    renderer: new TerminalRenderer(),
   });
   return marked(content);
 }
