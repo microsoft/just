@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Upgrade the marked library to version 4.0.10",
+  "packageName": "just-scripts-utils",
+  "email": "1581488+christiango@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
