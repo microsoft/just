@@ -1,4 +1,4 @@
-import marked = require('marked');
+import { marked } from 'marked';
 import TerminalRenderer = require('marked-terminal');
 
 /**
