@@ -1,8 +1,17 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Wed, 04 Aug 2021 17:43:24 GMT and should not be manually modified.
+This log was last generated on Thu, 27 Jan 2022 23:06:07 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.5
+
+Thu, 27 Jan 2022 23:06:07 GMT
+
+### Patches
+
+- Bump marked to 4.0.12 (elcraig@microsoft.com)
+- Remove unused handlebars dep (elcraig@microsoft.com)
 
 ## 1.1.4
 

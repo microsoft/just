@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Remove unused handlebars dep",
-  "packageName": "just-scripts-utils",
-  "email": "elcraig@microsoft.com",
-  "dependentChangeType": "patch"
-}
