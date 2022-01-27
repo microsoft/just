@@ -7,9 +7,6 @@
   "json.format.enable": false,
   "javascript.preferences.quoteStyle": "single",
   "typescript.preferences.quoteStyle": "single",
-  "[handlebars]": {
-    "editor.formatOnSave": false
-  },
   "files.associations": {
     "**/package.json.hbs": "json",
     "**/*.json.hbs": "jsonc",
