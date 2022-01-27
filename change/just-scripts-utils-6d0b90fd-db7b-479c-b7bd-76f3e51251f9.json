@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Bump marked to 4.0.12",
+  "packageName": "just-scripts-utils",
+  "email": "elcraig@microsoft.com",
+  "dependentChangeType": "patch"
+}
