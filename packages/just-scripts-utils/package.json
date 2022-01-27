@@ -19,7 +19,6 @@
   "dependencies": {
     "fs-extra": "^8.0.0",
     "glob": "^7.1.3",
-    "handlebars": "^4.7.7",
     "jju": "^1.4.0",
     "just-task-logger": ">=1.1.1 <2.0.0",
     "marked": "^4.0.12",
@@ -31,7 +30,6 @@
   "devDependencies": {
     "@types/fs-extra": "^8.0.0",
     "@types/glob": "^7.1.3",
-    "@types/handlebars": "^4.1.0",
     "@types/jest": "^26.0.20",
     "@types/jju": "^1.4.1",
     "@types/marked": "^4.0.1",
