@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 07 Feb 2022 17:05:34 GMT",
+      "tag": "just-scripts_v1.7.0",
+      "version": "1.7.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "dzearing@microsoft.com",
+            "package": "just-scripts",
+            "comment": "Adding rootDir option to jest task.",
+            "commit": "8e7ba24884d089f69daf80a3396b3e4c3108421c"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 27 Jan 2022 23:06:07 GMT",
       "tag": "just-scripts_v1.6.2",
       "version": "1.6.2",

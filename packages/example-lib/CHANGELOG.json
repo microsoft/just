@@ -2,6 +2,21 @@
   "name": "example-lib",
   "entries": [
     {
+      "date": "Mon, 07 Feb 2022 17:05:34 GMT",
+      "tag": "example-lib_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "dzearing@microsoft.com",
+            "package": "example-lib",
+            "commit": "8e7ba24884d089f69daf80a3396b3e4c3108421c",
+            "comment": "Bump example-lib to v1.0.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 27 Jan 2022 23:06:07 GMT",
       "tag": "example-lib_v1.0.0",
       "version": "1.0.0",

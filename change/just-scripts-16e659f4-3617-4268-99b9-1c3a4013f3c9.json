@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Adding rootDir option to jest task.",
-  "packageName": "just-scripts",
-  "email": "dzearing@microsoft.com",
-  "dependentChangeType": "patch"
-}

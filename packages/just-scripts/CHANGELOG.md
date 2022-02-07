@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 27 Jan 2022 23:06:07 GMT and should not be manually modified.
+This log was last generated on Mon, 07 Feb 2022 17:05:34 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.7.0
+
+Mon, 07 Feb 2022 17:05:34 GMT
+
+### Minor changes
+
+- Adding rootDir option to jest task. (dzearing@microsoft.com)
 
 ## 1.6.2
 
