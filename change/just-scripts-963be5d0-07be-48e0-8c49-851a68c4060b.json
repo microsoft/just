@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Api extractor task now respects projectFolder option if provided.",
+  "packageName": "just-scripts",
+  "email": "dzearing@microsoft.com",
+  "dependentChangeType": "patch"
+}
