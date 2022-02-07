@@ -10,7 +10,7 @@ import * as ApiExtractorTypes from './apiExtractorTypes';
  * Options from `IExtractorConfigOptions` plus additional options specific to the task.
  */
 export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeOptions {
-  /** @deprecated Does not appear to be used */
+  /** The project folder to be used for reporting output paths. */
   projectFolder?: string;
 
   /** The config file path */
@@ -168,11 +168,19 @@ function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | u
   options.onConfigLoaded?.(rawConfig);
   // This follows the logic from ExtractorConfig.loadFileAndPrepare
   // https://github.com/microsoft/rushstack/blob/1eb3d8ccf2a87b90a1038bf464b0b73fb3c7fd78/apps/api-extractor/src/api/ExtractorConfig.ts#L455
-  const config = ExtractorConfig.prepare({
+
+  const prepareConfig = {
     configObject: rawConfig,
     configObjectFullPath: path.resolve(configJsonFilePath),
     packageJsonFullPath: path.resolve('package.json'),
-  });
+  };
+
+  // Respect projectFolder if provided.
+  if (options.projectFolder) {
+    prepareConfig.configObject.projectFolder = options.projectFolder;
+  }
+
+  const config = ExtractorConfig.prepare(prepareConfig);
 
   return { apiExtractorModule, config, extractorOptions, options };
 }
