@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 07 Feb 2022 17:05:34 GMT and should not be manually modified.
+This log was last generated on Mon, 07 Feb 2022 19:43:53 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.8.0
+
+Mon, 07 Feb 2022 19:43:53 GMT
+
+### Minor changes
+
+- Api extractor task now respects projectFolder option if provided. (dzearing@microsoft.com)
 
 ## 1.7.0
 

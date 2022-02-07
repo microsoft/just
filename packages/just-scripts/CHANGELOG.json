@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 07 Feb 2022 19:43:53 GMT",
+      "tag": "just-scripts_v1.8.0",
+      "version": "1.8.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "dzearing@microsoft.com",
+            "package": "just-scripts",
+            "comment": "Api extractor task now respects projectFolder option if provided.",
+            "commit": "93108b8e6f1032c912b383d356a19a528874d9e1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 07 Feb 2022 17:05:34 GMT",
       "tag": "just-scripts_v1.7.0",
       "version": "1.7.0",
