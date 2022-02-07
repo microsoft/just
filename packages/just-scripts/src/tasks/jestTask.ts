@@ -5,6 +5,7 @@ import * as supportsColor from 'supports-color';
 
 export interface JestTaskOptions {
   config?: string;
+  rootDir?: string;
   runInBand?: boolean;
   coverage?: boolean;
   updateSnapshot?: boolean;
@@ -59,6 +60,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.nodeArgs || []),
         jestCmd,
         ...(configFileExists ? ['--config', configFile] : []),
+        ...(options.rootDir ? ['--rootDir', options.rootDir] : []),
         ...(options.passWithNoTests ? ['--passWithNoTests'] : []),
         ...(options.clearCache ? ['--clearCache'] : []),
         ...(options.colors !== false && supportsColor.stdout ? ['--colors'] : []),
