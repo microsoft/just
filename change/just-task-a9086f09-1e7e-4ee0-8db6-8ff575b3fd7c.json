@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Exporting findGitRoot and other package functions from just-task",
+  "packageName": "just-task",
+  "email": "omprieto@microsoft.com",
+  "dependentChangeType": "patch"
+}
