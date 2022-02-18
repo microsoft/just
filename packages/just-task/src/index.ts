@@ -8,3 +8,4 @@ export { clearCache } from './cache';
 export * from './logger';
 export * from './chain';
 export * from './watch';
+export * from './package';

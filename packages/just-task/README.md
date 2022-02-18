@@ -7,7 +7,6 @@
 
 - a build task build definition library
 - sane preset build flows for node and browser projects featuring TypeScript, Webpack and jest
-- project scaffold tool that generates no-ejection needed repos that tracks template changes
 
 # Documentation
 
@@ -41,11 +40,9 @@ yarn test
 
 | Package            | Description                                                                             |
 | ------------------ | --------------------------------------------------------------------------------------- |
-| create-just        | Invoked by `npm init just`, a tool that scaffolds project repos                         |
 | just-task          | The task definition library that wraps `undertaker` and `yargs` libraries               |
 | just-scripts       | A reusable preset of frequently used tasks in node and browser projects                 |
-| just-stack-\*      | A set of templates to be used by the scaffold tool `create-just`                        |
-| just-scripts-utils | A set of utilities that are shared between `just-scripts` and `create-just`             |
+| just-scripts-utils | A set of utilities for `just-scripts`                                                   |
 | just-task-logger   | A shared pretty logger used to display timestamps along with a message                  |
 | documentation      | The Docusaurus site content and styles which generates the Github page for this library |
 
