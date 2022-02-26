@@ -21,7 +21,7 @@ export function watch(
   options = { ...options, ignoreInitial: true };
 
   // Wrapping this function teaches the glob-watcher about how to deal with sync taskFunction
-  const innerListener = listener!;
+  const innerListener = listener!; // eslint-disable-line
   const watcher = chokidar.watch(globs, options) as FSWatcher;
   for (const evt of ['add', 'change', 'unlink']) {
     watcher.on(evt, innerListener);
