@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Upgrading package-deps-hash to latest major to remove transitive security vulnerability in validator package.",
-  "packageName": "just-task",
-  "email": "dzearing@microsoft.com",
-  "dependentChangeType": "patch"
-}

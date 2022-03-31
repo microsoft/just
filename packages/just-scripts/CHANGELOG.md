@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Mon, 07 Feb 2022 19:43:53 GMT and should not be manually modified.
+This log was last generated on Thu, 31 Mar 2022 17:04:30 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.8.1
+
+Thu, 31 Mar 2022 17:04:30 GMT
+
+### Patches
+
+- Bump just-scripts to v1.8.1 (dzearing@microsoft.com)
 
 ## 1.8.0
 

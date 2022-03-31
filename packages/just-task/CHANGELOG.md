@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 10 Sep 2021 23:58:46 GMT and should not be manually modified.
+This log was last generated on Thu, 31 Mar 2022 17:04:30 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.0
+
+Thu, 31 Mar 2022 17:04:30 GMT
+
+### Minor changes
+
+- Upgrading package-deps-hash to latest major to remove transitive security vulnerability in validator package. (dzearing@microsoft.com)
 
 ## 1.4.2
 

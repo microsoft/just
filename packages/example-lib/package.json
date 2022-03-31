@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "just-scripts": ">=1.8.0 <2.0.0",
+    "just-scripts": ">=1.8.1 <2.0.0",
     "ts-node": "^9.1.1",
     "typescript": "~4.1.3"
   }
