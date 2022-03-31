@@ -1,4 +1,4 @@
-import { getPackageDeps, IPackageDeps } from '@rushstack/package-deps-hash';
+import { getPackageDeps } from '@rushstack/package-deps-hash';
 import { argv } from './option';
 import { resolveCwd } from './resolve';
 import * as fs from 'fs-extra';
@@ -83,7 +83,7 @@ function getCachePath() {
 interface CacheHash {
   args: { [arg: string]: string };
   taskName: string;
-  hash: IPackageDeps;
+  hash: Record<string, string>;
   dependentHashTimestamps: { [pkgName: string]: number };
 }
 
@@ -127,11 +127,10 @@ function getHash(taskName: string): CacheHash | null {
 
   const packageRootPath = getPackageRootPath();
 
-  const packageDeps = getPackageDeps(packageRootPath);
-
-  const lockFileHashes = getLockFileHashes();
-
-  packageDeps.files = { ...packageDeps.files, ...lockFileHashes };
+  const packageDeps = {
+    ...Object.fromEntries(getPackageDeps(packageRootPath)),
+    ...getLockFileHashes()
+  };
 
   const hash = {
     args,
