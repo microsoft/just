@@ -28,14 +28,14 @@ export function sassTask(
   postcssPlugins = postcssPlugins || [];
 
   return function sass(done: (err?: Error) => void) {
-    const nodeSass = tryRequire('node-sass');
+    const sass = tryRequire('sass') || tryRequire('node-sass');
     const postcss = tryRequire('postcss');
     const autoprefixer = tryRequire('autoprefixer');
     const postcssRtl = tryRequire('postcss-rtl');
     const clean = tryRequire('postcss-clean');
 
-    if (!nodeSass || !postcss || !autoprefixer) {
-      logger.warn('One of these [node-sass, postcss, autoprefixer] is not installed, so this task has no effect');
+    if (!sass || !postcss || !autoprefixer) {
+      logger.warn('One of these [sass, postcss, autoprefixer] is not installed, so this task has no effect');
       done();
       return;
     }
@@ -48,7 +48,7 @@ export function sassTask(
         (fileName: string) =>
           function (cb: any) {
             fileName = path.resolve(fileName);
-            nodeSass.render(
+            sass.render(
               {
                 file: fileName,
                 importer: patchSassUrl,
