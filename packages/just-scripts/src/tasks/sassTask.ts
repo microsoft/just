@@ -11,6 +11,8 @@ export interface SassTaskOptions {
   postcssPlugins?: any[];
 }
 
+let processHandlerSet = false;
+
 export function sassTask(options: SassTaskOptions): TaskFunction;
 /** @deprecated Use object param version */
 export function sassTask(createSourceModule: (fileName: string, css: string) => string, postcssPlugins?: any[]): TaskFunction;
@@ -18,6 +20,9 @@ export function sassTask(
   optionsOrCreateSourceModule: SassTaskOptions | ((fileName: string, css: string) => string),
   postcssPlugins?: any[],
 ): TaskFunction {
+  // node-sass causes strange behavior when it fails. It sometimes hangs the whole process
+  setUncaughtExceptionHandler();
+
   let createSourceModule: (fileName: string, css: string) => string;
   if (typeof optionsOrCreateSourceModule === 'function') {
     createSourceModule = optionsOrCreateSourceModule;
@@ -36,7 +41,7 @@ export function sassTask(
 
     if (!nodeSass || !postcss || !autoprefixer) {
       logger.warn('One of these [node-sass, postcss, autoprefixer] is not installed, so this task has no effect');
-      done();
+      cleanUpAndDone(done);
       return;
     }
 
@@ -85,9 +90,9 @@ export function sassTask(
           },
       );
 
-      parallelLimit(tasks, 5, done);
+      parallelLimit(tasks, 5, err => cleanUpAndDone(done, err));
     } else {
-      done();
+      cleanUpAndDone(done);
     }
   };
 }
@@ -107,4 +112,44 @@ function patchSassUrl(url: string, _prev: string, _done: any) {
   }
 
   return { file: newUrl };
+}
+
+/**
+ * sets up an uncaughtException handler for node-sass
+ */
+function setUncaughtExceptionHandler() {
+  if (!processHandlerSet) {
+    processHandlerSet = true;
+    process.on('uncaughtException', uncaughtExceptionHandler);
+  }
+}
+
+/**
+ * unsets the uncaughtException handler for node-sass
+ */
+function unsetUncaughtExceptionHandler() {
+  if (processHandlerSet) {
+    processHandlerSet = false;
+    process.off('uncaughtException', uncaughtExceptionHandler);
+  }
+}
+
+/**
+ * The uncaughtExceptionHandler is a work around for node-sass hanging
+ * See: https://github.com/sass/node-sass/issues/1048
+ * @param e
+ */
+function uncaughtExceptionHandler(e: Error) {
+  console.error(e.stack);
+  process.kill(process.pid, 'SIGINT');
+}
+
+/**
+ * In order for us to clean up the exception handler, we attach the clean up to the "done" callback
+ * @param done
+ * @param e
+ */
+function cleanUpAndDone(done: (e?: Error) => void, e?: Error) {
+  unsetUncaughtExceptionHandler();
+  return done(e);
 }
