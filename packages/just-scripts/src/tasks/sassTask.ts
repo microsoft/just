@@ -35,7 +35,7 @@ export function sassTask(
     const clean = tryRequire('postcss-clean');
 
     if (!sass || !postcss || !autoprefixer) {
-      logger.warn('One of these [sass, postcss, autoprefixer] is not installed, so this task has no effect');
+      logger.warn('One or more dependencies (sass or node-sass, postcss, autoprefixer) is not installed, so this task has no effect');
       done();
       return;
     }
