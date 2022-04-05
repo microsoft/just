@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Add support for dart-sass",
-  "packageName": "just-scripts",
-  "email": "tristan.watanabe@gmail.com",
-  "dependentChangeType": "patch"
-}

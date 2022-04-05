@@ -1,8 +1,16 @@
 # Change Log - example-lib
 
-This log was last generated on Thu, 31 Mar 2022 17:04:30 GMT and should not be manually modified.
+This log was last generated on Tue, 05 Apr 2022 20:55:43 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.0
+
+Tue, 05 Apr 2022 20:55:43 GMT
+
+### Patches
+
+- Bump example-lib to v1.0.0 (tristan.watanabe@gmail.com)
 
 ## 1.0.0
 
