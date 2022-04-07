@@ -1,6 +1,6 @@
+import * as mockfs from 'mock-fs';
 import * as path from 'path';
 import * as fs from 'fs';
-import mockfs = require('mock-fs');
 // import { dirSync, fileSync, DirResult, FileResult } from 'tmp';
 import { executeCopyInstructions } from '../executeCopyInstructions';
 
@@ -30,10 +30,11 @@ describe('executeCopyInstructions functional tests', () => {
     mockfs.restore();
   });
 
-  it('executes single source copy instructions', async () => {
+  it('executes single source copy instructions (symlink)', async () => {
     const copyInstruction = {
       sourceFilePath: sourceFilePath1,
       destinationFilePath: destFilePath,
+      makeSymlink: true,
     };
 
     expect(fs.existsSync(destFilePath)).toBeFalsy();
@@ -43,10 +44,11 @@ describe('executeCopyInstructions functional tests', () => {
     });
 
     expect(fs.existsSync(destFilePath)).toBeTruthy();
+    expect(fs.lstatSync(destFilePath).isSymbolicLink()).toBeTruthy();
     expect(fs.readFileSync(destFilePath).toString()).toEqual(sourceFileContents1);
   });
 
-  it('executes single source (arrayified) copy instructions', async () => {
+  it('executes single source (arrayified) copy instructions (copy)', async () => {
     const copyInstruction = {
       sourceFilePath: [sourceFilePath1],
       destinationFilePath: destFilePath,
@@ -59,6 +61,7 @@ describe('executeCopyInstructions functional tests', () => {
     });
 
     expect(fs.existsSync(destFilePath)).toBeTruthy();
+    expect(fs.lstatSync(destFilePath).isSymbolicLink()).toBeFalsy();
     expect(fs.readFileSync(destFilePath).toString()).toEqual(sourceFileContents1);
   });
 
@@ -77,7 +80,22 @@ describe('executeCopyInstructions functional tests', () => {
     });
 
     expect(fs.existsSync(destFilePath)).toBeTruthy();
+    expect(fs.lstatSync(destFilePath).isSymbolicLink()).toBeFalsy();
     expect(fs.readFileSync(destFilePath).toString()).toEqual(expectedOutput);
+  });
+
+  it('fails to validate merge + symlink copy instruction', async () => {
+    const copyInstruction = {
+      sourceFilePath: [sourceFilePath1, sourceFilePath2],
+      destinationFilePath: destFilePath,
+      makeSymlink: true,
+    };
+
+    const promise = executeCopyInstructions({
+      copyInstructions: [copyInstruction],
+    });
+
+    expect(promise).rejects.toThrow();
   });
 
   /**

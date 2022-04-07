@@ -13,6 +13,12 @@ export interface CopyInstruction {
    * The path+filename of the destination file.
    */
   destinationFilePath: string;
+
+  /**
+   * True of a symlink should be created, false if a copy or merge should be performed.
+   * If multiple source files are specified (i.e. a merge), this must be falsy.
+   */
+  makeSymlink?: boolean;
 }
 
 export interface CopyConfig {
@@ -24,10 +30,15 @@ export interface CopyConfig {
  * For example copyFilesToDestinationDirectory(['some/path/foo.js', 'bar.js'], 'dest/target') would result in the creation of
  * files 'dest/target/foo.js' and 'dest/target/bar.js'.
  */
-export function copyFilesToDestinationDirectory(sourceFilePaths: string | string[], destinationDirectory: string): CopyInstruction[] {
+export function copyFilesToDestinationDirectory(
+  sourceFilePaths: string | string[],
+  destinationDirectory: string,
+  makeSymlinks?: boolean,
+): CopyInstruction[] {
   return arrayify(sourceFilePaths).map(sourceName => ({
     sourceFilePath: normalize(sourceName),
     destinationFilePath: join(destinationDirectory, basename(sourceName)),
+    makeSymlink: makeSymlinks,
   }));
 }
 
@@ -40,8 +51,9 @@ export function copyFileToDestinationDirectoryWithRename(
   sourceFilePath: string,
   destinationName: string,
   destinationDirectory: string,
+  makeSymlink?: boolean,
 ): CopyInstruction[] {
-  return [{ sourceFilePath, destinationFilePath: join(destinationDirectory, destinationName) }];
+  return [{ sourceFilePath, destinationFilePath: join(destinationDirectory, destinationName), makeSymlink }];
 }
 
 /**
@@ -52,10 +64,12 @@ export function copyFileToDestinationDirectoryWithRename(
 export function copyFilesToDestinationDirectoryWithRename(
   instrs: { sourceFilePath: string; destinationName: string }[],
   destinationDirectory: string,
+  makeSymlinks?: boolean,
 ): CopyInstruction[] {
   return instrs.map(instr => ({
     sourceFilePath: instr.sourceFilePath,
     destinationFilePath: join(destinationDirectory, instr.destinationName),
+    makeSymlink: makeSymlinks,
   }));
 }
 
@@ -67,6 +81,7 @@ export function copyFilesInDirectory(
   sourceDirectoryPath: string,
   outputDirectoryPath: string,
   filterFunction?: (file: string) => boolean,
+  makeSymlinks?: boolean,
 ): CopyInstruction[] {
   let files = readdirSync(sourceDirectoryPath);
 
@@ -76,6 +91,7 @@ export function copyFilesInDirectory(
   return files.map(file => ({
     sourceFilePath: join(sourceDirectoryPath, file),
     destinationFilePath: join(outputDirectoryPath, file),
+    makeSymlink: makeSymlinks,
   }));
 }
 
