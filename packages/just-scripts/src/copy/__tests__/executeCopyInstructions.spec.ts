@@ -95,7 +95,7 @@ describe('executeCopyInstructions functional tests', () => {
       copyInstructions: [copyInstruction],
     });
 
-    expect(promise).rejects.toThrow();
+    await expect(promise).rejects.toThrow();
   });
 
   /**
