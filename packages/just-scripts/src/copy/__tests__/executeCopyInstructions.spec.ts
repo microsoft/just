@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 // import { dirSync, fileSync, DirResult, FileResult } from 'tmp';
 import { executeCopyInstructions } from '../executeCopyInstructions';
+import { CopyInstruction } from '../CopyInstruction';
 
 describe('executeCopyInstructions functional tests', () => {
   const sourceDir = 'sourceDir';
@@ -31,10 +32,9 @@ describe('executeCopyInstructions functional tests', () => {
   });
 
   it('executes single source copy instructions (symlink)', async () => {
-    const copyInstruction = {
+    const copyInstruction: CopyInstruction = {
       sourceFilePath: sourceFilePath1,
       destinationFilePath: destFilePath,
-      makeSymlink: true,
     };
 
     expect(fs.existsSync(destFilePath)).toBeFalsy();
@@ -49,9 +49,10 @@ describe('executeCopyInstructions functional tests', () => {
   });
 
   it('executes single source (arrayified) copy instructions (copy)', async () => {
-    const copyInstruction = {
+    const copyInstruction: CopyInstruction = {
       sourceFilePath: [sourceFilePath1],
       destinationFilePath: destFilePath,
+      noSymlink: true,
     };
 
     expect(fs.existsSync(destFilePath)).toBeFalsy();
@@ -66,7 +67,7 @@ describe('executeCopyInstructions functional tests', () => {
   });
 
   it('merges output', async () => {
-    const copyInstruction = {
+    const copyInstruction: CopyInstruction = {
       sourceFilePath: [sourceFilePath1, sourceFilePath2],
       destinationFilePath: destFilePath,
     };
@@ -85,10 +86,10 @@ describe('executeCopyInstructions functional tests', () => {
   });
 
   it('fails to validate merge + symlink copy instruction', async () => {
-    const copyInstruction = {
+    const copyInstruction: CopyInstruction = {
       sourceFilePath: [sourceFilePath1, sourceFilePath2],
       destinationFilePath: destFilePath,
-      makeSymlink: true,
+      noSymlink: false,
     };
 
     const promise = executeCopyInstructions({

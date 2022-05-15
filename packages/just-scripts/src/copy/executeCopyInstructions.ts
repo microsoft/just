@@ -17,7 +17,7 @@ export async function executeCopyInstructions(config: CopyConfig | undefined): P
 
 function validateConfig(copyInstructions: CopyInstruction[]) {
   copyInstructions.forEach(instr => {
-    if (instr.makeSymlink && Array.isArray(instr.sourceFilePath) && instr.sourceFilePath.length > 1) {
+    if (instr.noSymlink === false && Array.isArray(instr.sourceFilePath) && instr.sourceFilePath.length > 1) {
       throw new Error('Multiple source files cannot be specified when making a symlink');
     }
   });
@@ -34,10 +34,10 @@ function executeSingleCopyInstruction(copyInstruction: CopyInstruction) {
 
   // source and dest are 1-to-1?  perform binary copy or symlink as desired.
   if (sourceFileNames.length === 1) {
-    if (copyInstruction.makeSymlink) {
-      return ensureSymlink(resolve(sourceFileNames[0]), copyInstruction.destinationFilePath);
-    } else {
+    if (copyInstruction.noSymlink) {
       return copy(sourceFileNames[0], copyInstruction.destinationFilePath);
+    } else {
+      return ensureSymlink(resolve(sourceFileNames[0]), copyInstruction.destinationFilePath);
     }
   }
 
