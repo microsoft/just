@@ -1,7 +1,0 @@
-{
-  "type": "major",
-  "comment": "Add support for symlink creation in the copy task",
-  "packageName": "just-scripts",
-  "email": "benw@microsoft.com",
-  "dependentChangeType": "patch"
-}

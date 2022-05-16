@@ -1,8 +1,16 @@
 # Change Log - example-lib
 
-This log was last generated on Tue, 05 Apr 2022 20:55:43 GMT and should not be manually modified.
+This log was last generated on Mon, 16 May 2022 20:50:34 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.0
+
+Mon, 16 May 2022 20:50:34 GMT
+
+### Patches
+
+- Bump example-lib to v1.0.0 (benw@microsoft.com)
 
 ## 1.0.0
 

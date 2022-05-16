@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 16 May 2022 20:50:34 GMT",
+      "tag": "just-scripts_v2.0.0",
+      "version": "2.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "benw@microsoft.com",
+            "package": "just-scripts",
+            "comment": "Add support for symlink creation in the copy task",
+            "commit": "02e45b2c092548c4ac43e142aaa510a7ad95ec49"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 05 Apr 2022 20:55:43 GMT",
       "tag": "just-scripts_v1.8.2",
       "version": "1.8.2",
