@@ -22,6 +22,10 @@ export interface EsLintTaskOptions {
    * (see https://eslint.org/docs/developer-guide/working-with-rules-deprecated#per-rule-performance).
    */
   timing?: boolean;
+  /** Can be set to write the eslint report to a file */
+  outputFile?: string;
+  /** Can be set to dictate the format of use for report file generated with the output flag: https://eslint.org/docs/latest/user-guide/command-line-interface#-f---format */
+  format?: string;
 }
 
 export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
@@ -38,6 +42,8 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
       cache,
       cacheLocation,
       timing,
+      outputFile,
+      format
     } = options;
     const eslintCmd = resolve('eslint/bin/eslint.js');
     // Try all possible extensions in the order listed here: https://eslint.org/docs/user-guide/configuring#configuration-file-formats
@@ -58,6 +64,8 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         ...(maxWarnings !== undefined ? ['--max-warnings', `${maxWarnings}`] : []),
         ...(cache ? ['--cache'] : []),
         ...(cacheLocation ? ['--cache-location', cacheLocation] : []),
+        ...(outputFile ? ['--output-file', outputFile]: []),
+        ...(format ? ['--format',format]: []),
         '--color',
       ];
 
