@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Add more configuration options for the eslint task",
-  "packageName": "just-scripts",
-  "email": "1581488+christiango@users.noreply.github.com",
-  "dependentChangeType": "patch"
-}

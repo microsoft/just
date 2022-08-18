@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 18 Aug 2022 16:10:31 GMT",
+      "tag": "just-scripts_v2.0.1",
+      "version": "2.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "1581488+christiango@users.noreply.github.com",
+            "package": "just-scripts",
+            "comment": "Add more configuration options for the eslint task",
+            "commit": "70ec9554f55db0c96fd0b89dd61a2f205936e029"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 16 May 2022 20:50:34 GMT",
       "tag": "just-scripts_v2.0.0",
       "version": "2.0.0",

@@ -2,6 +2,21 @@
   "name": "example-lib",
   "entries": [
     {
+      "date": "Thu, 18 Aug 2022 16:10:31 GMT",
+      "tag": "example-lib_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "1581488+christiango@users.noreply.github.com",
+            "package": "example-lib",
+            "commit": "70ec9554f55db0c96fd0b89dd61a2f205936e029",
+            "comment": "Bump example-lib to v1.0.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 16 May 2022 20:50:34 GMT",
       "tag": "example-lib_v1.0.0",
       "version": "1.0.0",
