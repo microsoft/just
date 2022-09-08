@@ -1,5 +1,6 @@
 {
   "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.trimAutoWhitespace": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
@@ -10,7 +11,11 @@
   "files.associations": {
     "**/package.json.hbs": "json",
     "**/*.json.hbs": "jsonc",
-    "**/README.md.hbs": "markdown"
+    "**/README.md.hbs": "markdown",
+    // VS Code doesn't have json5 support, so handle .json5 files as jsonc.
+    // Note that Prettier must also be configured to format *.json5 as jsonc
+    // (since json5 allows things like unquoted keys that jsonc doesn't).
+    "*.json5": "jsonc"
   },
   "search.exclude": {
     "**/node_modules": true,
