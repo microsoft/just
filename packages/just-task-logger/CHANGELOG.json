@@ -2,6 +2,21 @@
   "name": "just-task-logger",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 00:04:18 GMT",
+      "tag": "just-task-logger_v1.1.1",
+      "version": "1.1.1",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-task-logger",
+            "comment": "Pin devDependencies",
+            "commit": "0dca4fef66c833623c3b923f426ee44d6887c5fe"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 14 Jan 2021 20:55:06 GMT",
       "tag": "just-task-logger_v1.1.1",
       "version": "1.1.1",

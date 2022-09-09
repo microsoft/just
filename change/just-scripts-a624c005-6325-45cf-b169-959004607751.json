@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Move @types/node to devDependencies",
-  "packageName": "just-scripts",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

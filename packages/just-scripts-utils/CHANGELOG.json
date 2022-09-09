@@ -2,6 +2,27 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 00:04:18 GMT",
+      "tag": "just-scripts-utils_v1.1.5",
+      "version": "1.1.5",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts-utils",
+            "comment": "Pin devDependencies",
+            "commit": "0dca4fef66c833623c3b923f426ee44d6887c5fe"
+          },
+          {
+            "author": "email not defined",
+            "package": "just-scripts-utils",
+            "commit": "0dca4fef66c833623c3b923f426ee44d6887c5fe",
+            "comment": "Bump just-scripts-utils to v1.1.5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 27 Jan 2022 23:06:07 GMT",
       "tag": "just-scripts-utils_v1.1.5",
       "version": "1.1.5",
