@@ -33,7 +33,7 @@
     "prettier": "2.7.1",
     "syncpack": "8.2.4",
     "vuepress": "1.9.7",
-    "vuepress-plugin-mermaidjs": "1.8.1"
+    "vuepress-plugin-mermaidjs": "1.9.1"
   },
   "resolutions": {
     "kind-of": "^6.0.3"
