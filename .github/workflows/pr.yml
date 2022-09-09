@@ -27,6 +27,7 @@ jobs:
       - run: yarn checkchange
       - run: yarn lint
       - run: yarn lage build test
+      - run: yarn docs:build
 
       - name: Check for modified files
         uses: ecraig12345/beachball-actions/check-for-modified-files@v1
