@@ -5,9 +5,9 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     # Disable version updates for npm dependencies
     open-pull-requests-limit: 0

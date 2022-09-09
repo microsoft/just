@@ -15,7 +15,7 @@
     "gh-pages": "gh-pages",
     "change": "beachball change",
     "checkchange": "beachball check",
-    "prettier:all": "yarn prettier --write '**/*'",
+    "prettier:all": "yarn prettier --write .",
     "release": "beachball publish",
     "release:docs": "yarn docs:build && yarn gh-pages -d docs/.vuepress/dist --dotfiles",
     "start": "lage start",
@@ -30,13 +30,22 @@
     "eslint": "7.32.0",
     "gh-pages": "3.1.0",
     "lage": "1.8.1",
-    "prettier": "2.2.1",
+    "prettier": "2.7.1",
     "syncpack": "8.2.4",
     "vuepress": "1.8.2",
     "vuepress-plugin-mermaidjs": "1.8.1"
   },
   "resolutions": {
     "kind-of": "^6.0.3"
+  },
+  "beachball": {
+    "ignorePatterns": [
+      ".*ignore",
+      "jest.config.js",
+      "**/__tests__/**",
+      "**/*.spec.ts",
+      "**/*.test.ts"
+    ]
   },
   "syncpack": {
     "prod": true,
