@@ -1394,10 +1394,10 @@
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
 
-"@types/jju@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@types/jju/-/jju-1.4.1.tgz#0a39f5f8e84fec46150a7b9ca985c3f89ad98e9f"
-  integrity sha512-LFt+YA7Lv2IZROMwokZKiPNORAV5N3huMs3IKnzlE430HWhWYZ8b+78HiwJXJJP1V2IEjinyJURuRJfGoaFSIA==
+"@types/jju@1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@types/jju/-/jju-1.4.2.tgz#cb31d10d9e23a1b2786a9842c584b53f6f1b9086"
+  integrity sha512-fbvsM6TrP3QN6791tiF6wAkmlNRwf1VARZ7sXyc5kmbfTDFhECaiS5ZFvpaciud0BoKBBFWA8hE3utOLf5XB1w==
 
 "@types/json-schema@^7.0.3", "@types/json-schema@^7.0.5":
   version "7.0.6"
