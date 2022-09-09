@@ -9,14 +9,6 @@
   "rules": {
     "indent": "off",
     "no-unused-vars": "off",
-    "quotes": [
-      "error",
-      "single",
-      {
-        "avoidEscape": true,
-        "allowTemplateLiterals": true
-      }
-    ],
     "prefer-rest-params": "off",
     "no-useless-escape": "off",
     "require-atomic-updates": "off",

@@ -4,4 +4,12 @@ module.exports = {
   singleQuote: true,
   trailingComma: 'all',
   arrowParens: 'avoid',
+  overrides: [
+    {
+      files: '*.json5',
+      options: {
+        parser: 'json',
+      },
+    },
+  ],
 };

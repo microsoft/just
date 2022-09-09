@@ -6,5 +6,10 @@
     "github>microsoft/m365-renovate-config:keepFresh"
   ],
 
-  "labels": ["renovate"]
+  "labels": ["renovate"],
+
+  "packageRules": [
+    // For @types/node we're intentionally staying on 12 (could probably go to 14)
+    { "matchPackageNames": ["@types/node"], "allowedVersions": "<13.0.0" }
+  ]
 }
