@@ -32,11 +32,11 @@ export function exec(
     });
 
     if (opts.stdout) {
-      child.stdout.pipe(opts.stdout);
+      child.stdout?.pipe(opts.stdout);
     }
 
     if (opts.stderr) {
-      child.stderr.pipe(opts.stderr);
+      child.stderr?.pipe(opts.stderr);
     }
   });
 }
@@ -117,10 +117,10 @@ export function spawn(
     });
 
     if (opts.stdout) {
-      child.stdout.pipe(opts.stdout);
+      child.stdout?.pipe(opts.stdout);
     }
     if (opts.stderr) {
-      child.stderr.pipe(opts.stderr);
+      child.stderr?.pipe(opts.stderr);
     }
   });
 }
