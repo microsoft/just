@@ -3,19 +3,10 @@
   "extends": [
     "github>microsoft/m365-renovate-config:beachballLibraryRecommended",
     "github>microsoft/m365-renovate-config:groupMore",
-    "github>microsoft/m365-renovate-config:keepFresh"
+    "github>microsoft/m365-renovate-config:groupTypes",
+    "github>microsoft/m365-renovate-config:keepFresh",
+    "github>microsoft/m365-renovate-config:restrictNode(12)"
   ],
 
-  "labels": ["renovate"],
-
-  "packageRules": [
-    // Group @types minor/patch upgrades together, to reduce initial PRs
-    {
-      "groupName": "@types packages",
-      "matchPackagePrefixes": ["@types/"],
-      "matchUpdateTypes": ["minor", "patch"]
-    },
-    // For @types/node we're intentionally staying on 12 (could probably go to 14)
-    { "matchPackageNames": ["@types/node"], "allowedVersions": "<13.0.0" }
-  ]
+  "labels": ["renovate"]
 }
