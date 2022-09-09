@@ -39,6 +39,7 @@
     "kind-of": "^6.0.3"
   },
   "beachball": {
+    "groupChanges": true,
     "ignorePatterns": [
       ".*ignore",
       "jest.config.js",
