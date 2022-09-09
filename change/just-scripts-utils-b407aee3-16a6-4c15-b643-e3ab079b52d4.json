@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Update devDependency ts-jest to v26.5.6",
+  "packageName": "just-scripts-utils",
+  "email": "renovate@whitesourcesoftware.com",
+  "dependentChangeType": "none"
+}
