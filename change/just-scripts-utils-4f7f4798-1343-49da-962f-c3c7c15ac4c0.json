@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Update devDependency @types/marked to v4.0.7",
+  "packageName": "just-scripts-utils",
+  "email": "renovate@whitesourcesoftware.com",
+  "dependentChangeType": "none"
+}
