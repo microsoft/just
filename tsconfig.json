@@ -3,6 +3,7 @@
     "target": "es2019",
     "module": "commonjs",
     "moduleResolution": "node",
+    "pretty": true,
     "declaration": true,
     "declarationMap": true,
     "strict": true,
@@ -13,7 +14,9 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "skipLibCheck": true,
     "esModuleInterop": false,
-    "allowSyntheticDefaultImports": false
+    "allowSyntheticDefaultImports": false,
+    "types": ["node", "jest"]
   }
 }
