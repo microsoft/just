@@ -32,7 +32,7 @@
     "lage": "1.8.1",
     "prettier": "2.7.1",
     "syncpack": "8.2.4",
-    "vuepress": "1.8.2",
+    "vuepress": "1.9.7",
     "vuepress-plugin-mermaidjs": "1.8.1"
   },
   "resolutions": {
