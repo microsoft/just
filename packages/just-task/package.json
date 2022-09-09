@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@types/chokidar": "2.1.3",
-    "@types/fs-extra": "8.1.1",
+    "@types/fs-extra": "8.1.2",
     "@types/jest": "26.0.20",
     "@types/mock-fs": "4.13.0",
     "@types/node": "10.17.50",

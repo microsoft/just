@@ -28,7 +28,7 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "@types/fs-extra": "8.1.1",
+    "@types/fs-extra": "8.1.2",
     "@types/glob": "7.1.3",
     "@types/jest": "26.0.20",
     "@types/jju": "1.4.1",
