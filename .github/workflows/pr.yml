@@ -23,7 +23,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn
+      - run: yarn --frozen-lockfile
       - run: yarn checkchange
       - run: yarn lint
       - run: yarn lage build test
+
+      - name: Check for modified files
+        uses: ecraig12345/beachball-actions/check-for-modified-files@v1
