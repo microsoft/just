@@ -41,7 +41,8 @@
   "syncpack": {
     "prod": true,
     "dev": true,
-    "peer": false
+    "peer": false,
+    "workspace": false
   },
   "workspaces": {
     "packages": [
