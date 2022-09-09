@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 00:10:40 GMT",
+      "tag": "just-scripts_v2.0.2",
+      "version": "2.0.2",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "just-scripts",
+            "commit": "3c53024cf02a739c5cdc9f37db64020d190ad916",
+            "comment": "Bump just-scripts to v2.0.2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 00:10:23 GMT",
       "tag": "just-scripts_v2.0.2",
       "version": "2.0.2",

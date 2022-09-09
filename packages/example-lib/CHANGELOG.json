@@ -2,6 +2,21 @@
   "name": "example-lib",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 00:10:40 GMT",
+      "tag": "example-lib_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "example-lib",
+            "commit": "3c53024cf02a739c5cdc9f37db64020d190ad916",
+            "comment": "Bump example-lib to v1.0.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 00:10:23 GMT",
       "tag": "example-lib_v1.0.0",
       "version": "1.0.0",
