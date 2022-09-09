@@ -26,7 +26,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.13.0",
     "@typescript-eslint/parser": "4.13.0",
-    "beachball": "2.12.1",
+    "beachball": "2.30.1",
     "eslint": "7.18.0",
     "gh-pages": "3.1.0",
     "lage": "1.1.4",
