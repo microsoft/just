@@ -31,7 +31,7 @@
     "gh-pages": "3.1.0",
     "lage": "1.1.4",
     "prettier": "2.2.1",
-    "syncpack": "5.6.10",
+    "syncpack": "8.2.4",
     "vuepress": "1.8.2",
     "vuepress-plugin-mermaidjs": "1.8.1"
   },
@@ -41,7 +41,8 @@
   "syncpack": {
     "prod": true,
     "dev": true,
-    "peer": false
+    "peer": false,
+    "workspace": false
   },
   "workspaces": {
     "packages": [
