@@ -202,7 +202,7 @@ describe('resolveConfigFile', () => {
       },
       'just.config.ts': 'localConfig',
     });
-    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: undefined } as any)
+    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: undefined } as any);
     expect(resolvedConfig).toContain('just.config.ts');
   });
 
@@ -214,7 +214,10 @@ describe('resolveConfigFile', () => {
       },
       'just.config.ts': 'localConfig',
     });
-    const resolvedConfig = config.resolveConfigFile({ config: './config/configArgument.ts', defaultConfig: './config/defaultConfigArgument.ts' } as any)
+    const resolvedConfig = config.resolveConfigFile({
+      config: './config/configArgument.ts',
+      defaultConfig: './config/defaultConfigArgument.ts',
+    } as any);
     expect(resolvedConfig).toContain('configArgument.ts');
   });
 
@@ -226,7 +229,7 @@ describe('resolveConfigFile', () => {
       },
       'just.config.ts': 'localConfig',
     });
-    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: './config/defaultConfigArgument.ts' } as any)
+    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: './config/defaultConfigArgument.ts' } as any);
     expect(resolvedConfig).toContain('just.config.ts');
   });
 
@@ -237,8 +240,7 @@ describe('resolveConfigFile', () => {
         'defaultConfigArgument.ts': 'formDefaultConfig',
       },
     });
-    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: './config/defaultConfigArgument.ts' } as any)
+    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: './config/defaultConfigArgument.ts' } as any);
     expect(resolvedConfig).toContain('defaultConfigArgument.ts');
   });
-
 });

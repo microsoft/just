@@ -129,7 +129,7 @@ function getHash(taskName: string): CacheHash | null {
 
   const packageDeps = {
     ...Object.fromEntries(getPackageDeps(packageRootPath)),
-    ...getLockFileHashes()
+    ...getLockFileHashes(),
   };
 
   const hash = {

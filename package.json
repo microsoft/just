@@ -15,7 +15,7 @@
     "gh-pages": "gh-pages",
     "change": "beachball change",
     "checkchange": "beachball check",
-    "prettier:all": "yarn prettier --write '**/*'",
+    "prettier:all": "yarn prettier --write .",
     "release": "beachball publish",
     "release:docs": "yarn docs:build && yarn gh-pages -d docs/.vuepress/dist --dotfiles",
     "start": "lage start",
@@ -37,6 +37,15 @@
   },
   "resolutions": {
     "kind-of": "^6.0.3"
+  },
+  "beachball": {
+    "ignorePatterns": [
+      ".*ignore",
+      "jest.config.js",
+      "**/__tests__/**",
+      "**/*.spec.ts",
+      "**/*.test.ts"
+    ]
   },
   "syncpack": {
     "prod": true,
