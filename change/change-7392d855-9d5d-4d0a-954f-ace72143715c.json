@@ -1,0 +1,25 @@
+{
+  "changes": [
+    {
+      "type": "none",
+      "comment": "Update yargs packages",
+      "packageName": "just-scripts-utils",
+      "email": "email not defined",
+      "dependentChangeType": "none"
+    },
+    {
+      "type": "none",
+      "comment": "Update yargs packages",
+      "packageName": "just-task-logger",
+      "email": "email not defined",
+      "dependentChangeType": "none"
+    },
+    {
+      "type": "none",
+      "comment": "Update yargs packages",
+      "packageName": "just-task",
+      "email": "email not defined",
+      "dependentChangeType": "none"
+    }
+  ]
+}
