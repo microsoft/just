@@ -3,7 +3,7 @@ import { PackageEntries, PackageEntry, PackageInfo, PackageInfoOptions } from '.
 import { getConfigLoader, readPackageJson } from '../readConfigs';
 import { normalizeToUnixPath } from '../normalizeToUnixPath';
 import * as path from 'path';
-import glob from 'glob';
+import * as glob from 'glob';
 
 function buildPackageInfo(root: string, pkgPath: string, pkgJsonName?: string): PackageEntries {
   const pkgJsonPath = pkgJsonName ? path.join(root, pkgPath, pkgJsonName) : path.join(root, pkgPath);
@@ -20,7 +20,10 @@ function buildPackageInfo(root: string, pkgPath: string, pkgJsonName?: string): 
 function buildPackageInfoForGlob(root: string, pkgGlob: string): PackageEntries {
   const matchPattern = pkgGlob + '/package.json';
   const globOptions = { cwd: root, ignore: '**/node_modules/**' };
-  return Object.assign({}, ...glob.sync(matchPattern, globOptions).map(subPath => buildPackageInfo(root, subPath)));
+  return Object.assign(
+    {} as PackageEntries,
+    ...glob.sync(matchPattern, globOptions).map(subPath => buildPackageInfo(root, subPath)),
+  );
 }
 
 function addPackageDependencyBranch(repoInfo: PackageEntries, pkg: PackageEntry, key: string): void {

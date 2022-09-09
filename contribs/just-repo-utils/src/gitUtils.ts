@@ -1,7 +1,7 @@
 import { spawnSync } from 'child_process';
 import { findGitRoot } from './repoInfo';
 
-function cleanGitStdout(stdout: Buffer): string[] {
+function cleanGitStdout(stdout: Buffer | string): string[] {
   return stdout
     .toString()
     .split(/\n/)
