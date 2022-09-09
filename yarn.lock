@@ -4987,10 +4987,10 @@ domhandler@^2.3.0:
   dependencies:
     domelementtype "1"
 
-dompurify@2.3.4:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.3.4.tgz#1cf5cf0105ccb4debdf6db162525bd41e6ddacc6"
-  integrity sha512-6BVcgOAVFXjI0JTjEvZy901Rghm+7fDQOrNIcxB4+gdhj6Kwp6T9VBhBY/AbagKHJocRkDYGd6wvI+p4/10xtQ==
+dompurify@2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.3.5.tgz#c83ed5a3ae5ce23e52efe654ea052ffb358dd7e3"
+  integrity sha512-kD+f8qEaa42+mjdOpKeztu9Mfx5bv9gVLO6K9jRx4uGvh6Wv06Srn4jr1wPNY2OOUGGSKHNFN+A8MA3v0E0QAQ==
 
 domutils@^1.5.1, domutils@^1.7.0:
   version "1.7.0"
@@ -8278,16 +8278,16 @@ merge2@^1.2.3, merge2@^1.3.0, merge2@^1.4.1:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-mermaid@^8.8.3:
-  version "8.13.8"
-  resolved "https://registry.yarnpkg.com/mermaid/-/mermaid-8.13.8.tgz#fc137e2a59df34a3e053712033833ffbbc8d84a9"
-  integrity sha512-Z5v31rvo8P7BPTiGicdJl9BbzyUe9s5sXILK8sM1g7ijkagpfFjPtXZVsq5P1WlN8m/fUp2PPNXVF9SqeTM91w==
+mermaid@^8.14.0:
+  version "8.14.0"
+  resolved "https://registry.yarnpkg.com/mermaid/-/mermaid-8.14.0.tgz#ef589b0537f56d6340069070edb51719a4faba00"
+  integrity sha512-ITSHjwVaby1Li738sxhF48sLTxcNyUAoWfoqyztL1f7J6JOLpHOuQPNLBb6lxGPUA0u7xP9IRULgvod0dKu35A==
   dependencies:
     "@braintree/sanitize-url" "^3.1.0"
     d3 "^7.0.0"
     dagre "^0.8.5"
     dagre-d3 "^0.6.4"
-    dompurify "2.3.4"
+    dompurify "2.3.5"
     graphlib "^2.1.8"
     khroma "^1.4.1"
     moment-mini "^2.24.0"
@@ -11813,12 +11813,12 @@ vuepress-plugin-container@^2.0.2:
     "@vuepress/shared-utils" "^1.2.0"
     markdown-it-container "^2.0.0"
 
-vuepress-plugin-mermaidjs@1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/vuepress-plugin-mermaidjs/-/vuepress-plugin-mermaidjs-1.8.1.tgz#299c19dd92bfef45f14deb5fdb7eba0c3c419290"
-  integrity sha512-gVnl2t2cbTd0ZWqikZzPPIjBvvcSKzAcuiON96Fi6RQo0QzIpjzXxuIp9bZ+tFUHn6UZp6hqqPtOdbsgcajilg==
+vuepress-plugin-mermaidjs@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/vuepress-plugin-mermaidjs/-/vuepress-plugin-mermaidjs-1.9.1.tgz#48700399a36ef9fc4e4bdbda51b5dd219d524ce7"
+  integrity sha512-ZJiFyia/NMjnkCni7baaRaRxi4+SJG4DetgQ3PodlWITWVzxzOGlkBdwKzaBNIAa43NLQwgUu5Mgwe9nBZWl9w==
   dependencies:
-    mermaid "^8.8.3"
+    mermaid "^8.14.0"
 
 vuepress-plugin-smooth-scroll@^0.0.3:
   version "0.0.3"
