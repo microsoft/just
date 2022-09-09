@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Run prettier on all files",
+  "packageName": "just-scripts",
+  "email": "elcraig@microsoft.com",
+  "dependentChangeType": "none"
+}
