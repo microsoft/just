@@ -2,6 +2,33 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 08:02:06 GMT",
+      "tag": "just-task_v1.5.0",
+      "version": "1.5.0",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-task",
+            "commit": "c08c46745a95efabab5dbfc0f216d2e3b94ae03f",
+            "comment": "Update devDependency mock-fs to v4.14.0"
+          },
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "just-task",
+            "commit": "32b2d44a637fcfca27c0a2c1fbc80d25bb60d7ce",
+            "comment": "Update devDependency ts-jest to v26.5.6"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task",
+            "commit": "9e1d1962e81b119d818514b3e8dd03be8d5e051e",
+            "comment": "Run prettier on all files"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 01:49:38 GMT",
       "tag": "just-task_v1.5.0",
       "version": "1.5.0",

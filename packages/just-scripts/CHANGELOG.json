@@ -2,6 +2,27 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 08:02:06 GMT",
+      "tag": "just-scripts_v2.0.2",
+      "version": "2.0.2",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "c08c46745a95efabab5dbfc0f216d2e3b94ae03f",
+            "comment": "Update devDependency mock-fs to v4.14.0"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "9e1d1962e81b119d818514b3e8dd03be8d5e051e",
+            "comment": "Run prettier on all files"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 01:49:38 GMT",
       "tag": "just-scripts_v2.0.2",
       "version": "2.0.2",
