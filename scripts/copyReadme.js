@@ -1,4 +1,6 @@
-const cpx = require('cpx');
+const fs = require('fs');
 const path = require('path');
 
-cpx.copySync(path.resolve(__dirname, '../README.md'), path.resolve(__dirname, '../packages/just-task'));
+const mainReadme = path.resolve(__dirname, '../README.md');
+const justTaskReadme = path.resolve(__dirname, '../packages/just-task/README.md');
+fs.copyFileSync(mainReadme, justTaskReadme);
