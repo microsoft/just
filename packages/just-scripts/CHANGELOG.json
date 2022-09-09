@@ -2,6 +2,27 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 00:10:23 GMT",
+      "tag": "just-scripts_v2.0.2",
+      "version": "2.0.2",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "comment": "Update devDependency @types/fs-extra to v8.1.2",
+            "commit": "ac702fe1b1b115a243f418fea2821729e38eb3ec"
+          },
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "ac702fe1b1b115a243f418fea2821729e38eb3ec",
+            "comment": "Bump just-scripts to v2.0.2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 00:04:18 GMT",
       "tag": "just-scripts_v2.0.2",
       "version": "2.0.2",

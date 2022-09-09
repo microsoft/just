@@ -2,6 +2,27 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 00:10:23 GMT",
+      "tag": "just-scripts-utils_v1.1.5",
+      "version": "1.1.5",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "just-scripts-utils",
+            "comment": "Update devDependency @types/marked to v4.0.7",
+            "commit": "ac702fe1b1b115a243f418fea2821729e38eb3ec"
+          },
+          {
+            "author": "email not defined",
+            "package": "just-scripts-utils",
+            "comment": "Update devDependency @types/fs-extra to v8.1.2",
+            "commit": "ac702fe1b1b115a243f418fea2821729e38eb3ec"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 00:04:18 GMT",
       "tag": "just-scripts-utils_v1.1.5",
       "version": "1.1.5",

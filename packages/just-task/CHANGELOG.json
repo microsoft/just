@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 00:10:23 GMT",
+      "tag": "just-task_v1.5.0",
+      "version": "1.5.0",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-task",
+            "comment": "Update devDependency @types/fs-extra to v8.1.2",
+            "commit": "ac702fe1b1b115a243f418fea2821729e38eb3ec"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 00:04:18 GMT",
       "tag": "just-task_v1.5.0",
       "version": "1.5.0",

@@ -2,6 +2,21 @@
   "name": "example-lib",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 00:10:23 GMT",
+      "tag": "example-lib_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "example-lib",
+            "commit": "ac702fe1b1b115a243f418fea2821729e38eb3ec",
+            "comment": "Bump example-lib to v1.0.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 00:04:18 GMT",
       "tag": "example-lib_v1.0.0",
       "version": "1.0.0",
