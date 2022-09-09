@@ -28,7 +28,7 @@
     "@typescript-eslint/parser": "4.33.0",
     "beachball": "2.30.1",
     "eslint": "7.32.0",
-    "gh-pages": "3.1.0",
+    "gh-pages": "3.2.3",
     "lage": "1.8.1",
     "prettier": "2.7.1",
     "syncpack": "8.2.4",
