@@ -2,6 +2,27 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 01:49:38 GMT",
+      "tag": "just-task_v1.5.0",
+      "version": "1.5.0",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-task",
+            "commit": "a88704b4f1f046e1440c0944145a8045273904c3",
+            "comment": "Update devDependency @types/node to v12"
+          },
+          {
+            "author": "email not defined",
+            "package": "just-task",
+            "commit": "f080946c01915c3cff7445928b2697729fc2e93d",
+            "comment": "Update @types packages"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 00:10:23 GMT",
       "tag": "just-task_v1.5.0",
       "version": "1.5.0",

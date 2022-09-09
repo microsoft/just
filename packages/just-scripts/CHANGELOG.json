@@ -2,6 +2,33 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 01:49:38 GMT",
+      "tag": "just-scripts_v2.0.2",
+      "version": "2.0.2",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "e90115f7a4ff31238ace951091bbce71f8031550",
+            "comment": "Pin devDependency jest-cli to v26.6.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "a88704b4f1f046e1440c0944145a8045273904c3",
+            "comment": "Update devDependency @types/node to v12"
+          },
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "f080946c01915c3cff7445928b2697729fc2e93d",
+            "comment": "Update @types packages"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 00:10:40 GMT",
       "tag": "just-scripts_v2.0.2",
       "version": "2.0.2",

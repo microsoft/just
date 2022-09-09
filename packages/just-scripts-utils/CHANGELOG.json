@@ -2,6 +2,33 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Fri, 09 Sep 2022 01:49:38 GMT",
+      "tag": "just-scripts-utils_v1.1.5",
+      "version": "1.1.5",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts-utils",
+            "commit": "f080946c01915c3cff7445928b2697729fc2e93d",
+            "comment": "Update @types packages"
+          },
+          {
+            "author": "email not defined",
+            "package": "just-scripts-utils",
+            "commit": "468be8479149975f59ee25f7f006afcc26746303",
+            "comment": "Update devDependency @types/jju to v1.4.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "just-scripts-utils",
+            "commit": "a88704b4f1f046e1440c0944145a8045273904c3",
+            "comment": "Update devDependency @types/node to v12"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 00:10:40 GMT",
       "tag": "just-scripts-utils_v1.1.5",
       "version": "1.1.5",
