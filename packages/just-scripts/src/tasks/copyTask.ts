@@ -20,7 +20,11 @@ export interface CopyTaskOptions {
 export function copyTask(options: CopyTaskOptions): TaskFunction;
 /** @deprecated Use object param version */
 export function copyTask(paths: string[] | undefined, dest: string, limit?: number): TaskFunction;
-export function copyTask(optionsOrPaths: CopyTaskOptions | string[] | undefined, dest?: string, limit?: number): TaskFunction {
+export function copyTask(
+  optionsOrPaths: CopyTaskOptions | string[] | undefined,
+  dest?: string,
+  limit?: number,
+): TaskFunction {
   let paths: string[] = [];
   if (Array.isArray(optionsOrPaths)) {
     paths = optionsOrPaths;

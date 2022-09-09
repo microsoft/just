@@ -58,7 +58,11 @@ export function buildPackageInfoFromRushProjects(root: string, projects: RushPro
   return results;
 }
 
-function findRecursiveDependencies(collector: PackageEntries, entry: PackageEntry, depType?: PackageInfoOptions['dependencyType']): void {
+function findRecursiveDependencies(
+  collector: PackageEntries,
+  entry: PackageEntry,
+  depType?: PackageInfoOptions['dependencyType'],
+): void {
   const dependencies = entry.dependencies;
   Object.keys(dependencies).forEach(dep => {
     if (!collector[dep]) {

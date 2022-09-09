@@ -69,7 +69,9 @@ export function apiExtractorVerifyTask(
       const apiExtractorResult = apiExtractorWrapper(context);
 
       if (apiExtractorResult && !apiExtractorResult.succeeded) {
-        throw new Error('The public API file is out of date. Please run the API snapshot and commit the updated API file.');
+        throw new Error(
+          'The public API file is out of date. Please run the API snapshot and commit the updated API file.',
+        );
       }
     }
   };
@@ -159,7 +161,9 @@ function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | u
 
   if (!fs.existsSync(configJsonFilePath)) {
     const defaultConfig = path.resolve(__dirname, '../../config/apiExtractor/api-extractor.json');
-    logger.warn(`Config file not found for api-extractor! Please copy ${defaultConfig} to project root folder to try again`);
+    logger.warn(
+      `Config file not found for api-extractor! Please copy ${defaultConfig} to project root folder to try again`,
+    );
     return;
   }
 
@@ -200,7 +204,9 @@ function apiExtractorWrapper({
   }
 
   if (options.fixNewlines) {
-    fixApiFileNewlines(options.localBuild ? config.reportFilePath : config.reportTempFilePath, { sampleFilePath: config.apiJsonFilePath });
+    fixApiFileNewlines(options.localBuild ? config.reportFilePath : config.reportTempFilePath, {
+      sampleFilePath: config.apiJsonFilePath,
+    });
   }
   return result;
 }
@@ -212,7 +218,10 @@ function apiExtractorWrapper({
  * @param newlineOptions - Provide either `newline` to specify the type of newlines to use,
  * or `sampleFilePath` to infer the newline type from a file.
  */
-export function fixApiFileNewlines(apiFilePath: string, newlineOptions: { sampleFilePath?: string; newline?: string }): void {
+export function fixApiFileNewlines(
+  apiFilePath: string,
+  newlineOptions: { sampleFilePath?: string; newline?: string },
+): void {
   let newline: string;
   if (newlineOptions.newline) {
     newline = newlineOptions.newline;
@@ -220,7 +229,9 @@ export function fixApiFileNewlines(apiFilePath: string, newlineOptions: { sample
     const sampleFile = fs.readFileSync(newlineOptions.sampleFilePath).toString();
     newline = sampleFile.match(/\r?\n/)![0];
   } else {
-    throw new Error('fixApiFileNewlines: you must provide either newlineOptions.sampleFilePath or newlineOptions.newline');
+    throw new Error(
+      'fixApiFileNewlines: you must provide either newlineOptions.sampleFilePath or newlineOptions.newline',
+    );
   }
   const contents = fs.readFileSync(apiFilePath).toString();
   // Replace newlines. Also remove trailing spaces (second regex gets a trailing space on the

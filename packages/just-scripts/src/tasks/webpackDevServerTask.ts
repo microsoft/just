@@ -75,7 +75,10 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}):
 
     if (configPath && fs.existsSync(configPath)) {
       args = [...args, '--config', configPath];
-      options.env = { ...options.env, ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)) };
+      options.env = {
+        ...options.env,
+        ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)),
+      };
     }
 
     if (options.open) {

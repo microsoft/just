@@ -17,7 +17,8 @@ let _repoInfo: RepoInfo | undefined = undefined;
 function isRepoRoot(cwd: string, config?: PackageJson): boolean | undefined {
   const just = config && config.just;
   const isRootFromJust = just && (just.root || (just.stack && just.stack === 'just-stack-monorepo'));
-  const isRootFromMonorepoConfigs = config && (fse.existsSync(path.join(cwd, 'rush.json')) || fse.existsSync(path.join(cwd, 'lerna.json')));
+  const isRootFromMonorepoConfigs =
+    config && (fse.existsSync(path.join(cwd, 'rush.json')) || fse.existsSync(path.join(cwd, 'lerna.json')));
   return isRootFromJust || isRootFromMonorepoConfigs;
 }
 
@@ -46,7 +47,10 @@ export function findGitRoot(cb?: FindRootCallback, options?: RepoInfoOptions): s
  *
  * @param cb - standard findGitRoot/findRepoRoot callback
  */
-function findRepoRootWithConfig(cb?: FindRootCallback, options?: RepoInfoOptions): [string, PackageJsonLoader | undefined] {
+function findRepoRootWithConfig(
+  cb?: FindRootCallback,
+  options?: RepoInfoOptions,
+): [string, PackageJsonLoader | undefined] {
   let loader: PackageJsonLoader | undefined = undefined;
   const path = findGitRoot(cwd => {
     loader = getConfigLoader<PackageJson>(cwd, 'package.json');

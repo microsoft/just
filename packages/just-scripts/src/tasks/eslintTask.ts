@@ -47,7 +47,8 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
     } = options;
     const eslintCmd = resolve('eslint/bin/eslint.js');
     // Try all possible extensions in the order listed here: https://eslint.org/docs/user-guide/configuring#configuration-file-formats
-    const eslintConfigPath = configPath || resolveCwd('.eslintrc', { extensions: ['.js', '.cjs', '.yaml', '.yml', '.json'] });
+    const eslintConfigPath =
+      configPath || resolveCwd('.eslintrc', { extensions: ['.js', '.cjs', '.yaml', '.yml', '.json'] });
 
     if (eslintCmd && eslintConfigPath && fs.existsSync(eslintConfigPath)) {
       const eslintIgnorePath = ignorePath || resolveCwd('.eslintignore');

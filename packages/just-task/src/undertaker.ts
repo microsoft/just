@@ -90,7 +90,11 @@ undertaker.on('error', function (args: any) {
   } else if (shouldLog(args)) {
     const duration = args.duration;
     const durationInSecs = Math.round(((duration[0] * NS_PER_SEC + duration[1]) / NS_PER_SEC) * 100) / 100;
-    logger.error(`finished '${colorizeTaskName(args.name)}' in ${chalk.yellow(String(durationInSecs) + 's')} with ${chalk.red('errors')}`);
+    logger.error(
+      `finished '${colorizeTaskName(args.name)}' in ${chalk.yellow(String(durationInSecs) + 's')} with ${chalk.red(
+        'errors',
+      )}`,
+    );
     process.exitCode = 1;
   }
 

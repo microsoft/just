@@ -251,7 +251,9 @@ describe(`tscTask`, () => {
             'tsconfig.json': 'a file',
           },
         });
-        const givenOptions = { build: ['project/a/tsconfig.json', 'project/b/tsconfig.json', 'project/c/tsconfig.json'] };
+        const givenOptions = {
+          build: ['project/a/tsconfig.json', 'project/b/tsconfig.json', 'project/c/tsconfig.json'],
+        };
         const task = given.tscTaskFn(givenOptions);
         expect.assertions(3);
         return callTaskForTest(task).then(() => {
@@ -274,7 +276,9 @@ describe(`tscTask`, () => {
             'tsconfig.json': 'a file',
           },
         });
-        const givenOptions = { build: ['project/a/tsconfig.json', 'project/b/tsconfig.json', 'project/c/tsconfig.json'] };
+        const givenOptions = {
+          build: ['project/a/tsconfig.json', 'project/b/tsconfig.json', 'project/c/tsconfig.json'],
+        };
         const task = given.tscTaskFn(givenOptions);
         expect.assertions(1);
         return callTaskForTest(task).then(() => {

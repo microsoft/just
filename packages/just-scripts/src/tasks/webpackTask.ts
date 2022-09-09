@@ -68,7 +68,9 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     }
 
     // Convert everything to promises first to make sure we resolve all promises
-    const webpackConfigPromises = await Promise.all(webpackConfigs.map(webpackConfig => Promise.resolve(webpackConfig)));
+    const webpackConfigPromises = await Promise.all(
+      webpackConfigs.map(webpackConfig => Promise.resolve(webpackConfig)),
+    );
 
     // We support passing in arbitrary webpack config options that we need to merge with any read configs.
     // To do this, we need to filter out the properties that aren't valid config options and then run webpack merge.

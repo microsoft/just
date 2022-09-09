@@ -8,7 +8,13 @@ import { task } from './task';
 const originalEmitWarning = process.emitWarning;
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-(process.emitWarning as any) = function emitWarning(this: any, _warning: string, _type: string, code: string, _ctor?: Function) {
+(process.emitWarning as any) = function emitWarning(
+  this: any,
+  _warning: string,
+  _type: string,
+  code: string,
+  _ctor?: Function,
+) {
   if (code === 'DEP0097') {
     // Undertaker uses a deprecated approach that causes NodeJS 10 to print
     // this warning to stderr:
@@ -34,7 +40,9 @@ function showHelp() {
 }
 
 // Define a built-in option of "config" so users can specify which path to choose for configurations
-option('config', { describe: 'path to a just configuration file (includes the file name, e.g. /path/to/just.config.ts)' });
+option('config', {
+  describe: 'path to a just configuration file (includes the file name, e.g. /path/to/just.config.ts)',
+});
 option('defaultConfig', {
   describe:
     'path to a default just configuration file that will be used when the current project does not have a just configuration file. (includes the file name, e.g. /path/to/just.config.ts)',

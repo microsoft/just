@@ -18,7 +18,14 @@ export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
     if (projectFile && tslintCmd && fs.existsSync(projectFile)) {
       logger.info(`Running tslint`);
 
-      const args = ['--project', projectFile, '-t', 'stylish', '-r', path.dirname(resolve('tslint-microsoft-contrib') || '')];
+      const args = [
+        '--project',
+        projectFile,
+        '-t',
+        'stylish',
+        '-r',
+        path.dirname(resolve('tslint-microsoft-contrib') || ''),
+      ];
 
       if (options.fix) {
         args.push('--fix');

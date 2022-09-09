@@ -3,7 +3,11 @@ import { wrapTask } from './wrapTask';
 import { TaskFunction } from './interfaces';
 import { registerCachedTask } from './cache';
 
-export function task(firstParam: string | TaskFunction, secondParam?: string | TaskFunction, thirdParam?: TaskFunction): TaskFunction {
+export function task(
+  firstParam: string | TaskFunction,
+  secondParam?: string | TaskFunction,
+  thirdParam?: TaskFunction,
+): TaskFunction {
   const argCount = arguments.length;
 
   if (argCount === 1 && typeof firstParam === 'string') {

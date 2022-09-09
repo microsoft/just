@@ -24,17 +24,15 @@ describe('exec', () => {
   const stdoutPipe = jest.fn();
   const stderrPipe = jest.fn();
   beforeAll(() => {
-    jest.spyOn(cp, 'exec').mockImplementation(
-      (_cmd: string, _opts: any, callback: any): cp.ChildProcess => {
-        setTimeout(() => {
-          callback(...execResult!);
-        }, 0);
-        return {
-          stdout: ({ pipe: stdoutPipe } as any) as Readable,
-          stderr: ({ pipe: stderrPipe } as any) as Readable,
-        } as any;
-      },
-    );
+    jest.spyOn(cp, 'exec').mockImplementation((_cmd: string, _opts: any, callback: any): cp.ChildProcess => {
+      setTimeout(() => {
+        callback(...execResult!);
+      }, 0);
+      return {
+        stdout: { pipe: stdoutPipe } as any as Readable,
+        stderr: { pipe: stderrPipe } as any as Readable,
+      } as any;
+    });
   });
 
   afterEach(() => {

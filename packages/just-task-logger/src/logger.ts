@@ -56,7 +56,12 @@ export const logger: Logger = {
       if (delta) {
         const ns = delta[0] * 1e9 + delta[1];
         const deltaMsg = `${ns / 1e9}s`;
-        logInternal('info', chalk.cyan(square), `mark(${chalk.cyanBright(marker)}): took ${chalk.cyanBright(deltaMsg)}`, ...args);
+        logInternal(
+          'info',
+          chalk.cyan(square),
+          `mark(${chalk.cyanBright(marker)}): took ${chalk.cyanBright(deltaMsg)}`,
+          ...args,
+        );
       }
     }
   },

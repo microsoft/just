@@ -27,7 +27,11 @@ export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
         prettierBin,
         ...{ configPath: options.configPath || undefined },
         ...{ ignorePath: options.ignorePath || undefined },
-        ...{ files: arrayify(options.files || path.resolve(process.cwd(), '**', '*.{ts,tsx,js,jsx,json,scss,html,yml,md}')) },
+        ...{
+          files: arrayify(
+            options.files || path.resolve(process.cwd(), '**', '*.{ts,tsx,js,jsx,json,scss,html,yml,md}'),
+          ),
+        },
         check: false,
       });
     };
@@ -47,7 +51,11 @@ export function prettierCheckTask(options: PrettierTaskOptions = {}): TaskFuncti
         prettierBin,
         ...{ configPath: options.configPath || undefined },
         ...{ ignorePath: options.ignorePath || undefined },
-        ...{ files: arrayify(options.files || path.resolve(process.cwd(), '**', '*.{ts,tsx,js,jsx,json,scss,html,yml,md}')) },
+        ...{
+          files: arrayify(
+            options.files || path.resolve(process.cwd(), '**', '*.{ts,tsx,js,jsx,json,scss,html,yml,md}'),
+          ),
+        },
         check: true,
       });
     };

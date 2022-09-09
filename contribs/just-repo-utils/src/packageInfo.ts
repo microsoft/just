@@ -18,7 +18,11 @@ function validateOptions(options?: PackageInfoOptions): PackageInfoOptions {
 export function getPackageInfo(options?: PackageInfoOptions): PackageInfo {
   options = validateOptions(options);
   const { retrievePackageInfo, cachePackageInfo } = require('./internal/packageInfoCache');
-  const { infoFromEntries, buildPackageInfoFromGlobs, buildPackageInfoFromRushProjects } = require('./internal/packageInfoHelpers');
+  const {
+    infoFromEntries,
+    buildPackageInfoFromGlobs,
+    buildPackageInfoFromRushProjects,
+  } = require('./internal/packageInfoHelpers');
   const { strategy = 'normal' } = options;
   let repoPackageInfo = strategy === 'normal' && retrievePackageInfo();
   if (!repoPackageInfo) {

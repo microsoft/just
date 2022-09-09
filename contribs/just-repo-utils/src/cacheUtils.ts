@@ -44,9 +44,14 @@ export function queryTimestamps(rootPath: string, files: string[]): string[] {
  * @param rootPath - root of the repo
  */
 export function getRepoHashKey(rootPath: string): string {
-  return queryTimestamps(rootPath, ['shrinkwrap.yml', 'package-lock.json', 'yarn.lock', 'pnpmfile.js', 'rush.json', 'lerna.json']).join(
-    '-',
-  );
+  return queryTimestamps(rootPath, [
+    'shrinkwrap.yml',
+    'package-lock.json',
+    'yarn.lock',
+    'pnpmfile.js',
+    'rush.json',
+    'lerna.json',
+  ]).join('-');
 }
 
 /**

@@ -53,7 +53,10 @@ export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunctio
     let configPath = findWebpackConfig('webpack.config.js');
 
     if (configPath) {
-      options.env = { ...options.env, ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)) };
+      options.env = {
+        ...options.env,
+        ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)),
+      };
     }
 
     if (options.webpackCliArgs) {

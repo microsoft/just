@@ -1,5 +1,13 @@
 import * as path from 'path';
-import { _isFileNameLike, _tryResolve, resetResolvePaths, resolveCwd, addResolvePath, resolve, _getResolvePaths } from '../resolve';
+import {
+  _isFileNameLike,
+  _tryResolve,
+  resetResolvePaths,
+  resolveCwd,
+  addResolvePath,
+  resolve,
+  _getResolvePaths,
+} from '../resolve';
 import * as option from '../option';
 import * as config from '../config';
 import mockfs = require('mock-fs');
@@ -229,7 +237,10 @@ describe('resolveConfigFile', () => {
       },
       'just.config.ts': 'localConfig',
     });
-    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: './config/defaultConfigArgument.ts' } as any);
+    const resolvedConfig = config.resolveConfigFile({
+      config: undefined,
+      defaultConfig: './config/defaultConfigArgument.ts',
+    } as any);
     expect(resolvedConfig).toContain('just.config.ts');
   });
 
@@ -240,7 +251,10 @@ describe('resolveConfigFile', () => {
         'defaultConfigArgument.ts': 'formDefaultConfig',
       },
     });
-    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: './config/defaultConfigArgument.ts' } as any);
+    const resolvedConfig = config.resolveConfigFile({
+      config: undefined,
+      defaultConfig: './config/defaultConfigArgument.ts',
+    } as any);
     expect(resolvedConfig).toContain('defaultConfigArgument.ts');
   });
 });

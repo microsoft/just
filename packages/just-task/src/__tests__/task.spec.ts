@@ -7,7 +7,9 @@ import UndertakerRegistry = require('undertaker-registry');
 
 describe('task', () => {
   beforeAll(() => {
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: path.resolve(__dirname, '__mocks__/just-task.js') } as any));
+    jest
+      .spyOn(option, 'argv')
+      .mockImplementation(() => ({ config: path.resolve(__dirname, '__mocks__/just-task.js') } as any));
     jest.spyOn(logger, 'info').mockImplementation(() => undefined);
   });
 
