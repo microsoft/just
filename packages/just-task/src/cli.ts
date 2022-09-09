@@ -7,12 +7,12 @@ import { task } from './task';
 
 const originalEmitWarning = process.emitWarning;
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 (process.emitWarning as any) = function emitWarning(
   this: any,
   _warning: string,
   _type: string,
   code: string,
+  // eslint-disable-next-line @typescript-eslint/ban-types
   _ctor?: Function,
 ) {
   if (code === 'DEP0097') {
