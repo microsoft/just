@@ -56,7 +56,6 @@
   },
   "workspaces": {
     "packages": [
-      "contribs/*",
       "packages/*",
       "scripts"
     ]
