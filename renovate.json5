@@ -14,5 +14,10 @@
     "github>microsoft/m365-renovate-config:groupYargs"
   ],
 
-  "labels": ["renovate"]
+  "labels": ["renovate"],
+
+  "packageRules": [
+    // new version prints a protest message
+    { "matchPackageNames": ["es5-ext"], "enabled": false }
+  ]
 }
