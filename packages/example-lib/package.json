@@ -10,6 +10,9 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "engines": {
+    "node": ">=12"
+  },
   "devDependencies": {
     "just-scripts": ">=2.0.2 <3.0.0",
     "ts-node": "9.1.1",

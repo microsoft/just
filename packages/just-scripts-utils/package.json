@@ -16,6 +16,9 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "engines": {
+    "node": ">=12"
+  },
   "dependencies": {
     "fs-extra": "^8.0.0",
     "glob": "^7.1.3",

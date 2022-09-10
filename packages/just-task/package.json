@@ -19,6 +19,9 @@
     "start-test": "jest --watch",
     "test": "jest"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "dependencies": {
     "@rushstack/package-deps-hash": "^3.2.5",
     "bach": "^1.2.0",

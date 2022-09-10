@@ -20,6 +20,9 @@
     "test": "jest",
     "test:update": "jest --updateSnapshot"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "dependencies": {
     "chalk": "^4.0.0",
     "diff-match-patch": "1.0.5",
