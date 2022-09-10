@@ -20,8 +20,8 @@ export interface OptionConfig {
   /** Indicate a key that should be used as a counter, e.g., `-vvv = {v: 3}`. */
   count?: boolean;
 
-  /** Provide default values for keys: `{ default: { x: 33, y: 'hello world!' } }`. */
-  default?: { [key: string]: any };
+  /** Provide default value: `{ default: 'hello world!' }`. */
+  default?: any;
 
   /** Specify that a key requires n arguments: `{ narg: {x: 2} }`. */
   narg?: number;
