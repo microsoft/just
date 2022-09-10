@@ -1,0 +1,25 @@
+{
+  "changes": [
+    {
+      "type": "none",
+      "comment": "Update devDependency @types/fs-extra to v9",
+      "packageName": "just-scripts-utils",
+      "email": "renovate@whitesourcesoftware.com",
+      "dependentChangeType": "none"
+    },
+    {
+      "type": "none",
+      "comment": "Update devDependency @types/fs-extra to v9",
+      "packageName": "just-scripts",
+      "email": "renovate@whitesourcesoftware.com",
+      "dependentChangeType": "none"
+    },
+    {
+      "type": "none",
+      "comment": "Update devDependency @types/fs-extra to v9",
+      "packageName": "just-task",
+      "email": "renovate@whitesourcesoftware.com",
+      "dependentChangeType": "none"
+    }
+  ]
+}
