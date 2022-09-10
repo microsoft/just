@@ -2,6 +2,33 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Sat, 10 Sep 2022 00:19:03 GMT",
+      "tag": "just-scripts_v2.0.3",
+      "version": "2.0.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "9fd466eb0c24ae5f5fed3381acfe229e74cc1bde",
+            "comment": "Specify Node 12+ engines requirement"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-scripts-utils to v1.1.6",
+            "commit": "9fd466eb0c24ae5f5fed3381acfe229e74cc1bde"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-task to v1.5.1",
+            "commit": "9fd466eb0c24ae5f5fed3381acfe229e74cc1bde"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 08:02:06 GMT",
       "tag": "just-scripts_v2.0.2",
       "version": "2.0.2",

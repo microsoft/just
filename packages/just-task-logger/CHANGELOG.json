@@ -2,6 +2,21 @@
   "name": "just-task-logger",
   "entries": [
     {
+      "date": "Sat, 10 Sep 2022 00:19:03 GMT",
+      "tag": "just-task-logger_v1.1.2",
+      "version": "1.1.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task-logger",
+            "commit": "9fd466eb0c24ae5f5fed3381acfe229e74cc1bde",
+            "comment": "Specify Node 12+ engines requirement"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 09 Sep 2022 08:02:06 GMT",
       "tag": "just-task-logger_v1.1.1",
       "version": "1.1.1",

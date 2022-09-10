@@ -1,8 +1,18 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 09 Sep 2022 00:04:18 GMT and should not be manually modified.
+This log was last generated on Sat, 10 Sep 2022 00:19:03 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.0.3
+
+Sat, 10 Sep 2022 00:19:03 GMT
+
+### Patches
+
+- Specify Node 12+ engines requirement (elcraig@microsoft.com)
+- Bump just-scripts-utils to v1.1.6
+- Bump just-task to v1.5.1
 
 ## 2.0.2
 

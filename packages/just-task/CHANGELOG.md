@@ -1,8 +1,17 @@
 # Change Log - just-task
 
-This log was last generated on Thu, 31 Mar 2022 17:04:30 GMT and should not be manually modified.
+This log was last generated on Sat, 10 Sep 2022 00:19:03 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.1
+
+Sat, 10 Sep 2022 00:19:03 GMT
+
+### Patches
+
+- Specify Node 12+ engines requirement (elcraig@microsoft.com)
+- Bump just-task-logger to v1.1.2
 
 ## 1.5.0
 
