@@ -36,7 +36,7 @@
     "vuepress-plugin-mermaidjs": "1.9.1"
   },
   "resolutions": {
-    "es5-ext": "0.10.53",
+    "es5-ext": "0.10.62",
     "kind-of": "^6.0.3"
   },
   "beachball": {
