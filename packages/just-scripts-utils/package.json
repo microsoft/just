@@ -25,7 +25,7 @@
     "jju": "^1.4.0",
     "just-task-logger": ">=1.1.2 <2.0.0",
     "marked": "^4.0.12",
-    "marked-terminal": "^4.1.0",
+    "marked-terminal": "^5.0.0",
     "semver": "^7.0.0",
     "tar": "^6.1.9",
     "yargs": "^16.2.0"
