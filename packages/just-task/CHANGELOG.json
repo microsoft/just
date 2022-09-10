@@ -2,6 +2,43 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Sat, 10 Sep 2022 08:02:45 GMT",
+      "tag": "just-task_v1.6.0",
+      "version": "1.6.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "just-task",
+            "commit": "0760a3c3afe3b93c501fb2cf9f0ffdf6ff995f2d",
+            "comment": "Update dependency fs-extra to v10"
+          },
+          {
+            "author": "email not defined",
+            "package": "just-task",
+            "commit": "c30a5f8ac1ec28b5906cd62201914c85cca3527b",
+            "comment": "Update dependency undertaker-registry to v2"
+          }
+        ],
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "just-task",
+            "commit": "a0b21703c4b4330b1c885261c11486cb786eac0e",
+            "comment": "Update devDependency @types/fs-extra to v9"
+          }
+        ],
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task",
+            "commit": "287b87696860cd0e2ae119e4ee6b270956c7c001",
+            "comment": "Fix type of OptionConfig.default"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 10 Sep 2022 00:19:03 GMT",
       "tag": "just-task_v1.5.1",
       "version": "1.5.1",

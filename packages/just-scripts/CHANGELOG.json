@@ -2,6 +2,53 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Sat, 10 Sep 2022 08:02:45 GMT",
+      "tag": "just-scripts_v2.0.4",
+      "version": "2.0.4",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "d2e870d10683d1809a4c11fda827aa5c3acb99b0",
+            "comment": "Update devDependency @types/tar to v6"
+          },
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "583787b31f417c4a094e28e4807572dae754e9da",
+            "comment": "Update devDependency async-done to v2"
+          },
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "just-scripts",
+            "commit": "a0b21703c4b4330b1c885261c11486cb786eac0e",
+            "comment": "Update devDependency @types/fs-extra to v9"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "0760a3c3afe3b93c501fb2cf9f0ffdf6ff995f2d",
+            "comment": "Update dependency fs-extra to v10"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-scripts-utils to v1.1.7",
+            "commit": "c30a5f8ac1ec28b5906cd62201914c85cca3527b"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-task to v1.6.0",
+            "commit": "c30a5f8ac1ec28b5906cd62201914c85cca3527b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 10 Sep 2022 00:19:03 GMT",
       "tag": "just-scripts_v2.0.3",
       "version": "2.0.3",

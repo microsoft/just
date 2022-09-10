@@ -1,8 +1,18 @@
 # Change Log - just-scripts
 
-This log was last generated on Sat, 10 Sep 2022 00:19:03 GMT and should not be manually modified.
+This log was last generated on Sat, 10 Sep 2022 08:02:45 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.0.4
+
+Sat, 10 Sep 2022 08:02:45 GMT
+
+### Patches
+
+- Update dependency fs-extra to v10 (email not defined)
+- Bump just-scripts-utils to v1.1.7
+- Bump just-task to v1.6.0
 
 ## 2.0.3
 

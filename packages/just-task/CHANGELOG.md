@@ -1,8 +1,21 @@
 # Change Log - just-task
 
-This log was last generated on Sat, 10 Sep 2022 00:19:03 GMT and should not be manually modified.
+This log was last generated on Sat, 10 Sep 2022 08:02:45 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.6.0
+
+Sat, 10 Sep 2022 08:02:45 GMT
+
+### Minor changes
+
+- Fix type of OptionConfig.default (elcraig@microsoft.com)
+
+### Patches
+
+- Update dependency fs-extra to v10 (email not defined)
+- Update dependency undertaker-registry to v2 (email not defined)
 
 ## 1.5.1
 
