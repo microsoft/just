@@ -1,0 +1,25 @@
+{
+  "changes": [
+    {
+      "type": "none",
+      "comment": "Update yargs packages",
+      "packageName": "just-scripts-utils",
+      "email": "renovate@whitesourcesoftware.com",
+      "dependentChangeType": "none"
+    },
+    {
+      "type": "none",
+      "comment": "Update yargs packages",
+      "packageName": "just-task-logger",
+      "email": "renovate@whitesourcesoftware.com",
+      "dependentChangeType": "none"
+    },
+    {
+      "type": "none",
+      "comment": "Update yargs packages",
+      "packageName": "just-task",
+      "email": "renovate@whitesourcesoftware.com",
+      "dependentChangeType": "none"
+    }
+  ]
+}
