@@ -8,6 +8,11 @@
     "github>microsoft/m365-renovate-config:keepFresh",
     "github>microsoft/m365-renovate-config:restrictNode(14)"
   ],
+  "ignorePresets": [
+    // causes an immortal PR which isn't currently wanted, because yargs and yargs-parser
+    // have different major versions
+    "github>microsoft/m365-renovate-config:groupYargs"
+  ],
 
   "labels": ["renovate"]
 }
