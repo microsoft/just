@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Sat, 10 Sep 2022 08:02:45 GMT and should not be manually modified.
+This log was last generated on Fri, 16 Sep 2022 08:02:22 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.6.1
+
+Fri, 16 Sep 2022 08:02:22 GMT
+
+### Patches
+
+- Update dependency bach to v2 (email not defined)
 
 ## 1.6.0
 

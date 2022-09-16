@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 16 Sep 2022 08:02:22 GMT",
+      "tag": "just-scripts_v2.0.5",
+      "version": "2.0.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-task to v1.6.1",
+            "commit": "635ab3e96b3724eed7d7fd35177d3ca1bf4a2fbf"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 10 Sep 2022 08:02:45 GMT",
       "tag": "just-scripts_v2.0.4",
       "version": "2.0.4",
