@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 20 Sep 2022 08:02:10 GMT",
+      "tag": "just-scripts_v2.0.5",
+      "version": "2.0.5",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "9d5f6001e0a663a677952c1479eb4eae9ae409d9",
+            "comment": "Update devDependency @types/supports-color to v8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 16 Sep 2022 08:02:22 GMT",
       "tag": "just-scripts_v2.0.5",
       "version": "2.0.5",
