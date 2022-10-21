@@ -3073,10 +3073,10 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-beachball@2.31.2:
-  version "2.31.2"
-  resolved "https://registry.yarnpkg.com/beachball/-/beachball-2.31.2.tgz#6705d2180cd9277812706af4876e2ff9ce4bfef3"
-  integrity sha512-gQqjNfKHOZz9UxOojfgy/Q7bd4aN8hc1w/sxqKNCcJR3SxZ4hya9Czn9HJflAJZUQXQ41/VHlJvZgWzkjx402g==
+beachball@2.31.4:
+  version "2.31.4"
+  resolved "https://registry.yarnpkg.com/beachball/-/beachball-2.31.4.tgz#22c7a7ac551fde5b3f6eede4628082e08c498dbd"
+  integrity sha512-5bCBIhGQwk7XNvfBeoVDGbXEN9PR84xDMy4IHhtw3n2Yy1HiXcc88E+n9uTSLXveKNsBS7P3KETYf+/qgtECYw==
   dependencies:
     cosmiconfig "^7.0.0"
     execa "^5.0.0"
@@ -3088,7 +3088,7 @@ beachball@2.31.2:
     semver "^7.0.0"
     toposort "^2.0.2"
     uuid "^9.0.0"
-    workspace-tools "^0.27.0"
+    workspace-tools "^0.28.0"
     yargs-parser "^21.0.0"
 
 big.js@^3.1.3:
