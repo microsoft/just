@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Sat, 22 Oct 2022 08:02:18 GMT",
+      "tag": "just-scripts_v2.0.5",
+      "version": "2.0.5",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "23a35623df3f507929dceef44eedeb1a219670c8",
+            "comment": "Update @types devDependencies"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 30 Sep 2022 08:05:55 GMT",
       "tag": "just-scripts_v2.0.5",
       "version": "2.0.5",
