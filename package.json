@@ -30,10 +30,10 @@
     "node": ">=12"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.40.1",
-    "@typescript-eslint/parser": "5.40.1",
+    "@typescript-eslint/eslint-plugin": "5.42.1",
+    "@typescript-eslint/parser": "5.42.1",
     "beachball": "2.31.4",
-    "eslint": "8.25.0",
+    "eslint": "8.27.0",
     "gh-pages": "4.0.0",
     "lage": "1.9.2",
     "prettier": "2.7.1",
