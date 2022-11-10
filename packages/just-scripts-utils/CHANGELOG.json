@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Thu, 10 Nov 2022 08:02:07 GMT",
+      "tag": "just-scripts-utils_v1.1.7",
+      "version": "1.1.7",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts-utils",
+            "commit": "78a1861afef421619ade087cc978f4253301ee84",
+            "comment": "Update devDependency @types/semver to v7.3.13"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 30 Sep 2022 08:05:55 GMT",
       "tag": "just-scripts-utils_v1.1.7",
       "version": "1.1.7",
