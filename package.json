@@ -27,7 +27,7 @@
     "lint": "eslint packages --ext .ts,.js"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.43.0",
