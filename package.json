@@ -32,7 +32,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.43.0",
     "@typescript-eslint/parser": "5.43.0",
-    "beachball": "2.31.4",
+    "beachball": "2.31.5",
     "eslint": "8.27.0",
     "gh-pages": "4.0.0",
     "lage": "1.9.5",
