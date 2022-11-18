@@ -1,8 +1,16 @@
 # Change Log - just-task-logger
 
-This log was last generated on Sat, 10 Sep 2022 00:19:03 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Nov 2022 22:40:12 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.0
+
+Fri, 18 Nov 2022 22:40:12 GMT
+
+### Minor changes
+
+- Require Node 14 (elcraig@microsoft.com)
 
 ## 1.1.2
 

@@ -2,6 +2,27 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Fri, 18 Nov 2022 22:40:12 GMT",
+      "tag": "just-scripts-utils_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts-utils",
+            "commit": "85d42c8a7e89413ee51b4fe9f731ad0e869addcd",
+            "comment": "Require Node 14"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts-utils",
+            "comment": "Bump just-task-logger to v1.2.0",
+            "commit": "cccdde9738e63849969dc75300ff98d8f3fa9ffc"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Nov 2022 08:02:07 GMT",
       "tag": "just-scripts-utils_v1.1.7",
       "version": "1.1.7",

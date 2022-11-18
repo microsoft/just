@@ -1,8 +1,18 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 16 Sep 2022 08:02:22 GMT and should not be manually modified.
+This log was last generated on Fri, 18 Nov 2022 22:40:12 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.1.0
+
+Fri, 18 Nov 2022 22:40:12 GMT
+
+### Minor changes
+
+- Require Node 14 (elcraig@microsoft.com)
+- Bump just-scripts-utils to v1.2.0
+- Bump just-task to v1.7.0
 
 ## 2.0.5
 
