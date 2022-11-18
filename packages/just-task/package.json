@@ -20,7 +20,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "dependencies": {
     "@rushstack/package-deps-hash": "^3.2.5",
