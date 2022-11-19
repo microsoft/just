@@ -2,6 +2,21 @@
   "name": "just-task-logger",
   "entries": [
     {
+      "date": "Sat, 19 Nov 2022 08:02:12 GMT",
+      "tag": "just-task-logger_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task-logger",
+            "commit": "a1d4ca0f23c165cffc4c673c7a098c60401922c9",
+            "comment": "Hoist widely-used devDependencies"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 18 Nov 2022 22:40:12 GMT",
       "tag": "just-task-logger_v1.2.0",
       "version": "1.2.0",

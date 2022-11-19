@@ -2,6 +2,27 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Sat, 19 Nov 2022 08:02:12 GMT",
+      "tag": "just-scripts-utils_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts-utils",
+            "commit": "a1d4ca0f23c165cffc4c673c7a098c60401922c9",
+            "comment": "Hoist widely-used devDependencies"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts-utils",
+            "commit": "61b714896f9600fb0d494927dedd92d52fa355d3",
+            "comment": "Remove unused devDependency"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 18 Nov 2022 22:40:12 GMT",
       "tag": "just-scripts-utils_v1.2.0",
       "version": "1.2.0",
