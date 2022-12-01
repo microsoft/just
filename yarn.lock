@@ -11296,10 +11296,10 @@ symbol-tree@^3.2.4:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
-syncpack@8.3.9:
-  version "8.3.9"
-  resolved "https://registry.yarnpkg.com/syncpack/-/syncpack-8.3.9.tgz#cea13ae5846cc16fddb33b32793d6af12a3637c5"
-  integrity sha512-oDaEvgZAoU40WXX4okQ7DiCfVEcO2antl+jV+Av+FbS4Hyh8VoJ8F6HGo2G8eT9H+AyBBM1iDUdbtR1MQRimoQ==
+syncpack@8.4.11:
+  version "8.4.11"
+  resolved "https://registry.yarnpkg.com/syncpack/-/syncpack-8.4.11.tgz#06b32e099483cd3cff1d5eb8de367d0cabdc8fb8"
+  integrity sha512-qYhkDvPr0goemEqykGaUKF4TD9sRlPQXNy0wn60SXsatAVaZPrNn/nFtfYBLGBp4gNlrpVzixnzBOTihQZxhmg==
   dependencies:
     chalk "4.1.2"
     commander "9.4.1"
