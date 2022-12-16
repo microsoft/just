@@ -2,6 +2,21 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Fri, 16 Dec 2022 08:02:09 GMT",
+      "tag": "just-scripts-utils_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts-utils",
+            "commit": "7130869cff3e99722dcfad1823ae31611e7662bd",
+            "comment": "Update @types devDependencies"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 19 Nov 2022 08:02:12 GMT",
       "tag": "just-scripts-utils_v1.2.0",
       "version": "1.2.0",
