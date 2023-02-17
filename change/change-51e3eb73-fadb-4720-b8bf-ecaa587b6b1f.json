@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "none",
+      "comment": "Update devDependency @types/tar to v6.1.4",
+      "packageName": "just-scripts-utils",
+      "email": "email not defined",
+      "dependentChangeType": "none"
+    },
+    {
+      "type": "none",
+      "comment": "Update devDependency @types/tar to v6.1.4",
+      "packageName": "just-scripts",
+      "email": "email not defined",
+      "dependentChangeType": "none"
+    }
+  ]
+}
