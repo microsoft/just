@@ -2,6 +2,36 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Fri, 17 Feb 2023 23:04:40 GMT",
+      "tag": "just-scripts-utils_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts-utils",
+            "commit": "db5d23d8fce67da62801311c83ff7c9036b21547",
+            "comment": "Update devDependency @types/tar to v6.1.4"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 15 Feb 2023 08:01:34 GMT",
+      "tag": "just-scripts-utils_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts-utils",
+            "commit": "df8892c64a12d738ee6e3af85b1faa69691d6dbf",
+            "comment": "Update devDependency @types/yargs to v15.0.15"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 16 Dec 2022 08:02:09 GMT",
       "tag": "just-scripts-utils_v1.2.0",
       "version": "1.2.0",
