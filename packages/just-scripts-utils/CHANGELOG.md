@@ -1,8 +1,24 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Thu, 09 Mar 2023 05:44:11 GMT and should not be manually modified.
+This log was last generated on Thu, 09 Mar 2023 08:02:09 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.0.0
+
+Thu, 09 Mar 2023 08:02:09 GMT
+
+### Major changes
+
+- Remove unused `prettyPrintMarkdown` function and related deps (`marked`, `marked-terminal`) (elcraig@microsoft.com)
+- Remove unused `findMonoRepoRootPath` function (elcraig@microsoft.com)
+- Remove unused functions `rushUpdate`, `readRushJson`, `rushAddPackage` and related dep `jju` (elcraig@microsoft.com)
+- Bump just-task-logger to v1.2.1
+
+### Patches
+
+- Remove unused dep on `yargs` (elcraig@microsoft.com)
+- Remove unused deps on `glob` and `tar` (elcraig@microsoft.com)
 
 ## 1.2.1
 

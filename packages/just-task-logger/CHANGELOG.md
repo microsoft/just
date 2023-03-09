@@ -1,8 +1,16 @@
 # Change Log - just-task-logger
 
-This log was last generated on Fri, 18 Nov 2022 22:40:12 GMT and should not be manually modified.
+This log was last generated on Thu, 09 Mar 2023 08:02:09 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.1
+
+Thu, 09 Mar 2023 08:02:09 GMT
+
+### Patches
+
+- Use `yargs-parser` instead of `yargs` to get the `--verbose` argument (elcraig@microsoft.com)
 
 ## 1.2.0
 

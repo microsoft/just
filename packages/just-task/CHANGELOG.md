@@ -1,8 +1,17 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 18 Nov 2022 22:40:12 GMT and should not be manually modified.
+This log was last generated on Thu, 09 Mar 2023 08:02:09 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.7.1
+
+Thu, 09 Mar 2023 08:02:09 GMT
+
+### Patches
+
+- Remove an incorrect reference to `yargs` types (elcraig@microsoft.com)
+- Bump just-task-logger to v1.2.1
 
 ## 1.7.0
 

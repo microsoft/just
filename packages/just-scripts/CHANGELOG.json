@@ -2,6 +2,35 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 09 Mar 2023 08:02:10 GMT",
+      "tag": "just-scripts_v2.1.2",
+      "version": "2.1.2",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "8d487af7c6de3abe574921f3c408e0eeb922867e",
+            "comment": "Remove unused dev dep"
+          }
+        ],
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-scripts-utils to v2.0.0",
+            "commit": "77dab724dfe9e042887caa13e8f2a7e66e33b570"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-task to v1.7.1",
+            "commit": "77dab724dfe9e042887caa13e8f2a7e66e33b570"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 09 Mar 2023 05:44:11 GMT",
       "tag": "just-scripts_v2.1.1",
       "version": "2.1.1",

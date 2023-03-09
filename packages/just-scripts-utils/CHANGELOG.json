@@ -2,6 +2,53 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Thu, 09 Mar 2023 08:02:09 GMT",
+      "tag": "just-scripts-utils_v2.0.0",
+      "version": "2.0.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts-utils",
+            "commit": "a509c1d0a5483b3e688f400c73da5969f5ae42c7",
+            "comment": "Remove unused dep on `yargs`"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts-utils",
+            "commit": "8d487af7c6de3abe574921f3c408e0eeb922867e",
+            "comment": "Remove unused deps on `glob` and `tar`"
+          }
+        ],
+        "major": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts-utils",
+            "commit": "8d487af7c6de3abe574921f3c408e0eeb922867e",
+            "comment": "Remove unused `prettyPrintMarkdown` function and related deps (`marked`, `marked-terminal`)"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts-utils",
+            "commit": "8d487af7c6de3abe574921f3c408e0eeb922867e",
+            "comment": "Remove unused `findMonoRepoRootPath` function"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts-utils",
+            "commit": "8d487af7c6de3abe574921f3c408e0eeb922867e",
+            "comment": "Remove unused functions `rushUpdate`, `readRushJson`, `rushAddPackage` and related dep `jju`"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts-utils",
+            "comment": "Bump just-task-logger to v1.2.1",
+            "commit": "77dab724dfe9e042887caa13e8f2a7e66e33b570"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 09 Mar 2023 05:44:11 GMT",
       "tag": "just-scripts-utils_v1.2.1",
       "version": "1.2.1",
