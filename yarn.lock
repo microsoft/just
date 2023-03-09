@@ -1752,7 +1752,7 @@
   resolved "https://registry.yarnpkg.com/@types/undertaker-registry/-/undertaker-registry-1.0.1.tgz#4306d4a03d7acedb974b66530832b90729e1d1da"
   integrity sha512-Z4TYuEKn9+RbNVk1Ll2SS4x1JeLHecolIbM/a8gveaHsW0Hr+RQMraZACwTO2VD7JvepgA6UO1A1VrbktQrIbQ==
 
-"@types/undertaker@1.2.8":
+"@types/undertaker@^1.2.8":
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/@types/undertaker/-/undertaker-1.2.8.tgz#6124a5d78eb6fca84689185229654a6235c601d7"
   integrity sha512-gW3PRqCHYpo45XFQHJBhch7L6hytPsIe0QeLujlnFsjHPnXLhJcPdN6a9368d7aIQgH2I/dUTPFBlGeSNA3qOg==
@@ -1793,17 +1793,10 @@
     anymatch "^3.0.0"
     source-map "^0.6.0"
 
-"@types/yargs-parser@*", "@types/yargs-parser@20.2.2":
+"@types/yargs-parser@*", "@types/yargs-parser@20.2.2", "@types/yargs-parser@^20.0.0":
   version "20.2.2"
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-20.2.2.tgz#c3924f56e32ae39ce713a1d5dec5872fedf85f6d"
   integrity sha512-sUWMriymrSqTvxCmCkf+7k392TNDcMJBHI1/rysWJxKnWAan/Zk4gZ/GEieSRo4EqIEPpbGU3Sd/0KTRoIA3pA==
-
-"@types/yargs@15.0.15":
-  version "15.0.15"
-  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-15.0.15.tgz#e609a2b1ef9e05d90489c2f5f45bbfb2be092158"
-  integrity sha512-IziEYMU9XoVj8hWg7k+UJrXALkGFjWJhn5QFEv9q4p+v40oZhSuC135M38st8XPjICL7Ey4TV64ferBGUoJhBg==
-  dependencies:
-    "@types/yargs-parser" "*"
 
 "@types/yargs@^16.0.0":
   version "16.0.5"
