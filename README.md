@@ -14,7 +14,7 @@ All the documentation is online at https://microsoft.github.io/just/
 
 ## Building
 
-See the [contributing instructions](./.github/CONTRIBUTING).
+See the [contributing instructions](./.github/CONTRIBUTING.md).
 
 ## Packages
 
