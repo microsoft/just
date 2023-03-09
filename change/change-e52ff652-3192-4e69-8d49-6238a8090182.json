@@ -2,7 +2,21 @@
   "changes": [
     {
       "type": "major",
-      "comment": "Remove unused `prettyPrintMarkdown` function and related deps (`marked`, `marked-terminal`) as well as unused dep on `tar`",
+      "comment": "Remove unused `prettyPrintMarkdown` function and related deps (`marked`, `marked-terminal`)",
+      "packageName": "just-scripts-utils",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "patch",
+      "comment": "Remove unused dep on `tar`",
+      "packageName": "just-scripts-utils",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "major",
+      "comment": "Remove unused functions `findMonoRepoRootPath`, `rushUpdate`, `readRushJson`, `rushAddPackage`",
       "packageName": "just-scripts-utils",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"
