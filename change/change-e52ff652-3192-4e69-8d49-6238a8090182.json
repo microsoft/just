@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Remove unused `prettyPrintMarkdown` function and related deps (`marked`, `marked-terminal`) as well as unused dep on `tar`",
+      "packageName": "just-scripts-utils",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
