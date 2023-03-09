@@ -2,6 +2,29 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Thu, 09 Mar 2023 05:44:11 GMT",
+      "tag": "just-scripts-utils_v1.2.1",
+      "version": "1.2.1",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts-utils",
+            "commit": "c3711804c41b2abfb2df4766acc83be68b137b56",
+            "comment": "Update mock-fs usage in tests"
+          }
+        ],
+        "patch": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "just-scripts-utils",
+            "commit": "b85a978f31cbda6e61635389255190046089ce35",
+            "comment": "Update dependency marked-terminal to v5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 17 Feb 2023 23:04:40 GMT",
       "tag": "just-scripts-utils_v1.2.0",
       "version": "1.2.0",

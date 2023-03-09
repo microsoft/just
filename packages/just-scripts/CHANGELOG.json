@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 09 Mar 2023 05:44:11 GMT",
+      "tag": "just-scripts_v2.1.1",
+      "version": "2.1.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-scripts-utils to v1.2.1",
+            "commit": "b85a978f31cbda6e61635389255190046089ce35"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 17 Feb 2023 23:04:40 GMT",
       "tag": "just-scripts_v2.1.0",
       "version": "2.1.0",

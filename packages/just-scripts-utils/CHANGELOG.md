@@ -1,8 +1,16 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Fri, 18 Nov 2022 22:40:12 GMT and should not be manually modified.
+This log was last generated on Thu, 09 Mar 2023 05:44:11 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.1
+
+Thu, 09 Mar 2023 05:44:11 GMT
+
+### Patches
+
+- Update dependency marked-terminal to v5 (renovate@whitesourcesoftware.com)
 
 ## 1.2.0
 
