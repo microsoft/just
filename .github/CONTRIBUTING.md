@@ -4,75 +4,49 @@ This page contains the contributing guidelines.
 
 ## Setup
 
-### prerequisite
+### Prerequisites
 
-- Node.js installed.
-  _Note: Node v8.0.0 (LTS) or greater would be better for "best results"._
-- Package manager - [yarn](https://yarnpkg.com/en/docs/getting-started)
+Install [Node.js](https://nodejs.org/en/). The version specified in [`.nvmrc`](../.nvmrc) is guaranteed to work, but newer versions will likely work too.
 
-### Project Setup in your local machine
+Install Yarn: `npm i -g yarn`
 
-- Fork the **just** repo at [https://github.com/microsoft/just](https://github.com/microsoft/just).
-- `git clone <your-clone-url> && cd just`
+### Project setup
 
-### Dependency Installation
+Fork the **just** repo from [https://github.com/microsoft/just](https://github.com/microsoft/just), then clone your fork.
 
-- Using yarn
+```bash
+git clone <your-clone-url>
+cd just
+```
+
+## Local development
+
+### Install and build
 
 ```bash
 $ yarn
 $ yarn build
 ```
 
-### Running and Testing locally
+### Run and test
 
-**To run this with node**
+To run this with Node:
 
 ```bash
 $ yarn start
 ```
 
-**To test the project**
+To run tests and/or lint:
 
 ```bash
 $ yarn test
+$ yarn lint
 ```
 
-## Naming a branch
+## Before making a PR
 
-Making a branch in your fork for your contribution is helpful in the following ways:
+After committing your changes, you'll need to create a Beachball change file. From the repo root, run:
 
-- It allows you to submit more than one contribution in a single PR.
-- It allows us to identify what your contribution is about from the branch name.
-
-You will want to checkout the `master` branch locally before creating your new branch.
-
-There are two types of branches:
-
-- Feature
-- Bugfix
-- Docs
-
-**Format**
-
-`Feature/<feature-name>`
-
-`Bugfix/<fix-type>`
-
-## before commit commands
-
-This commands are important in-order to pass the CI tests
-
-- **Check the lint**
-
-`$ yarn lint`
-
-- **Tests**
-
-`$ yarn test`
-
-- **Changes checking and writing**
-
-Check using `$ yarn checkchange`
-
-and if changes needs to be log _(will be mentioned from the above command)_, write the changes using
+```bash
+$ yarn change
+```
