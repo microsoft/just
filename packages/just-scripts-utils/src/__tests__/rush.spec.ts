@@ -1,7 +1,7 @@
-import fs = require('fs');
+import * as mockfs from 'mock-fs';
+import * as fs from 'fs';
 import { _justReadRushJson, _parseRushJson, rushAddPackage } from '../rush';
-import mockfs = require('mock-fs');
-import jju = require('jju');
+import * as jju from 'jju';
 
 const rushJsonStrNoProjects = `{
   // this is a comment
@@ -32,19 +32,17 @@ const rushJsonUpdatedStr = `{
   ]
 }`;
 
-describe('rushUpdate', () => {
-  // TOOD: not sure what to test here
-});
-
 describe('_justReadRushJson', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     mockfs({
       root: { 'rush.json': rushJsonStr },
       badRoot: {},
     });
   });
 
-  afterAll(() => {
+  afterEach(() => {
+    // As of jest 27, it seems that sometimes if fs isn't restored after each test, there's an
+    // error in the result reporting code that tries to load jest-worker.
     mockfs.restore();
   });
 
