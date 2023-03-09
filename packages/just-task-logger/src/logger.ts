@@ -1,6 +1,8 @@
 import chalk = require('chalk');
-import { argv } from 'yargs';
+import * as parser from 'yargs-parser';
 import { getDeltaAndClearMark } from './perf';
+
+const argv = parser(process.argv.slice(2));
 
 function logInternal(method: 'info' | 'warn' | 'error', symbol: string, ...args: any[]) {
   const now = new Date();

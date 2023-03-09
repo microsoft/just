@@ -1,4 +1,4 @@
-import { Arguments } from 'yargs';
+import { Arguments } from 'yargs-parser';
 import { TaskFunctionParams } from 'undertaker';
 import { Logger } from './logger';
 import { Duplex } from 'stream';
