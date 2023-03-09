@@ -5,8 +5,5 @@
   "description": "",
   "main": "watch.js",
   "keywords": [],
-  "author": "",
-  "dependencies": {
-    "@jest/reporters": "^26.6.2"
-  }
+  "author": ""
 }

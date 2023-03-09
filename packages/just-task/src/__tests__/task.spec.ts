@@ -3,7 +3,7 @@ import { parallel, undertaker } from '../undertaker';
 import { logger } from '../logger';
 import * as path from 'path';
 import * as option from '../option';
-import UndertakerRegistry = require('undertaker-registry');
+import * as UndertakerRegistry from 'undertaker-registry';
 
 describe('task', () => {
   beforeAll(() => {

@@ -5,19 +5,38 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug test",
+      "name": "Debug current package tests",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
-      "cwd": "${workspaceFolder}/packages/just-scripts",
-      "args": ["-i", "--runInBand"],
-      "runtimeArgs": ["--nolazy"],
+      "program": "${workspaceRoot}/scripts/debugTests.js",
+      "cwd": "${fileDirname}",
+      "stopOnEntry": false,
+      "args": ["--watchAll"],
+      "runtimeExecutable": null,
+      "runtimeArgs": ["--nolazy", "--inspect"],
       "env": {
         "NODE_ENV": "development"
       },
-      "console": "integratedTerminal",
       "sourceMaps": true,
-      "outFiles": []
+      "outputCapture": "std",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug current open test",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/scripts/debugTests.js",
+      "cwd": "${fileDirname}",
+      "stopOnEntry": false,
+      "args": ["${fileBasenameNoExtension}"],
+      "runtimeExecutable": null,
+      "runtimeArgs": ["--nolazy", "--inspect"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "sourceMaps": true,
+      "outputCapture": "std",
+      "console": "integratedTerminal"
     }
   ]
 }

@@ -1,12 +1,12 @@
 import { readPackageJson } from '../readPackageJson';
-import mockfs = require('mock-fs');
+import * as mockfs from 'mock-fs';
 
 describe('readPackageJson', () => {
   const testDir = 'testDir';
   const badDir = 'badDir';
   const testName = 'my-fake-package';
 
-  beforeAll(() => {
+  beforeEach(() => {
     mockfs({
       [testDir]: {
         'package.json': JSON.stringify({ name: testName }),
@@ -17,7 +17,9 @@ describe('readPackageJson', () => {
     });
   });
 
-  afterAll(() => {
+  afterEach(() => {
+    // As of jest 27, it seems that sometimes if fs isn't restored after each test, there's an
+    // error in the result reporting code that tries to load jest-worker.
     mockfs.restore();
   });
 
