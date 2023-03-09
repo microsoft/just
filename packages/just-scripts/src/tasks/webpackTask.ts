@@ -75,7 +75,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     // We support passing in arbitrary webpack config options that we need to merge with any read configs.
     // To do this, we need to filter out the properties that aren't valid config options and then run webpack merge.
     // A better long term solution here would be to have an option called webpackConfigOverrides instead of extending the configuration object.
-    const { config, outputStats, ...restConfig } = options || ({} as WebpackTaskOptions);
+    const { config, outputStats, onCompile, ...restConfig } = options || ({} as WebpackTaskOptions);
 
     webpackConfigs = webpackConfigPromises.map(webpackConfig => merge(webpackConfig, restConfig));
 
