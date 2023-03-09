@@ -9,17 +9,31 @@
     },
     {
       "type": "patch",
-      "comment": "Remove unused dep on `tar`",
+      "comment": "Remove unused deps on `glob` and `tar`",
       "packageName": "just-scripts-utils",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"
     },
     {
       "type": "major",
-      "comment": "Remove unused functions `findMonoRepoRootPath`, `rushUpdate`, `readRushJson`, `rushAddPackage`",
+      "comment": "Remove unused `findMonoRepoRootPath` function",
       "packageName": "just-scripts-utils",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"
+    },
+    {
+      "type": "major",
+      "comment": "Remove unused functions `rushUpdate`, `readRushJson`, `rushAddPackage` and related dep `jju`",
+      "packageName": "just-scripts-utils",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "none",
+      "comment": "Remove unused dev dep",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "none"
     }
   ]
 }
