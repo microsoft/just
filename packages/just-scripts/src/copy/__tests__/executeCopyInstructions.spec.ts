@@ -1,7 +1,6 @@
 import * as mockfs from 'mock-fs';
 import * as path from 'path';
 import * as fs from 'fs';
-// import { dirSync, fileSync, DirResult, FileResult } from 'tmp';
 import { executeCopyInstructions } from '../executeCopyInstructions';
 import { CopyInstruction } from '../CopyInstruction';
 
@@ -35,6 +34,7 @@ describe('executeCopyInstructions functional tests', () => {
     const copyInstruction: CopyInstruction = {
       sourceFilePath: sourceFilePath1,
       destinationFilePath: destFilePath,
+      symlink: true,
     };
 
     expect(fs.existsSync(destFilePath)).toBeFalsy();
@@ -52,7 +52,6 @@ describe('executeCopyInstructions functional tests', () => {
     const copyInstruction: CopyInstruction = {
       sourceFilePath: [sourceFilePath1],
       destinationFilePath: destFilePath,
-      noSymlink: true,
     };
 
     expect(fs.existsSync(destFilePath)).toBeFalsy();
@@ -89,7 +88,7 @@ describe('executeCopyInstructions functional tests', () => {
     const copyInstruction: CopyInstruction = {
       sourceFilePath: [sourceFilePath1, sourceFilePath2],
       destinationFilePath: destFilePath,
-      noSymlink: false,
+      symlink: true,
     };
 
     const promise = executeCopyInstructions({
