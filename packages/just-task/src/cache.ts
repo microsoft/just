@@ -3,7 +3,7 @@ import { argv } from './option';
 import { resolveCwd } from './resolve';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { logger, mark } from 'just-task-logger';
+import { logger, mark } from './logger';
 import { findDependents } from './package/findDependents';
 import { findGitRoot } from './package/findGitRoot';
 import { spawnSync } from 'child_process';

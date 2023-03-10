@@ -1,6 +1,6 @@
 // // WARNING: Careful about add more imports - only import types from webpack
 import { Configuration } from 'webpack';
-import { encodeArgs, spawn } from 'just-scripts-utils';
+import { encodeArgs, spawn } from '../utils';
 import { logger, resolve, resolveCwd, TaskFunction } from 'just-task';
 import * as fs from 'fs';
 import * as path from 'path';

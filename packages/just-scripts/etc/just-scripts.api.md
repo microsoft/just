@@ -9,7 +9,7 @@
 import type * as ApiExtractorTypes from '@microsoft/api-extractor';
 import type { BuildOptions } from 'esbuild';
 import { Configuration } from 'webpack';
-import { spawn } from 'just-scripts-utils';
+import * as cp from 'child_process';
 import { SpawnOptions } from 'child_process';
 import { TaskFunction } from 'just-task';
 import * as ts from 'typescript';
@@ -145,6 +145,9 @@ export function defaultCleanPaths(): string[];
 
 // @public (undocumented)
 export const displayBailoutOverlay: () => Partial<Configuration>;
+
+// @public
+export function encodeArgs(cmdArgs: string[]): string[];
 
 // @public (undocumented)
 export interface EntryHeader {
@@ -334,7 +337,11 @@ export interface SassTaskOptions {
     postcssPlugins?: any[];
 }
 
-export { spawn }
+// @public
+export function spawn(cmd: string, args?: ReadonlyArray<string>, opts?: cp.SpawnOptions & {
+    stdout?: NodeJS.WritableStream;
+    stderr?: NodeJS.WritableStream;
+}): Promise<void>;
 
 // @public (undocumented)
 export const stylesOverlay: () => Partial<Configuration>;
