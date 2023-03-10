@@ -1,7 +1,7 @@
-# just-task
+# just-scripts
 
-[![npm version](https://badge.fury.io/js/just-task.svg)](https://badge.fury.io/js/just-task)
-[![NPM Downloads](https://img.shields.io/npm/dm/just-task.svg?style=flat)](https://www.npmjs.com/package/just-task)
+[![npm version](https://badge.fury.io/js/just-scripts.svg)](https://badge.fury.io/js/just-scripts)
+[![NPM Downloads](https://img.shields.io/npm/dm/just-scripts.svg?style=flat)](https://www.npmjs.com/package/just-scripts)
 
 <!-- start shared -->
 
