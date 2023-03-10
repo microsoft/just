@@ -82,7 +82,7 @@ Mon, 16 May 2022 20:50:34 GMT
 
 ### Major changes
 
-- Add support for symlink creation in the copy task (benw@microsoft.com)
+**BREAKING CHANGE:** `copyInstructionsTask` now creates symlinks by default (see [#584](https://github.com/microsoft/just/pull/584)). To disable this behavior, pass the option `noSymlink: true`.
 
 ## 1.8.2
 
