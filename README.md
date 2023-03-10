@@ -20,15 +20,6 @@ All the documentation is online at https://microsoft.github.io/just/
 
 See the [contributing instructions](./.github/CONTRIBUTING.md).
 
-## Packages
-
-| Package              | Description                                                                      |
-| -------------------- | -------------------------------------------------------------------------------- |
-| `just-task`          | The task definition library that wraps `undertaker` and `yargs-parser` libraries |
-| `just-scripts`       | A reusable preset of frequently used tasks in node and browser projects          |
-| `just-scripts-utils` | A set of utilities for `just-scripts`                                            |
-| `just-task-logger`   | A shared pretty logger used to display timestamps along with a message           |
-
 ## Contributing
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com. Please refer [Contribution guide](https://github.com/microsoft/just/.github/CONTRIBUTING.md) for more details

@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { resolveCwd } from '../resolve';
 import { findPackageRoot } from './findPackageRoot';
-import { logger, mark } from 'just-task-logger';
+import { logger, mark } from '../logger';
 import { findGitRoot } from './findGitRoot';
 import { isChildOf } from '../paths';
 

@@ -1,6 +1,6 @@
 import { undertaker } from './undertaker';
 import { option, parseCommand } from './option';
-import { logger } from 'just-task-logger';
+import { logger } from './logger';
 import { TaskFunction } from './interfaces';
 import { readConfig } from './config';
 import { task } from './task';

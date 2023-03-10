@@ -41,4 +41,4 @@ export { copyInstructions };
 
 export * from 'just-task';
 
-export { spawn } from 'just-scripts-utils';
+export { spawn } from './utils';

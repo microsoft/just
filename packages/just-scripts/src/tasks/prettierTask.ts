@@ -1,5 +1,5 @@
 import { logger, resolve, TaskFunction } from 'just-task';
-import { spawn } from 'just-scripts-utils';
+import { spawn } from '../utils';
 import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
 import * as path from 'path';
 import { arrayify } from '../arrayUtils/arrayify';

@@ -1,5 +1,5 @@
 import { logger, TaskFunction, resolve } from 'just-task';
-import { spawn } from 'just-scripts-utils';
+import { spawn } from '../utils';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 

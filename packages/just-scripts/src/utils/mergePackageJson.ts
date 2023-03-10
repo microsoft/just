@@ -1,4 +1,4 @@
-import { PackageJson } from './interfaces/PackageJson';
+import { PackageJson } from '../interfaces/PackageJson';
 import semver = require('semver');
 
 /**
