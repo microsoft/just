@@ -84,6 +84,8 @@ Mon, 16 May 2022 20:50:34 GMT
 
 **BREAKING CHANGE:** `copyInstructionsTask` now creates symlinks by default (see [#584](https://github.com/microsoft/just/pull/584)). To disable this behavior, pass the option `noSymlink: true`.
 
+`just-scripts` v2 also requires Node >= 14 (as of `2.1.0`).
+
 ## 1.8.2
 
 Tue, 05 Apr 2022 20:55:43 GMT
