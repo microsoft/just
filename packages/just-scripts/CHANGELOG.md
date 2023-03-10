@@ -1,8 +1,18 @@
 # Change Log - just-scripts
 
-This log was last generated on Thu, 09 Mar 2023 08:02:10 GMT and should not be manually modified.
+This log was last generated on Fri, 10 Mar 2023 08:01:53 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.1.3
+
+Fri, 10 Mar 2023 08:01:53 GMT
+
+### Patches
+
+- Update readmes and homepage links (elcraig@microsoft.com)
+- Include onCompile in filtered out object keys for webpack task (rlanda@microsoft.com)
+- Bump just-task to v1.7.2
 
 ## 2.1.2
 

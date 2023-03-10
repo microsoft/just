@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 10 Mar 2023 08:01:53 GMT",
+      "tag": "just-task_v1.7.2",
+      "version": "1.7.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task",
+            "commit": "8484242cfb5e360a8de6ac4a1190b5d488034be8",
+            "comment": "Update readmes and homepage links"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 09 Mar 2023 08:02:09 GMT",
       "tag": "just-task_v1.7.1",
       "version": "1.7.1",

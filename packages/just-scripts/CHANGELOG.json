@@ -2,6 +2,33 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Fri, 10 Mar 2023 08:01:53 GMT",
+      "tag": "just-scripts_v2.1.3",
+      "version": "2.1.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "8484242cfb5e360a8de6ac4a1190b5d488034be8",
+            "comment": "Update readmes and homepage links"
+          },
+          {
+            "author": "rlanda@microsoft.com",
+            "package": "just-scripts",
+            "commit": "77dab724dfe9e042887caa13e8f2a7e66e33b570",
+            "comment": "Include onCompile in filtered out object keys for webpack task"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-task to v1.7.2",
+            "commit": "c774d7a88862a888570c814357efc911ce8ac2ee"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 09 Mar 2023 08:02:10 GMT",
       "tag": "just-scripts_v2.1.2",
       "version": "2.1.2",

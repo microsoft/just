@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Thu, 09 Mar 2023 08:02:09 GMT and should not be manually modified.
+This log was last generated on Fri, 10 Mar 2023 08:01:53 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.7.2
+
+Fri, 10 Mar 2023 08:01:53 GMT
+
+### Patches
+
+- Update readmes and homepage links (elcraig@microsoft.com)
 
 ## 1.7.1
 
