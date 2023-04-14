@@ -8,7 +8,7 @@ sidebar_label: Logging
 
 Typically, logging tasks look like the following:
 
-![](assets/typical.png)
+![](../assets/typical.png)
 
 ## Usage
 
@@ -24,7 +24,7 @@ task('needsLogging', function () {
 
 If you want to log an error or warning do it with the `logger` object's `warn()` and `error()` functions. It looks like this following:
 
-![](assets/failure.png)
+![](../assets/failure.png)
 
 ```js
 const { task, logger } = require('just-task');
