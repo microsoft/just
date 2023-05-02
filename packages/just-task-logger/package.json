@@ -20,7 +20,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.2",
     "yargs-parser": "^20.2.3"
   }
 }

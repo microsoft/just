@@ -26,7 +26,7 @@
   "dependencies": {
     "@rushstack/package-deps-hash": "^3.2.5",
     "bach": "^2.0.0",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.2",
     "fs-extra": "^10.0.0",
     "just-task-logger": ">=1.2.1 <2.0.0",
     "resolve": "^1.19.0",

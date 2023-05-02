@@ -1,0 +1,25 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Update dependency chalk to ^4.1.2",
+      "packageName": "just-scripts",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "patch",
+      "comment": "Update dependency chalk to ^4.1.2",
+      "packageName": "just-task-logger",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "patch",
+      "comment": "Update dependency chalk to ^4.1.2",
+      "packageName": "just-task",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
