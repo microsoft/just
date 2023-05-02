@@ -24,7 +24,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@rushstack/package-deps-hash": "^3.2.5",
+    "@rushstack/package-deps-hash": "^3.2.67",
     "bach": "^2.0.0",
     "chalk": "^4.0.0",
     "fs-extra": "^10.0.0",

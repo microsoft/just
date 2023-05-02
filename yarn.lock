@@ -1313,7 +1313,7 @@
     semver "~7.3.0"
     z-schema "~5.0.2"
 
-"@rushstack/package-deps-hash@^3.2.5":
+"@rushstack/package-deps-hash@^3.2.67":
   version "3.2.67"
   resolved "https://registry.yarnpkg.com/@rushstack/package-deps-hash/-/package-deps-hash-3.2.67.tgz#00e361cd1020ef36ed6e9a0863adff25bea6575d"
   integrity sha512-PLp/cCmTl+HN8wLAhuElE8W+7YA0HJ7Bhx1FtKS1GBMXU01a9AVfJTKnHFylsV2rJs18QORyDaftl0XNS2adgw==

@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Update dependency @rushstack/package-deps-hash to ^3.2.67",
+      "packageName": "just-task",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
