@@ -26,6 +26,9 @@ export interface EsLintTaskOptions {
   outputFile?: string;
   /** Can be set to dictate the format of use for report file generated with the output flag: https://eslint.org/docs/latest/user-guide/command-line-interface#-f---format */
   format?: string;
+
+  /** Prevents the logging & auto-fixing of warnings */
+  quiet?: string;
 }
 
 export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
@@ -44,6 +47,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
       timing,
       outputFile,
       format,
+      quiet,
     } = options;
     const eslintCmd = resolve('eslint/bin/eslint.js');
     // Try all possible extensions in the order listed here: https://eslint.org/docs/user-guide/configuring#configuration-file-formats
@@ -67,6 +71,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         ...(cacheLocation ? ['--cache-location', cacheLocation] : []),
         ...(outputFile ? ['--output-file', outputFile] : []),
         ...(format ? ['--format', format] : []),
+        ...(quiet ? ['--quiet'] : []),
         '--color',
       ];
 
