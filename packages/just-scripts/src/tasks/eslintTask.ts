@@ -26,7 +26,6 @@ export interface EsLintTaskOptions {
   outputFile?: string;
   /** Can be set to dictate the format of use for report file generated with the output flag: https://eslint.org/docs/latest/user-guide/command-line-interface#-f---format */
   format?: string;
-
   /** Prevents the logging & auto-fixing of warnings */
   quiet?: string;
 }
