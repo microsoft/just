@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Sat, 19 Aug 2023 08:01:49 GMT",
+      "tag": "just-scripts_v2.2.0",
+      "version": "2.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "kyleehrlich@microsoft.com",
+            "package": "just-scripts",
+            "commit": "0636501549595ebeb1228df9f5cebcbac6c00b18",
+            "comment": "Add quiet option to eslint task"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 10 Mar 2023 08:01:53 GMT",
       "tag": "just-scripts_v2.1.3",
       "version": "2.1.3",

@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Fri, 10 Mar 2023 08:01:53 GMT and should not be manually modified.
+This log was last generated on Sat, 19 Aug 2023 08:01:49 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.2.0
+
+Sat, 19 Aug 2023 08:01:49 GMT
+
+### Minor changes
+
+- Add quiet option to eslint task (kyleehrlich@microsoft.com)
 
 ## 2.1.3
 
