@@ -39,7 +39,7 @@
     "@types/yargs-parser": "20.2.2",
     "@typescript-eslint/eslint-plugin": "5.54.1",
     "@typescript-eslint/parser": "5.54.1",
-    "beachball": "2.31.11",
+    "beachball": "2.37.0",
     "cross-env": "7.0.3",
     "eslint": "8.35.0",
     "gh-pages": "4.0.0",
