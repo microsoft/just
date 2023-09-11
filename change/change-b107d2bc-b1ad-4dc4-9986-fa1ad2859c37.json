@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "none",
+      "comment": "Update @types devDependencies",
+      "packageName": "just-scripts",
+      "email": "email not defined",
+      "dependentChangeType": "none"
+    },
+    {
+      "type": "none",
+      "comment": "Update @types devDependencies",
+      "packageName": "just-task",
+      "email": "email not defined",
+      "dependentChangeType": "none"
+    }
+  ]
+}

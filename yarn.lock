@@ -1414,10 +1414,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/diff-match-patch@1.0.32":
-  version "1.0.32"
-  resolved "https://registry.yarnpkg.com/@types/diff-match-patch/-/diff-match-patch-1.0.32.tgz#d9c3b8c914aa8229485351db4865328337a3d09f"
-  integrity sha512-bPYT5ECFiblzsVzyURaNhljBH2Gh1t9LowgUwciMrNAhFewLkHT2H0Mto07Y4/3KCOGZHRQll3CTtQZ0X11D/A==
+"@types/diff-match-patch@1.0.33":
+  version "1.0.33"
+  resolved "https://registry.yarnpkg.com/@types/diff-match-patch/-/diff-match-patch-1.0.33.tgz#aaef78118ad1f58d75cd7a194cd0a5dafe38820c"
+  integrity sha512-vj/5GCXzmfMueY4ltw0VAmcmT73uy//wA+epKjvzqwIRkFO2Ir2nwawFfMD/VlAjeeOfeRinoxr8tbyfunaL2Q==
 
 "@types/express-serve-static-core@*", "@types/express-serve-static-core@^4.17.33":
   version "4.17.33"
@@ -1541,10 +1541,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@14.18.37":
-  version "14.18.37"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.37.tgz#0bfcd173e8e1e328337473a8317e37b3b14fd30d"
-  integrity sha512-7GgtHCs/QZrBrDzgIJnQtuSvhFSwhyYSI2uafSwZoNt1iOGhEN5fwNrQMjtONyHm9+/LoA4453jH0CMYcr06Pg==
+"@types/node@*", "@types/node@14.18.59":
+  version "14.18.59"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.59.tgz#2b61a51d875e2a4deb0c6b498ff21a78e691edc6"
+  integrity sha512-NWJMpBL2Xs3MY93yrD6YrrTKep8eIA6iMnfG4oIc6LrTRlBZgiSCGiY3V/Owlp6umIBLyKb4F8Q7hxWatjYH5A==
 
 "@types/node@12.20.24":
   version "12.20.24"
@@ -1561,10 +1561,10 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.7.2.tgz#6c2324641cc4ba050a8c710b2b251b377581fbf0"
   integrity sha512-KufADq8uQqo1pYKVIYzfKbJfBAc0sOeXqGbFaSpv8MRmC/zXgowNZmFcbngndGk922QDmOASEXUZCaY48gs4cg==
 
-"@types/prompts@2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@types/prompts/-/prompts-2.4.2.tgz#0785dc09ca79e15ff11b20b7cda2f87af3165a7d"
-  integrity sha512-TwNx7qsjvRIUv/BCx583tqF5IINEVjCNqg9ofKHRlSoUHE62WBHrem4B1HGXcIrG511v29d1kJ9a/t2Esz7MIg==
+"@types/prompts@2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@types/prompts/-/prompts-2.4.4.tgz#dd5a1d41cb1bcd0fc4464bf44a0c8354f36ea735"
+  integrity sha512-p5N9uoTH76lLvSAaYSZtBCdEXzpOOufsRjnhjVSrZGXikVGHX9+cc9ERtHRV4hvBKHyZb1bg4K+56Bd2TqUn4A==
   dependencies:
     "@types/node" "*"
     kleur "^3.0.3"
@@ -1594,10 +1594,10 @@
   resolved "https://registry.yarnpkg.com/@types/run-parallel-limit/-/run-parallel-limit-1.0.0.tgz#ac108edefb4da8776082c9f9b00c5af2a787597e"
   integrity sha512-L3igU8Boko2/qnTl47Ahc4AcrzQp/0nfiSy6cku369MWmmzIMWDRAYSO4w6HAZSbHlcqG5F+JC6eg01C77sfVA==
 
-"@types/semver@7.3.13", "@types/semver@^7.3.12":
-  version "7.3.13"
-  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.3.13.tgz#da4bfd73f49bd541d28920ab0e2bf0ee80f71c91"
-  integrity sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==
+"@types/semver@7.5.1", "@types/semver@^7.3.12":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.5.1.tgz#0480eeb7221eb9bc398ad7432c9d7e14b1a5a367"
+  integrity sha512-cJRQXpObxfNKkFAZbJl2yjWtJCqELQIdShsogr1d2MilP8dKD9TE/nEKHkJgUNHdGKCQaf9HbIynuV2csLGVLg==
 
 "@types/serve-static@*":
   version "1.15.0"
@@ -1634,15 +1634,15 @@
   dependencies:
     source-map "^0.6.1"
 
-"@types/undertaker-registry@*", "@types/undertaker-registry@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@types/undertaker-registry/-/undertaker-registry-1.0.1.tgz#4306d4a03d7acedb974b66530832b90729e1d1da"
-  integrity sha512-Z4TYuEKn9+RbNVk1Ll2SS4x1JeLHecolIbM/a8gveaHsW0Hr+RQMraZACwTO2VD7JvepgA6UO1A1VrbktQrIbQ==
+"@types/undertaker-registry@*", "@types/undertaker-registry@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/undertaker-registry/-/undertaker-registry-1.0.2.tgz#d073ff83ab5b5a6f8a9ab3b09bf933dbe0d43913"
+  integrity sha512-O9CqcXYnCsHUSd71+hohlhEaP57dThYQQ8/cDwskhTCJ1kA3E5CVaK1sbEnukP2eWlpSgae/8KqgJBw3w/DmoQ==
 
-"@types/undertaker@1.2.8":
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/@types/undertaker/-/undertaker-1.2.8.tgz#6124a5d78eb6fca84689185229654a6235c601d7"
-  integrity sha512-gW3PRqCHYpo45XFQHJBhch7L6hytPsIe0QeLujlnFsjHPnXLhJcPdN6a9368d7aIQgH2I/dUTPFBlGeSNA3qOg==
+"@types/undertaker@1.2.9":
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/@types/undertaker/-/undertaker-1.2.9.tgz#0cf193892874251ffc9f7f1f511f520ab4339825"
+  integrity sha512-rOGGHtWFP4jsSKXvW2BJn+hYIAJ4cvsJi5wscbfbBHQ0yLQvTUXKvL+i72cv+8biktveFLEqbMpsKmJQxYVPQw==
   dependencies:
     "@types/node" "*"
     "@types/undertaker-registry" "*"
