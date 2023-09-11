@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>microsoft/m365-renovate-config:beachballLibraryRecommended",
+    "github>microsoft/m365-renovate-config:beachball",
     "github>microsoft/m365-renovate-config:disableEsmVersions",
     "github>microsoft/m365-renovate-config:groupMore",
     "github>microsoft/m365-renovate-config:groupTypes",

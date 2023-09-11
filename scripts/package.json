@@ -1,9 +1,5 @@
 {
   "name": "just-task-scripts",
   "private": true,
-  "version": "1.0.0",
-  "description": "",
-  "main": "watch.js",
-  "keywords": [],
-  "author": ""
+  "version": "1.0.0"
 }
