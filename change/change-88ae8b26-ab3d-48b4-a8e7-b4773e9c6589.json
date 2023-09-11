@@ -1,0 +1,25 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Update dependency fs-extra to v11",
+      "packageName": "just-scripts-utils",
+      "email": "renovate@whitesourcesoftware.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "patch",
+      "comment": "Update dependency fs-extra to v11",
+      "packageName": "just-scripts",
+      "email": "renovate@whitesourcesoftware.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "patch",
+      "comment": "Update dependency fs-extra to v11",
+      "packageName": "just-task",
+      "email": "renovate@whitesourcesoftware.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
