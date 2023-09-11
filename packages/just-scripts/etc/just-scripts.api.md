@@ -6,6 +6,7 @@
 
 /// <reference types="node" />
 
+import type * as ApiExtractorTypes from '@microsoft/api-extractor';
 import type { BuildOptions } from 'esbuild';
 import { Configuration } from 'webpack';
 import { spawn } from 'just-scripts-utils';
@@ -14,8 +15,6 @@ import { TaskFunction } from 'just-task';
 import * as ts from 'typescript';
 import * as webpackMerge from 'webpack-merge';
 
-// Warning: (ae-forgotten-export) The symbol "ApiExtractorTypes" needs to be exported by the entry point index.d.ts
-//
 // @public
 export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeOptions {
     configJsonFilePath?: string;
@@ -24,33 +23,6 @@ export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeO
     onConfigLoaded?: (config: ApiExtractorTypes.IConfigFile) => void;
     onResult?: (result: any, extractorOptions: any) => void;
     projectFolder?: string;
-}
-
-declare namespace ApiExtractorTypes {
-    export {
-        CompilerState,
-        ConsoleMessageId,
-        Extractor,
-        ExtractorConfig,
-        ExtractorLogLevel,
-        ExtractorMessage,
-        ExtractorMessageCategory,
-        ExtractorMessageId,
-        ExtractorResult,
-        ICompilerStateCreateOptions,
-        IConfigApiReport,
-        IConfigCompiler,
-        IConfigDocModel,
-        IConfigDtsRollup,
-        IConfigFile,
-        IConfigMessageReportingRule,
-        IConfigMessageReportingTable,
-        IConfigTsdocMetadata,
-        IExtractorConfigPrepareOptions,
-        IExtractorInvokeOptions,
-        IExtractorMessageProperties,
-        IExtractorMessagesConfig
-    }
 }
 
 // @public
@@ -83,27 +55,6 @@ export function cleanTask(paths?: string[], limit?: number): TaskFunction;
 export interface CleanTaskOptions {
     limit?: number;
     paths?: string[];
-}
-
-// @public
-class CompilerState {
-    // Warning: (ae-forgotten-export) The symbol "ExtractorConfig" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "ICompilerStateCreateOptions" needs to be exported by the entry point index.d.ts
-    static create(extractorConfig: ExtractorConfig, options?: ICompilerStateCreateOptions): CompilerState;
-    readonly program: unknown;
-}
-
-// @public
-const enum ConsoleMessageId {
-    ApiReportCopied = "console-api-report-copied",
-    ApiReportCreated = "console-api-report-created",
-    ApiReportFolderMissing = "console-api-report-folder-missing",
-    ApiReportNotCopied = "console-api-report-not-copied",
-    ApiReportUnchanged = "console-api-report-unchanged",
-    Diagnostics = "console-diagnostics",
-    FoundTSDocMetadata = "console-found-tsdoc-metadata",
-    WritingDocModelFile = "console-writing-doc-model-file",
-    WritingDtsRollup = "console-writing-dts-rollup"
 }
 
 // @public (undocumented)
@@ -283,184 +234,6 @@ export interface ExtractOptions {
 }
 
 // @public
-class Extractor {
-    static invoke(extractorConfig: ExtractorConfig, options?: IExtractorInvokeOptions): ExtractorResult;
-    // Warning: (ae-forgotten-export) The symbol "IExtractorInvokeOptions" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "ExtractorResult" needs to be exported by the entry point index.d.ts
-    static loadConfigAndInvoke(configFilePath: string, options?: IExtractorInvokeOptions): ExtractorResult;
-    static readonly packageName: string;
-    static readonly version: string;
-}
-
-// @public
-class ExtractorConfig {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigDocModel"
-    //
-    // (undocumented)
-    readonly apiJsonFilePath: string;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigApiReport"
-    //
-    // (undocumented)
-    readonly apiReportEnabled: boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigDtsRollup"
-    //
-    // (undocumented)
-    readonly betaTrimmedFilePath: string;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigFile"
-    //
-    // (undocumented)
-    readonly bundledPackages: string[];
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigDocModel"
-    //
-    // (undocumented)
-    readonly docModelEnabled: boolean;
-    static readonly FILENAME: string;
-    getDiagnosticDump(): string;
-    // @internal
-    _getShortFilePath(absolutePath: string): string;
-    static hasDtsFileExtension(filePath: string): boolean;
-    static readonly jsonSchema: unknown;
-    // Warning: (ae-forgotten-export) The symbol "IConfigFile" needs to be exported by the entry point index.d.ts
-    static loadFile(jsonFilePath: string): IConfigFile;
-    static loadFileAndPrepare(configJsonFilePath: string): ExtractorConfig;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigFile"
-    //
-    // (undocumented)
-    readonly mainEntryPointFilePath: string;
-    // Warning: (ae-forgotten-export) The symbol "IExtractorMessagesConfig" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigFile"
-    //
-    // (undocumented)
-    readonly messages: IExtractorMessagesConfig;
-    readonly newlineKind: '\r\n' | '\n' | 'os';
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigDtsRollup"
-    //
-    // (undocumented)
-    readonly omitTrimmingComments: boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigCompiler"
-    //
-    // (undocumented)
-    readonly overrideTsconfig: {} | undefined;
-    readonly packageFolder: string | undefined;
-    readonly packageJson: unknown | undefined;
-    // Warning: (ae-forgotten-export) The symbol "IExtractorConfigPrepareOptions" needs to be exported by the entry point index.d.ts
-    static prepare(options: IExtractorConfigPrepareOptions): ExtractorConfig;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigFile"
-    //
-    // (undocumented)
-    readonly projectFolder: string;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigDtsRollup"
-    //
-    // (undocumented)
-    readonly publicTrimmedFilePath: string;
-    readonly reportFilePath: string;
-    readonly reportTempFilePath: string;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigDtsRollup"
-    //
-    // (undocumented)
-    readonly rollupEnabled: boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigCompiler"
-    //
-    // (undocumented)
-    readonly skipLibCheck: boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigFile"
-    //
-    // (undocumented)
-    readonly testMode: boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigCompiler"
-    //
-    // (undocumented)
-    readonly tsconfigFilePath: string;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigTsdocMetadata"
-    //
-    // (undocumented)
-    readonly tsdocMetadataEnabled: boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigTsdocMetadata"
-    //
-    // (undocumented)
-    readonly tsdocMetadataFilePath: string;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigDtsRollup"
-    //
-    // (undocumented)
-    readonly untrimmedFilePath: string;
-}
-
-// @public
-const enum ExtractorLogLevel {
-    Error = "error",
-    Info = "info",
-    None = "none",
-    Verbose = "verbose",
-    Warning = "warning"
-}
-
-// @public
-class ExtractorMessage {
-    // Warning: (ae-forgotten-export) The symbol "IExtractorMessageOptions" needs to be exported by the entry point index.d.ts
-    //
-    // @internal
-    constructor(options: IExtractorMessageOptions);
-    // Warning: (ae-forgotten-export) The symbol "ExtractorMessageCategory" needs to be exported by the entry point index.d.ts
-    readonly category: ExtractorMessageCategory;
-    formatMessageWithLocation(workingPackageFolderPath: string | undefined): string;
-    // (undocumented)
-    formatMessageWithoutLocation(): string;
-    handled: boolean;
-    // Warning: (ae-forgotten-export) The symbol "ExtractorLogLevel" needs to be exported by the entry point index.d.ts
-    logLevel: ExtractorLogLevel;
-    // Warning: (ae-forgotten-export) The symbol "ExtractorMessageId" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "ConsoleMessageId" needs to be exported by the entry point index.d.ts
-    readonly messageId: unknown | ExtractorMessageId | ConsoleMessageId | string;
-    // Warning: (ae-forgotten-export) The symbol "IExtractorMessageProperties" needs to be exported by the entry point index.d.ts
-    readonly properties: IExtractorMessageProperties;
-    readonly sourceFileColumn: number | undefined;
-    readonly sourceFileLine: number | undefined;
-    readonly sourceFilePath: string | undefined;
-    readonly text: string;
-}
-
-// @public
-const enum ExtractorMessageCategory {
-    Compiler = "Compiler",
-    Console = "console",
-    Extractor = "Extractor",
-    TSDoc = "TSDoc"
-}
-
-// @public
-const enum ExtractorMessageId {
-    CyclicInheritDoc = "ae-cyclic-inherit-doc",
-    DifferentReleaseTags = "ae-different-release-tags",
-    ExtraReleaseTag = "ae-extra-release-tag",
-    ForgottenExport = "ae-forgotten-export",
-    IncompatibleReleaseTags = "ae-incompatible-release-tags",
-    InternalMissingUnderscore = "ae-internal-missing-underscore",
-    InternalMixedReleaseTag = "ae-internal-mixed-release-tag",
-    MisplacedPackageTag = "ae-misplaced-package-tag",
-    MissingGetter = "ae-missing-getter",
-    MissingReleaseTag = "ae-missing-release-tag",
-    PreapprovedBadReleaseTag = "ae-preapproved-bad-release-tag",
-    PreapprovedUnsupportedType = "ae-preapproved-unsupported-type",
-    SetterWithDocs = "ae-setter-with-docs",
-    UnresolvedInheritDocBase = "ae-unresolved-inheritdoc-base",
-    UnresolvedInheritDocReference = "ae-unresolved-inheritdoc-reference",
-    UnresolvedLink = "ae-unresolved-link"
-}
-
-// @public
-class ExtractorResult {
-    // @internal
-    constructor(properties: ExtractorResult);
-    readonly apiReportChanged: boolean;
-    // Warning: (ae-forgotten-export) The symbol "CompilerState" needs to be exported by the entry point index.d.ts
-    readonly compilerState: CompilerState;
-    readonly errorCount: number;
-    readonly extractorConfig: ExtractorConfig;
-    readonly succeeded: boolean;
-    readonly warningCount: number;
-}
-
-// @public
 export function extractTarTask(options?: ExtractOptions): TaskFunction;
 
 // @public (undocumented)
@@ -474,153 +247,6 @@ export function fixApiFileNewlines(apiFilePath: string, newlineOptions: {
 
 // @public (undocumented)
 export const htmlOverlay: (options: any) => Partial<Configuration>;
-
-// @public
-interface ICompilerStateCreateOptions {
-    additionalEntryPoints?: string[];
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IExtractorInvokeOptions"
-    //
-    // (undocumented)
-    typescriptCompilerFolder?: string;
-}
-
-// @public
-interface IConfigApiReport {
-    enabled: boolean;
-    reportFileName?: string;
-    reportFolder?: string;
-    reportTempFolder?: string;
-}
-
-// @public
-interface IConfigCompiler {
-    overrideTsconfig?: {};
-    skipLibCheck?: boolean;
-    tsconfigFilePath?: string;
-}
-
-// @public
-interface IConfigDocModel {
-    apiJsonFilePath?: string;
-    enabled: boolean;
-}
-
-// @public
-interface IConfigDtsRollup {
-    betaTrimmedFilePath?: string;
-    enabled: boolean;
-    omitTrimmingComments?: boolean;
-    publicTrimmedFilePath?: string;
-    untrimmedFilePath?: string;
-}
-
-// @public
-interface IConfigFile {
-    // Warning: (ae-forgotten-export) The symbol "IConfigApiReport" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigApiReport"
-    //
-    // (undocumented)
-    apiReport?: IConfigApiReport;
-    bundledPackages?: string[];
-    // Warning: (ae-forgotten-export) The symbol "IConfigCompiler" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigCompiler"
-    //
-    // (undocumented)
-    compiler?: IConfigCompiler;
-    // Warning: (ae-forgotten-export) The symbol "IConfigDocModel" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigDocModel"
-    //
-    // (undocumented)
-    docModel?: IConfigDocModel;
-    // Warning: (ae-forgotten-export) The symbol "IConfigDtsRollup" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigDtsRollup"
-    //
-    // @beta (undocumented)
-    dtsRollup?: IConfigDtsRollup;
-    extends?: string;
-    mainEntryPointFilePath: string;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IExtractorMessagesConfig"
-    //
-    // (undocumented)
-    messages?: IExtractorMessagesConfig;
-    newlineKind?: 'crlf' | 'lf' | 'os';
-    projectFolder?: string;
-    testMode?: boolean;
-    // Warning: (ae-forgotten-export) The symbol "IConfigTsdocMetadata" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "just-scripts" does not have an export "IConfigTsdocMetadata"
-    //
-    // @beta (undocumented)
-    tsdocMetadata?: IConfigTsdocMetadata;
-}
-
-// @public
-interface IConfigMessageReportingRule {
-    addToApiReportFile?: boolean;
-    logLevel: ExtractorLogLevel;
-}
-
-// @public
-interface IConfigMessageReportingTable {
-    // Warning: (ae-forgotten-export) The symbol "IConfigMessageReportingRule" needs to be exported by the entry point index.d.ts
-    [messageId: string]: IConfigMessageReportingRule;
-}
-
-// @public
-interface IConfigTsdocMetadata {
-    enabled: boolean;
-    tsdocMetadataFilePath?: string;
-}
-
-// @public
-interface IExtractorConfigPrepareOptions {
-    configObject: IConfigFile;
-    configObjectFullPath: string | undefined;
-    packageJson?: unknown | undefined;
-    packageJsonFullPath: string | undefined;
-}
-
-// @public
-interface IExtractorInvokeOptions {
-    compilerState?: CompilerState;
-    localBuild?: boolean;
-    // Warning: (ae-forgotten-export) The symbol "ExtractorMessage" needs to be exported by the entry point index.d.ts
-    messageCallback?: (message: ExtractorMessage) => void;
-    showDiagnostics?: boolean;
-    showVerboseMessages?: boolean;
-    typescriptCompilerFolder?: string;
-}
-
-// @public
-interface IExtractorMessageOptions {
-    // (undocumented)
-    category: ExtractorMessageCategory;
-    // (undocumented)
-    logLevel?: ExtractorLogLevel;
-    messageId: unknown | ExtractorMessageId | ConsoleMessageId | string;
-    // (undocumented)
-    properties?: IExtractorMessageProperties;
-    // (undocumented)
-    sourceFileColumn?: number;
-    // (undocumented)
-    sourceFileLine?: number;
-    // (undocumented)
-    sourceFilePath?: string;
-    // (undocumented)
-    text: string;
-}
-
-// @public
-interface IExtractorMessageProperties {
-    readonly exportName?: string;
-}
-
-// @public
-interface IExtractorMessagesConfig {
-    // Warning: (ae-forgotten-export) The symbol "IConfigMessageReportingTable" needs to be exported by the entry point index.d.ts
-    compilerMessageReporting?: IConfigMessageReportingTable;
-    extractorMessageReporting?: IConfigMessageReportingTable;
-    tsdocMessageReporting?: IConfigMessageReportingTable;
-}
 
 // @public (undocumented)
 export function jestTask(options?: JestTaskOptions): TaskFunction;

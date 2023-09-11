@@ -8,11 +8,11 @@
       "dependentChangeType": "none"
     },
     {
-      "type": "none",
-      "comment": "Set up API Extractor",
+      "type": "patch",
+      "comment": "Remove local copy of API Extractor types",
       "packageName": "just-scripts",
       "email": "elcraig@microsoft.com",
-      "dependentChangeType": "none"
+      "dependentChangeType": "patch"
     },
     {
       "type": "none",
