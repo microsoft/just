@@ -5,7 +5,7 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/guide/' },
+      { text: 'Guide', link: '/tasks/' },
       { text: 'Github', link: 'https://github.com/microsoft/just' },
     ],
     sidebar: [
