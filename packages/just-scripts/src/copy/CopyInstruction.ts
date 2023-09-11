@@ -59,7 +59,7 @@ export function copyFileToDestinationDirectoryWithRename(
 
 /**
  * Copies files into a destination directory with different names.
- * For example copyFilesToDestinationDirectoryWithRename([{sourceFilePath:'some/path/foo.js', destinationName:'bar.js'}], 'dest/target')
+ * For example `copyFilesToDestinationDirectoryWithRename([{sourceFilePath:'some/path/foo.js', destinationName:'bar.js'}], 'dest/target')`
  * would result in the creation of the file 'dest/target/bar.js'.
  */
 export function copyFilesToDestinationDirectoryWithRename(

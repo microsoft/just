@@ -27,7 +27,7 @@ jobs:
 
       - run: yarn lint
 
-      - run: yarn lage build test
+      - run: yarn lage build test api
 
       - run: yarn docs:build
 

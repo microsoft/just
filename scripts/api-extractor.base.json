@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+  "mainEntryPointFilePath": "<projectFolder>/lib/index.d.ts",
+  "bundledPackages": [],
+  "newlineKind": "lf",
+  "compiler": {
+    "tsconfigFilePath": "<projectFolder>/tsconfig.json"
+  },
+  "apiReport": {
+    "enabled": true,
+    // If any types are not explicitly exported, but are referenced by other exported types/items,
+    // still include them in the API file.
+    "includeForgottenExports": true
+  },
+  "docModel": {
+    "enabled": false
+  },
+  "dtsRollup": {
+    "enabled": false
+  },
+  "messages": {
+    "extractorMessageReporting": {
+      "ae-missing-release-tag": {
+        "logLevel": "none"
+      }
+    },
+    "tsdocMessageReporting": {
+      // don't require a hyphen after parameter names
+      // @param someParam this is valid
+      "tsdoc-param-tag-missing-hyphen": {
+        "logLevel": "none"
+      },
+      // @default isn't a built-in tsdoc tag, but is considered valid elsewhere
+      "tsdoc-undefined-tag": {
+        "logLevel": "none"
+      }
+    }
+  }
+}

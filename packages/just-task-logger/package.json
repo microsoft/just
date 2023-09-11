@@ -8,6 +8,8 @@
   },
   "main": "./lib/index.js",
   "scripts": {
+    "api": "api-extractor run",
+    "api:update": "api-extractor run --local",
     "build": "tsc",
     "start": "tsc -w --preserveWatchOutput",
     "test": "jest",

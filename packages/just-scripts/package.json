@@ -15,6 +15,8 @@
     "just-scripts": "bin/just-scripts.js"
   },
   "scripts": {
+    "api": "api-extractor run",
+    "api:update": "api-extractor run --local",
     "build": "tsc",
     "start": "tsc -w --preserveWatchOutput",
     "start-test": "jest --watch",
