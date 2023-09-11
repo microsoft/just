@@ -38,13 +38,13 @@
     "webpack-merge": "^5.7.3"
   },
   "devDependencies": {
-    "@types/diff-match-patch": "1.0.32",
-    "@types/glob": "7.2.0",
-    "@types/prompts": "2.4.2",
-    "@types/run-parallel-limit": "1.0.0",
-    "@types/supports-color": "8.1.1",
-    "@types/webpack": "4.41.33",
-    "async-done": "2.0.0",
-    "esbuild": "0.9.6"
+    "@types/diff-match-patch": "^1.0.32",
+    "@types/glob": "^7.2.0",
+    "@types/prompts": "^2.4.2",
+    "@types/run-parallel-limit": "^1.0.0",
+    "@types/supports-color": "^8.1.1",
+    "@types/webpack": "^4.41.33",
+    "async-done": "^2.0.0",
+    "esbuild": "^0.9.6"
   }
 }
