@@ -19,7 +19,7 @@ jobs:
     environment: release
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           # Fetch all history (required for publishing which looks at history)
           fetch-depth: 0
