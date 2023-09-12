@@ -2,6 +2,43 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Tue, 12 Sep 2023 08:02:05 GMT",
+      "version": "1.8.0",
+      "tag": "just-task_v1.8.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task",
+            "commit": "5b4e7073ffd1f06a7383deccee6883aa7e63342c",
+            "comment": "Add `@types` referenced by exports as dependencies"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "just-task",
+            "commit": "2bc7eaec9203ef96bf1e48823f2f38a3527d24d5",
+            "comment": "Update dependency @rushstack/package-deps-hash to v4"
+          },
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "just-task",
+            "commit": "e849046a3d1e5c1b4c1a81e12c400391a108323e",
+            "comment": "Update dependency fs-extra to v11"
+          }
+        ],
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task",
+            "commit": "06eaab127501104e008ace0c34bd8dfb6d0d2a51",
+            "comment": "Unpin dev deps"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 10 Mar 2023 08:01:53 GMT",
       "tag": "just-task_v1.7.2",
       "version": "1.7.2",

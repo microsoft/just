@@ -2,6 +2,21 @@
   "name": "just-task-logger",
   "entries": [
     {
+      "date": "Tue, 12 Sep 2023 08:02:05 GMT",
+      "version": "1.2.1",
+      "tag": "just-task-logger_v1.2.1",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task-logger",
+            "commit": "5b4e7073ffd1f06a7383deccee6883aa7e63342c",
+            "comment": "Set up API Extractor"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 09 Mar 2023 08:02:09 GMT",
       "tag": "just-task-logger_v1.2.1",
       "version": "1.2.1",

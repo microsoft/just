@@ -1,8 +1,19 @@
 # Change Log - just-scripts
 
-This log was last generated on Sat, 19 Aug 2023 08:01:49 GMT and should not be manually modified.
+This log was last generated on Tue, 12 Sep 2023 08:02:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.2.1
+
+Tue, 12 Sep 2023 08:02:05 GMT
+
+### Patches
+
+- Remove local copy of API Extractor types (elcraig@microsoft.com)
+- Update dependency fs-extra to v11 (renovate@whitesourcesoftware.com)
+- Bump just-scripts-utils to v2.0.1
+- Bump just-task to v1.8.0
 
 ## 2.2.0
 

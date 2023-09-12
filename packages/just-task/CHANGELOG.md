@@ -1,8 +1,21 @@
 # Change Log - just-task
 
-This log was last generated on Fri, 10 Mar 2023 08:01:53 GMT and should not be manually modified.
+This log was last generated on Tue, 12 Sep 2023 08:02:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.8.0
+
+Tue, 12 Sep 2023 08:02:05 GMT
+
+### Minor changes
+
+- Add `@types` referenced by exports as dependencies (elcraig@microsoft.com)
+
+### Patches
+
+- Update dependency @rushstack/package-deps-hash to v4 (email not defined)
+- Update dependency fs-extra to v11 (renovate@whitesourcesoftware.com)
 
 ## 1.7.2
 

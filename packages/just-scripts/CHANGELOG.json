@@ -2,6 +2,47 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 12 Sep 2023 08:02:05 GMT",
+      "version": "2.2.1",
+      "tag": "just-scripts_v2.2.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "5b4e7073ffd1f06a7383deccee6883aa7e63342c",
+            "comment": "Remove local copy of API Extractor types"
+          },
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "just-scripts",
+            "commit": "e849046a3d1e5c1b4c1a81e12c400391a108323e",
+            "comment": "Update dependency fs-extra to v11"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-scripts-utils to v2.0.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-task to v1.8.0",
+            "commit": "not available"
+          }
+        ],
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "06eaab127501104e008ace0c34bd8dfb6d0d2a51",
+            "comment": "Unpin dev deps"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 19 Aug 2023 08:01:49 GMT",
       "tag": "just-scripts_v2.2.0",
       "version": "2.2.0",

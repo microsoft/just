@@ -1,8 +1,16 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Thu, 09 Mar 2023 08:02:09 GMT and should not be manually modified.
+This log was last generated on Tue, 12 Sep 2023 08:02:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.0.1
+
+Tue, 12 Sep 2023 08:02:05 GMT
+
+### Patches
+
+- Update dependency fs-extra to v11 (renovate@whitesourcesoftware.com)
 
 ## 2.0.0
 
