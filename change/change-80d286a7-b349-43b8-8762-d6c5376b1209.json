@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Update dependency webpack-merge to ^5.10.0",
+      "packageName": "just-scripts",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
