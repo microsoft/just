@@ -3,6 +3,7 @@ export * from './cleanTask';
 export * from './copyTask';
 export * from './sassTask';
 export * from './jestTask';
+export * from './mochaTask';
 export * from './tslintTask';
 export * from './webpackTask';
 export * from './apiExtractorTask';
