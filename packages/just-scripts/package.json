@@ -35,7 +35,7 @@
     "just-task": ">=1.8.0 <2.0.0",
     "prompts": "^2.4.0",
     "run-parallel-limit": "^1.0.6",
-    "semver": "^7.0.0",
+    "semver": "^7.6.0",
     "supports-color": "^8.1.0",
     "webpack-merge": "^5.7.3"
   },

@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Update dependency semver to ^7.6.0",
+      "packageName": "just-scripts-utils",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "patch",
+      "comment": "Update dependency semver to ^7.6.0",
+      "packageName": "just-scripts",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

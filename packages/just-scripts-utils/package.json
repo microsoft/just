@@ -24,6 +24,6 @@
   "dependencies": {
     "fs-extra": "^11.0.0",
     "just-task-logger": ">=1.2.1 <2.0.0",
-    "semver": "^7.0.0"
+    "semver": "^7.6.0"
   }
 }
