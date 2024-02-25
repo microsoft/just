@@ -1388,12 +1388,24 @@
     semver "~7.5.4"
     z-schema "~5.0.2"
 
-"@rushstack/package-deps-hash@^4.0.0":
-  version "4.0.44"
-  resolved "https://registry.yarnpkg.com/@rushstack/package-deps-hash/-/package-deps-hash-4.0.44.tgz#afc4250957b3a4a268db99c126822dac890ad2f7"
-  integrity sha512-3TicOuPpDOyl1wWvkaFwYvMgvC2tiqBIZkNbYuSntYCu4i5dh1wUC07Rfnm/K7s3/gNJgZCvOLIxetvUqfv0hg==
+"@rushstack/node-core-library@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@rushstack/node-core-library/-/node-core-library-4.0.2.tgz#e26854a3314b279d57e8abdb4acce7797d02f554"
+  integrity sha512-hyES82QVpkfQMeBMteQUnrhASL/KHPhd7iJ8euduwNJG4mu2GSOKybf0rOEjOm1Wz7CwJEUm9y0yD7jg2C1bfg==
   dependencies:
-    "@rushstack/node-core-library" "3.59.7"
+    fs-extra "~7.0.1"
+    import-lazy "~4.0.0"
+    jju "~1.4.0"
+    resolve "~1.22.1"
+    semver "~7.5.4"
+    z-schema "~5.0.2"
+
+"@rushstack/package-deps-hash@^4.1.32":
+  version "4.1.32"
+  resolved "https://registry.yarnpkg.com/@rushstack/package-deps-hash/-/package-deps-hash-4.1.32.tgz#d743f0bd3df5eaa6990165bb4cc401b7dd6d162b"
+  integrity sha512-c0dc0zSfESskcnQKFwt0e0I4pgNuiKKNFtphpLMJ4AiKcKWospjqQlmKQPwAUpjyOwhPE4ZRB9V7Xqz2K09joA==
+  dependencies:
+    "@rushstack/node-core-library" "4.0.2"
 
 "@rushstack/rig-package@0.4.1":
   version "0.4.1"
