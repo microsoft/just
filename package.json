@@ -56,7 +56,7 @@
     "workspace-tools": "^0.35.2"
   },
   "resolutions": {
-    "es5-ext": "0.10.53",
+    "es5-ext": "0.10.63",
     "kind-of": "^6.0.3"
   },
   "beachball": {
