@@ -21,13 +21,14 @@ export function resolveConfigFile(args: yargsParser.Arguments): string | null {
 
 export function readConfig(): { [key: string]: TaskFunction } | void {
   // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
-  const configFile = resolveConfigFile(argv());
+  const args = argv();
+  const configFile = resolveConfigFile(args);
 
   if (configFile && fs.existsSync(configFile)) {
     const ext = path.extname(configFile);
     if (ext === '.ts' || ext === '.tsx') {
       // TODO: add option to do typechecking as well
-      enableTypeScript({ transpileOnly: true });
+      enableTypeScript({ transpileOnly: true, esm: args.esm });
     }
 
     try {
