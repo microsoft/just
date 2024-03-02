@@ -8,10 +8,10 @@ Unlike other build libraries, Just strives to be useful from the beginning. You 
 
 > NOTE: even though `just-scripts` interacts with `typescript`, it does not take `typescript` as a dependency. It assumes that the developers will include that in their own projects. This gives `just-scripts` the flexibility of targeting many different versions of individual build tools without imposing a version on the consumers.
 
-These scripts are coded as higher order task functions. Each of these script functions return a task function to be registered as a task in your own `just-task.js` like this:
+These scripts are coded as higher order task functions. Each of these script functions return a task function to be registered as a task in your own `just.config.js` like this:
 
 ```ts
-// just-task.js
+// just.config.js
 import { tscTask } from 'just-scripts';
 task('ts', tscTask());
 ```
@@ -19,7 +19,7 @@ task('ts', tscTask());
 Generally, these higher order functions also take an `options` argument to generate a specific task function preconfigured according to the options. For example:
 
 ```ts
-// just-task.js
+// just.config.js
 import { tscTask } from 'just-scripts';
 task('ts:commonjs', tscTask({ module: 'commonjs' }));
 task('ts:esnext', tscTask({ module: 'esnext' }));
