@@ -2,6 +2,21 @@
   "name": "just-task-logger",
   "entries": [
     {
+      "date": "Sat, 02 Mar 2024 08:01:34 GMT",
+      "version": "1.2.1",
+      "tag": "just-task-logger_v1.2.1",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task-logger",
+            "commit": "feb6217bf318c7d606c6147a4f5d6568572bb2f3",
+            "comment": "Update build setup"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 12 Sep 2023 08:02:05 GMT",
       "version": "1.2.1",
       "tag": "just-task-logger_v1.2.1",
