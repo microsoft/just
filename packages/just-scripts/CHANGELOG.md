@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 12 Sep 2023 08:02:05 GMT and should not be manually modified.
+This log was last generated on Sat, 02 Mar 2024 02:16:34 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.2.2
+
+Sat, 02 Mar 2024 02:16:34 GMT
+
+### Patches
+
+- Bump just-task to v1.9.0
 
 ## 2.2.1
 

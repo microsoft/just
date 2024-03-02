@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Sat, 02 Mar 2024 02:16:34 GMT",
+      "version": "1.9.0",
+      "tag": "just-task_v1.9.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task",
+            "commit": "f5c5378f4b41dbb07bc5b6889e284277a0bfe5ce",
+            "comment": "Add an option --esm to support imports of ESM packages"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 12 Sep 2023 08:02:05 GMT",
       "version": "1.8.0",
       "tag": "just-task_v1.8.0",

@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Tue, 12 Sep 2023 08:02:05 GMT and should not be manually modified.
+This log was last generated on Sat, 02 Mar 2024 02:16:34 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.9.0
+
+Sat, 02 Mar 2024 02:16:34 GMT
+
+### Minor changes
+
+- Add an option --esm to support imports of ESM packages (elcraig@microsoft.com)
 
 ## 1.8.0
 
