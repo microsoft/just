@@ -1,6 +1,9 @@
-CHANGELOG.*
-*.tgz
+__tests__
 *.log
-package-deps.json
+*.tgz
+api-extractor.json
+CHANGELOG.*
+etc/
 jest.config.js
+package-deps.json
 tsconfig.json
