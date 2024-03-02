@@ -3,6 +3,5 @@
   "compilerOptions": {
     "outDir": "lib"
   },
-  "include": ["src", "types"],
-  "exclude": ["**/__tests__/**"]
+  "include": ["src"]
 }
