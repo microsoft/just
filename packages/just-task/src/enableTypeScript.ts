@@ -2,7 +2,7 @@ import { resolve } from './resolve';
 import { logger } from 'just-task-logger';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function enableTypeScript({ transpileOnly = true }): void {
+export function enableTypeScript({ transpileOnly = true, esm = false }): void {
   const tsNodeModule = resolve('ts-node');
   if (tsNodeModule) {
     const tsNode = require(tsNodeModule);
@@ -11,11 +11,11 @@ export function enableTypeScript({ transpileOnly = true }): void {
       skipProject: true,
       compilerOptions: {
         target: 'es2017',
-        module: 'commonjs',
+        module: esm ? 'node16' : 'commonjs',
         strict: false,
         skipLibCheck: true,
         skipDefaultLibCheck: true,
-        moduleResolution: 'node',
+        moduleResolution: esm ? 'node16' : 'node',
         allowJs: true,
         esModuleInterop: true,
       },

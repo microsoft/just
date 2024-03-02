@@ -47,6 +47,10 @@ option('defaultConfig', {
   describe:
     'path to a default just configuration file that will be used when the current project does not have a just configuration file. (includes the file name, e.g. /path/to/just.config.ts)',
 });
+option('esm', {
+  describe:
+    'Configure ts-node to support imports of ESM package (changes TS module/moduleResolution settings to Node16)',
+});
 
 const registry = undertaker.registry();
 
