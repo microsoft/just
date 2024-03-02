@@ -7,7 +7,7 @@ sidebar_label: Jest
 Jest is one of the most popular testing libraries in the Javascript ecosystem. It is also a preset supported out of the box inside the `just-scripts` library. Similar to the other presets, this task function assumes that you have a `jest.config.js` at the root of the project.
 
 ```tsx
-// just-task.js
+// just.config.js
 import { jestTask } from 'just-scripts';
 task('test', jestTask());
 ```
@@ -15,7 +15,7 @@ task('test', jestTask());
 You can pass in a few options like any another preset tasks in the `just-scripts` library.
 
 ```tsx
-// just-task.js
+// just.config.js
 import { jestTask } from 'just-scripts';
 
 const options = {

@@ -1,2 +1,9 @@
-CHANGELOG.*
 __tests__
+*.log
+*.tgz
+api-extractor.json
+CHANGELOG.*
+etc/
+jest.config.js
+package-deps.json
+tsconfig.json

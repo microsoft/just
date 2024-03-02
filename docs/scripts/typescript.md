@@ -11,7 +11,7 @@ Given a library with TypeScript source code, it might be desirable to have multi
 A list of available options are located at the [TypeScript documentation site](http://www.typescriptlang.org/docs/handbook/compiler-options.html). The options passed into the preset function will be passed in as command line arguments as a string.
 
 ```tsx
-// just-task.js
+// just.config.js
 import { tscTask } from 'just-scripts';
 task('ts', tscTask());
 ```
@@ -19,7 +19,7 @@ task('ts', tscTask());
 For variety, try having two kinds of output at the same time (built in parallel)
 
 ```tsx
-// just-task.js
+// just.config.js
 import { parallel } from 'just-task';
 import { tscTask } from 'just-scripts';
 task('ts:commonjs', tscTask({ module: 'commonjs' }));
