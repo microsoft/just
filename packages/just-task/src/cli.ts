@@ -39,41 +39,50 @@ function showHelp() {
   }
 }
 
-// Define a built-in option of "config" so users can specify which path to choose for configurations
-option('config', {
-  describe: 'path to a just configuration file (includes the file name, e.g. /path/to/just.config.ts)',
-});
-option('defaultConfig', {
-  describe:
-    'path to a default just configuration file that will be used when the current project does not have a just configuration file. (includes the file name, e.g. /path/to/just.config.ts)',
-});
-option('esm', {
-  describe:
-    'Configure ts-node to support imports of ESM package (changes TS module/moduleResolution settings to Node16)',
-});
+async function run() {
+  // Define a built-in option of "config" so users can specify which path to choose for configurations
+  option('config', {
+    describe: 'path to a just configuration file, e.g. ./path/to/just.config.ts',
+  });
+  option('defaultConfig', {
+    describe:
+      'path to a default just configuration file that will be used when the current project does not have a just configuration file. ' +
+      '(includes the file name, e.g. /path/to/just.config.ts)',
+  });
+  option('esm', {
+    describe:
+      'Configure ts-node to support dynamic imports of ESM package (changes TS module/moduleResolution settings to Node16). ' +
+      'Note that this does NOT enable full ES modules support.',
+  });
 
-const registry = undertaker.registry();
+  const registry = undertaker.registry();
 
-const configModule = readConfig();
+  const configModule = await readConfig();
 
-// Support named task function as exports of a config module
-if (configModule && typeof configModule === 'object') {
-  for (const taskName of Object.keys(configModule)) {
-    if (typeof configModule[taskName] == 'function') {
-      task(taskName, configModule[taskName]);
+  // Support named task function as exports of a config module
+  if (configModule && typeof configModule === 'object') {
+    for (const taskName of Object.keys(configModule)) {
+      if (typeof configModule[taskName] == 'function') {
+        task(taskName, configModule[taskName]);
+      }
     }
   }
-}
 
-const command = parseCommand();
+  const command = parseCommand();
 
-if (command) {
-  if (registry.get(command)) {
-    undertaker.series(registry.get(command))(() => undefined);
+  if (command) {
+    if (registry.get(command)) {
+      undertaker.series(registry.get(command))(() => undefined);
+    } else {
+      logger.error(`Command not defined: ${command}`);
+      process.exitCode = 1;
+    }
   } else {
-    logger.error(`Command not defined: ${command}`);
-    process.exitCode = 1;
+    showHelp();
   }
-} else {
-  showHelp();
 }
+
+run().catch(e => {
+  logger.error(e.stack || e.message || e);
+  process.exit(1);
+});
