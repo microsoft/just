@@ -9,7 +9,7 @@ const sassTest = /\.(scss|sass)$/;
 const sassModuleTest = /\.module\.(scss|sass)$/;
 const defaultIdentName = '[name]_[local]_[hash:base64:5]';
 
-interface CssLoaderOptions {
+export interface CssLoaderOptions {
   modules?: boolean;
   localIdentName?: string;
 }
