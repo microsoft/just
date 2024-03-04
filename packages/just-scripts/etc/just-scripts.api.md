@@ -28,16 +28,14 @@ export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeO
 // @public
 export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFunction;
 
-// Warning: (ae-forgotten-export) The symbol "Omit_2" needs to be exported by the entry point index.d.ts
-//
 // @public @deprecated (undocumented)
-export function apiExtractorUpdateTask(configJsonFilePath: string, extractorOptions: Omit_2<ApiExtractorOptions, 'configJsonFilePath'>): TaskFunction;
+export function apiExtractorUpdateTask(configJsonFilePath: string, extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>): TaskFunction;
 
 // @public (undocumented)
 export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFunction;
 
 // @public @deprecated (undocumented)
-export function apiExtractorVerifyTask(configJsonFilePath: string, extractorOptions: Omit_2<ApiExtractorOptions, 'configJsonFilePath'>): TaskFunction;
+export function apiExtractorVerifyTask(configJsonFilePath: string, extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>): TaskFunction;
 
 // @public (undocumented)
 export const basicWebpackConfig: Configuration;
@@ -128,8 +126,6 @@ export interface CreateOptions {
     map?: (header: EntryHeader) => EntryHeader;
 }
 
-// Warning: (ae-forgotten-export) The symbol "CssLoaderOptions" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
 export const createStylesOverlay: (options?: CssLoaderOptions) => Partial<Configuration>;
 
@@ -137,7 +133,7 @@ export const createStylesOverlay: (options?: CssLoaderOptions) => Partial<Config
 export function createTarTask(options?: CreateOptions): TaskFunction;
 
 // @public (undocumented)
-interface CssLoaderOptions {
+export interface CssLoaderOptions {
     // (undocumented)
     localIdentName?: string;
     // (undocumented)
@@ -305,18 +301,13 @@ export interface NodeExecTaskOptions {
 }
 
 // @public (undocumented)
-type Omit_2<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
-
-// Warning: (ae-forgotten-export) The symbol "PrettierTaskOptions" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
 export function prettierCheckTask(options?: PrettierTaskOptions): TaskFunction;
 
 // @public (undocumented)
 export function prettierTask(options?: PrettierTaskOptions): TaskFunction;
 
 // @public (undocumented)
-interface PrettierTaskOptions {
+export interface PrettierTaskOptions {
     // (undocumented)
     configPath?: string;
     // (undocumented)
@@ -453,13 +444,11 @@ export interface TsLoaderOptions {
     transpileOnly: boolean;
 }
 
-// Warning: (ae-forgotten-export) The symbol "TsOverlayOptions" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
 export const tsOverlay: (overlayOptions?: TsOverlayOptions | undefined) => Partial<Configuration>;
 
 // @public (undocumented)
-interface TsOverlayOptions {
+export interface TsOverlayOptions {
     // (undocumented)
     checkerOptions?: Partial<TsCheckerOptions>;
     // (undocumented)

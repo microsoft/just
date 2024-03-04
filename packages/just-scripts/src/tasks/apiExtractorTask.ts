@@ -46,8 +46,6 @@ interface ApiExtractorContext {
   apiExtractorModule: typeof ApiExtractorTypes;
 }
 
-type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
-
 export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFunction;
 /** @deprecated Use object param version */
 export function apiExtractorVerifyTask(
