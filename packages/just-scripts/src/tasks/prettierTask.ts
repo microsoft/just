@@ -12,7 +12,7 @@ interface PrettierContext {
   check: boolean;
 }
 
-interface PrettierTaskOptions {
+export interface PrettierTaskOptions {
   files?: string[] | string;
   ignorePath?: string;
   configPath?: string;
