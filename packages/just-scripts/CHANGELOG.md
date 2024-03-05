@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Sat, 02 Mar 2024 02:16:34 GMT and should not be manually modified.
+This log was last generated on Tue, 05 Mar 2024 08:01:41 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.2.3
+
+Tue, 05 Mar 2024 08:01:41 GMT
+
+### Patches
+
+- Export CssLoaderOptions and PrettierTaskOptions which both appear on the type signature for the public API of just-scripts (1581488+christiango@users.noreply.github.com)
 
 ## 2.2.2
 

@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 05 Mar 2024 08:01:41 GMT",
+      "version": "2.2.3",
+      "tag": "just-scripts_v2.2.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "1581488+christiango@users.noreply.github.com",
+            "package": "just-scripts",
+            "commit": "a5a2fea2d44e4d43cdca74d3a07830839e396a24",
+            "comment": "Export CssLoaderOptions and PrettierTaskOptions which both appear on the type signature for the public API of just-scripts"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 02 Mar 2024 08:01:34 GMT",
       "version": "2.2.2",
       "tag": "just-scripts_v2.2.2",
