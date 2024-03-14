@@ -1,6 +1,4 @@
-import * as fs from 'fs';
 import * as path from 'path';
-
 import { argv } from './option';
 import { resolve } from './resolve';
 import { mark, logger } from 'just-task-logger';
@@ -41,11 +39,6 @@ export async function readConfig(): Promise<{ [key: string]: TaskFunction } | vo
       `Config file not found! Please create a file called "just.config.js" ` +
         `in the root of the package next to "package.json".`,
     );
-    process.exit(1);
-  }
-
-  if (!fs.existsSync(configFile)) {
-    logger.error(`The specified config file "${configFile}" doesn't exist or couldn't be resolved.`);
     process.exit(1);
   }
 
