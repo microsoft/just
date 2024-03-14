@@ -147,6 +147,13 @@ let importMetaResolve: ((specifier: string, parent: string) => string) | undefin
  * Returns the resolved module if it exists, or null otherwise.
  */
 export async function resolveModern(moduleName: string, cwd?: string): Promise<string | null> {
+  if (process.env.JEST_WORKER_ID) {
+    // For some reason, the dynamic import below causes a segfault in Jest.
+    // This issue appears to be specific to Jest (doesn't repro when building `example-lib` in the
+    // just repo), so just fall back to the old resolver in that case.
+    return null;
+  }
+
   importMetaResolve ||= (await import('import-meta-resolve')).resolve;
   // import-meta-resolve needs a parent path ending in a filename in the correct directory
   // (doesn't matter whether the file exists)
