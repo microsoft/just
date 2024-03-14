@@ -34,7 +34,6 @@
     "chalk": "^4.0.0",
     "chokidar": "^3.5.2",
     "fs-extra": "^11.0.0",
-    "import-meta-resolve": "^4.0.0",
     "just-scripts-utils": "^2.0.1",
     "just-task-logger": ">=1.2.1 <2.0.0",
     "resolve": "^1.19.0",

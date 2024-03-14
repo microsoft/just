@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { argv } from './option';
-import { resolve, resolveModern } from './resolve';
+import { resolve } from './resolve';
 import { mark, logger } from 'just-task-logger';
 import { enableTypeScript } from './enableTypeScript';
 import { TaskFunction } from './interfaces';
@@ -21,7 +21,7 @@ export async function resolveConfigFile(args: { config?: string; defaultConfig?:
   ].filter((p): p is string => !!p);
 
   for (const entry of paths) {
-    const resolved = resolve(entry) || (await resolveModern(entry));
+    const resolved = resolve(entry);
     if (resolved) {
       return resolved;
     }

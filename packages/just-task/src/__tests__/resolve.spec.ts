@@ -257,4 +257,20 @@ describe('resolveConfigFile', () => {
     });
     expect(resolvedConfig).toContain('defaultConfigArgument.ts');
   });
+
+  it('resolves .mjs config', async () => {
+    mockfs({
+      'just.config.mjs': 'localConfig',
+    });
+    const resolvedConfig = await config.resolveConfigFile({});
+    expect(resolvedConfig).toContain('just.config.mjs');
+  });
+
+  it('resolves .cjs config', async () => {
+    mockfs({
+      'just.config.cjs': 'localConfig',
+    });
+    const resolvedConfig = await config.resolveConfigFile({});
+    expect(resolvedConfig).toContain('just.config.cjs');
+  });
 });
