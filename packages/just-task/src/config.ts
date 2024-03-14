@@ -35,10 +35,7 @@ export async function readConfig(): Promise<{ [key: string]: TaskFunction } | vo
   const configFile = await resolveConfigFile(args);
 
   if (!configFile) {
-    logger.error(
-      `Config file not found! Please create a file called "just.config.js" ` +
-        `in the root of the package next to "package.json".`,
-    );
+    logger.error('Config file not found. Please create a file "just.config.js" at the package root.');
     process.exit(1);
   }
 
@@ -65,12 +62,12 @@ export async function readConfig(): Promise<{ [key: string]: TaskFunction } | vo
     logger.error(`Invalid configuration file: ${configFile}`);
     if (importError) {
       logger.error(
-        `Initially got this error trying to import() the file: ${
+        `Initially got this error trying to import() the file:\n${
           (importError as Error)?.stack || (importError as Error)?.message || importError
         }`,
       );
       logger.error(
-        `Then tried to require() the file and got this error: ${(e as Error).stack || (e as Error).message || e}`,
+        `Then tried to require() the file and got this error:\n${(e as Error).stack || (e as Error).message || e}`,
       );
     } else {
       logger.error((e as Error).stack || (e as Error).message || e);
