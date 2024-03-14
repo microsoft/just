@@ -50,7 +50,7 @@
     "prettier": "^2.8.4",
     "syncpack": "^9.0.0",
     "ts-jest": "^29.0.5",
-    "typescript": "~4.3.5",
+    "typescript": "~4.7.0",
     "vuepress": "^1.9.9",
     "vuepress-plugin-mermaidjs": "^1.9.1",
     "workspace-tools": "^0.35.2"

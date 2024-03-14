@@ -37,6 +37,17 @@
       "sourceMaps": true,
       "outputCapture": "std",
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug example-lib build",
+      "request": "launch",
+      "type": "node",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["run", "build"],
+      "cwd": "${workspaceFolder}/packages/example-lib",
+      "console": "integratedTerminal",
+      "outputCapture": "std",
+      "sourceMaps": true
     }
   ]
 }

@@ -2,8 +2,8 @@
   "changes": [
     {
       "type": "minor",
-      "comment": "Support ESM configs and explicit .cjs and .mjs config extensions",
-      "packageName": "just-task",
+      "comment": "Compile just with TS 4.7 and `module`/`moduleResolution` `\"Node16\"`",
+      "packageName": "just-scripts",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"
     }

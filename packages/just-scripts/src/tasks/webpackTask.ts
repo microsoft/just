@@ -82,11 +82,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     return new Promise<void>((resolve, reject) => {
       wp(webpackConfigs, async (err: Error, stats: any) => {
         if (options && options.onCompile) {
-          const results = options.onCompile(err, stats);
-
-          if (typeof results === 'object' && results.then) {
-            await results;
-          }
+          await options.onCompile(err, stats);
         }
 
         if (options && options.outputStats) {

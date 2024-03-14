@@ -1,6 +1,8 @@
 import { sync as resolveSync } from 'resolve';
+import * as fs from 'fs';
 import * as path from 'path';
 import { argv } from './option';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 export interface ResolveOptions {
   /** Directory to start resolution from. Defaults to `process.cwd()`. */
@@ -137,4 +139,26 @@ export function resolveCwd(moduleName: string, cwdOrOptions?: string | ResolveOp
     options.cwd = process.cwd();
   }
   return _tryResolve(moduleName, options);
+}
+
+let importMetaResolve: ((specifier: string, parent: string) => string) | undefined;
+/**
+ * Resolve a module relative to `cwd` (default `process.cwd()`) using `import-meta-resolve`.
+ * Returns the resolved module if it exists, or null otherwise.
+ */
+export async function resolveModern(moduleName: string, cwd?: string): Promise<string | null> {
+  importMetaResolve ||= (await import('import-meta-resolve')).resolve;
+  // import-meta-resolve needs a parent path ending in a filename in the correct directory
+  // (doesn't matter whether the file exists)
+  const parent = pathToFileURL(path.join(cwd || process.cwd(), 'package.json')).href;
+
+  try {
+    const resolved = fileURLToPath(importMetaResolve(moduleName, parent));
+    if (fs.existsSync(resolved)) {
+      return resolved;
+    }
+  } catch {
+    // ignore
+  }
+  return null;
 }

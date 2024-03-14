@@ -50,9 +50,7 @@ async function run() {
       '(includes the file name, e.g. /path/to/just.config.ts)',
   });
   option('esm', {
-    describe:
-      'Configure ts-node to support dynamic imports of ESM package (changes TS module/moduleResolution settings to Node16). ' +
-      'Note that this does NOT enable full ES modules support.',
+    describe: 'No longer needed',
   });
 
   const registry = undertaker.registry();
