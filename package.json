@@ -74,6 +74,18 @@
     "dependencyTypes": [
       "dev",
       "prod"
+    ],
+    "versionGroups": [
+      {
+        "label": "ts-node (testing with multiple versions)",
+        "dependencies": [
+          "ts-node"
+        ],
+        "packages": [
+          "**"
+        ],
+        "isIgnored": true
+      }
     ]
   },
   "workspaces": {
