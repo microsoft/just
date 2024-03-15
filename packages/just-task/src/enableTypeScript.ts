@@ -9,6 +9,22 @@ import { logger } from 'just-task-logger';
  */
 export function enableTypeScript(params: { transpileOnly?: boolean; configFile?: string }): boolean {
   const { transpileOnly = true, configFile = '' } = params;
+
+  // Try to determine if the user is already running with a known transpiler.
+  // ts-node makes this easy by setting process.env.TS_NODE.
+  // tsx doesn't set a variable, so check a few places it might show up.
+  const contextVals = [
+    ...process.argv,
+    ...process.execArgv,
+    process.env._,
+    process.env.npm_lifecycle_event,
+    process.env.npm_config_argv,
+  ];
+  if (process.env.TS_NODE || contextVals.some(val => /[^.]tsx\b/.test(val || ''))) {
+    // It appears the user ran the just CLI with tsx or ts-node, so allow this.
+    return true;
+  }
+
   const tsNodeModule = resolve('ts-node');
 
   if (!tsNodeModule) {

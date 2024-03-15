@@ -42,15 +42,6 @@ export async function readConfig(): Promise<{ [key: string]: TaskFunction } | vo
 
   const ext = path.extname(configFile).toLowerCase();
 
-  if (ext === '.mts' || (packageIsESM && ext === '.ts')) {
-    // We can't support these with ts-node because we're calling register() rather than creating
-    // a child process with the custom --loader, and it appears that it's not possible to change
-    // the loader (needed for ESM) after the fact. The same limitation applies for tsx.
-    // https://typestrong.org/ts-node/docs/imports/#native-ecmascript-modules
-    logger.error('Just does not currently support ESM TypeScript configuration files. Please use a .cts file.');
-    process.exit(1);
-  }
-
   if (/^\.[cm]?ts$/.test(ext)) {
     const tsSuccess = enableTypeScript({ transpileOnly: true, configFile });
     if (!tsSuccess) {
@@ -68,6 +59,19 @@ export async function readConfig(): Promise<{ [key: string]: TaskFunction } | vo
   } catch (e) {
     logger.error(`Error loading configuration file: ${configFile}`);
     logger.error((e as Error).stack || (e as Error).message || e);
+
+    if (ext === '.mts' || (packageIsESM && ext === '.ts')) {
+      // We can't directly support these with ts-node because we're calling register() rather than
+      // creating a child process with the custom --loader.
+      // (Related: https://typestrong.org/ts-node/docs/imports/)
+      const binPath = path.relative(process.cwd(), process.argv[1]);
+      logger.error('');
+      logger.error(
+        'Just does not directly support ESM TypeScript configuration files. You must either ' +
+          `use a .cts file, or call the just binary (${binPath}) via ts-node or tsx.`,
+      );
+    }
+
     process.exit(1);
   }
 
