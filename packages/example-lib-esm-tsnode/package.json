@@ -1,0 +1,14 @@
+{
+  "name": "example-lib-esm-tsnode",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "ts-node-esm node_modules/.bin/just-scripts build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "just-scripts": ">=2.2.3 <3.0.0",
+    "ts-node": "^10.0.0"
+  }
+}

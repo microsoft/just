@@ -15,6 +15,7 @@ export function getTsNodeEnv(
       target: 'es2017',
       moduleResolution: esm ? 'NodeNext' : 'node',
       module: esm ? 'NodeNext' : 'commonjs',
+      skipLibCheck: true,
     });
     logger.info(`[TS] Using these compilerOptions: ${compilerOptions}`);
     env.TS_NODE_COMPILER_OPTIONS = compilerOptions;
