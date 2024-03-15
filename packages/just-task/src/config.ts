@@ -4,6 +4,7 @@ import { resolve } from './resolve';
 import { mark, logger } from 'just-task-logger';
 import { enableTypeScript } from './enableTypeScript';
 import { TaskFunction } from './interfaces';
+import { readPackageJson } from 'just-scripts-utils';
 
 export async function resolveConfigFile(args: { config?: string; defaultConfig?: string }): Promise<string | null> {
   // Check for the old config paths/extensions first
@@ -11,15 +12,12 @@ export async function resolveConfigFile(args: { config?: string; defaultConfig?:
     args.config,
     './just.config.js',
     './just-task.js',
-    './just.config.ts',
-    // Add .cjs and .mjs (.cts and .mts don't seem to work with ts-node)
-    './just.config.cjs',
-    './just.config.mjs',
+    ...['.ts', '.cts', '.mts', '.cjs', '.mjs'].map(ext => `./just.config${ext}`),
     args.defaultConfig,
-  ].filter((p): p is string => !!p);
+  ];
 
   for (const entry of paths) {
-    const resolved = resolve(entry);
+    const resolved = entry && resolve(entry);
     if (resolved) {
       return resolved;
     }
@@ -39,40 +37,29 @@ export async function readConfig(): Promise<{ [key: string]: TaskFunction } | vo
     process.exit(1);
   }
 
-  const ext = path.extname(configFile).toLowerCase();
+  const packageJson = readPackageJson(process.cwd());
+  const packageIsESM = packageJson?.type === 'module';
 
-  if (ext === '.ts') {
-    enableTypeScript({ transpileOnly: true });
+  const ext = path.extname(configFile).toLowerCase();
+  const isESM = ext.startsWith('.m') || (packageIsESM && !ext.startsWith('.c'));
+
+  if (/^\.[cm]?ts$/.test(ext)) {
+    const tsSuccess = enableTypeScript({ transpileOnly: true, isESM, ext });
+    if (!tsSuccess) {
+      process.exit(1); // enableTypeScript will log the error
+    }
   }
 
   let configModule = undefined;
-  let importError: unknown;
   try {
-    try {
-      if (ext !== '.cjs') {
-        // Rather than trying to infer the correct type in all cases, try import first.
-        configModule = await import(configFile);
-      }
-    } catch (e) {
-      importError = e;
-    }
-    // Fall back to require
-    configModule ||= require(configFile);
-  } catch (e) {
-    logger.error(`Invalid configuration file: ${configFile}`);
-    if (importError) {
-      logger.error(
-        `Initially got this error trying to import() the file:\n${
-          (importError as Error)?.stack || (importError as Error)?.message || importError
-        }`,
-      );
-      logger.error(
-        `Then tried to require() the file and got this error:\n${(e as Error).stack || (e as Error).message || e}`,
-      );
+    if (isESM) {
+      configModule = await import(configFile);
     } else {
-      logger.error((e as Error).stack || (e as Error).message || e);
+      configModule = require(configFile);
     }
-
+  } catch (e) {
+    logger.error(`Error loading configuration file: ${configFile}`);
+    logger.error((e as Error).stack || (e as Error).message || e);
     process.exit(1);
   }
 

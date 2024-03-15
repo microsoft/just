@@ -2,8 +2,12 @@ import * as fse from 'fs-extra';
 import { resolve } from './resolve';
 import { logger } from 'just-task-logger';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function enableTypeScript({ transpileOnly = true }): void {
+/**
+ * Enable typescript support with ts-node.
+ * Returns true if successful.
+ */
+export function enableTypeScript(params: { transpileOnly?: boolean; isESM?: boolean; ext?: string }): boolean {
+  const { transpileOnly = true, isESM = false, ext = '' } = params;
   const tsNodeModule = resolve('ts-node');
 
   if (tsNodeModule) {
@@ -16,31 +20,38 @@ export function enableTypeScript({ transpileOnly = true }): void {
       supportsNode16Setting = major > 4 || (major === 4 && minor >= 7);
     }
 
-    const tsNode = require(tsNodeModule);
+    const tsNode = require(tsNodeModule) as typeof import('ts-node');
+    const tsNodeMajor = Number(String(tsNode.VERSION || '0').split('.')[0]);
+    if (tsNodeMajor < 10) {
+      if (isESM) {
+        logger.error('ts-node >= 10 is required for ES module support.');
+        return false;
+      }
+      if (ext !== '.ts') {
+        logger.error(`ts-node >= 10 is required for ${ext} extension support.`);
+        return false;
+      }
+    }
+
     tsNode.register({
       transpileOnly,
       skipProject: true,
       compilerOptions: {
         target: 'es2017',
-        module: supportsNode16Setting ? 'node16' : 'commonjs',
+        // module: supportsNode16Setting ? 'node16' : 'commonjs',
+        module: isESM ? 'NodeNext' : supportsNode16Setting ? 'node16' : 'commonjs',
         strict: false,
         skipLibCheck: true,
         skipDefaultLibCheck: true,
-        moduleResolution: supportsNode16Setting ? 'node16' : 'node',
+        // moduleResolution: supportsNode16Setting ? 'node16' : 'node',
+        moduleResolution: isESM ? 'NodeNext' : supportsNode16Setting ? 'node16' : 'node',
         allowJs: true,
         esModuleInterop: true,
       },
-      files: ['just.config.ts'],
     });
-  } else {
-    logger.error(`In order to use TypeScript with just.config.ts, you need to install "ts-node" module:
-
-  npm install -D ts-node
-
-or
-
-  yarn add -D ts-node
-
-`);
+    return true;
   }
+
+  logger.error(`In order to use TypeScript with just.config.ts, you need to install the "ts-node" package.`);
+  return false;
 }

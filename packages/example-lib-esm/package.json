@@ -1,7 +1,8 @@
 {
-  "name": "example-lib",
+  "name": "example-lib-esm",
   "private": true,
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "build": "just-scripts build"
   },

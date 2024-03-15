@@ -17,9 +17,10 @@ export interface NodeExecTaskOptions {
   env?: NodeJS.ProcessEnv;
 
   /**
-   * Should this nodeExec task be using something like ts-node to execute the binary
+   * Whether this nodeExec task should use ts-node to execute the binary.
+   * If set to `esm`, it will use `ts-node/esm` instead of `ts-node/register`.
    */
-  enableTypeScript?: boolean;
+  enableTypeScript?: boolean | 'esm';
 
   /**
    * The tsconfig file to pass to ts-node for Typescript config
@@ -40,21 +41,22 @@ export interface NodeExecTaskOptions {
 export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction {
   return function () {
     const { spawnOptions, enableTypeScript, tsconfig, transpileOnly } = options;
+    const args = [...(options.args || [])];
+    const env = { ...options.env };
 
-    const tsNodeRegister = resolveCwd('ts-node/register');
+    const esm = enableTypeScript === 'esm';
+    const tsNodeHelper = resolveCwd(esm ? 'ts-node/esm.mjs' : 'ts-node/register');
     const nodeExecPath = process.execPath;
 
-    if (enableTypeScript && tsNodeRegister) {
-      options.args = options.args || [];
-      options.args.unshift(tsNodeRegister);
-      options.args.unshift('-r');
+    if (enableTypeScript && tsNodeHelper) {
+      args.unshift(esm ? '--loader' : '-r', tsNodeHelper);
+      Object.assign(env, getTsNodeEnv(tsconfig, transpileOnly));
 
-      options.env = { ...options.env, ...getTsNodeEnv(tsconfig, transpileOnly) };
-      logger.info('Executing [TS]: ' + [nodeExecPath, ...(options.args || [])].join(' '));
+      logger.info('Executing [TS]: ' + [nodeExecPath, ...args].join(' '));
     } else {
-      logger.info('Executing: ' + [nodeExecPath, ...(options.args || [])].join(' '));
+      logger.info('Executing: ' + [nodeExecPath, ...args].join(' '));
     }
 
-    return spawn(nodeExecPath, options.args, { stdio: 'inherit', env: options.env, ...spawnOptions });
+    return spawn(nodeExecPath, args, { stdio: 'inherit', env, ...spawnOptions });
   };
 }
