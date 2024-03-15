@@ -293,7 +293,7 @@ export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction;
 // @public (undocumented)
 export interface NodeExecTaskOptions {
     args?: string[];
-    enableTypeScript?: boolean;
+    enableTypeScript?: boolean | 'esm';
     env?: NodeJS.ProcessEnv;
     spawnOptions?: SpawnOptions;
     transpileOnly?: boolean;
