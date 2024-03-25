@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Update dependency undertaker to v2",
+      "packageName": "just-task",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
