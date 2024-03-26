@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Sat, 02 Mar 2024 02:16:34 GMT and should not be manually modified.
+This log was last generated on Tue, 26 Mar 2024 00:12:38 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.10.0
+
+Tue, 26 Mar 2024 00:12:38 GMT
+
+### Minor changes
+
+- Update dependency undertaker to v2 (email not defined)
 
 ## 1.9.0
 

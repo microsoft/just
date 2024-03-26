@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 26 Mar 2024 00:12:38 GMT",
+      "version": "2.3.0",
+      "tag": "just-scripts_v2.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-task to v1.10.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 05 Mar 2024 08:01:41 GMT",
       "version": "2.2.3",
       "tag": "just-scripts_v2.2.3",

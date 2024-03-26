@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Tue, 26 Mar 2024 00:12:38 GMT",
+      "version": "1.10.0",
+      "tag": "just-task_v1.10.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "just-task",
+            "commit": "83bfae7bad6e4137a07ec633a5f5c910df1ffe67",
+            "comment": "Update dependency undertaker to v2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 02 Mar 2024 08:01:34 GMT",
       "version": "1.9.0",
       "tag": "just-task_v1.9.0",
