@@ -293,7 +293,7 @@ export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction;
 // @public (undocumented)
 export interface NodeExecTaskOptions {
     args?: string[];
-    enableTypeScript?: boolean;
+    enableTypeScript?: boolean | 'esm';
     env?: NodeJS.ProcessEnv;
     spawnOptions?: SpawnOptions;
     transpileOnly?: boolean;
@@ -445,7 +445,7 @@ export interface TsLoaderOptions {
 }
 
 // @public (undocumented)
-export const tsOverlay: (overlayOptions?: TsOverlayOptions | undefined) => Partial<Configuration>;
+export const tsOverlay: (overlayOptions?: TsOverlayOptions) => Partial<Configuration>;
 
 // @public (undocumented)
 export interface TsOverlayOptions {

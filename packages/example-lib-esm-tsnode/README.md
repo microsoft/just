@@ -1,0 +1,1 @@
+This package has `"type": "module"` in its `package.json`. The config is a `.ts` which will be treated as ESM, and Just can't handle that directly (see [`example-lib-esm-ts` readme](../example-lib-esm-ts/README.md)). So the package's `"build"` script wraps the `just-scripts` binary with the transpiler: `ts-node-esm node_modules/.bin/just-scripts build`.

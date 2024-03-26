@@ -10,6 +10,8 @@ import { Arguments } from 'yargs-parser';
 import { Duplex } from 'stream';
 import type { FSWatcher } from 'chokidar';
 import { Logger } from 'just-task-logger';
+import { logger } from 'just-task-logger';
+import { mark } from 'just-task-logger';
 import type { Stats } from 'fs';
 import { TaskFunction as TaskFunction_2 } from 'undertaker';
 import { TaskFunctionParams } from 'undertaker';
@@ -33,6 +35,12 @@ export function clearCache(): void;
 
 // @public (undocumented)
 export function condition(taskName: string, conditional: () => boolean): TaskFunction_2;
+
+export { Logger }
+
+export { logger }
+
+export { mark }
 
 // Warning: (ae-forgotten-export) The symbol "OptionConfig" needs to be exported by the entry point index.d.ts
 //
@@ -117,9 +125,6 @@ export function watch(globs: string | string[], optionsOrListener?: WatchListene
 
 // @public (undocumented)
 type WatchListener = (path: string, stats?: Stats) => void;
-
-
-export * from "just-task-logger";
 
 // (No @packageDocumentation comment for this package)
 

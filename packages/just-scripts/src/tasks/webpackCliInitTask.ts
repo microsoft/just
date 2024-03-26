@@ -20,13 +20,13 @@ export function webpackCliInitTask(customScaffold?: string, auto = false): TaskF
         try {
           init(null, null, null, '--auto');
         } catch (error) {
-          throw `Webpack-cli init failed with ${error.length} error(s).`;
+          throw `Webpack-cli init failed with ${(error as any).length} error(s).`;
         }
       } else {
         try {
           init();
         } catch (error) {
-          throw `Webpack-cli init failed with ${error.length} error(s).`;
+          throw `Webpack-cli init failed with ${(error as any).length} error(s).`;
         }
       }
     } else {
@@ -34,7 +34,7 @@ export function webpackCliInitTask(customScaffold?: string, auto = false): TaskF
       try {
         init(null, null, customScaffold);
       } catch (error) {
-        throw `Webpack-cli init failed with ${error.length} error(s).`;
+        throw `Webpack-cli init failed with ${(error as any).length} error(s).`;
       }
     }
   };

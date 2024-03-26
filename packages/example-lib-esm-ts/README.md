@@ -1,0 +1,3 @@
+This package has `"type": "module"` in its `package.json`. If the just config was `just.config.ts`, this would be implicitly considered as ESM, and loading TS files as ESM isn't supported with `ts-node` `register()` (it must be configured with a `--loader` option when the Node process is created). So the package has to use `just.config.cts` instead.
+
+The just config also defines a `nodeExecTask` which must be handled as ESM. The custom task file can be a normal `.ts` which is treated as ESM because `enableTypeScript: 'esm'` is set, and the task is run in a separate Node process where the `--loader` can be used.
