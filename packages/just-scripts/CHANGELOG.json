@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Wed, 07 Aug 2024 22:28:11 GMT",
+      "version": "2.3.1",
+      "tag": "just-scripts_v2.3.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "1581488+christiango@users.noreply.github.com",
+            "package": "just-scripts",
+            "commit": "317358e1755c8ffe3ec47d9af53c1e2c388904da",
+            "comment": "Add support for setting ESLINT_USE_FLAT_CONFIG to assist with upgrades to eslint v9"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 26 Mar 2024 00:12:38 GMT",
       "version": "2.3.0",
       "tag": "just-scripts_v2.3.0",

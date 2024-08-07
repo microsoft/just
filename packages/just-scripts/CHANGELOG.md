@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 26 Mar 2024 00:12:38 GMT and should not be manually modified.
+This log was last generated on Wed, 07 Aug 2024 22:28:11 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.3.1
+
+Wed, 07 Aug 2024 22:28:11 GMT
+
+### Patches
+
+- Add support for setting ESLINT_USE_FLAT_CONFIG to assist with upgrades to eslint v9 (1581488+christiango@users.noreply.github.com)
 
 ## 2.3.0
 
