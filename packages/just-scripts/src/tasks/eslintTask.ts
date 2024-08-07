@@ -28,6 +28,8 @@ export interface EsLintTaskOptions {
   format?: string;
   /** Prevents the logging & auto-fixing of warnings */
   quiet?: boolean;
+  /** Can be set to force the flat config on or off, which can be helpful when migrating to ESLint v9. This will be passed as an environment variable to eslint with the value ESLINT_USE_FLAT_CONFIG (https://eslint.org/blog/2024/04/eslint-v9.0.0-released/#flat-config-is-now-the-default-and-has-some-changes)  */
+  useFlatConfig?: boolean
 }
 
 export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
@@ -47,6 +49,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
       outputFile,
       format,
       quiet,
+      useFlatConfig
     } = options;
     const eslintCmd = resolve('eslint/bin/eslint.js');
     // Try all possible extensions in the order listed here: https://eslint.org/docs/user-guide/configuring#configuration-file-formats
@@ -74,8 +77,18 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         '--color',
       ];
 
+      const env: Record<string, string> = {};
+
+      if (timing) {
+        env.TIMING = '1';
+      }
+
+      if(useFlatConfig !== undefined) {
+        env.ESLINT_USE_FLAT_CONFIG  = JSON.stringify(useFlatConfig)
+      }
+
       logger.info(encodeArgs(eslintArgs).join(' '));
-      return spawn(process.execPath, eslintArgs, { stdio: 'inherit', ...(timing && { env: { TIMING: '1' } }) });
+      return spawn(process.execPath, eslintArgs, { stdio: 'inherit',  env  });
     } else {
       return Promise.resolve();
     }
