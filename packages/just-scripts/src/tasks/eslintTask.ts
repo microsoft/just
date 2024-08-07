@@ -28,7 +28,10 @@ export interface EsLintTaskOptions {
   format?: string;
   /** Prevents the logging & auto-fixing of warnings */
   quiet?: boolean;
-  /** Can be set to force the flat config on or off, which can be helpful when migrating to ESLint v9. This will be passed as an environment variable to eslint with the value ESLINT_USE_FLAT_CONFIG (https://eslint.org/blog/2024/04/eslint-v9.0.0-released/#flat-config-is-now-the-default-and-has-some-changes)  */
+  /**
+   * Can be set to force the flat config on or off, which can be helpful when migrating to ESLint v9.
+   * This will be passed as an environment variable to eslint with the value ESLINT_USE_FLAT_CONFIG (https://eslint.org/blog/2024/04/eslint-v9.0.0-released/#flat-config-is-now-the-default-and-has-some-changes).
+   */
   useFlatConfig?: boolean;
 }
 
