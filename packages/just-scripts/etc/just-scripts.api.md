@@ -213,6 +213,7 @@ export interface EsLintTaskOptions {
     // (undocumented)
     resolvePluginsPath?: string;
     timing?: boolean;
+    useFlatConfig?: boolean;
 }
 
 // @public (undocumented)
