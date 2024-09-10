@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-This log was last generated on Wed, 07 Aug 2024 22:28:11 GMT and should not be manually modified.
+This log was last generated on Tue, 10 Sep 2024 03:04:12 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.3.2
+
+Tue, 10 Sep 2024 03:04:12 GMT
+
+### Patches
+
+- Pass env variables through to eslint cli (stchur@microsoft.com)
 
 ## 2.3.1
 

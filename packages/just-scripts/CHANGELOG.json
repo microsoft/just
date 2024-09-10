@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Tue, 10 Sep 2024 03:04:12 GMT",
+      "version": "2.3.2",
+      "tag": "just-scripts_v2.3.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "stchur@microsoft.com",
+            "package": "just-scripts",
+            "commit": "211e8b4dec680fcb460aad843639ffb840d709b3",
+            "comment": "Pass env variables through to eslint cli"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 07 Aug 2024 22:28:11 GMT",
       "version": "2.3.1",
       "tag": "just-scripts_v2.3.1",
