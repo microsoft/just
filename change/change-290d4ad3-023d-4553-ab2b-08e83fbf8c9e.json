@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Pass env variables through to eslint cli",
+      "packageName": "just-scripts",
+      "email": "stchur@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
