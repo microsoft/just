@@ -80,7 +80,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         '--color',
       ];
 
-      const env: Record<string, string> = {};
+      const env: NodeJS.ProcessEnv = { ...process.env };
 
       if (timing) {
         env.TIMING = '1';
