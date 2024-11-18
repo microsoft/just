@@ -2,7 +2,7 @@
   "changes": [
     {
       "type": "patch",
-      "comment": "Detect if already running in ts-node or tsx and skip call to ts-node register",
+      "comment": "Detect if already running in `ts-node` or `tsx` and skip call to `ts-node` `register()`",
       "packageName": "just-task",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"

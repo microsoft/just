@@ -1,7 +1,7 @@
-import * as fse from 'fs-extra';
 import * as path from 'path';
 import { resolve } from './resolve';
 import { logger } from 'just-task-logger';
+import { _tsSupportsModernResolution } from './tsSupportsModernResolution';
 
 /**
  * Enable typescript support with ts-node.
@@ -10,18 +10,8 @@ import { logger } from 'just-task-logger';
 export function enableTypeScript(params: { transpileOnly?: boolean; configFile?: string }): boolean {
   const { transpileOnly = true, configFile = '' } = params;
 
-  // Try to determine if the user is already running with a known transpiler.
-  // ts-node makes this easy by setting process.env.TS_NODE.
-  // tsx doesn't set a variable, so check a few places it might show up.
-  const contextVals = [
-    ...process.argv,
-    ...process.execArgv,
-    process.env._,
-    process.env.npm_lifecycle_event,
-    process.env.npm_config_argv,
-  ];
-  if (process.env.TS_NODE || contextVals.some(val => /[^.]tsx\b/.test(val || ''))) {
-    // It appears the user ran the just CLI with tsx or ts-node, so allow this.
+  if (process.env.JUST_TASK_TS) {
+    // Already running with a TS loader (this env is set by spawnWithTS, used by just-scripts-esm binary)
     return true;
   }
 
@@ -33,15 +23,9 @@ export function enableTypeScript(params: { transpileOnly?: boolean; configFile?:
   }
 
   // Use module/moduleResolution "node16" if supported for broadest compatibility
-  let supportsNode16Setting = false;
-  const typescriptPackageJson = resolve('typescript/package.json');
-  if (typescriptPackageJson) {
-    const typescriptVersion = fse.readJsonSync(typescriptPackageJson).version as string;
-    const [major, minor] = typescriptVersion.split('.').map(Number);
-    supportsNode16Setting = major > 4 || (major === 4 && minor >= 7);
-  }
+  const supportsNode16Setting = _tsSupportsModernResolution();
 
-  const tsNode = require(tsNodeModule) as typeof import('ts-node');
+  const tsNode = require(tsNodeModule);
   const tsNodeMajor = Number(String(tsNode.VERSION || '0').split('.')[0]);
   const ext = path.extname(configFile);
   if (tsNodeMajor < 10 && ext !== '.ts') {

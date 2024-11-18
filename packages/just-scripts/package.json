@@ -12,7 +12,8 @@
   "author": "",
   "main": "./lib/index.js",
   "bin": {
-    "just-scripts": "bin/just-scripts.js"
+    "just-scripts": "bin/just-scripts.js",
+    "just-scripts-esm": "bin/just-scripts-esm.js"
   },
   "scripts": {
     "api": "api-extractor run",
@@ -45,8 +46,10 @@
     "@types/prompts": "^2.4.2",
     "@types/run-parallel-limit": "^1.0.0",
     "@types/supports-color": "^8.1.1",
+    "@types/tmp": "^0.2.6",
     "@types/webpack": "^4.41.33",
     "async-done": "^2.0.0",
-    "esbuild": "^0.9.6"
+    "esbuild": "^0.9.6",
+    "tmp": "^0.2.3"
   }
 }

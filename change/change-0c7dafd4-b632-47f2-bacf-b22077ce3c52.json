@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "minor",
+      "comment": "Add a new binary `just-scripts-esm` which uses `tsx` or `ts-node` (depending on which is present) to run the CLI",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "minor",
+      "comment": "Add a new binary `just-esm` which uses `tsx` or `ts-node` (depending on which is present) to run the CLI",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

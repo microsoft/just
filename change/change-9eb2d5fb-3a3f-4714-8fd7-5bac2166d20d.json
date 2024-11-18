@@ -2,7 +2,7 @@
   "changes": [
     {
       "type": "minor",
-      "comment": "Partial support for ESM packages: load `just.config.js` as ESM if package has `type: \"module\"`, and support explicit `.cjs`, `.mjs`, and `.cts` extensions. (`.ts` configs in packages with `type: \"module\"` are not supported due to limitations with `ts-node` `register()`.)",
+      "comment": "Add support for more config extensions (`.cjs`, `.mjs`, `.cts`, `.mts`) and load ESM configs with `import()`",
       "packageName": "just-task",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"

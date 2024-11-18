@@ -2,7 +2,7 @@
   "changes": [
     {
       "type": "minor",
-      "comment": "`nodeExecTask`: add `enableTypeScript: esm` setting to run the task in `ts-node` with ESM support",
+      "comment": "`nodeExecTask`: add new setting `executor: 'ts-node' | 'ts-node-esm' | 'tsx'` to enable running the task with TS support in an ES module context (or in any context with `tsx`). Also use use `module`/`moduleResolution` `\"Node16\"` if the local TS version supports it.",
       "packageName": "just-scripts",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"

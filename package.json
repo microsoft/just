@@ -85,13 +85,27 @@
           "**"
         ],
         "isIgnored": true
+      },
+      {
+        "label": "test-* just-scripts",
+        "dependencies": [
+          "just-scripts"
+        ],
+        "packages": [
+          "test-*"
+        ]
       }
     ]
   },
   "workspaces": {
     "packages": [
       "packages/*",
-      "scripts"
+      "scripts",
+      "test-scenarios/*"
+    ],
+    "nohoist": [
+      "**/ts-node",
+      "**/tsx"
     ]
   }
 }

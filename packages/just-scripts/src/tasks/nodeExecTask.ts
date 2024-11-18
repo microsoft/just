@@ -1,26 +1,30 @@
 import { SpawnOptions } from 'child_process';
 import { spawn } from 'just-scripts-utils';
-import { logger, TaskFunction } from 'just-task';
-import { resolveCwd, _tryResolve } from 'just-task/lib/resolve';
+import { logger, _spawnWithTS, TaskFunction, TSExecutor } from 'just-task';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 
 export interface NodeExecTaskOptions {
   /**
-   * Arguments to be passed into a spawn call for webpack dev server. This can be used to do things
-   * like increase the heap space for the JS engine to address out of memory issues.
+   * Arguments to be passed to the spawn call.
    */
   args?: string[];
 
   /**
-   * Environment variables to be passed to the webpack-cli
+   * Environment variables to be passed to the spawn call.
    */
   env?: NodeJS.ProcessEnv;
 
   /**
-   * Whether this nodeExec task should use ts-node to execute the binary.
-   * If set to `esm`, it will use `ts-node/esm` instead of `ts-node/register`.
+   * Whether this task should use ts-node to execute the binary.
+   * NOTE: To use `ts-node/esm` or `tsx`, set `executor` instead.
    */
-  enableTypeScript?: boolean | 'esm';
+  enableTypeScript?: boolean;
+
+  /**
+   * The TS executor to use for running the task.
+   * If neither this nor `enableTypeScript` is set, runs as standard JS.
+   */
+  executor?: TSExecutor;
 
   /**
    * The tsconfig file to pass to ts-node for Typescript config
@@ -28,7 +32,8 @@ export interface NodeExecTaskOptions {
   tsconfig?: string;
 
   /**
-   * Transpile the config only
+   * Only transpile the task file (don't type check)
+   * @default true
    */
   transpileOnly?: boolean;
 
@@ -40,23 +45,24 @@ export interface NodeExecTaskOptions {
 
 export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction {
   return function () {
-    const { spawnOptions, enableTypeScript, tsconfig, transpileOnly } = options;
+    const { enableTypeScript, tsconfig, transpileOnly, executor } = options;
     const args = [...(options.args || [])];
     const env = { ...options.env };
-
-    const esm = enableTypeScript === 'esm';
-    const tsNodeHelper = resolveCwd(esm ? 'ts-node/esm.mjs' : 'ts-node/register');
+    const spawnOpts: SpawnOptions = { stdio: 'inherit', ...options.spawnOptions, env };
     const nodeExecPath = process.execPath;
 
-    if (enableTypeScript && tsNodeHelper) {
-      args.unshift(esm ? '--loader' : '-r', tsNodeHelper);
-      Object.assign(env, getTsNodeEnv(tsconfig, transpileOnly, esm));
-
-      logger.info('Executing [TS]: ' + [nodeExecPath, ...args].join(' '));
-    } else {
+    if (!enableTypeScript && !executor) {
       logger.info('Executing: ' + [nodeExecPath, ...args].join(' '));
+      return spawn(nodeExecPath, args, spawnOpts);
     }
 
-    return spawn(nodeExecPath, args, { stdio: 'inherit', env, ...spawnOptions });
+    Object.assign(env, getTsNodeEnv(tsconfig, transpileOnly));
+
+    return _spawnWithTS({
+      cmd: nodeExecPath,
+      args,
+      opts: spawnOpts,
+      executor: executor || 'ts-node',
+    });
   };
 }

@@ -8,3 +8,5 @@ export { clearCache } from './cache';
 export { Logger, logger, mark } from './logger';
 export { chain } from './chain';
 export { watch } from './watch';
+export { _spawnWithTS, TSExecutor } from './spawnWithTS';
+export { _tsSupportsModernResolution } from './tsSupportsModernResolution';

@@ -1,0 +1,11 @@
+{
+  "name": "test-mjs",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "test": "just-scripts test"
+  },
+  "devDependencies": {
+    "just-scripts": "*"
+  }
+}

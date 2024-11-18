@@ -12,6 +12,7 @@ import type { FSWatcher } from 'chokidar';
 import { Logger } from 'just-task-logger';
 import { logger } from 'just-task-logger';
 import { mark } from 'just-task-logger';
+import { SpawnOptions } from 'child_process';
 import type { Stats } from 'fs';
 import { TaskFunction as TaskFunction_2 } from 'undertaker';
 import { TaskFunctionParams } from 'undertaker';
@@ -91,6 +92,14 @@ interface ResolveOptions {
 // @public (undocumented)
 export function series(...tasks: Task[]): Undertaker.TaskFunction;
 
+// @internal
+export function _spawnWithTS(params: {
+    cmd: string;
+    args?: ReadonlyArray<string>;
+    opts?: SpawnOptions;
+    executor?: TSExecutor | TSExecutor[];
+}): Promise<void>;
+
 // @public (undocumented)
 export type Task = string | TaskFunction;
 
@@ -114,6 +123,12 @@ export interface TaskFunction extends TaskFunctionParams {
     // (undocumented)
     description?: string;
 }
+
+// @public (undocumented)
+export type TSExecutor = 'ts-node' | 'ts-node-esm' | 'tsx';
+
+// @internal
+export function _tsSupportsModernResolution(): boolean;
 
 // @public (undocumented)
 export const undertaker: Undertaker;

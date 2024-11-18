@@ -41,6 +41,14 @@ export async function readConfig(): Promise<{ [key: string]: TaskFunction } | vo
   const packageIsESM = packageJson?.type === 'module';
 
   const ext = path.extname(configFile).toLowerCase();
+  if (!process.env.JUST_TASK_TS && (ext === '.mts' || (packageIsESM && ext === '.ts'))) {
+    const configType = ext === '.mts' ? 'explicit .mts config' : '.ts config in an ESM package';
+    const binName = path.basename(process.argv[1]).split('.')[0];
+    logger.error(
+      `To use a ${configType}, you must use ${binName}-esm. (Alternatively, you can change the config to .cts.)`,
+    );
+    process.exit(1);
+  }
 
   if (/^\.[cm]?ts$/.test(ext)) {
     const tsSuccess = enableTypeScript({ transpileOnly: true, configFile });
@@ -59,19 +67,6 @@ export async function readConfig(): Promise<{ [key: string]: TaskFunction } | vo
   } catch (e) {
     logger.error(`Error loading configuration file: ${configFile}`);
     logger.error((e as Error).stack || (e as Error).message || e);
-
-    if (ext === '.mts' || (packageIsESM && ext === '.ts')) {
-      // We can't directly support these with ts-node because we're calling register() rather than
-      // creating a child process with the custom --loader.
-      // (Related: https://typestrong.org/ts-node/docs/imports/)
-      const binPath = path.relative(process.cwd(), process.argv[1]);
-      logger.error('');
-      logger.error(
-        'Just does not directly support ESM TypeScript configuration files. You must either ' +
-          `use a .cts file, or call the just binary (${binPath}) via ts-node or tsx.`,
-      );
-    }
-
     process.exit(1);
   }
 
@@ -81,8 +76,8 @@ export async function readConfig(): Promise<{ [key: string]: TaskFunction } | vo
     try {
       await configModule();
     } catch (e) {
-      logger.error(`Invalid configuration file: ${configFile}`);
-      logger.error(`Error running config function: ${(e as Error).stack || (e as Error).message || e}`);
+      logger.error(`Error running function from configuration file: ${configFile}`);
+      logger.error((e as Error).stack || (e as Error).message || e);
       process.exit(1);
     }
   }

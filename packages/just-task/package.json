@@ -12,7 +12,8 @@
   "author": "Ken Chau <kchau@microsoft.com>",
   "main": "lib/index.js",
   "bin": {
-    "just": "bin/just.js"
+    "just": "bin/just.js",
+    "just-esm": "bin/just-esm.js"
   },
   "scripts": {
     "api": "api-extractor run",

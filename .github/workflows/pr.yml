@@ -13,8 +13,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Install Node.js from .nvmrc
         uses: actions/setup-node@v3
@@ -33,3 +31,18 @@ jobs:
 
       - name: Check for modified files
         uses: ecraig12345/beachball-actions/check-for-modified-files@v1
+
+  test-node-18:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: yarn
+
+      - run: yarn test
