@@ -9,7 +9,15 @@ import yargsParser = require('yargs-parser');
 import { TaskFunction } from './interfaces';
 
 export function resolveConfigFile(args: yargsParser.Arguments): string | null {
-  for (const entry of [args.config, './just.config.js', './just-task.js', './just.config.ts', args.defaultConfig]) {
+  for (const entry of [
+    args.config,
+    './just.config.js',
+    './just.config.cjs',
+    './just-task.js',
+    './just.config.ts',
+    './just.config.cts',
+    args.defaultConfig,
+  ]) {
     const configFile = resolve(entry);
     if (configFile) {
       return configFile;
@@ -26,7 +34,7 @@ export function readConfig(): { [key: string]: TaskFunction } | void {
 
   if (configFile && fs.existsSync(configFile)) {
     const ext = path.extname(configFile);
-    if (ext === '.ts' || ext === '.tsx') {
+    if (ext === '.cts' || ext === '.ts' || ext === '.tsx') {
       // TODO: add option to do typechecking as well
       enableTypeScript({ transpileOnly: true, esm: args.esm });
     }

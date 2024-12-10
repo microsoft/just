@@ -19,7 +19,7 @@ export function enableTypeScript({ transpileOnly = true, esm = false }): void {
         allowJs: true,
         esModuleInterop: true,
       },
-      files: ['just.config.ts'],
+      files: ['just.config.ts', 'just.config.cts'],
     });
   } else {
     logger.error(`In order to use TypeScript with just.config.ts, you need to install "ts-node" module:

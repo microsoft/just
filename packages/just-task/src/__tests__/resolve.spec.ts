@@ -196,65 +196,68 @@ describe('resolve', () => {
   });
 });
 
-describe('resolveConfigFile', () => {
-  afterEach(() => {
-    mockfs.restore();
-    resetResolvePaths();
-  });
-
-  it('default chooses local config', () => {
-    mockfs({
-      config: {
-        'configArgument.ts': 'formConfig',
-        'defaultConfigArgument.ts': 'formDefaultConfig',
-      },
-      'just.config.ts': 'localConfig',
+describe.each(['just.config.js', 'just.config.cjs', 'just.config.ts', 'just.config.cts', 'just-task.js'])(
+  'resolveConfigFile (%s)',
+  configPath => {
+    afterEach(() => {
+      mockfs.restore();
+      resetResolvePaths();
     });
-    const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: undefined } as any);
-    expect(resolvedConfig).toContain('just.config.ts');
-  });
 
-  it('config argument wins over local config and defaultConfig', () => {
-    mockfs({
-      config: {
-        'configArgument.ts': 'formConfig',
-        'defaultConfigArgument.ts': 'formDefaultConfig',
-      },
-      'just.config.ts': 'localConfig',
+    it('default chooses local config', () => {
+      mockfs({
+        config: {
+          'configArgument.ts': 'formConfig',
+          'defaultConfigArgument.ts': 'formDefaultConfig',
+        },
+        [configPath]: 'localConfig',
+      });
+      const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: undefined } as any);
+      expect(resolvedConfig).toContain(configPath);
     });
-    const resolvedConfig = config.resolveConfigFile({
-      config: './config/configArgument.ts',
-      defaultConfig: './config/defaultConfigArgument.ts',
-    } as any);
-    expect(resolvedConfig).toContain('configArgument.ts');
-  });
 
-  it('local config file wins over defaultConfig', () => {
-    mockfs({
-      config: {
-        'configArgument.ts': 'formConfig',
-        'defaultConfigArgument.ts': 'formDefaultConfig',
-      },
-      'just.config.ts': 'localConfig',
+    it('config argument wins over local config and defaultConfig', () => {
+      mockfs({
+        config: {
+          'configArgument.ts': 'formConfig',
+          'defaultConfigArgument.ts': 'formDefaultConfig',
+        },
+        [configPath]: 'localConfig',
+      });
+      const resolvedConfig = config.resolveConfigFile({
+        config: './config/configArgument.ts',
+        defaultConfig: './config/defaultConfigArgument.ts',
+      } as any);
+      expect(resolvedConfig).toContain('configArgument.ts');
     });
-    const resolvedConfig = config.resolveConfigFile({
-      config: undefined,
-      defaultConfig: './config/defaultConfigArgument.ts',
-    } as any);
-    expect(resolvedConfig).toContain('just.config.ts');
-  });
 
-  it('default config is used as last fallback', () => {
-    mockfs({
-      config: {
-        'configArgument.ts': 'formConfig',
-        'defaultConfigArgument.ts': 'formDefaultConfig',
-      },
+    it('local config file wins over defaultConfig', () => {
+      mockfs({
+        config: {
+          'configArgument.ts': 'formConfig',
+          'defaultConfigArgument.ts': 'formDefaultConfig',
+        },
+        [configPath]: 'localConfig',
+      });
+      const resolvedConfig = config.resolveConfigFile({
+        config: undefined,
+        defaultConfig: './config/defaultConfigArgument.ts',
+      } as any);
+      expect(resolvedConfig).toContain(configPath);
     });
-    const resolvedConfig = config.resolveConfigFile({
-      config: undefined,
-      defaultConfig: './config/defaultConfigArgument.ts',
-    } as any);
-    expect(resolvedConfig).toContain('defaultConfigArgument.ts');
-  });
-});
+
+    it('default config is used as last fallback', () => {
+      mockfs({
+        config: {
+          'configArgument.ts': 'formConfig',
+          'defaultConfigArgument.ts': 'formDefaultConfig',
+        },
+      });
+      const resolvedConfig = config.resolveConfigFile({
+        config: undefined,
+        defaultConfig: './config/defaultConfigArgument.ts',
+      } as any);
+      expect(resolvedConfig).toContain('defaultConfigArgument.ts');
+    });
+  },
+);
