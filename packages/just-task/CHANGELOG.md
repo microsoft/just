@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-This log was last generated on Tue, 26 Mar 2024 00:12:38 GMT and should not be manually modified.
+This log was last generated on Tue, 10 Dec 2024 22:22:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.11.0
+
+Tue, 10 Dec 2024 22:22:46 GMT
+
+### Minor changes
+
+- Add .cjs config support (tigeroakes@microsoft.com)
 
 ## 1.10.0
 

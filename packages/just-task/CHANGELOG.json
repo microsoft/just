@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Tue, 10 Dec 2024 22:22:46 GMT",
+      "version": "1.11.0",
+      "tag": "just-task_v1.11.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "tigeroakes@microsoft.com",
+            "package": "just-task",
+            "commit": "55e52e9274b9e42d8b243a7a67ec73188dd222c3",
+            "comment": "Add .cjs config support"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 26 Mar 2024 00:12:38 GMT",
       "version": "1.10.0",
       "tag": "just-task_v1.10.0",
