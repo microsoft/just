@@ -52,7 +52,6 @@
     "ts-jest": "~29.2.5",
     "typescript": "~4.5.0",
     "vuepress": "^1.9.9",
-    "vuepress-plugin-mermaidjs": "^1.9.1",
     "workspace-tools": "^0.35.2"
   },
   "resolutions": {

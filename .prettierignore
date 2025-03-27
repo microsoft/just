@@ -1,5 +1,6 @@
 **/plop-templates/**
-docs/.vuepress
+*.styl
+.nojekyll
 .*ignore
 *.snap
 *.png
