@@ -53,7 +53,7 @@ export function readConfig(): { [key: string]: TaskFunction } | void {
       return configModule;
     } catch (e) {
       logger.error(`Invalid configuration file: ${configFile}`);
-      logger.error(`Error: ${e.stack || e.message || e}`);
+      logger.error(`Error: ${(e as Error).stack || (e as Error).message || e}`);
       process.exit(1);
     }
   } else {

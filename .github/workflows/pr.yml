@@ -7,6 +7,8 @@ on:
   pull_request:
     branches: [master]
 
+permissions: {}
+
 jobs:
   build:
     runs-on: ubuntu-latest
