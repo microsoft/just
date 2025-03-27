@@ -5,8 +5,8 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/tasks/' },
-      { text: 'Github', link: 'https://github.com/microsoft/just' },
+      { text: 'Guide', link: '/tasks/composition' },
+      { text: 'GitHub', link: 'https://github.com/microsoft/just' },
     ],
     sidebar: [
       {
@@ -29,17 +29,4 @@ module.exports = {
       },
     ],
   },
-
-  plugins: [
-    [
-      'mermaidjs',
-      {
-        gantt: {
-          barHeight: 20,
-          fontSize: 12,
-          useWidth: 960,
-        },
-      },
-    ],
-  ],
 };
