@@ -19,7 +19,7 @@ jobs:
     environment: release
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           # Fetch all history (required for publishing which looks at history)
           fetch-depth: 0
@@ -27,7 +27,7 @@ jobs:
           persist-credentials: false
 
       - name: Install Node.js from .nvmrc
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
         with:
           node-version-file: .nvmrc
 
