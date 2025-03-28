@@ -1,8 +1,18 @@
 # Change Log - just-scripts
 
-This log was last generated on Tue, 10 Dec 2024 22:22:46 GMT and should not be manually modified.
+<!-- This log was last generated on Fri, 28 Mar 2025 08:01:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.4.0
+
+Fri, 28 Mar 2025 08:01:48 GMT
+
+### Minor changes
+
+- Build with TypeScript 4.5 (elcraig@microsoft.com)
+- Bump just-scripts-utils to v2.1.0
+- Bump just-task to v1.12.0
 
 ## 2.3.3
 

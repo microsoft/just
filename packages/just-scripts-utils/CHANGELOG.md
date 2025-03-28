@@ -1,8 +1,17 @@
 # Change Log - just-scripts-utils
 
-This log was last generated on Tue, 12 Sep 2023 08:02:05 GMT and should not be manually modified.
+<!-- This log was last generated on Fri, 28 Mar 2025 08:01:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.1.0
+
+Fri, 28 Mar 2025 08:01:48 GMT
+
+### Minor changes
+
+- Build with TypeScript 4.5 (elcraig@microsoft.com)
+- Bump just-task-logger to v1.3.0
 
 ## 2.0.1
 

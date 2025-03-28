@@ -1,8 +1,17 @@
 # Change Log - just-task
 
-This log was last generated on Tue, 10 Dec 2024 22:22:46 GMT and should not be manually modified.
+<!-- This log was last generated on Fri, 28 Mar 2025 08:01:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.12.0
+
+Fri, 28 Mar 2025 08:01:48 GMT
+
+### Minor changes
+
+- Build with TypeScript 4.5 (elcraig@microsoft.com)
+- Bump just-task-logger to v1.3.0
 
 ## 1.11.0
 

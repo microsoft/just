@@ -2,6 +2,27 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Fri, 28 Mar 2025 08:01:48 GMT",
+      "version": "1.12.0",
+      "tag": "just-task_v1.12.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task",
+            "commit": "b08901cb0e1ca7833027ae1e6473ff8dff7b4529",
+            "comment": "Build with TypeScript 4.5"
+          },
+          {
+            "author": "beachball",
+            "package": "just-task",
+            "comment": "Bump just-task-logger to v1.3.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Dec 2024 22:22:46 GMT",
       "version": "1.11.0",
       "tag": "just-task_v1.11.0",

@@ -2,6 +2,27 @@
   "name": "just-scripts-utils",
   "entries": [
     {
+      "date": "Fri, 28 Mar 2025 08:01:48 GMT",
+      "version": "2.1.0",
+      "tag": "just-scripts-utils_v2.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts-utils",
+            "commit": "b08901cb0e1ca7833027ae1e6473ff8dff7b4529",
+            "comment": "Build with TypeScript 4.5"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts-utils",
+            "comment": "Bump just-task-logger to v1.3.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 02 Mar 2024 08:01:34 GMT",
       "version": "2.0.1",
       "tag": "just-scripts-utils_v2.0.1",
