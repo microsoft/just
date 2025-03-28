@@ -1,11 +1,15 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: PR
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
+
+concurrency:
+  # For PRs, use the ref (branch) in the concurrency group so that new pushes cancel any old runs.
+  # For pushes to main, ideally we wouldn't set a concurrency group, but github actions doesn't
+  # support conditional blocks of settings, so we use the SHA so the "group" is unique.
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
+  cancel-in-progress: true
 
 permissions: {}
 
@@ -15,8 +19,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-        with:
-          fetch-depth: 0
 
       - name: Install Node.js from .nvmrc
         uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
