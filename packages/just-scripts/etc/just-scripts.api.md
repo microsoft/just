@@ -261,6 +261,8 @@ export interface JestTaskOptions {
     // (undocumented)
     coverage?: boolean;
     env?: NodeJS.ProcessEnv;
+    // (undocumented)
+    maxWorkers?: number;
     nodeArgs?: string[];
     // (undocumented)
     passWithNoTests?: boolean;
