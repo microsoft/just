@@ -2,7 +2,7 @@
   "changes": [
     {
       "type": "patch",
-      "comment": "Add support for setting the w alias for maxWorkers in jestTask",
+      "comment": "Add support for setting maxWorkers in jestTask",
       "packageName": "just-scripts",
       "email": "1581488+christiango@users.noreply.github.com",
       "dependentChangeType": "patch"
