@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 22 May 2025 19:11:12 GMT",
+      "version": "2.4.1",
+      "tag": "just-scripts_v2.4.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "1581488+christiango@users.noreply.github.com",
+            "package": "just-scripts",
+            "commit": "8c4fe31f6193b70b448c2e23c2fb84900736b59e",
+            "comment": "Add support for setting maxWorkers in jestTask"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 28 Mar 2025 08:01:48 GMT",
       "version": "2.4.0",
       "tag": "just-scripts_v2.4.0",

@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-<!-- This log was last generated on Fri, 28 Mar 2025 08:01:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 22 May 2025 19:11:12 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.4.1
+
+Thu, 22 May 2025 19:11:12 GMT
+
+### Patches
+
+- Add support for setting maxWorkers in jestTask (1581488+christiango@users.noreply.github.com)
 
 ## 2.4.0
 
