@@ -47,6 +47,6 @@
     "@types/supports-color": "^8.1.1",
     "@types/webpack": "^4.41.33",
     "async-done": "^2.0.0",
-    "esbuild": "^0.9.6"
+    "esbuild": "^0.25.0"
   }
 }
