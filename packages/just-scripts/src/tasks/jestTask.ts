@@ -16,6 +16,8 @@ export interface JestTaskOptions {
   silent?: boolean;
   testPathPattern?: string;
   testNamePattern?: string;
+  // The maximum number of workers to use in jest
+  w?: number;
   u?: boolean;
   _?: string[];
 
@@ -70,6 +72,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.silent ? ['--silent'] : []),
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
+        ...(options.w ? ['-w', options.w]: []),
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
         // Only include the positional args if `options._` wasn't specified
         // (to avoid possibly including them twice)
