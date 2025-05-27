@@ -4,10 +4,11 @@
 name: Release
 
 on:
+  # Temporarily disabling scheduled releases to evaluate whether any other major changes are desired.
   # release daily at 8am UTC (midnight or 1am pacific)
   # https://crontab-generator.org/
-  schedule:
-    - cron: '0 8 * * *'
+  # schedule:
+  #   - cron: '0 8 * * *'
   # or manual trigger
   workflow_dispatch:
 
