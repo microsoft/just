@@ -40,6 +40,8 @@
     "@types/semver": "^7.3.13",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
+    "@vuepress/bundler-vite": "^2.0.0-rc.23",
+    "@vuepress/theme-default": "^2.0.0-rc.110",
     "beachball": "^2.31.11",
     "cross-env": "^7.0.3",
     "eslint": "^8.35.0",
@@ -48,10 +50,11 @@
     "lage": "2.4.0",
     "mock-fs": "^5.2.0",
     "prettier": "^2.8.4",
+    "sass-embedded": "^1.89.2",
     "syncpack": "^9.0.0",
     "ts-jest": "~29.2.5",
     "typescript": "~4.5.0",
-    "vuepress": "^1.9.9",
+    "vuepress": "^2.0.0-rc.23",
     "workspace-tools": "^0.35.2"
   },
   "resolutions": {

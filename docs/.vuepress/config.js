@@ -1,32 +1,42 @@
-module.exports = {
+import { defaultTheme } from '@vuepress/theme-default';
+import { defineUserConfig } from 'vuepress';
+import { viteBundler } from '@vuepress/bundler-vite';
+
+export default defineUserConfig({
+  lang: 'en-US',
   title: 'just ___',
   description: 'The task library that just works',
   base: '/just/',
-  themeConfig: {
-    nav: [
+
+  bundler: viteBundler(),
+
+  theme: defaultTheme({
+    // Enable built-in dark mode toggle
+    colorModeSwitch: true,
+
+    navbar: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/tasks/composition' },
       { text: 'GitHub', link: 'https://github.com/microsoft/just' },
     ],
+
     sidebar: [
       {
-        title: 'Home', // required
-        path: '/', // optional, link of the title, which should be an absolute path and must exist
+        text: 'Home',
+        link: '/',
       },
       {
-        title: 'Tasks',
-        path: '/tasks',
-        collapsable: false,
-        sidebarDepth: 1,
+        text: 'Tasks',
+        link: '/tasks/',
+        collapsible: false,
         children: ['/tasks/composition', '/tasks/logging', '/tasks/args', '/tasks/condition', '/tasks/thunk'],
       },
       {
-        title: 'Scripts',
-        path: '/scripts',
-        collapsable: false,
-        sidebarDepth: 1,
+        text: 'Scripts',
+        link: '/scripts/',
+        collapsible: false,
         children: ['/scripts/typescript', '/scripts/webpack', '/scripts/lint', '/scripts/jest'],
       },
     ],
-  },
-};
+  }),
+});
