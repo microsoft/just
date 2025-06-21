@@ -6,7 +6,7 @@ export default defineUserConfig({
   lang: 'en-US',
   title: 'just ___',
   description: 'The task library that just works',
-  base: '/just/',
+  base: '/',
 
   bundler: viteBundler(),
 

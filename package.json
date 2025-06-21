@@ -17,6 +17,7 @@
     "postbuild": "node ./scripts/copyReadme.js",
     "docs": "vuepress dev docs --host localhost",
     "docs:build": "vuepress build docs",
+    "docs:build:vercel": "vuepress build docs",
     "change": "beachball change",
     "checkchange": "beachball check",
     "lage": "cross-env NODE_OPTIONS=\"--experimental-abortcontroller\" lage",
