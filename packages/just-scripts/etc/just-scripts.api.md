@@ -210,6 +210,7 @@ export interface EsLintTaskOptions {
     noEslintRc?: boolean;
     outputFile?: string;
     quiet?: boolean;
+    reportUnusedDisableDirectives?: boolean;
     // (undocumented)
     resolvePluginsPath?: string;
     timing?: boolean;
