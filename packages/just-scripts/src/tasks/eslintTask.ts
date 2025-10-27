@@ -33,6 +33,10 @@ export interface EsLintTaskOptions {
    * This will be passed as an environment variable to eslint with the value ESLINT_USE_FLAT_CONFIG (https://eslint.org/blog/2024/04/eslint-v9.0.0-released/#flat-config-is-now-the-default-and-has-some-changes).
    */
   useFlatConfig?: boolean;
+  /**
+   * When set to true, eslint will report any eslint-disable comments that are not used as an error.
+   */
+  reportUnusedDisableDirectives?: boolean;
 }
 
 export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
@@ -77,6 +81,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         ...(outputFile ? ['--output-file', outputFile] : []),
         ...(format ? ['--format', format] : []),
         ...(quiet ? ['--quiet'] : []),
+        ...(options.reportUnusedDisableDirectives ? ['--report-unused-disable-directives'] : []),
         '--color',
       ];
 
