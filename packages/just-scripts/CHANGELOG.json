@@ -2,6 +2,21 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Mon, 27 Oct 2025 18:08:47 GMT",
+      "version": "2.4.2",
+      "tag": "just-scripts_v2.4.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "1581488+christiango@users.noreply.github.com",
+            "package": "just-scripts",
+            "commit": "4ed33b039a77e01876ea1dc690df24ab8a92c104",
+            "comment": "Add support for report-unused-disable-directives in the eslint task"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 22 May 2025 19:11:12 GMT",
       "version": "2.4.1",
       "tag": "just-scripts_v2.4.1",

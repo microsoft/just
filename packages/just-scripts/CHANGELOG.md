@@ -1,8 +1,16 @@
 # Change Log - just-scripts
 
-<!-- This log was last generated on Thu, 22 May 2025 19:11:12 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Oct 2025 18:08:47 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.4.2
+
+Mon, 27 Oct 2025 18:08:47 GMT
+
+### Patches
+
+- Add support for report-unused-disable-directives in the eslint task (1581488+christiango@users.noreply.github.com)
 
 ## 2.4.1
 
