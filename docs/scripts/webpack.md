@@ -1,8 +1,4 @@
----
-id: scripts-webpack
-title: Webpack
-sidebar_label: Webpack
----
+# Webpack
 
 Webpack is the Javascript, CSS and asset bundler that powers some of the largest Web applications. Just Scripts comes with great integration with Webpack out of the box. All of the power of Webpack comes at the cost of complexity in its configuration. The bundler actually comes with great defaults. However, it takes some non-trivial amount of config to make it work with transpilers like TypeScript.
 

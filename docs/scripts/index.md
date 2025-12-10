@@ -1,8 +1,4 @@
----
-id: scripts
-title: Just Scripts
-sidebar_label: Just Scripts
----
+# Just scripts
 
 Unlike other build libraries, Just strives to be useful from the beginning. You can choose to write your own tasks that call other Node.js tools like TypeScript, jest, and webpack. However, Just includes some script functions to get you up and running immediately. The included tasks are enough to have a very productive environment without dictating a certain stack to be used with Just.
 

@@ -1,10 +1,11 @@
 ---
 home: true
-# heroImage: /hero.png
 heroText: The task library that just works
 tagline: A sensible set of task to build, test, and lint your frontend projects
-actionText: Get Started →
-actionLink: /tasks/
+actions:
+  - text: Get Started →
+    link: /tasks/
+    type: primary
 features:
   - title: Flexible
     details: 'Unlike create-react-app, just gives sensible defaults but does not hide config files'
@@ -16,7 +17,7 @@ features:
     details: just-scripts configurations are TypeScript-enabled, so you don't have to have a separate build step to use your build tools
   - title: Lightweight task orchestration
     details: just-task is a lightweight task orchestrator that has no streaming file system abstraction
-  - title: Battle tested
+  - title: Battle-tested
     details: just is built upon just the right abstraction from the gulp ecosystem, which is used by many repos
 
 footer: MIT Licensed | Copyright © 2020-present Microsoft

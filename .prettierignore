@@ -1,13 +1,12 @@
-**/plop-templates/**
-*.styl
+# As of prettier 3, it automatically respects .gitignore
 .nojekyll
 .*ignore
 *.snap
 *.png
 yarn.lock
-lib
-dist
-temp
+.yarn
 LICENSE
 CHANGELOG.*
 SECURITY.md
+change
+*.api.md

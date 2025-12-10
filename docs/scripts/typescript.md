@@ -1,8 +1,4 @@
----
-id: scripts-ts
-title: TypeScript
-sidebar_label: TypeScript
----
+# TypeScript
 
 TypeScript is a very popular compiler that allows developers to use modern ES6 features as well as a very mature typing system. The benefits are so great that it has become one of the first presets supported by the `just-scripts` library.
 

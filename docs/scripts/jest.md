@@ -1,8 +1,4 @@
----
-id: scripts-jest
-title: Jest
-sidebar_label: Jest
----
+# Jest
 
 Jest is one of the most popular testing libraries in the Javascript ecosystem. It is also a preset supported out of the box inside the `just-scripts` library. Similar to the other presets, this task function assumes that you have a `jest.config.js` at the root of the project.
 

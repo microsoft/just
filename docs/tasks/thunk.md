@@ -1,8 +1,4 @@
----
-id: thunk
-title: Higher Order Task Functions
-sidebar_label: Higher Order Task Functions
----
+# Higher order task functions
 
 When a project truly gets big enough to have multiple variants of a build, a simple task function might be reused as variants. For example, the `just-task-preset` package includes a useful collection of task functions like `tscTask`. However, these tasks tend to be very generic. `tscTask()` is a task function factory. Calling it will generate a task function. But sometimes variations of the same preconfigured task function is needed. We will use a concept called `thunk` to create a task function that creates a task function on the fly!
 
