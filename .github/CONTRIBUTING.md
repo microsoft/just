@@ -10,6 +10,8 @@ Install [Node.js](https://nodejs.org/en/). The version specified in [`.nvmrc`](.
 
 Install Yarn: `npm i -g yarn`
 
+Note that the doc site (under the `docs` folder) has a newer version of Node, with a separate installation and build commands.
+
 ### Project setup
 
 Fork the **just** repo from [https://github.com/microsoft/just](https://github.com/microsoft/just), then clone your fork.

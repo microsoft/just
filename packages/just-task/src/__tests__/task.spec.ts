@@ -9,7 +9,7 @@ describe('task', () => {
   beforeAll(() => {
     jest
       .spyOn(option, 'argv')
-      .mockImplementation(() => ({ config: path.resolve(__dirname, '__mocks__/just-task.js') } as any));
+      .mockImplementation(() => ({ config: path.resolve(__dirname, '__mocks__/just-task.js') }) as any);
     jest.spyOn(logger, 'info').mockImplementation(() => undefined);
   });
 
@@ -18,7 +18,7 @@ describe('task', () => {
   });
 
   afterAll(() => {
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' } as any));
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' }) as any);
     jest.restoreAllMocks();
   });
 

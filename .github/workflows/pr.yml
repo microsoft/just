@@ -3,6 +3,8 @@ name: PR
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
 
 concurrency:
   # For PRs, use the ref (branch) in the concurrency group so that new pushes cancel any old runs.
@@ -15,13 +17,16 @@ permissions: {}
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Install Node.js from .nvmrc
-        uses: actions/setup-node@dbe1369d7be17e7823f8c1ee1ae8bec5779239dd # v3
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v4
         with:
           node-version-file: .nvmrc
 
@@ -29,11 +34,33 @@ jobs:
 
       - run: yarn checkchange
 
+      - run: yarn format:check
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+
       - run: yarn lint
 
       - run: yarn lage build test api
 
-      - run: yarn docs:build
-
       - name: Check for modified files
         uses: ecraig12345/beachball-actions/check-for-modified-files@9b56d6fd4983b949be3313f95846788edb738c9b # v1
+
+  # The docs have a separate installation using Node 22 due to needing newer dependencies
+  docs:
+    name: build docs
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v4
+        with:
+          node-version-file: docs/.nvmrc
+
+      - name: Install docs dependencies
+        working-directory: docs
+        run: yarn --immutable
+
+      - name: Build doc site
+        working-directory: docs
+        run: yarn build

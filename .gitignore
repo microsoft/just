@@ -13,6 +13,11 @@ lib-amd
 build
 dist
 temp
+.temp
+.cache
+
+docs/.yarn/*
+!docs/.yarn/releases
 
 # Binary files
 *.tgz

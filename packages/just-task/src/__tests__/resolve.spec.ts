@@ -87,7 +87,7 @@ describe('_getResolvePaths', () => {
   });
 
   it('uses resolvePaths for before __dirname', () => {
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'config/just-task.js' } as any));
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'config/just-task.js' }) as any);
     addResolvePath('custom1');
     addResolvePath('custom2');
 
@@ -99,7 +99,7 @@ describe('_getResolvePaths', () => {
 
 describe('resolveCwd', () => {
   beforeEach(() => {
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: undefined } as any));
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: undefined }) as any);
   });
 
   afterEach(() => {
@@ -136,7 +136,7 @@ describe('resolveCwd', () => {
 });
 
 describe('resolve', () => {
-  jest.spyOn(option, 'argv').mockImplementation(() => ({ config: undefined } as any));
+  jest.spyOn(option, 'argv').mockImplementation(() => ({ config: undefined }) as any);
 
   afterEach(() => {
     mockfs.restore();
@@ -166,7 +166,7 @@ describe('resolve', () => {
       a: { 'b.txt': '' },
     });
 
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' } as any));
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' }) as any);
 
     expect(resolve('b.txt')).toContain(path.join('a', 'b.txt'));
   });
@@ -189,7 +189,7 @@ describe('resolve', () => {
       'b.txt': '', // wrong
     });
 
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' } as any));
+    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' }) as any);
 
     addResolvePath('c');
     expect(resolve('b.txt', 'd')).toContain(path.join('d', 'b.txt'));

@@ -72,7 +72,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.silent ? ['--silent'] : []),
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
-        ...(options.maxWorkers ? ['--maxWorkers', options.maxWorkers]: []),
+        ...(options.maxWorkers ? ['--maxWorkers', options.maxWorkers] : []),
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
         // Only include the positional args if `options._` wasn't specified
         // (to avoid possibly including them twice)

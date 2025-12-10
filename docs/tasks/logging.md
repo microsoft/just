@@ -1,14 +1,10 @@
----
-id: logging
-title: Logging
-sidebar_label: Logging
----
+# Logging
 
 `just-task` is simple, but it is opinionated. One of the built-in capabilities of `just-task` is logging. We feel that this is an important enough of a feature to be available by the library.
 
 Typically, logging tasks look like the following:
 
-![](../assets/typical.png)
+![typical task logs](../assets/typical.png)
 
 ## Usage
 
@@ -24,7 +20,7 @@ task('needsLogging', function () {
 
 If you want to log an error or warning do it with the `logger` object's `warn()` and `error()` functions. It looks like this following:
 
-![](../assets/failure.png)
+![task failure logs](../assets/failure.png)
 
 ```js
 const { task, logger } = require('just-task');

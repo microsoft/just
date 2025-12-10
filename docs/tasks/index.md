@@ -1,8 +1,4 @@
----
-id: getting-started
-title: Getting Started with Just
-sidebar_label: Getting Started
----
+# Getting started
 
 `Just` simplifies your life in managing build tasks. It stands on the shoulders of excellent and well tested libraries: undertaker, yargs, and plop.js. We encourage developers to make `just-scripts` available locally instead of installing `just-scripts` as a global tool.
 
@@ -10,7 +6,7 @@ sidebar_label: Getting Started
 npm i -D just-scripts
 ```
 
-## Defining Tasks
+## Defining tasks
 
 Place some task definitions inside `just.config.js` in your root folder (next to package.json):
 
@@ -25,7 +21,7 @@ task('sayhello', function () {
 });
 ```
 
-## Defining Tasks in Style with TypeScript
+## Defining tasks in style with TypeScript
 
 1. Install `ts-node` and `typescript`:
 
@@ -46,7 +42,7 @@ task('sayhello', function () {
 });
 ```
 
-## Run It!
+## Run it!
 
 Then run it! It is best to either place `just` inside a npm run script or run it with `npx`:
 

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": true,
+    "moduleResolution": "bundler",
+    "module": "es2020",
+    "types": ["node"]
+  },
+  "include": [".vuepress/**/*"]
+}

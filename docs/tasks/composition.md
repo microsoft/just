@@ -1,8 +1,4 @@
----
-id: composition
-title: Composition of tasks
-sidebar_label: Composition of tasks
----
+# Composition of tasks
 
 Once a project gets a bit more complex, a build step might consist of multiple sub tasks. This can be achieved with composition. This is the main reason `just-task` was made. It simplifies the composition of tasks.
 
