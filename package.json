@@ -27,7 +27,7 @@
     "node": ">=14"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "7.52.9",
+    "@microsoft/api-extractor": "7.55.2",
     "@types/fs-extra": "^11.0.0",
     "@types/jest": "^29.4.0",
     "@types/mock-fs": "^4.13.1",
