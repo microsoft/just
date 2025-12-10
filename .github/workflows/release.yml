@@ -71,7 +71,7 @@ jobs:
 
       - name: Build doc site
         working-directory: docs
-        run: yarn docs
+        run: yarn build
 
       - name: Upload site as artifact
         id: deployment
