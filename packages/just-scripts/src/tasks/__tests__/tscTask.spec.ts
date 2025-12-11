@@ -1,14 +1,22 @@
 import * as mockfs from 'mock-fs';
-import { encodeArgs, exec, spawn } from 'just-scripts-utils';
+import { encodeArgs, exec, spawn } from '../../utils';
 import { TaskFunction } from 'just-task';
 import { tscTask, tscWatchTask, TscTaskOptions } from '../tscTask';
 import { callTaskForTest } from './callTaskForTest';
 import { normalizeCmdArgsForTest } from './normalizeCmdArgsForTest';
 
 // Jest will hoist these before the imports above, so these modules will be mocked first
-jest.mock('just-scripts-utils/lib/exec', () => {
-  const { mockExecFactory } = require('./mockExecFactory');
-  return mockExecFactory();
+jest.mock('../../utils', () => {
+  const originalModule = jest.requireActual('../../utils');
+  return {
+    // Use real implementation of most exports
+    ...originalModule,
+    // Spy on encodeArgs, but keep its original implementation
+    encodeArgs: jest.fn((cmdArgs: string[]) => originalModule.encodeArgs(cmdArgs)).mockName('encodeArgs'),
+    // Don't exec or spawn anything
+    exec: jest.fn(() => Promise.resolve()).mockName('exec'),
+    spawn: jest.fn(() => Promise.resolve()).mockName('spawn'),
+  };
 });
 jest.mock('just-task/lib/logger');
 

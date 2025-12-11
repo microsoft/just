@@ -1,5 +1,5 @@
 import { mergePackageJson, _shouldUpdateDep } from '../mergePackageJson';
-import { PackageJson } from '../interfaces/PackageJson';
+import { PackageJson } from '../../interfaces/PackageJson';
 
 describe('_shouldUpdateDep', () => {
   it('returns true if old version is undefined', () => {

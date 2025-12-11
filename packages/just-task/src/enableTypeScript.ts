@@ -1,5 +1,5 @@
 import { resolve } from './resolve';
-import { logger } from 'just-task-logger';
+import { logger } from './logger';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function enableTypeScript({ transpileOnly = true, esm = false }): void {

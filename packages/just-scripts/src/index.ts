@@ -43,4 +43,4 @@ export { copyInstructions };
 
 export * from 'just-task';
 
-export { spawn } from 'just-scripts-utils';
+export { encodeArgs, spawn } from './utils';

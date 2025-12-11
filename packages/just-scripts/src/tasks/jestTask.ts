@@ -1,5 +1,5 @@
 import { resolve, logger, resolveCwd, TaskFunction, argv } from 'just-task';
-import { spawn, encodeArgs, readPackageJson } from 'just-scripts-utils';
+import { spawn, encodeArgs, readPackageJson } from '../utils';
 import { existsSync } from 'fs';
 import * as supportsColor from 'supports-color';
 

@@ -3,7 +3,7 @@ import * as path from 'path';
 
 import { argv } from './option';
 import { resolve } from './resolve';
-import { mark, logger } from 'just-task-logger';
+import { mark, logger } from './logger';
 import { enableTypeScript } from './enableTypeScript';
 import yargsParser = require('yargs-parser');
 import { TaskFunction } from './interfaces';

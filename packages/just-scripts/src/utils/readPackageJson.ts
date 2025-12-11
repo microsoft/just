@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { PackageJson } from './interfaces/PackageJson';
+import { PackageJson } from '../interfaces/PackageJson';
 import fse = require('fs-extra');
 
 /**

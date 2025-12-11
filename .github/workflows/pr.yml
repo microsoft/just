@@ -39,7 +39,7 @@ jobs:
 
       - run: yarn lint
 
-      - run: yarn lage build test api
+      - run: yarn lage build test api --verbose
 
       - name: Check for modified files
         uses: ecraig12345/beachball-actions/check-for-modified-files@9b56d6fd4983b949be3313f95846788edb738c9b # v1
