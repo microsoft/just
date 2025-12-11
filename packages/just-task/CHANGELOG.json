@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Thu, 11 Dec 2025 17:20:54 GMT",
+      "version": "1.13.0",
+      "tag": "just-task_v1.13.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task",
+            "commit": "9f2ae785ea8288e0dd60c4e684a17858c2d67902",
+            "comment": "Merge just-task-logger into this package"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 28 Mar 2025 08:01:48 GMT",
       "version": "1.12.0",
       "tag": "just-task_v1.12.0",

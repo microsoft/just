@@ -2,6 +2,27 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 11 Dec 2025 17:20:54 GMT",
+      "version": "2.5.0",
+      "tag": "just-scripts_v2.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "9f2ae785ea8288e0dd60c4e684a17858c2d67902",
+            "comment": "Merge just-scripts-utils into this package"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-task to v1.13.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 10 Dec 2025 20:30:20 GMT",
       "version": "2.4.2",
       "tag": "just-scripts_v2.4.2",

@@ -1,8 +1,17 @@
 # Change Log - just-scripts
 
-<!-- This log was last generated on Mon, 27 Oct 2025 18:08:47 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 11 Dec 2025 17:20:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.5.0
+
+Thu, 11 Dec 2025 17:20:54 GMT
+
+### Minor changes
+
+- Merge just-scripts-utils into this package (elcraig@microsoft.com)
+- Bump just-task to v1.13.0
 
 ## 2.4.2
 

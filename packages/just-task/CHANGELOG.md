@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-<!-- This log was last generated on Fri, 28 Mar 2025 08:01:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 11 Dec 2025 17:20:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.13.0
+
+Thu, 11 Dec 2025 17:20:54 GMT
+
+### Minor changes
+
+- Merge just-task-logger into this package (elcraig@microsoft.com)
 
 ## 1.12.0
 
