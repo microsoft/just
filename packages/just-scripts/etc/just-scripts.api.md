@@ -278,8 +278,8 @@ export interface JestTaskOptions {
     silent?: boolean;
     // (undocumented)
     testNamePattern?: string;
-    // (undocumented)
     testPathPattern?: string;
+    testPathPatterns?: string;
     // (undocumented)
     u?: boolean;
     // (undocumented)
