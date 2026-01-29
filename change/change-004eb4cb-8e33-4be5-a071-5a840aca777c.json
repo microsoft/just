@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "minor",
+      "comment": "Adding support for jest 30 testNamePatterns (plural) option",
+      "packageName": "just-scripts",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
