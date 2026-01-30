@@ -14,7 +14,15 @@ export interface JestTaskOptions {
   passWithNoTests?: boolean;
   clearCache?: boolean;
   silent?: boolean;
+  /**
+   * This is not available in jest 30+
+   * Consider updating to jest 30 and using testPathPatterns (plural) instead.
+   */
   testPathPattern?: string;
+  /**
+   * Compatible with jest 30+ only
+   */
+  testPathPatterns?: string;
   testNamePattern?: string;
   // The maximum number of workers to use in jest for parallel test execution
   maxWorkers?: number;
@@ -71,6 +79,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.watch ? ['--watch'] : []),
         ...(options.silent ? ['--silent'] : []),
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
+        ...(options.testPathPatterns ? ['--testPathPatterns', options.testPathPatterns] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
         ...(options.maxWorkers ? ['--maxWorkers', options.maxWorkers] : []),
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
