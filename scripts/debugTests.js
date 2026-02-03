@@ -1,14 +1,23 @@
 // @ts-check
+const fs = require('fs');
 const jest = require('jest');
-const { findPackageRoot } = require('workspace-tools');
+const path = require('path');
 
 const args = process.argv.slice(2);
 
+function findPackageRoot(/** @type {string} */ cwd) {
+  let dir = cwd;
+  while (dir !== path.dirname(dir)) {
+    if (fs.existsSync(path.join(dir, 'package.json'))) {
+      return dir;
+    }
+    dir = path.dirname(dir);
+  }
+  throw new Error("Couldn't find the package root from " + cwd);
+}
+
 function start() {
   const packagePath = findPackageRoot(process.cwd());
-  if (!packagePath) {
-    throw new Error('Could not find package.json relative to ' + process.cwd());
-  }
 
   process.chdir(packagePath);
 
