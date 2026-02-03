@@ -42,7 +42,7 @@ jobs:
       - run: yarn lage build test api --verbose
 
       - name: Check for modified files
-        uses: ecraig12345/beachball-actions/check-for-modified-files@9b56d6fd4983b949be3313f95846788edb738c9b # v1
+        uses: microsoft/beachball-actions/check-for-modified-files@cf7d34819ad50dce8894b3ff99a2a7899aefee3d # v3
 
   # The docs have a separate installation using Node 22 due to needing newer dependencies
   docs:
