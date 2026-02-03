@@ -44,8 +44,7 @@
     "prettier": "~3.8.0",
     "syncpack": "^9.0.0",
     "ts-jest": "~29.2.5",
-    "typescript": "~4.5.0",
-    "workspace-tools": "^0.35.2"
+    "typescript": "~4.5.0"
   },
   "resolutions": {
     "es5-ext": "0.10.53",
