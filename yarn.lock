@@ -1998,14 +1998,6 @@ get-stream@^6.0.0:
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-6.0.1.tgz#a262d8eef67aced57c2852ad6167526a43cbf7b7"
   integrity sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==
 
-git-up@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/git-up/-/git-up-7.0.0.tgz#bace30786e36f56ea341b6f69adfd83286337467"
-  integrity sha512-ONdIrbBCFusq1Oy0sC71F5azx8bVkvtZtMJAsv+a6lz5YAmbNnLD6HAB4gptHZVLPR8S2/kVN6Gab7lryq5+lQ==
-  dependencies:
-    is-ssh "^1.4.0"
-    parse-url "^8.1.0"
-
 git-up@^8.1.0:
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/git-up/-/git-up-8.1.1.tgz#06262adadb89a4a614d2922d803a0eda054be8c5"
@@ -2013,13 +2005,6 @@ git-up@^8.1.0:
   dependencies:
     is-ssh "^1.4.0"
     parse-url "^9.2.0"
-
-git-url-parse@^13.0.0:
-  version "13.1.1"
-  resolved "https://registry.yarnpkg.com/git-url-parse/-/git-url-parse-13.1.1.tgz#664bddf0857c6a75b3c1f0ae6239abb08a1486d4"
-  integrity sha512-PCFJyeSSdtnbfhSNRw9Wk96dDCNx+sogTe4YNXeXSJxt7xz5hvXekuRn9JX7m+Mf4OscCu8h+mtAl3+h5Fo8lQ==
-  dependencies:
-    git-up "^7.0.0"
 
 git-url-parse@^16.0.0:
   version "16.1.0"
@@ -3070,13 +3055,6 @@ parse-path@*, parse-path@^7.0.0:
   dependencies:
     protocols "^2.0.0"
 
-parse-url@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/parse-url/-/parse-url-8.1.0.tgz#972e0827ed4b57fc85f0ea6b0d839f0d8a57a57d"
-  integrity sha512-xDvOoLU5XRrcOZvnI6b8zA6n9O9ejNk/GExuz1yBuWUGn9KA97GI6HTs6u02wKara1CeVmZhH+0TZFdWScR89w==
-  dependencies:
-    parse-path "^7.0.0"
-
 parse-url@^9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/parse-url/-/parse-url-9.2.0.tgz#d75da32b3bbade66e4eb0763fb4851d27526b97b"
@@ -3644,20 +3622,7 @@ word-wrap@^1.2.5:
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.5.tgz#d2c45c6dd4fbce621a66f136cbe328afd0410b34"
   integrity sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==
 
-workspace-tools@^0.35.2:
-  version "0.35.3"
-  resolved "https://registry.yarnpkg.com/workspace-tools/-/workspace-tools-0.35.3.tgz#a1ba3c68a997e7f1556485076d89fa95bc26e533"
-  integrity sha512-klwv7VAsrxW+d/CMBIG4B5GbpYBnJiPFy6QTiv8VBEFAM8EBUaVh2MjtHmB8nY5SnW1JzEMnSqjS4i+fVQAcXQ==
-  dependencies:
-    "@yarnpkg/lockfile" "^1.1.0"
-    fast-glob "^3.3.1"
-    git-url-parse "^13.0.0"
-    globby "^11.0.0"
-    jju "^1.4.0"
-    js-yaml "^4.1.0"
-    micromatch "^4.0.0"
-
-workspace-tools@^0.40.2:
+workspace-tools@^0.40.0, workspace-tools@^0.40.2:
   version "0.40.4"
   resolved "https://registry.yarnpkg.com/workspace-tools/-/workspace-tools-0.40.4.tgz#5ef7df8db1224a062e886b1aa3060c4361683b39"
   integrity sha512-iMC556Zi/WZQiTG6V40k1wPLM5gh2+SnF9U+lPUBrWZnX1aZBPVBGJ/ej9RKL6tsvo2S3Dn6b5zJANytoUtrcA==
