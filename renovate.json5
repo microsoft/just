@@ -13,6 +13,12 @@
 
   "packageRules": [
     // new version prints a protest message
-    { "matchPackageNames": ["es5-ext"], "enabled": false }
+    { "matchPackageNames": ["es5-ext"], "enabled": false },
+
+    {
+      // disabled due to > pinned version requiring node 18
+      "matchPackageNames": ["@microsoft/api-extractor"],
+      "enabled": false
+    }
   ]
 }
