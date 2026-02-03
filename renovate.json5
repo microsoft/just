@@ -16,8 +16,8 @@
     { "matchPackageNames": ["es5-ext"], "enabled": false },
 
     {
-      // disabled due to > pinned version requiring node 18
-      "matchPackageNames": ["@microsoft/api-extractor"],
+      // disabled due to > pinned version requiring newer node
+      "matchPackageNames": ["@microsoft/api-extractor", "lage"],
       "enabled": false
     }
   ]
