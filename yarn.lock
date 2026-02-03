@@ -975,11 +975,6 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@types/yoga-layout@1.9.2":
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/@types/yoga-layout/-/yoga-layout-1.9.2.tgz#efaf9e991a7390dc081a0b679185979a83a9639a"
-  integrity sha512-S9q47ByT2pPvD65IvrWp7qppVMpk9WGMbVq9wbWZOHg6tnXSD4vyhao6nOSBwwfDdV2p3Kx9evA9vI+XWTfDvw==
-
 "@typescript-eslint/eslint-plugin@^5.54.1":
   version "5.62.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.62.0.tgz#aeef0328d172b9e37d9bab6dbc13b87ed88977db"
@@ -2028,41 +2023,41 @@ git-url-parse@^16.0.0:
   dependencies:
     git-up "^8.1.0"
 
-glob-hasher-darwin-arm64@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/glob-hasher-darwin-arm64/-/glob-hasher-darwin-arm64-1.2.1.tgz#642de0fc1f8fc92c3d6b5dd54bf0a95c219ff188"
-  integrity sha512-zm9bcLTmrN4WrLn60T6PVs3s3Wp4ebp8nAdtenF5UZ7mWo1V/d/BSVGbp/4HNXZz8oH8FoNNRDfA4irj7O7sYg==
+glob-hasher-darwin-arm64@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/glob-hasher-darwin-arm64/-/glob-hasher-darwin-arm64-1.4.2.tgz#0b5468cd43a57dbcaf46c20d2c6a35065e7d2762"
+  integrity sha512-zqCZDkDrgo86UsEbOV5wnfyAVlNQ85clGt9EV4LlskDmv2aeuHD6dFYU8hLbbQSC7nvd90EWewy1WqvV6KsL7A==
 
-glob-hasher-darwin-x64@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/glob-hasher-darwin-x64/-/glob-hasher-darwin-x64-1.2.1.tgz#85fff7adede9a7b51fec6ebbcbdc01e399dbf4b0"
-  integrity sha512-5/ywPOZaMWHuk6L8SDd5Ndi0cAZTbbrYyTyZsjGAiY7Lo7qsAxtMV5DY19+z1NlO2vhTKbRVnqdS/r7vlhjvjQ==
+glob-hasher-darwin-x64@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/glob-hasher-darwin-x64/-/glob-hasher-darwin-x64-1.4.2.tgz#4dc3a46bd00f6959065f1c104fb4459d2160ae4d"
+  integrity sha512-yEmIQyr6pGj2RG6IxUpOiVbbTm+lw5+L6MqxdPJvp+Z96YSUIo7aOkru0M8lgFGTRh5fQNDWdoHM6kgK8USYrA==
 
-glob-hasher-linux-x64-gnu@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/glob-hasher-linux-x64-gnu/-/glob-hasher-linux-x64-gnu-1.2.1.tgz#3ce5ee596f2610843865edf9290c48230b8059f2"
-  integrity sha512-QBuGYH1av9rPaOKHid0EWwruuEhEaI9T04oM66Q7LpJVFdkmSVaBj/8GJgBnA4UjraBpr7PMM5+5nvxZ/a8u4Q==
+glob-hasher-linux-x64-gnu@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/glob-hasher-linux-x64-gnu/-/glob-hasher-linux-x64-gnu-1.4.2.tgz#213a64c61a3e5b3c3a068220ce282818210536d4"
+  integrity sha512-7TT8Wfkw41zwfvkbZJ3M3QqWR4bR9qLnbSzcMFHrOIpJjdnvKzCzrqfi470S8sPb6dyEVyS7s49eP5YB8cSy5A==
 
-glob-hasher-win32-arm64-msvc@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/glob-hasher-win32-arm64-msvc/-/glob-hasher-win32-arm64-msvc-1.2.1.tgz#a40ba3676e914e9f6e28c1b1ac557fa09191221d"
-  integrity sha512-8ISCz8cpA33yt5TH3DMEVTsZBxozpHuDAg7JOf8zlXElEvLJ6TLkdJyubvG/VRmIzd4S0qtUeLNl9fDh5LHM7Q==
+glob-hasher-win32-arm64-msvc@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/glob-hasher-win32-arm64-msvc/-/glob-hasher-win32-arm64-msvc-1.4.2.tgz#fa4335ab7bcec77ac2175e288c4a079b5a18d1ed"
+  integrity sha512-HyNotx1CF0/7ulND7CnbLoyuykGeMIARJRzJK36WlcgR+BqkSfcPJEbsbk7AsHhaBOtlUWAbEX9MDndcx8uguQ==
 
-glob-hasher-win32-x64-msvc@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/glob-hasher-win32-x64-msvc/-/glob-hasher-win32-x64-msvc-1.2.1.tgz#99c66196f330c9da4f054f405283727bb8715cf0"
-  integrity sha512-sM+7R9/gmhAQ/TjndTqsOLPjCmmxN5jhY42ROvlOoRMgY76dsUn7Hshm1U1ctE/n+4nPEUTD4eEpVERCDaV55A==
+glob-hasher-win32-x64-msvc@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/glob-hasher-win32-x64-msvc/-/glob-hasher-win32-x64-msvc-1.4.2.tgz#17b36bcc7bc1d7dd7607665f635baceb59c83486"
+  integrity sha512-6mKybe2NwFABUA7ZxiiXurD5RXDrrCWwGA53NasfnO4z+hvH5q4jG6YvVhavf6GdTapJi9WwfMHRKvoSQNUxeQ==
 
-glob-hasher@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/glob-hasher/-/glob-hasher-1.2.1.tgz#7b2fd2e11f9053cc4a53f3de6ea934c8ad4d83e4"
-  integrity sha512-Z2d2NN/CYaoJf2Sbsee2thKO2yzc8HfSawFtdJqh9LbvZETRCBquwyAVUFpBSd1g84KUd7rkWI6kFrQt3CmNSg==
+glob-hasher@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/glob-hasher/-/glob-hasher-1.4.2.tgz#ea36aae9cbe76c5add37bbb847be5f378448cc66"
+  integrity sha512-wYeJvOixB9iAzNpY94AgK0JvOdOQ7g30U+PN0LGSH9u0Y0WC+jIwukjMZ1JZiSoNzUSyrvABZYCNhXpZEoJ/8Q==
   optionalDependencies:
-    glob-hasher-darwin-arm64 "1.2.1"
-    glob-hasher-darwin-x64 "1.2.1"
-    glob-hasher-linux-x64-gnu "1.2.1"
-    glob-hasher-win32-arm64-msvc "1.2.1"
-    glob-hasher-win32-x64-msvc "1.2.1"
+    glob-hasher-darwin-arm64 "1.4.2"
+    glob-hasher-darwin-x64 "1.4.2"
+    glob-hasher-linux-x64-gnu "1.4.2"
+    glob-hasher-win32-arm64-msvc "1.4.2"
+    glob-hasher-win32-x64-msvc "1.4.2"
 
 glob-parent@^5.1.2, glob-parent@~5.1.2:
   version "5.1.2"
@@ -2782,13 +2777,12 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
-lage@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/lage/-/lage-2.4.0.tgz#92595f3eda9bc6c0dbb4cadabab9636951a6f0f0"
-  integrity sha512-4c3qgraUIbAwzr+kcdC9PibckR+VE8UdPGgpfFOnPS3Q9SlHACzdbTjIt3TJMf94hBionJBBafau7XdLJ9s+DQ==
+lage@2.14.17:
+  version "2.14.17"
+  resolved "https://registry.yarnpkg.com/lage/-/lage-2.14.17.tgz#0022919de8225010cb1f501ce72f1071c4550ab9"
+  integrity sha512-siTPYicgpWB5n7bLbV08mJL073qTyXHUCgrjBkU3KeMk+V45o77819L2D/6i1AcTGlCm4hS7ZCq1QUPQti0A4A==
   dependencies:
-    glob-hasher "1.2.1"
-    yoga-layout-prebuilt "^1.10.0"
+    glob-hasher "^1.4.2"
   optionalDependencies:
     fsevents "~2.3.2"
 
@@ -3739,13 +3733,6 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
-
-yoga-layout-prebuilt@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/yoga-layout-prebuilt/-/yoga-layout-prebuilt-1.10.0.tgz#2936fbaf4b3628ee0b3e3b1df44936d6c146faa6"
-  integrity sha512-YnOmtSbv4MTf7RGJMK0FvZ+KD8OEe/J5BNnR0GHhD8J/XcG/Qvxgszm0Un6FTHWW4uHlTgP0IztiXQnGyIR45g==
-  dependencies:
-    "@types/yoga-layout" "1.9.2"
 
 zod@3.21.4:
   version "3.21.4"
