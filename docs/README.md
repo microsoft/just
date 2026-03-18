@@ -1,7 +1,7 @@
 ---
 home: true
 heroText: The task library that just works
-tagline: A sensible set of task to build, test, and lint your frontend projects
+tagline: A sensible set of tasks to build, test, and lint your frontend projects
 actions:
   - text: Get Started →
     link: /tasks/
