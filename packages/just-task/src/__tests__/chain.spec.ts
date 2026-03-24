@@ -18,8 +18,8 @@ describe('chain', () => {
     chain('test2').before('test1');
 
     parallel('test1')(() => {
-      expect(test2Function).toBeCalledTimes(1);
-      expect(test1Function).toBeCalledTimes(1);
+      expect(test2Function).toHaveBeenCalledTimes(1);
+      expect(test1Function).toHaveBeenCalledTimes(1);
       expect(callOrder).toEqual([2, 1]);
       done();
     });
@@ -41,8 +41,8 @@ describe('chain', () => {
     chain('test2').after('test1');
 
     parallel('test1')(() => {
-      expect(test2Function).toBeCalledTimes(1);
-      expect(test1Function).toBeCalledTimes(1);
+      expect(test2Function).toHaveBeenCalledTimes(1);
+      expect(test1Function).toHaveBeenCalledTimes(1);
       expect(callOrder).toEqual([1, 2]);
       done();
     });
