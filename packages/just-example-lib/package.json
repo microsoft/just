@@ -1,14 +1,12 @@
 {
-  "name": "example-lib",
-  "private": true,
+  "name": "just-example-lib",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "E2E test for running a task with local just-scripts",
   "main": "index.js",
   "scripts": {
     "build": "just-scripts build"
   },
-  "keywords": [],
-  "author": "",
   "license": "MIT",
   "engines": {
     "node": ">=14"
