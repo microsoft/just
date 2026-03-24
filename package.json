@@ -7,6 +7,12 @@
     "type": "git",
     "url": "https://github.com/microsoft/just"
   },
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "scripts"
+    ]
+  },
   "scripts": {
     "api": "yarn lage api",
     "api:update": "yarn lage api:update",
@@ -49,9 +55,9 @@
   "resolutions": {
     "es5-ext": "0.10.53",
     "kind-of": "^6.0.3",
-    "**/@types/glob/@types/minimatch": "^3.0.0",
-    "**/@types/minimatch/minimatch": "^3.0.0",
-    "**/@types/chokidar/chokidar": "^3.0.0",
+    "@types/glob/@types/minimatch": "^3.0.0",
+    "@types/minimatch/minimatch": "^3.0.0",
+    "@types/chokidar/chokidar": "^3.0.0",
     "@types/node": "^22.0.0"
   },
   "rationale": {
@@ -59,9 +65,9 @@
       "@microsoft/api-extractor": "Pin to newest version that supports node 14"
     },
     "resolutions": {
-      "**/@types/glob/@types/minimatch": "pin to installed minimatch version, not *",
-      "**/@types/minimatch/minimatch": "pin to version matching other minimatch deps, not *",
-      "**/@types/chokidar/chokidar": "pin to version matching other chokidar deps, not *"
+      "@types/glob/@types/minimatch": "pin to installed minimatch version, not *",
+      "@types/minimatch/minimatch": "pin to version matching other minimatch deps, not *",
+      "@types/chokidar/chokidar": "pin to version matching other chokidar deps, not *"
     }
   },
   "syncpack": {
@@ -70,10 +76,5 @@
       "prod"
     ]
   },
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "scripts"
-    ]
-  }
+  "packageManager": "yarn@4.13.0"
 }

@@ -2,9 +2,9 @@ name: PR
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, v3]
   push:
-    branches: [main]
+    branches: [main, v3]
 
 concurrency:
   # For PRs, use the ref (branch) in the concurrency group so that new pushes cancel any old runs.
@@ -33,6 +33,7 @@ jobs:
       - run: yarn --frozen-lockfile
 
       - run: yarn checkchange
+        if: ${{ github.ref != 'refs/heads/v3' && github.base_ref != 'v3' }}
 
       - run: yarn format:check
         if: ${{ matrix.os == 'ubuntu-latest' }}
