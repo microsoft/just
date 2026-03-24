@@ -16,8 +16,9 @@ temp
 .temp
 .cache
 
-docs/.yarn/*
-!docs/.yarn/releases
+.yarn/*
+!.yarn/releases
+docs/.yarn
 
 # Binary files
 *.tgz
