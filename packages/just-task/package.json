@@ -23,7 +23,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=22.18.0"
   },
   "dependencies": {
     "@rushstack/package-deps-hash": "^4.0.0",

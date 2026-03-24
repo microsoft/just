@@ -2,16 +2,16 @@
   "name": "@microsoft/just-docs",
   "version": "1.0.0",
   "private": true,
-  "description": "just doc site, with newer node version",
+  "description": "just doc site",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.18.0"
   },
   "scripts": {
     "build": "vuepress build . --dest dist",
     "dev": "vuepress dev ."
   },
   "devDependencies": {
-    "@types/node": "22",
+    "@types/node": "^22.0.0",
     "@vuepress/bundler-vite": "^2.0.0-rc.26",
     "@vuepress/plugin-search": "^2.0.0-rc.120",
     "@vuepress/theme-default": "^2.0.0-rc.120",
