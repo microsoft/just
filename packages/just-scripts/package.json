@@ -11,9 +11,7 @@
   "license": "MIT",
   "author": "",
   "main": "./lib/index.js",
-  "bin": {
-    "just-scripts": "bin/just-scripts.js"
-  },
+  "bin": "bin/just-scripts.js",
   "scripts": {
     "api": "api-extractor run",
     "api:update": "api-extractor run --local",
