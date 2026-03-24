@@ -4,8 +4,6 @@
 
 ```ts
 
-/// <reference types="node" />
-
 import type * as ApiExtractorTypes from '@microsoft/api-extractor';
 import type { BuildOptions } from 'esbuild';
 import { Configuration } from 'webpack';
@@ -456,7 +454,7 @@ export interface TsLoaderOptions {
 }
 
 // @public (undocumented)
-export const tsOverlay: (overlayOptions?: TsOverlayOptions | undefined) => Partial<Configuration>;
+export const tsOverlay: (overlayOptions?: TsOverlayOptions) => Partial<Configuration>;
 
 // @public (undocumented)
 export interface TsOverlayOptions {
@@ -507,7 +505,7 @@ export { webpackMerge }
 
 // @public (undocumented)
 export const webpackOverlays: {
-    typescript: (overlayOptions?: TsOverlayOptions | undefined) => Partial<Configuration>;
+    typescript: (overlayOptions?: TsOverlayOptions) => Partial<Configuration>;
     html: (options: any) => Partial<Configuration>;
     styles: () => Partial<Configuration>;
     file: () => Partial<Configuration>;

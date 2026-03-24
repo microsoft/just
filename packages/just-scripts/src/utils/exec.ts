@@ -21,7 +21,9 @@ export function exec(
   opts: cp.ExecOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {},
 ): Promise<string | undefined> {
   return new Promise((resolve, reject) => {
-    const child = cp.exec(cmd, opts, (error: ExecError | null, stdout?: string, stderr?: string) => {
+    const child = cp.exec(cmd, opts, (error, stdout, stderr) => {
+      stdout = !stdout || typeof stdout === 'string' ? stdout : stdout.toString();
+      stderr = !stderr || typeof stderr === 'string' ? stderr : stderr.toString();
       if (error) {
         error.stdout = stdout;
         error.stderr = stderr;
