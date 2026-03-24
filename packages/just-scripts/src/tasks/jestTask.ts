@@ -15,12 +15,11 @@ export interface JestTaskOptions {
   clearCache?: boolean;
   silent?: boolean;
   /**
-   * This is not available in jest 30+
-   * Consider updating to jest 30 and using testPathPatterns (plural) instead.
+   * Compatible with jest 29 and below only. Use `testPathPatterns` for jest 30+.
    */
   testPathPattern?: string;
   /**
-   * Compatible with jest 30+ only
+   * Compatible with jest 30+ only. Use `testPathPattern` for jest 29 and below.
    */
   testPathPatterns?: string;
   testNamePattern?: string;
