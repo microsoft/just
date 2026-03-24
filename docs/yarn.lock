@@ -478,7 +478,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@microsoft/just-docs@workspace:."
   dependencies:
-    "@types/node": "npm:22"
+    "@types/node": "npm:^22.0.0"
     "@vuepress/bundler-vite": "npm:^2.0.0-rc.26"
     "@vuepress/plugin-search": "npm:^2.0.0-rc.120"
     "@vuepress/theme-default": "npm:^2.0.0-rc.120"
@@ -912,7 +912,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:22":
+"@types/node@npm:^22.0.0":
   version: 22.19.15
   resolution: "@types/node@npm:22.19.15"
   dependencies:

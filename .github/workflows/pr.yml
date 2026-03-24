@@ -44,7 +44,6 @@ jobs:
       - name: Check for modified files
         uses: microsoft/beachball-actions/check-for-modified-files@cf7d34819ad50dce8894b3ff99a2a7899aefee3d # v3
 
-  # The docs have a separate installation using Node 22 due to needing newer dependencies
   docs:
     name: build docs
 
@@ -55,7 +54,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
         with:
-          node-version-file: docs/.nvmrc
+          node-version-file: .nvmrc
 
       - name: Install docs dependencies
         working-directory: docs
