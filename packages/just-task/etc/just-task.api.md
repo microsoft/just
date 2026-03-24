@@ -4,8 +4,6 @@
 
 ```ts
 
-/// <reference types="node" />
-
 import { Arguments } from 'yargs-parser';
 import { Duplex } from 'stream';
 import type { FSWatcher } from 'chokidar';
