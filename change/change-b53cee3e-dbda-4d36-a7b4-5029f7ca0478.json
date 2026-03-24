@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Require Node 22",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "major",
+      "comment": "Require Node 22",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

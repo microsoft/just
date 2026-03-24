@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=14"
+    "node": ">=22.18.0"
   },
   "devDependencies": {
     "just-scripts": ">=2.5.0 <3.0.0",

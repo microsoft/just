@@ -4,21 +4,17 @@
     "github>microsoft/m365-renovate-config:beachball",
     "github>microsoft/m365-renovate-config:disableEsmVersions",
     "github>microsoft/m365-renovate-config:groupMore",
-    "github>microsoft/m365-renovate-config:groupTypes",
     "github>microsoft/m365-renovate-config:keepFresh",
-    "github>microsoft/m365-renovate-config:restrictNode(14)"
+    "github>microsoft/m365-renovate-config:pinActions",
+    "github>microsoft/m365-renovate-config:restrictNode(22.18.0)",
+    "github>microsoft/m365-renovate-config:scheduleNoisy"
   ],
 
   "labels": ["renovate"],
+  "assignees": ["ecraig12345"],
 
   "packageRules": [
     // new version prints a protest message
-    { "matchPackageNames": ["es5-ext"], "enabled": false },
-
-    {
-      // disabled due to > pinned version requiring newer node
-      "matchPackageNames": ["@microsoft/api-extractor", "lage"],
-      "enabled": false
-    }
+    { "matchPackageNames": ["es5-ext"], "enabled": false }
   ]
 }
