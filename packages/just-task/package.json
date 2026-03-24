@@ -15,12 +15,10 @@
     "just": "bin/just.js"
   },
   "scripts": {
-    "api": "api-extractor run",
-    "api:update": "api-extractor run --local",
-    "build": "tsc",
-    "start": "tsc -w --preserveWatchOutput",
-    "start-test": "jest --watch",
-    "test": "jest"
+    "api": "yarn run -T api-extractor run",
+    "api:update": "yarn run -T api-extractor run --local",
+    "build": "yarn run -T tsc",
+    "test": "yarn run -T jest"
   },
   "engines": {
     "node": ">=22.18.0"
