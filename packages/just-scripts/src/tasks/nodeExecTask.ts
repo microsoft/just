@@ -6,33 +6,39 @@ import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 
 export interface NodeExecTaskOptions {
   /**
-   * Arguments to be passed into a spawn call for webpack dev server. This can be used to do things
-   * like increase the heap space for the JS engine to address out of memory issues.
+   * Arguments to be passed into a spawn call, including the script path to execute.
+   * The script path should be **absolute** to prevent unpredictable resolution.
+   *
+   * **WARNING: If `options.shell` is enabled, do not pass unsanitized user input as `args`.
+   * Any input containing shell metacharacters may be used to trigger arbitrary command execution.**
    */
-  args?: string[];
+  args: string[];
 
   /**
-   * Environment variables to be passed to the webpack-cli
+   * Environment variables to be passed to the spawned process
    */
   env?: NodeJS.ProcessEnv;
 
   /**
-   * Should this nodeExec task be using something like ts-node to execute the binary
+   * Whether to use `ts-node` to execute the script
    */
   enableTypeScript?: boolean;
 
   /**
-   * The tsconfig file to pass to ts-node for Typescript config
+   * tsconfig file path to pass to `ts-node`
    */
   tsconfig?: string;
 
   /**
-   * Transpile the config only
+   * Whether to use `transpileOnly` mode for `ts-node`
    */
   transpileOnly?: boolean;
 
   /**
-   * Custom spawn options
+   * Custom spawn options.
+   *
+   * **WARNING: If the `shell` option is enabled, do not pass unsanitized user input as `args`.
+   * Any input containing shell metacharacters may be used to trigger arbitrary command execution.**
    */
   spawnOptions?: SpawnOptions;
 }
@@ -44,17 +50,19 @@ export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction {
     const tsNodeRegister = resolveCwd('ts-node/register');
     const nodeExecPath = process.execPath;
 
-    if (enableTypeScript && tsNodeRegister) {
-      options.args = options.args || [];
-      options.args.unshift(tsNodeRegister);
-      options.args.unshift('-r');
+    const args = [...(options.args || [])];
+    const env = { ...options.env };
+    const isTS = enableTypeScript && tsNodeRegister;
 
-      options.env = { ...options.env, ...getTsNodeEnv(tsconfig, transpileOnly) };
-      logger.info('Executing [TS]: ' + [nodeExecPath, ...(options.args || [])].join(' '));
-    } else {
-      logger.info('Executing: ' + [nodeExecPath, ...(options.args || [])].join(' '));
+    if (isTS) {
+      args.unshift(tsNodeRegister);
+      args.unshift('-r');
+
+      Object.assign(env, getTsNodeEnv(tsconfig, transpileOnly));
     }
 
-    return spawn(nodeExecPath, options.args, { stdio: 'inherit', env: options.env, ...spawnOptions });
+    logger.info([`Executing${isTS ? ' [TS]' : ''}:`, nodeExecPath, ...args].join(' '));
+
+    return spawn(nodeExecPath, args, { stdio: 'inherit', env, ...spawnOptions });
   };
 }

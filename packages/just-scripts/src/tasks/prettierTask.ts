@@ -16,10 +16,12 @@ export interface PrettierTaskOptions {
   files?: string[] | string;
   ignorePath?: string;
   configPath?: string;
+  check?: boolean;
 }
 
 export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
-  const prettierBin = resolve('prettier/bin-prettier.js');
+  // check v2 or v3 path
+  const prettierBin = resolve('prettier/bin-prettier.js') || resolve('prettier/bin/prettier.cjs');
 
   if (prettierBin) {
     return function prettier() {
@@ -32,7 +34,7 @@ export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
             options.files || path.resolve(process.cwd(), '**', '*.{ts,tsx,js,jsx,json,scss,html,yml,md}'),
           ),
         },
-        check: false,
+        check: !!options.check,
       });
     };
   }
@@ -43,27 +45,7 @@ export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
 }
 
 export function prettierCheckTask(options: PrettierTaskOptions = {}): TaskFunction {
-  const prettierBin = resolve('prettier/bin-prettier.js');
-
-  if (prettierBin) {
-    return function prettierCheck() {
-      return runPrettierAsync({
-        prettierBin,
-        ...{ configPath: options.configPath || undefined },
-        ...{ ignorePath: options.ignorePath || undefined },
-        ...{
-          files: arrayify(
-            options.files || path.resolve(process.cwd(), '**', '*.{ts,tsx,js,jsx,json,scss,html,yml,md}'),
-          ),
-        },
-        check: true,
-      });
-    };
-  }
-
-  return function () {
-    logger.warn('Prettier is not available, ignoring this task');
-  };
+  return prettierTask({ ...options, check: true });
 }
 
 function runPrettierAsync(context: PrettierContext) {
