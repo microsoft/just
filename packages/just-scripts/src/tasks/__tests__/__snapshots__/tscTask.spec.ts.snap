@@ -52,9 +52,9 @@ exports[`tscTask using 'tscTask' function with a combination of switches execs e
 [
   "\${nodeExePath}",
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
-  "--allowJs",
   "--build",
   "tsconfig.json",
+  "--allowJs",
   "--outDir",
   "some/out/path",
 ]
@@ -153,9 +153,9 @@ exports[`tscTask using 'tscWatchTask' function with a boolean 'true' switch exec
 exports[`tscTask using 'tscWatchTask' function with a combination of switches execs expected command 1`] = `
 [
   "\${repoRoot}/node_modules/typescript/lib/tsc.js",
-  "--allowJs",
   "--build",
   "tsconfig.json",
+  "--allowJs",
   "--outDir",
   "some/out/path",
   "--watch",

@@ -91,23 +91,21 @@ function isValidProject(options: TscTaskOptions) {
  * Returns an array of CLI arguments for TSC given the `options`.
  */
 function argsFromOptions(tscCmd: string, options: TscTaskOptions): string[] {
-  const { nodeArgs, ...rest } = options;
+  const { nodeArgs, build, ...rest } = options;
 
-  return [
-    ...(nodeArgs ? nodeArgs : []),
-    ...Object.keys(rest).reduce(
-      (currentArgs, option) => {
-        const optionValue = options[option];
-        if (typeof optionValue === 'string') {
-          return currentArgs.concat(['--' + option, optionValue]);
-        } else if (typeof optionValue === 'boolean' && optionValue) {
-          return currentArgs.concat(['--' + option]);
-        } else if (Array.isArray(optionValue)) {
-          return currentArgs.concat(['--' + option, ...optionValue]);
-        }
-        return currentArgs;
-      },
-      [tscCmd],
-    ),
-  ];
+  const args = [...(nodeArgs || []), tscCmd];
+  // --build must be the first arg if specified
+  const argEntries = [...(build !== undefined ? [['build', build]] : []), ...Object.entries(rest)];
+
+  for (const [option, optionValue] of argEntries) {
+    if (typeof optionValue === 'string') {
+      args.push('--' + option, optionValue);
+    } else if (typeof optionValue === 'boolean' && optionValue) {
+      args.push('--' + option);
+    } else if (Array.isArray(optionValue)) {
+      args.push('--' + option, ...optionValue);
+    }
+  }
+
+  return args;
 }

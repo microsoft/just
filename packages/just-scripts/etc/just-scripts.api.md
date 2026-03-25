@@ -299,7 +299,7 @@ export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction;
 
 // @public (undocumented)
 export interface NodeExecTaskOptions {
-    args?: string[];
+    args: string[];
     enableTypeScript?: boolean;
     env?: NodeJS.ProcessEnv;
     spawnOptions?: SpawnOptions;
@@ -315,6 +315,8 @@ export function prettierTask(options?: PrettierTaskOptions): TaskFunction;
 
 // @public (undocumented)
 export interface PrettierTaskOptions {
+    // (undocumented)
+    check?: boolean;
     // (undocumented)
     configPath?: string;
     // (undocumented)
