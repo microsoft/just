@@ -294,7 +294,7 @@ function lib(): void;
 // @public
 function mergeFiles(sourceFilePaths: string[], destinationFilePath: string): CopyInstruction;
 
-// @public (undocumented)
+// @public
 export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction;
 
 // @public (undocumented)

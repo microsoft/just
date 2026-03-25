@@ -15,7 +15,8 @@ export interface NodeExecTaskOptions {
   args: string[];
 
   /**
-   * Environment variables to be passed to the spawned process
+   * Environment variables to be passed to the spawned process.
+   * Defaults to `process.env`.
    */
   env?: NodeJS.ProcessEnv;
 
@@ -43,6 +44,12 @@ export interface NodeExecTaskOptions {
   spawnOptions?: SpawnOptions;
 }
 
+/**
+ * Create a task to execute a command in a new process.
+ *
+ * **WARNING: If the `shell` option is enabled, do not pass unsanitized user input to this task.
+ * Any input containing shell metacharacters may be used to trigger arbitrary command execution.**
+ */
 export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction {
   return function () {
     const { spawnOptions, enableTypeScript, tsconfig, transpileOnly } = options;
@@ -51,14 +58,14 @@ export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction {
     const nodeExecPath = process.execPath;
 
     const args = [...(options.args || [])];
-    const env = { ...options.env };
+    //  Preserve the default behavior of inheriting process.env if no options are specified
+    let env = options.env ? { ...options.env } : { ...process.env };
     const isTS = enableTypeScript && tsNodeRegister;
 
     if (isTS) {
-      args.unshift(tsNodeRegister);
-      args.unshift('-r');
+      args.unshift('-r', tsNodeRegister);
 
-      Object.assign(env, getTsNodeEnv(tsconfig, transpileOnly));
+      env = { ...env, ...getTsNodeEnv(tsconfig, transpileOnly) };
     }
 
     logger.info([`Executing${isTS ? ' [TS]' : ''}:`, nodeExecPath, ...args].join(' '));
