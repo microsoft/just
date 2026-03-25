@@ -1,7 +1,6 @@
 import { undertaker } from './undertaker';
 import { wrapTask } from './wrapTask';
 import { TaskFunction } from './interfaces';
-import { registerCachedTask } from './cache';
 
 export function task(
   firstParam: string | TaskFunction,
@@ -16,9 +15,6 @@ export function task(
     // task('default', 'build');
 
     const wrapped = wrapTask(undertaker.series(secondParam));
-    wrapped.cached = () => {
-      registerCachedTask(firstParam);
-    };
 
     undertaker.task(firstParam, wrapped);
 
@@ -27,9 +23,6 @@ export function task(
     // task('pretter', prettierTask());
     // task('custom', () => { ... });
     const wrapped = wrapTask(secondParam as TaskFunction) as TaskFunction;
-    wrapped.cached = () => {
-      registerCachedTask(firstParam);
-    };
 
     undertaker.task(firstParam, wrapped);
 
@@ -37,9 +30,6 @@ export function task(
   } else if (argCount === 3 && isString(firstParam) && isString(secondParam) && isTaskFunction(thirdParam)) {
     // task('custom', 'describes this thing', () => { ... })
     const wrapped = wrapTask(thirdParam);
-    wrapped.cached = () => {
-      registerCachedTask(firstParam);
-    };
 
     wrapped.description = secondParam;
 

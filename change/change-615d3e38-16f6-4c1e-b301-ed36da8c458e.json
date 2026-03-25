@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Remove no-op clearCache from cleanTask",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "minor",
+      "comment": "Remove remains of caching code that was no longer being used (APIs are kept but deprecated until next major version)",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

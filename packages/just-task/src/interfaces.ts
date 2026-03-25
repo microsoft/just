@@ -12,6 +12,7 @@ export interface TaskContext {
 
 export interface TaskFunction extends TaskFunctionParams {
   (this: TaskContext, done: (error?: any) => void): void | Duplex | NodeJS.Process | Promise<never> | any;
+  /** @deprecated Task caching has been removed. This property is a no-op. */
   cached?: () => void;
   description?: string;
 }
