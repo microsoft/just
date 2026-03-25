@@ -25,3 +25,4 @@ docs/.yarn/*
 *.gz
 
 package-lock.json
+.claude/settings.local.json

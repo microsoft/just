@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Deprecate misleadingly named `encodeArgs` function. For more complete escaping, consider a library such as `shell-quote`, or use safer APIs which don't require escaping. (Note that `spawn` from this package now uses `cross-spawn` which escapes spaces internally.)",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { resolve, logger, resolveCwd, TaskFunction, argv } from 'just-task';
-import { spawn, encodeArgs, readPackageJson } from '../utils';
+import { spawn, readPackageJson, logNodeCommand } from '../utils';
 import { existsSync } from 'fs';
 import * as supportsColor from 'supports-color';
 
@@ -62,7 +62,6 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
 
     if ((configFileExists || packageConfigExists) && jestCmd) {
       logger.info(`Running Jest`);
-      const cmd = process.execPath;
 
       const positional = argv()._.slice(1);
 
@@ -88,12 +87,12 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options._ || positional),
       ].filter(arg => !!arg) as string[];
 
-      logger.info(cmd, encodeArgs(args).join(' '));
+      logNodeCommand(args);
 
-      return spawn(cmd, args, { stdio: 'inherit', env: options.env });
-    } else {
-      logger.warn('no jest configuration found, skipping jest');
-      return Promise.resolve();
+      return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
     }
+
+    logger.warn('no jest configuration found, skipping jest');
+    return undefined;
   };
 }

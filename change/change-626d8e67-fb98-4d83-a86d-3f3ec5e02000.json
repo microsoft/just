@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "minor",
+      "comment": "Deprecate `spawn` helper (consider using `execa` instead). As a short-term improvement, it's updated to internally use `cross-spawn` for handling spaces in arguments and other basic normalization. (Also remove internal `exec` function and its usage, including in `tscTask`.)",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

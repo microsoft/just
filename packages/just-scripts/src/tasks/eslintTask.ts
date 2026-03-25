@@ -1,5 +1,5 @@
-import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
-import { encodeArgs, spawn } from '../utils';
+import { resolve, resolveCwd, TaskFunction } from 'just-task';
+import { logNodeCommand, spawn } from '../utils';
 import * as fs from 'fs';
 
 /**
@@ -95,10 +95,10 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         env.ESLINT_USE_FLAT_CONFIG = JSON.stringify(useFlatConfig);
       }
 
-      logger.info(encodeArgs(eslintArgs).join(' '));
+      logNodeCommand(eslintArgs);
       return spawn(process.execPath, eslintArgs, { stdio: 'inherit', env });
-    } else {
-      return Promise.resolve();
     }
+
+    return undefined;
   };
 }

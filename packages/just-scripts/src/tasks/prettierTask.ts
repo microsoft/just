@@ -1,5 +1,5 @@
 import { logger, resolve, TaskFunction } from 'just-task';
-import { spawn } from '../utils';
+import { logNodeCommand, spawn } from '../utils';
 import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
 import * as path from 'path';
 import { arrayify } from '../arrayUtils/arrayify';
@@ -63,7 +63,7 @@ function runPrettierAsync(context: PrettierContext) {
       ...chunk,
     ];
 
-    logger.info(process.execPath + ' ' + prettierArgs.join(' '));
+    logNodeCommand(prettierArgs);
 
     return finishPromise.then(() => spawn(process.execPath, prettierArgs, { stdio: 'inherit' }));
   }, Promise.resolve());

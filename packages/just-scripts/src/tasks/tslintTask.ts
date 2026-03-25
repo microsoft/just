@@ -1,7 +1,7 @@
 import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
-import { exec, encodeArgs } from '../utils';
 import * as path from 'path';
 import * as fs from 'fs';
+import { logNodeCommand, spawn } from '../utils';
 
 export interface TsLintTaskOptions {
   config?: string;
@@ -12,7 +12,7 @@ export interface TsLintTaskOptions {
 export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
   const projectFile = options.project || resolveCwd('./tsconfig.json');
 
-  return function tslint() {
+  return async function tslint() {
     const tslintCmd = resolve('tslint/lib/tslintCli.js');
 
     if (projectFile && tslintCmd && fs.existsSync(projectFile)) {
@@ -31,11 +31,11 @@ export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
         args.push('--fix');
       }
 
-      const cmd = encodeArgs([process.execPath, tslintCmd, ...args]).join(' ');
-      logger.info(cmd);
-      return exec(cmd, { stdout: process.stdout, stderr: process.stderr });
-    } else {
-      return Promise.resolve();
+      const allArgs = [tslintCmd, ...args];
+      logNodeCommand(allArgs);
+      return spawn(process.execPath, allArgs, { stdio: 'inherit' });
     }
+
+    return undefined;
   };
 }

@@ -1,90 +1,69 @@
-import { encodeArgs, exec, ExecError } from '../exec';
-import { Readable } from 'stream';
 import * as cp from 'child_process';
+import * as path from 'path';
+import { encodeArgs, spawn } from '../exec';
+import { getMockScript } from '../../__tests__/getMockScript';
+import { MockOutputStream } from '../../__tests__/MockOutputStream';
+import { fail } from 'assert';
 
 describe('encodeArgs', () => {
   it('encodes things with spaces with double quotes', () => {
     const args = encodeArgs(['blah blah']);
-    expect(args[0]).toBe('"blah blah"');
-  });
-
-  it('encodes Windows-like paths', () => {
-    const args = encodeArgs(['C:\\Program Files\\node\\bin\\node.exe']);
-    expect(args[0]).toBe('"C:\\Program Files\\node\\bin\\node.exe"');
+    expect(args).toEqual(['"blah blah"']);
   });
 
   it('leaves normal args alone', () => {
     const args = encodeArgs(['this-is-normal']);
-    expect(args[0]).toBe('this-is-normal');
+    expect(args).toEqual(['this-is-normal']);
   });
 });
 
-describe('exec', () => {
-  let execResult: [cp.ExecException | null, string | undefined, string | undefined] | undefined;
-  const stdoutPipe = jest.fn();
-  const stderrPipe = jest.fn();
-  beforeAll(() => {
-    jest.spyOn(cp, 'exec').mockImplementation((_cmd: string, _opts: any, callback: any): cp.ChildProcess => {
-      setTimeout(() => {
-        callback(...execResult!);
-      }, 0);
-      return {
-        stdout: { pipe: stdoutPipe } as any as Readable,
-        stderr: { pipe: stderrPipe } as any as Readable,
-      } as any;
-    });
-  });
+describe('spawn', () => {
+  const spawnSpy = jest.spyOn(cp, 'spawn');
 
   afterEach(() => {
-    execResult = undefined;
-    jest.clearAllMocks();
+    spawnSpy.mockClear();
   });
 
-  afterAll(() => {
-    jest.restoreAllMocks();
+  it('handles success case', async () => {
+    const stdout = new MockOutputStream();
+    await spawn(process.execPath, [getMockScript('mock-success.js')], { stdout });
+    expect(stdout.getOutput()).toContain('hello\n');
   });
 
-  it('handles success case', () => {
-    execResult = [null, 'success', undefined];
-    return exec('something', {}).then((result: string | undefined) => {
-      expect(result).toBe('success');
-    });
+  it('rejects promise if command does not exist', async () => {
+    try {
+      await spawn(path.join(__dirname, 'nope'));
+      fail('should have rejected');
+    } catch (err) {
+      expect((err as any).code).toBe('ENOENT');
+    }
   });
 
-  it('handles error case', () => {
-    const error: cp.ExecException = new Error('error');
-    error.code = 3;
-    execResult = [error, 'log message', 'oh no'];
-    let succeeded = false;
-    return exec('something', {})
-      .then(
-        () => {
-          succeeded = true;
-        },
-        (result: ExecError) => {
-          expect(result.stdout).toBe('log message');
-          expect(result.stderr).toBe('oh no');
-          expect(result.message).toBe('error');
-          expect(result.code).toBe(3);
-        },
-      )
-      .catch(() => {
-        // If this fails, it means the promise was resolved not rejected
-        expect(succeeded).toBe(false);
-      });
+  it('handles non-zero exit code', async () => {
+    const stderr = new MockOutputStream();
+    try {
+      await spawn(process.execPath, [getMockScript('mock-fail.js')], { stderr });
+      fail('should have rejected');
+    } catch (error) {
+      expect((error as Error).message).toContain('Command failed');
+      expect((error as any).code).toBe(1);
+      // in the debugger there are some extra stderr chunks
+      expect(stderr.getOutput()).toContain('oh no\n');
+    }
   });
 
-  it('pipes stdout', async () => {
-    execResult = [null, 'success', undefined];
-    await exec('something', { stdout: process.stdout });
-    expect(stdoutPipe).toHaveBeenCalled();
-    expect(stderrPipe).toHaveBeenCalledTimes(0);
-  });
-
-  it('pipes stderr', async () => {
-    execResult = [null, 'success', undefined];
-    await exec('something', { stderr: process.stderr });
-    expect(stderrPipe).toHaveBeenCalled();
-    expect(stdoutPipe).toHaveBeenCalledTimes(0);
+  // TODO: in newer node, also test with spawn's signal option
+  it('handles signal', async () => {
+    const promise = spawn(process.execPath, [getMockScript('mock-forever.js')]);
+    const child = spawnSpy.mock.results[0].value as cp.ChildProcess;
+    expect(child).toBeTruthy();
+    try {
+      child.kill('SIGTERM');
+      await promise;
+      fail('should have rejected');
+    } catch (err) {
+      expect((err as Error).message).toContain('Command terminated by signal SIGTERM');
+      expect((err as any).signal).toBe('SIGTERM');
+    }
   });
 });
