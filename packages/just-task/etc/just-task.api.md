@@ -10,7 +10,7 @@ import type { FSWatcher } from 'chokidar';
 import type { Stats } from 'fs';
 import { TaskFunction as TaskFunction_2 } from 'undertaker';
 import { TaskFunctionParams } from 'undertaker';
-import Undertaker = require('undertaker');
+import Undertaker from 'undertaker';
 import type { WatchOptions } from 'chokidar';
 
 // @public
