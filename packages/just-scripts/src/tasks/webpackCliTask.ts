@@ -1,7 +1,5 @@
 import { logger, TaskFunction, resolve } from 'just-task';
 import { logNodeCommand, spawn } from '../utils';
-import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
-import { findWebpackConfig } from '../webpack/findWebpackConfig';
 
 export interface WebpackCliTaskOptions {
   /**
@@ -19,16 +17,6 @@ export interface WebpackCliTaskOptions {
    * Environment variables to be passed to the webpack-cli
    */
   env?: NodeJS.ProcessEnv;
-
-  /**
-   * The tsconfig file to pass to ts-node for Typescript config
-   */
-  tsconfig?: string;
-
-  /**
-   * Transpile the config only
-   */
-  transpileOnly?: boolean;
 }
 
 /**
@@ -49,23 +37,6 @@ export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunctio
       webpackCliCmd,
       ...(options && options.webpackCliArgs ? options.webpackCliArgs : []),
     ];
-
-    let configPath = findWebpackConfig('webpack.config.js');
-
-    if (configPath) {
-      options.env = {
-        ...options.env,
-        ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)),
-      };
-    }
-
-    if (options.webpackCliArgs) {
-      const configIndex = options.webpackCliArgs.indexOf('--config');
-      const configPathAvailable = configIndex > -1 && options.webpackCliArgs.length > configIndex + 2;
-      if (configPathAvailable) {
-        configPath = options.webpackCliArgs[configIndex + 1];
-      }
-    }
 
     logNodeCommand(args);
 

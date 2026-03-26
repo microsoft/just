@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Remove `enableTypeScript`, `tsconfig`, and `transpileOnly` options from `nodeExecTask` and `webpack*` tasks; remove `getTsNodeEnv` helper",
+      "packageName": "just-scripts",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

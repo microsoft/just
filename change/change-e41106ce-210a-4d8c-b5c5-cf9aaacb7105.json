@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Remove `ts-node` support and `--esm` CLI option; require Node.js 22.18+ native TypeScript type-stripping",
+      "packageName": "just-task",
+      "email": "email not defined",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

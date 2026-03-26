@@ -5,7 +5,6 @@ import { resolve, resolveCwd, TaskFunction } from 'just-task';
 import * as fs from 'fs';
 import * as path from 'path';
 import { WebpackCliTaskOptions } from './webpackCliTask';
-import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 import * as semver from 'semver';
 
@@ -35,16 +34,6 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
    * Environment variables to be passed to the spawned process of webpack-dev-server
    */
   env?: { [key: string]: string | undefined };
-
-  /**
-   * The tsconfig file to pass to ts-node for Typescript config
-   */
-  tsconfig?: string;
-
-  /**
-   * Transpile the config only
-   */
-  transpileOnly?: boolean;
 }
 
 export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}): TaskFunction {
@@ -75,10 +64,6 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}):
 
     if (configPath && fs.existsSync(configPath)) {
       args = [...args, '--config', configPath];
-      options.env = {
-        ...options.env,
-        ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)),
-      };
     }
 
     if (options.open) {
