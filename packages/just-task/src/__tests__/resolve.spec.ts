@@ -10,7 +10,7 @@ import {
 } from '../resolve';
 import * as option from '../option';
 import * as config from '../config';
-import * as mockfs from 'mock-fs';
+import mockfs from 'mock-fs';
 
 describe('_isFileNameLike', () => {
   it('returns false for empty input', () => {

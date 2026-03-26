@@ -470,9 +470,6 @@ export interface TsOverlayOptions {
 function webapp(): void;
 
 // @public
-export function webpackCliInitTask(customScaffold?: string, auto?: boolean): TaskFunction;
-
-// @public
 export function webpackCliTask(options?: WebpackCliTaskOptions): TaskFunction;
 
 // @public (undocumented)

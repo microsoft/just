@@ -1,9 +1,19 @@
-import * as cp from 'child_process';
+import type * as cp from 'child_process';
 import * as path from 'path';
-import { encodeArgs, spawn } from '../exec';
 import { getMockScript } from '../../__tests__/getMockScript';
 import { MockOutputStream } from '../../__tests__/MockOutputStream';
 import { fail } from 'assert';
+
+// Mock child_process so we can spy on spawn calls from cross-spawn
+const realCp = jest.requireActual<typeof cp>('child_process');
+const cpSpawnMock = jest.fn((...args: Parameters<typeof cp.spawn>) => realCp.spawn(...args)) as jest.Mock &
+  typeof cp.spawn;
+jest.mock('child_process', () => {
+  const original = jest.requireActual<typeof cp>('child_process');
+  return { ...original, spawn: cpSpawnMock };
+});
+
+import { encodeArgs, spawn } from '../exec';
 
 describe('encodeArgs', () => {
   it('encodes things with spaces with double quotes', () => {
@@ -18,10 +28,8 @@ describe('encodeArgs', () => {
 });
 
 describe('spawn', () => {
-  const spawnSpy = jest.spyOn(cp, 'spawn');
-
   afterEach(() => {
-    spawnSpy.mockClear();
+    cpSpawnMock.mockClear();
   });
 
   it('handles success case', async () => {
@@ -55,7 +63,7 @@ describe('spawn', () => {
   // TODO: in newer node, also test with spawn's signal option
   it('handles signal', async () => {
     const promise = spawn(process.execPath, [getMockScript('mock-forever.js')]);
-    const child = spawnSpy.mock.results[0].value as cp.ChildProcess;
+    const child = cpSpawnMock.mock.results[0].value as cp.ChildProcess;
     expect(child).toBeTruthy();
     try {
       child.kill('SIGTERM');

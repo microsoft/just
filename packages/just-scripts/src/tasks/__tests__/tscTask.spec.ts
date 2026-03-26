@@ -1,6 +1,4 @@
-import * as mockfs from 'mock-fs';
-import { spawn } from '../../utils';
-import { tscTask, tscWatchTask } from '../tscTask';
+import mockfs from 'mock-fs';
 import { callTaskForTest } from './callTaskForTest';
 import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
 
@@ -15,6 +13,10 @@ jest.mock('../../utils/exec', () => {
   };
 });
 jest.mock('just-task/lib/logger');
+
+// Must be imported after jest.mock() calls for the mocks to take effect
+import { spawn } from '../../utils';
+import { tscTask, tscWatchTask } from '../tscTask';
 
 const mockSpawn = spawn as jest.MockedFunction<typeof spawn>;
 

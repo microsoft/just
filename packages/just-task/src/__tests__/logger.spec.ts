@@ -1,5 +1,5 @@
 import { logger } from '../logger';
-import chalk = require('chalk');
+import chalk from 'chalk';
 
 describe('logger', () => {
   const fakeTime = new Date().toLocaleTimeString();
