@@ -85,7 +85,8 @@ export function sassTask(
                       .then((result: { css: string }) => {
                         fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, result.css));
                         resolve();
-                      });
+                      })
+                      .catch(reject);
                   }
                 },
               );

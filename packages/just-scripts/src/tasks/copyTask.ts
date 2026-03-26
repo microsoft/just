@@ -68,9 +68,11 @@ export function copyTask(
                 fse.mkdirpSync(path.dirname(destPath));
               }
 
-              readStream.pipe(fse.createWriteStream(destPath));
+              const writeStream = fse.createWriteStream(destPath);
+              readStream.pipe(writeStream);
               readStream.on('error', err => reject(err));
-              readStream.on('end', () => resolve());
+              writeStream.on('error', err => reject(err));
+              writeStream.on('finish', () => resolve());
             }),
         );
       });
