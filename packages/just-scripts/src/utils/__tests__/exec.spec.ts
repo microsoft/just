@@ -1,3 +1,4 @@
+import { describe, expect, it, jest, afterEach } from '@jest/globals';
 import * as cp from 'child_process';
 import * as path from 'path';
 import { encodeArgs, spawn } from '../exec';

@@ -1,3 +1,4 @@
+import { expect, jest } from '@jest/globals';
 import * as path from 'path';
 import type { spawn } from '../../utils/exec';
 
