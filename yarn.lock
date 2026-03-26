@@ -4036,6 +4036,41 @@ __metadata:
     semver: "npm:^7.0.0"
     supports-color: "npm:^8.1.0"
     webpack-merge: "npm:^5.7.3"
+  peerDependencies:
+    "@microsoft/api-extractor": ">=7.0.0"
+    "@webpack-cli/init": ">=1.0.0"
+    autoprefixer: ">=9.0.0"
+    fork-ts-checker-webpack-plugin: ">=4.0.0"
+    html-webpack-plugin: ">=4.0.0"
+    node-sass: ">=4.0.0"
+    postcss: ">=8.0.0"
+    postcss-clean: ">=1.0.0"
+    postcss-rtl: ">=1.0.0"
+    sass: ">=1.0.0"
+    webpack: ">=4.0.0"
+  peerDependenciesMeta:
+    "@microsoft/api-extractor":
+      optional: true
+    "@webpack-cli/init":
+      optional: true
+    autoprefixer:
+      optional: true
+    fork-ts-checker-webpack-plugin:
+      optional: true
+    html-webpack-plugin:
+      optional: true
+    node-sass:
+      optional: true
+    postcss:
+      optional: true
+    postcss-clean:
+      optional: true
+    postcss-rtl:
+      optional: true
+    sass:
+      optional: true
+    webpack:
+      optional: true
   bin:
     just-scripts: bin/just-scripts.js
   languageName: unknown
