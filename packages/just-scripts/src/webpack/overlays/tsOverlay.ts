@@ -52,7 +52,7 @@ export interface TsOverlayOptions {
 }
 
 export const tsOverlay = (overlayOptions?: TsOverlayOptions): Partial<Configuration> => {
-  const ForkTsCheckerPlugin = tryRequire('fork-ts-checker-webpack-plugin');
+  const ForkTsCheckerPlugin = tryRequire<typeof import('fork-ts-checker-webpack-plugin')['default']>('fork-ts-checker-webpack-plugin');
 
   overlayOptions = overlayOptions || {};
 

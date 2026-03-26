@@ -32,7 +32,7 @@ export interface WebpackTaskOptions extends Configuration {
 
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   return async function webpack() {
-    const wp: typeof import('webpack') = tryRequire('webpack');
+    const wp = tryRequire<typeof import('webpack')>('webpack');
 
     if (!wp) {
       logger.warn('webpack is not installed, this task no effect');

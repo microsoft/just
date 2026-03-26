@@ -31,9 +31,9 @@ export function sassTask(
   postcssPlugins = postcssPlugins || [];
 
   return function sass(done: (err?: Error) => void) {
-    const sass = tryRequire('sass') || tryRequire('node-sass');
-    const postcss = tryRequire('postcss');
-    const autoprefixer = tryRequire('autoprefixer');
+    const sass = tryRequire<typeof import('sass')>('sass') || tryRequire<typeof import('sass')>('node-sass');
+    const postcss = tryRequire<typeof import('postcss')['default']>('postcss');
+    const autoprefixer = tryRequire<typeof import('autoprefixer')['default']>('autoprefixer');
     const postcssRtl = tryRequire('postcss-rtl');
     const clean = tryRequire('postcss-clean');
 

@@ -1,13 +1,13 @@
 import { resolve } from 'just-task';
 
-export function tryRequire(specifier: string): any {
+export function tryRequire<T = any>(specifier: string): T | null {
   const resolved = resolve(specifier);
 
   if (!resolved) {
     return null;
   }
 
-  let requiredModule = null;
+  let requiredModule: T | null = null;
 
   try {
     requiredModule = require(resolved);

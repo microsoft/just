@@ -25,7 +25,7 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
             loader: 'postcss-loader',
             options: {
               plugins: function () {
-                return [tryRequire('autoprefixer')];
+                return [tryRequire<typeof import('autoprefixer')['default']>('autoprefixer')];
               },
             },
           },

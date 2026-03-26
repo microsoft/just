@@ -139,14 +139,21 @@
     }
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.57.7",
     "@types/cross-spawn": "^6.0.6",
     "@types/diff-match-patch": "^1.0.32",
     "@types/glob": "^7.2.0",
     "@types/prompts": "^2.4.2",
     "@types/run-parallel-limit": "^1.0.0",
-    "@types/supports-color": "^8.1.1",
-    "@types/webpack": "^4.41.33",
+    "@types/tar-fs": "^2.0.4",
     "async-done": "^2.0.0",
-    "esbuild": "^0.9.6"
+    "autoprefixer": "^10.4.27",
+    "esbuild": "^0.27.4",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "html-webpack-plugin": "^5.6.6",
+    "postcss": "^8.5.8",
+    "postcss-clean": "^1.2.2",
+    "sass": "^1.98.0",
+    "webpack": "^5.105.4"
   }
 }

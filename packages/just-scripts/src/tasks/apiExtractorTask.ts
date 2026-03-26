@@ -142,7 +142,7 @@ export function apiExtractorUpdateTask(
  * Returns undefined if api-extractor or the config file couldn't be found.
  */
 function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | undefined {
-  const apiExtractorModule: typeof ApiExtractorTypes = tryRequire('@microsoft/api-extractor');
+  const apiExtractorModule = tryRequire<typeof ApiExtractorTypes>('@microsoft/api-extractor');
 
   if (!apiExtractorModule) {
     logger.warn('@microsoft/api-extractor package not detected. This task will have no effect.');
