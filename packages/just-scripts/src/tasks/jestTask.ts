@@ -1,5 +1,5 @@
 import { resolve, logger, resolveCwd, TaskFunction, argv } from 'just-task';
-import { spawn, encodeArgs, readPackageJson } from '../utils';
+import { spawn, readPackageJson, logNodeCommand } from '../utils';
 import { existsSync } from 'fs';
 import * as supportsColor from 'supports-color';
 
@@ -62,7 +62,6 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
 
     if ((configFileExists || packageConfigExists) && jestCmd) {
       logger.info(`Running Jest`);
-      const cmd = process.execPath;
 
       const positional = argv()._.slice(1);
 
@@ -81,19 +80,20 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
         ...(options.testPathPatterns ? ['--testPathPatterns', options.testPathPatterns] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
-        ...(options.maxWorkers ? ['--maxWorkers', options.maxWorkers] : []),
-        ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
+        ...(options.maxWorkers ? ['--maxWorkers', `${options.maxWorkers}`] : []),
+        ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : []),
         // Only include the positional args if `options._` wasn't specified
         // (to avoid possibly including them twice)
         ...(options._ || positional),
       ].filter(arg => !!arg) as string[];
 
-      logger.info(cmd, encodeArgs(args).join(' '));
+      logNodeCommand(args);
 
-      return spawn(cmd, args, { stdio: 'inherit', env: options.env });
-    } else {
-      logger.warn('no jest configuration found, skipping jest');
-      return Promise.resolve();
+      return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
     }
+
+    logger.warn('no jest configuration found, skipping jest');
+    // undertaker apparently requires returning a promise, async function, or function that calls done()
+    return Promise.resolve();
   };
 }

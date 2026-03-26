@@ -1,5 +1,5 @@
 import { logger, resolve, TaskFunction } from 'just-task';
-import { spawn } from '../utils';
+import { logNodeCommand, spawn } from '../utils';
 import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
 import * as path from 'path';
 import { arrayify } from '../arrayUtils/arrayify';
@@ -39,7 +39,8 @@ export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
     };
   }
 
-  return function () {
+  // undertaker apparently requires returning a promise, async function, or function that calls done()
+  return async () => {
     logger.warn('Prettier is not available, ignoring this task');
   };
 }
@@ -63,7 +64,7 @@ function runPrettierAsync(context: PrettierContext) {
       ...chunk,
     ];
 
-    logger.info(process.execPath + ' ' + prettierArgs.join(' '));
+    logNodeCommand(prettierArgs);
 
     return finishPromise.then(() => spawn(process.execPath, prettierArgs, { stdio: 'inherit' }));
   }, Promise.resolve());

@@ -16,6 +16,8 @@ module.exports = {
       {
         tsconfig: path.join(process.cwd(), 'tsconfig.json'),
         packageJson: path.join(process.cwd(), 'package.json'),
+        // Contrary to the TS option, this means skip type checking within jest
+        isolatedModules: true,
       },
     ],
   },

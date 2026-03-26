@@ -1,5 +1,5 @@
 import { logger, TaskFunction, resolve } from 'just-task';
-import { spawn } from '../utils';
+import { logNodeCommand, spawn } from '../utils';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 
@@ -67,7 +67,7 @@ export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunctio
       }
     }
 
-    logger.info(`webpack-cli arguments: ${process.execPath} ${args.join(' ')}`);
+    logNodeCommand(args);
 
     return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
   };
