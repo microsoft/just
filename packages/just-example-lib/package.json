@@ -12,7 +12,6 @@
     "node": ">=22.18.0"
   },
   "devDependencies": {
-    "just-scripts": "workspace:^",
-    "ts-node": "^10.8.0"
+    "just-scripts": "workspace:^"
   }
 }

@@ -298,11 +298,8 @@ export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction;
 // @public (undocumented)
 export interface NodeExecTaskOptions {
     args: string[];
-    enableTypeScript?: boolean;
     env?: NodeJS.ProcessEnv;
     spawnOptions?: SpawnOptions;
-    transpileOnly?: boolean;
-    tsconfig?: string;
 }
 
 // @public (undocumented)
@@ -479,8 +476,6 @@ export function webpackCliTask(options?: WebpackCliTaskOptions): TaskFunction;
 export interface WebpackCliTaskOptions {
     env?: NodeJS.ProcessEnv;
     nodeArgs?: string[];
-    transpileOnly?: boolean;
-    tsconfig?: string;
     webpackCliArgs?: string[];
 }
 
@@ -499,8 +494,6 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
     mode?: 'production' | 'development';
     nodeArgs?: string[];
     open?: boolean;
-    transpileOnly?: boolean;
-    tsconfig?: string;
 }
 
 export { webpackMerge }
@@ -527,7 +520,6 @@ export interface WebpackTaskOptions extends Configuration {
     env?: NodeJS.ProcessEnv;
     onCompile?: (err: Error, stats: any) => void | Promise<void>;
     outputStats?: boolean | string;
-    transpileOnly?: boolean;
 }
 
 

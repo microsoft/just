@@ -3,7 +3,7 @@ import { nodeExecTask, tscTask, task, parallel, watch } from 'just-scripts';
 task('typescript', tscTask({}));
 task('typescript:watch', tscTask({ watch: true }));
 
-task('customNodeTask', nodeExecTask({ enableTypeScript: true, args: ['./tasks/customTask.ts'] }));
+task('customNodeTask', nodeExecTask({ args: ['./tasks/customTask.ts'] }));
 
 task('build', parallel('customNodeTask', 'typescript'));
 task('watch', parallel('typescript:watch'));

@@ -1,10 +1,8 @@
 import * as fs from 'fs';
-import * as path from 'path';
 
 import { argv } from './option';
 import { resolve } from './resolve';
 import { mark, logger } from './logger';
-import { enableTypeScript } from './enableTypeScript';
 import yargsParser = require('yargs-parser');
 import { TaskFunction } from './interfaces';
 
@@ -13,9 +11,11 @@ export function resolveConfigFile(args: yargsParser.Arguments): string | null {
     args.config,
     './just.config.js',
     './just.config.cjs',
+    './just.config.mjs',
     './just-task.js',
     './just.config.ts',
     './just.config.cts',
+    './just.config.mts',
     args.defaultConfig,
   ]) {
     const configFile = resolve(entry);
@@ -33,12 +33,6 @@ export function readConfig(): { [key: string]: TaskFunction } | void {
   const configFile = resolveConfigFile(args);
 
   if (configFile && fs.existsSync(configFile)) {
-    const ext = path.extname(configFile);
-    if (ext === '.cts' || ext === '.ts' || ext === '.tsx') {
-      // TODO: add option to do typechecking as well
-      enableTypeScript({ transpileOnly: true, esm: args.esm });
-    }
-
     try {
       const configModule = require(configFile);
 

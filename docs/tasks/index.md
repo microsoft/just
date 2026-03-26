@@ -23,13 +23,13 @@ task('sayhello', function () {
 
 ## Defining tasks in style with TypeScript
 
-1. Install `ts-node` and `typescript`:
+Node.js 22.18+ supports running TypeScript natively via [type stripping](https://nodejs.org/docs/latest-v22.x/api/typescript.html#type-stripping). Just takes advantage of this, so you only need `typescript` installed:
 
 ```
-npm i -D ts-node typescript
+npm i -D typescript
 ```
 
-2. Place tasks inside `just.config.ts` in your root folder (next to package.json):
+Place tasks inside `just.config.ts` in your root folder (next to package.json):
 
 ```js
 // ES Module style
