@@ -23,7 +23,7 @@ task('sayhello', function () {
 
 ## Defining tasks in style with TypeScript
 
-Node.js 22.18+ supports running TypeScript natively via [type stripping](https://nodejs.org/docs/latest-v22.x/api/typescript.html#type-stripping). Just takes advantage of this, so you only need `typescript` installed:
+Node.js 22.18+ supports running TypeScript natively via [type stripping](https://nodejs.org/docs/latest-v22.x/api/typescript.html#type-stripping). Just takes advantage of this, so you only need `typescript` installed to make things work in your IDE:
 
 ```
 npm i -D typescript
