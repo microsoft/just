@@ -44,7 +44,8 @@ cd packages/just-task && yarn jest --testPathPattern=cache  # Run specific test 
 
 ### Required before creating a PR
 
-Use `/beachball-change-files` to generate a Beachball change file.
+- Use `/beachball-change-files` to generate a Beachball change file.
+- If you're working on an assigned GitHub issue, include `Fixes #N` in the PR description to link the issue.
 
 ## Architecture
 
