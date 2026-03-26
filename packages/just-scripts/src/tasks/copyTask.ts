@@ -2,7 +2,7 @@ import * as glob from 'glob';
 import * as fse from 'fs-extra';
 import * as path from 'path';
 import { logger, TaskFunction } from 'just-task';
-import parallelLimit = require('run-parallel-limit');
+import pLimit from 'p-limit';
 
 export interface CopyTaskOptions {
   /** Paths to copy */
@@ -35,14 +35,14 @@ export function copyTask(
   }
   limit = limit || 15;
 
-  return function copy(done: (err?: Error) => void) {
+  return async function copy() {
     logger.info(`Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`);
 
     if (!fse.existsSync(dest!)) {
       fse.mkdirpSync(dest!);
     }
 
-    const copyTasks: parallelLimit.Task<void>[] = [];
+    const copyTasks: (() => Promise<void>)[] = [];
 
     function helper(srcPath: string, basePath = '') {
       basePath = basePath || getBasePath(srcPath);
@@ -58,23 +58,27 @@ export function copyTask(
 
         const relativePath = path.relative(basePath, matchedPath);
 
-        copyTasks.push(cb => {
-          const readStream = fse.createReadStream(matchedPath);
-          const destPath = path.join(dest!, relativePath);
+        copyTasks.push(
+          () =>
+            new Promise<void>((resolve, reject) => {
+              const readStream = fse.createReadStream(matchedPath);
+              const destPath = path.join(dest!, relativePath);
 
-          if (!fse.existsSync(path.dirname(destPath))) {
-            fse.mkdirpSync(path.dirname(destPath));
-          }
+              if (!fse.existsSync(path.dirname(destPath))) {
+                fse.mkdirpSync(path.dirname(destPath));
+              }
 
-          readStream.pipe(fse.createWriteStream(destPath));
-          readStream.on('error', err => cb(err));
-          readStream.on('end', () => cb(null));
-        });
+              readStream.pipe(fse.createWriteStream(destPath));
+              readStream.on('error', err => reject(err));
+              readStream.on('end', () => resolve());
+            }),
+        );
       });
     }
 
     paths.forEach(copyPath => helper(copyPath));
-    parallelLimit(copyTasks, limit!, done);
+    const limiter = pLimit(limit!);
+    await Promise.all(copyTasks.map(task => limiter(task)));
   };
 }
 /* eslint-enable @typescript-eslint/no-non-null-assertion */
