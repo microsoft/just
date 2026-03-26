@@ -6,9 +6,8 @@ import { fail } from 'assert';
 
 // Mock child_process so we can spy on spawn calls from cross-spawn
 const realCp = jest.requireActual<typeof cp>('child_process');
-const cpSpawnMock = jest.fn((...args: Parameters<typeof cp.spawn>) =>
-  realCp.spawn(...args),
-) as jest.Mock & typeof cp.spawn;
+const cpSpawnMock = jest.fn((...args: Parameters<typeof cp.spawn>) => realCp.spawn(...args)) as jest.Mock &
+  typeof cp.spawn;
 jest.mock('child_process', () => {
   const original = jest.requireActual<typeof cp>('child_process');
   return { ...original, spawn: cpSpawnMock };
