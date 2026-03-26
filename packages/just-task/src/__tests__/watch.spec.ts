@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { watch } from '../watch';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -25,7 +26,7 @@ describe('watch', () => {
         done();
       } catch (error) {
         cleanup();
-        done(error);
+        done(error instanceof Error ? error : new Error(String(error)));
       }
     };
 

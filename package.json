@@ -27,6 +27,7 @@
     "node": ">=14"
   },
   "devDependencies": {
+    "@jest/globals": "^29.5.0",
     "@microsoft/api-extractor": "7.52.9",
     "@types/fs-extra": "^11.0.0",
     "@types/jest": "^29.4.0",

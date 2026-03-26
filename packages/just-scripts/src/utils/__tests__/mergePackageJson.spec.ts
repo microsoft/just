@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { mergePackageJson, _shouldUpdateDep } from '../mergePackageJson';
 import { PackageJson } from '../../interfaces/PackageJson';
 

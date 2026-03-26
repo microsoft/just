@@ -70,7 +70,10 @@ Task functions can: return a Promise, call a `done` callback, or return a stream
 
 - TypeScript target: `es2019`, module: `commonjs`, strict mode
 - Prettier: 120 print width, single quotes, trailing commas, 2-space indent
-- Tests: Jest with ts-jest, test files in `src/**/__tests__/*.(test|spec).ts`
+- Tests:
+  - Jest with ts-jest
+  - Test files in `src/**/__tests__/*.(test|spec).ts`
+  - Functions such as `describe`, `it`, `expect` must be imported from `@jest/globals` (they are not implicitly available)
 - Each package compiles to `lib/` directory
 
 ## CI / Release

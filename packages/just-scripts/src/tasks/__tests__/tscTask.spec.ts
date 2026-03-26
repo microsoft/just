@@ -1,3 +1,4 @@
+import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import * as mockfs from 'mock-fs';
 import { spawn } from '../../utils';
 import { tscTask, tscWatchTask } from '../tscTask';
@@ -6,7 +7,7 @@ import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
 
 // Jest will hoist these before the imports above, so these modules will be mocked first
 jest.mock('../../utils/exec', () => {
-  const originalModule = jest.requireActual('../../utils/exec');
+  const originalModule = jest.requireActual('../../utils/exec') as typeof import('../../utils/exec');
   return {
     // Use real implementation of most exports
     ...originalModule,

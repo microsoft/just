@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { copyFilesToDestinationDirectory } from '../CopyInstruction';
 import { normalize } from 'path';
 

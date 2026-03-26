@@ -10,6 +10,7 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/?(*.)+(spec|test).[jt]s'],
   verbose: true,
+  injectGlobals: false,
   transform: {
     '^.+\\.tsx?$': [
       'ts-jest',

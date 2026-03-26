@@ -1,3 +1,4 @@
+import { describe, expect, it, jest, beforeEach, afterEach, afterAll } from '@jest/globals';
 import { fail } from 'assert';
 import type { TaskFunction } from 'just-task';
 import * as path from 'path';
