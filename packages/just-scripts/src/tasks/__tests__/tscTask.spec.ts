@@ -14,7 +14,7 @@ jest.mock('../../utils/exec', () => {
 });
 jest.mock('just-task/lib/logger');
 
-// Must be imported after jest.mock calls for the mocks to take effect
+// Must be imported after jest.mock() calls for the mocks to take effect
 import { spawn } from '../../utils';
 import { tscTask, tscWatchTask } from '../tscTask';
 
