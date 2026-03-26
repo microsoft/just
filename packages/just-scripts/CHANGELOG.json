@@ -2,6 +2,53 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 26 Mar 2026 23:18:48 GMT",
+      "version": "2.6.0",
+      "tag": "just-scripts_v2.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "just-scripts",
+            "commit": "ee6ca22de1a7d426ca69af4ed3b8dd285e11f1bb",
+            "comment": "Adding support for jest 30 testNamePatterns (plural) option"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "ee6ca22de1a7d426ca69af4ed3b8dd285e11f1bb",
+            "comment": "Deprecate `spawn` helper (consider using `execa` instead). As a short-term improvement, it's updated to internally use `cross-spawn` for handling spaces in arguments and other basic normalization. (Also remove internal `exec` function and its usage, including in `tscTask`.)"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "ee6ca22de1a7d426ca69af4ed3b8dd285e11f1bb",
+            "comment": "Fix prettier task for prettier v3. Fix tsc task with build option. Make `nodeExecTask` `args` required since no other usage makes sense."
+          }
+        ],
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "ee6ca22de1a7d426ca69af4ed3b8dd285e11f1bb",
+            "comment": "Deprecate misleadingly named `encodeArgs` function. For more complete escaping, consider a library such as `shell-quote`, or use safer APIs which don't require escaping. (Note that `spawn` from this package now uses `cross-spawn` which escapes spaces internally.)"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "ee6ca22de1a7d426ca69af4ed3b8dd285e11f1bb",
+            "comment": "Fix nodeExecTask to preserve process.env unless explicitly overridden"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "ee6ca22de1a7d426ca69af4ed3b8dd285e11f1bb",
+            "comment": "Fix eslintTask noEslintRc option"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 11 Dec 2025 17:20:54 GMT",
       "version": "2.5.0",
       "tag": "just-scripts_v2.5.0",
