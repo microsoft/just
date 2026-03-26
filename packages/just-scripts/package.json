@@ -35,23 +35,19 @@
     "webpack-merge": "^5.7.3"
   },
   "peerDependencies": {
-    "@microsoft/api-extractor": ">=7.0.0",
-    "@webpack-cli/init": ">=1.0.0",
-    "autoprefixer": ">=9.0.0",
-    "fork-ts-checker-webpack-plugin": ">=4.0.0",
-    "html-webpack-plugin": ">=4.0.0",
-    "node-sass": ">=4.0.0",
-    "postcss": ">=8.0.0",
-    "postcss-clean": ">=1.0.0",
-    "postcss-rtl": ">=1.0.0",
-    "sass": ">=1.0.0",
-    "webpack": ">=4.0.0"
+    "@microsoft/api-extractor": "^7.0.0",
+    "autoprefixer": "^9.0.0",
+    "fork-ts-checker-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^4.0.0",
+    "node-sass": "^4.0.0",
+    "postcss": "^8.0.0",
+    "postcss-clean": "^1.0.0",
+    "postcss-rtl": "^1.0.0",
+    "sass": "^1.0.0",
+    "webpack": "^4.0.0 || ^5.0.0"
   },
   "peerDependenciesMeta": {
     "@microsoft/api-extractor": {
-      "optional": true
-    },
-    "@webpack-cli/init": {
       "optional": true
     },
     "autoprefixer": {
