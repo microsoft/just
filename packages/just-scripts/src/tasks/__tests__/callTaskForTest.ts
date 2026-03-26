@@ -1,4 +1,4 @@
-import * as asyncDoneAsCallback from 'async-done';
+import asyncDoneAsCallback from 'async-done';
 import { promisify } from 'util';
 import type { Arguments } from 'yargs-parser';
 import { logger, TaskFunction, TaskContext } from 'just-task';

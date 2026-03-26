@@ -2,7 +2,7 @@ import * as glob from 'glob';
 import * as fse from 'fs-extra';
 import * as path from 'path';
 import { logger, TaskFunction } from 'just-task';
-import parallelLimit = require('run-parallel-limit');
+import parallelLimit from 'run-parallel-limit';
 
 export interface CopyTaskOptions {
   /** Paths to copy */

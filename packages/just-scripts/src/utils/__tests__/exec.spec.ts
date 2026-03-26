@@ -1,5 +1,6 @@
 import * as cp from 'child_process';
 import * as path from 'path';
+import * as crossSpawnModule from 'cross-spawn';
 import { encodeArgs, spawn } from '../exec';
 import { getMockScript } from '../../__tests__/getMockScript';
 import { MockOutputStream } from '../../__tests__/MockOutputStream';

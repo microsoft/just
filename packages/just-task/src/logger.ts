@@ -1,5 +1,5 @@
-import chalk = require('chalk');
-import * as parser from 'yargs-parser';
+import chalk from 'chalk';
+import parser from 'yargs-parser';
 
 const argv = parser(process.argv.slice(2));
 

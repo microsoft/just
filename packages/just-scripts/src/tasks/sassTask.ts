@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { resolveCwd, TaskFunction, logger } from 'just-task';
 import { tryRequire } from '../tryRequire';
-import parallelLimit = require('run-parallel-limit');
+import parallelLimit from 'run-parallel-limit';
 
 export interface SassTaskOptions {
   createSourceModule: (fileName: string, css: string) => string;
@@ -32,8 +32,8 @@ export function sassTask(
 
   return function sass(done: (err?: Error) => void) {
     const sass = tryRequire<typeof import('sass')>('sass') || tryRequire<typeof import('sass')>('node-sass');
-    const postcss = tryRequire<typeof import('postcss')['default']>('postcss');
-    const autoprefixer = tryRequire<typeof import('autoprefixer')['default']>('autoprefixer');
+    const postcss = tryRequire<typeof import('postcss')>('postcss');
+    const autoprefixer = tryRequire<typeof import('autoprefixer')>('autoprefixer');
     const postcssRtl = tryRequire('postcss-rtl');
     const clean = tryRequire('postcss-clean');
 
@@ -59,11 +59,11 @@ export function sassTask(
                 importer: patchSassUrl,
                 includePaths: [path.resolve(process.cwd(), 'node_modules')],
               },
-              (err: Error, result: { css: Buffer }) => {
+              (err: import('sass').LegacyException | undefined, result: import('sass').LegacyResult | undefined) => {
                 if (err) {
                   cb(path.relative(process.cwd(), fileName) + ': ' + err);
                 } else {
-                  const css = result.css.toString();
+                  const css = result!.css.toString();
 
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                   const plugins = [autoprefixerFn, ...postcssPlugins!];

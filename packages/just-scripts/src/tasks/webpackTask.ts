@@ -80,23 +80,23 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     webpackConfigs = webpackConfigPromises.map(webpackConfig => merge(webpackConfig, restConfig));
 
     return new Promise<void>((resolve, reject) => {
-      wp(webpackConfigs, async (err: Error, stats: any) => {
+      wp(webpackConfigs, async (err, stats) => {
         if (options && options.onCompile) {
-          await options.onCompile(err, stats);
+          await options.onCompile(err as Error, stats);
         }
 
         if (options && options.outputStats) {
           const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
-          fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
+          fs.writeFileSync(statsFile, JSON.stringify(stats!.toJson(), null, 2));
         }
 
-        if (err || stats.hasErrors()) {
+        if (err || stats?.hasErrors()) {
           // Stats may be undefined the the case of an error in Webpack 5
           if (stats) {
-            logger.error(stats.toString({ children: webpackConfigs.map(c => c.stats) }));
-            reject(`Webpack failed with ${stats.toJson('errors-only').errors.length} error(s).`);
+            logger.error(stats.toString({ children: webpackConfigs.map(c => c.stats).filter(Boolean) as any }));
+            reject(`Webpack failed with ${stats.toJson('errors-only').errors!.length} error(s).`);
           } else {
-            logger.error(err.toString());
+            logger.error(err!.toString());
             reject(`Webpack failed with error(s).`);
           }
         } else {

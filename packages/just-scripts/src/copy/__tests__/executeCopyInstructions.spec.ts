@@ -1,4 +1,4 @@
-import * as mockfs from 'mock-fs';
+import mockfs from 'mock-fs';
 import * as path from 'path';
 import * as fs from 'fs';
 // import { dirSync, fileSync, DirResult, FileResult } from 'tmp';

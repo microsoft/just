@@ -1,4 +1,4 @@
-import * as mockfs from 'mock-fs';
+import mockfs from 'mock-fs';
 import { spawn } from '../../utils';
 import { tscTask, tscWatchTask } from '../tscTask';
 import { callTaskForTest } from './callTaskForTest';
