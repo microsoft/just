@@ -70,7 +70,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         eslintCmd,
         ...(files ? files : ['.']),
         ...['--ext', extensions ? extensions : '.js,.jsx,.ts,.tsx'],
-        ...(noEslintRc ? '--no-eslintrc' : []),
+        ...(noEslintRc ? ['--no-eslintrc'] : []),
         ...(eslintConfigPath ? ['--config', eslintConfigPath] : []),
         ...(eslintIgnorePath ? ['--ignore-path', eslintIgnorePath] : []),
         ...(resolvePluginsPath ? ['--resolve-plugins-relative-to', resolvePluginsPath] : []),
@@ -99,6 +99,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
       return spawn(process.execPath, eslintArgs, { stdio: 'inherit', env });
     }
 
-    return undefined;
+    // undertaker apparently requires returning a promise, async function, or function that calls done()
+    return Promise.resolve();
   };
 }

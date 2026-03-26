@@ -36,6 +36,7 @@ export function tslintTask(options: TsLintTaskOptions = {}): TaskFunction {
       return spawn(process.execPath, allArgs, { stdio: 'inherit' });
     }
 
-    return undefined;
+    // undertaker apparently requires returning a promise, async function, or function that calls done()
+    return Promise.resolve();
   };
 }

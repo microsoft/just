@@ -80,8 +80,8 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.testPathPattern ? ['--testPathPattern', options.testPathPattern] : []),
         ...(options.testPathPatterns ? ['--testPathPatterns', options.testPathPatterns] : []),
         ...(options.testNamePattern ? ['--testNamePattern', options.testNamePattern] : []),
-        ...(options.maxWorkers ? ['--maxWorkers', options.maxWorkers] : []),
-        ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : ['']),
+        ...(options.maxWorkers ? ['--maxWorkers', `${options.maxWorkers}`] : []),
+        ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : []),
         // Only include the positional args if `options._` wasn't specified
         // (to avoid possibly including them twice)
         ...(options._ || positional),
@@ -93,6 +93,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
     }
 
     logger.warn('no jest configuration found, skipping jest');
-    return undefined;
+    // undertaker apparently requires returning a promise, async function, or function that calls done()
+    return Promise.resolve();
   };
 }

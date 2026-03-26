@@ -39,7 +39,8 @@ export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
     };
   }
 
-  return function () {
+  // undertaker apparently requires returning a promise, async function, or function that calls done()
+  return async () => {
     logger.warn('Prettier is not available, ignoring this task');
   };
 }
