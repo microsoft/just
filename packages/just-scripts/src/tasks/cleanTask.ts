@@ -1,7 +1,7 @@
 import * as fse from 'fs-extra';
 import * as path from 'path';
 import { logger, TaskFunction, clearCache } from 'just-task';
-import parallelLimit = require('run-parallel-limit');
+import pLimit from 'p-limit';
 
 export interface CleanTaskOptions {
   /**
@@ -33,22 +33,13 @@ export function cleanTask(pathsOrOptions: string[] | CleanTaskOptions = {}, limi
   }
   limit = limit || 5;
 
-  return function clean(done: (err: Error | null) => void) {
+  return async function clean() {
     logger.info(`Removing [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}]`);
 
-    const cleanTasks = paths
-      .map(
-        cleanPath =>
-          function (cb: (error: Error | null) => void) {
-            fse.remove(cleanPath, cb);
-          },
-      )
-      .concat((cb: (error: Error | null) => void) => {
-        clearCache();
-        cb(null);
-      });
-
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    parallelLimit(cleanTasks, limit!, done);
+    const limiter = pLimit(limit!);
+    const cleanTasks = paths.map(cleanPath => limiter(() => fse.remove(cleanPath)));
+    cleanTasks.push(limiter(async () => clearCache()));
+    await Promise.all(cleanTasks);
   };
 }

@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "type": "patch",
+      "dependentChangeType": "patch",
+      "comment": "Replace `run-parallel-limit` with `p-limit` for concurrency limiting in `cleanTask`, `copyTask`, and `sassTask`",
+      "email": "198982749+Copilot@users.noreply.github.com"
+    }
+  ]
+}

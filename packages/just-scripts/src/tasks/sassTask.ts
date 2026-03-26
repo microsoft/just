@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { resolveCwd, TaskFunction, logger } from 'just-task';
 import { tryRequire } from '../tryRequire';
-import parallelLimit = require('run-parallel-limit');
+import pLimit from 'p-limit';
 
 export interface SassTaskOptions {
   createSourceModule: (fileName: string, css: string) => string;
@@ -49,48 +49,52 @@ export function sassTask(
     const files = glob.sync(path.resolve(process.cwd(), 'src/**/*.scss'));
 
     if (files.length) {
-      const tasks = files.map(
-        (fileName: string) =>
-          function (cb: any) {
-            fileName = path.resolve(fileName);
-            sass.render(
-              {
-                file: fileName,
-                importer: patchSassUrl,
-                includePaths: [path.resolve(process.cwd(), 'node_modules')],
-              },
-              (err: Error, result: { css: Buffer }) => {
-                if (err) {
-                  cb(path.relative(process.cwd(), fileName) + ': ' + err);
-                } else {
-                  const css = result.css.toString();
+      const limiter = pLimit(5);
+      const tasks = files.map((fileName: string) =>
+        limiter(
+          () =>
+            new Promise<void>((resolve, reject) => {
+              fileName = path.resolve(fileName);
+              sass.render(
+                {
+                  file: fileName,
+                  importer: patchSassUrl,
+                  includePaths: [path.resolve(process.cwd(), 'node_modules')],
+                },
+                (err: Error, result: { css: Buffer }) => {
+                  if (err) {
+                    reject(path.relative(process.cwd(), fileName) + ': ' + err);
+                  } else {
+                    const css = result.css.toString();
 
-                  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                  const plugins = [autoprefixerFn, ...postcssPlugins!];
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    const plugins = [autoprefixerFn, ...postcssPlugins!];
 
-                  // If the rtl plugin exists, insert it after autoprefix.
-                  if (postcssRtl) {
-                    plugins.splice(plugins.indexOf(autoprefixerFn) + 1, 0, postcssRtl({}));
+                    // If the rtl plugin exists, insert it after autoprefix.
+                    if (postcssRtl) {
+                      plugins.splice(plugins.indexOf(autoprefixerFn) + 1, 0, postcssRtl({}));
+                    }
+
+                    // If postcss-clean exists, add it to the end of the chain.
+                    if (clean) {
+                      plugins.push(clean());
+                    }
+
+                    postcss(plugins)
+                      .process(css, { from: fileName })
+                      .then((result: { css: string }) => {
+                        fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, result.css));
+                        resolve();
+                      })
+                      .catch(reject);
                   }
-
-                  // If postcss-clean exists, add it to the end of the chain.
-                  if (clean) {
-                    plugins.push(clean());
-                  }
-
-                  postcss(plugins)
-                    .process(css, { from: fileName })
-                    .then((result: { css: string }) => {
-                      fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, result.css));
-                      cb();
-                    });
-                }
-              },
-            );
-          },
+                },
+              );
+            }),
+        ),
       );
 
-      parallelLimit(tasks, 5, done);
+      Promise.all(tasks).then(() => done(), done);
     } else {
       done();
     }
