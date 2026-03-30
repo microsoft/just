@@ -51,7 +51,7 @@
     "es5-ext": "0.10.53",
     "kind-of": "^6.0.3",
     "**/@types/glob/@types/minimatch": "^3.0.0",
-    "**/@types/minimatch/minimatch": "^3.0.0",
+    "**/@types/minimatch/minimatch": "^6.0.0",
     "**/@types/chokidar/chokidar": "^3.0.0",
     "@types/node": "^14.0.0"
   },
