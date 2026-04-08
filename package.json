@@ -51,7 +51,8 @@
     "es5-ext": "0.10.53",
     "kind-of": "^6.0.3",
     "**/@types/glob/@types/minimatch": "^3.0.0",
-    "**/@types/minimatch/minimatch": "^3.0.0",
+    "**/syncpack/minimatch": "^6.2.3",
+    "**/@microsoft/api-extractor/minimatch": "^3.1.5",
     "**/@types/chokidar/chokidar": "^3.0.0",
     "@types/node": "^14.0.0"
   },
@@ -61,7 +62,8 @@
     },
     "resolutions": {
       "**/@types/glob/@types/minimatch": "pin to installed minimatch version, not *",
-      "**/@types/minimatch/minimatch": "pin to version matching other minimatch deps, not *",
+      "**/syncpack/minimatch": "unpin to fix security issue",
+      "**/@microsoft/api-extractor/minimatch": "unpin to fix security issue",
       "**/@types/chokidar/chokidar": "pin to version matching other chokidar deps, not *"
     }
   },
