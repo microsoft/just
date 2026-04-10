@@ -17,7 +17,7 @@
     "lage": "cross-env NODE_OPTIONS=\"--experimental-abortcontroller\" lage",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "release": "beachball publish",
+    "release": "beachball publish -y",
     "start": "yarn lage start",
     "test": "yarn lage test",
     "prelint": "syncpack list-mismatches",
