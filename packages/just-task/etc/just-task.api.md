@@ -27,7 +27,7 @@ export function chain(subjectTaskName: string): {
     after: (taskName: string) => void;
 };
 
-// @public (undocumented)
+// @public @deprecated
 export function clearCache(): void;
 
 // @public (undocumented)
@@ -116,7 +116,7 @@ export interface TaskContext {
 export interface TaskFunction extends TaskFunctionParams {
     // (undocumented)
     (this: TaskContext, done: (error?: any) => void): void | Duplex | NodeJS.Process | Promise<never> | any;
-    // (undocumented)
+    // @deprecated (undocumented)
     cached?: () => void;
     // (undocumented)
     description?: string;
