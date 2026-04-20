@@ -20,5 +20,5 @@
     "typescript": "^5.9.3",
     "vuepress": "^2.0.0-rc.26"
   },
-  "packageManager": "yarn@4.13.0"
+  "packageManager": "yarn@4.14.1"
 }
