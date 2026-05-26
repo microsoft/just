@@ -34,7 +34,7 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
     ...(preprocessor ? [preprocessor] : []),
   ];
 
-  const moduleOptions = cssOptions.localIdentName
+  const moduleOptions = cssOptions.modules !== false && cssOptions.localIdentName
     ? {
         modules: {
           mode: 'local',
