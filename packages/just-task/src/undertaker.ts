@@ -2,7 +2,6 @@ import { logger } from './logger';
 import chalk = require('chalk');
 import { wrapTask } from './wrapTask';
 import { Task } from './interfaces';
-import { clearCache } from './cache';
 import Undertaker = require('undertaker');
 
 const undertaker = new Undertaker();
@@ -83,8 +82,6 @@ undertaker.on('error', function (args: any) {
     }
 
     logger.error(chalk.yellow('------------------------------------'));
-
-    clearCache();
 
     process.exitCode = 1;
   } else if (shouldLog(args)) {
