@@ -1,8 +1,17 @@
 # Change Log - just-scripts
 
-<!-- This log was last generated on Thu, 26 Mar 2026 23:18:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 04 Jun 2026 23:22:47 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.6.1
+
+Thu, 04 Jun 2026 23:22:47 GMT
+
+### Patches
+
+- Remove no-op clearCache from cleanTask (elcraig@microsoft.com)
+- Bump just-task to v1.14.0
 
 ## 2.6.0
 

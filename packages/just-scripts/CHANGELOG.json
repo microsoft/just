@@ -2,6 +2,27 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Thu, 04 Jun 2026 23:22:47 GMT",
+      "version": "2.6.1",
+      "tag": "just-scripts_v2.6.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "c2b350146a4eb366934e17584400613ea15ae549",
+            "comment": "Remove no-op clearCache from cleanTask"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-task to v1.14.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 26 Mar 2026 23:18:48 GMT",
       "version": "2.6.0",
       "tag": "just-scripts_v2.6.0",

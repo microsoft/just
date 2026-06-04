@@ -1,8 +1,16 @@
 # Change Log - just-task
 
-<!-- This log was last generated on Thu, 11 Dec 2025 17:20:54 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 04 Jun 2026 23:22:47 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.14.0
+
+Thu, 04 Jun 2026 23:22:47 GMT
+
+### Minor changes
+
+- Remove remains of caching code that was no longer being used (APIs are kept but deprecated until next major version) (elcraig@microsoft.com)
 
 ## 1.13.0
 
