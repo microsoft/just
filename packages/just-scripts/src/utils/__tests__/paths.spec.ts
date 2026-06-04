@@ -1,3 +1,4 @@
+import { describe, expect, it, afterEach } from '@jest/globals';
 import * as path from 'path';
 import * as os from 'os';
 import { paths } from '../paths';

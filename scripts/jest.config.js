@@ -10,12 +10,15 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/?(*.)+(spec|test).[jt]s'],
   verbose: true,
+  injectGlobals: false,
   transform: {
     '^.+\\.tsx?$': [
       'ts-jest',
       {
         tsconfig: path.join(process.cwd(), 'tsconfig.json'),
         packageJson: path.join(process.cwd(), 'package.json'),
+        // Contrary to the TS option, this means skip type checking within jest
+        isolatedModules: true,
       },
     ],
   },

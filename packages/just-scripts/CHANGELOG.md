@@ -1,8 +1,24 @@
 # Change Log - just-scripts
 
-<!-- This log was last generated on Thu, 11 Dec 2025 17:20:54 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 26 Mar 2026 23:18:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.6.0
+
+Thu, 26 Mar 2026 23:18:48 GMT
+
+### Minor changes
+
+- Adding support for jest 30 testNamePatterns (plural) option (email not defined)
+- Deprecate `spawn` helper (consider using `execa` instead). As a short-term improvement, it's updated to internally use `cross-spawn` for handling spaces in arguments and other basic normalization. (Also remove internal `exec` function and its usage, including in `tscTask`.) (elcraig@microsoft.com)
+- Fix prettier task for prettier v3. Fix tsc task with build option. Make `nodeExecTask` `args` required since no other usage makes sense. (elcraig@microsoft.com)
+
+### Patches
+
+- Deprecate misleadingly named `encodeArgs` function. For more complete escaping, consider a library such as `shell-quote`, or use safer APIs which don't require escaping. (Note that `spawn` from this package now uses `cross-spawn` which escapes spaces internally.) (elcraig@microsoft.com)
+- Fix nodeExecTask to preserve process.env unless explicitly overridden (elcraig@microsoft.com)
+- Fix eslintTask noEslintRc option (elcraig@microsoft.com)
 
 ## 2.5.0
 

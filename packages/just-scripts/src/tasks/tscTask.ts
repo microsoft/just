@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
 import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
-import { exec, encodeArgs, spawn } from '../utils';
+import { logNodeCommand, spawn } from '../utils';
 import * as fs from 'fs';
 
 export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean | string[] } & {
@@ -25,9 +25,8 @@ export function tscTask(options: TscTaskOptions = {}): TaskFunction {
       logger.info(`Running ${tscCmd} with ${options.project || options.build}`);
 
       const args = argsFromOptions(tscCmd, options);
-      const cmd = encodeArgs([process.execPath, ...args]).join(' ');
-      logger.info(`Executing: ${cmd}`);
-      return exec(cmd);
+      logNodeCommand(args);
+      return spawn(process.execPath, args, { stdio: 'inherit' });
     }
     return Promise.resolve();
   };
@@ -37,25 +36,7 @@ export function tscTask(options: TscTaskOptions = {}): TaskFunction {
  * Returns a task that runs the TSC CLI in watch mode.
  */
 export function tscWatchTask(options: TscTaskOptions = {}): TaskFunction {
-  const tscCmd = resolve('typescript/lib/tsc.js');
-
-  if (!tscCmd) {
-    throw new Error('cannot find tsc');
-  }
-
-  return function tscWatch() {
-    options = { ...options, ...getProjectOrBuildOptions(options) };
-
-    if (isValidProject(options)) {
-      logger.info(`Running ${tscCmd} with ${options.project || options.build} in watch mode`);
-
-      const args = argsFromOptions(tscCmd, options);
-      const cmd = [...args, '--watch'];
-      logger.info(encodeArgs(cmd).join(' '));
-      return spawn(process.execPath, cmd, { stdio: 'inherit' });
-    }
-    return Promise.resolve();
-  };
+  return tscTask({ ...options, watch: true });
 }
 
 /**
@@ -81,9 +62,7 @@ function isValidProject(options: TscTaskOptions) {
     (typeof options.project === 'string' && fs.existsSync(options.project)) ||
     (typeof options.build === 'string' && fs.existsSync(options.build)) ||
     (Array.isArray(options.build) &&
-      options.build.reduce((currentIsValid, buildPath) => {
-        return currentIsValid && typeof buildPath === 'string' && fs.existsSync(buildPath);
-      }, true as boolean))
+      options.build.every(buildPath => typeof buildPath === 'string' && fs.existsSync(buildPath)))
   );
 }
 

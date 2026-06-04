@@ -44,7 +44,8 @@ cd packages/just-task && yarn jest --testPathPattern=cache  # Run specific test 
 
 ### Required before creating a PR
 
-Use `/beachball-change-files` to generate a Beachball change file.
+- Use `/beachball-change-files` to generate a Beachball change file.
+- If you're working on an assigned GitHub issue, include `Fixes #N` in the PR description to link the issue.
 
 ## Architecture
 
@@ -69,7 +70,10 @@ Task functions can: return a Promise, call a `done` callback, or return a stream
 
 - TypeScript target: `es2019`, module: `commonjs`, strict mode
 - Prettier: 120 print width, single quotes, trailing commas, 2-space indent
-- Tests: Jest with ts-jest, test files in `src/**/__tests__/*.(test|spec).ts`
+- Tests:
+  - Jest with ts-jest
+  - Test files in `src/**/__tests__/*.(test|spec).ts`
+  - Functions such as `describe`, `it`, `expect` must be imported from `@jest/globals` (they are not implicitly available)
 - Each package compiles to `lib/` directory
 
 ## CI / Release

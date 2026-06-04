@@ -1,7 +1,7 @@
 // // WARNING: Careful about add more imports - only import types from webpack
 import { Configuration } from 'webpack';
-import { encodeArgs, spawn } from '../utils';
-import { logger, resolve, resolveCwd, TaskFunction } from 'just-task';
+import { logNodeCommand, spawn } from '../utils';
+import { resolve, resolveCwd, TaskFunction } from 'just-task';
 import * as fs from 'fs';
 import * as path from 'path';
 import { WebpackCliTaskOptions } from './webpackCliTask';
@@ -93,7 +93,7 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}):
       args = [...args, ...options.webpackCliArgs];
     }
 
-    logger.info(process.execPath, encodeArgs(args).join(' '));
+    logNodeCommand(args);
     return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
   };
 }

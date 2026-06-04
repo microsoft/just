@@ -1,5 +1,5 @@
-import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
-import { encodeArgs, spawn } from '../utils';
+import { resolve, resolveCwd, TaskFunction } from 'just-task';
+import { logNodeCommand, spawn } from '../utils';
 import * as fs from 'fs';
 
 /**
@@ -70,7 +70,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         eslintCmd,
         ...(files ? files : ['.']),
         ...['--ext', extensions ? extensions : '.js,.jsx,.ts,.tsx'],
-        ...(noEslintRc ? '--no-eslintrc' : []),
+        ...(noEslintRc ? ['--no-eslintrc'] : []),
         ...(eslintConfigPath ? ['--config', eslintConfigPath] : []),
         ...(eslintIgnorePath ? ['--ignore-path', eslintIgnorePath] : []),
         ...(resolvePluginsPath ? ['--resolve-plugins-relative-to', resolvePluginsPath] : []),
@@ -95,10 +95,11 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
         env.ESLINT_USE_FLAT_CONFIG = JSON.stringify(useFlatConfig);
       }
 
-      logger.info(encodeArgs(eslintArgs).join(' '));
+      logNodeCommand(eslintArgs);
       return spawn(process.execPath, eslintArgs, { stdio: 'inherit', env });
-    } else {
-      return Promise.resolve();
     }
+
+    // undertaker apparently requires returning a promise, async function, or function that calls done()
+    return Promise.resolve();
   };
 }

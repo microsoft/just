@@ -46,6 +46,7 @@ export interface NodeExecTaskOptions {
 
 /**
  * Create a task to execute a command in a new process.
+ * Uses `cross-spawn` to avoid issues with spaces in arguments, but does not do any additional escaping.
  *
  * **WARNING: If the `shell` option is enabled, do not pass unsanitized user input to this task.
  * Any input containing shell metacharacters may be used to trigger arbitrary command execution.**

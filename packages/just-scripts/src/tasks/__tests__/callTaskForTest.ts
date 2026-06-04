@@ -9,11 +9,8 @@ const asyncDone = promisify(asyncDoneAsCallback);
  * Wrapper to call task function for the test.
  */
 function wrapTaskFunction(fn: TaskFunction, argv?: Arguments) {
-  const argvOurs = argv || { _: [], $0: '' };
-  const context: TaskContext = {
-    argv: argvOurs,
-    logger,
-  };
+  argv ??= { _: [], $0: '' };
+  const context: TaskContext = { argv, logger };
   const taskRet = (fn as any).call(context, (_err: any) => undefined);
   return taskRet;
 }
@@ -22,7 +19,5 @@ function wrapTaskFunction(fn: TaskFunction, argv?: Arguments) {
  * Call the task the way real code does.
  */
 export function callTaskForTest(fn: TaskFunction, argv?: Arguments) {
-  return asyncDone(() => {
-    return wrapTaskFunction(fn, argv);
-  });
+  return asyncDone(() => wrapTaskFunction(fn, argv));
 }

@@ -146,7 +146,7 @@ export function defaultCleanPaths(): string[];
 // @public (undocumented)
 export const displayBailoutOverlay: () => Partial<Configuration>;
 
-// @public
+// @public @deprecated (undocumented)
 export function encodeArgs(cmdArgs: string[]): string[];
 
 // @public (undocumented)
@@ -339,7 +339,7 @@ export interface SassTaskOptions {
     postcssPlugins?: any[];
 }
 
-// @public
+// @public @deprecated
 export function spawn(cmd: string, args?: ReadonlyArray<string>, opts?: cp.SpawnOptions & {
     stdout?: NodeJS.WritableStream;
     stderr?: NodeJS.WritableStream;

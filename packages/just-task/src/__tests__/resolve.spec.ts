@@ -1,3 +1,4 @@
+import { describe, expect, it, jest, afterEach, beforeEach } from '@jest/globals';
 import * as path from 'path';
 import {
   _isFileNameLike,
