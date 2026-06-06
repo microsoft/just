@@ -3,8 +3,6 @@
 [![npm version](https://badge.fury.io/js/just-task.svg)](https://badge.fury.io/js/just-task)
 [![NPM Downloads](https://img.shields.io/npm/dm/just-task.svg?style=flat)](https://www.npmjs.com/package/just-task)
 
-<!-- start shared -->
-
 `Just` is a library that organizes build tasks for your JS projects. It consists of:
 
 - `just-task`: a build task definition library
@@ -13,5 +11,3 @@
 ## Documentation
 
 All the documentation is online at https://microsoft.github.io/just/
-
-<!-- end shared -->

@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/microsoft/just"
   },
+  "engines": {
+    "node": ">=22.18.0 || >=24"
+  },
   "workspaces": {
     "packages": [
       "packages/*",
@@ -17,20 +20,23 @@
     "api": "lage api",
     "api:update": "lage api:update",
     "build": "lage build",
-    "postbuild": "node ./scripts/copyReadme.js",
     "change": "beachball change",
     "checkchange": "beachball check",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "lint": "yarn lint:deps && yarn lint:code",
+    "lint:code": "eslint packages --ext .ts,.js",
+    "lint:deps": "syncpack list-mismatches",
+    "prepare": "husky",
     "release": "beachball publish -y",
     "release:canary": "beachball canary -y",
     "start": "lage start",
-    "test": "lage test",
-    "prelint": "syncpack list-mismatches",
-    "lint": "eslint packages --ext .ts,.js"
+    "test": "lage test"
   },
-  "engines": {
-    "node": ">=22.18.0 || >=24"
+  "lint-staged": {
+    "*": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@jest/globals": "^29.5.0",
@@ -44,8 +50,10 @@
     "@typescript-eslint/parser": "^5.54.1",
     "beachball": "^2.65.5",
     "eslint": "^8.35.0",
+    "husky": "^9.1.7",
     "jest": "^29.5.0",
     "lage": "^2.15.12",
+    "lint-staged": "^17.0.7",
     "mock-fs": "^5.2.0",
     "prettier": "~3.8.0",
     "syncpack": "^9.0.0",
