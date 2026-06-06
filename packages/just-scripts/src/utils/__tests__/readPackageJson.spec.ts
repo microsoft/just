@@ -1,6 +1,6 @@
 import { describe, expect, it, beforeEach, afterEach } from '@jest/globals';
 import { readPackageJson } from '../readPackageJson';
-import * as mockfs from 'mock-fs';
+import mockfs from 'mock-fs';
 
 describe('readPackageJson', () => {
   const testDir = 'testDir';

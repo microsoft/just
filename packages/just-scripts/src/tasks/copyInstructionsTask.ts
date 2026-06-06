@@ -1,6 +1,6 @@
 import { executeCopyInstructions } from '../copy/executeCopyInstructions';
-import { CopyConfig } from '../copy/CopyInstruction';
-import { TaskFunction } from 'just-task';
+import type { CopyConfig } from '../copy/CopyInstruction';
+import type { TaskFunction } from 'just-task';
 
 /**
  * This is an advanced copy task that allows more advanced usage beyond simple copies.

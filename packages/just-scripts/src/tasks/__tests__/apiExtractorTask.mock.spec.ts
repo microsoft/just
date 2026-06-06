@@ -1,10 +1,10 @@
 import { describe, expect, it, jest, afterEach, beforeEach } from '@jest/globals';
 import type * as apiExtractor from '@microsoft/api-extractor';
-import * as fs from 'fs-extra';
+import fs from 'fs-extra';
 import { apiExtractorVerifyTask, apiExtractorUpdateTask, fixApiFileNewlines } from '../apiExtractorTask';
 import { callTaskForTest } from './callTaskForTest';
 import { tryRequire } from '../../tryRequire';
-import path = require('path');
+import path from 'path';
 
 jest.mock('just-task/lib/logger');
 

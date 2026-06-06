@@ -1,12 +1,12 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
 
 import { argv } from './option';
 import { resolve } from './resolve';
 import { mark, logger } from './logger';
 import { enableTypeScript } from './enableTypeScript';
-import yargsParser = require('yargs-parser');
-import { TaskFunction } from './interfaces';
+import type yargsParser from 'yargs-parser';
+import type { TaskFunction } from './interfaces';
 
 export function resolveConfigFile(args: yargsParser.Arguments): string | null {
   for (const entry of [

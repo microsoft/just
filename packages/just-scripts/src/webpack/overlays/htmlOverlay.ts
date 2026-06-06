@@ -1,5 +1,5 @@
 // // WARNING: Careful about add more imports - only import types from webpack
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 import { tryRequire } from '../../tryRequire';
 
 export const htmlOverlay: (options: any) => Partial<Configuration> = options => {

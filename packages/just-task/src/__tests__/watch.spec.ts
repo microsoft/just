@@ -1,8 +1,8 @@
 import { describe, expect, it } from '@jest/globals';
 import { watch } from '../watch';
-import * as fs from 'fs';
-import * as path from 'path';
-import * as os from 'os';
+import fs from 'fs';
+import path from 'path';
+import os from 'os';
 
 describe('watch', () => {
   it('can take a synchronous taskFunction', done => {

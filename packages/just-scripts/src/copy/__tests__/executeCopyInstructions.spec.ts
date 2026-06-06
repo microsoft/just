@@ -1,10 +1,10 @@
 import { describe, expect, it, beforeEach, afterEach } from '@jest/globals';
-import * as mockfs from 'mock-fs';
-import * as path from 'path';
-import * as fs from 'fs';
+import mockfs from 'mock-fs';
+import path from 'path';
+import fs from 'fs';
 // import { dirSync, fileSync, DirResult, FileResult } from 'tmp';
 import { executeCopyInstructions } from '../executeCopyInstructions';
-import { CopyInstruction } from '../CopyInstruction';
+import type { CopyInstruction } from '../CopyInstruction';
 
 describe('executeCopyInstructions functional tests', () => {
   const sourceDir = 'sourceDir';

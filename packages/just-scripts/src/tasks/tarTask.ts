@@ -1,7 +1,8 @@
-import { resolve, logger, TaskFunction } from 'just-task';
+import type { TaskFunction } from 'just-task';
+import { resolve, logger } from 'just-task';
 import { createWriteStream, createReadStream } from 'fs';
 import { createGzip, createGunzip } from 'zlib';
-import { Stream } from 'stream';
+import type { Stream } from 'stream';
 
 export interface EntryHeader {
   name: string;

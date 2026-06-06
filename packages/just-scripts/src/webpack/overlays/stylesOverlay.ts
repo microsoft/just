@@ -1,5 +1,6 @@
 // // WARNING: Careful about add more imports - only import types from webpack
-import { Configuration, type Loader } from 'webpack';
+import type { Configuration } from 'webpack';
+import type { Loader } from 'webpack';
 import { resolve } from 'just-task';
 import { tryRequire } from '../../tryRequire';
 

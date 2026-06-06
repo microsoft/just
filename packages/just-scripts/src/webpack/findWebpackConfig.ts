@@ -1,5 +1,5 @@
 import { resolveCwd } from 'just-task';
-import * as path from 'path';
+import path from 'path';
 
 export function findWebpackConfig(...targets: string[]): string | null {
   for (const target of targets) {

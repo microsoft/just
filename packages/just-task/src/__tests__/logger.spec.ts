@@ -1,6 +1,6 @@
 import { describe, expect, it, jest, beforeAll, beforeEach, afterAll } from '@jest/globals';
 import { logger } from '../logger';
-import chalk = require('chalk');
+import chalk from 'chalk';
 
 describe('logger', () => {
   const fakeTime = new Date().toLocaleTimeString();

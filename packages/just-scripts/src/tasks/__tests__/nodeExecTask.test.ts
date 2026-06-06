@@ -1,7 +1,7 @@
 import { describe, expect, it, jest, beforeEach, afterEach, afterAll } from '@jest/globals';
 import { fail } from 'assert';
 import type { TaskFunction } from 'just-task';
-import * as path from 'path';
+import path from 'path';
 import { getMockScript } from '../../__tests__/getMockScript';
 import { MockOutputStream } from '../../__tests__/MockOutputStream';
 import * as execModule from '../../utils/exec';

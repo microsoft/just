@@ -1,9 +1,9 @@
 import { describe, expect, it, jest, afterEach } from '@jest/globals';
-import * as fs from 'fs';
+import fs from 'fs';
 import { webpackTask } from '../webpackTask';
 import { callTaskForTest } from './callTaskForTest';
 import { tryRequire } from '../../tryRequire';
-import * as path from 'path';
+import path from 'path';
 
 jest.mock('just-task/lib/logger');
 

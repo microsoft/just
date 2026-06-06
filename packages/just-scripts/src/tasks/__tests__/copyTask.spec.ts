@@ -1,6 +1,6 @@
 import { describe, expect, it, jest, afterEach } from '@jest/globals';
-import * as mockfs from 'mock-fs';
-import * as fse from 'fs-extra';
+import mockfs from 'mock-fs';
+import fse from 'fs-extra';
 import { copyTask } from '../copyTask';
 import { callTaskForTest } from './callTaskForTest';
 

@@ -1,6 +1,7 @@
-import { resolve, resolveCwd, TaskFunction } from 'just-task';
+import type { TaskFunction } from 'just-task';
+import { resolve, resolveCwd } from 'just-task';
 import { logNodeCommand, spawn } from '../utils';
-import * as fs from 'fs';
+import fs from 'fs';
 
 /**
  * Task options generally follow ESLint CLI options explained here:

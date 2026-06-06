@@ -1,9 +1,10 @@
-import * as glob from 'glob';
-import * as path from 'path';
-import * as fs from 'fs';
-import { resolveCwd, TaskFunction, logger } from 'just-task';
+import glob from 'glob';
+import path from 'path';
+import fs from 'fs';
+import type { TaskFunction } from 'just-task';
+import { resolveCwd, logger } from 'just-task';
 import { tryRequire } from '../tryRequire';
-import parallelLimit = require('run-parallel-limit');
+import parallelLimit from 'run-parallel-limit';
 
 export interface SassTaskOptions {
   createSourceModule: (fileName: string, css: string) => string;

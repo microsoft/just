@@ -1,5 +1,6 @@
 import type { BuildOptions } from 'esbuild';
-import { resolve, TaskFunction } from 'just-task';
+import type { TaskFunction } from 'just-task';
+import { resolve } from 'just-task';
 
 export type EsbuildBuildOptions = BuildOptions;
 export interface EsbuildTransformOptions {

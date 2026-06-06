@@ -1,9 +1,10 @@
 // // WARNING: Careful about add more imports - only import types from webpack
 import type { Configuration, Stats } from 'webpack';
-import { logger, argv, TaskFunction, resolveCwd } from 'just-task';
+import type { TaskFunction } from 'just-task';
+import { logger, argv, resolveCwd } from 'just-task';
 import { tryRequire } from '../tryRequire';
-import * as fs from 'fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
 import { merge } from 'webpack-merge';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 import { enableTypeScript } from 'just-task/lib/enableTypeScript';

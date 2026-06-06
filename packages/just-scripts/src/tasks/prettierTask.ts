@@ -1,7 +1,8 @@
-import { logger, resolve, TaskFunction } from 'just-task';
+import type { TaskFunction } from 'just-task';
+import { logger, resolve } from 'just-task';
 import { logNodeCommand, spawn } from '../utils';
 import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
-import * as path from 'path';
+import path from 'path';
 import { arrayify } from '../arrayUtils/arrayify';
 
 interface PrettierContext {

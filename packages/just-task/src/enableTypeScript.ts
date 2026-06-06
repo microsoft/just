@@ -1,7 +1,8 @@
 import { resolve } from './resolve';
 import { logger } from './logger';
 
-export function enableTypeScript({ transpileOnly = true, esm = false }): void {
+export function enableTypeScript(options?: { transpileOnly?: boolean; esm?: boolean }): void {
+  const { transpileOnly = true, esm = false } = options || {};
   const tsNodeModule = resolve('ts-node');
   if (tsNodeModule) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

@@ -2,9 +2,9 @@ import { describe, expect, it, jest, beforeAll, beforeEach, afterAll } from '@je
 import { task } from '../task';
 import { parallel, undertaker } from '../undertaker';
 import { logger } from '../logger';
-import * as path from 'path';
+import path from 'path';
 import * as option from '../option';
-import * as UndertakerRegistry from 'undertaker-registry';
+import UndertakerRegistry from 'undertaker-registry';
 
 describe('task', () => {
   beforeAll(() => {

@@ -1,5 +1,5 @@
 // // WARNING: Careful about add more imports - only import types from webpack
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 
 export const fileOverlay = (): Partial<Configuration> => ({
   module: {
