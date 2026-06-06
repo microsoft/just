@@ -9,7 +9,8 @@
   },
   "homepage": "https://microsoft.github.io/just/",
   "license": "MIT",
-  "main": "./lib/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": "bin/just-scripts.js",
   "scripts": {
     "api": "api-extractor run",
@@ -47,5 +48,10 @@
     "@types/webpack": "^4.41.33",
     "async-done": "^2.0.0",
     "esbuild": "^0.9.6"
-  }
+  },
+  "files": [
+    "bin",
+    "lib/!(__*)",
+    "lib/!(__*)/**/*"
+  ]
 }

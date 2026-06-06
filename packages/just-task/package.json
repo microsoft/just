@@ -10,6 +10,7 @@
   "homepage": "https://microsoft.github.io/just/",
   "license": "MIT",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": {
     "just": "bin/just.js"
   },
@@ -42,5 +43,9 @@
     "@types/resolve": "^1.20.2",
     "@types/undertaker-registry": "^1.0.1"
   },
-  "typing": "lib/index.d.ts"
+  "files": [
+    "bin",
+    "lib/!(__*)",
+    "lib/!(__*)/**/*"
+  ]
 }
