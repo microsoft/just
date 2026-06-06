@@ -13,7 +13,7 @@ This file provides guidance to AI agents when working with code in this reposito
 
 ## Monorepo Structure
 
-- **Yarn workspaces** with **Lage** for task orchestration
+- **Yarn v4 workspaces** with **Lage** for task orchestration
 - Workspaces: `packages/*` and `scripts/`
 - Three packages:
   - `packages/just-task` — Core task runner (CLI: `npx just <task>`, config: `just.config.ts`)
@@ -83,5 +83,5 @@ Task functions can: return a Promise, call a `done` callback, or return a stream
 
 ## CI / Release
 
-- PR checks: format:check → lint → build/test/api (Ubuntu + Windows, Node 14)
+- PR checks: format:check → lint → build/test/api (Ubuntu + Windows, Node 22)
 - Release: Beachball publish (manual trigger), docs deployed to GitHub Pages

@@ -19,6 +19,5 @@
     "touch": "^3.1.1",
     "typescript": "^5.9.3",
     "vuepress": "^2.0.0-rc.26"
-  },
-  "packageManager": "yarn@4.16.0"
+  }
 }

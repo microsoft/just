@@ -6,6 +6,8 @@
     "github>microsoft/m365-renovate-config:groupMore",
     "github>microsoft/m365-renovate-config:groupTypes",
     "github>microsoft/m365-renovate-config:keepFresh"
+    // TODO (release): re-enable and remove special rules
+    // "github>microsoft/m365-renovate-config:restrictNode(22)"
   ],
 
   "labels": ["renovate"],

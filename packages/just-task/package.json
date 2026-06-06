@@ -1,15 +1,14 @@
 {
   "name": "just-task",
-  "version": "1.14.0",
+  "version": "3.0.0-alpha.0",
   "description": "Build task definition library",
-  "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/microsoft/just"
+    "url": "https://github.com/microsoft/just",
+    "directory": "packages/just-task"
   },
   "homepage": "https://microsoft.github.io/just/",
   "license": "MIT",
-  "author": "Ken Chau <kchau@microsoft.com>",
   "main": "lib/index.js",
   "bin": {
     "just": "bin/just.js"
@@ -23,7 +22,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=22.18.0"
   },
   "dependencies": {
     "@types/chokidar": "^2.1.3",

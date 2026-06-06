@@ -30,7 +30,7 @@ jobs:
         with:
           node-version-file: .nvmrc
 
-      - run: yarn --frozen-lockfile
+      - run: yarn --immutable
 
       - run: yarn checkchange
 
