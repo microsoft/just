@@ -43,7 +43,6 @@
     "@jest/globals": "^30.0.0",
     "@microsoft/api-extractor": "^7.58.7",
     "@types/fs-extra": "^11.0.0",
-    "@types/jest": "^29.4.0",
     "@types/mock-fs": "^4.13.1",
     "@types/node": "^22.0.0",
     "@types/semver": "^7.3.13",
@@ -55,8 +54,8 @@
     "jest": "^30.0.0",
     "lage": "^2.15.12",
     "lint-staged": "^17.0.7",
-    "mock-fs": "^5.2.0",
-    "prettier": "~3.8.0",
+    "mock-fs": "^5.5.0",
+    "prettier": "~3.8.3",
     "syncpack": "^15.0.0",
     "ts-jest": "^29.4.11",
     "typescript": "~6.0.3"
@@ -64,16 +63,14 @@
   "resolutions": {
     "es5-ext": "0.10.53",
     "kind-of": "^6.0.3",
-    "@types/glob/@types/minimatch": "^3.0.0",
-    "@types/chokidar/chokidar": "^3.0.0",
-    "browserslist/node-releases": "2.0.44",
+    "@types/glob/@types/minimatch@*": "^3.0.0",
+    "@types/chokidar/chokidar@*": "^3.0.0",
     "@types/node@*": "^22.0.0"
   },
   "rationale": {
     "resolutions": {
-      "@types/glob/@types/minimatch": "pin to installed minimatch version, not *",
-      "@types/chokidar/chokidar": "pin to version matching other chokidar deps, not *",
-      "browserslist/node-releases": "node 14 compat"
+      "@types/glob/@types/minimatch@*": "pin to installed minimatch version, not *",
+      "@types/chokidar/chokidar@*": "pin to version matching other chokidar deps, not *"
     }
   }
 }
