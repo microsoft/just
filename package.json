@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.5.0",
-    "@microsoft/api-extractor": "7.52.9",
+    "@microsoft/api-extractor": "7.58.7",
     "@types/fs-extra": "^11.0.0",
     "@types/jest": "^29.4.0",
     "@types/mock-fs": "^4.13.1",
