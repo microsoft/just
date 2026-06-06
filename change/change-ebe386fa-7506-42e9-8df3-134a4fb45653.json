@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "none",
+      "comment": "Update devDependency esbuild to ^0.25.0 [SECURITY]",
+      "packageName": "just-scripts",
+      "email": "renovate@whitesourcesoftware.com",
+      "dependentChangeType": "none"
+    }
+  ]
+}
