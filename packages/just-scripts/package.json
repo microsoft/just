@@ -1,7 +1,7 @@
 {
   "name": "just-scripts",
   "version": "3.0.0-alpha.0",
-  "description": "Just Stack Scripts",
+  "description": "Build presets for Node and browser projects",
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/just",
