@@ -12,7 +12,7 @@
 
 ## `main` is currently the development branch for `just-*` v3 (alpha)
 
-The code for `just-*` v2 (`latest`) is in the `v2` branch. If you're making a PR with a non-breaking change, it should target the `v2` branch.
+The code for `just-task` v1 / `just-scripts` v2 (`latest`) is in the `v2` branch. If you're making a PR with a non-breaking change, it should target the `v2` branch.
 
 ## Documentation
 
