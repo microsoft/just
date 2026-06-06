@@ -1,6 +1,8 @@
 // @ts-check
 /** @type {import('beachball').BeachballConfig} */
 const config = {
+  branch: 'v2',
+  disallowedChangeTypes: ['major'],
   groupChanges: true,
   ignorePatterns: [
     '.*ignore',
