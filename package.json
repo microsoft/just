@@ -7,6 +7,12 @@
     "type": "git",
     "url": "https://github.com/microsoft/just"
   },
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "scripts"
+    ]
+  },
   "scripts": {
     "api": "yarn lage api",
     "api:update": "yarn lage api:update",
@@ -36,7 +42,7 @@
     "@types/semver": "^7.3.13",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
-    "beachball": "^2.31.11",
+    "beachball": "^2.65.5",
     "cross-env": "^7.0.3",
     "eslint": "^8.35.0",
     "jest": "^29.5.0",
@@ -71,27 +77,10 @@
       "**/browserslist/node-releases": "node 14 compat"
     }
   },
-  "beachball": {
-    "groupChanges": true,
-    "ignorePatterns": [
-      ".*ignore",
-      "api-extractor.json",
-      "jest.config.js",
-      "**/__tests__/**",
-      "**/*.spec.ts",
-      "**/*.test.ts"
-    ]
-  },
   "syncpack": {
     "dependencyTypes": [
       "dev",
       "prod"
-    ]
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "scripts"
     ]
   }
 }

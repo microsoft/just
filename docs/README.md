@@ -1,24 +1,3 @@
----
-home: true
-heroText: The task library that just works
-tagline: A sensible set of tasks to build, test, and lint your frontend projects
-actions:
-  - text: Get Started →
-    link: /tasks/
-    type: primary
-features:
-  - title: Flexible
-    details: 'Unlike create-react-app, just gives sensible defaults but does not hide config files'
-  - title: Task orchestration
-    details: Like gulp, just provides parallel() and series() to fine tune task runs
-  - title: No waiting for latest devDependencies
-    details: just-scripts knows how to run tools, but it does not prescribe versions of the dependencies - you upgrade at your own timing!
-  - title: TypeScript support
-    details: just-scripts configurations are TypeScript-enabled, so you don't have to have a separate build step to use your build tools
-  - title: Lightweight task orchestration
-    details: just-task is a lightweight task orchestrator that has no streaming file system abstraction
-  - title: Battle-tested
-    details: just is built upon just the right abstraction from the gulp ecosystem, which is used by many repos
+# Just doc site
 
-footer: MIT Licensed | Copyright © 2020-present Microsoft
----
+This site is built with Vuepress v2. It uses a separate yarn installation--this was originally done to get rid of very outdated deps while keeping just v2 on Node 14, but even with just updated, it's still somewhat helpful to separate the installations to easily see which deps and security alerts are doc-only.
