@@ -1,6 +1,7 @@
-import { resolve, logger, resolveCwd, TaskFunction } from 'just-task';
-import * as path from 'path';
-import * as fs from 'fs';
+import type { TaskFunction } from 'just-task';
+import { resolve, logger, resolveCwd } from 'just-task';
+import path from 'path';
+import fs from 'fs';
 import { logNodeCommand, spawn } from '../utils';
 
 export interface TsLintTaskOptions {

@@ -7,10 +7,10 @@
 import type * as ApiExtractorTypes from '@microsoft/api-extractor';
 import type { BuildOptions } from 'esbuild';
 import { Configuration } from 'webpack';
-import * as cp from 'child_process';
-import { SpawnOptions } from 'child_process';
-import { TaskFunction } from 'just-task';
-import * as ts from 'typescript';
+import type cp from 'child_process';
+import type { SpawnOptions } from 'child_process';
+import type { TaskFunction } from 'just-task';
+import type ts from 'typescript';
 import * as webpackMerge from 'webpack-merge';
 
 // @public

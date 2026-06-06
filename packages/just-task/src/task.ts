@@ -1,6 +1,6 @@
 import { undertaker } from './undertaker';
 import { wrapTask } from './wrapTask';
-import { TaskFunction } from './interfaces';
+import type { TaskFunction } from './interfaces';
 
 export function task(
   firstParam: string | TaskFunction,

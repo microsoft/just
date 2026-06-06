@@ -1,4 +1,4 @@
-import * as cp from 'child_process';
+import type cp from 'child_process';
 import { spawn as crossSpawn } from 'cross-spawn';
 import { logger } from 'just-task';
 

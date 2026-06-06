@@ -1,5 +1,5 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
-import * as mockfs from 'mock-fs';
+import mockfs from 'mock-fs';
 import { spawn } from '../../utils';
 import { webpackCliTask } from '../webpackCliTask';
 import { callTaskForTest } from './callTaskForTest';

@@ -1,6 +1,6 @@
 import { describe, expect, it, jest, afterEach } from '@jest/globals';
-import * as cp from 'child_process';
-import * as path from 'path';
+import cp from 'child_process';
+import path from 'path';
 import { encodeArgs, spawn } from '../exec';
 import { getMockScript } from '../../__tests__/getMockScript';
 import { MockOutputStream } from '../../__tests__/MockOutputStream';

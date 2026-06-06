@@ -4,11 +4,10 @@
 
 ```ts
 
-import { Arguments } from 'yargs-parser';
+import type { Arguments } from 'yargs-parser';
 import type { FSWatcher } from 'chokidar';
 import type { Stats } from 'fs';
-import type * as Undertaker from 'undertaker';
-import Undertaker_2 = require('undertaker');
+import Undertaker from 'undertaker';
 import type { WatchOptions } from 'chokidar';
 
 // @public
@@ -63,7 +62,7 @@ interface OptionConfig {
 }
 
 // @public (undocumented)
-export function parallel(...tasks: Task[]): Undertaker_2.TaskFunction;
+export function parallel(...tasks: Task[]): Undertaker.TaskFunction;
 
 // @public
 export function resetResolvePaths(): void;
@@ -89,7 +88,7 @@ interface ResolveOptions {
 }
 
 // @public (undocumented)
-export function series(...tasks: Task[]): Undertaker_2.TaskFunction;
+export function series(...tasks: Task[]): Undertaker.TaskFunction;
 
 // @public (undocumented)
 export type Task = string | TaskFunction;
@@ -104,7 +103,7 @@ export interface TaskFunction extends Undertaker.TaskFunction {
 }
 
 // @public (undocumented)
-export const undertaker: Undertaker_2;
+export const undertaker: Undertaker;
 
 // Warning: (ae-forgotten-export) The symbol "WatchListener" needs to be exported by the entry point index.d.ts
 //

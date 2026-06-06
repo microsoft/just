@@ -1,7 +1,8 @@
-import * as fse from 'fs-extra';
-import * as path from 'path';
-import { logger, TaskFunction } from 'just-task';
-import parallelLimit = require('run-parallel-limit');
+import fse from 'fs-extra';
+import path from 'path';
+import type { TaskFunction } from 'just-task';
+import { logger } from 'just-task';
+import parallelLimit from 'run-parallel-limit';
 
 export interface CleanTaskOptions {
   /**

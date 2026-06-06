@@ -1,7 +1,8 @@
-import { resolve, logger, resolveCwd, TaskFunction, argv } from 'just-task';
+import type { TaskFunction } from 'just-task';
+import { resolve, logger, resolveCwd, argv } from 'just-task';
 import { spawn, readPackageJson, logNodeCommand } from '../utils';
 import { existsSync } from 'fs';
-import * as supportsColor from 'supports-color';
+import supportsColor from 'supports-color';
 
 export interface JestTaskOptions {
   config?: string;

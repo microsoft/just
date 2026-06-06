@@ -1,4 +1,4 @@
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 
 export const displayBailoutOverlay = (): Partial<Configuration> => ({
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

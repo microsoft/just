@@ -1,7 +1,7 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
-import * as fs from 'fs';
-import * as glob from 'glob';
-import * as path from 'path';
+import fs from 'fs';
+import glob from 'glob';
+import path from 'path';
 import { sassTask } from '../sassTask';
 import { tryRequire } from '../../tryRequire';
 import { callTaskForTest } from './callTaskForTest';

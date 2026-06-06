@@ -1,5 +1,6 @@
-import { expect, jest } from '@jest/globals';
-import * as path from 'path';
+import type { jest } from '@jest/globals';
+import { expect } from '@jest/globals';
+import path from 'path';
 import type { spawn } from '../../utils/exec';
 
 const packageRootDir = path.resolve(__dirname, '../../..');
@@ -11,7 +12,7 @@ const repoRootDir = path.resolve(packageRootDir, '../..');
  * @param spawnSpy Mocked or spied `spawn` function from this package
  * @returns Array of normalized command and arguments
  */
-export function getNormalizedSpawnArgs(spawnSpy: jest.SpiedFunction<typeof spawn>) {
+export function getNormalizedSpawnArgs(spawnSpy: jest.SpiedFunction<typeof spawn>): string[] {
   expect(spawnSpy).toHaveBeenCalledTimes(1);
   const [spawnCmd, spawnArgs] = spawnSpy.mock.calls[0];
   expect(spawnCmd).toBe(process.execPath);
@@ -25,7 +26,7 @@ export function getNormalizedSpawnArgs(spawnSpy: jest.SpiedFunction<typeof spawn
  * Like {@link getNormalizedSpawnArgs} but returns one array per spawn call,
  * for tasks that call spawn multiple times (e.g. prettierTask with chunked files).
  */
-export function getAllNormalizedSpawnArgs(spawnSpy: jest.SpiedFunction<typeof spawn>) {
+export function getAllNormalizedSpawnArgs(spawnSpy: jest.SpiedFunction<typeof spawn>): string[][] {
   expect(spawnSpy).toHaveBeenCalled();
   return spawnSpy.mock.calls.map(([spawnCmd, spawnArgs]) => {
     expect(spawnCmd).toBe(process.execPath);

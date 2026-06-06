@@ -1,6 +1,7 @@
-import { logger, TaskFunction } from 'just-task';
-import * as fs from 'fs-extra';
-import * as path from 'path';
+import type { TaskFunction } from 'just-task';
+import { logger } from 'just-task';
+import fs from 'fs-extra';
+import path from 'path';
 import { tryRequire } from '../tryRequire';
 import type * as ApiExtractorTypes from '@microsoft/api-extractor';
 

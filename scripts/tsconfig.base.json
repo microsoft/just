@@ -17,10 +17,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
-    // TODO: enable these and remove ignoreDeprecations
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": false,
-    "ignoreDeprecations": "6.0",
     "lib": ["ES2024"],
     "types": ["node"]
   }

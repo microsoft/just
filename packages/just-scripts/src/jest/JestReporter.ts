@@ -7,7 +7,7 @@ import { DefaultReporter } from '@jest/reporters';
 class JestReporter extends DefaultReporter {
   private _isLoggingError = false;
 
-  public log(message: string) {
+  public log(message: string): void {
     if (this._isLoggingError) {
       process.stderr.write(message + '\n');
     } else {
@@ -15,7 +15,7 @@ class JestReporter extends DefaultReporter {
     }
   }
 
-  public printTestFileFailureMessage(...args: Parameters<DefaultReporter['printTestFileFailureMessage']>) {
+  public printTestFileFailureMessage(...args: Parameters<DefaultReporter['printTestFileFailureMessage']>): void {
     this._isLoggingError = true;
     super.printTestFileFailureMessage(...args);
     this._isLoggingError = false;

@@ -1,13 +1,14 @@
 // // WARNING: Careful about add more imports - only import types from webpack
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 import { logNodeCommand, spawn } from '../utils';
-import { resolve, resolveCwd, TaskFunction } from 'just-task';
-import * as fs from 'fs';
-import * as path from 'path';
-import { WebpackCliTaskOptions } from './webpackCliTask';
+import type { TaskFunction } from 'just-task';
+import { resolve, resolveCwd } from 'just-task';
+import fs from 'fs';
+import path from 'path';
+import type { WebpackCliTaskOptions } from './webpackCliTask';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
-import * as semver from 'semver';
+import semver from 'semver';
 
 export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Configuration {
   /**

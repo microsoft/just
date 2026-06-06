@@ -39,13 +39,13 @@ export function getConfig(dirname, ...configs) {
         '@typescript-eslint/no-shadow': 'error',
         '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true }],
         '@typescript-eslint/prefer-for-of': 'error',
+        '@typescript-eslint/consistent-type-imports': ['error', { disallowTypeAnnotations: false }],
+        '@typescript-eslint/consistent-type-exports': 'error',
+        '@typescript-eslint/explicit-module-boundary-types': 'error',
+        '@typescript-eslint/no-import-type-side-effects': 'error',
 
         // Should be enabled
         '@typescript-eslint/no-explicit-any': 'off',
-        // '@typescript-eslint/consistent-type-imports': ['error', { disallowTypeAnnotations: false }],
-        // '@typescript-eslint/consistent-type-exports': 'error',
-        // '@typescript-eslint/explicit-module-boundary-types': 'error',
-        // '@typescript-eslint/no-import-type-side-effects': 'error',
 
         '@typescript-eslint/no-restricted-imports': [
           'error',

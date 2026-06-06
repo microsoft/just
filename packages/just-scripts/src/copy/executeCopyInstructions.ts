@@ -1,6 +1,6 @@
 import { dirname, resolve } from 'path';
 import { readFile, writeFile, copy, ensureDir, ensureSymlink } from 'fs-extra';
-import { CopyInstruction, CopyConfig } from './CopyInstruction';
+import type { CopyInstruction, CopyConfig } from './CopyInstruction';
 import { arrayify } from '../arrayUtils/arrayify';
 import { uniqueValues } from '../arrayUtils/uniqueValues';
 

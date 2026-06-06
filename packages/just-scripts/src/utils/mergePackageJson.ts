@@ -1,5 +1,5 @@
-import { PackageJson } from '../interfaces/PackageJson';
-import semver = require('semver');
+import type { PackageJson } from '../interfaces/PackageJson';
+import semver from 'semver';
 
 /**
  * Merges an incoming package.json with an original semantically. It can only handle merging

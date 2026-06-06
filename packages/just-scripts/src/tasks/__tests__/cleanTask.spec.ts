@@ -1,5 +1,5 @@
 import { describe, expect, it, jest, afterEach } from '@jest/globals';
-import * as fse from 'fs-extra';
+import fse from 'fs-extra';
 import { cleanTask, defaultCleanPaths } from '../cleanTask';
 import { callTaskForTest } from './callTaskForTest';
 

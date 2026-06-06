@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { mergePackageJson, _shouldUpdateDep } from '../mergePackageJson';
-import { PackageJson } from '../../interfaces/PackageJson';
+import type { PackageJson } from '../../interfaces/PackageJson';
 
 describe('_shouldUpdateDep', () => {
   it('returns true if old version is undefined', () => {

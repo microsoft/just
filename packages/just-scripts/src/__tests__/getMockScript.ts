@@ -1,6 +1,6 @@
 import { expect } from '@jest/globals';
-import * as fs from 'fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
 
 /** Get the path to a mock script file (verifying that it exists) */
 export function getMockScript(

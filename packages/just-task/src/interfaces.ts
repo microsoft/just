@@ -1,4 +1,4 @@
-import type * as Undertaker from 'undertaker';
+import type Undertaker from 'undertaker';
 
 export type Task = string | TaskFunction;
 
