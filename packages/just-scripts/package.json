@@ -13,13 +13,13 @@
   "types": "lib/index.d.ts",
   "bin": "bin/just-scripts.js",
   "scripts": {
-    "api": "api-extractor run",
-    "api:update": "api-extractor run --local",
-    "build": "tsc",
-    "start": "tsc -w --preserveWatchOutput",
-    "start-test": "jest --watch",
-    "test": "jest",
-    "test:update": "jest --updateSnapshot"
+    "api": "yarn run -T api-extractor run",
+    "api:update": "yarn run -T api-extractor run --local",
+    "build": "yarn run -T tsc",
+    "start": "yarn run -T tsc -w --preserveWatchOutput",
+    "start-test": "yarn run -T jest --watch",
+    "test": "yarn run -T jest",
+    "test:update": "yarn run -T jest --updateSnapshot"
   },
   "engines": {
     "node": ">=22.18.0"

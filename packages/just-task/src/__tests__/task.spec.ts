@@ -31,7 +31,7 @@ describe('task', () => {
     });
 
     parallel('test')(function () {
-      expect(testFunction).toBeCalledTimes(1);
+      expect(testFunction).toHaveBeenCalledTimes(1);
       done();
     });
   });
@@ -45,7 +45,7 @@ describe('task', () => {
     });
 
     parallel('test')(function () {
-      expect(testFunction).toBeCalledTimes(1);
+      expect(testFunction).toHaveBeenCalledTimes(1);
       done();
     });
   });
@@ -59,7 +59,7 @@ describe('task', () => {
     });
 
     parallel('test')(function () {
-      expect(testFunction).toBeCalledTimes(1);
+      expect(testFunction).toHaveBeenCalledTimes(1);
       done();
     });
   });
