@@ -16,6 +16,7 @@
     "api": "yarn run -T api-extractor run",
     "api:update": "yarn run -T api-extractor run --local",
     "build": "yarn run -T tsc",
+    "prepack": "cp .npmignore lib/.npmignore",
     "start": "yarn run -T tsc -w --preserveWatchOutput",
     "start-test": "yarn run -T jest --watch",
     "test": "yarn run -T jest",
@@ -51,7 +52,6 @@
   },
   "files": [
     "bin",
-    "lib/!(__*)",
-    "lib/!(__*)/**/*"
+    "lib"
   ]
 }

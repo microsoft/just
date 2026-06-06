@@ -6,8 +6,8 @@
   "editor.tabSize": 2,
   "files.trimTrailingWhitespace": true,
   "json.format.enable": false,
-  "javascript.preferences.quoteStyle": "single",
-  "typescript.preferences.quoteStyle": "single",
+  "js/ts.preferences.quoteStyle": "single",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
   "files.associations": {
     "**/package.json.hbs": "json",
     "**/*.json.hbs": "jsonc",
@@ -22,6 +22,5 @@
     "**/node_modules": true,
     "**/lib": true,
     "**/.yarn/releases": true
-  },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  }
 }

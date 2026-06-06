@@ -58,7 +58,8 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     // If the loaded webpack config is a function
     // call it with the original process.argv arguments from build.js.
     if (typeof configLoader == 'function') {
-      webpackConfigs = configLoader(argv().env, argv());
+      const args = argv();
+      webpackConfigs = configLoader(args.env, args);
     } else {
       webpackConfigs = configLoader;
     }
@@ -81,11 +82,11 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
     return new Promise<void>((resolve, reject) => {
       wp(webpackConfigs, async (err: Error, stats: any) => {
-        if (options && options.onCompile) {
+        if (options?.onCompile) {
           await options.onCompile(err, stats);
         }
 
-        if (options && options.outputStats) {
+        if (options?.outputStats) {
           const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
           fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
         }

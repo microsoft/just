@@ -9,7 +9,6 @@ export * from './apiExtractorTask';
 export * from './copyInstructionsTask';
 export * from './prettierTask';
 export * from './eslintTask';
-export * from './webpackCliInitTask';
 export * from './webpackCliTask';
 export * from './webpackDevServerTask';
 export * from './tarTask';

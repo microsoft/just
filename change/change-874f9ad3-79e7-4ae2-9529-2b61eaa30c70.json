@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Remove deprecated caching-related APIs (the code that writes to the cache was removed several years ago)",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

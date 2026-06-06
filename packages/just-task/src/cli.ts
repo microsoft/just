@@ -5,28 +5,6 @@ import { TaskFunction } from './interfaces';
 import { readConfig } from './config';
 import { task } from './task';
 
-const originalEmitWarning = process.emitWarning;
-
-(process.emitWarning as any) = function emitWarning(
-  this: any,
-  _warning: string,
-  _type: string,
-  code: string,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  _ctor?: Function,
-) {
-  if (code === 'DEP0097') {
-    // Undertaker uses a deprecated approach that causes NodeJS 10 to print
-    // this warning to stderr:
-    //
-    // "Using a domain property in MakeCallback is deprecated. Use the  async_context
-    // variant of MakeCallback or the AsyncResource class instead."
-    // Suppress the warning!
-    return;
-  }
-  return originalEmitWarning.apply(this, arguments);
-};
-
 function showHelp() {
   const tasks = undertaker.registry().tasks();
 

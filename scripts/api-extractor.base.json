@@ -18,6 +18,9 @@
   "dtsRollup": {
     "enabled": false
   },
+  "tsdocMetadata": {
+    "enabled": false
+  },
   "messages": {
     "extractorMessageReporting": {
       "ae-missing-release-tag": {

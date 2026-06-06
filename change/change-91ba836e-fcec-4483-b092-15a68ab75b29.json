@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Remove `TaskContext` type which was not actually used at runtime, and simplify `TaskFunction` signature. (It's possible that `TaskContext` was being provided as `this` binding context to task functions at some point, but the current implementation doesn't do that.)",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
