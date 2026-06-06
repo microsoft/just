@@ -2,6 +2,27 @@
   "name": "just-scripts",
   "entries": [
     {
+      "date": "Sat, 06 Jun 2026 09:25:33 GMT",
+      "version": "2.6.2",
+      "tag": "just-scripts_v2.6.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-scripts",
+            "commit": "18f4de69ecb92095a685a1bea046407150fa3908",
+            "comment": "Fix main and types fields"
+          },
+          {
+            "author": "beachball",
+            "package": "just-scripts",
+            "comment": "Bump just-task to v1.14.1",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 04 Jun 2026 23:22:47 GMT",
       "version": "2.6.1",
       "tag": "just-scripts_v2.6.1",

@@ -1,8 +1,17 @@
 # Change Log - just-scripts
 
-<!-- This log was last generated on Thu, 04 Jun 2026 23:22:47 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 06 Jun 2026 09:25:33 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.6.2
+
+Sat, 06 Jun 2026 09:25:33 GMT
+
+### Patches
+
+- Fix main and types fields (elcraig@microsoft.com)
+- Bump just-task to v1.14.1
 
 ## 2.6.1
 

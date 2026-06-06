@@ -2,6 +2,21 @@
   "name": "just-task",
   "entries": [
     {
+      "date": "Sat, 06 Jun 2026 09:25:33 GMT",
+      "version": "1.14.1",
+      "tag": "just-task_v1.14.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "just-task",
+            "commit": "18f4de69ecb92095a685a1bea046407150fa3908",
+            "comment": "Fix main and types fields"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 04 Jun 2026 23:22:47 GMT",
       "version": "1.14.0",
       "tag": "just-task_v1.14.0",
