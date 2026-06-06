@@ -1,4 +1,8 @@
-import { nodeExecTask, tscTask, task, parallel, watch } from 'just-scripts';
+// Sample just.config.ts file which is fully type checked
+
+import { parallel, task, watch } from 'just-task';
+import { tscTask } from '../tscTask';
+import { nodeExecTask } from '../nodeExecTask';
 
 task('typescript', tscTask({}));
 task('typescript:watch', tscTask({ watch: true }));

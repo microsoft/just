@@ -1,6 +1,6 @@
 # Command line arguments
 
-`just-task` uses the best pirate themed command line argument library ever: `yargs`, matey! So, rigs get documented pretty much automatically. However, tasks can customize the arguments that are accepted. `just-task` exposes these via `this.argv` inside a task function.
+`just-task` uses the best pirate themed command line argument library ever: `yargs`, matey! So, rigs get documented pretty much automatically.
 
 ## Reading arguments
 

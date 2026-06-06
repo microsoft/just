@@ -5,12 +5,10 @@
 ```ts
 
 import { Arguments } from 'yargs-parser';
-import { Duplex } from 'stream';
 import type { FSWatcher } from 'chokidar';
 import type { Stats } from 'fs';
-import { TaskFunction as TaskFunction_2 } from 'undertaker';
-import { TaskFunctionParams } from 'undertaker';
-import Undertaker = require('undertaker');
+import type * as Undertaker from 'undertaker';
+import Undertaker_2 = require('undertaker');
 import type { WatchOptions } from 'chokidar';
 
 // @public
@@ -25,11 +23,8 @@ export function chain(subjectTaskName: string): {
     after: (taskName: string) => void;
 };
 
-// @public @deprecated
-export function clearCache(): void;
-
 // @public (undocumented)
-export function condition(taskName: string, conditional: () => boolean): TaskFunction_2;
+export function condition(taskName: string, conditional: () => boolean): TaskFunction;
 
 // @public (undocumented)
 export interface Logger {
@@ -68,7 +63,7 @@ interface OptionConfig {
 }
 
 // @public (undocumented)
-export function parallel(...tasks: Task[]): Undertaker.TaskFunction;
+export function parallel(...tasks: Task[]): Undertaker_2.TaskFunction;
 
 // @public
 export function resetResolvePaths(): void;
@@ -94,7 +89,7 @@ interface ResolveOptions {
 }
 
 // @public (undocumented)
-export function series(...tasks: Task[]): Undertaker.TaskFunction;
+export function series(...tasks: Task[]): Undertaker_2.TaskFunction;
 
 // @public (undocumented)
 export type Task = string | TaskFunction;
@@ -103,25 +98,15 @@ export type Task = string | TaskFunction;
 export function task(firstParam: string | TaskFunction, secondParam?: string | TaskFunction, thirdParam?: TaskFunction): TaskFunction;
 
 // @public (undocumented)
-export interface TaskContext {
+export interface TaskFunction extends Undertaker.TaskFunctionParams {
     // (undocumented)
-    argv: Arguments;
-    // (undocumented)
-    logger: Logger;
-}
-
-// @public (undocumented)
-export interface TaskFunction extends TaskFunctionParams {
-    // (undocumented)
-    (this: TaskContext, done: (error?: any) => void): void | Duplex | NodeJS.Process | Promise<never> | any;
-    // @deprecated (undocumented)
-    cached?: () => void;
+    (done: (error?: any) => void): ReturnType<Undertaker.TaskFunction>;
     // (undocumented)
     description?: string;
 }
 
 // @public (undocumented)
-export const undertaker: Undertaker;
+export const undertaker: Undertaker_2;
 
 // Warning: (ae-forgotten-export) The symbol "WatchListener" needs to be exported by the entry point index.d.ts
 //

@@ -61,7 +61,7 @@ export function apiExtractorVerifyTask(
       ? { ...extractorOptions, configJsonFilePath: configJsonFilePathOrOption }
       : { ...configJsonFilePathOrOption };
 
-  return function apiExtractorVerify() {
+  return async function apiExtractorVerify() {
     const context = initApiExtractor(options);
     if (context) {
       const apiExtractorResult = apiExtractorWrapper(context);
@@ -110,7 +110,7 @@ export function apiExtractorUpdateTask(
       ? { ...extractorOptions, configJsonFilePath: configJsonFilePathOrOption }
       : { ...configJsonFilePathOrOption };
 
-  return function apiExtractorUpdate() {
+  return async function apiExtractorUpdate() {
     const context = initApiExtractor(options);
     if (context) {
       let apiExtractorResult = apiExtractorWrapper(context);
@@ -158,10 +158,7 @@ function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | u
   const { configJsonFilePath = ExtractorConfig.FILENAME, fixNewlines, onResult, ...extractorOptions } = options;
 
   if (!fs.existsSync(configJsonFilePath)) {
-    const defaultConfig = path.resolve(__dirname, '../../config/apiExtractor/api-extractor.json');
-    logger.warn(
-      `Config file not found for api-extractor! Please copy ${defaultConfig} to project root folder to try again`,
-    );
+    logger.warn('Config file not found for api-extractor!');
     return;
   }
 

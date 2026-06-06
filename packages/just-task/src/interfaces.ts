@@ -1,18 +1,8 @@
-import { Arguments } from 'yargs-parser';
-import { TaskFunctionParams } from 'undertaker';
-import { Logger } from './logger';
-import { Duplex } from 'stream';
+import type * as Undertaker from 'undertaker';
 
 export type Task = string | TaskFunction;
 
-export interface TaskContext {
-  argv: Arguments;
-  logger: Logger;
-}
-
-export interface TaskFunction extends TaskFunctionParams {
-  (this: TaskContext, done: (error?: any) => void): void | Duplex | NodeJS.Process | Promise<never> | any;
-  /** @deprecated Task caching has been removed. This property is a no-op. */
-  cached?: () => void;
+export interface TaskFunction extends Undertaker.TaskFunctionParams {
+  (done: (error?: any) => void): ReturnType<Undertaker.TaskFunction>;
   description?: string;
 }
