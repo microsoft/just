@@ -13,6 +13,7 @@ const config = {
       dependsOn: ['^build'],
       outputs: ['lib/**/*'],
     },
+    lint: ['build'],
     test: ['build'],
     api: {
       dependsOn: ['build'],

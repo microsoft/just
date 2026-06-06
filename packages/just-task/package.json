@@ -18,6 +18,7 @@
     "api": "yarn run -T api-extractor run",
     "api:update": "yarn run -T api-extractor run --local",
     "build": "yarn run -T tsc",
+    "lint": "yarn run -T eslint --color --max-warnings=0 src",
     "start": "yarn run -T tsc -w --preserveWatchOutput",
     "start-test": "yarn run -T jest --watch",
     "test": "yarn run -T jest"
