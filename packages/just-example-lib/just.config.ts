@@ -1,4 +1,14 @@
-import { nodeExecTask, tscTask, task, parallel, watch } from 'just-scripts';
+import {
+  nodeExecTask,
+  tscTask,
+  task,
+  parallel,
+  watch,
+  jestTask,
+  eslintTask,
+  apiExtractorVerifyTask,
+  apiExtractorUpdateTask,
+} from 'just-scripts';
 
 task('typescript', tscTask({}));
 task('typescript:watch', tscTask({ watch: true }));
@@ -28,3 +38,10 @@ task('w', () => {
     console.log(file, 'is changed', evt);
   });
 });
+
+task('test', jestTask());
+
+task('lint', eslintTask());
+
+task('api', apiExtractorVerifyTask({}));
+task('api:update', apiExtractorUpdateTask({}));
