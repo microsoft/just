@@ -2,15 +2,15 @@ name: PR
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, v2]
   push:
-    branches: [main]
+    branches: [main, v2]
 
 concurrency:
   # For PRs, use the ref (branch) in the concurrency group so that new pushes cancel any old runs.
   # For pushes to main, ideally we wouldn't set a concurrency group, but github actions doesn't
   # support conditional blocks of settings, so we use the SHA so the "group" is unique.
-  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
+  group: ${{ github.workflow }}-${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/v2') && github.sha || github.ref }}
   cancel-in-progress: true
 
 permissions: {}

@@ -5,20 +5,39 @@
     "github>microsoft/m365-renovate-config:disableEsmVersions",
     "github>microsoft/m365-renovate-config:groupMore",
     "github>microsoft/m365-renovate-config:groupTypes",
-    "github>microsoft/m365-renovate-config:keepFresh",
-    "github>microsoft/m365-renovate-config:restrictNode(14)"
+    "github>microsoft/m365-renovate-config:keepFresh"
   ],
 
   "labels": ["renovate"],
+  "reviewers": ["ecraig12345"],
+
+  "baseBranchPatterns": ["main", "v2"],
 
   "packageRules": [
     // new version prints a protest message
     { "matchPackageNames": ["es5-ext"], "enabled": false },
 
     {
-      // disabled due to > pinned version requiring newer node
+      // disabled for v2 due to > pinned version requiring newer node
+      "matchBaseBranches": ["v2"],
       "matchPackageNames": ["@microsoft/api-extractor", "lage"],
       "enabled": false
+    },
+
+    // Temporary replacement for restrictNode
+    {
+      "matchBaseBranches": ["v2"],
+      "matchPackageNames": ["@types/node", "node", "nodejs/node", "node-version"],
+      "allowedVersions": "14"
+    },
+    {
+      "matchBaseBranches": ["main"],
+      "matchPackageNames": ["@types/node", "node", "nodejs/node", "node-version"],
+      "allowedVersions": "22"
+    },
+    {
+      "matchManagers": ["npm"],
+      "constraintsFiltering": "strict"
     }
   ]
 }

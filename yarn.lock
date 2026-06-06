@@ -1291,7 +1291,7 @@ baseline-browser-mapping@^2.10.12:
   resolved "https://registry.yarnpkg.com/baseline-browser-mapping/-/baseline-browser-mapping-2.10.33.tgz#27c299b096404978831958d429f48390424c4f9b"
   integrity sha512-bA6+tcSLpz2tIEdDXZPpPTIuxBcC4+w6SieaYyfigIa4h8GlFxbA17v22Vx3JUtuZQj9SgOsnbK+aTBzyDyEuw==
 
-beachball@^2.31.11:
+beachball@^2.65.5:
   version "2.65.5"
   resolved "https://registry.yarnpkg.com/beachball/-/beachball-2.65.5.tgz#9b45eb2271ab1a18cccecdd82ee182f096ca9a9a"
   integrity sha512-nAsYfIQ5co1gn718OmLLsYtJSt+oZYkMMQ9k6Yel372sPwMETHgzqAcmxdZb2Bs/XTvy2/Xnm7qz7pashweFZg==

@@ -10,6 +10,10 @@
 - `just-task`: a build task definition library
 - `just-scripts`: sane preset build flows for node and browser projects featuring TypeScript, Webpack and Jest
 
+## `main` is currently the development branch for `just-*` v3 (alpha)
+
+The code for `just-*` v2 (`latest`) is in the `v2` branch. If you're making a PR with a non-breaking change, it should target the `v2` branch.
+
 ## Documentation
 
 All the documentation is online at https://microsoft.github.io/just/
