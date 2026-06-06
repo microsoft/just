@@ -36,7 +36,7 @@ describe('spawn', () => {
       await spawn(path.join(__dirname, 'nope'));
       fail('should have rejected');
     } catch (err) {
-      expect((err as any).code).toBe('ENOENT');
+      expect((err as { code: string }).code).toBe('ENOENT');
     }
   });
 
@@ -47,7 +47,7 @@ describe('spawn', () => {
       fail('should have rejected');
     } catch (error) {
       expect((error as Error).message).toContain('Command failed');
-      expect((error as any).code).toBe(1);
+      expect((error as { code: number }).code).toBe(1);
       // in the debugger there are some extra stderr chunks
       expect(stderr.getOutput()).toContain('oh no\n');
     }
@@ -64,7 +64,7 @@ describe('spawn', () => {
       fail('should have rejected');
     } catch (err) {
       expect((err as Error).message).toContain('Command terminated by signal SIGTERM');
-      expect((err as any).signal).toBe('SIGTERM');
+      expect((err as { signal: string }).signal).toBe('SIGTERM');
     }
   });
 });

@@ -1,5 +1,5 @@
 // // WARNING: Careful about add more imports - only import types from webpack
-import { Configuration } from 'webpack';
+import { Configuration, type Loader } from 'webpack';
 import { resolve } from 'just-task';
 import { tryRequire } from '../../tryRequire';
 
@@ -14,7 +14,7 @@ export interface CssLoaderOptions {
   localIdentName?: string;
 }
 
-function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass-loader' | null = null): any {
+function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass-loader' | null = null): Loader[] {
   const styleLoader = resolve('@microsoft/loader-load-themed-styles') || resolve('style-loader');
   const postCssLoader = resolve('postcss-loader');
 
@@ -25,6 +25,7 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
             loader: 'postcss-loader',
             options: {
               plugins: function () {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-return
                 return [tryRequire('autoprefixer')];
               },
             },
@@ -47,7 +48,8 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
 
   return [
     {
-      loader: styleLoader, // creates style nodes from JS strings
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      loader: styleLoader!, // creates style nodes from JS strings
     },
     {
       loader: 'css-loader', // translates CSS into CommonJS

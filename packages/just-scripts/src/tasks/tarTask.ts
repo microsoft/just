@@ -71,11 +71,13 @@ export function createTarTask(options: CreateOptions = { file: 'archive.tar.gz' 
     throw new Error('Required dependency "tar-fs" is not installed!');
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const tar = require(resolvedTar);
 
   const { entries, file, cwd, ...restOptions } = options;
 
   return function archive(done) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     let tarStream = tar.pack(cwd, {
       entries,
       finalize: true,
@@ -86,10 +88,12 @@ export function createTarTask(options: CreateOptions = { file: 'archive.tar.gz' 
     });
 
     if (options.gzip) {
-      const gzip = typeof options.gzip === 'boolean' ? createGzip() : createGzip(options.gzip as any);
+      const gzip = typeof options.gzip === 'boolean' ? createGzip() : createGzip(options.gzip);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       tarStream = tarStream.pipe(gzip);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     tarStream.pipe(createWriteStream(options.file));
   };
 }
@@ -142,6 +146,7 @@ export function extractTarTask(options: ExtractOptions = { file: 'archive.tar.gz
     throw new Error('Required dependency "tar-fs" is not installed!');
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const tar = require(resolvedTar);
 
   const { cwd, file, ...restOptions } = options;
@@ -154,7 +159,8 @@ export function extractTarTask(options: ExtractOptions = { file: 'archive.tar.gz
       tarStream = tarStream.pipe(gunzip);
     }
 
-    tarStream = tarStream.pipe(
+    tarStream.pipe(
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       tar.extract(cwd, {
         finalize: true,
         finish: () => {

@@ -40,6 +40,7 @@ export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
   }
 
   // undertaker apparently requires returning a promise, async function, or function that calls done()
+  // eslint-disable-next-line @typescript-eslint/require-await
   return async () => {
     logger.warn('Prettier is not available, ignoring this task');
   };

@@ -61,6 +61,7 @@ export function apiExtractorVerifyTask(
       ? { ...extractorOptions, configJsonFilePath: configJsonFilePathOrOption }
       : { ...configJsonFilePathOrOption };
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   return async function apiExtractorVerify() {
     const context = initApiExtractor(options);
     if (context) {
@@ -110,6 +111,7 @@ export function apiExtractorUpdateTask(
       ? { ...extractorOptions, configJsonFilePath: configJsonFilePathOrOption }
       : { ...configJsonFilePathOrOption };
 
+  // eslint-disable-next-line @typescript-eslint/require-await
   return async function apiExtractorUpdate() {
     const context = initApiExtractor(options);
     if (context) {
@@ -142,7 +144,7 @@ export function apiExtractorUpdateTask(
  * Returns undefined if api-extractor or the config file couldn't be found.
  */
 function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | undefined {
-  const apiExtractorModule: typeof ApiExtractorTypes = tryRequire('@microsoft/api-extractor');
+  const apiExtractorModule = tryRequire('@microsoft/api-extractor') as typeof ApiExtractorTypes;
 
   if (!apiExtractorModule) {
     logger.warn('@microsoft/api-extractor package not detected. This task will have no effect.');

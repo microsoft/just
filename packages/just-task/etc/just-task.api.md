@@ -29,11 +29,11 @@ export function condition(taskName: string, conditional: () => boolean): TaskFun
 // @public (undocumented)
 export interface Logger {
     enableVerbose: boolean;
-    error(...args: any[]): void;
-    info(...args: any[]): void;
-    perf(marker: string, ...args: any[]): void;
-    verbose(...args: any[]): void;
-    warn(...args: any[]): void;
+    error(...args: unknown[]): void;
+    info(...args: unknown[]): void;
+    perf(marker: string, ...args: unknown[]): void;
+    verbose(...args: unknown[]): void;
+    warn(...args: unknown[]): void;
 }
 
 // @public (undocumented)
@@ -98,9 +98,7 @@ export type Task = string | TaskFunction;
 export function task(firstParam: string | TaskFunction, secondParam?: string | TaskFunction, thirdParam?: TaskFunction): TaskFunction;
 
 // @public (undocumented)
-export interface TaskFunction extends Undertaker.TaskFunctionParams {
-    // (undocumented)
-    (done: (error?: any) => void): ReturnType<Undertaker.TaskFunction>;
+export interface TaskFunction extends Undertaker.TaskFunction {
     // (undocumented)
     description?: string;
 }
@@ -111,7 +109,7 @@ export const undertaker: Undertaker_2;
 // Warning: (ae-forgotten-export) The symbol "WatchListener" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export function watch(globs: string | string[], optionsOrListener?: WatchListener | WatchOptions | undefined, listener?: WatchListener | undefined): FSWatcher;
+export function watch(globs: string | string[], optionsOrListener?: WatchListener | WatchOptions, listener?: WatchListener): FSWatcher;
 
 // @public (undocumented)
 type WatchListener = (path: string, stats?: Stats) => void;

@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Fix lint issues",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "patch",
+      "comment": "Fix lint issues",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

@@ -73,6 +73,7 @@ export function spawn(
     try {
       child = crossSpawn(cmd, args, opts);
     } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
       reject(error);
       return;
     }
@@ -81,10 +82,12 @@ export function spawn(
       child.off('error', onError);
       if (code) {
         const error = new Error('Command failed: ' + [cmd, ...args].join(' '));
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         (error as any).code = code;
         reject(error);
       } else if (signal) {
         const error = new Error(`Command terminated by signal ${signal}: ` + [cmd, ...args].join(' '));
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         (error as any).signal = signal;
         reject(error);
       } else {

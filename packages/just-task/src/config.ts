@@ -10,15 +10,15 @@ import { TaskFunction } from './interfaces';
 
 export function resolveConfigFile(args: yargsParser.Arguments): string | null {
   for (const entry of [
-    args.config,
+    args.config as string | undefined,
     './just.config.js',
     './just.config.cjs',
     './just-task.js',
     './just.config.ts',
     './just.config.cts',
-    args.defaultConfig,
+    args.defaultConfig as string | undefined,
   ]) {
-    const configFile = resolve(entry);
+    const configFile = entry && resolve(entry);
     if (configFile) {
       return configFile;
     }
@@ -36,20 +36,23 @@ export function readConfig(): { [key: string]: TaskFunction } | void {
     const ext = path.extname(configFile);
     if (ext === '.cts' || ext === '.ts' || ext === '.tsx') {
       // TODO: add option to do typechecking as well
-      enableTypeScript({ transpileOnly: true, esm: args.esm });
+      enableTypeScript({ transpileOnly: true, esm: args.esm as boolean | undefined });
     }
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const configModule = require(configFile);
 
       mark('registry:configModule');
 
       if (typeof configModule === 'function') {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         configModule();
       }
 
       logger.perf('registry:configModule');
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return configModule;
     } catch (e) {
       logger.error(`Invalid configuration file: ${configFile}`);

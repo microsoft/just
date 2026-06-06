@@ -22,7 +22,7 @@ export function task(
   } else if (argCount === 2 && isString(firstParam) && isTaskFunction(secondParam)) {
     // task('pretter', prettierTask());
     // task('custom', () => { ... });
-    const wrapped = wrapTask(secondParam as TaskFunction) as TaskFunction;
+    const wrapped = wrapTask(secondParam);
 
     undertaker.task(firstParam, wrapped);
 

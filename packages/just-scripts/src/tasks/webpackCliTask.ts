@@ -52,19 +52,18 @@ export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunctio
 
     let configPath = findWebpackConfig('webpack.config.js');
 
-    if (configPath) {
-      options.env = {
-        ...options.env,
-        ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)),
-      };
+    if (!configPath && options.webpackCliArgs) {
+      const configIndex = options.webpackCliArgs.indexOf('--config');
+      if (configIndex > -1) {
+        configPath = options.webpackCliArgs[configIndex + 1]; // undefined if off the end
+      }
     }
 
-    if (options.webpackCliArgs) {
-      const configIndex = options.webpackCliArgs.indexOf('--config');
-      const configPathAvailable = configIndex > -1 && options.webpackCliArgs.length > configIndex + 2;
-      if (configPathAvailable) {
-        configPath = options.webpackCliArgs[configIndex + 1];
-      }
+    if (configPath && configPath.endsWith('.ts')) {
+      options.env = {
+        ...options.env,
+        ...getTsNodeEnv(options.tsconfig, options.transpileOnly),
+      };
     }
 
     logNodeCommand(args);

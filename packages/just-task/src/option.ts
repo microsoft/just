@@ -49,7 +49,7 @@ export function option(key: string, options: OptionConfig = {}): void {
 
   for (const argName of booleanArgs) {
     if (options[argName]) {
-      const argOpts = (argOptions[argName] ??= []) as string[];
+      const argOpts = (argOptions[argName] ??= []);
 
       if (argOpts.indexOf(key) === -1) {
         argOpts.push(key);
@@ -59,6 +59,7 @@ export function option(key: string, options: OptionConfig = {}): void {
 
   for (const argName of assignArgs) {
     if (options[argName]) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       (argOptions[argName] ??= {})[key] = options[argName];
     }
   }

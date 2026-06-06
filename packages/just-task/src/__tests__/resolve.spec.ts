@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { describe, expect, it, jest, afterEach, beforeEach } from '@jest/globals';
 import * as path from 'path';
 import {

@@ -2,10 +2,11 @@
 import { Configuration } from 'webpack';
 import { tryRequire } from '../../tryRequire';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const htmlOverlay = (options: any): Partial<Configuration> => {
+export const htmlOverlay: (options: any) => Partial<Configuration> = options => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const HtmlWebpackPlugin = tryRequire('html-webpack-plugin');
   return {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     plugins: [...(HtmlWebpackPlugin ? [new HtmlWebpackPlugin(options)] : [])],
   };
 };

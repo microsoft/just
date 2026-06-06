@@ -112,7 +112,7 @@ describe('nodeExecTask', () => {
         await wrapCallTask(task, { expectError: true });
       } catch (error) {
         expect((error as Error).message).toContain('Command failed');
-        expect((error as any).code).toBe(1);
+        expect((error as { code: number }).code).toBe(1);
         // in the debugger there are some extra stderr chunks
         expect(stderr.getOutput()).toContain('oh no\n');
       }
@@ -150,7 +150,7 @@ describe('nodeExecTask', () => {
         await wrapCallTask(task, { expectError: true });
       } catch (error) {
         expect((error as Error).message).toContain('Command failed');
-        expect((error as any).code).toBe(1);
+        expect((error as { code: number }).code).toBe(1);
         const output = stderr.getOutput();
         expect(output).toContain('Error: Cannot find module');
       }

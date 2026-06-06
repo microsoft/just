@@ -54,13 +54,14 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}):
       : findWebpackConfig('webpack.serve.config.js', 'webpack.config.js');
 
   // for webpack-cli < 4, use webpack-dev-server directly, for webpack-cli >= 4, use "webpack serve"
-  const webpackCliPath = resolve('webpack-cli/package.json');
+  const webpackCliPackageJsonPath = resolve('webpack-cli/package.json');
 
-  if (!webpackCliPath) {
+  if (!webpackCliPackageJsonPath) {
     throw new Error('Missing webpack-cli package. Please install webpack-cli as a devDependency.');
   }
 
-  const webpackCliVersion = JSON.parse(fs.readFileSync(webpackCliPath, 'utf-8')).version;
+  const webpackCliVersion = (JSON.parse(fs.readFileSync(webpackCliPackageJsonPath, 'utf-8')) as { version: string })
+    .version;
 
   const useWebpackServe = semver.gte(webpackCliVersion, '4.0.0');
 

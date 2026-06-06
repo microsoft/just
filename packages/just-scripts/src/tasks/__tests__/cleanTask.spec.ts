@@ -7,7 +7,7 @@ jest.mock('just-task/lib/logger');
 
 // Mock fse.remove to track calls without actual filesystem operations
 jest.mock('fs-extra', () => ({
-  remove: jest.fn((_path: string, cb: any) => {
+  remove: jest.fn((_path, cb: (err: null) => void) => {
     cb(null);
     return Promise.resolve();
   }),

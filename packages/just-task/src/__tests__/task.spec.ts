@@ -10,6 +10,7 @@ describe('task', () => {
   beforeAll(() => {
     jest
       .spyOn(option, 'argv')
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       .mockImplementation(() => ({ config: path.resolve(__dirname, '__mocks__/just-task.js') }) as any);
     jest.spyOn(logger, 'info').mockImplementation(() => undefined);
   });
@@ -19,6 +20,7 @@ describe('task', () => {
   });
 
   afterAll(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' }) as any);
     jest.restoreAllMocks();
   });

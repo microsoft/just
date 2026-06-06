@@ -74,21 +74,20 @@ export function copyTask(
     }
 
     paths.forEach(copyPath => helper(copyPath));
-    parallelLimit(copyTasks, limit!, done);
+    parallelLimit(copyTasks, limit, done);
   };
 }
 /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
 function getBasePath(pattern: string) {
-  const parts = path.resolve(pattern).split(/[\/\\]/g);
+  const parts = path.resolve(pattern).split(/[/\\]/g);
   const relativePathParts = [];
 
-  for (let i = 0; i < parts.length; i++) {
-    if (parts[i].startsWith('*')) {
+  for (const part of parts) {
+    if (part.startsWith('*')) {
       break;
     }
-
-    relativePathParts.push(parts[i]);
+    relativePathParts.push(part);
   }
 
   const relativePath = relativePathParts.join(path.sep);

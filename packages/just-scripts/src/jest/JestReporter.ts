@@ -1,5 +1,4 @@
-// This doesn't have types for some reason
-const { DefaultReporter } = require('@jest/reporters');
+import { DefaultReporter } from '@jest/reporters';
 
 /**
  * The purpose of this custom reporter is to prevent Jest from logging to stderr
@@ -16,7 +15,7 @@ class JestReporter extends DefaultReporter {
     }
   }
 
-  public printTestFileFailureMessage(...args: any[]) {
+  public printTestFileFailureMessage(...args: Parameters<DefaultReporter['printTestFileFailureMessage']>) {
     this._isLoggingError = true;
     super.printTestFileFailureMessage(...args);
     this._isLoggingError = false;
@@ -24,4 +23,4 @@ class JestReporter extends DefaultReporter {
 }
 
 // jest needs this format
-module.exports = JestReporter;
+export = JestReporter;

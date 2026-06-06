@@ -7,7 +7,7 @@ import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
 
 // Jest will hoist these before the imports above, so these modules will be mocked first
 jest.mock('../../utils/exec', () => {
-  const originalModule = jest.requireActual('../../utils/exec') as typeof import('../../utils/exec');
+  const originalModule = jest.requireActual<typeof import('../../utils/exec')>('../../utils/exec');
   return {
     // Use real implementation of most exports
     ...originalModule,

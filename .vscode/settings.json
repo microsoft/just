@@ -8,6 +8,7 @@
   "json.format.enable": false,
   "js/ts.preferences.quoteStyle": "single",
   "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "eslint.workingDirectories": [{ "pattern": "./packages/*" }, { "pattern": "./scripts" }],
   "files.associations": {
     "**/package.json.hbs": "json",
     "**/*.json.hbs": "jsonc",

@@ -78,11 +78,11 @@ function argsFromOptions(tscCmd: string, options: TscTaskOptions): string[] {
 
   for (const [option, optionValue] of argEntries) {
     if (typeof optionValue === 'string') {
-      args.push('--' + option, optionValue);
+      args.push(`--${option}`, optionValue);
     } else if (typeof optionValue === 'boolean' && optionValue) {
-      args.push('--' + option);
+      args.push(`--${option}`);
     } else if (Array.isArray(optionValue)) {
-      args.push('--' + option, ...optionValue);
+      args.push(`--${option}`, ...optionValue);
     }
   }
 
