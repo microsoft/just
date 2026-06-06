@@ -15,7 +15,9 @@ export function enableTypeScript({ transpileOnly = true, esm = false }): void {
         strict: false,
         skipLibCheck: true,
         skipDefaultLibCheck: true,
-        moduleResolution: esm ? 'node16' : 'node',
+        // TODO: proper fix for moduleResolution: node10
+        moduleResolution: esm ? 'node16' : 'node10',
+        ignoreDeprecations: '6.0',
         allowJs: true,
         esModuleInterop: true,
       },

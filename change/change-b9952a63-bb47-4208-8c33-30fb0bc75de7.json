@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Transpile to ES2024 target",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "major",
+      "comment": "Transpile to ES2024 target",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

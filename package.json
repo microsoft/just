@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.5.0",
-    "@microsoft/api-extractor": "7.52.9",
+    "@microsoft/api-extractor": "^7.58.7",
     "@types/fs-extra": "^11.0.0",
     "@types/jest": "^29.4.0",
     "@types/mock-fs": "^4.13.1",
@@ -58,28 +58,21 @@
     "prettier": "~3.8.0",
     "syncpack": "^9.0.0",
     "ts-jest": "~29.2.5",
-    "typescript": "~4.5.0"
+    "typescript": "~6.0.3"
   },
   "resolutions": {
     "es5-ext": "0.10.53",
     "kind-of": "^6.0.3",
     "@types/glob/@types/minimatch": "^3.0.0",
     "syncpack/minimatch": "^6.2.3",
-    "@microsoft/api-extractor/minimatch": "^3.1.5",
-    "@microsoft/api-extractor/lodash": "^4.18.1",
     "@types/chokidar/chokidar": "^3.0.0",
     "browserslist/node-releases": "2.0.44",
     "@types/node@*": "^22.0.0"
   },
   "rationale": {
-    "devDependencies": {
-      "@microsoft/api-extractor": "Pin to newest version that supports node 14"
-    },
     "resolutions": {
       "@types/glob/@types/minimatch": "pin to installed minimatch version, not *",
       "syncpack/minimatch": "unpin to fix security issue",
-      "@microsoft/api-extractor/minimatch": "unpin to fix security issue",
-      "@microsoft/api-extractor/lodash": "unpin to fix security issue",
       "@types/chokidar/chokidar": "pin to version matching other chokidar deps, not *",
       "browserslist/node-releases": "node 14 compat"
     }

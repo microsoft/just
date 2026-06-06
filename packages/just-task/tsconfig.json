@@ -1,6 +1,7 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "@microsoft/just-internal-scripts/tsconfig.base.json",
   "compilerOptions": {
+    "rootDir": "src",
     "outDir": "lib"
   },
   "include": ["src"]

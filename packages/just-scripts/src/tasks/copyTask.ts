@@ -68,7 +68,7 @@ export function copyTask(
 
           readStream.pipe(fse.createWriteStream(destPath));
           readStream.on('error', err => cb(err));
-          readStream.on('end', cb);
+          readStream.on('end', () => cb(null));
         });
       });
     }

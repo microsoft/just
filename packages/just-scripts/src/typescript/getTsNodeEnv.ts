@@ -7,7 +7,13 @@ export function getTsNodeEnv(tsconfig?: string, transpileOnly?: boolean): { [key
     logger.info(`[TS] Using ${tsconfig}`);
     env.TS_NODE_PROJECT = tsconfig;
   } else {
-    const compilerOptions = JSON.stringify({ module: 'commonjs', target: 'es2017', moduleResolution: 'node' });
+    // TODO: proper fix for moduleResolution: node10
+    const compilerOptions = JSON.stringify({
+      module: 'commonjs',
+      target: 'es2017',
+      moduleResolution: 'node10',
+      ignoreDeprecations: '6.0',
+    });
     logger.info(`[TS] Using these compilerOptions: ${compilerOptions}`);
     env.TS_NODE_COMPILER_OPTIONS = compilerOptions;
   }
