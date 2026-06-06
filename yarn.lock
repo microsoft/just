@@ -4187,10 +4187,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-releases@npm:2.0.44":
-  version: 2.0.44
-  resolution: "node-releases@npm:2.0.44"
-  checksum: 10c0/004337ee9c0c455e81fdfc85cc8a585e89932d28338cd35a4ddba21ef2b68ff20cf06097544e7859c1868579d8529ed230802b127be5357c153e267079e8d851
+"node-releases@npm:2.0.47":
+  version: 2.0.47
+  resolution: "node-releases@npm:2.0.47"
+  checksum: 10c0/fb1a703adb88c3bfe73aa39ebe0a0bc6d59c9d20d74ad61fb50958ffb22840da82a7a256076840b84c8ed57bb80e6fc8e588e675712fcf7af269aab16206b9b5
   languageName: node
   linkType: hard
 
