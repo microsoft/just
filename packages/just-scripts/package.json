@@ -2,7 +2,6 @@
   "name": "just-scripts",
   "version": "2.6.1",
   "description": "Just Stack Scripts",
-  "keywords": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/just"
@@ -10,7 +9,8 @@
   "homepage": "https://microsoft.github.io/just/",
   "license": "MIT",
   "author": "",
-  "main": "./lib/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": {
     "just-scripts": "bin/just-scripts.js"
   },

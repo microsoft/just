@@ -2,7 +2,6 @@
   "name": "just-task",
   "version": "1.14.0",
   "description": "Build task definition library",
-  "keywords": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/just"
@@ -11,6 +10,7 @@
   "license": "MIT",
   "author": "Ken Chau <kchau@microsoft.com>",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": {
     "just": "bin/just.js"
   },
@@ -41,6 +41,5 @@
   "devDependencies": {
     "@types/resolve": "^1.20.2",
     "@types/undertaker-registry": "^1.0.1"
-  },
-  "typing": "lib/index.d.ts"
+  }
 }
