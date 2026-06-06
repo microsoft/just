@@ -1,5 +1,5 @@
 {
-  "name": "just-task-scripts",
+  "name": "@microsoft/just-internal-scripts",
   "private": true,
   "version": "1.0.0"
 }

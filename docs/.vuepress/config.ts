@@ -47,6 +47,12 @@ export default defineUserConfig({
           '/scripts/jest',
         ],
       },
+      {
+        text: 'Migration',
+        link: '/migration/',
+        collapsible: false,
+        children: [{ text: 'Migrating to v3', link: '/migration/v3' }],
+      },
     ] satisfies SidebarItemOptions[],
   }),
 });

@@ -1,24 +1,21 @@
 # Just
 
-[![npm version](https://badge.fury.io/js/just-task.svg)](https://badge.fury.io/js/just-task)
-[![NPM Downloads](https://img.shields.io/npm/dm/just-task.svg?style=flat)](https://www.npmjs.com/package/just-task)
-
-<!-- start shared -->
-
 `Just` is a library that organizes build tasks for your JS projects. It consists of:
 
 - `just-task`: a build task definition library
-- `just-scripts`: sane preset build flows for node and browser projects featuring TypeScript, Webpack and Jest
+- `just-scripts`: preset build flows for node and browser projects featuring TypeScript, Webpack and Jest
+
+> ⚠️ `Just` is in maintenance mode. It will continue to receive security-related updates but isn't recommended for new projects. For large monorepos, using a task runner such as [Lage](https://microsoft.github.io/lage/) to specify task dependencies and handle orchestration will be significantly more efficient.
+
+(Note: this project is unrelated to [`casey/just`](https://github.com/casey/just).)
 
 ## `main` is currently the development branch for `just-*` v3 (alpha)
 
-The code for `just-*` v2 (`latest`) is in the `v2` branch. If you're making a PR with a non-breaking change, it should target the `v2` branch.
+The code for `just-task` v1 / `just-scripts` v2 (`latest`) is in the `v2` branch. If you're making a PR with a non-breaking change, it should target the `v2` branch.
 
 ## Documentation
 
 All the documentation is online at https://microsoft.github.io/just/
-
-<!-- end shared -->
 
 ## Building
 

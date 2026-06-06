@@ -2,7 +2,7 @@
   "name": "@microsoft/just-docs",
   "version": "1.0.0",
   "private": true,
-  "description": "just doc site, with newer node version",
+  "description": "just doc site",
   "engines": {
     "node": ">=22"
   },
@@ -17,8 +17,7 @@
     "@vuepress/theme-default": "^2.0.0-rc.120",
     "sass-embedded": "^1.95.1",
     "touch": "^3.1.1",
-    "typescript": "^5.9.3",
+    "typescript": "~6.0.3",
     "vuepress": "^2.0.0-rc.26"
-  },
-  "packageManager": "yarn@4.16.0"
+  }
 }

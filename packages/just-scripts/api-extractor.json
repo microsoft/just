@@ -1,4 +1,4 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
-  "extends": "just-task-scripts/api-extractor.base.json"
+  "extends": "@microsoft/just-internal-scripts/api-extractor.base.json"
 }

@@ -1,1 +1,1 @@
-module.exports = require('../../scripts/jest.config');
+module.exports = require('@microsoft/just-internal-scripts/jest.config');

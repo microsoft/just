@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2019",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    // compatible with node 22
+    "target": "ES2024",
+    // Use CJS output for now
+    "module": "node20",
+    "moduleResolution": "node16",
     "pretty": true,
     "declaration": true,
     "declarationMap": true,
@@ -15,8 +17,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
+    // TODO: enable these and remove ignoreDeprecations
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": false,
+    "ignoreDeprecations": "6.0",
+    "lib": ["ES2024"],
     "types": ["node"]
   }
 }
