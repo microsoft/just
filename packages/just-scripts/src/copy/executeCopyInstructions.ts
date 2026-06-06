@@ -25,9 +25,7 @@ function validateConfig(copyInstructions: CopyInstruction[]) {
 
 function createDirectories(copyInstructions: CopyInstruction[]) {
   return Promise.all(
-    uniqueValues(copyInstructions.map(instruction => dirname(instruction.destinationFilePath))).map(dirname =>
-      ensureDir(dirname),
-    ),
+    uniqueValues(copyInstructions.map(instruction => dirname(instruction.destinationFilePath))).map(d => ensureDir(d)),
   );
 }
 

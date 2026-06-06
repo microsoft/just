@@ -13,7 +13,7 @@ jest.mock('fs', () => ({
 }));
 const writeFileSpy = fs.writeFileSync as jest.MockedFunction<typeof fs.writeFileSync>;
 
-const mockWebpack = jest.fn();
+const mockWebpack = jest.fn<(configs: unknown, cb: (err: Error | null, stats: unknown) => void) => void>();
 jest.mock('../../tryRequire', () => ({
   tryRequire: jest.fn((name: string) => {
     if (name === 'webpack') return mockWebpack;
@@ -50,7 +50,7 @@ describe('webpackTask (mocked)', () => {
 
   describe('basic invocation', () => {
     it('calls webpack with merged config', async () => {
-      mockWebpack.mockImplementation((_configs: any, cb: any) => {
+      mockWebpack.mockImplementation((_configs, cb) => {
         cb(null, { hasErrors: () => false });
       });
       const task = webpackTask({ devtool: 'source-map', config: path.join(__dirname, 'webpack.mock.config.js') });
@@ -61,7 +61,7 @@ describe('webpackTask (mocked)', () => {
 
   describe('error handling', () => {
     it('rejects on webpack error with stats', async () => {
-      mockWebpack.mockImplementation((_configs: any, cb: any) => {
+      mockWebpack.mockImplementation((_configs, cb) => {
         cb(new Error('build error'), {
           hasErrors: () => true,
           toString: () => 'error details',
@@ -73,7 +73,7 @@ describe('webpackTask (mocked)', () => {
     });
 
     it('rejects on webpack error without stats', async () => {
-      mockWebpack.mockImplementation((_configs: any, cb: any) => {
+      mockWebpack.mockImplementation((_configs, cb) => {
         cb(new Error('fatal error'), null);
       });
       const task = webpackTask();
@@ -81,7 +81,7 @@ describe('webpackTask (mocked)', () => {
     });
 
     it('rejects on stats.hasErrors()', async () => {
-      mockWebpack.mockImplementation((_configs: any, cb: any) => {
+      mockWebpack.mockImplementation((_configs, cb) => {
         cb(null, {
           hasErrors: () => true,
           toString: () => 'error details',
@@ -96,7 +96,7 @@ describe('webpackTask (mocked)', () => {
   describe('onCompile callback', () => {
     it('calls onCompile with err and stats', async () => {
       const onCompile = jest.fn<(err: Error | null, stats: any) => void>();
-      mockWebpack.mockImplementation((_configs: any, cb: any) => {
+      mockWebpack.mockImplementation((_configs, cb) => {
         cb(null, { hasErrors: () => false });
       });
       const task = webpackTask({ onCompile });
@@ -107,7 +107,7 @@ describe('webpackTask (mocked)', () => {
 
   describe('outputStats', () => {
     it('writes stats.json when outputStats is true', async () => {
-      mockWebpack.mockImplementation((_configs: any, cb: any) => {
+      mockWebpack.mockImplementation((_configs, cb) => {
         cb(null, { hasErrors: () => false, toJson: () => ({ assets: [] }) });
       });
       const task = webpackTask({ outputStats: true });
@@ -116,7 +116,7 @@ describe('webpackTask (mocked)', () => {
     });
 
     it('writes to custom file when outputStats is a string', async () => {
-      mockWebpack.mockImplementation((_configs: any, cb: any) => {
+      mockWebpack.mockImplementation((_configs, cb) => {
         cb(null, { hasErrors: () => false, toJson: () => ({ assets: [] }) });
       });
       const task = webpackTask({ outputStats: 'build-stats.json' });

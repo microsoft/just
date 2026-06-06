@@ -85,7 +85,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         // Only include the positional args if `options._` wasn't specified
         // (to avoid possibly including them twice)
         ...(options._ || positional),
-      ].filter(arg => !!arg) as string[];
+      ].filter(arg => !!arg);
 
       logNodeCommand(args);
 

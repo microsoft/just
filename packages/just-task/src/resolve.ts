@@ -57,7 +57,7 @@ export function _getResolvePaths(cwd?: string): string[] {
     cwd = process.cwd();
   }
 
-  const configArg = argv().config;
+  const configArg = argv().config as string | undefined;
   const configFilePath = configArg ? path.resolve(path.dirname(configArg)) : undefined;
 
   return [cwd, ...(configFilePath ? [configFilePath] : []), ...customResolvePaths, __dirname];
@@ -93,10 +93,9 @@ export function resolve(moduleName: string, cwdOrOptions?: string | ResolveOptio
   }
 
   const allResolvePaths = _getResolvePaths(options.cwd);
-  let resolved: string | null = null;
 
   for (const tryPath of allResolvePaths) {
-    resolved = _tryResolve(moduleName, { ...options, cwd: tryPath });
+    const resolved = _tryResolve(moduleName, { ...options, cwd: tryPath });
     if (resolved) {
       return resolved;
     }

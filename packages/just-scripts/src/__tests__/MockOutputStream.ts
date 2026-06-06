@@ -7,6 +7,7 @@ export class MockOutputStream extends PassThrough {
   constructor() {
     super();
     this.on('data', chunk => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       this.chunks.push(chunk);
     });
   }

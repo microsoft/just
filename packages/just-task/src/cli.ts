@@ -1,18 +1,18 @@
 import { undertaker } from './undertaker';
 import { option, parseCommand } from './option';
 import { logger } from './logger';
-import { TaskFunction } from './interfaces';
 import { readConfig } from './config';
 import { task } from './task';
+import type { MaybeWrappedTaskFunction } from './wrapTask';
 
 function showHelp() {
-  const tasks = undertaker.registry().tasks();
+  const tasks = undertaker.registry().tasks() as Record<string, MaybeWrappedTaskFunction>;
 
   console.log('All the tasks that are available to just:');
 
   for (const [name, wrappedTask] of Object.entries(tasks)) {
-    const unwrapped = (wrappedTask as any).unwrap ? (wrappedTask as any).unwrap() : (wrappedTask as TaskFunction);
-    const description = (unwrapped as TaskFunction).description;
+    const unwrapped = wrappedTask.unwrap ? wrappedTask.unwrap() : wrappedTask;
+    const description = unwrapped.description;
     console.log(`  ${name}${description ? `: ${description}` : ''}`);
   }
 }

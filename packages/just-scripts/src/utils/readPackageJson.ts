@@ -10,7 +10,7 @@ import fse = require('fs-extra');
 export function readPackageJson(folderPath: string): PackageJson | undefined {
   const packageJsonPath = path.join(folderPath, 'package.json');
   if (fse.existsSync(packageJsonPath)) {
-    return fse.readJsonSync(packageJsonPath, { throws: false }) || undefined;
+    return (fse.readJsonSync(packageJsonPath, { throws: false }) as PackageJson) || undefined;
   }
   return undefined;
 }

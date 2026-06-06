@@ -3,7 +3,7 @@ import * as parser from 'yargs-parser';
 
 const argv = parser(process.argv.slice(2));
 
-function logInternal(method: 'info' | 'warn' | 'error', symbol: string, ...args: any[]) {
+function logInternal(method: 'info' | 'warn' | 'error', symbol: string, ...args: unknown[]) {
   const now = new Date();
   const timestamp = chalk.gray(`[${now.toLocaleTimeString()}]`);
 
@@ -30,15 +30,15 @@ export interface Logger {
   /** Whether verbose logging is enabled. Default false unless --verbose arg is given. */
   enableVerbose: boolean;
   /** Log to `console.info` with a timestamp, but only if verbose logging is enabled. */
-  verbose(...args: any[]): void;
+  verbose(...args: unknown[]): void;
   /** Log to `console.info` with a timestamp. */
-  info(...args: any[]): void;
+  info(...args: unknown[]): void;
   /** Log to `console.warn` with a timestamp. */
-  warn(...args: any[]): void;
+  warn(...args: unknown[]): void;
   /** Log to `console.error` with a timestamp. */
-  error(...args: any[]): void;
+  error(...args: unknown[]): void;
   /** Log perf marker data to `consold.info` with timestamp, only if verbose is enabled */
-  perf(marker: string, ...args: any[]): void;
+  perf(marker: string, ...args: unknown[]): void;
 }
 
 const emptySquare = '\u25a1';
@@ -48,25 +48,25 @@ const triangle = '\u25b2';
 export const logger: Logger = {
   enableVerbose: !!argv.verbose,
 
-  verbose(...args: any[]) {
+  verbose(...args: unknown[]) {
     if (logger.enableVerbose) {
       logInternal('info', chalk.gray(emptySquare), ...args);
     }
   },
 
-  info(...args: any[]) {
+  info(...args: unknown[]) {
     logInternal('info', chalk.green(square), ...args);
   },
 
-  warn(...args: any[]) {
+  warn(...args: unknown[]) {
     logInternal('warn', chalk.yellow(triangle), ...args);
   },
 
-  error(...args: any[]) {
+  error(...args: unknown[]) {
     logInternal('error', chalk.redBright('x'), ...args);
   },
 
-  perf(marker: string, ...args: any[]) {
+  perf(marker: string, ...args: unknown[]) {
     if (logger.enableVerbose) {
       const delta = getDeltaAndClearMark(marker);
 

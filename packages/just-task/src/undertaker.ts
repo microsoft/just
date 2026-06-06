@@ -15,7 +15,11 @@ const colors = [chalk.cyanBright, chalk.magentaBright, chalk.blueBright, chalk.g
 const taskColor: { [taskName: string]: number } = {};
 let colorIndex = 0;
 
-function shouldLog(taskArgs: any) {
+// https://github.com/gulpjs/undertaker/blob/2d95b5273d6a61fd4ca09376e91faae1045bbbe2/lib/helpers/createExtensions.js#L36
+type UndertakerEventArgs = { name: string; branch?: boolean };
+type UndertakerEndEventArgs = UndertakerEventArgs & { duration: [number, number] };
+
+function shouldLog(taskArgs: UndertakerEventArgs) {
   return (
     !taskArgs.branch &&
     taskArgs.name !== '<anonymous>' &&
@@ -34,7 +38,7 @@ function colorizeTaskName(taskName: string) {
   return colors[taskColor[taskName]](taskName);
 }
 
-undertaker.on('start', function (args: any) {
+undertaker.on('start', function (args: UndertakerEventArgs) {
   if (shouldLog(args)) {
     if (!topLevelTask) {
       topLevelTask = args.name;
@@ -46,7 +50,7 @@ undertaker.on('start', function (args: any) {
   }
 });
 
-undertaker.on('stop', function (args: any) {
+undertaker.on('stop', function (args: UndertakerEndEventArgs) {
   if (shouldLog(args)) {
     const duration = args.duration;
     const durationInSecs = Math.round(((duration[0] * NS_PER_SEC + duration[1]) / NS_PER_SEC) * 100) / 100;
@@ -57,7 +61,7 @@ undertaker.on('stop', function (args: any) {
   }
 });
 
-undertaker.on('error', function (args: any) {
+undertaker.on('error', function (args: UndertakerEndEventArgs & { error: any }) {
   delete tasksInProgress[args.name];
 
   if (!errorReported) {
@@ -65,19 +69,24 @@ undertaker.on('error', function (args: any) {
     logger.error(chalk.red(`Error detected while running '${colorizeTaskName(args.name)}'`));
     logger.error(chalk.yellow('------------------------------------'));
 
-    const stackOrMessage = args.error.stack || args.error.message || args.error;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const stackOrMessage = (args.error as Error).stack || (args.error as Error).message || args.error;
 
     if (stackOrMessage) {
       logger.error(chalk.yellow(stackOrMessage));
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     if (args.error.stdout) {
       logger.error(chalk.yellow('stdout:'));
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       logger.error(args.error.stdout);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     if (args.error.stderr) {
       logger.error(chalk.yellow('stderr:'));
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       logger.error(args.error.stderr);
     }
 
@@ -115,25 +124,13 @@ process.on('exit', code => {
 });
 
 export function parallel(...tasks: Task[]): Undertaker.TaskFunction {
-  const newTasks = tasks.map(task => {
-    if (typeof task === 'string') {
-      return task;
-    } else {
-      return wrapTask(task);
-    }
-  });
+  const newTasks = tasks.map(task => (typeof task === 'string' ? task : wrapTask(task)));
 
   return undertaker.parallel(newTasks);
 }
 
 export function series(...tasks: Task[]): Undertaker.TaskFunction {
-  const newTasks = tasks.map(task => {
-    if (typeof task === 'string') {
-      return task;
-    } else {
-      return wrapTask(task);
-    }
-  });
+  const newTasks = tasks.map(task => (typeof task === 'string' ? task : wrapTask(task)));
 
   return undertaker.series(newTasks);
 }

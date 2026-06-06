@@ -7,13 +7,9 @@ export function tryRequire(specifier: string): any {
     return null;
   }
 
-  let requiredModule = null;
-
   try {
-    requiredModule = require(resolved);
+    return require(resolved);
   } catch (e) {
-    // ignore
+    return null;
   }
-
-  return requiredModule;
 }

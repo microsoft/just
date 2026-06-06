@@ -6,8 +6,8 @@ import { callTaskForTest } from './callTaskForTest';
 
 jest.mock('just-task/lib/logger');
 
-const mockPack = jest.fn<(cwd: string, opts: any) => PassThrough>();
-const mockExtract = jest.fn<(cwd: string, opts: any) => PassThrough>();
+const mockPack = jest.fn<(cwd: string, opts: { finish?: () => void }) => PassThrough>();
+const mockExtract = jest.fn<(cwd: string, opts: { finish?: () => void }) => PassThrough>();
 
 jest.mock('just-task', () => {
   const actual = jest.requireActual<typeof import('just-task')>('just-task');
@@ -20,14 +20,7 @@ jest.mock('just-task', () => {
   };
 });
 
-jest.mock(
-  'tar-fs',
-  () => ({
-    pack: (cwd: string, opts: any) => mockPack(cwd, opts),
-    extract: (cwd: string, opts: any) => mockExtract(cwd, opts),
-  }),
-  { virtual: true },
-);
+jest.mock('tar-fs', () => ({ pack: mockPack, extract: mockExtract }), { virtual: true });
 
 jest.mock('fs', () => {
   const actual = jest.requireActual<typeof import('fs')>('fs');
@@ -44,7 +37,7 @@ jest.mock('fs', () => {
 
 describe('tarTask (mocked)', () => {
   beforeEach(() => {
-    mockPack.mockImplementation((_cwd: string, opts: any) => {
+    mockPack.mockImplementation((_cwd, opts) => {
       const stream = new PassThrough();
       process.nextTick(() => {
         opts.finish?.();
@@ -53,7 +46,7 @@ describe('tarTask (mocked)', () => {
       return stream;
     });
 
-    mockExtract.mockImplementation((_cwd: string, opts: any) => {
+    mockExtract.mockImplementation((_cwd, opts) => {
       const stream = new PassThrough();
       process.nextTick(() => {
         opts.finish?.();

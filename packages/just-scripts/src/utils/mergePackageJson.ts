@@ -22,7 +22,7 @@ export function mergePackageJson(original: PackageJson, incoming: PackageJson): 
     devDependencies: { ...(original.devDependencies || {}) },
   };
 
-  const depTypes = ['dependencies', 'devDependencies'];
+  const depTypes = ['dependencies', 'devDependencies'] as const;
   let packageJsonModified = false;
   depTypes.forEach(depType => {
     const incomingDeps = incoming[depType] || {};
@@ -31,6 +31,7 @@ export function mergePackageJson(original: PackageJson, incoming: PackageJson): 
     Object.keys(incomingDeps).forEach(dep => {
       // TODO: should this handle deleting deps that exist in originalDeps but not incomingDeps?
       if (_shouldUpdateDep(originalDeps[dep], incomingDeps[dep])) {
+        newPackageJson[depType] ??= {};
         newPackageJson[depType][dep] = incomingDeps[dep];
         packageJsonModified = true;
       }

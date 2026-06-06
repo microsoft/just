@@ -20,13 +20,11 @@ export interface TsLoaderOptions {
 export interface TsCheckerOptions {
   typescript: string;
   tsconfig: string;
-  // eslint-disable-next-line @typescript-eslint/ban-types
   compilerOptions: object;
   tslint: string | true | undefined;
   tslintAutoFix: boolean;
   eslint: true | undefined;
   /** Options to supply to eslint https://eslint.org/docs/1.0.0/developer-guide/nodejs-api#cliengine */
-  // eslint-disable-next-line @typescript-eslint/ban-types
   eslintOptions: object;
   watch: string | string[];
   async: boolean;
@@ -52,6 +50,7 @@ export interface TsOverlayOptions {
 }
 
 export const tsOverlay = (overlayOptions?: TsOverlayOptions): Partial<Configuration> => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const ForkTsCheckerPlugin = tryRequire('fork-ts-checker-webpack-plugin');
 
   overlayOptions = overlayOptions || {};
@@ -78,6 +77,7 @@ export const tsOverlay = (overlayOptions?: TsOverlayOptions): Partial<Configurat
         },
       ],
     },
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     plugins: [...(ForkTsCheckerPlugin ? [new ForkTsCheckerPlugin(overlayOptions.checkerOptions)] : [])],
   };
 };

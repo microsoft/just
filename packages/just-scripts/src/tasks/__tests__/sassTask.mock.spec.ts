@@ -9,7 +9,7 @@ import { callTaskForTest } from './callTaskForTest';
 jest.mock('just-task/lib/logger');
 
 // Mocks for sass/postcss/autoprefixer
-const mockRender = jest.fn();
+const mockRender = jest.fn<(_opts: unknown, cb: (err: null, result: { css: Buffer }) => void) => void>();
 const mockProcess = jest.fn();
 const mockAutoprefixer = jest.fn(() => 'autoprefixer-plugin');
 const mockPostcssRtl = jest.fn(() => 'rtl-plugin');
@@ -123,7 +123,7 @@ describe('sassTask (mocked)', () => {
       (glob.sync as jest.Mock).mockReturnValue(['src/styles/main.scss']);
 
       // Mock sass.render to invoke callback with css
-      mockRender.mockImplementation((_opts: any, cb: any) => {
+      mockRender.mockImplementation((_opts, cb) => {
         cb(null, { css: Buffer.from('.test { color: red; }') });
       });
 

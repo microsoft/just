@@ -1,11 +1,12 @@
 import { resolve } from './resolve';
 import { logger } from './logger';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function enableTypeScript({ transpileOnly = true, esm = false }): void {
   const tsNodeModule = resolve('ts-node');
   if (tsNodeModule) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const tsNode = require(tsNodeModule);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     tsNode.register({
       transpileOnly,
       skipProject: true,

@@ -31,13 +31,18 @@ export function sassTask(
   postcssPlugins = postcssPlugins || [];
 
   return function sass(done: (err?: Error) => void) {
-    const sass = tryRequire('sass') || tryRequire('node-sass');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const sassModule = tryRequire('sass') || tryRequire('node-sass');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const postcss = tryRequire('postcss');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const autoprefixer = tryRequire('autoprefixer');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const postcssRtl = tryRequire('postcss-rtl');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const clean = tryRequire('postcss-clean');
 
-    if (!sass || !postcss || !autoprefixer) {
+    if (!sassModule || !postcss || !autoprefixer) {
       logger.warn(
         'One or more dependencies (sass or node-sass, postcss, autoprefixer) is not installed, so this task has no effect',
       );
@@ -45,6 +50,7 @@ export function sassTask(
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     const autoprefixerFn = autoprefixer({ overrideBrowserslist: ['> 1%', 'last 2 versions', 'ie >= 11'] });
     const files = glob.sync(path.resolve(process.cwd(), 'src/**/*.scss'));
 
@@ -53,7 +59,8 @@ export function sassTask(
         (fileName: string) =>
           function (cb: any) {
             fileName = path.resolve(fileName);
-            sass.render(
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+            sassModule.render(
               {
                 file: fileName,
                 importer: patchSassUrl,
@@ -61,27 +68,34 @@ export function sassTask(
               },
               (err: Error, result: { css: Buffer }) => {
                 if (err) {
-                  cb(path.relative(process.cwd(), fileName) + ': ' + err);
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+                  cb(`${path.relative(process.cwd(), fileName)}: ${err}`);
                 } else {
                   const css = result.css.toString();
 
-                  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                  const plugins = [autoprefixerFn, ...postcssPlugins!];
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  const plugins = [autoprefixerFn, ...postcssPlugins];
 
                   // If the rtl plugin exists, insert it after autoprefix.
                   if (postcssRtl) {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                     plugins.splice(plugins.indexOf(autoprefixerFn) + 1, 0, postcssRtl({}));
                   }
 
                   // If postcss-clean exists, add it to the end of the chain.
                   if (clean) {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                     plugins.push(clean());
                   }
 
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                   postcss(plugins)
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                     .process(css, { from: fileName })
-                    .then((result: { css: string }) => {
-                      fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, result.css));
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                    .then((res: { css: string }) => {
+                      fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, res.css));
+                      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                       cb();
                     });
                 }
