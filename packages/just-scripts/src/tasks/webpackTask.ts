@@ -42,7 +42,11 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     logger.info(`Running Webpack`);
 
     const webpackConfigPath =
-      options && options.config ? resolveCwd(path.join('.', options.config)) : findWebpackConfig('webpack.config.js');
+      options && options.config
+        ? path.isAbsolute(options.config)
+          ? options.config
+          : resolveCwd(path.join('.', options.config))
+        : findWebpackConfig('webpack.config.js');
 
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
 
@@ -51,34 +55,32 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
       enableTypeScript({ transpileOnly });
     }
 
-    const configLoader = webpackConfigPath ? require(path.resolve(webpackConfigPath)) : {};
+    const configModuleExports = webpackConfigPath ? require(path.resolve(webpackConfigPath)) : {};
 
     let webpackConfigs: Configuration[];
 
     // If the loaded webpack config is a function
     // call it with the original process.argv arguments from build.js.
-    if (typeof configLoader == 'function') {
+    if (typeof configModuleExports == 'function') {
       const args = argv();
-      webpackConfigs = configLoader(args.env, args);
+      webpackConfigs = configModuleExports(args.env, args);
     } else {
-      webpackConfigs = configLoader;
+      webpackConfigs = configModuleExports;
     }
 
     if (!Array.isArray(webpackConfigs)) {
       webpackConfigs = [webpackConfigs];
     }
 
-    // Convert everything to promises first to make sure we resolve all promises
-    const webpackConfigPromises = await Promise.all(
-      webpackConfigs.map(webpackConfig => Promise.resolve(webpackConfig)),
-    );
+    // Resolve all promises
+    webpackConfigs = await Promise.all(webpackConfigs);
 
     // We support passing in arbitrary webpack config options that we need to merge with any read configs.
     // To do this, we need to filter out the properties that aren't valid config options and then run webpack merge.
     // A better long term solution here would be to have an option called webpackConfigOverrides instead of extending the configuration object.
     const { config, outputStats, onCompile, ...restConfig } = options || ({} as WebpackTaskOptions);
 
-    webpackConfigs = webpackConfigPromises.map(webpackConfig => merge(webpackConfig, restConfig));
+    webpackConfigs = webpackConfigs.map(webpackConfig => merge(webpackConfig, restConfig));
 
     return new Promise<void>((resolve, reject) => {
       wp(webpackConfigs, async (err: Error, stats: any) => {

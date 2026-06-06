@@ -34,7 +34,7 @@ function mockFsTsc(relativePath?: string) {
   };
 }
 
-describe(`tscTask`, () => {
+describe(`tscTask (mocked)`, () => {
   const mockTscArgs = ['${nodeExecPath}', '${repoRoot}/node_modules/typescript/lib/tsc.js'];
 
   beforeEach(() => {
