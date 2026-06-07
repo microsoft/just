@@ -61,8 +61,8 @@ export interface CopyConfig {
 
 // @public
 function copyFilesInDirectory(params: Pick<CopyInstruction, 'symlink'> & {
-    sourceDirectoryPath: string;
-    outputDirectoryPath: string;
+    sourceDirectory: string;
+    destinationDirectory: string;
     filterFunction?: (file: string) => boolean;
 }): CopyInstruction[];
 
@@ -74,7 +74,7 @@ function copyFilesToDestinationDirectory(params: Pick<CopyInstruction, 'symlink'
 
 // @public
 function copyFilesToDestinationDirectoryWithRename(params: Pick<CopyInstruction, 'symlink'> & {
-    instrs: {
+    files: {
         sourceFilePath: string;
         destinationName: string;
     }[];

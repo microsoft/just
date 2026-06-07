@@ -28,8 +28,14 @@ export interface CopyConfig {
 
 /**
  * Copies files into a destination directory with the same names.
- * For example `copyFilesToDestinationDirectory(['some/path/foo.js', 'bar.js'], 'dest/target')`
- * would result in the creation of files `dest/target/foo.js` and `dest/target/bar.js`.
+ * @example
+ * ```ts
+ * // Creates files dest/target/foo.js and dest/target/bar.js
+ * copyFilesToDestinationDirectory({
+ *   sourceFilePaths: ['some/path/foo.js', 'bar.js'],
+ *   destinationDirectory: 'dest/target'
+ * });
+ * ```
  */
 export function copyFilesToDestinationDirectory(
   params: Pick<CopyInstruction, 'symlink'> & {
@@ -47,8 +53,15 @@ export function copyFilesToDestinationDirectory(
 
 /**
  * Copies a file into a destination directory with a different name.
- * For example `copyFileToDestinationDirectoryWithRename('some/path/foo.js', 'bar.js', 'dest/target')`
- * would result in the creation of the file `dest/target/bar.js`.
+ * @example
+ * ```ts
+ * // Creates file dest/target/bar.js
+ * copyFileToDestinationDirectoryWithRename({
+ *   sourceFilePath: 'some/path/foo.js',
+ *   destinationName: 'bar.js',
+ *   destinationDirectory: 'dest/target'
+ * });
+ * ```
  */
 export function copyFileToDestinationDirectoryWithRename(
   params: Pick<CopyInstruction, 'symlink'> & {
@@ -63,17 +76,23 @@ export function copyFileToDestinationDirectoryWithRename(
 
 /**
  * Copies files into a destination directory with different names.
- * For example `copyFilesToDestinationDirectoryWithRename([{sourceFilePath:'some/path/foo.js', destinationName:'bar.js'}], 'dest/target')`
- * would result in the creation of the file `dest/target/bar.js`.
+ * @example
+ * ```ts
+ * // Creates file dest/target/bar.js
+ * copyFilesToDestinationDirectoryWithRename({
+ *   files: [{ sourceFilePath: 'some/path/foo.js', destinationName: 'bar.js' }],
+ *   destinationDirectory: 'dest/target'
+ * });
+ * ```
  */
 export function copyFilesToDestinationDirectoryWithRename(
   params: Pick<CopyInstruction, 'symlink'> & {
-    instrs: { sourceFilePath: string; destinationName: string }[];
+    files: { sourceFilePath: string; destinationName: string }[];
     destinationDirectory: string;
   },
 ): CopyInstruction[] {
-  const { instrs, destinationDirectory, symlink } = params;
-  return instrs.map(instr => ({
+  const { files, destinationDirectory, symlink } = params;
+  return files.map(instr => ({
     sourceFilePath: instr.sourceFilePath,
     destinationFilePath: path.join(destinationDirectory, instr.destinationName),
     symlink,
@@ -86,20 +105,20 @@ export function copyFilesToDestinationDirectoryWithRename(
  */
 export function copyFilesInDirectory(
   params: Pick<CopyInstruction, 'symlink'> & {
-    sourceDirectoryPath: string;
-    outputDirectoryPath: string;
+    sourceDirectory: string;
+    destinationDirectory: string;
     filterFunction?: (file: string) => boolean;
   },
 ): CopyInstruction[] {
-  const { sourceDirectoryPath, outputDirectoryPath, filterFunction, symlink } = params;
-  let files = readdirSync(sourceDirectoryPath);
+  const { sourceDirectory, destinationDirectory, filterFunction, symlink } = params;
+  let files = readdirSync(sourceDirectory);
 
   if (filterFunction) {
     files = files.filter(filterFunction);
   }
   return files.map(file => ({
-    sourceFilePath: path.join(sourceDirectoryPath, file),
-    destinationFilePath: path.join(outputDirectoryPath, file),
+    sourceFilePath: path.join(sourceDirectory, file),
+    destinationFilePath: path.join(destinationDirectory, file),
     symlink,
   }));
 }

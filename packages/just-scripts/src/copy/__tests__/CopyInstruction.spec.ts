@@ -107,7 +107,7 @@ describe('CopyInstruction tests', () => {
   describe('copyFilesToDestinationDirectoryWithRename', () => {
     it('renames multiple files into the destination directory', () => {
       const result = copyFilesToDestinationDirectoryWithRename({
-        instrs: [
+        files: [
           { sourceFilePath: 'src/foo.js', destinationName: 'foo-renamed.js' },
           { sourceFilePath: 'src/bar.js', destinationName: 'bar-renamed.js' },
         ],
@@ -122,7 +122,7 @@ describe('CopyInstruction tests', () => {
 
     it('returns an empty array when given no instructions', () => {
       const result = copyFilesToDestinationDirectoryWithRename({
-        instrs: [],
+        files: [],
         destinationDirectory: 'dest/target',
       });
 
@@ -131,7 +131,7 @@ describe('CopyInstruction tests', () => {
 
     it('propagates the symlink flag onto each instruction', () => {
       const result = copyFilesToDestinationDirectoryWithRename({
-        instrs: [
+        files: [
           { sourceFilePath: 'src/foo.js', destinationName: 'foo-renamed.js' },
           { sourceFilePath: 'src/bar.js', destinationName: 'bar-renamed.js' },
         ],
@@ -160,8 +160,8 @@ describe('CopyInstruction tests', () => {
 
     it('returns instructions for every file in the source directory', () => {
       const result = copyFilesInDirectory({
-        sourceDirectoryPath: sourceDir,
-        outputDirectoryPath: destDir,
+        sourceDirectory: sourceDir,
+        destinationDirectory: destDir,
       }).sort(sortBySource);
 
       expect(result).toEqual([
@@ -173,8 +173,8 @@ describe('CopyInstruction tests', () => {
 
     it('applies the filter function when provided', () => {
       const result = copyFilesInDirectory({
-        sourceDirectoryPath: sourceDir,
-        outputDirectoryPath: destDir,
+        sourceDirectory: sourceDir,
+        destinationDirectory: destDir,
         filterFunction: file => file.endsWith('.js'),
       }).sort(sortBySource);
 
@@ -186,8 +186,8 @@ describe('CopyInstruction tests', () => {
 
     it('propagates the symlink flag onto each instruction', () => {
       const result = copyFilesInDirectory({
-        sourceDirectoryPath: sourceDir,
-        outputDirectoryPath: destDir,
+        sourceDirectory: sourceDir,
+        destinationDirectory: destDir,
         symlink: true,
       }).sort(sortBySource);
 
@@ -212,8 +212,8 @@ describe('CopyInstruction tests', () => {
 
     it('returns an empty array when the filter excludes everything', () => {
       const result = copyFilesInDirectory({
-        sourceDirectoryPath: sourceDir,
-        outputDirectoryPath: destDir,
+        sourceDirectory: sourceDir,
+        destinationDirectory: destDir,
         filterFunction: () => false,
       });
 
