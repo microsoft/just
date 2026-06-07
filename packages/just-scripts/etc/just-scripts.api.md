@@ -100,9 +100,6 @@ export function copyInstructionsTask(config?: CopyConfig): TaskFunction;
 // @public (undocumented)
 export function copyTask(options: CopyTaskOptions): TaskFunction;
 
-// @public @deprecated (undocumented)
-export function copyTask(paths: string[] | undefined, dest: string, limit?: number): TaskFunction;
-
 // @public (undocumented)
 export interface CopyTaskOptions {
     dest: string;
@@ -326,15 +323,12 @@ export interface PrettierTaskOptions {
 // @public (undocumented)
 export function sassTask(options: SassTaskOptions): TaskFunction;
 
-// @public @deprecated (undocumented)
-export function sassTask(createSourceModule: (fileName: string, css: string) => string, postcssPlugins?: any[]): TaskFunction;
-
 // @public (undocumented)
 export interface SassTaskOptions {
     // (undocumented)
     createSourceModule: (fileName: string, css: string) => string;
     // (undocumented)
-    postcssPlugins?: any[];
+    postcssPlugins?: unknown[];
 }
 
 // @public @deprecated

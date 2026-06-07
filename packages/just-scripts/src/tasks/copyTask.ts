@@ -1,4 +1,4 @@
-import glob from 'glob';
+import { sync as globSync } from 'glob';
 import fse from 'fs-extra';
 import path from 'path';
 import type { TaskFunction } from 'just-task';
@@ -6,7 +6,10 @@ import { logger } from 'just-task';
 import parallelLimit from 'run-parallel-limit';
 
 export interface CopyTaskOptions {
-  /** Paths to copy */
+  /**
+   * Paths to copy (can contain glob patterns).
+   * Any glob patterns **must** use forward slashes as separators, even on Windows.
+   */
   paths?: string[];
   /** Destination directory */
   dest: string;
@@ -17,72 +20,71 @@ export interface CopyTaskOptions {
   limit?: number;
 }
 
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-export function copyTask(options: CopyTaskOptions): TaskFunction;
-/** @deprecated Use object param version */
-export function copyTask(paths: string[] | undefined, dest: string, limit?: number): TaskFunction;
-export function copyTask(
-  optionsOrPaths: CopyTaskOptions | string[] | undefined,
-  dest?: string,
-  limit?: number,
-): TaskFunction {
-  let paths: string[] = [];
-  if (Array.isArray(optionsOrPaths)) {
-    paths = optionsOrPaths;
-  } else if (optionsOrPaths) {
-    paths = optionsOrPaths.paths || [];
-    dest = optionsOrPaths.dest;
-    limit = optionsOrPaths.limit;
-  }
-  limit = limit || 15;
+export function copyTask(options: CopyTaskOptions): TaskFunction {
+  const { paths, dest, limit = 15 } = options;
 
-  return function copy(done: (err?: Error) => void) {
+  return function copy(done) {
+    if (!paths?.length) {
+      done();
+      return;
+    }
+
     logger.info(`Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`);
 
-    if (!fse.existsSync(dest!)) {
-      fse.mkdirpSync(dest!);
-    }
+    fse.mkdirpSync(dest);
 
     const copyTasks: parallelLimit.Task<void>[] = [];
 
-    function helper(srcPath: string, basePath = '') {
-      basePath = basePath || getBasePath(srcPath);
-      const matches = glob.sync(srcPath);
+    function helper(srcGlob: string, basePath: string) {
+      const matches = globSync(srcGlob);
 
-      matches.forEach(matchedPath => {
-        if (fse.existsSync(matchedPath)) {
-          const stat = fse.statSync(matchedPath);
-          if (stat.isDirectory()) {
-            return helper(path.join(matchedPath, '**/*'), basePath);
-          }
+      for (const matchedPath of matches) {
+        const stat = fse.statSync(matchedPath);
+        if (stat.isDirectory()) {
+          // As of glob v8, `\` is only an escape character in patterns, never a path separator. On
+          // Windows, glob returns matches with `\` separators, so build the recursive pattern with
+          // `/` to avoid producing a pattern where the separators are treated as escapes.
+          helper(`${matchedPath.replace(/\\/g, '/')}/**/*`, basePath);
+          continue;
         }
 
         const relativePath = path.relative(basePath, matchedPath);
 
         copyTasks.push(cb => {
           const readStream = fse.createReadStream(matchedPath);
-          const destPath = path.join(dest!, relativePath);
+          const destPath = path.join(dest, relativePath);
 
-          if (!fse.existsSync(path.dirname(destPath))) {
-            fse.mkdirpSync(path.dirname(destPath));
-          }
+          fse.mkdirpSync(path.dirname(destPath));
 
           readStream.pipe(fse.createWriteStream(destPath));
           readStream.on('error', err => cb(err));
           readStream.on('end', () => cb(null));
         });
-      });
+      }
     }
 
-    paths.forEach(copyPath => helper(copyPath));
+    for (let copyPath of paths) {
+      if (process.platform === 'win32' && fse.existsSync(copyPath)) {
+        // On Windows, normalize any literal paths
+        // (Backslashes are theoretically valid as POSIX filename characters but should basically
+        // never show up in practice.)
+        // Literal path, not a glob. Ensure it uses forward slashes. (This normalization isn't safe
+        // for globs because \ might be present as an escape character.)
+        copyPath = copyPath.replace(/\\/g, '/');
+      }
+      helper(copyPath, getBasePath(copyPath));
+    }
+
     parallelLimit(copyTasks, limit, done);
   };
 }
-/* eslint-enable @typescript-eslint/no-non-null-assertion */
 
+/**
+ * @param pattern MUST use forward slashes for path separators
+ */
 function getBasePath(pattern: string) {
-  const parts = path.resolve(pattern).split(/[/\\]/g);
-  const relativePathParts = [];
+  const parts = path.resolve(pattern).split('/');
+  const relativePathParts: string[] = [];
 
   for (const part of parts) {
     if (part.startsWith('*')) {

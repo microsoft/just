@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "`copyTask`: Remove deprecated signature (use object params signature). Also catch errors from `postcss`.",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
