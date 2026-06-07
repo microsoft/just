@@ -1,8 +1,8 @@
 {
   "changes": [
     {
-      "type": "major",
-      "comment": "`sassTask`: Remove deprecated signature (use object params signature). Also catch errors from `postcss`.",
+      "type": "patch",
+      "comment": "`sassTask`: Catch errors from `postcss`.",
       "packageName": "just-scripts",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"

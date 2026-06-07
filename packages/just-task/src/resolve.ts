@@ -72,27 +72,8 @@ export function _getResolvePaths(cwd?: string): string[] {
  * @param options Resolution options, including custom cwd (defaults to `process.cwd()`)
  * @returns The module path, or null if the module can't be resolved.
  */
-export function resolve(moduleName: string, options?: ResolveOptions): string | null;
-/**
- * Resolve a module. Resolution will be tried starting from `cwd`, the location of a config file
- * passed using the `--config` command line arg, and any paths added using `addResolvePath`.
- * @deprecated Use object params signature instead.
- * @param moduleName Module name to resolve. Anything which appears to be a file name (contains .
- * and doesn't contain slashes) will be resolved relative to the working directory.
- * Other names will be resolved within node_modules.
- * @param cwd Working directory in which to start resolution. Defaults to `process.cwd()`.
- * @returns The module path, or null if the module can't be resolved.
- */
-export function resolve(moduleName: string, cwd?: string): string | null;
-export function resolve(moduleName: string, cwdOrOptions?: string | ResolveOptions): string | null {
-  let options: ResolveOptions = {};
-  if (typeof cwdOrOptions === 'string') {
-    options = { cwd: cwdOrOptions };
-  } else if (cwdOrOptions) {
-    options = cwdOrOptions;
-  }
-
-  const allResolvePaths = _getResolvePaths(options.cwd);
+export function resolve(moduleName: string, options?: ResolveOptions): string | null {
+  const allResolvePaths = _getResolvePaths(options?.cwd);
 
   for (const tryPath of allResolvePaths) {
     const resolved = _tryResolve(moduleName, { ...options, cwd: tryPath });
@@ -113,27 +94,7 @@ export function resolve(moduleName: string, cwdOrOptions?: string | ResolveOptio
  * @param options Resolution options, including custom cwd (defaults to `process.cwd()`)
  * @returns The module path, or null if the module can't be resolved.
  */
-export function resolveCwd(moduleName: string, options?: ResolveOptions): string | null;
-/**
- * Resolve a module. Resolution will *only* be tried starting from `cwd` (does not respect
- * `--config` arg or `addResolvePath`).
- * @deprecated Use object params signature instead.
- * @param moduleName Module name to resolve. Anything which appears to be a file name (contains .
- * and doesn't contain slashes) will be resolved relative to the working directory.
- * Other names will be resolved within node_modules.
- * @param cwd Working directory in which to start resolution. Defaults to `process.cwd()`.
- * @returns The module path, or null if the module can't be resolved.
- */
-export function resolveCwd(moduleName: string, cwd?: string): string | null;
-export function resolveCwd(moduleName: string, cwdOrOptions?: string | ResolveOptions): string | null {
-  let options: ResolveOptions = {};
-  if (typeof cwdOrOptions === 'string') {
-    options = { cwd: cwdOrOptions };
-  } else if (cwdOrOptions) {
-    options = cwdOrOptions;
-  }
-  if (!options.cwd) {
-    options.cwd = process.cwd();
-  }
-  return _tryResolve(moduleName, options);
+export function resolveCwd(moduleName: string, options?: ResolveOptions): string | null {
+  const cwd = options?.cwd || process.cwd();
+  return _tryResolve(moduleName, { ...options, cwd });
 }

@@ -126,7 +126,7 @@ describe('resolveCwd', () => {
       a: { 'b.txt': '' }, // right
       'b.txt': '', // wrong
     });
-    expect(resolveCwd('b.txt', 'a')).toContain(path.join('a', 'b.txt'));
+    expect(resolveCwd('b.txt', { cwd: 'a' })).toContain(path.join('a', 'b.txt'));
   });
 
   it('ignores resolvePaths', () => {
@@ -161,7 +161,7 @@ describe('resolve', () => {
       'b.txt': '', // wrong
       c: { 'b.txt': '' },
     });
-    expect(resolve('b.txt', 'a')).toContain(path.join('a', 'b.txt'));
+    expect(resolve('b.txt', { cwd: 'a' })).toContain(path.join('a', 'b.txt'));
   });
 
   it('uses dirname of --config arg', () => {
@@ -195,7 +195,7 @@ describe('resolve', () => {
     jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' }) as any);
 
     addResolvePath('c');
-    expect(resolve('b.txt', 'd')).toContain(path.join('d', 'b.txt'));
+    expect(resolve('b.txt', { cwd: 'd' })).toContain(path.join('d', 'b.txt'));
   });
 });
 

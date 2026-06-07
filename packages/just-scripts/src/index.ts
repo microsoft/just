@@ -34,5 +34,3 @@ export type { CopyInstruction, CopyConfig } from './copy/CopyInstruction';
 export { copyInstructions };
 
 export * from 'just-task';
-
-export { encodeArgs, spawn } from './utils';

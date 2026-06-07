@@ -2,7 +2,7 @@
   "changes": [
     {
       "type": "major",
-      "comment": "Remove deprecated non-object-style signatures of `apiExtractorVerifyTask`, `apiExtractorUpdateTask`, `cleanTask`, `copyTask`, and `sassTask`",
+      "comment": "`apiExtractor` tasks: Remove deprecated `fixNewlines` option (use API Extractor option `newlineKind: \"os\"` instead)",
       "packageName": "just-scripts",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"

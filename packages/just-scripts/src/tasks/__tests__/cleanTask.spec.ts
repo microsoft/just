@@ -38,11 +38,4 @@ describe('cleanTask', () => {
     const removedPaths = removeSpy.mock.calls.map(call => call[0]);
     expect(removedPaths).toEqual(['build', 'output']);
   });
-
-  it('accepts paths as first argument (deprecated)', async () => {
-    const task = cleanTask(['custom-lib', 'custom-dist']);
-    await callTaskForTest(task);
-    const removedPaths = removeSpy.mock.calls.map(call => call[0]);
-    expect(removedPaths).toEqual(['custom-lib', 'custom-dist']);
-  });
 });

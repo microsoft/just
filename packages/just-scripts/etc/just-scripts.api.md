@@ -7,7 +7,6 @@
 import type * as ApiExtractorTypes from '@microsoft/api-extractor';
 import type { BuildOptions } from 'esbuild';
 import { Configuration } from 'webpack';
-import type cp from 'child_process';
 import type { SpawnOptions } from 'child_process';
 import type { TaskFunction } from 'just-task';
 import type ts from 'typescript';
@@ -16,8 +15,6 @@ import * as webpackMerge from 'webpack-merge';
 // @public
 export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeOptions {
     configJsonFilePath?: string;
-    // @deprecated (undocumented)
-    fixNewlines?: boolean;
     onConfigLoaded?: (config: ApiExtractorTypes.IConfigFile) => void;
     onResult?: (result: any, extractorOptions: any) => void;
     projectFolder?: string;
@@ -26,14 +23,8 @@ export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeO
 // @public
 export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFunction;
 
-// @public @deprecated (undocumented)
-export function apiExtractorUpdateTask(configJsonFilePath: string, extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>): TaskFunction;
-
 // @public (undocumented)
 export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFunction;
-
-// @public @deprecated (undocumented)
-export function apiExtractorVerifyTask(configJsonFilePath: string, extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>): TaskFunction;
 
 // @public (undocumented)
 export const basicWebpackConfig: Configuration;
@@ -43,9 +34,6 @@ export const basicWebpackServeConfig: Configuration;
 
 // @public (undocumented)
 export function cleanTask(options?: CleanTaskOptions): TaskFunction;
-
-// @public @deprecated (undocumented)
-export function cleanTask(paths?: string[], limit?: number): TaskFunction;
 
 // @public (undocumented)
 export interface CleanTaskOptions {
@@ -140,9 +128,6 @@ export function defaultCleanPaths(): string[];
 
 // @public (undocumented)
 export const displayBailoutOverlay: () => Partial<Configuration>;
-
-// @public @deprecated (undocumented)
-export function encodeArgs(cmdArgs: string[]): string[];
 
 // @public (undocumented)
 export interface EntryHeader {
@@ -330,12 +315,6 @@ export interface SassTaskOptions {
     // (undocumented)
     postcssPlugins?: unknown[];
 }
-
-// @public @deprecated
-export function spawn(cmd: string, args?: ReadonlyArray<string>, opts?: cp.SpawnOptions & {
-    stdout?: NodeJS.WritableStream;
-    stderr?: NodeJS.WritableStream;
-}): Promise<void>;
 
 // @public (undocumented)
 export const stylesOverlay: () => Partial<Configuration>;

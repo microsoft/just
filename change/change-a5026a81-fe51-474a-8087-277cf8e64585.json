@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "comment": "Remove deprecated `spawn` and `encodeArgs`. Neither of these properly handled security concerns or other issues, so it's better to use a more mature purpose-specific library instead (such as `shell-quote` for escaping, or `execa` or `nano-spawn` for process spawning).",
+      "type": "major",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

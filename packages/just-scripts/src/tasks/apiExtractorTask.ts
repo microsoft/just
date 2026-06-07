@@ -18,11 +18,6 @@ export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeO
   configJsonFilePath?: string;
 
   /**
-   * @deprecated Update API Extractor and use option `newlineKind: 'os'`.
-   */
-  fixNewlines?: boolean;
-
-  /**
    * Callback after api-extractor is invoked.
    * @param result - Result of invoking api-extractor. Actual type is `ExtractorResult` from `@microsoft/api-extractor`.
    * @param extractorOptions - Options with which api-extractor was invoked. Actual type is `IExtractorInvokeOptions`.
@@ -47,21 +42,7 @@ interface ApiExtractorContext {
   apiExtractorModule: typeof ApiExtractorTypes;
 }
 
-export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFunction;
-/** @deprecated Use object param version */
-export function apiExtractorVerifyTask(
-  configJsonFilePath: string,
-  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>,
-): TaskFunction;
-export function apiExtractorVerifyTask(
-  configJsonFilePathOrOption: string | ApiExtractorOptions = {},
-  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'> = {},
-): TaskFunction {
-  const options =
-    typeof configJsonFilePathOrOption === 'string'
-      ? { ...extractorOptions, configJsonFilePath: configJsonFilePathOrOption }
-      : { ...configJsonFilePathOrOption };
-
+export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFunction {
   // eslint-disable-next-line @typescript-eslint/require-await
   return async function apiExtractorVerify() {
     const context = initApiExtractor(options);
@@ -97,21 +78,7 @@ export function apiExtractorVerifyTask(
  * }
  * ```
  */
-export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFunction;
-/** @deprecated Use object param version */
-export function apiExtractorUpdateTask(
-  configJsonFilePath: string,
-  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'>,
-): TaskFunction;
-export function apiExtractorUpdateTask(
-  configJsonFilePathOrOption: string | ApiExtractorOptions = {},
-  extractorOptions: Omit<ApiExtractorOptions, 'configJsonFilePath'> = {},
-): TaskFunction {
-  const options =
-    typeof configJsonFilePathOrOption === 'string'
-      ? { ...extractorOptions, configJsonFilePath: configJsonFilePathOrOption }
-      : { ...configJsonFilePathOrOption };
-
+export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFunction {
   // eslint-disable-next-line @typescript-eslint/require-await
   return async function apiExtractorUpdate() {
     const context = initApiExtractor(options);
@@ -158,7 +125,7 @@ function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | u
   }
 
   const { ExtractorConfig } = apiExtractorModule;
-  const { configJsonFilePath = ExtractorConfig.FILENAME, fixNewlines, onResult, ...extractorOptions } = options;
+  const { configJsonFilePath = ExtractorConfig.FILENAME, onResult, ...extractorOptions } = options;
 
   if (!fs.existsSync(configJsonFilePath)) {
     logger.warn('Config file not found for api-extractor!');
@@ -201,11 +168,6 @@ function apiExtractorWrapper({
     options.onResult(result, extractorOptions);
   }
 
-  if (options.fixNewlines) {
-    fixApiFileNewlines(options.localBuild ? config.reportFilePath : config.reportTempFilePath, {
-      sampleFilePath: config.apiJsonFilePath,
-    });
-  }
   return result;
 }
 

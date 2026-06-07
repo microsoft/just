@@ -10,7 +10,7 @@ import {
 } from '../tasks';
 
 export function webapp(): void {
-  task('clean', cleanTask([...defaultCleanPaths(), 'lib-commonjs']));
+  task('clean', cleanTask({ paths: [...defaultCleanPaths(), 'lib-commonjs'] }));
 
   task('ts:esm', tscTask({ module: 'esnext', outDir: 'lib' }));
   task('ts:watch', tscTask({ module: 'esnext', outDir: 'lib', watch: true }));
