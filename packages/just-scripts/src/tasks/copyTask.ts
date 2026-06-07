@@ -65,11 +65,8 @@ export function copyTask(options: CopyTaskOptions): TaskFunction {
 
     for (let copyPath of paths) {
       if (process.platform === 'win32' && fse.existsSync(copyPath)) {
-        // On Windows, normalize any literal paths
-        // (Backslashes are theoretically valid as POSIX filename characters but should basically
-        // never show up in practice.)
-        // Literal path, not a glob. Ensure it uses forward slashes. (This normalization isn't safe
-        // for globs because \ might be present as an escape character.)
+        // On Windows, normalize any literal paths to use forward slashes. This normalization isn't
+        // safe for globs because `\` might be present as an escape character.
         copyPath = copyPath.replace(/\\/g, '/');
       }
       helper(copyPath, getBasePath(copyPath));
