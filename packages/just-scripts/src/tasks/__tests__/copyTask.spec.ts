@@ -71,6 +71,34 @@ describe('copyTask', () => {
     expect(fse.existsSync('out/sub/d.js')).toBe(false);
   });
 
+  it('does not copy a file more than once for a recursive (**) pattern', async () => {
+    mockfs({
+      'src/a.txt': 'a',
+      'src/sub/b.txt': 'b',
+      'src/sub/deep/c.txt': 'c',
+    });
+    // A `**` pattern matches both files and their intermediate directories. Recursing into those
+    // matched directories must not re-enqueue files that the pattern already matched, otherwise the
+    // same destination is written multiple times concurrently (wasteful and a corruption race).
+    const writtenDestinations: string[] = [];
+    const realCreateWriteStream = fse.createWriteStream;
+    const spy = jest.spyOn(fse, 'createWriteStream').mockImplementation(((destPath: string, ...args: unknown[]) => {
+      writtenDestinations.push(destPath);
+      return (realCreateWriteStream as (...a: unknown[]) => unknown)(destPath, ...args);
+    }) as typeof fse.createWriteStream);
+
+    try {
+      const task = copyTask({ paths: ['src/**/*'], dest: 'out' });
+      await callTaskForTest(task);
+    } finally {
+      spy.mockRestore();
+    }
+
+    const uniqueDestinations = new Set(writtenDestinations);
+    expect(writtenDestinations).toHaveLength(uniqueDestinations.size);
+    expect(uniqueDestinations.size).toBe(3);
+  });
+
   itWindows('normalizes backslash separators in literal (non-glob) paths', async () => {
     mockfs({
       'src/sub/file.txt': 'content',

@@ -1,4 +1,4 @@
-import { sync as globSync, hasMagic } from 'glob';
+import { globSync, hasMagic } from 'glob';
 import fse from 'fs-extra';
 import path from 'path';
 import { pipeline } from 'stream';
@@ -54,13 +54,21 @@ export function copyTask(options: CopyTaskOptions): TaskFunction {
       // Return absolute paths to ensure path.relative(basePath, matchedPath) works
       const matches = globSync(srcGlob, { absolute: true });
 
+      // A globstar (`**`) pattern already matches every descendant file, so its matched directories
+      // don't need to be expanded. Recursing into them would re-glob and re-enqueue files the
+      // pattern already matched, producing duplicate copy tasks that race to write the same
+      // destination. Only non-recursive patterns need their matched directories expanded.
+      const isRecursive = srcGlob.split('/').includes('**');
+
       for (const matchedPath of matches) {
         const stat = fse.statSync(matchedPath);
         if (stat.isDirectory()) {
-          // As of glob v8, `\` is only an escape character in patterns, never a path separator. On
-          // Windows, glob returns matches with `\` separators, so build the recursive pattern with
-          // `/` to avoid producing a pattern where the separators are treated as escapes.
-          helper(`${matchedPath.replace(/\\/g, '/')}/**/*`, basePath);
+          if (!isRecursive) {
+            // As of glob v8, `\` is only an escape character in patterns, never a path separator.
+            // On Windows, glob returns matches with `\` separators, so build the recursive pattern
+            // with `/` to avoid producing a pattern where the separators are treated as escapes.
+            helper(`${matchedPath.replace(/\\/g, '/')}/**/*`, basePath);
+          }
           continue;
         }
 

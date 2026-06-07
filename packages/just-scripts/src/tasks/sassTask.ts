@@ -1,4 +1,4 @@
-import { sync as globSync } from 'glob';
+import { globSync } from 'glob';
 import path from 'path';
 import fs from 'fs';
 import type { TaskFunction } from 'just-task';

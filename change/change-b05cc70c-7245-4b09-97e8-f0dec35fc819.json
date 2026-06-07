@@ -2,7 +2,7 @@
   "changes": [
     {
       "type": "major",
-      "comment": "`copyTask`: If `paths` contains globs, they **must** use forward slashes as separators, due to update of `glob` dependency from v7 to v13. (See the [`glob` changelog](https://github.com/isaacs/node-glob/blob/main/changelog.md) for other potential behavior changes.) Also detect other magic glob characters when determining the base path for copying, and document how the base path is determined.",
+      "comment": "`copyTask`: If `paths` contains globs, they **must** use forward slashes as separators, due to update of `glob` dependency from v7 to v13. (See the [`glob` changelog](https://github.com/isaacs/node-glob/blob/main/changelog.md) for other potential behavior changes.)",
       "packageName": "just-scripts",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"

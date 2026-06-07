@@ -1,6 +1,6 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import fs from 'fs';
-import { sync as _globSync } from 'glob';
+import { globSync as _globSync } from 'glob';
 import path from 'path';
 import { sassTask } from '../sassTask';
 import { tryRequire } from '../../tryRequire';
@@ -37,9 +37,9 @@ jest.mock('../../tryRequire', () => ({
 
 const mockTryRequire = tryRequire as jest.MockedFunction<(name: string) => unknown>;
 
-// Mock glob.sync to control which files are "found"
+// Mock globSync to control which files are "found"
 jest.mock('glob', () => ({
-  sync: jest.fn(),
+  globSync: jest.fn(),
 }));
 
 // Mock fs.writeFileSync
