@@ -97,20 +97,15 @@ export function getConfig(dirname, ...configs) {
       },
     },
     {
-      files: ['src/**/*.test.ts', 'src/**/*.spec.ts'],
+      files: ['src/**/*.{spec,test}.ts'],
       rules: {
         '@typescript-eslint/no-non-null-assertion': 'off',
       },
     },
     {
-      files: ['src/__*/**/*'],
+      files: ['src/**/__*/**/*'],
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
-      },
-    },
-    {
-      files: ['src/__*/**/*'],
-      rules: {
         '@typescript-eslint/no-empty-function': 'off',
         'no-restricted-properties': [
           'error',

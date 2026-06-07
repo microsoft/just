@@ -1,6 +1,6 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import fs from 'fs';
-import glob from 'glob';
+import { globSync as _globSync } from 'glob';
 import path from 'path';
 import { sassTask } from '../sassTask';
 import { tryRequire } from '../../tryRequire';
@@ -14,6 +14,7 @@ const mockProcess = jest.fn();
 const mockAutoprefixer = jest.fn(() => 'autoprefixer-plugin');
 const mockPostcssRtl = jest.fn(() => 'rtl-plugin');
 const mockPostcssClean = jest.fn(() => 'clean-plugin');
+const mockGlobSync = _globSync as jest.MockedFunction<typeof _globSync>;
 
 jest.mock('../../tryRequire', () => ({
   tryRequire: jest.fn((name: string) => {
@@ -34,11 +35,11 @@ jest.mock('../../tryRequire', () => ({
   }),
 }));
 
-const mockTryRequire = tryRequire as jest.MockedFunction<typeof tryRequire>;
+const mockTryRequire = tryRequire as jest.MockedFunction<(name: string) => unknown>;
 
-// Mock glob.sync to control which files are "found"
+// Mock globSync to control which files are "found"
 jest.mock('glob', () => ({
-  sync: jest.fn(() => []),
+  globSync: jest.fn(),
 }));
 
 // Mock fs.writeFileSync
@@ -50,6 +51,10 @@ jest.mock('fs', () => {
 const mockCreateSourceModule = jest.fn((_fileName: string, css: string) => `export default ${JSON.stringify(css)};`);
 
 describe('sassTask (mocked)', () => {
+  beforeEach(() => {
+    mockGlobSync.mockReturnValue([]);
+  });
+
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -92,7 +97,6 @@ describe('sassTask (mocked)', () => {
     });
 
     it('does nothing if no scss files found', async () => {
-      (glob.sync as jest.Mock).mockReturnValue([]);
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
       await callTaskForTest(task);
       expect(mockRender).not.toHaveBeenCalled();
@@ -120,7 +124,7 @@ describe('sassTask (mocked)', () => {
       });
 
       // Mock glob to return one scss file
-      (glob.sync as jest.Mock).mockReturnValue(['src/styles/main.scss']);
+      mockGlobSync.mockReturnValue(['src/styles/main.scss']);
 
       // Mock sass.render to invoke callback with css
       mockRender.mockImplementation((_opts, cb) => {
@@ -151,19 +155,10 @@ describe('sassTask (mocked)', () => {
     });
 
     it('processes multiple scss files', async () => {
-      (glob.sync as jest.Mock).mockReturnValue(['src/a.scss', 'src/b.scss', 'src/c.scss']);
+      mockGlobSync.mockReturnValue(['src/a.scss', 'src/b.scss', 'src/c.scss']);
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
       await callTaskForTest(task);
       expect(mockRender).toHaveBeenCalledTimes(3);
-    });
-  });
-
-  describe('deprecated function signature', () => {
-    it('accepts createSourceModule as first argument', async () => {
-      (glob.sync as jest.Mock).mockReturnValue([]);
-      const task = sassTask(mockCreateSourceModule);
-      await callTaskForTest(task);
-      // Just verifying it doesn't throw
     });
   });
 });

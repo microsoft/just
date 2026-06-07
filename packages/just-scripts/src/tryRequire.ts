@@ -1,6 +1,6 @@
 import { resolve } from 'just-task';
 
-export function tryRequire(specifier: string): any {
+export function tryRequire<T = any>(specifier: string): T | null {
   const resolved = resolve(specifier);
 
   if (!resolved) {
@@ -8,7 +8,7 @@ export function tryRequire(specifier: string): any {
   }
 
   try {
-    return require(resolved);
+    return require(resolved) as T;
   } catch (e) {
     return null;
   }

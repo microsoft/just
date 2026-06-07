@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "minor",
+      "comment": "`copyTask`: When determining the base path for copying, detect any magic glob characters at any position in a path segment, not just `*` at the beginning (and document the base path behavior). Also fix error handling and prevent duplicate recursive processing.",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

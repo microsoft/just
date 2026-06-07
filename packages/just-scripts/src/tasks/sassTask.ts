@@ -1,4 +1,4 @@
-import glob from 'glob';
+import { globSync } from 'glob';
 import path from 'path';
 import fs from 'fs';
 import type { TaskFunction } from 'just-task';
@@ -9,39 +9,29 @@ import parallelLimit from 'run-parallel-limit';
 export interface SassTaskOptions {
   createSourceModule: (fileName: string, css: string) => string;
   // Because we do not statically import postcssPlugin package, we cannot enforce type of postcssPlugins
-  postcssPlugins?: any[];
+  postcssPlugins?: unknown[];
 }
 
-export function sassTask(options: SassTaskOptions): TaskFunction;
-/** @deprecated Use object param version */
-export function sassTask(
-  createSourceModule: (fileName: string, css: string) => string,
-  postcssPlugins?: any[],
-): TaskFunction;
-export function sassTask(
-  optionsOrCreateSourceModule: SassTaskOptions | ((fileName: string, css: string) => string),
-  postcssPlugins?: any[],
-): TaskFunction {
-  let createSourceModule: (fileName: string, css: string) => string;
-  if (typeof optionsOrCreateSourceModule === 'function') {
-    createSourceModule = optionsOrCreateSourceModule;
-  } else {
-    createSourceModule = optionsOrCreateSourceModule.createSourceModule;
-    postcssPlugins = optionsOrCreateSourceModule.postcssPlugins;
-  }
-  postcssPlugins = postcssPlugins || [];
+type SassModule = {
+  render: (
+    options: { file: string; importer: typeof patchSassUrl; includePaths: string[] },
+    cb: (err: Error, result: { css: Buffer }) => void,
+  ) => void;
+};
 
-  return function sass(done: (err?: Error) => void) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const sassModule = tryRequire('sass') || tryRequire('node-sass');
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const postcss = tryRequire('postcss');
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const autoprefixer = tryRequire('autoprefixer');
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const postcssRtl = tryRequire('postcss-rtl');
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const clean = tryRequire('postcss-clean');
+export function sassTask(options: SassTaskOptions): TaskFunction {
+  const { createSourceModule, postcssPlugins = [] } = options;
+
+  return function sass(done) {
+    const sassModule = tryRequire<SassModule>('sass') || tryRequire<SassModule>('node-sass');
+    const postcss =
+      tryRequire<
+        (plugins: unknown[]) => { process: (css: string, options: { from: string }) => Promise<{ css: string }> }
+      >('postcss');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+    const autoprefixer = tryRequire<(options: unknown) => Function>('autoprefixer');
+    const postcssRtl = tryRequire<(options: unknown) => unknown>('postcss-rtl');
+    const clean = tryRequire<() => unknown>('postcss-clean');
 
     if (!sassModule || !postcss || !autoprefixer) {
       logger.warn(
@@ -51,64 +41,54 @@ export function sassTask(
       return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     const autoprefixerFn = autoprefixer({ overrideBrowserslist: ['> 1%', 'last 2 versions', 'ie >= 11'] });
-    const files = glob.sync(path.resolve(process.cwd(), 'src/**/*.scss'));
+    const files = globSync('src/**/*.scss', { absolute: true });
 
-    if (files.length) {
-      const tasks = files.map(
-        (fileName: string) =>
-          function (cb: any) {
-            fileName = path.resolve(fileName);
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-            sassModule.render(
-              {
-                file: fileName,
-                importer: patchSassUrl,
-                includePaths: [path.resolve(process.cwd(), 'node_modules')],
-              },
-              (err: Error, result: { css: Buffer }) => {
-                if (err) {
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                  cb(`${path.relative(process.cwd(), fileName)}: ${err}`);
-                } else {
-                  const css = result.css.toString();
-
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  const plugins = [autoprefixerFn, ...postcssPlugins];
-
-                  // If the rtl plugin exists, insert it after autoprefix.
-                  if (postcssRtl) {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                    plugins.splice(plugins.indexOf(autoprefixerFn) + 1, 0, postcssRtl({}));
-                  }
-
-                  // If postcss-clean exists, add it to the end of the chain.
-                  if (clean) {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                    plugins.push(clean());
-                  }
-
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                  postcss(plugins)
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                    .process(css, { from: fileName })
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                    .then((res: { css: string }) => {
-                      fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, res.css));
-                      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                      cb();
-                    });
-                }
-              },
-            );
-          },
-      );
-
-      parallelLimit(tasks, 5, done);
-    } else {
+    if (!files.length) {
       done();
+      return;
     }
+
+    const tasks: parallelLimit.Task<void>[] = files.map(fileName => cb => {
+      fileName = path.resolve(fileName);
+      sassModule.render(
+        {
+          file: fileName,
+          importer: patchSassUrl,
+          includePaths: [path.resolve(process.cwd(), 'node_modules')],
+        },
+        (err, result) => {
+          if (err) {
+            cb(new Error(`${path.relative(process.cwd(), fileName)}: ${err}`));
+            return;
+          }
+
+          const css = result.css.toString();
+
+          const plugins = [autoprefixerFn, ...postcssPlugins];
+
+          // If the rtl plugin exists, insert it after autoprefix.
+          if (postcssRtl) {
+            plugins.splice(plugins.indexOf(autoprefixerFn) + 1, 0, postcssRtl({}));
+          }
+
+          // If postcss-clean exists, add it to the end of the chain.
+          if (clean) {
+            plugins.push(clean());
+          }
+
+          postcss(plugins)
+            .process(css, { from: fileName })
+            .then(res => {
+              fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, res.css));
+              cb(null);
+            })
+            .catch(e => cb(e as Error));
+        },
+      );
+    });
+
+    parallelLimit(tasks, 5, done);
   };
 }
 

@@ -22,6 +22,7 @@
     "build": "lage build",
     "change": "beachball change",
     "checkchange": "beachball check",
+    "ci:local": "lage build test lint api:update",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "yarn syncpack:check && yarn lint:code",
@@ -63,13 +64,11 @@
     "typescript-eslint": "^8.32.0"
   },
   "resolutions": {
-    "@types/glob/@types/minimatch@*": "^3.0.0",
     "@types/chokidar/chokidar@*": "^3.0.0",
     "@types/node@*": "^22.0.0"
   },
   "rationale": {
     "resolutions": {
-      "@types/glob/@types/minimatch@*": "pin to installed minimatch version, not *",
       "@types/chokidar/chokidar@*": "pin to version matching other chokidar deps, not *"
     }
   }

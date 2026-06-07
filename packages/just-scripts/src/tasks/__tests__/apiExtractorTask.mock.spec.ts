@@ -28,7 +28,7 @@ const mockPrepare = jest.fn<typeof apiExtractor.ExtractorConfig.prepare>(options
   } as apiExtractor.ExtractorConfig;
 });
 
-jest.mock('../../tryRequire', (): { tryRequire: typeof tryRequire } => ({
+jest.mock('../../tryRequire', () => ({
   tryRequire: jest.fn((name: string) => {
     if (name === '@microsoft/api-extractor') {
       const mockApiExtractor: Partial<Record<keyof typeof apiExtractor, any>> = {
