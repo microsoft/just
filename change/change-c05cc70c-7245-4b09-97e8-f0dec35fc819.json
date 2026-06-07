@@ -2,7 +2,7 @@
   "changes": [
     {
       "type": "major",
-      "comment": "`copyTask`: Remove deprecated signature (use object params signature). Also catch errors from `postcss`.",
+      "comment": "`copyTask`: Remove deprecated signature (use object params signature).",
       "packageName": "just-scripts",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"
