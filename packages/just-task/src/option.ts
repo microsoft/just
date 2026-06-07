@@ -77,7 +77,7 @@ export function parseCommand(): string | null {
   const positionals = argv()._;
 
   if (positionals.length > 0) {
-    return positionals[0];
+    return String(positionals[0]);
   }
 
   return null;

@@ -85,7 +85,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
         ...(options.u || options.updateSnapshot ? ['--updateSnapshot'] : []),
         // Only include the positional args if `options._` wasn't specified
         // (to avoid possibly including them twice)
-        ...(options._ || positional),
+        ...(options._ || positional).map(String),
       ].filter(arg => !!arg);
 
       logNodeCommand(args);
