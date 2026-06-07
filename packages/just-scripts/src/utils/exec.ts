@@ -5,15 +5,6 @@ import { logger } from 'just-task';
 // `exec` and `execSync` were removed due to security issues (keeping filename for history)
 
 /**
- * @deprecated This prevents issues from spaces in args, but does NOT escape shell metacharacters.
- * For full escaping, consider a library such as `shell-quote` instead. (Note that `spawn` and tasks
- * from this package now use `cross-spawn` which escapes spaces internally.)
- */
-export function encodeArgs(cmdArgs: string[]): string[] {
-  return quoteSpaces(cmdArgs);
-}
-
-/**
  * Quote arguments containing spaces. Note that this does NOT do any other escaping!
  * For more complete escaping, consider a library such as `shell-quote`, or use safer APIs which
  * don't require escaping. (Note that `spawn` from this package now uses `cross-spawn` which

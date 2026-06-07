@@ -72,14 +72,8 @@ export function resetResolvePaths(): void;
 // @public
 export function resolve(moduleName: string, options?: ResolveOptions): string | null;
 
-// @public @deprecated
-export function resolve(moduleName: string, cwd?: string): string | null;
-
 // @public
 export function resolveCwd(moduleName: string, options?: ResolveOptions): string | null;
-
-// @public @deprecated
-export function resolveCwd(moduleName: string, cwd?: string): string | null;
 
 // @public (undocumented)
 interface ResolveOptions {

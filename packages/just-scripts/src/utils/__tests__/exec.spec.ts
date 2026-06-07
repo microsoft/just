@@ -1,22 +1,10 @@
 import { describe, expect, it, jest, afterEach } from '@jest/globals';
 import cp from 'child_process';
 import path from 'path';
-import { encodeArgs, spawn } from '../exec';
+import { spawn } from '../exec';
 import { getMockScript } from '../../__tests__/getMockScript';
 import { MockOutputStream } from '../../__tests__/MockOutputStream';
 import { fail } from 'assert';
-
-describe('encodeArgs', () => {
-  it('encodes things with spaces with double quotes', () => {
-    const args = encodeArgs(['blah blah']);
-    expect(args).toEqual(['"blah blah"']);
-  });
-
-  it('leaves normal args alone', () => {
-    const args = encodeArgs(['this-is-normal']);
-    expect(args).toEqual(['this-is-normal']);
-  });
-});
 
 describe('spawn', () => {
   const spawnSpy = jest.spyOn(cp, 'spawn');

@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Remove deprecated `resolve` and `resolveCwd` signatures (use object for second param)",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

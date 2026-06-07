@@ -21,18 +21,8 @@ export function defaultCleanPaths(): string[] {
   return ['lib', 'temp', 'dist', 'coverage'];
 }
 
-export function cleanTask(options?: CleanTaskOptions): TaskFunction;
-/** @deprecated Use object param version */
-export function cleanTask(paths?: string[], limit?: number): TaskFunction;
-export function cleanTask(pathsOrOptions: string[] | CleanTaskOptions = {}, limit?: number): TaskFunction {
-  let paths: string[];
-  if (Array.isArray(pathsOrOptions)) {
-    paths = pathsOrOptions;
-  } else {
-    paths = pathsOrOptions.paths || defaultCleanPaths();
-    limit = limit || pathsOrOptions.limit;
-  }
-  limit = limit || 5;
+export function cleanTask(options?: CleanTaskOptions): TaskFunction {
+  const { paths = defaultCleanPaths(), limit = 5 } = options || {};
 
   return function clean(done: (err: Error | null) => void) {
     logger.info(`Removing [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}]`);
