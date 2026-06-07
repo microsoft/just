@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Copy instructions: revert to original behavior of copying by default. To create symlinks instead, pass `symlink: true`. Also, each copy instructions helper takes an object as parameters for clarity.",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

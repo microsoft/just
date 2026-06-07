@@ -48,25 +48,39 @@ export interface CopyConfig {
 }
 
 // @public
-function copyFilesInDirectory(sourceDirectoryPath: string, outputDirectoryPath: string, filterFunction?: (file: string) => boolean, noSymlinks?: boolean): CopyInstruction[];
+function copyFilesInDirectory(params: Pick<CopyInstruction, 'symlink'> & {
+    sourceDirectory: string;
+    destinationDirectory: string;
+    filterFunction?: (file: string) => boolean;
+}): CopyInstruction[];
 
 // @public
-function copyFilesToDestinationDirectory(sourceFilePaths: string | string[], destinationDirectory: string, noSymlinks?: boolean): CopyInstruction[];
+function copyFilesToDestinationDirectory(params: Pick<CopyInstruction, 'symlink'> & {
+    sourceFilePaths: string | string[];
+    destinationDirectory: string;
+}): CopyInstruction[];
 
 // @public
-function copyFilesToDestinationDirectoryWithRename(instrs: {
+function copyFilesToDestinationDirectoryWithRename(params: Pick<CopyInstruction, 'symlink'> & {
+    files: {
+        sourceFilePath: string;
+        destinationName: string;
+    }[];
+    destinationDirectory: string;
+}): CopyInstruction[];
+
+// @public
+function copyFileToDestinationDirectoryWithRename(params: Pick<CopyInstruction, 'symlink'> & {
     sourceFilePath: string;
     destinationName: string;
-}[], destinationDirectory: string, noSymlinks?: boolean): CopyInstruction[];
-
-// @public
-function copyFileToDestinationDirectoryWithRename(sourceFilePath: string, destinationName: string, destinationDirectory: string, noSymlink?: boolean): CopyInstruction[];
+    destinationDirectory: string;
+}): CopyInstruction[];
 
 // @public (undocumented)
 export interface CopyInstruction {
     destinationFilePath: string;
-    noSymlink?: boolean;
     sourceFilePath: string | string[];
+    symlink?: boolean;
 }
 
 declare namespace copyInstructions {
@@ -272,7 +286,10 @@ export interface JestTaskOptions {
 function lib(): void;
 
 // @public
-function mergeFiles(sourceFilePaths: string[], destinationFilePath: string): CopyInstruction;
+function mergeFiles(params: {
+    sourceFilePaths: string[];
+    destinationFilePath: string;
+}): CopyInstruction;
 
 // @public
 export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction;
