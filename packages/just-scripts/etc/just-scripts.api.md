@@ -8,7 +8,7 @@ import type * as ApiExtractorTypes from '@microsoft/api-extractor';
 import type { BuildOptions } from 'esbuild';
 import { Configuration } from 'webpack';
 import type { SpawnOptions } from 'child_process';
-import type { TaskFunction } from 'just-task';
+import { TaskFunction } from 'just-task';
 import type ts from 'typescript';
 import * as webpackMerge from 'webpack-merge';
 
