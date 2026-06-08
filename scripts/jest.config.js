@@ -8,9 +8,18 @@ const path = require('path');
 module.exports = {
   roots: ['<rootDir>/src'],
   testEnvironment: 'node',
-  testMatch: ['**/?(*.)+(spec|test).[jt]s'],
+  testEnvironmentOptions: {
+    // https://jestjs.io/blog/2025/06/04/jest-30#globals-cleanup-between-test-files
+    globalsCleanup: 'on',
+  },
+  testMatch: ['**/*.(spec|test).[jt]s'],
   verbose: true,
+  // This prevents having to call jest.clearAllMocks() after each test.
+  // jestSetup.js also calls jest.restoreAllMocks() in afterAll.
+  clearMocks: true,
+  setupFilesAfterEnv: [path.resolve(__dirname, 'jestSetup.js')],
   injectGlobals: false,
+  reporters: ['default', 'github-actions'],
   transform: {
     '^.+\\.tsx?$': [
       'ts-jest',
@@ -22,4 +31,7 @@ module.exports = {
       },
     ],
   },
+  testPathIgnorePatterns: ['/node_modules/'],
+  transformIgnorePatterns: ['/node_modules/'],
+  watchPathIgnorePatterns: ['/node_modules/'],
 };

@@ -2,7 +2,7 @@
   "changes": [
     {
       "type": "major",
-      "comment": "Remove `JestReporter` (which wasn't referenced anywhere in the package). If you were deep importing it, you can make a local copy of the source from the `v2` branch.",
+      "comment": "Remove `JestReporter` (which wasn't referenced anywhere in the package). Generally, this reporter is not needed unless you're using Rush, since most other monorepo runners don't treat stderr output as an error. If you were deep importing and still need it, you can make a local copy of the source from the `v2` branch.",
       "packageName": "just-scripts",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"

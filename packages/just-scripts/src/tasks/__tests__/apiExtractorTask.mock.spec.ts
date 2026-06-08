@@ -15,7 +15,7 @@ const mockConfig: apiExtractor.IConfigFile = {
 };
 
 const mockInvoke = jest.fn<typeof apiExtractor.Extractor.invoke>();
-const mockLoadFile = jest.fn<typeof apiExtractor.ExtractorConfig.loadFile>(() => mockConfig);
+const mockLoadFile = jest.fn<typeof apiExtractor.ExtractorConfig.loadFile>();
 const mockPrepare = jest.fn<typeof apiExtractor.ExtractorConfig.prepare>(options => {
   const projectFolder = options.configObject.projectFolder || root;
   return {
@@ -48,21 +48,19 @@ jest.mock('../../tryRequire', () => ({
 const mockTryRequire = tryRequire as jest.MockedFunction<typeof tryRequire>;
 
 // Mock fs-extra for file existence checks and file operations
-jest.mock('fs-extra', () => {
-  const actual = jest.requireActual<typeof import('fs-extra')>('fs-extra');
-  return {
-    ...actual,
-    existsSync: jest.fn(() => true),
-    mkdirpSync: jest.fn(),
-    copyFileSync: jest.fn(),
-    readFileSync: jest.fn(() => Buffer.from('line1\nline2\n')),
-    writeFileSync: jest.fn(),
-  };
-});
+jest.mock('fs-extra', () => ({
+  ...jest.requireActual<typeof import('fs-extra')>('fs-extra'),
+  existsSync: jest.fn(() => true),
+  mkdirpSync: jest.fn(),
+  copyFileSync: jest.fn(),
+  readFileSync: jest.fn(() => Buffer.from('line1\nline2\n')),
+  writeFileSync: jest.fn(),
+}));
 
 describe('apiExtractorTask (mocked)', () => {
   beforeEach(() => {
     mockInvoke.mockReturnValue({ succeeded: true } as apiExtractor.ExtractorResult);
+    mockLoadFile.mockReturnValue(mockConfig);
   });
 
   afterEach(() => {
