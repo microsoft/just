@@ -37,14 +37,20 @@ jobs:
       - run: yarn format:check
         if: ${{ matrix.os == 'ubuntu-latest' }}
 
-      - run: yarn lint
+      - name: build
+        run: yarn lage build api --verbose
 
-      - run: yarn lage build test api --verbose
+      - name: lint
+        run: yarn lint --verbose
+
+      - name: test
+        run: yarn test --verbose
 
       - name: Check for modified files
         uses: microsoft/beachball-actions/check-for-modified-files@cf7d34819ad50dce8894b3ff99a2a7899aefee3d # v3
 
-  # The docs have a separate installation using Node 22 due to needing newer dependencies
+  # The docs have a separate installation (previously required for newer Node version, but still
+  # helpful for keeping dependencies separate)
   docs:
     name: build docs
 

@@ -40,8 +40,6 @@ jobs:
 
       - run: yarn --immutable
 
-      - run: yarn checkchange
-
       - run: yarn lage build test
 
       # TODO (release): switch back to regular release
