@@ -17,6 +17,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "lib": ["ES2024"],
     "types": ["node"]
   }
