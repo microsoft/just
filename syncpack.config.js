@@ -1,13 +1,12 @@
 // @ts-check
 
-// https://jamiemason.github.io/syncpack/
+// https://syncpack.dev/
 /** @type {import('syncpack').RcFile} */
 const config = {
   versionGroups: [
     {
-      // Peer deps must only match each other
-      label: 'peer deps',
-      dependencies: ['**'],
+      // These are intentionally broader ranges than the devDependencies
+      label: 'Optional peer deps',
       dependencyTypes: ['peer'],
     },
   ],
@@ -20,3 +19,5 @@ const config = {
     },
   ],
 };
+
+module.exports = config;
