@@ -78,6 +78,7 @@ export function resolveCwd(moduleName: string, options?: ResolveOptions): string
 // @public (undocumented)
 interface ResolveOptions {
     cwd?: string;
+    dirname?: string;
     extensions?: string[];
 }
 
