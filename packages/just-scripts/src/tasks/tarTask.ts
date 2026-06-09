@@ -56,38 +56,6 @@ export interface CreateOptions {
   entries?: string[];
 }
 
-export interface ExtractOptions {
-  /** output file */
-  file: string;
-
-  /** Whether the archive is gzipped @default true */
-  gzip?: boolean;
-
-  /** the context path of the tar pack */
-  cwd?: string;
-
-  /** filter (ignore) entries */
-  filter?: (path: string, header: EntryHeader) => boolean;
-
-  /** change the header in the entry (e.g. to replace prefix) */
-  map?: (header: EntryHeader) => EntryHeader;
-
-  /** mode for files (e.g. `parseInt(755, 8)`)*/
-  fmode?: number;
-
-  /** mode for directories (e.g. `parseInt(755, 8)`) */
-  dmode?: number;
-
-  /** set whether all files and dirs are readable */
-  readable?: boolean;
-
-  /** set whether all files and dirs are writable */
-  writable?: boolean;
-
-  /** whether to dereference links */
-  dereference?: boolean;
-}
-
 /**
  * Create a task to create a tar (optionally gzipped) archive.
  * Throws if `tar-fs` is not found.
@@ -119,6 +87,38 @@ export function createTarTask(options: CreateOptions = { file: 'archive.tar.gz' 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     tarStream.pipe(createWriteStream(options.file));
   };
+}
+
+export interface ExtractOptions {
+  /** output file */
+  file: string;
+
+  /** Whether the archive is gzipped @default true */
+  gzip?: boolean;
+
+  /** the context path of the tar pack */
+  cwd?: string;
+
+  /** filter (ignore) entries */
+  filter?: (path: string, header: EntryHeader) => boolean;
+
+  /** change the header in the entry (e.g. to replace prefix) */
+  map?: (header: EntryHeader) => EntryHeader;
+
+  /** mode for files (e.g. `parseInt(755, 8)`)*/
+  fmode?: number;
+
+  /** mode for directories (e.g. `parseInt(755, 8)`) */
+  dmode?: number;
+
+  /** set whether all files and dirs are readable */
+  readable?: boolean;
+
+  /** set whether all files and dirs are writable */
+  writable?: boolean;
+
+  /** whether to dereference links */
+  dereference?: boolean;
 }
 
 /**

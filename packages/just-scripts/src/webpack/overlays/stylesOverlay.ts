@@ -17,20 +17,19 @@ function createStyleLoaderRule(
   options: CssLoaderOptions & {
     cssLoaderPath: string;
     styleLoaderPath: string;
+    postcssLoaderPath: string | null;
+    autoprefixer: unknown;
     sassLoaderPath?: string;
   },
 ): RuleSetRule['use'] {
-  const { modules, localIdentName, sassLoaderPath, cssLoaderPath, styleLoaderPath } = options;
-
-  const postcssLoaderPath = resolveWrapper('postcss-loader');
+  const { modules, localIdentName, sassLoaderPath, cssLoaderPath, postcssLoaderPath, autoprefixer, styleLoaderPath } =
+    options;
 
   const preloaders: RuleSetRule['use'] = [];
   postcssLoaderPath &&
     preloaders.push({
       loader: postcssLoaderPath,
-      options: {
-        plugins: () => [tryRequire('autoprefixer')],
-      },
+      options: autoprefixer ? { plugins: () => [autoprefixer] } : {},
     });
   sassLoaderPath && preloaders.push({ loader: sassLoaderPath });
 
@@ -61,6 +60,8 @@ function createStyleLoaderRule(
  * Optional dependencies: `postcss-loader`, `postcss`, `autoprefixer`, `sass-loader`, one of `sass` or `node-sass`.
  */
 export function createStylesOverlay(options: CssLoaderOptions = {}): Configuration {
+  const localIdentName = options.localIdentName || defaultIdentName;
+
   const cssLoaderPath = resolveWrapper('css-loader');
   if (!cssLoaderPath) {
     return {};
@@ -73,6 +74,12 @@ export function createStylesOverlay(options: CssLoaderOptions = {}): Configurati
     );
   }
 
+  const loaderArgs = {
+    cssLoaderPath,
+    styleLoaderPath,
+    postcssLoaderPath: resolveWrapper('postcss-loader'),
+    autoprefixer: tryRequire<unknown>('autoprefixer'),
+  };
   const sassLoaderPath =
     resolveWrapper('sass') || resolveWrapper('node-sass') ? resolveWrapper('sass-loader') : undefined;
 
@@ -83,10 +90,9 @@ export function createStylesOverlay(options: CssLoaderOptions = {}): Configurati
           test: cssTest,
           exclude: [/node_modules/, cssModuleTest],
           use: createStyleLoaderRule({
-            cssLoaderPath,
-            styleLoaderPath,
+            ...loaderArgs,
             modules: false,
-            localIdentName: options.localIdentName || defaultIdentName,
+            localIdentName,
           }),
           sideEffects: true,
         },
@@ -94,10 +100,9 @@ export function createStylesOverlay(options: CssLoaderOptions = {}): Configurati
           test: cssModuleTest,
           exclude: [/node_modules/],
           use: createStyleLoaderRule({
-            cssLoaderPath,
-            styleLoaderPath,
+            ...loaderArgs,
             modules: true,
-            localIdentName: options.localIdentName || defaultIdentName,
+            localIdentName,
           }),
         },
         ...(sassLoaderPath
@@ -106,11 +111,10 @@ export function createStylesOverlay(options: CssLoaderOptions = {}): Configurati
                 test: sassTest,
                 exclude: [/node_modules/, sassModuleTest],
                 use: createStyleLoaderRule({
-                  cssLoaderPath,
-                  styleLoaderPath,
+                  ...loaderArgs,
                   sassLoaderPath,
                   modules: false,
-                  localIdentName: options.localIdentName || defaultIdentName,
+                  localIdentName,
                 }),
                 sideEffects: true,
               },
@@ -118,11 +122,10 @@ export function createStylesOverlay(options: CssLoaderOptions = {}): Configurati
                 test: sassModuleTest,
                 exclude: [/node_modules/],
                 use: createStyleLoaderRule({
-                  cssLoaderPath,
-                  styleLoaderPath,
+                  ...loaderArgs,
                   sassLoaderPath,
                   modules: true,
-                  localIdentName: options.localIdentName || defaultIdentName,
+                  localIdentName,
                 }),
               },
             ]

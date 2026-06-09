@@ -50,7 +50,7 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
 
 /**
  * Create a task for running a webpack dev server.
- * Throws if `webpack` is not found.
+ * Throws if `webpack` or `webpack-cli` is not found.
  */
 export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}): TaskFunction {
   const configPath = options?.config

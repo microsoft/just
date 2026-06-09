@@ -90,21 +90,22 @@ export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFuncti
 
     const apiExtractorResult = apiExtractorWrapper(context);
 
-    if (!apiExtractorResult.succeeded) {
-      logger.warn(`- Update API: API file is out of date, updating...`);
-      fs.mkdirpSync(path.dirname(context.config.reportFilePath)); // ensure destination exists
-      fs.copyFileSync(context.config.reportTempFilePath, context.config.reportFilePath);
-
-      logger.info(`- Update API: successfully updated API file, verifying the updates...`);
-
-      const updateResult = apiExtractorWrapper(context);
-      if (!updateResult || !updateResult.succeeded) {
-        throw new Error(`- Update API: failed to verify API updates.`);
-      } else {
-        logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
-      }
-    } else {
+    if (apiExtractorResult.succeeded) {
       logger.info(`- Update API: API file is already up to date, no update needed.`);
+      return;
+    }
+
+    logger.warn(`- Update API: API file is out of date, updating...`);
+    fs.mkdirpSync(path.dirname(context.config.reportFilePath)); // ensure destination exists
+    fs.copyFileSync(context.config.reportTempFilePath, context.config.reportFilePath);
+
+    logger.info(`- Update API: successfully updated API file, verifying the updates...`);
+
+    const updateResult = apiExtractorWrapper(context);
+    if (updateResult.succeeded) {
+      logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
+    } else {
+      throw new Error(`- Update API: failed to verify API updates.`);
     }
   };
 }
@@ -166,9 +167,7 @@ function apiExtractorWrapper({
 
   logger.info(`Extracting Public API surface from '${config.mainEntryPointFilePath}'`);
   const result = Extractor.invoke(config, extractorOptions);
-  if (options.onResult) {
-    options.onResult(result, extractorOptions);
-  }
+  options.onResult?.(result, extractorOptions);
 
   return result;
 }
