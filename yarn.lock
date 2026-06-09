@@ -1129,7 +1129,6 @@ __metadata:
     "@types/fs-extra": "npm:^11.0.0"
     "@types/mock-fs": "npm:^4.13.1"
     "@types/node": "npm:^22.0.0"
-    "@types/semver": "npm:^7.7.1"
     beachball: "npm:^2.65.5"
     eslint: "npm:^10.0.0"
     eslint-config-prettier: "npm:^10.0.0"
@@ -1521,13 +1520,6 @@ __metadata:
   version: 1.0.3
   resolution: "@types/run-parallel-limit@npm:1.0.3"
   checksum: 10c0/499bf6640cf0c9ed6a20922117a247bcdaff8427ebde7f8237333f9966a82affe8504ae9c846193d4d19127be6aa291a10a8221b389a2bc47de6295c49146538
-  languageName: node
-  linkType: hard
-
-"@types/semver@npm:^7.7.1":
-  version: 7.7.1
-  resolution: "@types/semver@npm:7.7.1"
-  checksum: 10c0/c938aef3bf79a73f0f3f6037c16e2e759ff40c54122ddf0b2583703393d8d3127130823facb880e694caa324eb6845628186aac1997ee8b31dc2d18fafe26268
   languageName: node
   linkType: hard
 
@@ -4278,7 +4270,6 @@ __metadata:
     glob: "npm:^13.0.6"
     just-task: "workspace:^"
     run-parallel-limit: "npm:^1.0.6"
-    semver: "npm:^7.8.1"
     supports-color: "npm:^8.1.0"
     webpack-merge: "npm:^6.0.1"
   bin:
@@ -5142,7 +5133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.3.5, semver@npm:^7.5.3, semver@npm:^7.5.4, semver@npm:^7.7.2, semver@npm:^7.7.3, semver@npm:^7.7.4, semver@npm:^7.8.0, semver@npm:^7.8.1":
+"semver@npm:^7.3.5, semver@npm:^7.5.3, semver@npm:^7.5.4, semver@npm:^7.7.2, semver@npm:^7.7.3, semver@npm:^7.7.4, semver@npm:^7.8.0":
   version: 7.8.1
   resolution: "semver@npm:7.8.1"
   bin:
