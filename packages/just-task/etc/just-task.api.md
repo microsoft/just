@@ -43,9 +43,7 @@ export const logger: Logger;
 export function mark(marker: string): void;
 
 // @public
-interface NestedTaskFunction {
-    // Warning: (ae-forgotten-export) The symbol "TaskFunctionResult" needs to be exported by the entry point index.d.ts
-    //
+export interface NestedTaskFunction {
     // (undocumented)
     (done: TaskCallback): TaskFunctionResult;
 }
@@ -111,8 +109,6 @@ export function task(name: string, description: string, fn: TaskFunction): TaskF
 
 // @public
 export interface TaskFunction extends Undertaker.TaskFunctionParams {
-    // Warning: (ae-forgotten-export) The symbol "NestedTaskFunction" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     (done: TaskCallback): TaskFunctionResult | NestedTaskFunction;
     // (undocumented)
@@ -120,7 +116,7 @@ export interface TaskFunction extends Undertaker.TaskFunctionParams {
 }
 
 // @public
-type TaskFunctionResult = ReturnType<Undertaker.TaskFunction>;
+export type TaskFunctionResult = ReturnType<Undertaker.TaskFunction>;
 
 // @public (undocumented)
 export const undertaker: Undertaker;
@@ -128,7 +124,10 @@ export const undertaker: Undertaker;
 // Warning: (ae-forgotten-export) The symbol "WatchListener" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export function watch(globs: string | string[], optionsOrListener?: WatchListener | WatchOptions, listener?: WatchListener): FSWatcher;
+export function watch(globs: string | string[], listener?: WatchListener): FSWatcher;
+
+// @public (undocumented)
+export function watch(globs: string | string[], options?: WatchOptions, listener?: WatchListener): FSWatcher;
 
 // @public (undocumented)
 type WatchListener = (path: string, stats?: Stats) => void;

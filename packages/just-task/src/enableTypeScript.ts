@@ -5,9 +5,7 @@ export function enableTypeScript(options?: { transpileOnly?: boolean; esm?: bool
   const { transpileOnly = true, esm = false } = options || {};
   const tsNodeModule = resolve('ts-node');
   if (tsNodeModule) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const tsNode = require(tsNodeModule);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    const tsNode = require(tsNodeModule) as typeof import('ts-node');
     tsNode.register({
       transpileOnly,
       skipProject: true,
@@ -23,7 +21,7 @@ export function enableTypeScript(options?: { transpileOnly?: boolean; esm?: bool
         allowJs: true,
         esModuleInterop: true,
       },
-      files: ['just.config.ts', 'just.config.cts'],
+      // files: ['just.config.ts', 'just.config.cts'],
     });
   } else {
     logger.error(`In order to use TypeScript with just.config.ts, you need to install "ts-node" module:

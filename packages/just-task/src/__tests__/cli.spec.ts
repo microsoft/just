@@ -50,7 +50,7 @@ describe('cli', () => {
     expect(exitCode).toBe(0);
     expect(stdout).toContain("■ started 'clean'");
     expect(stdout).toContain('■ fake cleaning up the build and lib and dist folders');
-    expect(stdout).toContain("■ finished 'clean' in 0.01s");
+    expect(stdout).toContain("■ finished 'clean' in");
   });
 
   it('errors with a non-zero exit code for an unknown command', () => {

@@ -39,7 +39,7 @@ export interface NestedTaskFunction {
  * });
  * ```
  *
- * This extends {@link Undertaker.TaskFunctionParams} (rather than `Undertaker.TaskFunction`)
+ * This extends `Undertaker.TaskFunctionParams` (rather than `Undertaker.TaskFunction`)
  * so it keeps the optional metadata (`name`, `description`, etc) while widening the
  * call signature's return type to also allow a {@link NestedTaskFunction}.
  */
