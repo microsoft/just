@@ -41,7 +41,8 @@ export interface EsLintTaskOptions {
 }
 
 export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
-  return function eslint() {
+  // undertaker apparently requires returning a promise, async function, or function that calls done()
+  return async function eslint() {
     const {
       files,
       configPath,
@@ -62,45 +63,46 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
     const eslintCmd = resolve('eslint/bin/eslint.js');
     // Try all possible extensions in the order listed here: https://eslint.org/docs/user-guide/configuring#configuration-file-formats
     const eslintConfigPath =
-      configPath || resolveCwd('.eslintrc', { extensions: ['.js', '.cjs', '.yaml', '.yml', '.json'] });
+      configPath ||
+      resolveCwd('eslint.config', { extensions: ['.js', '.mjs', '.cjs', '.ts', '.mts', '.cts'] }) ||
+      resolveCwd('.eslintrc', { extensions: ['.js', '.cjs', '.yaml', '.yml', '.json'] });
 
-    if (eslintCmd && eslintConfigPath && fs.existsSync(eslintConfigPath)) {
-      const eslintIgnorePath = ignorePath || resolveCwd('.eslintignore');
-
-      const eslintArgs = [
-        eslintCmd,
-        ...(files ? files : ['.']),
-        ...['--ext', extensions ? extensions : '.js,.jsx,.ts,.tsx'],
-        ...(noEslintRc ? ['--no-eslintrc'] : []),
-        ...(eslintConfigPath ? ['--config', eslintConfigPath] : []),
-        ...(eslintIgnorePath ? ['--ignore-path', eslintIgnorePath] : []),
-        ...(resolvePluginsPath ? ['--resolve-plugins-relative-to', resolvePluginsPath] : []),
-        ...(fix ? ['--fix'] : []),
-        ...(maxWarnings !== undefined ? ['--max-warnings', `${maxWarnings}`] : []),
-        ...(cache ? ['--cache'] : []),
-        ...(cacheLocation ? ['--cache-location', cacheLocation] : []),
-        ...(outputFile ? ['--output-file', outputFile] : []),
-        ...(format ? ['--format', format] : []),
-        ...(quiet ? ['--quiet'] : []),
-        ...(options.reportUnusedDisableDirectives ? ['--report-unused-disable-directives'] : []),
-        '--color',
-      ];
-
-      const env: NodeJS.ProcessEnv = { ...process.env };
-
-      if (timing) {
-        env.TIMING = '1';
-      }
-
-      if (useFlatConfig !== undefined) {
-        env.ESLINT_USE_FLAT_CONFIG = JSON.stringify(useFlatConfig);
-      }
-
-      logNodeCommand(eslintArgs);
-      return spawn(process.execPath, eslintArgs, { stdio: 'inherit', env });
+    if (!eslintCmd || !eslintConfigPath || !fs.existsSync(eslintConfigPath)) {
+      return;
     }
 
-    // undertaker apparently requires returning a promise, async function, or function that calls done()
-    return Promise.resolve();
+    const eslintIgnorePath = ignorePath || resolveCwd('.eslintignore');
+
+    const eslintArgs = [
+      eslintCmd,
+      ...(files ? files : ['.']),
+      ...['--ext', extensions ? extensions : '.js,.jsx,.ts,.tsx'],
+      ...(noEslintRc ? ['--no-eslintrc'] : []),
+      ...(eslintConfigPath ? ['--config', eslintConfigPath] : []),
+      ...(eslintIgnorePath ? ['--ignore-path', eslintIgnorePath] : []),
+      ...(resolvePluginsPath ? ['--resolve-plugins-relative-to', resolvePluginsPath] : []),
+      ...(fix ? ['--fix'] : []),
+      ...(maxWarnings !== undefined ? ['--max-warnings', `${maxWarnings}`] : []),
+      ...(cache ? ['--cache'] : []),
+      ...(cacheLocation ? ['--cache-location', cacheLocation] : []),
+      ...(outputFile ? ['--output-file', outputFile] : []),
+      ...(format ? ['--format', format] : []),
+      ...(quiet ? ['--quiet'] : []),
+      ...(options.reportUnusedDisableDirectives ? ['--report-unused-disable-directives'] : []),
+      '--color',
+    ];
+
+    const env: NodeJS.ProcessEnv = { ...process.env };
+
+    if (timing) {
+      env.TIMING = '1';
+    }
+
+    if (useFlatConfig !== undefined) {
+      env.ESLINT_USE_FLAT_CONFIG = JSON.stringify(useFlatConfig);
+    }
+
+    logNodeCommand(eslintArgs);
+    return spawn(process.execPath, eslintArgs, { stdio: 'inherit', env });
   };
 }

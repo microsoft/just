@@ -64,7 +64,7 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
 }
 
 export const createStylesOverlay = function (options: CssLoaderOptions = {}): Partial<Configuration> {
-  const sassLoader = resolve('node-sass') && resolve('sass-loader');
+  const sassLoader = (resolve('sass') || resolve('node-sass')) && resolve('sass-loader');
   const cssLoader = resolve('css-loader');
 
   return {

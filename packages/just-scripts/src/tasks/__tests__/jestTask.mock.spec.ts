@@ -1,7 +1,7 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
 import { spawn } from '../../utils';
-import { jestTask } from '../jestTask';
+import { jestTask, type JestTaskOptions } from '../jestTask';
 import { callTaskForTest } from './callTaskForTest';
 import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
 
@@ -99,6 +99,22 @@ describe('jestTask (mocked)', () => {
       expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([...mockJestArgs, '--colors']);
     });
 
+    it.each(['js', 'cjs', 'mjs', 'ts'])('finds jest.config.%s', async ext => {
+      const configFile = `jest.config.${ext}`;
+      mockfs({
+        ...mockFsJest(),
+        [configFile]: 'a file',
+      });
+      const task = jestTask();
+      await callTaskForTest(task);
+      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+        ...mockJestArgs,
+        '--config',
+        `\${packageRoot}/${configFile}`,
+        '--colors',
+      ]);
+    });
+
     it('uses custom config option', async () => {
       mockfs({
         ...mockFsJest(),
@@ -116,96 +132,39 @@ describe('jestTask (mocked)', () => {
   });
 
   describe('CLI options', () => {
-    it('passes --coverage', async () => {
-      const task = jestTask({ coverage: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--coverage']));
-    });
+    // Any new options not directly passed as CLI flags (or options tested elsewhere with more
+    // detailed fixtures) should be added to the omitted values. Otherwise, add a test below.
+    type CliOptions = Omit<JestTaskOptions, 'config' | 'env' | 'nodeArgs' | '_'>;
 
-    it('passes --watch', async () => {
-      const task = jestTask({ watch: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--watch']));
-    });
+    // Verify each relevant option is passed through to the CLI (it's been an issue in the past).
+    // Flags with different names should specify `flag`.
+    // Boolean flags should have undefined values.
+    const cliFlags: {
+      [K in keyof Required<CliOptions>]: { flag?: string; value?: JestTaskOptions[K] };
+    } = {
+      rootDir: { value: 'src' },
+      runInBand: {},
+      coverage: {},
+      updateSnapshot: {},
+      u: { flag: '--updateSnapshot' },
+      watch: {},
+      colors: {},
+      passWithNoTests: {},
+      clearCache: {},
+      silent: {},
+      testPathPattern: { value: '**/*' },
+      testPathPatterns: { value: '**/*' },
+      testNamePattern: { value: 'foo' },
+      maxWorkers: { value: 4 },
+    };
 
-    it('passes --runInBand', async () => {
-      const task = jestTask({ runInBand: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--runInBand']));
-    });
+    it.each(Object.keys(cliFlags))('passes %s to CLI', async opt => {
+      const flagInfo = cliFlags[opt as keyof typeof cliFlags];
+      const { flag = `--${opt}`, value } = flagInfo;
 
-    it('passes --passWithNoTests', async () => {
-      const task = jestTask({ passWithNoTests: true });
+      const task = jestTask({ [opt]: value ?? true });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--passWithNoTests']));
-    });
-
-    it('passes --clearCache', async () => {
-      const task = jestTask({ clearCache: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--clearCache']));
-    });
-
-    it('passes --silent', async () => {
-      const task = jestTask({ silent: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--silent']));
-    });
-
-    it('passes --rootDir', async () => {
-      const task = jestTask({ rootDir: 'src' });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--rootDir', 'src']));
-    });
-
-    it('passes --testPathPattern', async () => {
-      const task = jestTask({ testPathPattern: 'src/test' });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--testPathPattern', 'src/test']));
-    });
-
-    it('passes --testPathPatterns', async () => {
-      const task = jestTask({ testPathPatterns: 'src/test' });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--testPathPatterns', 'src/test']));
-    });
-
-    it('passes --testNamePattern', async () => {
-      const task = jestTask({ testNamePattern: 'should do something' });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(
-        expect.arrayContaining(['--testNamePattern', 'should do something']),
-      );
-    });
-
-    it('passes --updateSnapshot', async () => {
-      const task = jestTask({ updateSnapshot: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--updateSnapshot']));
-    });
-
-    it('passes --updateSnapshot via u shorthand', async () => {
-      const task = jestTask({ u: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--updateSnapshot']));
-    });
-
-    it('passes --maxWorkers', async () => {
-      const task = jestTask({ maxWorkers: 4 });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--maxWorkers', '4']));
-    });
-
-    it('includes --colors when supportsColor.stdout is truthy', async () => {
-      const task = jestTask();
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--colors']));
-    });
-
-    it('omits --colors when colors option is false', async () => {
-      const task = jestTask({ colors: false });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).not.toEqual(expect.arrayContaining(['--colors']));
+      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(value ? [flag, String(value)] : [flag]));
     });
   });
 
@@ -219,10 +178,10 @@ describe('jestTask (mocked)', () => {
     it('prepends nodeArgs before jest command', async () => {
       const task = jestTask({ nodeArgs: ['--max-old-space-size=4096'] });
       await callTaskForTest(task);
+      // node <nodeArgs> path/to/jest <jestArgs>
       const args = getNormalizedSpawnArgs(mockSpawn);
-      const nodeArgIndex = args.indexOf('--max-old-space-size=4096');
-      const jestCmdIndex = args.indexOf('${repoRoot}/node_modules/jest/bin/jest.js');
-      expect(nodeArgIndex).toBeLessThan(jestCmdIndex);
+      expect(args[1]).toBe('--max-old-space-size=4096');
+      expect(args[2]).toBe('${repoRoot}/node_modules/jest/bin/jest.js');
     });
 
     it('passes env to spawn', async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
 import { spawn } from '../../utils';
-import { eslintTask } from '../eslintTask';
+import { eslintTask, type EsLintTaskOptions } from '../eslintTask';
 import { callTaskForTest } from './callTaskForTest';
 import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
 
@@ -105,16 +105,21 @@ describe('eslintTask (mocked)', () => {
   });
 
   describe('config file detection', () => {
-    it('detects .eslintrc.js', async () => {
+    it.each([
+      '.eslintrc',
+      '.eslintrc.cjs',
+      '.eslintrc.json',
+      'eslint.config.js',
+      'eslint.config.mjs',
+      'eslint.config.ts',
+    ])('detects %s', async name => {
       mockfs({
         ...mockFsEslint(),
-        '.eslintrc.js': 'a file',
+        [name]: 'a file',
       });
       const task = eslintTask();
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(
-        expect.arrayContaining(['--config', '${packageRoot}/.eslintrc.js']),
-      );
+      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--config', '${packageRoot}/' + name]));
     });
 
     it('uses custom configPath', async () => {
@@ -129,63 +134,35 @@ describe('eslintTask (mocked)', () => {
   });
 
   describe('CLI options', () => {
-    it('passes --fix', async () => {
-      const task = eslintTask({ fix: true });
+    // Any new options not directly passed as CLI flags should be added to the omitted values
+    type CliOptions = Omit<EsLintTaskOptions, 'files' | 'configPath' | 'timing' | 'useFlatConfig'>;
+
+    // Verify each relevant option is passed through to the CLI (it's been an issue in the past)
+    const cliFlags: {
+      [K in keyof Required<CliOptions>]: { flag: string; value?: EsLintTaskOptions[K] };
+    } = {
+      ignorePath: { flag: '--ignore-path', value: '.gitignore' },
+      resolvePluginsPath: { flag: '--resolve-plugins-relative-to', value: 'foo' },
+      fix: { flag: '--fix' },
+      extensions: { flag: '--ext', value: '.js,.jsx,.ts,.tsx' },
+      noEslintRc: { flag: '--no-eslintrc' },
+      maxWarnings: { flag: '--max-warnings', value: 0 },
+      cache: { flag: '--cache' },
+      cacheLocation: { flag: '--cache-location', value: '.cache/eslint' },
+      outputFile: { flag: '--output-file', value: 'eslint-report.json' },
+      format: { flag: '--format', value: 'json' },
+      quiet: { flag: '--quiet' },
+      reportUnusedDisableDirectives: { flag: '--report-unused-disable-directives' },
+    };
+
+    it.each(Object.keys(cliFlags))('passes %s to CLI', async opt => {
+      const { flag, value } = cliFlags[opt as keyof typeof cliFlags];
+      const task = eslintTask({ [opt]: value === undefined ? true : value });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--fix']));
+      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(value ? [flag, String(value)] : [flag]));
     });
 
-    it('passes --max-warnings', async () => {
-      const task = eslintTask({ maxWarnings: 0 });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--max-warnings', '0']));
-    });
-
-    it('passes --cache', async () => {
-      const task = eslintTask({ cache: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--cache']));
-    });
-
-    it('passes --cache-location', async () => {
-      const task = eslintTask({ cacheLocation: '.cache/eslint' });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--cache-location', '.cache/eslint']));
-    });
-
-    it('passes --output-file', async () => {
-      const task = eslintTask({ outputFile: 'eslint-report.json' });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(
-        expect.arrayContaining(['--output-file', 'eslint-report.json']),
-      );
-    });
-
-    it('passes --format', async () => {
-      const task = eslintTask({ format: 'json' });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--format', 'json']));
-    });
-
-    it('passes --quiet', async () => {
-      const task = eslintTask({ quiet: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--quiet']));
-    });
-
-    it('passes --no-eslintrc', async () => {
-      const task = eslintTask({ noEslintRc: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--no-eslintrc']));
-    });
-
-    it('passes --report-unused-disable-directives', async () => {
-      const task = eslintTask({ reportUnusedDisableDirectives: true });
-      await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--report-unused-disable-directives']));
-    });
-
-    it('passes --ignore-path', async () => {
+    it('detects .eslintignore and passes as --ignore-path', async () => {
       mockfs({
         ...mockFsEslint(),
         '.eslintrc.json': 'a file',
