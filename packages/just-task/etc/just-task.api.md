@@ -7,6 +7,7 @@
 import type { Arguments } from 'yargs-parser';
 import type { FSWatcher } from 'chokidar';
 import type { Stats } from 'fs';
+import type { TaskCallback } from 'undertaker';
 import Undertaker from 'undertaker';
 import type { WatchOptions } from 'chokidar';
 
@@ -40,6 +41,14 @@ export const logger: Logger;
 
 // @public (undocumented)
 export function mark(marker: string): void;
+
+// @public
+interface NestedTaskFunction {
+    // Warning: (ae-forgotten-export) The symbol "TaskFunctionResult" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    (done: TaskCallback): TaskFunctionResult;
+}
 
 // Warning: (ae-forgotten-export) The symbol "OptionConfig" needs to be exported by the entry point index.d.ts
 //
@@ -85,17 +94,33 @@ interface ResolveOptions {
 // @public (undocumented)
 export function series(...tasks: Task[]): Undertaker.TaskFunction;
 
-// @public (undocumented)
+// @public
 export type Task = string | TaskFunction;
 
-// @public (undocumented)
-export function task(firstParam: string | TaskFunction, secondParam?: string | TaskFunction, thirdParam?: TaskFunction): TaskFunction;
+// @public
+export function task(name: string): TaskFunction;
 
-// @public (undocumented)
-export interface TaskFunction extends Undertaker.TaskFunction {
+// @public
+export function task(name: string, dependencyName: string): TaskFunction;
+
+// @public
+export function task(name: string, fn: TaskFunction): TaskFunction;
+
+// @public
+export function task(name: string, description: string, fn: TaskFunction): TaskFunction;
+
+// @public
+export interface TaskFunction extends Undertaker.TaskFunctionParams {
+    // Warning: (ae-forgotten-export) The symbol "NestedTaskFunction" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    (done: TaskCallback): TaskFunctionResult | NestedTaskFunction;
     // (undocumented)
     description?: string;
 }
+
+// @public
+type TaskFunctionResult = ReturnType<Undertaker.TaskFunction>;
 
 // @public (undocumented)
 export const undertaker: Undertaker;

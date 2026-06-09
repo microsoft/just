@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "none",
+      "comment": "use catalog dep for cross-spawn",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "none"
+    },
+    {
+      "type": "major",
+      "comment": "Fix types for top-level and wrapped tasks, and add explicit variadic signatures for `task()` covering valid usage",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
