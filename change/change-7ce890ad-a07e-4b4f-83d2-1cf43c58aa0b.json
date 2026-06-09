@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "comment": "Remove unused `mergePackageJson` and `paths` APIs (these were moved from `just-scripts-utils` but not exported from `just-scripts`)",
+      "type": "minor",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
