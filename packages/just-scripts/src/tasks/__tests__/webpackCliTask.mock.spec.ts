@@ -37,7 +37,7 @@ describe('webpackCliTask (mocked)', () => {
   describe('error conditions', () => {
     it('throws if webpack-cli is not found', () => {
       mockfs({});
-      expect(() => webpackCliTask()).toThrow('cannot find webpack-cli');
+      expect(() => webpackCliTask()).toThrow('Cannot find webpack-cli');
     });
   });
 

@@ -39,24 +39,31 @@ interface ApiExtractorContext {
   apiExtractorModule: typeof ApiExtractorTypes;
 }
 
+/**
+ * Create a task to verify the API report. Errors if the report is out of date.
+ *
+ * Logs a warning if `@microsoft/api-extractor` or a config file is not found.
+ */
 export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFunction {
   // eslint-disable-next-line @typescript-eslint/require-await
   return async function apiExtractorVerify() {
     const context = initApiExtractor(options);
-    if (context) {
-      const apiExtractorResult = apiExtractorWrapper(context);
+    if (!context) return;
 
-      if (apiExtractorResult && !apiExtractorResult.succeeded) {
-        throw new Error(
-          'The public API file is out of date. Please run the API snapshot and commit the updated API file.',
-        );
-      }
+    const apiExtractorResult = apiExtractorWrapper(context);
+
+    if (apiExtractorResult && !apiExtractorResult.succeeded) {
+      throw new Error(
+        'The public API file is out of date. Please run the API snapshot and commit the updated API file.',
+      );
     }
   };
 }
 
 /**
- * Updates the API extractor snapshot
+ * Create a task to update the API report file.
+ *
+ * Logs a warning if `@microsoft/api-extractor` or a config file is not found.
  *
  * Sample config which should be saved as api-extractor.json:
  * ```
@@ -79,40 +86,38 @@ export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFuncti
   // eslint-disable-next-line @typescript-eslint/require-await
   return async function apiExtractorUpdate() {
     const context = initApiExtractor(options);
-    if (context) {
-      let apiExtractorResult = apiExtractorWrapper(context);
+    if (!context) return;
 
-      if (apiExtractorResult) {
-        if (!apiExtractorResult.succeeded) {
-          logger.warn(`- Update API: API file is out of date, updating...`);
-          fs.mkdirpSync(path.dirname(context.config.reportFilePath)); // ensure destination exists
-          fs.copyFileSync(context.config.reportTempFilePath, context.config.reportFilePath);
+    const apiExtractorResult = apiExtractorWrapper(context);
 
-          logger.info(`- Update API: successfully updated API file, verifying the updates...`);
+    if (!apiExtractorResult.succeeded) {
+      logger.warn(`- Update API: API file is out of date, updating...`);
+      fs.mkdirpSync(path.dirname(context.config.reportFilePath)); // ensure destination exists
+      fs.copyFileSync(context.config.reportTempFilePath, context.config.reportFilePath);
 
-          apiExtractorResult = apiExtractorWrapper(context);
-          if (!apiExtractorResult || !apiExtractorResult.succeeded) {
-            throw new Error(`- Update API: failed to verify API updates.`);
-          } else {
-            logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
-          }
-        } else {
-          logger.info(`- Update API: API file is already up to date, no update needed.`);
-        }
+      logger.info(`- Update API: successfully updated API file, verifying the updates...`);
+
+      const updateResult = apiExtractorWrapper(context);
+      if (!updateResult || !updateResult.succeeded) {
+        throw new Error(`- Update API: failed to verify API updates.`);
+      } else {
+        logger.info(`- Update API: successully verified API file. Please commit API file as part of your changes.`);
       }
+    } else {
+      logger.info(`- Update API: API file is already up to date, no update needed.`);
     }
   };
 }
 
 /**
  * Load the api-extractor module (if available) and the config file.
- * Returns undefined if api-extractor or the config file couldn't be found.
+ * Logs a warning and returns undefined if api-extractor or the config file couldn't be found.
  */
 function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | undefined {
   const apiExtractorModule = tryRequire<typeof ApiExtractorTypes>('@microsoft/api-extractor');
 
   if (!apiExtractorModule) {
-    logger.warn('@microsoft/api-extractor package not detected. This task will have no effect.');
+    logger.warn('@microsoft/api-extractor package not found, so this task has no effect.');
     return;
   }
 
@@ -125,7 +130,7 @@ function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | u
   const { configJsonFilePath = ExtractorConfig.FILENAME, onResult, ...extractorOptions } = options;
 
   if (!fs.existsSync(configJsonFilePath)) {
-    logger.warn('Config file not found for api-extractor!');
+    logger.warn('API Extractor config file not found, so this task has no effect.');
     return;
   }
 
@@ -156,7 +161,7 @@ function apiExtractorWrapper({
   config,
   extractorOptions,
   options,
-}: ApiExtractorContext): ApiExtractorTypes.ExtractorResult | undefined {
+}: ApiExtractorContext): ApiExtractorTypes.ExtractorResult {
   const { Extractor } = apiExtractorModule;
 
   logger.info(`Extracting Public API surface from '${config.mainEntryPointFilePath}'`);

@@ -1,8 +1,9 @@
 import type ts from 'typescript';
 import type { TaskFunction } from 'just-task';
-import { resolve, logger, resolveCwd } from 'just-task';
+import { logger, resolveCwd } from 'just-task';
 import { logNodeCommand, spawn } from '../utils';
 import fs from 'fs';
+import { resolveWrapper } from '../tryRequire';
 
 export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean | string[] } & {
   nodeArgs?: string[];
@@ -10,12 +11,15 @@ export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | bool
 
 /**
  * Returns a task that runs the TSC CLI.
+ *
+ * Throws if the `tsc` CLI (`typescript/lib/tsc.js`) is not found.
  */
 export function tscTask(options: TscTaskOptions = {}): TaskFunction {
-  const tscCmd = resolve('typescript/lib/tsc.js');
+  const tscPath = 'typescript/lib/tsc.js';
+  const tscCmd = resolveWrapper(tscPath);
 
   if (!tscCmd) {
-    throw new Error('cannot find tsc');
+    throw new Error(`Cannot find typescript CLI (${tscPath})`);
   }
 
   return function tsc() {
@@ -35,6 +39,8 @@ export function tscTask(options: TscTaskOptions = {}): TaskFunction {
 
 /**
  * Returns a task that runs the TSC CLI in watch mode.
+ *
+ * Throws if the `tsc` CLI is not found.
  */
 export function tscWatchTask(options: TscTaskOptions = {}): TaskFunction {
   return tscTask({ ...options, watch: true });

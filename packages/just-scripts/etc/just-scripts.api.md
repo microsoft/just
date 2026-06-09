@@ -6,7 +6,7 @@
 
 import type * as ApiExtractorTypes from '@microsoft/api-extractor';
 import type { BuildOptions } from 'esbuild';
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 import type { SpawnOptions } from 'child_process';
 import { TaskFunction } from 'just-task';
 import type ts from 'typescript';
@@ -23,7 +23,7 @@ export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeO
 // @public
 export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFunction;
 
-// @public (undocumented)
+// @public
 export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFunction;
 
 // @public (undocumented)
@@ -123,8 +123,8 @@ export interface CreateOptions {
     map?: (header: EntryHeader) => EntryHeader;
 }
 
-// @public (undocumented)
-export const createStylesOverlay: (options?: CssLoaderOptions) => Partial<Configuration>;
+// @public
+export function createStylesOverlay(options?: CssLoaderOptions): Configuration;
 
 // @public
 export function createTarTask(options?: CreateOptions): TaskFunction;
@@ -141,7 +141,7 @@ export interface CssLoaderOptions {
 export function defaultCleanPaths(): string[];
 
 // @public (undocumented)
-export const displayBailoutOverlay: () => Partial<Configuration>;
+export function displayBailoutOverlay(): Configuration;
 
 // @public (undocumented)
 export interface EntryHeader {
@@ -181,7 +181,7 @@ export interface EsbuildTransformOptions {
     include: string[] | string;
 }
 
-// @public (undocumented)
+// @public
 export function eslintTask(options?: EsLintTaskOptions): TaskFunction;
 
 // @public
@@ -231,13 +231,13 @@ export interface ExtractOptions {
 // @public
 export function extractTarTask(options?: ExtractOptions): TaskFunction;
 
-// @public (undocumented)
-export const fileOverlay: () => Partial<Configuration>;
+// @public
+export function fileOverlay(): Configuration;
 
-// @public (undocumented)
-export const htmlOverlay: (options: any) => Partial<Configuration>;
+// @public
+export function htmlOverlay(options: unknown): Configuration;
 
-// @public (undocumented)
+// @public
 export function jestTask(options?: JestTaskOptions): TaskFunction;
 
 // @public (undocumented)
@@ -301,7 +301,7 @@ export interface NodeExecTaskOptions {
 // @public (undocumented)
 export function prettierCheckTask(options?: PrettierTaskOptions): TaskFunction;
 
-// @public (undocumented)
+// @public
 export function prettierTask(options?: PrettierTaskOptions): TaskFunction;
 
 // @public (undocumented)
@@ -316,7 +316,7 @@ export interface PrettierTaskOptions {
     ignorePath?: string;
 }
 
-// @public (undocumented)
+// @public
 export function sassTask(options: SassTaskOptions): TaskFunction;
 
 // @public (undocumented)
@@ -327,8 +327,8 @@ export interface SassTaskOptions {
     postcssPlugins?: unknown[];
 }
 
-// @public (undocumented)
-export const stylesOverlay: () => Partial<Configuration>;
+// @public
+export function stylesOverlay(): Configuration;
 
 declare namespace taskPresets {
     export {
@@ -422,8 +422,8 @@ export interface TsLoaderOptions {
     transpileOnly: boolean;
 }
 
-// @public (undocumented)
-export const tsOverlay: (overlayOptions?: TsOverlayOptions) => Partial<Configuration>;
+// @public
+export function tsOverlay(overlayOptions?: TsOverlayOptions): Partial<Configuration>;
 
 // @public (undocumented)
 export interface TsOverlayOptions {
@@ -448,10 +448,10 @@ export interface WebpackCliTaskOptions {
     webpackCliArgs?: string[];
 }
 
-// @public (undocumented)
-export const webpackConfig: (config: Partial<Configuration>) => Configuration;
+// @public
+export function webpackConfig(config: Partial<Configuration>): Configuration;
 
-// @public (undocumented)
+// @public
 export function webpackDevServerTask(options?: WebpackDevServerTaskOptions): TaskFunction;
 
 // @public (undocumented)
@@ -471,17 +471,17 @@ export { webpackMerge }
 
 // @public (undocumented)
 export const webpackOverlays: {
-    typescript: (overlayOptions?: TsOverlayOptions) => Partial<Configuration>;
-    html: (options: any) => Partial<Configuration>;
-    styles: () => Partial<Configuration>;
-    file: () => Partial<Configuration>;
-    displayBailout: () => Partial<Configuration>;
+    typescript: typeof tsOverlay;
+    html: typeof htmlOverlay;
+    styles: typeof stylesOverlay;
+    file: typeof fileOverlay;
+    displayBailout: typeof displayBailoutOverlay;
 };
 
-// @public (undocumented)
-export const webpackServeConfig: (config: Partial<Configuration>) => Configuration;
+// @public
+export function webpackServeConfig(config: Partial<Configuration>): Configuration;
 
-// @public (undocumented)
+// @public
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction;
 
 // @public (undocumented)

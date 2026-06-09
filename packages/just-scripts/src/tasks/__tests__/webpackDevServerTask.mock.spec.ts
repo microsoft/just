@@ -20,7 +20,7 @@ const relativeRepoRoot = '../..';
 
 function getMockDeps() {
   return {
-    [`${relativeRepoRoot}/node_modules/webpack-cli/package.json`]: JSON.stringify({ version: '4.10.0' }),
+    [`${relativeRepoRoot}/node_modules/webpack-cli/package.json`]: '{}',
     [`${relativeRepoRoot}/node_modules/webpack/bin/webpack.js`]: 'a file',
     [`${relativeRepoRoot}/node_modules/webpack/package.json`]: '{"main":"lib/index.js"}',
   };
@@ -36,6 +36,13 @@ describe('webpackDevServerTask (mocked)', () => {
     it('throws if webpack-cli is not found', () => {
       mockfs({});
       expect(() => webpackDevServerTask()).toThrow('Missing webpack-cli package');
+    });
+
+    it('throws if webpack is not found', () => {
+      const deps = getMockDeps() as Record<string, string>;
+      delete deps[`${relativeRepoRoot}/node_modules/webpack/bin/webpack.js`];
+      mockfs(deps);
+      expect(() => webpackDevServerTask()).toThrow('Cannot find webpack (webpack/bin/webpack.js)');
     });
   });
 

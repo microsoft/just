@@ -2,12 +2,13 @@
 import type { Configuration } from 'webpack';
 import { logNodeCommand, spawn } from '../utils';
 import type { TaskFunction } from 'just-task';
-import { resolve, resolveCwd } from 'just-task';
+import { resolveCwd } from 'just-task';
 import fs from 'fs';
 import path from 'path';
 import type { WebpackCliTaskOptions } from './webpackCliTask';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
+import { resolveWrapper } from '../tryRequire';
 
 export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Configuration {
   /**
@@ -47,20 +48,24 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
   transpileOnly?: boolean;
 }
 
+/**
+ * Create a task for running a webpack dev server.
+ * Throws if `webpack` is not found.
+ */
 export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}): TaskFunction {
   const configPath = options?.config
     ? // don't attempt to resolve as a package
       resolveCwd(path.isAbsolute(options.config) ? options.config : path.join('.', options.config))
     : findWebpackConfig('webpack.serve.config.js', 'webpack.config.js');
 
-  const webpackCliPackageJsonPath = resolve('webpack-cli/package.json');
+  const webpackCliPackageJsonPath = resolveWrapper('webpack-cli/package.json');
   if (!webpackCliPackageJsonPath) {
     throw new Error('Missing webpack-cli package. Please install webpack-cli as a devDependency.');
   }
-
-  const webpackBinPath = resolve('webpack/bin/webpack.js');
+  const webpackBin = 'webpack/bin/webpack.js';
+  const webpackBinPath = resolveWrapper(webpackBin);
   if (!webpackBinPath) {
-    throw new Error(`Cannot find webpack CLI`);
+    throw new Error(`Cannot find webpack (${webpackBin})`);
   }
 
   return function webpackDevServer() {

@@ -1,8 +1,8 @@
-import type { TaskFunction } from 'just-task';
-import { logger, resolve } from 'just-task';
+import { logger, type TaskFunction } from 'just-task';
 import { logNodeCommand, spawn } from '../utils';
 import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
 import { arrayify } from '../arrayUtils/arrayify';
+import { resolveWrapper } from '../tryRequire';
 
 interface PrettierContext {
   prettierBin: string;
@@ -27,9 +27,12 @@ export interface PrettierTaskOptions {
   check?: boolean;
 }
 
+/**
+ * Create a task to run prettier via its CLI. Logs a warning if `prettier` is not found.
+ */
 export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
   // check v2 or v3 path
-  const prettierBin = resolve('prettier/bin-prettier.js') || resolve('prettier/bin/prettier.cjs');
+  const prettierBin = resolveWrapper('prettier/bin-prettier.js') || resolveWrapper('prettier/bin/prettier.cjs');
 
   if (prettierBin) {
     return function prettier() {
@@ -50,7 +53,7 @@ export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
   // undertaker apparently requires returning a promise, async function, or function that calls done()
   // eslint-disable-next-line @typescript-eslint/require-await
   return async () => {
-    logger.warn('Prettier is not available, ignoring this task');
+    logger.warn('prettier not found, so this task has no effect.');
   };
 }
 

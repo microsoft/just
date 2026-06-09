@@ -1,7 +1,7 @@
-import type { TaskFunction } from 'just-task';
-import { resolve, resolveCwd } from 'just-task';
+import { logger, resolveCwd, type TaskFunction } from 'just-task';
 import { logNodeCommand, spawn } from '../utils';
 import fs from 'fs';
+import { resolveWrapper } from '../tryRequire';
 
 /**
  * Task options generally follow ESLint CLI options explained here:
@@ -40,6 +40,10 @@ export interface EsLintTaskOptions {
   reportUnusedDisableDirectives?: boolean;
 }
 
+/**
+ * Create a task to run eslint.
+ * Logs a warning if `eslint` or a config file is not found.
+ */
 export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
   // undertaker apparently requires returning a promise, async function, or function that calls done()
   return async function eslint() {
@@ -60,14 +64,26 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
       quiet,
       useFlatConfig,
     } = options;
-    const eslintCmd = resolve('eslint/bin/eslint.js');
+
+    const eslintPath = 'eslint/bin/eslint.js';
+    const eslintCmd = resolveWrapper(eslintPath);
+    if (!eslintCmd) {
+      logger.warn(`eslint CLI (${eslintPath}) not found, so this task has no effect.`);
+      return;
+    }
+
     // Try all possible extensions in the order listed here: https://eslint.org/docs/user-guide/configuring#configuration-file-formats
     const eslintConfigPath =
       configPath ||
       resolveCwd('eslint.config', { extensions: ['.js', '.mjs', '.cjs', '.ts', '.mts', '.cts'] }) ||
       resolveCwd('.eslintrc', { extensions: ['.js', '.cjs', '.yaml', '.yml', '.json'] });
 
-    if (!eslintCmd || !eslintConfigPath || !fs.existsSync(eslintConfigPath)) {
+    if (!eslintConfigPath) {
+      logger.warn('No ESLint config file found, so this task has no effect.');
+      return;
+    }
+    if (!fs.existsSync(eslintConfigPath)) {
+      logger.warn(`ESLint config file not found at path: ${eslintConfigPath}. This task will have no effect.`);
       return;
     }
 

@@ -30,7 +30,7 @@ describe('esbuildTask (mocked)', () => {
 
   it('throws if esbuild is not resolved', () => {
     mockResolve.mockReturnValueOnce(null);
-    expect(() => esbuildTask()).toThrow('cannot find esbuild');
+    expect(() => esbuildTask()).toThrow('Cannot find esbuild');
   });
 
   it('calls esbuild.build with provided options', async () => {

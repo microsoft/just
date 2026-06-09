@@ -1,4 +1,4 @@
-import { dirname, resolve } from 'path';
+import path from 'path';
 import { readFile, writeFile, copy, ensureDir, ensureSymlink } from 'fs-extra';
 import type { CopyInstruction, CopyConfig } from './CopyInstruction';
 import { arrayify } from '../arrayUtils/arrayify';
@@ -23,7 +23,7 @@ function validateConfig(copyInstructions: CopyInstruction[]) {
 }
 
 function createDirectories(copyInstructions: CopyInstruction[]) {
-  const directories = new Set(copyInstructions.map(instruction => dirname(instruction.destinationFilePath)));
+  const directories = new Set(copyInstructions.map(instruction => path.dirname(instruction.destinationFilePath)));
   return Promise.all([...directories].map(d => ensureDir(d)));
 }
 
@@ -33,7 +33,7 @@ async function executeSingleCopyInstruction(copyInstruction: CopyInstruction) {
   // source and dest are 1-to-1?  perform binary copy or symlink as desired.
   if (sourceFileNames.length === 1) {
     if (copyInstruction.symlink) {
-      return ensureSymlink(resolve(sourceFileNames[0]), copyInstruction.destinationFilePath);
+      return ensureSymlink(path.resolve(sourceFileNames[0]), copyInstruction.destinationFilePath);
     }
     return copy(sourceFileNames[0], copyInstruction.destinationFilePath);
   }
