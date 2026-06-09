@@ -1,5 +1,5 @@
 import { task, series, parallel } from 'just-task';
-import { cleanTask, tscTask, jestTask, defaultCleanPaths, tslintTask } from '../tasks';
+import { cleanTask, tscTask, jestTask, defaultCleanPaths, eslintTask } from '../tasks';
 
 export function lib(): void {
   task('clean', cleanTask({ paths: [...defaultCleanPaths(), 'lib-commonjs'] }));
@@ -12,11 +12,11 @@ export function lib(): void {
   task('jest', jestTask());
   task('jest:watch', jestTask({ watch: true }));
 
-  task('tslint', tslintTask());
+  task('eslint', eslintTask());
 
   task('build', series('ts'));
   task('test', series('jest'));
-  task('lint', series('tslint'));
+  task('lint', series('eslint'));
 
   task('start', series('clean', 'ts:watch'));
   task('start-test', series('jest:watch'));

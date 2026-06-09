@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Remove `tslintTask` since `tslint` has been deprecated for some time",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "none",
+      "comment": "update examples",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "none"
+    }
+  ]
+}

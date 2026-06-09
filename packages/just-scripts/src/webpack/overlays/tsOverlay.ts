@@ -21,8 +21,6 @@ export interface TsCheckerOptions {
   typescript: string;
   tsconfig: string;
   compilerOptions: object;
-  tslint: string | true | undefined;
-  tslintAutoFix: boolean;
   eslint: true | undefined;
   /** Options to supply to eslint https://eslint.org/docs/1.0.0/developer-guide/nodejs-api#cliengine */
   eslintOptions: object;
