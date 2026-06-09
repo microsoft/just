@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { describe, expect, it, jest, afterEach, beforeEach } from '@jest/globals';
 import path from 'path';
@@ -14,6 +13,14 @@ import {
 import * as option from '../option';
 import * as config from '../config';
 import mockfs from 'mock-fs';
+
+jest.mock('../option');
+
+const mockArgv = option.argv as jest.MockedFunction<() => object>;
+
+beforeEach(() => {
+  mockArgv.mockReturnValue({});
+});
 
 describe('_isFileNameLike', () => {
   it('returns false for empty input', () => {
@@ -90,21 +97,23 @@ describe('_getResolvePaths', () => {
   });
 
   it('uses resolvePaths for before __dirname', () => {
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'config/just-task.js' }) as any);
+    mockArgv.mockReturnValue({ config: 'config/just-task.js' });
     addResolvePath('custom1');
     addResolvePath('custom2');
 
-    const paths = _getResolvePaths('cwd');
+    const paths = _getResolvePaths({ cwd: 'cwd' });
 
     expect(paths.map(p => path.basename(p))).toEqual(['cwd', 'config', 'custom1', 'custom2', 'src']);
+  });
+
+  it('includes dirname if provided', () => {
+    const paths = _getResolvePaths({ cwd: 'cwd', dirname: 'caller' });
+
+    expect(paths.map(p => path.basename(p))).toEqual(['cwd', 'caller', 'src']);
   });
 });
 
 describe('resolveCwd', () => {
-  beforeEach(() => {
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: undefined }) as any);
-  });
-
   afterEach(() => {
     mockfs.restore();
     resetResolvePaths();
@@ -139,8 +148,6 @@ describe('resolveCwd', () => {
 });
 
 describe('resolve', () => {
-  jest.spyOn(option, 'argv').mockImplementation(() => ({ config: undefined }) as any);
-
   afterEach(() => {
     mockfs.restore();
     resetResolvePaths();
@@ -169,7 +176,7 @@ describe('resolve', () => {
       a: { 'b.txt': '' },
     });
 
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' }) as any);
+    mockArgv.mockReturnValue({ config: 'a/just-task.js' });
 
     expect(resolve('b.txt')).toContain(path.join('a', 'b.txt'));
   });
@@ -192,7 +199,7 @@ describe('resolve', () => {
       'b.txt': '', // wrong
     });
 
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' }) as any);
+    mockArgv.mockReturnValue({ config: 'a/just-task.js' });
 
     addResolvePath('c');
     expect(resolve('b.txt', { cwd: 'd' })).toContain(path.join('d', 'b.txt'));

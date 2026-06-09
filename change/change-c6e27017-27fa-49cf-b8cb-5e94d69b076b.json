@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "Resolution of all dependencies is also tried relative to the `just-scripts` package (in addition to the same locations as before: `cwd`, config file location, any custom paths, `just-task` location)",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

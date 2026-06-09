@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "All tasks either log or throw if a no-op due to a missing dependency or config file. (Which tasks log vs throwing is the same as before, but now documented.)",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

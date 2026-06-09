@@ -1,8 +1,6 @@
-// // WARNING: Careful about add more imports - only import types from webpack
-import type { Configuration } from 'webpack';
-import type { Loader } from 'webpack';
-import { resolve } from 'just-task';
-import { tryRequire } from '../../tryRequire';
+// WARNING: Careful about adding more imports - only import types from externals
+import type { Configuration, RuleSetRule } from 'webpack';
+import { resolveWrapper, tryRequire } from '../../tryRequire';
 
 const cssTest = /\.css$/;
 const cssModuleTest = /\.module\.css$/;
@@ -15,47 +13,36 @@ export interface CssLoaderOptions {
   localIdentName?: string;
 }
 
-function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass-loader' | null = null): Loader[] {
-  const styleLoader = resolve('@microsoft/loader-load-themed-styles') || resolve('style-loader');
-  const postCssLoader = resolve('postcss-loader');
+function createStyleLoaderRule(
+  options: CssLoaderOptions & {
+    cssLoaderPath: string;
+    styleLoaderPath: string;
+    postcssLoaderPath: string | null;
+    autoprefixer: unknown;
+    sassLoaderPath?: string;
+  },
+): RuleSetRule['use'] {
+  const { modules, localIdentName, sassLoaderPath, cssLoaderPath, postcssLoaderPath, autoprefixer, styleLoaderPath } =
+    options;
 
-  const preloaders = [
-    ...(postCssLoader
-      ? [
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-                return [tryRequire('autoprefixer')];
-              },
-            },
-          },
-        ]
-      : []),
-    ...(preprocessor ? [preprocessor] : []),
-  ];
-
-  const moduleOptions = cssOptions.localIdentName
-    ? {
-        modules: {
-          mode: 'local',
-          localIdentName: cssOptions.localIdentName,
-        },
-      }
-    : {
-        modules: cssOptions.modules,
-      };
+  const preloaders: RuleSetRule['use'] = [];
+  postcssLoaderPath &&
+    preloaders.push({
+      loader: postcssLoaderPath,
+      options: autoprefixer ? { plugins: () => [autoprefixer] } : {},
+    });
+  sassLoaderPath && preloaders.push({ loader: sassLoaderPath });
 
   return [
     {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      loader: styleLoader!, // creates style nodes from JS strings
+      // creates style nodes from JS strings
+      loader: styleLoaderPath,
     },
     {
-      loader: 'css-loader', // translates CSS into CommonJS
+      // translates CSS into CommonJS
+      loader: cssLoaderPath,
       options: {
-        ...moduleOptions,
+        modules: localIdentName ? { mode: 'local', localIdentName } : modules,
         importLoaders: preloaders.length,
       },
     },
@@ -63,67 +50,102 @@ function createStyleLoaderRule(cssOptions: CssLoaderOptions, preprocessor: 'sass
   ];
 }
 
-export const createStylesOverlay = function (options: CssLoaderOptions = {}): Partial<Configuration> {
-  const sassLoader = (resolve('sass') || resolve('node-sass')) && resolve('sass-loader');
-  const cssLoader = resolve('css-loader');
+/**
+ * Create a style module rules config overlay with custom options.
+ * Returns an empty config if `css-loader` is not found.
+ *
+ * Required dependencies: `css-loader`, one of `style-loader` or `@microsoft/loader-load-themed-styles`
+ * (throws if no style loader is found).
+ *
+ * Optional dependencies: `postcss-loader`, `postcss`, `autoprefixer`, `sass-loader`, one of `sass` or `node-sass`.
+ */
+export function createStylesOverlay(options: CssLoaderOptions = {}): Configuration {
+  const localIdentName = options.localIdentName || defaultIdentName;
+
+  const cssLoaderPath = resolveWrapper('css-loader');
+  if (!cssLoaderPath) {
+    return {};
+  }
+
+  const styleLoaderPath = resolveWrapper('@microsoft/loader-load-themed-styles') || resolveWrapper('style-loader');
+  if (!styleLoaderPath) {
+    throw new Error(
+      'Could not find "@microsoft/loader-load-themed-styles" or "style-loader". Please install one of these packages.',
+    );
+  }
+
+  const loaderArgs = {
+    cssLoaderPath,
+    styleLoaderPath,
+    postcssLoaderPath: resolveWrapper('postcss-loader'),
+    autoprefixer: tryRequire<unknown>('autoprefixer'),
+  };
+  const sassLoaderPath =
+    resolveWrapper('sass') || resolveWrapper('node-sass') ? resolveWrapper('sass-loader') : undefined;
 
   return {
     module: {
       rules: [
-        ...(cssLoader
-          ? [
-              {
-                test: cssTest,
-                exclude: [/node_modules/, cssModuleTest],
-                use: createStyleLoaderRule({
-                  modules: false,
-                  localIdentName: options.localIdentName || defaultIdentName,
-                }),
-                sideEffects: true,
-              },
-              {
-                test: cssModuleTest,
-                exclude: [/node_modules/],
-                use: createStyleLoaderRule({
-                  modules: true,
-                  localIdentName: options.localIdentName || defaultIdentName,
-                }),
-              },
-            ]
-          : []),
-        ...(sassLoader && cssLoader
+        {
+          test: cssTest,
+          exclude: [/node_modules/, cssModuleTest],
+          use: createStyleLoaderRule({
+            ...loaderArgs,
+            modules: false,
+            localIdentName,
+          }),
+          sideEffects: true,
+        },
+        {
+          test: cssModuleTest,
+          exclude: [/node_modules/],
+          use: createStyleLoaderRule({
+            ...loaderArgs,
+            modules: true,
+            localIdentName,
+          }),
+        },
+        ...(sassLoaderPath
           ? [
               {
                 test: sassTest,
                 exclude: [/node_modules/, sassModuleTest],
-                use: createStyleLoaderRule(
-                  {
-                    modules: false,
-                    localIdentName: options.localIdentName || defaultIdentName,
-                  },
-                  'sass-loader',
-                ),
+                use: createStyleLoaderRule({
+                  ...loaderArgs,
+                  sassLoaderPath,
+                  modules: false,
+                  localIdentName,
+                }),
                 sideEffects: true,
               },
               {
                 test: sassModuleTest,
                 exclude: [/node_modules/],
-                use: createStyleLoaderRule(
-                  {
-                    modules: true,
-                    localIdentName: options.localIdentName || defaultIdentName,
-                  },
-                  'sass-loader',
-                ),
+                use: createStyleLoaderRule({
+                  ...loaderArgs,
+                  sassLoaderPath,
+                  modules: true,
+                  localIdentName,
+                }),
               },
             ]
           : []),
       ],
     },
   };
-};
+}
 
-export const stylesOverlay = (): Partial<Configuration> =>
-  createStylesOverlay({
+/**
+ * Create a style module rules config overlay with default options.
+ * Returns an empty config if `css-loader` is not found.
+ *
+ * Required dependencies: `css-loader`, one of `style-loader` or `@microsoft/loader-load-themed-styles`
+ * (throws if no style loader is found).
+ *
+ * Optional dependencies: `postcss-loader`, `postcss`, `autoprefixer`, `sass-loader`, one of `sass` or `node-sass`.
+ */
+export function stylesOverlay(): Configuration {
+  return createStylesOverlay({
     localIdentName: defaultIdentName,
   });
+}

@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "comment": "Webpack configs and overlays: use resolved loader paths in the config rather than names, to ensure custom resolution locations are respected. If the loader isn't found (which previously would have caused an error later), throw an error. (Overlays that previously treated their dependencies as optional keep that behavior, even though it's inconsistent across overlays.)",
+      "type": "minor",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

@@ -5,42 +5,25 @@ import { logger } from 'just-task';
 // `exec` and `execSync` were removed due to security issues (keeping filename for history)
 
 /**
- * Quote arguments containing spaces. Note that this does NOT do any other escaping!
- * For more complete escaping, consider a library such as `shell-quote`, or use safer APIs which
- * don't require escaping. (Note that `spawn` from this package now uses `cross-spawn` which
- * escapes spaces internally.)
+ * Log `Running: <process.execPath> <...args>`
  */
-function quoteSpaces(cmdArgs: string[]): string[] {
-  // Taken from https://github.com/xxorax/node-shell-escape/blob/master/shell-escape.js
-  // However, we needed to use double quotes because that's the norm in more platforms
-  if (!cmdArgs) {
-    return cmdArgs;
-  }
-
-  return cmdArgs.map(arg => {
+export function logNodeCommand(...args: (string | string[])[]): void {
+  const flatArgs = args.flat().map(arg => {
+    // Based on https://github.com/xxorax/node-shell-escape/blob/master/shell-escape.js
+    // but note this is NOT a complete safe quoting implementation (just for logging)
     if (/[^\w/:=-]/.test(arg)) {
       arg = `"${arg.replace(/"/g, '"\\"')}"`;
       arg = arg.replace(/^(?:"")+/g, '').replace(/\\"""/g, '\\"');
     }
-
     return arg;
   });
-}
 
-/**
- * Log `Running: <process.execPath> <...args>`
- */
-export function logNodeCommand(...args: (string | string[])[]): void {
-  logger.info(`Running: ${process.execPath} ${quoteSpaces(args.flat()).join(' ')}`);
+  logger.info(`Running: ${process.execPath} ${flatArgs.join(' ')}`);
 }
 
 /**
  * Execute a command in a new process. Uses `cross-spawn` to avoid issues with spaces in arguments,
- * but does not do any additional escaping. (For further enhancements, consider using the `execa`
- * library instead.)
- *
- * **WARNING: If the `shell` option is enabled, do not pass unsanitized user input to this function.
- * Any input containing shell metacharacters may be used to trigger arbitrary command execution.**
+ * but does not do any additional escaping.
  *
  * @param cmd Command to execute
  * @param args Args for the command. Quoting spaces is handled internally by `cross-spawn`.
@@ -57,7 +40,7 @@ export function logNodeCommand(...args: (string | string[])[]): void {
 export function spawn(
   cmd: string,
   args: ReadonlyArray<string> = [],
-  opts: cp.SpawnOptions & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {},
+  opts: Omit<cp.SpawnOptions, 'shell'> & { stdout?: NodeJS.WritableStream; stderr?: NodeJS.WritableStream } = {},
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     let child: cp.ChildProcess;
@@ -73,13 +56,11 @@ export function spawn(
       child.off('error', onError);
       if (code) {
         const error = new Error('Command failed: ' + [cmd, ...args].join(' '));
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        (error as any).code = code;
+        (error as Error & { code: number }).code = code;
         reject(error);
       } else if (signal) {
         const error = new Error(`Command terminated by signal ${signal}: ` + [cmd, ...args].join(' '));
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        (error as any).signal = signal;
+        (error as Error & { signal: NodeJS.Signals }).signal = signal;
         reject(error);
       } else {
         resolve();

@@ -1,8 +1,9 @@
 import type { TaskFunction } from 'just-task';
-import { logger, resolve } from 'just-task';
+import { logger } from 'just-task';
 import { logNodeCommand, spawn } from '../utils';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
+import { resolveWrapper } from '../tryRequire';
 
 export interface WebpackCliTaskOptions {
   /**
@@ -33,13 +34,14 @@ export interface WebpackCliTaskOptions {
 }
 
 /**
- * webpackCliTask - task for running webpack as a cli command
+ * Creates a task for running `webpack-cli`.
+ * Throws if `webpack-cli` is not found.
  */
 export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunction {
-  const webpackCliCmd = resolve('webpack-cli/bin/cli.js');
-
+  const cliPath = 'webpack-cli/bin/cli.js';
+  const webpackCliCmd = resolveWrapper(cliPath);
   if (!webpackCliCmd) {
-    throw new Error('cannot find webpack-cli, please install it');
+    throw new Error(`Cannot find webpack-cli (${cliPath})`);
   }
 
   return function webpackCli() {

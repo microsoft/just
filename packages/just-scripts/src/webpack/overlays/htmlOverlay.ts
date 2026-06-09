@@ -1,12 +1,16 @@
-// // WARNING: Careful about add more imports - only import types from webpack
+// WARNING: Careful about adding more imports - only import types from externals
 import type { Configuration } from 'webpack';
 import { tryRequire } from '../../tryRequire';
 
-export const htmlOverlay: (options: any) => Partial<Configuration> = options => {
+/**
+ * Create an `HTMLWebpackPlugin` config overlay. No-op if `html-webpack-plugin` is not found.
+ */
+export function htmlOverlay(options: unknown): Configuration {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const HtmlWebpackPlugin = tryRequire('html-webpack-plugin');
+  const HtmlWebpackPlugin: any = tryRequire('html-webpack-plugin');
+  if (!HtmlWebpackPlugin) return {};
   return {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-    plugins: [...(HtmlWebpackPlugin ? [new HtmlWebpackPlugin(options)] : [])],
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    plugins: [new HtmlWebpackPlugin(options)],
   };
-};
+}

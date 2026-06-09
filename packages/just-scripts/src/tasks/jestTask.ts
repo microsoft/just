@@ -1,7 +1,8 @@
-import { resolve, logger, resolveCwd, argv, type TaskFunction } from 'just-task';
+import { logger, resolveCwd, argv, type TaskFunction } from 'just-task';
 import { spawn, readPackageJson, logNodeCommand } from '../utils';
 import { existsSync } from 'fs';
 import supportsColor from 'supports-color';
+import { resolveWrapper } from '../tryRequire';
 
 export interface JestTaskOptions {
   config?: string;
@@ -39,13 +40,18 @@ export interface JestTaskOptions {
   env?: NodeJS.ProcessEnv;
 }
 
+/**
+ * Create a task to run jest. Logs a warning if `jest` or a config file isn't found.
+ */
 export function jestTask(options: JestTaskOptions = {}): TaskFunction {
   const jestConfigFile = resolveCwd('./jest.config', { extensions: ['.js', '.cjs', '.mjs', '.ts', '.mts', '.cts'] });
 
   // undertaker apparently requires returning a promise, async function, or function that calls done()
   return async function jest() {
-    const jestCmd = resolve('jest/bin/jest.js');
+    const jestPath = 'jest/bin/jest.js';
+    const jestCmd = resolveWrapper(jestPath);
     if (!jestCmd) {
+      logger.warn(`jest CLI (${jestPath}) not found, so this task has no effect.`);
       return;
     }
 

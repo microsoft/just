@@ -253,7 +253,7 @@ describe(`tscTask (mocked)`, () => {
       mockfs({
         'tsconfig.json': 'a file',
       });
-      expect(() => tscTask()).toThrow('cannot find tsc');
+      expect(() => tscTask()).toThrow('Cannot find typescript CLI (typescript/lib/tsc.js)');
     });
   });
 

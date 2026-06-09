@@ -1,8 +1,7 @@
 import { globSync } from 'glob';
 import path from 'path';
 import fs from 'fs';
-import type { TaskFunction } from 'just-task';
-import { resolveCwd, logger } from 'just-task';
+import { resolveCwd, logger, type TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import parallelLimit from 'run-parallel-limit';
 
@@ -19,6 +18,13 @@ type SassModule = {
   ) => void;
 };
 
+/**
+ * Create a task to run sass.
+ *
+ * Logs a warning if any required dependencies are not found.
+ * - Required: `sass` or `node-sass`; `postcss`; `autoprefixer`.
+ * - Optional: `postcss-rtl`, `postcss-clean`, and any postcss plugins passed in through `options`.
+ */
 export function sassTask(options: SassTaskOptions): TaskFunction {
   const { createSourceModule, postcssPlugins = [] } = options;
 
@@ -34,9 +40,14 @@ export function sassTask(options: SassTaskOptions): TaskFunction {
     const clean = tryRequire<() => unknown>('postcss-clean');
 
     if (!sassModule || !postcss || !autoprefixer) {
-      logger.warn(
-        'One or more dependencies (sass or node-sass, postcss, autoprefixer) is not installed, so this task has no effect',
-      );
+      const missing = [
+        !sassModule && 'one of sass or node-sass',
+        !postcss && 'postcss',
+        !autoprefixer && 'autoprefixer',
+      ]
+        .filter(Boolean)
+        .join(', ');
+      logger.warn(`Required dependencies not found (${missing}), so this task has no effect.`);
       done();
       return;
     }

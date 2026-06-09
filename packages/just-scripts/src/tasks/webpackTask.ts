@@ -31,9 +31,12 @@ export interface WebpackTaskOptions extends Configuration {
   onCompile?: (err: Error, stats: any) => void | Promise<void>;
 }
 
+/**
+ * Create a task for running webpack. Logs a warning if `webpack` isn't found.
+ */
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   return async function webpack() {
-    const wp = tryRequire('webpack') as typeof import('webpack') | undefined;
+    const wp = tryRequire<typeof import('webpack')>('webpack');
 
     if (!wp) {
       logger.warn('webpack is not installed, this task no effect');

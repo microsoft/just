@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "patch",
+      "comment": "When loading dependencies with `tryRequire`, warn if the dep is resolved but can't be loaded, instead of silently continuing (may indicate an ESM/CJS interop issue or some other issue)",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "minor",
+      "comment": "Add `dirname` option to `resolve`. This allows resolving from the calling package in addition to `just-task`.",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
