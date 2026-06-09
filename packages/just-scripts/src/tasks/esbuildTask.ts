@@ -3,10 +3,6 @@ import type { TaskFunction } from 'just-task';
 import { resolveWrapper } from '../tryRequire';
 
 export type EsbuildBuildOptions = BuildOptions;
-export interface EsbuildTransformOptions {
-  esbuildOptions: BuildOptions;
-  include: string[] | string;
-}
 
 /**
  * Create a task to run esbuild; can be used for bundling or building.

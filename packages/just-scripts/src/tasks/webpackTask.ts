@@ -1,7 +1,6 @@
 // // WARNING: Careful about add more imports - only import types from webpack
-import type { Configuration, Stats } from 'webpack';
-import type { TaskFunction } from 'just-task';
-import { logger, argv, resolveCwd } from 'just-task';
+import type { Configuration, WebpackOptionsNormalized } from 'webpack';
+import { logger, argv, resolveCwd, type TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import fs from 'fs';
 import path from 'path';
@@ -91,33 +90,34 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     webpackConfigs = webpackConfigs.map(webpackConfig => merge(webpackConfig, restConfig));
 
     return new Promise<void>((resolve, reject) => {
-      // TODO fix all these types properly when updated to webpack 5
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      wp(webpackConfigs, async (err: Error, stats: any) => {
-        if (options?.onCompile) {
-          await options.onCompile(err, stats);
-        }
+      wp(webpackConfigs, (err, stats) => {
+        (async () => {
+          await options?.onCompile?.(err as Error, stats);
 
-        if (options?.outputStats) {
-          const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
-          fs.writeFileSync(statsFile, JSON.stringify((stats as Stats).toJson(), null, 2));
-        }
-
-        if (err || (stats as Stats).hasErrors()) {
-          // Stats may be undefined the the case of an error in Webpack 5
-          if (stats) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            logger.error((stats as Stats).toString({ children: webpackConfigs.map(c => c.stats) as any }));
-            // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
-            reject(`Webpack failed with ${(stats as Stats).toJson('errors-only').errors.length} error(s).`);
-          } else {
-            logger.error(err.toString());
-            // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
-            reject(`Webpack failed with error(s).`);
+          if (options?.outputStats && stats) {
+            const statsFile = options.outputStats === true ? 'stats.json' : options.outputStats;
+            fs.writeFileSync(statsFile, JSON.stringify(stats.toJson(), null, 2));
           }
-        } else {
-          resolve();
-        }
+
+          if (err || stats?.hasErrors()) {
+            // Stats may be undefined the the case of an error in Webpack 5
+            if (stats) {
+              logger.error(
+                stats.toString({
+                  children: webpackConfigs.map(c => c.stats).filter(Boolean) as WebpackOptionsNormalized['stats'][],
+                }),
+              );
+              // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
+              reject(`Webpack failed with ${stats.toJson('errors-only').errors?.length || 0} error(s).`);
+            } else {
+              logger.error(String(err));
+              // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
+              reject(`Webpack failed with error(s).`);
+            }
+          } else {
+            resolve();
+          }
+        })().catch(reject);
       });
     });
   };

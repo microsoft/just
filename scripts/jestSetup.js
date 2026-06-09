@@ -1,4 +1,3 @@
-// @ts-check
 const { jest, afterAll } = require('@jest/globals');
 
 // Safety net: production code should never call process.exit() directly

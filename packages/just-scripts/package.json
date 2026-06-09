@@ -13,39 +13,190 @@
   "types": "lib/index.d.ts",
   "bin": "bin/just-scripts.js",
   "scripts": {
-    "api": "yarn run -T api-extractor run",
-    "api:update": "yarn run -T api-extractor run --local",
-    "build": "yarn run -T tsc",
-    "lint": "yarn run -T eslint --color --max-warnings=0 src",
+    "api": "api-extractor run",
+    "api:update": "api-extractor run --local",
+    "build": "tsc",
+    "lint": "eslint --color --max-warnings=0 src",
     "prepack": "cp .npmignore lib/.npmignore",
-    "start": "yarn run -T tsc -w --preserveWatchOutput",
-    "start-test": "yarn run -T jest --watch",
-    "test": "yarn run -T jest",
-    "test:update": "yarn run -T jest --updateSnapshot"
+    "test": "jest",
+    "test:update": "jest --updateSnapshot"
   },
   "engines": {
     "node": ">=22.18.0"
   },
   "dependencies": {
-    "chalk": "^4.0.0",
+    "@types/tar-fs": "^2.0.4",
+    "chalk": "catalog:prod",
     "cross-spawn": "^7.0.6",
-    "fs-extra": "^11.0.0",
+    "fs-extra": "catalog:prod",
     "glob": "^13.0.6",
     "just-task": "workspace:^",
     "run-parallel-limit": "^1.0.6",
     "supports-color": "^8.1.0",
     "webpack-merge": "^6.0.1"
   },
+  "peerDependencies": {
+    "@microsoft/api-extractor": "^7.6.0",
+    "@microsoft/load-themed-styles": ">=2",
+    "@microsoft/loader-load-themed-styles": ">=1",
+    "autoprefixer": ">=10",
+    "css-loader": ">=6",
+    "esbuild": ">=0.25.0",
+    "eslint": ">=8",
+    "file-loader": ">=4",
+    "fork-ts-checker-webpack-plugin": ">=7",
+    "html-webpack-plugin": ">=5",
+    "jest": ">=29",
+    "node-sass": ">=9",
+    "postcss": ">=8",
+    "postcss-clean": ">=1",
+    "postcss-loader": ">=5",
+    "postcss-rtl": ">=2",
+    "prettier": ">=2",
+    "sass": ">=1",
+    "sass-loader": ">=11",
+    "style-loader": ">=2",
+    "tar-fs": "^2.0.0 || ^3.0.0",
+    "ts-loader": ">=8",
+    "ts-node": ">=8",
+    "typescript": "^5.0.0 || ^6.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": ">=5",
+    "webpack-dev-server": ">=4"
+  },
+  "rationale": {
+    "peerDependencies": {
+      "postcss": "align other deps on 8+, released 2020",
+      "webpack": "align other deps on 5+, released 2020",
+      "@microsoft/api-extractor": "newline option introduced in 7.6.0; stricter range due to API usage",
+      "@microsoft/load-themed-styles": "peer of @microsoft/loader-load-themed-styles 2.x",
+      "@microsoft/loader-load-themed-styles": "1.x released 2017; 2.x released 2022",
+      "autoprefixer": "10.x released 2020 for postcss 8",
+      "css-loader": "6.x released 2021 for webpack 5",
+      "esbuild": "0.25 had security fix; open range due to rapid releases",
+      "eslint": "8.x released 2021; older versions well out of support",
+      "file-loader": "3.x released 2018 for webpack 5; 4.x 2019; 5.x 2019 esModule true by default",
+      "fork-ts-checker-webpack-plugin": "7.x released 2022 for webpack 5; earlier might be fine",
+      "html-webpack-plugin": "5.x released 2021 for webpack 5",
+      "jest": "somewhat arbitary; 29 released 2022",
+      "node-sass": "9.x released 2023; deprecated 2024; users should migrate to sass",
+      "postcss-clean": "only version",
+      "postcss-loader": "5.x released 2021 for webpack 5",
+      "postcss-rtl": "2.x released 2022 for postcss 8",
+      "prettier": "3.x released 2023; still allow 2.x",
+      "sass": "1.x released 2018",
+      "sass-loader": "11.x released 2021 for webpack 5",
+      "style-loader": "2.x released 2020; still seeing usage",
+      "tar-fs": "2.x released 2019; stricter range due to API usage",
+      "ts-loader": "8.x released 2020; still seeing usage",
+      "ts-node": "8.x released 2019; still seeing usage",
+      "typescript": "could allow some 4.x; 7.x likely to be breaking",
+      "webpack-cli": "5.x released 2022 for webpack 5",
+      "webpack-dev-server": "required for webpack serve; 4.x released 2021 supports webpack 5"
+    }
+  },
+  "peerDependenciesMeta": {
+    "@microsoft/api-extractor": {
+      "optional": true
+    },
+    "@microsoft/load-themed-styles": {
+      "optional": true
+    },
+    "@microsoft/loader-load-themed-styles": {
+      "optional": true
+    },
+    "autoprefixer": {
+      "optional": true
+    },
+    "css-loader": {
+      "optional": true
+    },
+    "esbuild": {
+      "optional": true
+    },
+    "eslint": {
+      "optional": true
+    },
+    "file-loader": {
+      "optional": true
+    },
+    "fork-ts-checker-webpack-plugin": {
+      "optional": true
+    },
+    "html-webpack-plugin": {
+      "optional": true
+    },
+    "jest": {
+      "optional": true
+    },
+    "node-sass": {
+      "optional": true
+    },
+    "postcss": {
+      "optional": true
+    },
+    "postcss-clean": {
+      "optional": true
+    },
+    "postcss-loader": {
+      "optional": true
+    },
+    "postcss-rtl": {
+      "optional": true
+    },
+    "prettier": {
+      "optional": true
+    },
+    "sass": {
+      "optional": true
+    },
+    "sass-loader": {
+      "optional": true
+    },
+    "style-loader": {
+      "optional": true
+    },
+    "tar-fs": {
+      "optional": true
+    },
+    "ts-loader": {
+      "optional": true
+    },
+    "ts-node": {
+      "optional": true
+    },
+    "typescript": {
+      "optional": true
+    },
+    "webpack": {
+      "optional": true
+    },
+    "webpack-cli": {
+      "optional": true
+    },
+    "webpack-dev-server": {
+      "optional": true
+    }
+  },
   "devDependencies": {
+    "@microsoft/api-extractor": "catalog:dev",
     "@microsoft/just-internal-scripts": "workspace:^",
     "@types/cross-spawn": "^6.0.6",
     "@types/run-parallel-limit": "^1.0.0",
     "@types/supports-color": "^8.1.1",
-    "@types/tar-fs": "^2.0.4",
-    "@types/webpack": "^4.41.33",
     "async-done": "^2.0.0",
-    "esbuild": "^0.28.0",
-    "tar-fs": "^3.1.2"
+    "autoprefixer": "catalog:dev",
+    "esbuild": "catalog:dev",
+    "eslint": "catalog:dev",
+    "fork-ts-checker-webpack-plugin": "catalog:dev",
+    "html-webpack-plugin": "catalog:dev",
+    "jest": "catalog:dev",
+    "mock-fs": "catalog:dev",
+    "postcss": "catalog:dev",
+    "sass": "catalog:dev",
+    "tar-fs": "^3.1.2",
+    "typescript": "catalog:dev",
+    "webpack": "catalog:dev"
   },
   "files": [
     "bin",

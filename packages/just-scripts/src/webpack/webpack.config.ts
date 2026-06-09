@@ -1,4 +1,4 @@
-// // WARNING: Careful about add more imports - only import types from webpack
+// WARNING: Careful about add more imports - only import types from webpack
 import type { Configuration } from 'webpack';
 import path from 'path';
 import { merge } from 'webpack-merge';
