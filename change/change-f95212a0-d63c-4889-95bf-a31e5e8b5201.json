@@ -2,7 +2,7 @@
   "changes": [
     {
       "type": "major",
-      "comment": "`apiExtractor` tasks: Remove deprecated `fixNewlines` option (use API Extractor option `newlineKind: \"os\"` instead)",
+      "comment": "`apiExtractor` tasks: Remove deprecated `fixNewlines` option (use API Extractor option `newlineKind: \"os\"` instead) and remove the `fixApiFileNewlines` helper",
       "packageName": "just-scripts",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"

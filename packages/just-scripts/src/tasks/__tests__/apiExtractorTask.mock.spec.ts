@@ -1,7 +1,7 @@
 import { describe, expect, it, jest, afterEach, beforeEach } from '@jest/globals';
 import type * as apiExtractor from '@microsoft/api-extractor';
 import fs from 'fs-extra';
-import { apiExtractorVerifyTask, apiExtractorUpdateTask, fixApiFileNewlines } from '../apiExtractorTask';
+import { apiExtractorVerifyTask, apiExtractorUpdateTask } from '../apiExtractorTask';
 import { callTaskForTest } from './callTaskForTest';
 import { tryRequire } from '../../tryRequire';
 import path from 'path';
@@ -153,26 +153,6 @@ describe('apiExtractorTask (mocked)', () => {
         .mockReturnValueOnce({ succeeded: false } as apiExtractor.ExtractorResult);
       const task = apiExtractorUpdateTask({});
       await expect(callTaskForTest(task)).rejects.toThrow('failed to verify API updates');
-    });
-  });
-
-  describe('fixApiFileNewlines', () => {
-    it('normalizes newlines using sampleFilePath', () => {
-      (fs.readFileSync as jest.Mock)
-        .mockReturnValueOnce(Buffer.from('sample\r\ncontent')) // sample file
-        .mockReturnValueOnce(Buffer.from('line1\nline2\n')); // api file
-      fixApiFileNewlines('api.md', { sampleFilePath: 'sample.ts' });
-      expect(fs.writeFileSync).toHaveBeenCalledWith('api.md', expect.any(String));
-    });
-
-    it('normalizes newlines using explicit newline string', () => {
-      (fs.readFileSync as jest.Mock).mockReturnValueOnce(Buffer.from('line1\nline2\n'));
-      fixApiFileNewlines('api.md', { newline: '\r\n' });
-      expect(fs.writeFileSync).toHaveBeenCalledWith('api.md', 'line1\r\nline2\r\n');
-    });
-
-    it('throws if neither sampleFilePath nor newline provided', () => {
-      expect(() => fixApiFileNewlines('api.md', {})).toThrow('you must provide either');
     });
   });
 });

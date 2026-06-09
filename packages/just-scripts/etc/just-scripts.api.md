@@ -234,12 +234,6 @@ export function extractTarTask(options?: ExtractOptions): TaskFunction;
 // @public (undocumented)
 export const fileOverlay: () => Partial<Configuration>;
 
-// @public
-export function fixApiFileNewlines(apiFilePath: string, newlineOptions: {
-    sampleFilePath?: string;
-    newline?: string;
-}): void;
-
 // @public (undocumented)
 export const htmlOverlay: (options: any) => Partial<Configuration>;
 

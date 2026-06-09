@@ -1,11 +1,8 @@
-import type { TaskFunction } from 'just-task';
-import { logger } from 'just-task';
+import { logger, type TaskFunction } from 'just-task';
 import fs from 'fs-extra';
 import path from 'path';
 import { tryRequire } from '../tryRequire';
 import type * as ApiExtractorTypes from '@microsoft/api-extractor';
-
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 /**
  * Options from `IExtractorConfigOptions` plus additional options specific to the task.
@@ -112,7 +109,7 @@ export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFuncti
  * Returns undefined if api-extractor or the config file couldn't be found.
  */
 function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | undefined {
-  const apiExtractorModule = tryRequire('@microsoft/api-extractor') as typeof ApiExtractorTypes;
+  const apiExtractorModule = tryRequire<typeof ApiExtractorTypes>('@microsoft/api-extractor');
 
   if (!apiExtractorModule) {
     logger.warn('@microsoft/api-extractor package not detected. This task will have no effect.');
@@ -169,32 +166,4 @@ function apiExtractorWrapper({
   }
 
   return result;
-}
-
-/**
- * Update the newlines of the API report file to be consistent with other files in the repo,
- * and remove trailing spaces.
- * @param apiFilePath - Path to the API report file
- * @param newlineOptions - Provide either `newline` to specify the type of newlines to use,
- * or `sampleFilePath` to infer the newline type from a file.
- */
-export function fixApiFileNewlines(
-  apiFilePath: string,
-  newlineOptions: { sampleFilePath?: string; newline?: string },
-): void {
-  let newline: string;
-  if (newlineOptions.newline) {
-    newline = newlineOptions.newline;
-  } else if (newlineOptions.sampleFilePath) {
-    const sampleFile = fs.readFileSync(newlineOptions.sampleFilePath).toString();
-    newline = sampleFile.match(/\r?\n/)![0];
-  } else {
-    throw new Error(
-      'fixApiFileNewlines: you must provide either newlineOptions.sampleFilePath or newlineOptions.newline',
-    );
-  }
-  const contents = fs.readFileSync(apiFilePath).toString();
-  // Replace newlines. Also remove trailing spaces (second regex gets a trailing space on the
-  // last line of the file).
-  fs.writeFileSync(apiFilePath, contents.replace(/ ?\r?\n/g, newline).replace(/ $/, ''));
 }
