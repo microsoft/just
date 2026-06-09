@@ -6,7 +6,7 @@ import {
   webpackTask,
   webpackDevServerTask,
   defaultCleanPaths,
-  tslintTask,
+  eslintTask,
 } from '../tasks';
 
 export function webapp(): void {
@@ -19,7 +19,7 @@ export function webapp(): void {
   task('jest', jestTask());
   task('jest:watch', jestTask({ watch: true }));
 
-  task('tslint', tslintTask());
+  task('eslint', eslintTask());
 
   task('webpack', webpackTask());
 

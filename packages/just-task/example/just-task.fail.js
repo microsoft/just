@@ -12,8 +12,8 @@ module.exports = () => {
     logger.info('Here we can run build steps like Babel or TypeScript');
   });
 
-  task('tslint', function () {
-    logger.info('Linting with tslint');
+  task('eslint', function () {
+    logger.info('Linting with eslint');
   });
 
   task('webpack', () => {
@@ -37,12 +37,12 @@ module.exports = () => {
     };
   });
 
-  task('build', parallel('tslint', series('clean', 'ts', 'webpack')));
+  task('build', parallel('eslint', series('clean', 'ts', 'webpack')));
 
   task(
     'cond',
     parallel(
-      'tslint',
+      'eslint',
       series(
         'clean',
         condition('ts', () => {

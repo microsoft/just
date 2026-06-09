@@ -372,10 +372,6 @@ export interface TsCheckerOptions {
     // (undocumented)
     tsconfig: string;
     // (undocumented)
-    tslint: string | true | undefined;
-    // (undocumented)
-    tslintAutoFix: boolean;
-    // (undocumented)
     typescript: string;
     // (undocumented)
     useTypescriptIncrementalApi: boolean;
@@ -399,19 +395,6 @@ export type TscTaskOptions = {
 
 // @public
 export function tscWatchTask(options?: TscTaskOptions): TaskFunction;
-
-// @public (undocumented)
-export function tslintTask(options?: TsLintTaskOptions): TaskFunction;
-
-// @public (undocumented)
-export interface TsLintTaskOptions {
-    // (undocumented)
-    config?: string;
-    // (undocumented)
-    fix?: boolean;
-    // (undocumented)
-    project?: string;
-}
 
 // @public (undocumented)
 export interface TsLoaderOptions {
