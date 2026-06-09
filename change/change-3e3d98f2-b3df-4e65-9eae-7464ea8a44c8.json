@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "minor",
+      "comment": "`createTarTask`, `extractTarTask`: fix error handling with the various read/tar/write streams, and fix types to match `tar-fs` implementation",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
