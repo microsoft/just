@@ -1,31 +1,27 @@
-import { logger, type TaskFunction } from 'just-task';
+import type { TaskFunction } from 'just-task';
 import { createWriteStream, createReadStream } from 'fs';
+import { pipeline } from 'stream';
 import { createGzip, createGunzip } from 'zlib';
-import type { Stream } from 'stream';
-import { resolveWrapper } from '../tryRequire';
+import { tryRequire } from '../tryRequire';
 
 export interface EntryHeader {
   name: string;
   size: number;
 
   /** entry mode. defaults to to 0755 for dirs and 0644 otherwise */
-  mode: number; //
+  mode: number;
 
   /** last modified date for entry. defaults to now. */
   mtime: Date;
 
-  /** type of entry. defaults to "file". */
-  type: 'file' | 'link' | 'symlink' | 'directory' | 'block-device' | 'character-device' | 'fifo' | 'contiguous-file';
+  /** type of entry (others exist but don't appear supported by `tar-fs`). defaults to "file". */
+  type: 'file' | 'directory' | 'link' | 'symlink';
 
   /** linked file name */
-  linkname: string;
+  linkname?: string;
 
   uid: number;
   gid: number;
-  uname: string;
-  gname: string;
-  devmajor: number;
-  devminor: number;
 }
 
 export interface CreateOptions {
@@ -33,18 +29,15 @@ export interface CreateOptions {
   file: string;
 
   /** Whether to gzip or not. @default true */
-  gzip?:
-    | boolean
-    | {
-        level?: number;
-        memLevel?: number;
-      };
+  gzip?: boolean | { level?: number; memLevel?: number };
 
   /** the context path of the tar pack */
   cwd?: string;
 
+  // Options below are passed through to tar-fs
+
   /** filter (ignore) entries */
-  filter?: (path: string, header: EntryHeader) => boolean;
+  filter?: (path: string) => boolean;
 
   /** change the header in the entry (e.g. to replace prefix) */
   map?: (header: EntryHeader) => EntryHeader;
@@ -60,32 +53,22 @@ export interface CreateOptions {
  * Create a task to create a tar (optionally gzipped) archive.
  * Throws if `tar-fs` is not found.
  */
-export function createTarTask(options: CreateOptions = { file: 'archive.tar.gz' }): TaskFunction {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export function createTarTask(opts: CreateOptions = { file: 'archive.tar.gz' }): TaskFunction {
   const tar = getTarFs();
-  options = getOptionsWithDefaults(options);
+  const options = getOptionsWithDefaults(opts);
 
-  const { entries, file, cwd, ...restOptions } = options;
+  const { file, cwd, gzip, ...restOptions } = options;
 
   return function archive(done) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    let tarStream = tar.pack(cwd, {
-      entries,
-      finalize: true,
-      finish: () => {
-        done();
-      },
-      ...restOptions,
-    });
-
-    if (options.gzip) {
-      const gzip = typeof options.gzip === 'boolean' ? createGzip() : createGzip(options.gzip);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      tarStream = tarStream.pipe(gzip);
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    tarStream.pipe(createWriteStream(options.file));
+    // Use the pipeline helper for proper error handling
+    pipeline(
+      [
+        tar.pack(cwd, { finalize: true, ...restOptions }),
+        ...(gzip ? [createGzip(typeof gzip === 'boolean' ? {} : gzip)] : []),
+        createWriteStream(file),
+      ],
+      done,
+    );
   };
 }
 
@@ -99,8 +82,10 @@ export interface ExtractOptions {
   /** the context path of the tar pack */
   cwd?: string;
 
+  // Options below are passed through to tar-fs
+
   /** filter (ignore) entries */
-  filter?: (path: string, header: EntryHeader) => boolean;
+  filter?: (path: string, header?: EntryHeader) => boolean;
 
   /** change the header in the entry (e.g. to replace prefix) */
   map?: (header: EntryHeader) => EntryHeader;
@@ -116,59 +101,37 @@ export interface ExtractOptions {
 
   /** set whether all files and dirs are writable */
   writable?: boolean;
-
-  /** whether to dereference links */
-  dereference?: boolean;
 }
 
 /**
  * Create a task to extract a tar (optionally gzipped) archive.
  * Throws if `tar-fs` is not found.
  */
-export function extractTarTask(options: ExtractOptions = { file: 'archive.tar.gz' }): TaskFunction {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export function extractTarTask(opts: ExtractOptions = { file: 'archive.tar.gz' }): TaskFunction {
   const tar = getTarFs();
-  options = getOptionsWithDefaults(options);
+  const options = getOptionsWithDefaults(opts);
 
-  const { cwd, file, ...restOptions } = options;
+  const { cwd, file, gzip, ...restOptions } = options;
 
   return function extract(done) {
-    let tarStream: Stream = createReadStream(file);
-
-    if (options.gzip) {
-      const gunzip = createGunzip();
-      tarStream = tarStream.pipe(gunzip);
-    }
-
-    tarStream.pipe(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      tar.extract(cwd, {
-        finalize: true,
-        finish: () => {
-          done();
-        },
-        ...restOptions,
-      }),
-    );
+    pipeline([createReadStream(file), ...(gzip ? [createGunzip()] : []), tar.extract(cwd, restOptions)], done);
   };
 }
 
 /** fill in `cwd` and `gzip: true` defaults */
-function getOptionsWithDefaults<T extends CreateOptions | ExtractOptions>(options: T): T {
+function getOptionsWithDefaults<T extends CreateOptions | ExtractOptions>(options: T) {
   return {
-    cwd: process.cwd(),
     gzip: true,
     ...options,
+    cwd: options.cwd || process.cwd(),
   };
 }
 
 /** Find `tar-fs` and throw if not installed */
 function getTarFs() {
-  const resolvedTar = resolveWrapper('tar-fs');
-  if (!resolvedTar) {
-    logger.error('Please make sure to have "tar-fs" as a dependency in your package.json');
+  const tar = tryRequire<typeof import('tar-fs')>('tar-fs');
+  if (!tar) {
     throw new Error('Required dependency "tar-fs" is not installed!');
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return require(resolvedTar);
+  return tar;
 }

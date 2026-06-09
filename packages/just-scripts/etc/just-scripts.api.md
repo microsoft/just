@@ -115,7 +115,7 @@ export interface CreateOptions {
     dereference?: boolean;
     entries?: string[];
     file: string;
-    filter?: (path: string, header: EntryHeader) => boolean;
+    filter?: (path: string) => boolean;
     gzip?: boolean | {
         level?: number;
         memLevel?: number;
@@ -127,7 +127,7 @@ export interface CreateOptions {
 export function createStylesOverlay(options?: CssLoaderOptions): Configuration;
 
 // @public
-export function createTarTask(options?: CreateOptions): TaskFunction;
+export function createTarTask(opts?: CreateOptions): TaskFunction;
 
 // @public (undocumented)
 export interface CssLoaderOptions {
@@ -146,25 +146,17 @@ export function displayBailoutOverlay(): Configuration;
 // @public (undocumented)
 export interface EntryHeader {
     // (undocumented)
-    devmajor: number;
-    // (undocumented)
-    devminor: number;
-    // (undocumented)
     gid: number;
-    // (undocumented)
-    gname: string;
-    linkname: string;
+    linkname?: string;
     mode: number;
     mtime: Date;
     // (undocumented)
     name: string;
     // (undocumented)
     size: number;
-    type: 'file' | 'link' | 'symlink' | 'directory' | 'block-device' | 'character-device' | 'fifo' | 'contiguous-file';
+    type: 'file' | 'directory' | 'link' | 'symlink';
     // (undocumented)
     uid: number;
-    // (undocumented)
-    uname: string;
 }
 
 // @public (undocumented)
@@ -217,10 +209,9 @@ export interface EsLintTaskOptions {
 // @public (undocumented)
 export interface ExtractOptions {
     cwd?: string;
-    dereference?: boolean;
     dmode?: number;
     file: string;
-    filter?: (path: string, header: EntryHeader) => boolean;
+    filter?: (path: string, header?: EntryHeader) => boolean;
     fmode?: number;
     gzip?: boolean;
     map?: (header: EntryHeader) => EntryHeader;
@@ -229,7 +220,7 @@ export interface ExtractOptions {
 }
 
 // @public
-export function extractTarTask(options?: ExtractOptions): TaskFunction;
+export function extractTarTask(opts?: ExtractOptions): TaskFunction;
 
 // @public
 export function fileOverlay(): Configuration;
