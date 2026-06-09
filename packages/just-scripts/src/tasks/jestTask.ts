@@ -1,5 +1,4 @@
-import type { TaskFunction } from 'just-task';
-import { resolve, logger, resolveCwd, argv } from 'just-task';
+import { resolve, logger, resolveCwd, argv, type TaskFunction } from 'just-task';
 import { spawn, readPackageJson, logNodeCommand } from '../utils';
 import { existsSync } from 'fs';
 import supportsColor from 'supports-color';
@@ -16,12 +15,11 @@ export interface JestTaskOptions {
   clearCache?: boolean;
   silent?: boolean;
   /**
-   * This is not available in jest 30+
-   * Consider updating to jest 30 and using testPathPatterns (plural) instead.
+   * Compatible with jest 29 and below only. Use `testPathPatterns` for jest 30+.
    */
   testPathPattern?: string;
   /**
-   * Compatible with jest 30+ only
+   * Compatible with jest 30+ only. Use `testPathPattern` for jest 29 and below.
    */
   testPathPatterns?: string;
   testNamePattern?: string;

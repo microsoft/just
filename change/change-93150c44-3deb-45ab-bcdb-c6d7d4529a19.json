@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Remove `JestReporter` (which wasn't referenced anywhere in the package). If you were deep importing it, you can make a local copy of the source from the `v2` branch.",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
