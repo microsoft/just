@@ -7,52 +7,29 @@ import { tryRequire } from '../../tryRequire';
 import { callTaskForTest } from './callTaskForTest';
 
 jest.mock('just-task/lib/logger');
-
-// Mocks for sass/postcss/autoprefixer
-const mockRender = jest.fn<(_opts: unknown, cb: (err: null, result: { css: Buffer }) => void) => void>();
-const mockProcess = jest.fn();
-const mockAutoprefixer = jest.fn(() => 'autoprefixer-plugin');
-const mockPostcssRtl = jest.fn(() => 'rtl-plugin');
-const mockPostcssClean = jest.fn(() => 'clean-plugin');
-const mockGlobSync = _globSync as jest.MockedFunction<typeof _globSync>;
-
-jest.mock('../../tryRequire', () => ({
-  tryRequire: jest.fn((name: string) => {
-    switch (name) {
-      case 'sass':
-        return { render: mockRender };
-      case 'postcss':
-        return (_plugins: any[]) => ({ process: mockProcess });
-      case 'autoprefixer':
-        return mockAutoprefixer;
-      case 'postcss-rtl':
-        return mockPostcssRtl;
-      case 'postcss-clean':
-        return mockPostcssClean;
-      default:
-        return null;
-    }
-  }),
-}));
-
-const mockTryRequire = tryRequire as jest.MockedFunction<(name: string) => unknown>;
-
-// Mock globSync to control which files are "found"
-jest.mock('glob', () => ({
-  globSync: jest.fn(),
-}));
-
+jest.mock('../../tryRequire', () => ({ tryRequire: jest.fn(() => null) }));
+jest.mock('glob', () => ({ globSync: jest.fn() }));
 // Mock fs.writeFileSync
-jest.mock('fs', () => {
-  const actual = jest.requireActual<typeof import('fs')>('fs');
-  return { ...actual, writeFileSync: jest.fn() };
+jest.mock('fs', () => ({ ...jest.requireActual<typeof import('fs')>('fs'), writeFileSync: jest.fn() }));
+
+const mockSassModule = {
+  render: jest.fn<(_opts: unknown, cb: (err: null, result: { css: Buffer }) => void) => void>((_opts, cb) => {
+    cb(null, { css: Buffer.from('.test { color: red; }') });
+  }),
+};
+const mockPostcssModule = () => ({
+  process: () => Promise.resolve({ css: '.test{color:red}' }),
 });
+
+const mockGlobSync = _globSync as jest.MockedFunction<typeof _globSync>;
+const mockTryRequire = tryRequire as jest.MockedFunction<(name: string) => unknown>;
 
 const mockCreateSourceModule = jest.fn((_fileName: string, css: string) => `export default ${JSON.stringify(css)};`);
 
 describe('sassTask (mocked)', () => {
   beforeEach(() => {
     mockGlobSync.mockReturnValue([]);
+    mockTryRequire.mockImplementation(() => null);
   });
 
   afterEach(() => {
@@ -62,62 +39,56 @@ describe('sassTask (mocked)', () => {
   describe('skip conditions', () => {
     it('does nothing if sass is not installed', async () => {
       mockTryRequire.mockImplementation((name: string) => {
-        if (name === 'sass' || name === 'node-sass') return null;
         if (name === 'postcss') return () => ({});
-        if (name === 'autoprefixer') return mockAutoprefixer;
+        if (name === 'autoprefixer') return () => ({});
         return null;
       });
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
       await callTaskForTest(task);
-      expect(mockRender).not.toHaveBeenCalled();
+      expect(mockSassModule.render).not.toHaveBeenCalled();
     });
 
     it('does nothing if postcss is not installed', async () => {
       mockTryRequire.mockImplementation((name: string) => {
-        if (name === 'sass') return { render: mockRender };
-        if (name === 'postcss') return null;
-        if (name === 'autoprefixer') return mockAutoprefixer;
+        if (name === 'sass') return mockSassModule;
+        if (name === 'autoprefixer') return () => ({});
         return null;
       });
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
       await callTaskForTest(task);
-      expect(mockRender).not.toHaveBeenCalled();
+      expect(mockSassModule.render).not.toHaveBeenCalled();
     });
 
     it('does nothing if autoprefixer is not installed', async () => {
       mockTryRequire.mockImplementation((name: string) => {
-        if (name === 'sass') return { render: mockRender };
+        if (name === 'sass') return mockSassModule;
         if (name === 'postcss') return () => ({});
-        if (name === 'autoprefixer') return null;
         return null;
       });
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
       await callTaskForTest(task);
-      expect(mockRender).not.toHaveBeenCalled();
+      expect(mockSassModule.render).not.toHaveBeenCalled();
     });
 
     it('does nothing if no scss files found', async () => {
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
       await callTaskForTest(task);
-      expect(mockRender).not.toHaveBeenCalled();
+      expect(mockSassModule.render).not.toHaveBeenCalled();
     });
   });
 
   describe('compilation', () => {
     beforeEach(() => {
-      // Reset tryRequire to default mocks
       mockTryRequire.mockImplementation((name: string) => {
         switch (name) {
           case 'sass':
-            return { render: mockRender };
+            return mockSassModule;
           case 'postcss':
-            return (_plugins: any[]) => ({ process: mockProcess });
+            return mockPostcssModule;
           case 'autoprefixer':
-            return mockAutoprefixer;
           case 'postcss-rtl':
-            return mockPostcssRtl;
           case 'postcss-clean':
-            return mockPostcssClean;
+            return () => ({});
           default:
             return null;
         }
@@ -125,24 +96,14 @@ describe('sassTask (mocked)', () => {
 
       // Mock glob to return one scss file
       mockGlobSync.mockReturnValue(['src/styles/main.scss']);
-
-      // Mock sass.render to invoke callback with css
-      mockRender.mockImplementation((_opts, cb) => {
-        cb(null, { css: Buffer.from('.test { color: red; }') });
-      });
-
-      // Mock postcss process to return processed css
-      mockProcess.mockReturnValue(Promise.resolve({ css: '.test{color:red}' }));
     });
 
     it('calls sass.render for each file', async () => {
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
       await callTaskForTest(task);
-      expect(mockRender).toHaveBeenCalledTimes(1);
-      expect(mockRender).toHaveBeenCalledWith(
-        expect.objectContaining({
-          file: path.resolve('src/styles/main.scss'),
-        }),
+      expect(mockSassModule.render).toHaveBeenCalledTimes(1);
+      expect(mockSassModule.render).toHaveBeenCalledWith(
+        expect.objectContaining({ file: path.resolve('src/styles/main.scss') }),
         expect.any(Function),
       );
     });
@@ -158,7 +119,7 @@ describe('sassTask (mocked)', () => {
       mockGlobSync.mockReturnValue(['src/a.scss', 'src/b.scss', 'src/c.scss']);
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
       await callTaskForTest(task);
-      expect(mockRender).toHaveBeenCalledTimes(3);
+      expect(mockSassModule.render).toHaveBeenCalledTimes(3);
     });
   });
 });

@@ -15,10 +15,7 @@ const writeFileSpy = fs.writeFileSync as jest.MockedFunction<typeof fs.writeFile
 
 const mockWebpack = jest.fn<(configs: unknown, cb: (err: Error | null, stats: unknown) => void) => void>();
 jest.mock('../../tryRequire', () => ({
-  tryRequire: jest.fn((name: string) => {
-    if (name === 'webpack') return mockWebpack;
-    return null;
-  }),
+  tryRequire: jest.fn((name: string) => (name === 'webpack' ? mockWebpack : null)),
 }));
 const mockTryRequire = tryRequire as jest.MockedFunction<typeof tryRequire>;
 

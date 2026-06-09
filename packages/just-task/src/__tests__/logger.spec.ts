@@ -30,7 +30,6 @@ describe('logger', () => {
   });
 
   afterAll(() => {
-    jest.restoreAllMocks();
     chalk.level = chalkLevel;
     logger.enableVerbose = false;
   });

@@ -1,4 +1,4 @@
-import { describe, expect, it, jest, beforeEach, afterEach, afterAll } from '@jest/globals';
+import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import { fail } from 'assert';
 import type { TaskFunction } from 'just-task';
 import path from 'path';
@@ -27,10 +27,6 @@ describe('nodeExecTask', () => {
 
   afterEach(() => {
     spawnSpy.mockClear();
-  });
-
-  afterAll(() => {
-    jest.restoreAllMocks();
   });
 
   describe.each(['javascript', 'typescript (ts-node)'])('%s', fileType => {

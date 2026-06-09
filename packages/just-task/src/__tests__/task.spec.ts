@@ -1,4 +1,4 @@
-import { describe, expect, it, jest, beforeAll, beforeEach, afterAll } from '@jest/globals';
+import { describe, expect, it, jest, beforeAll, beforeEach } from '@jest/globals';
 import { task } from '../task';
 import { parallel, undertaker } from '../undertaker';
 import { logger } from '../logger';
@@ -6,23 +6,18 @@ import path from 'path';
 import * as option from '../option';
 import UndertakerRegistry from 'undertaker-registry';
 
+jest.mock('../option');
+
+const mockArgv = option.argv as jest.MockedFunction<() => object>;
+
 describe('task', () => {
   beforeAll(() => {
-    jest
-      .spyOn(option, 'argv')
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      .mockImplementation(() => ({ config: path.resolve(__dirname, '__mocks__/just-task.js') }) as any);
     jest.spyOn(logger, 'info').mockImplementation(() => undefined);
+    mockArgv.mockReturnValue({ config: path.resolve(__dirname, '__mocks__/just-task.js') });
   });
 
   beforeEach(() => {
     undertaker.registry(new UndertakerRegistry());
-  });
-
-  afterAll(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    jest.spyOn(option, 'argv').mockImplementation(() => ({ config: 'a/just-task.js' }) as any);
-    jest.restoreAllMocks();
   });
 
   it('allows synchronous tasks to be defined and be run', done => {
