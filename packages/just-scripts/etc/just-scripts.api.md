@@ -4,9 +4,12 @@
 
 ```ts
 
+import type { AcceptedPlugin } from 'postcss';
 import type * as ApiExtractorTypes from '@microsoft/api-extractor';
 import type { BuildOptions } from 'esbuild';
 import type { Configuration } from 'webpack';
+import type ForkTsCheckerWebpackPluginType from 'fork-ts-checker-webpack-plugin';
+import type HtmlWebpackPlugin from 'html-webpack-plugin';
 import type { SpawnOptions } from 'child_process';
 import { TaskFunction } from 'just-task';
 import type ts from 'typescript';
@@ -165,14 +168,6 @@ export type EsbuildBuildOptions = BuildOptions;
 // @public
 export function esbuildTask(options?: EsbuildBuildOptions): TaskFunction;
 
-// @public (undocumented)
-export interface EsbuildTransformOptions {
-    // (undocumented)
-    esbuildOptions: BuildOptions;
-    // (undocumented)
-    include: string[] | string;
-}
-
 // @public
 export function eslintTask(options?: EsLintTaskOptions): TaskFunction;
 
@@ -226,7 +221,7 @@ export function extractTarTask(opts?: ExtractOptions): TaskFunction;
 export function fileOverlay(): Configuration;
 
 // @public
-export function htmlOverlay(options: unknown): Configuration;
+export function htmlOverlay(options: HtmlWebpackPlugin.Options): Configuration;
 
 // @public
 export function jestTask(options?: JestTaskOptions): TaskFunction;
@@ -315,7 +310,7 @@ export interface SassTaskOptions {
     // (undocumented)
     createSourceModule: (fileName: string, css: string) => string;
     // (undocumented)
-    postcssPlugins?: unknown[];
+    postcssPlugins?: AcceptedPlugin[];
 }
 
 // @public
@@ -330,49 +325,7 @@ declare namespace taskPresets {
 export { taskPresets }
 
 // @public (undocumented)
-export interface TsCheckerOptions {
-    // (undocumented)
-    async: boolean;
-    // (undocumented)
-    checkSyntacticErrors: boolean;
-    // (undocumented)
-    colors: boolean;
-    // (undocumented)
-    compilerOptions: object;
-    // (undocumented)
-    eslint: true | undefined;
-    eslintOptions: object;
-    // (undocumented)
-    ignoreDiagnostics: number[];
-    // (undocumented)
-    ignoreLints: string[];
-    // (undocumented)
-    ignoreLintWarnings: boolean;
-    // (undocumented)
-    measureCompilationTime: boolean;
-    // (undocumented)
-    memoryLimit: number;
-    // (undocumented)
-    reportFiles: string[];
-    // (undocumented)
-    resolveModuleNameModule: string;
-    // (undocumented)
-    resolveTypeReferenceDirectiveModule: string;
-    // (undocumented)
-    silent: boolean;
-    // (undocumented)
-    tsconfig: string;
-    // (undocumented)
-    typescript: string;
-    // (undocumented)
-    useTypescriptIncrementalApi: boolean;
-    // (undocumented)
-    vue: boolean;
-    // (undocumented)
-    watch: string | string[];
-    // (undocumented)
-    workers: number;
-}
+export type TsCheckerOptions = ConstructorParameters<typeof ForkTsCheckerWebpackPluginType>[0];
 
 // @public
 export function tscTask(options?: TscTaskOptions): TaskFunction;
@@ -390,38 +343,38 @@ export function tscWatchTask(options?: TscTaskOptions): TaskFunction;
 // @public (undocumented)
 export interface TsLoaderOptions {
     // (undocumented)
-    allowTsInNodeModules: boolean;
+    allowTsInNodeModules?: boolean;
     // (undocumented)
-    colors: boolean;
+    colors?: boolean;
     // (undocumented)
-    compilerOptions: ts.CompilerOptions;
+    compilerOptions?: ts.CompilerOptions;
     // (undocumented)
-    configFile: string;
+    configFile?: string;
     // (undocumented)
-    experimentalFileCaching: boolean;
+    experimentalFileCaching?: boolean;
     // (undocumented)
-    experimentalWatchApi: boolean;
+    experimentalWatchApi?: boolean;
     // (undocumented)
-    getCustomTransformers: string | ((program: ts.Program) => ts.CustomTransformers | undefined);
+    getCustomTransformers?: string | ((program: ts.Program) => ts.CustomTransformers | undefined);
     // (undocumented)
-    happyPackMode: boolean;
+    happyPackMode?: boolean;
     // (undocumented)
-    onlyCompileBundledFiles: boolean;
+    onlyCompileBundledFiles?: boolean;
     // (undocumented)
-    projectReferences: boolean;
+    projectReferences?: boolean;
     // (undocumented)
-    transpileOnly: boolean;
+    transpileOnly?: boolean;
 }
 
 // @public
-export function tsOverlay(overlayOptions?: TsOverlayOptions): Partial<Configuration>;
+export function tsOverlay(overlayOptions?: TsOverlayOptions): Configuration;
 
 // @public (undocumented)
 export interface TsOverlayOptions {
     // (undocumented)
-    checkerOptions?: Partial<TsCheckerOptions>;
+    checkerOptions?: TsCheckerOptions;
     // (undocumented)
-    loaderOptions?: Partial<TsLoaderOptions>;
+    loaderOptions?: TsLoaderOptions;
 }
 
 // @public (undocumented)

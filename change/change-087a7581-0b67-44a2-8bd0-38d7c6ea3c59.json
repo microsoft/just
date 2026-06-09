@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Explicitly declare all optional peer dependencies. The ranges are intentionally broad, and in practice it's up to the consumer to verify compatibility, especially of older versions. The previous custom resolution logic is preserved (see comments on the `resolve` function), but this change at least makes it more explicit which dependencies are used.",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "major",
+      "comment": "Explicitly declare optional peer dependency on `ts-node`.",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

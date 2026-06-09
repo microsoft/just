@@ -1,22 +1,15 @@
-import { globSync } from 'glob';
-import path from 'path';
 import fs from 'fs';
-import { resolveCwd, logger, type TaskFunction } from 'just-task';
-import { tryRequire } from '../tryRequire';
+import { globSync } from 'glob';
+import { logger, resolveCwd, type TaskFunction } from 'just-task';
+import path from 'path';
+import type { AcceptedPlugin } from 'postcss';
 import parallelLimit from 'run-parallel-limit';
+import { tryRequire } from '../tryRequire';
 
 export interface SassTaskOptions {
   createSourceModule: (fileName: string, css: string) => string;
-  // Because we do not statically import postcssPlugin package, we cannot enforce type of postcssPlugins
-  postcssPlugins?: unknown[];
+  postcssPlugins?: AcceptedPlugin[];
 }
-
-type SassModule = {
-  render: (
-    options: { file: string; importer: typeof patchSassUrl; includePaths: string[] },
-    cb: (err: Error, result: { css: Buffer }) => void,
-  ) => void;
-};
 
 /**
  * Create a task to run sass.
@@ -29,15 +22,12 @@ export function sassTask(options: SassTaskOptions): TaskFunction {
   const { createSourceModule, postcssPlugins = [] } = options;
 
   return function sass(done) {
-    const sassModule = tryRequire<SassModule>('sass') || tryRequire<SassModule>('node-sass');
-    const postcss =
-      tryRequire<
-        (plugins: unknown[]) => { process: (css: string, options: { from: string }) => Promise<{ css: string }> }
-      >('postcss');
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-    const autoprefixer = tryRequire<(options: unknown) => Function>('autoprefixer');
-    const postcssRtl = tryRequire<(options: unknown) => unknown>('postcss-rtl');
-    const clean = tryRequire<() => unknown>('postcss-clean');
+    const sassModule = tryRequire<typeof import('sass')>('sass') || tryRequire<typeof import('sass')>('node-sass');
+    const postcss = tryRequire<typeof import('postcss')>('postcss');
+    const autoprefixer = tryRequire<typeof import('autoprefixer')>('autoprefixer');
+    // these don't have types
+    const postcssRtl = tryRequire<(options: unknown) => AcceptedPlugin>('postcss-rtl');
+    const clean = tryRequire<() => AcceptedPlugin>('postcss-clean');
 
     if (!sassModule || !postcss || !autoprefixer) {
       const missing = [
@@ -55,11 +45,6 @@ export function sassTask(options: SassTaskOptions): TaskFunction {
     const autoprefixerFn = autoprefixer({ overrideBrowserslist: ['> 1%', 'last 2 versions', 'ie >= 11'] });
     const files = globSync('src/**/*.scss', { absolute: true });
 
-    if (!files.length) {
-      done();
-      return;
-    }
-
     const tasks: parallelLimit.Task<void>[] = files.map(fileName => cb => {
       fileName = path.resolve(fileName);
       sassModule.render(
@@ -69,8 +54,8 @@ export function sassTask(options: SassTaskOptions): TaskFunction {
           includePaths: [path.resolve(process.cwd(), 'node_modules')],
         },
         (err, result) => {
-          if (err) {
-            cb(new Error(`${path.relative(process.cwd(), fileName)}: ${err}`));
+          if (err || !result) {
+            cb(new Error(`${path.relative(process.cwd(), fileName)}: ${err || 'no result returned'}`));
             return;
           }
 

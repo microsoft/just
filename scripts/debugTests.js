@@ -1,4 +1,3 @@
-// @ts-check
 const fs = require('fs');
 const jest = require('jest');
 const path = require('path');

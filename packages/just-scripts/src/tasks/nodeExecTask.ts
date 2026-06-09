@@ -1,9 +1,8 @@
 import type { SpawnOptions } from 'child_process';
 import { spawn } from '../utils';
-import type { TaskFunction } from 'just-task';
-import { logger } from 'just-task';
-import { resolveCwd, _tryResolve } from 'just-task/lib/resolve';
+import { logger, type TaskFunction } from 'just-task';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
+import { resolveWrapper } from '../tryRequire';
 
 export interface NodeExecTaskOptions {
   /**
@@ -56,7 +55,7 @@ export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction {
   return function () {
     const { spawnOptions, enableTypeScript, tsconfig, transpileOnly } = options;
 
-    const tsNodeRegister = resolveCwd('ts-node/register');
+    const tsNodeRegister = resolveWrapper('ts-node/register');
     const nodeExecPath = process.execPath;
 
     const args = [...(options.args || [])];

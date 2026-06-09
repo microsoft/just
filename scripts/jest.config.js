@@ -1,11 +1,10 @@
-// @ts-check
 const path = require('path');
 
 /**
  * Jest config for packages within the just monorepo
  * @type {import('@jest/types').Config.InitialOptions}
  */
-module.exports = {
+const config = {
   roots: ['<rootDir>/src'],
   testEnvironment: 'node',
   testEnvironmentOptions: {
@@ -35,3 +34,5 @@ module.exports = {
   transformIgnorePatterns: ['/node_modules/'],
   watchPathIgnorePatterns: ['/node_modules/'],
 };
+
+module.exports = config;

@@ -15,13 +15,11 @@
     "just": "bin/just.js"
   },
   "scripts": {
-    "api": "yarn run -T api-extractor run",
-    "api:update": "yarn run -T api-extractor run --local",
-    "build": "yarn run -T tsc",
-    "lint": "yarn run -T eslint --color --max-warnings=0 src",
-    "start": "yarn run -T tsc -w --preserveWatchOutput",
-    "start-test": "yarn run -T jest --watch",
-    "test": "yarn run -T jest"
+    "api": "api-extractor run",
+    "api:update": "api-extractor run --local",
+    "build": "tsc",
+    "lint": "eslint --color --max-warnings=0 src",
+    "test": "jest"
   },
   "engines": {
     "node": ">=22.18.0"
@@ -30,19 +28,36 @@
     "@types/chokidar": "^2.1.3",
     "@types/undertaker": "^1.2.8",
     "@types/yargs-parser": "^21.0.3",
-    "bach": "^2.0.0",
-    "chalk": "^4.0.0",
+    "chalk": "catalog:prod",
     "chokidar": "^3.5.2",
-    "fs-extra": "^11.0.0",
+    "fs-extra": "catalog:prod",
     "resolve": "^1.19.0",
     "undertaker": "^2.0.0",
     "undertaker-registry": "^2.0.0",
     "yargs-parser": "^21.0.0"
   },
+  "peerDependencies": {
+    "ts-node": ">=8"
+  },
+  "peerDependenciesMeta": {
+    "ts-node": {
+      "optional": true
+    }
+  },
+  "rationale": {
+    "peerDependencies": {
+      "ts-node": "8.x released 2019; still seeing usage"
+    }
+  },
   "devDependencies": {
+    "@microsoft/api-extractor": "catalog:dev",
     "@microsoft/just-internal-scripts": "workspace:^",
     "@types/resolve": "^1.20.2",
-    "@types/undertaker-registry": "^1.0.1"
+    "@types/undertaker-registry": "^1.0.1",
+    "eslint": "catalog:dev",
+    "jest": "catalog:dev",
+    "mock-fs": "catalog:dev",
+    "typescript": "catalog:dev"
   },
   "files": [
     "bin",

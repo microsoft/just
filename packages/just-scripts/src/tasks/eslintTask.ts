@@ -30,8 +30,9 @@ export interface EsLintTaskOptions {
   /** Prevents the logging & auto-fixing of warnings */
   quiet?: boolean;
   /**
-   * Can be set to force the flat config on or off, which can be helpful when migrating to ESLint v9.
-   * This will be passed as an environment variable to eslint with the value ESLINT_USE_FLAT_CONFIG (https://eslint.org/blog/2024/04/eslint-v9.0.0-released/#flat-config-is-now-the-default-and-has-some-changes).
+   * Force flat config on or off. This is only needed with:
+   * - eslint v8 to force flat config ON
+   * - eslint v9 to force flat config OFF
    */
   useFlatConfig?: boolean;
   /**
@@ -115,6 +116,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
     }
 
     if (useFlatConfig !== undefined) {
+      // https://eslint.org/blog/2024/04/eslint-v9.0.0-released/#flat-config-is-now-the-default-and-has-some-changes
       env.ESLINT_USE_FLAT_CONFIG = JSON.stringify(useFlatConfig);
     }
 
