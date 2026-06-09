@@ -1,7 +1,7 @@
+// WARNING: Careful about adding more imports - only import types from externals
 import type ts from 'typescript';
-// // WARNING: Careful about add more imports - only import types from webpack
 import type { Configuration } from 'webpack';
-import { tryRequire } from '../../tryRequire';
+import { resolveWrapper, tryRequire } from '../../tryRequire';
 
 export interface TsLoaderOptions {
   configFile: string;
@@ -47,9 +47,20 @@ export interface TsOverlayOptions {
   checkerOptions?: Partial<TsCheckerOptions>;
 }
 
-export const tsOverlay = (overlayOptions?: TsOverlayOptions): Partial<Configuration> => {
+/**
+ * Create a typescript module rules config overlay.
+ *
+ * Required dependencies: `ts-loader` (throws if not found) and implicitly `typescript`.
+ * Optional dependencies: `fork-ts-checker-webpack-plugin`.
+ */
+export function tsOverlay(overlayOptions?: TsOverlayOptions): Partial<Configuration> {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const ForkTsCheckerPlugin = tryRequire('fork-ts-checker-webpack-plugin');
+  const ForkTsCheckerPlugin: any = tryRequire('fork-ts-checker-webpack-plugin');
+
+  const tsLoaderPath = resolveWrapper('ts-loader');
+  if (!tsLoaderPath) {
+    throw new Error('Could not find "ts-loader". Please install this package.');
+  }
 
   overlayOptions = overlayOptions || {};
 
@@ -68,7 +79,7 @@ export const tsOverlay = (overlayOptions?: TsOverlayOptions): Partial<Configurat
         {
           test: /\.tsx?$/,
           use: {
-            loader: 'ts-loader',
+            loader: tsLoaderPath,
             options: overlayOptions.loaderOptions,
           },
           exclude: /node_modules/,
@@ -78,4 +89,4 @@ export const tsOverlay = (overlayOptions?: TsOverlayOptions): Partial<Configurat
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     plugins: [...(ForkTsCheckerPlugin ? [new ForkTsCheckerPlugin(overlayOptions.checkerOptions)] : [])],
   };
-};
+}

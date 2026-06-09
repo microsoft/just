@@ -1,13 +1,24 @@
-// // WARNING: Careful about add more imports - only import types from webpack
+// WARNING: Careful about adding more imports - only import types from externals
 import type { Configuration } from 'webpack';
+import { resolveWrapper } from '../../tryRequire';
 
-export const fileOverlay = (): Partial<Configuration> => ({
-  module: {
-    rules: [
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader'],
-      },
-    ],
-  },
-});
+/**
+ * Get a config overlay with rules for loading image files with `file-loader`.
+ * Throws if `file-loader` is not found.
+ */
+export function fileOverlay(): Configuration {
+  const fileLoaderPath = resolveWrapper('file-loader');
+  if (!fileLoaderPath) {
+    throw new Error('Could not find "file-loader". Please install this package.');
+  }
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.(png|svg|jpg|gif)$/,
+          use: [fileLoaderPath],
+        },
+      ],
+    },
+  };
+}

@@ -15,6 +15,10 @@ export const basicWebpackConfig: Configuration = {
   },
 };
 
-export const webpackConfig = (config: Partial<Configuration>): Configuration => {
+/**
+ * Create a webpack config.
+ * For dependencies, see {@link stylesOverlay}, {@link tsOverlay}, and {@link fileOverlay}.
+ */
+export function webpackConfig(config: Partial<Configuration>): Configuration {
   return merge(basicWebpackConfig, stylesOverlay(), tsOverlay(), fileOverlay(), config);
-};
+}
