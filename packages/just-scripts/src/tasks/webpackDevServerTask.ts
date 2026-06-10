@@ -2,9 +2,7 @@
 import type { Configuration } from 'webpack';
 import { logNodeCommand, spawn } from '../utils';
 import type { TaskFunction } from 'just-task';
-import { resolveCwd } from 'just-task';
 import fs from 'fs';
-import path from 'path';
 import type { WebpackCliTaskOptions } from './webpackCliTask';
 import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
@@ -53,10 +51,7 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
  * Throws if `webpack` or `webpack-cli` is not found.
  */
 export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}): TaskFunction {
-  const configPath = options?.config
-    ? // don't attempt to resolve as a package
-      resolveCwd(path.isAbsolute(options.config) ? options.config : path.join('.', options.config))
-    : findWebpackConfig('webpack.serve.config.js', 'webpack.config.js');
+  const configPath = findWebpackConfig({ configOption: options.config, tryServeConfig: true });
 
   const webpackCliPackageJsonPath = resolveWrapper('webpack-cli/package.json');
   if (!webpackCliPackageJsonPath) {

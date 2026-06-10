@@ -7,6 +7,9 @@
 // @public (undocumented)
 export const sample = 5;
 
+// @public (undocumented)
+export const sub = "sub";
+
 // (No @packageDocumentation comment for this package)
 
 ```

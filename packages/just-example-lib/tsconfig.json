@@ -1,9 +1,11 @@
 {
   "extends": "@microsoft/just-internal-scripts/tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": "src",
+    // use . as the root so we can conveniently type check configs
+    // (the output structure doesn't matter much)
+    "rootDir": ".",
     "outDir": "lib",
     "lib": ["ES2024", "DOM"]
   },
-  "include": ["src"]
+  "include": ["src", "just.config.ts", "webpack.config.cts"]
 }

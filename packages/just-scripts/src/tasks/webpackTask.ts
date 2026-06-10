@@ -1,6 +1,6 @@
 // // WARNING: Careful about add more imports - only import types from webpack
 import type { Configuration, WebpackOptionsNormalized } from 'webpack';
-import { logger, argv, resolveCwd, type TaskFunction } from 'just-task';
+import { logger, argv, type TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import fs from 'fs';
 import path from 'path';
@@ -44,12 +44,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
     logger.info(`Running Webpack`);
 
-    const webpackConfigPath =
-      options && options.config
-        ? path.isAbsolute(options.config)
-          ? options.config
-          : resolveCwd(path.join('.', options.config))
-        : findWebpackConfig('webpack.config.js');
+    const webpackConfigPath = findWebpackConfig({ configOption: options?.config });
 
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
 
@@ -59,7 +54,11 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const configModuleExports = webpackConfigPath ? require(path.resolve(webpackConfigPath)) : {};
+    let configModuleExports = webpackConfigPath ? require(path.resolve(webpackConfigPath)) : {};
+    if (configModuleExports && typeof configModuleExports === 'object' && 'default' in configModuleExports) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      configModuleExports = configModuleExports.default;
+    }
 
     let webpackConfigs: Configuration[];
 

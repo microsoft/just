@@ -3,6 +3,8 @@ import './style1.css';
 // style2.scss.ts is created by the sass task
 import './style2.scss';
 
+export { sub } from './sub/sub';
+
 export const sample = 5;
 
 const root = document.createElement('div');

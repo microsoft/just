@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
+  "type": "commonjs",
   "description": "E2E test for running a task with local just-scripts",
   "main": "index.js",
   "scripts": {
