@@ -27,10 +27,13 @@ import {
 } from 'just-scripts';
 import path from 'path';
 
-task('typescript', tscTask({}));
+// nested "thunk" type initialization
+// (if the task doesn't run, lib won't exist and api-extractor will fail)
+task('typescript', () => tscTask({}));
+
 task('typescript:watch', tscTask({ watch: true }));
 
-// creates src/style2.scss.ts
+// creates src/style2.scss.ts (typescript will fail if this doesn't work)
 task(
   'sass',
   sassTask({

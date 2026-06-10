@@ -1,7 +1,7 @@
 import type { TaskFunction } from 'just-task';
 import { logger } from 'just-task';
 import { logNodeCommand, spawn } from '../utils';
-import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
+import { getTsNodeEnv, isTsConfigFile } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 import { resolveWrapper } from '../tryRequire';
 
@@ -64,7 +64,7 @@ export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunctio
       configPath = findWebpackConfig();
     }
 
-    if (configPath?.endsWith('.ts')) {
+    if (isTsConfigFile(configPath ?? '')) {
       options.env = {
         ...options.env,
         ...getTsNodeEnv(options.tsconfig, options.transpileOnly),

@@ -45,7 +45,7 @@ export function mark(marker: string): void;
 // @public
 export interface NestedTaskFunction {
     // (undocumented)
-    (done: TaskCallback): TaskFunctionResult;
+    (done: TaskCallback): TaskFunctionResult | NestedTaskFunction;
 }
 
 // Warning: (ae-forgotten-export) The symbol "OptionConfig" needs to be exported by the entry point index.d.ts

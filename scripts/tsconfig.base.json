@@ -5,6 +5,8 @@
     // Use CJS output for now
     "module": "node20",
     "moduleResolution": "node16",
+    "allowJs": true,
+    "checkJs": true,
     "pretty": true,
     "declaration": true,
     "declarationMap": true,

@@ -1,5 +1,13 @@
 import { logger } from 'just-task';
 
+/**
+ * Whether the given config path is a TypeScript file that should be loaded via ts-node
+ * (matches `.ts`, `.cts`, and `.mts` extensions).
+ */
+export function isTsConfigFile(configPath: string): boolean {
+  return /\.[cm]?ts$/.test(configPath);
+}
+
 export function getTsNodeEnv(tsconfig?: string, transpileOnly?: boolean): { [key: string]: string | undefined } {
   const env: { [key: string]: string | undefined } = {};
 

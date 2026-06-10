@@ -16,12 +16,16 @@ export type Task = string | TaskFunction;
 export type TaskFunctionResult = ReturnType<Undertaker.TaskFunction>;
 
 /**
- * A task function that produces a {@link TaskFunctionResult} directly (no further nesting).
- * This is the shape of the inner function returned by the "factory" form of {@link TaskFunction};
- * `wrapTask` invokes it with the `done` callback.
+ * The function returned by the "factory" form of {@link TaskFunction}. `wrapTask` invokes it
+ * with the `done` callback and uses its result.
+ *
+ * Its return type mirrors {@link TaskFunction}'s (`TaskFunctionResult | NestedTaskFunction`)
+ * because the value returned by a factory is itself any task function — e.g. the result of
+ * `tscTask()`, whose declared return type is a full `TaskFunction`. This is intentionally
+ * self-referential so those task functions remain assignable here.
  */
 export interface NestedTaskFunction {
-  (done: TaskCallback): TaskFunctionResult;
+  (done: TaskCallback): TaskFunctionResult | NestedTaskFunction;
 }
 
 /**

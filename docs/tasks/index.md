@@ -1,6 +1,8 @@
 # Getting started
 
-`Just` simplifies your life in managing build tasks. It stands on the shoulders of excellent and well tested libraries: undertaker, yargs, and plop.js. We encourage developers to make `just-scripts` available locally instead of installing `just-scripts` as a global tool.
+`Just` simplifies your life in managing build tasks. It stands on the shoulders of excellent and well tested libraries: `undertaker` and `yargs-parser`.
+
+Start by installing `just-scripts` in your project:
 
 ```sh
 npm i -D just-scripts
@@ -31,7 +33,7 @@ npm i -D ts-node typescript
 
 2. Place tasks inside `just.config.ts` in your root folder (next to package.json):
 
-```js
+```ts
 // ES Module style
 import { task, option, logger, argv } from 'just-scripts';
 
@@ -44,11 +46,14 @@ task('sayhello', function () {
 
 ## Run it!
 
-Then run it! It is best to either place `just` inside a npm run script or run it with `npx`:
+Then run it! You can either call `just` inside package.json `scripts` or run it directly with `npx`/`yarn`:
 
 ```sh
 $ npx just sayhello
 $ npx just sayhello --name me
+
+# Alternatively:
+$ npx just-scripts sayhello
 ```
 
-That's all!
+(The `just` and `just-scripts` CLIs are interchangeable: `just` CLI comes from the `just-scripts` package's dependency `just-task`, so it should be available automatically unless you use a package manager with strict installation layout. `just-scripts` directly provides a wrapper CLI called `just-scripts`.)

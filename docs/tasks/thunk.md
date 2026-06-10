@@ -1,21 +1,21 @@
 # Higher order task functions
 
-When a project truly gets big enough to have multiple variants of a build, a simple task function might be reused as variants. For example, the `just-task-preset` package includes a useful collection of task functions like `tscTask`. However, these tasks tend to be very generic. `tscTask()` is a task function factory. Calling it will generate a task function. But sometimes variations of the same preconfigured task function is needed. We will use a concept called `thunk` to create a task function that creates a task function on the fly!
+Preset task factories like `tscTask` from `just-scripts` generate a task function when called. To produce variations of a preconfigured task on the fly, wrap the factory call in a `thunk` — a task function that returns a task function.
+
+(For convenience, `just-scripts` also exports the contents of `just-task`, and provides its own CLI called `just-scripts`, which wraps the `just` CLI from `just-task`.)
 
 Here is an example of a simple usage of a preset task function factory:
 
-```js
-const { task } = require('just-task');
-const { tscTask } = require('just-task-preset');
+```ts
+import { task, tscTask } from 'just-scripts';
 
 task('build', tscTask());
 ```
 
 Now, let's try to preconfigure this task based on something we can pass in from the arguments:
 
-```js
-const { task, argv, option } = require('just-task');
-const { tscTask } = require('just-task-preset');
+```ts
+import { task, argv, option, tscTask } from 'just-scripts';
 
 option('amd');
 
@@ -25,6 +25,6 @@ task('build', () => tscTask({ module: argv().amd ? 'amd' : 'commonjs' }));
 Now the build task can take in an argument and perform TypeScript compilation for different modes:
 
 ```sh
-$ just build --amd
-$ just build --commonjs
+$ just-scripts build         # compiles with module: commonjs
+$ just-scripts build --amd   # compiles with module: amd
 ```
