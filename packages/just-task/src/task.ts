@@ -42,7 +42,7 @@ export function task(
   }
 
   if (argCount === 2 && isString(firstParam) && isTaskFunction(secondParam)) {
-    // task('pretter', prettierTask());
+    // task('prettier', prettierTask());
     // task('custom', () => { ... });
     const wrapped = wrapTask(secondParam);
     undertaker.task(firstParam, wrapped);

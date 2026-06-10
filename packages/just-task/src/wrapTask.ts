@@ -1,6 +1,6 @@
 import type Undertaker from 'undertaker';
 import type { TaskCallback } from 'undertaker';
-import type { TaskFunction } from './interfaces';
+import type { TaskFunction, TaskFunctionResult, NestedTaskFunction } from './interfaces';
 
 /**
  * A {@link TaskFunction} that may also carry an `unwrap()` from a previous wrapping.
@@ -47,7 +47,11 @@ export function wrapTask(fn: MaybeWrappedTaskFunction): Undertaker.TaskFunction 
       return;
     }
 
-    const results = origFn(done);
+    // This branch only runs when `origFn.length === 0`, i.e. the task declared no
+    // `done` parameter, so it is called with no arguments. Passing `done` here would
+    // be meaningless and could cause double-completion for a task that reads its
+    // `arguments` and signals completion itself (we also call `done()` below).
+    const results = (origFn as () => TaskFunctionResult | NestedTaskFunction)();
 
     // The result is a function, so assume it is the "factory" form's task function and run it.
     if (typeof results === 'function') {
