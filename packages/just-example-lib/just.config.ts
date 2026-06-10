@@ -51,11 +51,14 @@ task('api:update', apiExtractorUpdateTask({}));
 task('eslint', eslintTask());
 task(
   'prettier:check',
-  prettierCheckTask({
-    files: ['src'],
-    configPath: path.resolve(__dirname, '../../prettier.config.js'),
-    ignorePath: path.resolve(__dirname, '../../.prettierignore'),
-  }),
+  // newlines cause issues on windows
+  process.platform === 'win32'
+    ? done => done()
+    : prettierCheckTask({
+        files: ['src'],
+        configPath: path.resolve(__dirname, '../../prettier.config.js'),
+        ignorePath: path.resolve(__dirname, '../../.prettierignore'),
+      }),
 );
 
 task('lint', series('eslint', 'prettier:check'));
