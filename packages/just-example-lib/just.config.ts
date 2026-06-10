@@ -36,7 +36,7 @@ task(
   sassTask({
     createSourceModule: (fileName, css) => {
       logger.info(`processing ${fileName} with sassTask`);
-      return `export default ${JSON.stringify(css)};`;
+      return `/* eslint-disable */\nexport default ${JSON.stringify(css)};`;
     },
   }),
 );
