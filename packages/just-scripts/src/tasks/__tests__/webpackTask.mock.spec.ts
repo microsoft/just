@@ -19,9 +19,9 @@ jest.mock('../../tryRequire', () => ({
 }));
 const mockTryRequire = tryRequire as jest.MockedFunction<typeof tryRequire>;
 
-// Mock findWebpackConfig to return null by default (no config file)
+// Mock findWebpackConfig to return the provided config option (or null if none)
 jest.mock('../../webpack/findWebpackConfig', () => ({
-  findWebpackConfig: jest.fn(() => null),
+  findWebpackConfig: jest.fn((params?: { configOption?: string }) => params?.configOption ?? null),
 }));
 
 // Mock enableTypeScript

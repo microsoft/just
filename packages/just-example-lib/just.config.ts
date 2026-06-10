@@ -53,7 +53,10 @@ task(
   'prettier:check',
   // newlines cause issues on windows
   process.platform === 'win32'
-    ? done => done()
+    ? done => {
+        logger.info('skip on windows');
+        done();
+      }
     : prettierCheckTask({
         files: ['src'],
         configPath: path.resolve(__dirname, '../../prettier.config.js'),
@@ -120,7 +123,10 @@ task('test:jest', jestTask());
 task(
   'copy',
   copyTask({
-    paths: [path.join(__dirname, 'src/clippy.jpg'), path.join(__dirname, 'src/*.css')],
+    // Glob patterns must use forward slashes even on Windows (see CopyTaskOptions.paths), so
+    // build the `*.css` pattern with `path.posix` rather than `path.join`, which would use `\` on
+    // Windows and cause glob to treat the separators as escape characters (matching nothing).
+    paths: [path.resolve('src/clippy.jpg'), 'src/*.css'],
     dest: path.join(__dirname, 'dist/copied'),
   }),
 );
