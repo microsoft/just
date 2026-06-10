@@ -12,7 +12,6 @@ const config = {
     globalsCleanup: 'on',
   },
   testMatch: ['**/*.(spec|test).[jt]s'],
-  verbose: true,
   // This prevents having to call jest.clearAllMocks() after each test.
   // jestSetup.js also calls jest.restoreAllMocks() in afterAll.
   clearMocks: true,

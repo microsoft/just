@@ -97,7 +97,7 @@ describe('webpackDevServerTask (mocked)', () => {
       const task = webpackDevServerTask();
       await callTaskForTest(task);
       expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(
-        expect.arrayContaining(['--config', 'webpack.serve.config.js']),
+        expect.arrayContaining(['--config', '${packageRoot}/webpack.serve.config.js']),
       );
     });
 
@@ -108,7 +108,9 @@ describe('webpackDevServerTask (mocked)', () => {
       });
       const task = webpackDevServerTask();
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--config', 'webpack.config.js']));
+      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(
+        expect.arrayContaining(['--config', '${packageRoot}/webpack.config.js']),
+      );
     });
   });
 });

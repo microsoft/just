@@ -44,11 +44,23 @@ export function copyTask(options: CopyTaskOptions): TaskFunction {
       return;
     }
 
-    logger.info(`Copying [${paths.map(p => path.relative(process.cwd(), p)).join(', ')}] to '${dest}'`);
+    // On Windows, normalize any literal paths to use forward slashes. This normalization isn't
+    // safe for globs because `\` might be present as an escape character.
+    const normalizedPaths = paths.map(p => (process.platform === 'win32' && fse.existsSync(p) ? slash(p) : p));
+
+    logger.info(
+      `Copying [${normalizedPaths.map(p => path.posix.relative(slash(process.cwd()), p)).join(', ')}] to '${dest}'`,
+    );
 
     fse.mkdirpSync(dest);
 
     const copyTasks: parallelLimit.Task<void>[] = [];
+
+    for (const copyPath of normalizedPaths) {
+      helper(copyPath, getBasePath(copyPath));
+    }
+
+    parallelLimit(copyTasks, limit, done);
 
     function helper(srcGlob: string, basePath: string) {
       // Return absolute paths to ensure path.relative(basePath, matchedPath) works
@@ -67,7 +79,7 @@ export function copyTask(options: CopyTaskOptions): TaskFunction {
             // As of glob v8, `\` is only an escape character in patterns, never a path separator.
             // On Windows, glob returns matches with `\` separators, so build the recursive pattern
             // with `/` to avoid producing a pattern where the separators are treated as escapes.
-            helper(`${matchedPath.replace(/\\/g, '/')}/**/*`, basePath);
+            helper(`${slash(matchedPath)}/**/*`, basePath);
           }
           continue;
         }
@@ -87,17 +99,6 @@ export function copyTask(options: CopyTaskOptions): TaskFunction {
         });
       }
     }
-
-    for (let copyPath of paths) {
-      if (process.platform === 'win32' && fse.existsSync(copyPath)) {
-        // On Windows, normalize any literal paths to use forward slashes. This normalization isn't
-        // safe for globs because `\` might be present as an escape character.
-        copyPath = copyPath.replace(/\\/g, '/');
-      }
-      helper(copyPath, getBasePath(copyPath));
-    }
-
-    parallelLimit(copyTasks, limit, done);
   };
 }
 
@@ -138,4 +139,9 @@ function getBasePath(pattern: string) {
   }
 
   return basePath;
+}
+
+/** replace backslashes with forward slashes */
+function slash(str: string) {
+  return str.replace(/\\/g, '/');
 }
