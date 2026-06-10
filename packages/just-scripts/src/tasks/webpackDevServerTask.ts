@@ -4,7 +4,7 @@ import { logNodeCommand, spawn } from '../utils';
 import type { TaskFunction } from 'just-task';
 import fs from 'fs';
 import type { WebpackCliTaskOptions } from './webpackCliTask';
-import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
+import { getTsNodeEnv, isTsConfigFile } from '../typescript/getTsNodeEnv';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 import { resolveWrapper } from '../tryRequire';
 
@@ -70,7 +70,7 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}):
       args.push('--config', configPath);
       options.env = {
         ...options.env,
-        ...(configPath.endsWith('.ts') && getTsNodeEnv(options.tsconfig, options.transpileOnly)),
+        ...(isTsConfigFile(configPath) && getTsNodeEnv(options.tsconfig, options.transpileOnly)),
       };
     }
 

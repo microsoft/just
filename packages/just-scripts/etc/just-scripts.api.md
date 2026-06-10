@@ -371,8 +371,7 @@ export function tsOverlay(overlayOptions?: TsOverlayOptions): Configuration;
 
 // @public (undocumented)
 export interface TsOverlayOptions {
-    // (undocumented)
-    checkerOptions?: TsCheckerOptions;
+    checkerOptions?: TsCheckerOptions | false;
     // (undocumented)
     loaderOptions?: TsLoaderOptions;
 }

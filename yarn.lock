@@ -6448,7 +6448,6 @@ __metadata:
     esbuild: "catalog:dev"
     eslint: "catalog:dev"
     file-loader: "npm:^6.2.0"
-    fork-ts-checker-webpack-plugin: "catalog:dev"
     html-webpack-plugin: "catalog:dev"
     jest: "catalog:dev"
     just-scripts: "workspace:^"

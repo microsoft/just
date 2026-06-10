@@ -22,7 +22,8 @@ export type TsCheckerOptions = ConstructorParameters<typeof ForkTsCheckerWebpack
 
 export interface TsOverlayOptions {
   loaderOptions?: TsLoaderOptions;
-  checkerOptions?: TsCheckerOptions;
+  /** Set to false to disable type checking */
+  checkerOptions?: TsCheckerOptions | false;
 }
 
 /**
@@ -32,9 +33,10 @@ export interface TsOverlayOptions {
  * Optional dependencies: `fork-ts-checker-webpack-plugin`.
  */
 export function tsOverlay(overlayOptions?: TsOverlayOptions): Configuration {
-  const ForkTsCheckerPlugin = tryRequire<typeof import('fork-ts-checker-webpack-plugin')>(
-    'fork-ts-checker-webpack-plugin',
-  );
+  const ForkTsCheckerPlugin =
+    overlayOptions?.checkerOptions !== false
+      ? tryRequire<typeof import('fork-ts-checker-webpack-plugin')>('fork-ts-checker-webpack-plugin')
+      : undefined;
   const tsLoaderPath = resolveWrapper('ts-loader');
   if (!tsLoaderPath) {
     throw new Error('Could not find "ts-loader". Please install this package.');
@@ -64,6 +66,6 @@ export function tsOverlay(overlayOptions?: TsOverlayOptions): Configuration {
         },
       ],
     },
-    plugins: [...(ForkTsCheckerPlugin ? [new ForkTsCheckerPlugin(overlayOptions.checkerOptions)] : [])],
+    plugins: ForkTsCheckerPlugin ? [new ForkTsCheckerPlugin(overlayOptions.checkerOptions)] : [],
   };
 }
