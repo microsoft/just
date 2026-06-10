@@ -1,21 +1,22 @@
 # Just scripts
 
-Unlike other build libraries, Just strives to be useful from the beginning. You can choose to write your own tasks that call other Node.js tools like TypeScript, jest, and webpack. However, Just includes some script functions to get you up and running immediately. The included tasks are enough to have a very productive environment without dictating a certain stack to be used with Just.
+Just is useful from the start. You can either write your own tasks that call Node.js tools like TypeScript, jest, and webpack, or use the script functions `just-scripts` provides to get productive immediately — without being locked into a particular stack.
 
-> NOTE: even though `just-scripts` interacts with `typescript`, it does not take `typescript` as a dependency. It assumes that the developers will include that in their own projects. This gives `just-scripts` the flexibility of targeting many different versions of individual build tools without imposing a version on the consumers.
+> NOTE: `just-scripts` declares `typescript` and other large dependencies as **optional peer dependencies**. This means you can install only the dependencies you intend to use, with the desired versions for your project (rather than pulling in a different version by accident). `just-scripts` is also very flexible about how it resolves dependencies: it will try relative to `cwd`, the config file location, any custom resolve paths, or the `just-scripts` package.
 
-These scripts are coded as higher order task functions. Each of these script functions return a task function to be registered as a task in your own `just.config.js` like this:
+The `just-scripts` task helpers are coded as higher order task functions. Each of these script functions return a task function to be registered as a task in your own `just.config.ts` like this:
 
 ```ts
-// just.config.js
+// just.config.ts
 import { tscTask } from 'just-scripts';
-task('ts', tscTask());
+// The extra () => ensures all deps are delay resolved/loaded
+task('ts', () => tscTask());
 ```
 
 Generally, these higher order functions also take an `options` argument to generate a specific task function preconfigured according to the options. For example:
 
 ```ts
-// just.config.js
+// just.config.ts
 import { tscTask } from 'just-scripts';
 task('ts:commonjs', tscTask({ module: 'commonjs' }));
 task('ts:esnext', tscTask({ module: 'esnext' }));

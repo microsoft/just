@@ -1,23 +1,23 @@
 # Command line arguments
 
-`just-task` uses the best pirate themed command line argument library ever: `yargs`, matey! So, rigs get documented pretty much automatically.
+`just-task` uses the best pirate themed command line argument library ever: `yargs-parser`, matey!
 
 ## Reading arguments
 
-To read the arguments passed in from command line, use the `argv()` function provided by `yargs`.
+To read the arguments passed in from command line, use the `argv()` function exported by `just-task`.
 
-```js
-const { task, argv } = require('just-task');
+```ts
+import { task, logger, argv } from 'just-task';
 
 task('pillageMeArgs', function () {
   logger.info('a bunch of aarrrrrrgs', argv());
 });
 ```
 
-## Describe the task with `option()`
+## Describe an option with `option()`
 
-```js
-const { task, logger, option, argv } = require('just-task');
+```ts
+import { task, logger, option, argv } from 'just-task';
 
 option('name');
 
@@ -26,13 +26,14 @@ task('blimey', 'An exclamation of surprise.', function () {
 });
 ```
 
-The `option()` function is the same one exposed by `yargs.option()` - so you can look up that [`option()` documentation](http://yargs.js.org/docs/#api-optionkey-opt) for what is possible.
+The `option()` function configures how a key is parsed (for example as a `boolean`, `string`, `number`, or `array`, or with an `alias` or `default`). These options map to the [`yargs-parser` configuration](https://github.com/yargs/yargs-parser#api).
 
-## Automatically generated task help usage
+## Listing available tasks
 
-If you describe the task in this fashion, you can get a list of tasks with descriptions like this:
+You can get a list of registered tasks along with their descriptions by running `just` with no task name (or with `--help`):
 
 ```
 just --help
-just blimey --help
 ```
+
+Tasks defined with a description (the second argument to `task()`) will show that description in the list.

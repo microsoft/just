@@ -1,24 +1,21 @@
 # TypeScript
 
-TypeScript is a very popular compiler that allows developers to use modern ES6 features as well as a very mature typing system. The benefits are so great that it has become one of the first presets supported by the `just-scripts` library.
+The `tscTask()` function runs the TypeScript compiler. By default it uses the `tsconfig.json` in the project root, but you can pass options to override compiler settings; these are forwarded to `tsc` as command-line arguments. See the [TypeScript docs](http://www.typescriptlang.org/docs/handbook/compiler-options.html) for the available compiler options.
 
-Given a library with TypeScript source code, it might be desirable to have multiple output formats for different audiences. By default, the `tscTask()` function looks for the `tsconfig.json` present in the project root. The preset higher order function can take in an option that overrides compilation options. The TypeScript compiler options are passed to the `tsc.js` script.
-
-A list of available options are located at the [TypeScript documentation site](http://www.typescriptlang.org/docs/handbook/compiler-options.html). The options passed into the preset function will be passed in as command line arguments as a string.
-
-```tsx
-// just.config.js
+```ts
+// just.config.ts
 import { tscTask } from 'just-scripts';
-task('ts', tscTask());
+// The extra () => ensures all deps are delay resolved/loaded
+task('ts', () => tscTask());
 ```
 
 For variety, try having two kinds of output at the same time (built in parallel)
 
-```tsx
-// just.config.js
+```ts
+// just.config.ts
 import { parallel } from 'just-task';
 import { tscTask } from 'just-scripts';
-task('ts:commonjs', tscTask({ module: 'commonjs' }));
-task('ts:esnext', tscTask({ module: 'esnext' }));
+task('ts:commonjs', () => tscTask({ module: 'commonjs' }));
+task('ts:esnext', () => tscTask({ module: 'esnext' }));
 task('ts', parallel('ts:commonjs', 'ts:esnext'));
 ```

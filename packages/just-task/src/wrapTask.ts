@@ -54,8 +54,9 @@ export function wrapTask(fn: MaybeWrappedTaskFunction): Undertaker.TaskFunction 
     const results = (origFn as () => TaskFunctionResult | NestedTaskFunction)();
 
     // The result is a function, so assume it is the "factory" form's task function and run it.
+    // Its result is the actual task's leaf result, which Undertaker awaits.
     if (typeof results === 'function') {
-      return results(done);
+      return results(done) as TaskFunctionResult;
     }
 
     // A promise is returned to Undertaker so it can await completion.

@@ -1,9 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "noEmit": true,
-    "allowJs": true,
-    "checkJs": true
+    "noEmit": true
   },
   "include": ["."],
   "exclude": ["node_modules"]
