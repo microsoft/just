@@ -7,7 +7,7 @@ import parallelLimit from 'run-parallel-limit';
 export interface CleanTaskOptions {
   /**
    * Paths to clean
-   * @default defaultCleanPaths()
+   * @default ['lib', 'temp', 'dist', 'coverage']
    */
   paths?: string[];
   /**

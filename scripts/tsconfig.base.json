@@ -18,6 +18,7 @@
     "noUnusedParameters": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    // be sure to update just-example-lib/tsconfig.json too
     "lib": ["ES2024"],
     "types": ["node"]
   }

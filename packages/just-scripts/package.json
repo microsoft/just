@@ -193,7 +193,7 @@
     "mock-fs": "catalog:dev",
     "postcss": "catalog:dev",
     "sass": "catalog:dev",
-    "tar-fs": "^3.1.2",
+    "tar-fs": "catalog:dev",
     "typescript": "catalog:dev",
     "webpack": "catalog:dev"
   },

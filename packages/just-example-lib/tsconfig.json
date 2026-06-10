@@ -2,7 +2,8 @@
   "extends": "@microsoft/just-internal-scripts/tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "lib"
+    "outDir": "lib",
+    "lib": ["ES2024", "DOM"]
   },
   "include": ["src"]
 }

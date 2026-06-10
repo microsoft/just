@@ -29,7 +29,10 @@ function createStyleLoaderRule(
   postcssLoaderPath &&
     preloaders.push({
       loader: postcssLoaderPath,
-      options: autoprefixer ? { plugins: () => [autoprefixer] } : {},
+      options: {
+        // valid options: https://www.npmjs.com/package/postcss-loader
+        postcssOptions: autoprefixer ? { plugins: () => [autoprefixer] } : {},
+      },
     });
   sassLoaderPath && preloaders.push({ loader: sassLoaderPath });
 

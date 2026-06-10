@@ -10,12 +10,32 @@
     "api:update": "just-scripts api:update",
     "build": "just-scripts build",
     "lint": "just-scripts lint",
+    "start": "just-scripts start",
     "test": "just-scripts test"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "catalog:dev",
     "@microsoft/just-internal-scripts": "workspace:^",
+    "autoprefixer": "catalog:dev",
+    "css-loader": "^7.1.4",
+    "esbuild": "catalog:dev",
+    "eslint": "catalog:dev",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "catalog:dev",
+    "html-webpack-plugin": "catalog:dev",
+    "jest": "catalog:dev",
     "just-scripts": "workspace:^",
+    "postcss": "catalog:dev",
+    "postcss-loader": "^8.2.1",
+    "sass": "catalog:dev",
+    "sass-loader": "^17.0.0",
+    "style-loader": "^4.0.0",
+    "tar-fs": "catalog:dev",
+    "ts-loader": "^9.6.0",
     "ts-node": "catalog:dev",
-    "typescript": "catalog:dev"
+    "typescript": "catalog:dev",
+    "webpack": "catalog:dev",
+    "webpack-cli": "^7.0.3",
+    "webpack-dev-server": "^5.2.4"
   }
 }
