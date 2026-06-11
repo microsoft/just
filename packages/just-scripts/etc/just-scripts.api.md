@@ -136,9 +136,7 @@ export function createTarTask(opts?: CreateOptions): TaskFunction;
 
 // @public (undocumented)
 export interface CssLoaderOptions {
-    // (undocumented)
     localIdentName?: string;
-    // (undocumented)
     modules?: boolean;
 }
 
