@@ -15,13 +15,13 @@ export interface OptionConfig {
    * Provide a custom synchronous function that returns a coerced value from the argument provided (or throws an error), e.g.
    * `{ coerce: function (arg) { return modifiedArg } }`.
    */
-  coerce?: (arg: any) => any;
+  coerce?: (arg: unknown) => unknown;
 
   /** Indicate a key that should be used as a counter, e.g., `-vvv = {v: 3}`. */
   count?: boolean;
 
   /** Provide default value: `{ default: 'hello world!' }`. */
-  default?: any;
+  default?: unknown;
 
   /** Specify that a key requires n arguments: `{ narg: {x: 2} }`. */
   narg?: number;
@@ -59,7 +59,6 @@ export function option(key: string, options: OptionConfig = {}): void {
 
   for (const argName of assignArgs) {
     if (options[argName]) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       (argOptions[argName] ??= {})[key] = options[argName];
     }
   }

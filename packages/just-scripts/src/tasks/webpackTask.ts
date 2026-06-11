@@ -1,5 +1,5 @@
 // WARNING: Careful about adding more imports - only import types from webpack
-import type { Configuration, WebpackOptionsNormalized } from 'webpack';
+import type { Configuration, MultiStats, Stats, WebpackOptionsNormalized } from 'webpack';
 import { logger, argv, type TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import fs from 'fs';
@@ -15,11 +15,6 @@ export interface WebpackTaskOptions extends Configuration {
   outputStats?: boolean | string;
 
   /**
-   * Environment variables to be passed to webpack
-   */
-  env?: Record<string, unknown>;
-
-  /**
    * Transpile the config only
    */
   transpileOnly?: boolean;
@@ -27,7 +22,7 @@ export interface WebpackTaskOptions extends Configuration {
   /**
    * Optional callback triggered on compile
    */
-  onCompile?: (err: Error, stats: any) => void | Promise<void>;
+  onCompile?: (err: Error, stats: Stats | MultiStats | undefined) => void | Promise<void>;
 }
 
 /**
@@ -53,24 +48,25 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
       enableTypeScript({ transpileOnly });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    let configModuleExports = webpackConfigPath ? require(path.resolve(webpackConfigPath)) : {};
+    type ConfigFunction = (
+      env: unknown,
+      argv: unknown,
+    ) => Configuration | Configuration[] | Promise<Configuration | Configuration[]>;
+    type ConfigExport = Configuration | Configuration[] | ConfigFunction | undefined;
+    let configModuleExports = webpackConfigPath
+      ? (require(path.resolve(webpackConfigPath)) as ConfigExport)
+      : undefined;
     if (configModuleExports && typeof configModuleExports === 'object' && 'default' in configModuleExports) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-      configModuleExports = configModuleExports.default;
+      configModuleExports = (configModuleExports as { default?: ConfigExport }).default;
     }
 
-    let webpackConfigs: Configuration[];
+    let webpackConfigs: Configuration | Configuration[];
 
-    // If the loaded webpack config is a function
-    // call it with the original process.argv arguments from build.js.
     if (typeof configModuleExports == 'function') {
       const args = argv();
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-      webpackConfigs = configModuleExports(args.env, args);
+      webpackConfigs = await configModuleExports(args.env, args);
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      webpackConfigs = configModuleExports;
+      webpackConfigs = configModuleExports || {};
     }
 
     if (!Array.isArray(webpackConfigs)) {

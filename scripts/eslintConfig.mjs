@@ -42,9 +42,7 @@ export function getConfig(dirname, ...configs) {
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-import-type-side-effects': 'error',
-
-        // Should be enabled
-        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-explicit-any': 'error',
 
         '@typescript-eslint/no-restricted-imports': [
           'error',

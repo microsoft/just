@@ -92,7 +92,7 @@ describe('webpackTask (mocked)', () => {
 
   describe('onCompile callback', () => {
     it('calls onCompile with err and stats', async () => {
-      const onCompile = jest.fn<(err: Error | null, stats: any) => void>();
+      const onCompile = jest.fn<(err: Error | null, stats: unknown) => void>();
       mockWebpack.mockImplementation((_configs, cb) => {
         cb(null, { hasErrors: () => false });
       });

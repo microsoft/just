@@ -10,7 +10,9 @@ import type { BuildOptions } from 'esbuild';
 import type { Configuration } from 'webpack';
 import type ForkTsCheckerWebpackPluginType from 'fork-ts-checker-webpack-plugin';
 import type HtmlWebpackPlugin from 'html-webpack-plugin';
+import type { MultiStats } from 'webpack';
 import type { Options } from 'nano-spawn';
+import type { Stats } from 'webpack';
 import { TaskFunction } from 'just-task';
 import type ts from 'typescript';
 import * as webpackMerge from 'webpack-merge';
@@ -19,7 +21,7 @@ import * as webpackMerge from 'webpack-merge';
 export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeOptions {
     configJsonFilePath?: string;
     onConfigLoaded?: (config: ApiExtractorTypes.IConfigFile) => void;
-    onResult?: (result: any, extractorOptions: any) => void;
+    onResult?: (result: ApiExtractorTypes.ExtractorResult, extractorOptions: ApiExtractorTypes.IExtractorInvokeOptions) => void;
     projectFolder?: string;
 }
 
@@ -143,7 +145,7 @@ export interface CssLoaderOptions {
 // @public (undocumented)
 export function defaultCleanPaths(): string[];
 
-// @public (undocumented)
+// @public
 export function displayBailoutOverlay(): Configuration;
 
 // @public (undocumented)
@@ -429,8 +431,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction;
 export interface WebpackTaskOptions extends Configuration {
     // (undocumented)
     config?: string;
-    env?: Record<string, unknown>;
-    onCompile?: (err: Error, stats: any) => void | Promise<void>;
+    onCompile?: (err: Error, stats: Stats | MultiStats | undefined) => void | Promise<void>;
     outputStats?: boolean | string;
     transpileOnly?: boolean;
 }

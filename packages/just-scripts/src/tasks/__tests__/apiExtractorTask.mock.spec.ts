@@ -31,15 +31,14 @@ const mockPrepare = jest.fn<typeof apiExtractor.ExtractorConfig.prepare>(options
 jest.mock('../../tryRequire', () => ({
   tryRequire: jest.fn((name: string) => {
     if (name === '@microsoft/api-extractor') {
-      const mockApiExtractor: Partial<Record<keyof typeof apiExtractor, any>> = {
-        Extractor: { invoke: mockInvoke },
+      return {
+        Extractor: { invoke: mockInvoke } satisfies Partial<typeof apiExtractor.Extractor>,
         ExtractorConfig: {
           FILENAME: 'api-extractor.json',
           loadFile: mockLoadFile,
           prepare: mockPrepare,
-        },
+        } satisfies Partial<typeof apiExtractor.ExtractorConfig>,
       };
-      return mockApiExtractor;
     }
     return null;
   }),

@@ -1,7 +1,6 @@
 import { task, series, parallel, condition, option, logger, argv } from '../../index';
 
-// Currently export = is required by the usage in cli.spec.ts
-export = () => {
+export default () => {
   option('name');
   option('production');
 
