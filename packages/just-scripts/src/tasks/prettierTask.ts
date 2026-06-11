@@ -1,8 +1,8 @@
 import { logger, type TaskFunction } from 'just-task';
-import { logNodeCommand, spawn } from '../utils';
-import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
 import { arrayify } from '../arrayUtils/arrayify';
-import { resolveWrapper } from '../tryRequire';
+import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
+import { resolveBin } from '../tryRequire';
+import { spawnNode } from '../utils/exec';
 
 interface PrettierContext {
   prettierBin: string;
@@ -31,29 +31,25 @@ export interface PrettierTaskOptions {
  * Create a task to run prettier via its CLI. Logs a warning if `prettier` is not found.
  */
 export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
-  // check v2 or v3 path
-  const prettierBin = resolveWrapper('prettier/bin-prettier.js') || resolveWrapper('prettier/bin/prettier.cjs');
+  return async function prettier() {
+    // check v2 or v3 path
+    const prettierBin = resolveBin('prettier');
+    if (!prettierBin) {
+      logger.warn('prettier not found, so this task has no effect.');
+      return;
+    }
 
-  if (prettierBin) {
-    return function prettier() {
-      return runPrettierAsync({
-        prettierBin,
-        ...{ configPath: options.configPath || undefined },
-        ...{ ignorePath: options.ignorePath || undefined },
-        ...{
-          files: arrayify(
-            options.files || `${process.cwd().replace(/\\/g, '/')}/**/*.{ts,tsx,js,jsx,json,scss,html,yml,md}`,
-          ),
-        },
-        check: !!options.check,
-      });
-    };
-  }
-
-  // undertaker apparently requires returning a promise, async function, or function that calls done()
-  // eslint-disable-next-line @typescript-eslint/require-await
-  return async () => {
-    logger.warn('prettier not found, so this task has no effect.');
+    await runPrettierAsync({
+      prettierBin,
+      ...{ configPath: options.configPath || undefined },
+      ...{ ignorePath: options.ignorePath || undefined },
+      ...{
+        files: arrayify(
+          options.files || `${process.cwd().replace(/\\/g, '/')}/**/*.{ts,tsx,js,jsx,json,scss,html,yml,md}`,
+        ),
+      },
+      check: !!options.check,
+    });
   };
 }
 
@@ -70,15 +66,12 @@ async function runPrettierAsync(context: PrettierContext) {
 
   for (const chunk of chunks) {
     const prettierArgs = [
-      prettierBin,
       ...(configPath ? ['--config', configPath] : []),
       ...(ignorePath ? ['--ignore-path', ignorePath] : []),
       ...(check ? ['--check'] : ['--write']),
       ...chunk,
     ];
 
-    logNodeCommand(prettierArgs);
-
-    await spawn(process.execPath, prettierArgs, { stdio: 'inherit' });
+    await spawnNode(prettierBin, prettierArgs);
   }
 }

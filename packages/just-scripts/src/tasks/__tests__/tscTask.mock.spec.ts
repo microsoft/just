@@ -1,23 +1,14 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
-import { spawn } from '../../utils';
+import { spawnNode } from '../../utils/exec';
 import { tscTask, tscWatchTask } from '../tscTask';
 import { callTaskForTest } from './callTaskForTest';
 import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
 
-// Jest will hoist these before the imports above, so these modules will be mocked first
-jest.mock('../../utils/exec', () => {
-  const originalModule = jest.requireActual<typeof import('../../utils/exec')>('../../utils/exec');
-  return {
-    // Use real implementation of most exports
-    ...originalModule,
-    // Don't spawn anything
-    spawn: jest.fn(() => Promise.resolve()).mockName('spawn'),
-  };
-});
 jest.mock('just-task/lib/logger');
 
-const mockSpawn = spawn as jest.MockedFunction<typeof spawn>;
+jest.mock('../../utils/exec', () => ({ spawnNode: jest.fn() }));
+const mockSpawn = spawnNode as jest.MockedFunction<typeof spawnNode>;
 
 /**
  * Returns the composition of the `tsc.js` Node module in terms `mock-fs` understands, which is necessary for Node's
@@ -30,12 +21,12 @@ function mockFsTsc(relativePath?: string) {
 
   return {
     [`${ourRelativePath}/node_modules/typescript/lib/tsc.js`]: 'a file',
-    [`${ourRelativePath}/node_modules/typescript/package.json`]: 'a file',
+    [`${ourRelativePath}/node_modules/typescript/package.json`]: '{"bin":{"tsc":"lib/tsc.js"}}',
   };
 }
 
 describe(`tscTask (mocked)`, () => {
-  const mockTscArgs = ['${nodeExecPath}', '${repoRoot}/node_modules/typescript/lib/tsc.js'];
+  const mockTscArgs = ['${repoRoot}/node_modules/typescript/lib/tsc.js'];
 
   beforeEach(() => {
     // Pre-apply the most common mock tsc setup
@@ -77,6 +68,14 @@ describe(`tscTask (mocked)`, () => {
         '${packageRoot}/tsconfig.json',
       ]);
     });
+
+    it('respects nodeArgs', async () => {
+      const task = tscTask({ nodeArgs: ['--max-old-space-size=4096'] });
+      await callTaskForTest(task);
+      expect(mockSpawn).toHaveBeenCalledTimes(1);
+      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([...mockTscArgs, '--project', '${packageRoot}/tsconfig.json']);
+      expect(mockSpawn.mock.calls[0][2]).toEqual({ nodeArgs: ['--max-old-space-size=4096'] });
+    });
   });
 
   describe('tsconfig.json handling', () => {
@@ -87,7 +86,7 @@ describe(`tscTask (mocked)`, () => {
 
       const task = tscTask();
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockSpawn).not.toHaveBeenCalled();
     });
 
     it('respects valid "project" option', async () => {
@@ -108,7 +107,7 @@ describe(`tscTask (mocked)`, () => {
       });
       const task = tscTask({ project: 'a/custom/path/tsconfig.json' });
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockSpawn).not.toHaveBeenCalled();
     });
 
     it('respects valid "build" option', async () => {
@@ -129,7 +128,7 @@ describe(`tscTask (mocked)`, () => {
       });
       const task = tscTask({ build: 'a/custom/path/tsconfig.json' });
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockSpawn).not.toHaveBeenCalled();
     });
 
     it('respects multiple valid "build" options', async () => {
@@ -169,7 +168,7 @@ describe(`tscTask (mocked)`, () => {
         build: ['project/a/tsconfig.json', 'project/b/tsconfig.json', 'project/c/tsconfig.json'],
       });
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockSpawn).not.toHaveBeenCalled();
     });
   });
 
@@ -242,18 +241,18 @@ describe(`tscTask (mocked)`, () => {
       const task = tscTask();
       await callTaskForTest(task);
       expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        '${nodeExecPath}',
         '${packageRoot}/node_modules/typescript/lib/tsc.js',
         '--project',
         '${packageRoot}/tsconfig.json',
       ]);
     });
 
-    it('returns error if typescript is not found at the package or repo root', () => {
+    it('returns error if typescript is not found at the package or repo root', async () => {
       mockfs({
         'tsconfig.json': 'a file',
       });
-      expect(() => tscTask()).toThrow('Cannot find typescript CLI (typescript/lib/tsc.js)');
+      const task = tscTask();
+      await expect(callTaskForTest(task)).rejects.toThrow('Cannot find typescript CLI');
     });
   });
 

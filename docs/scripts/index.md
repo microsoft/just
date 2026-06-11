@@ -9,8 +9,7 @@ The `just-scripts` task helpers are coded as higher order task functions. Each o
 ```ts
 // just.config.ts
 import { tscTask } from 'just-scripts';
-// The extra () => ensures all deps are delay resolved/loaded
-task('ts', () => tscTask());
+task('ts', tscTask());
 ```
 
 Generally, these higher order functions also take an `options` argument to generate a specific task function preconfigured according to the options. For example:

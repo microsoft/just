@@ -1,20 +1,14 @@
 import { describe, expect, it, jest, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
-import { spawn } from '../../utils';
+import { spawnNode } from '../../utils/exec';
 import { webpackDevServerTask } from '../webpackDevServerTask';
 import { callTaskForTest } from './callTaskForTest';
 import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
 
-jest.mock('../../utils/exec', () => {
-  const originalModule = jest.requireActual<typeof import('../../utils/exec')>('../../utils/exec');
-  return {
-    ...originalModule,
-    spawn: jest.fn(() => Promise.resolve()).mockName('spawn'),
-  };
-});
 jest.mock('just-task/lib/logger');
 
-const mockSpawn = spawn as jest.MockedFunction<typeof spawn>;
+jest.mock('../../utils/exec', () => ({ spawnNode: jest.fn(() => Promise.resolve()) }));
+const mockSpawn = spawnNode as jest.MockedFunction<typeof spawnNode>;
 
 const relativeRepoRoot = '../..';
 
@@ -22,7 +16,7 @@ function getMockDeps() {
   return {
     [`${relativeRepoRoot}/node_modules/webpack-cli/package.json`]: '{}',
     [`${relativeRepoRoot}/node_modules/webpack/bin/webpack.js`]: 'a file',
-    [`${relativeRepoRoot}/node_modules/webpack/package.json`]: '{"main":"lib/index.js"}',
+    [`${relativeRepoRoot}/node_modules/webpack/package.json`]: '{"bin":{"webpack":"bin/webpack.js"}}',
   };
 }
 
@@ -33,16 +27,19 @@ describe('webpackDevServerTask (mocked)', () => {
   });
 
   describe('error conditions', () => {
-    it('throws if webpack-cli is not found', () => {
+    it('throws if webpack-cli is not found', async () => {
       mockfs({});
-      expect(() => webpackDevServerTask()).toThrow('Missing webpack-cli package');
+      const task = webpackDevServerTask();
+      await expect(callTaskForTest(task)).rejects.toThrow('Missing webpack-cli package');
     });
 
-    it('throws if webpack is not found', () => {
+    it('throws if webpack is not found', async () => {
       const deps = getMockDeps() as Record<string, string>;
       delete deps[`${relativeRepoRoot}/node_modules/webpack/bin/webpack.js`];
+      delete deps[`${relativeRepoRoot}/node_modules/webpack/package.json`];
       mockfs(deps);
-      expect(() => webpackDevServerTask()).toThrow('Cannot find webpack (webpack/bin/webpack.js)');
+      const task = webpackDevServerTask();
+      await expect(callTaskForTest(task)).rejects.toThrow('Cannot find webpack package');
     });
   });
 
@@ -51,11 +48,7 @@ describe('webpackDevServerTask (mocked)', () => {
       mockfs({ ...getMockDeps() });
       const task = webpackDevServerTask();
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        '${nodeExecPath}',
-        '${repoRoot}/node_modules/webpack/bin/webpack.js',
-        'serve',
-      ]);
+      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(['${repoRoot}/node_modules/webpack/bin/webpack.js', 'serve']);
     });
 
     it('passes --open when open option is true', async () => {
@@ -79,12 +72,18 @@ describe('webpackDevServerTask (mocked)', () => {
       expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--port', '3000']));
     });
 
-    it('passes nodeArgs before command', async () => {
+    it('passes nodeArgs', async () => {
       mockfs({ ...getMockDeps() });
       const task = webpackDevServerTask({ nodeArgs: ['--max-old-space-size=4096'] });
       await callTaskForTest(task);
-      const args = getNormalizedSpawnArgs(mockSpawn);
-      expect(args[1]).toBe('--max-old-space-size=4096');
+      expect(mockSpawn.mock.calls[0][2]).toEqual({ nodeArgs: ['--max-old-space-size=4096'] });
+    });
+
+    it('passes env variables', async () => {
+      mockfs({ ...getMockDeps() });
+      const task = webpackDevServerTask({ env: { NODE_ENV: 'production' } });
+      await callTaskForTest(task);
+      expect(mockSpawn.mock.calls[0][2]).toEqual({ env: { NODE_ENV: 'production' } });
     });
   });
 
@@ -99,6 +98,40 @@ describe('webpackDevServerTask (mocked)', () => {
       expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(
         expect.arrayContaining(['--config', '${packageRoot}/webpack.serve.config.js']),
       );
+    });
+
+    it('uses ts-node env when config is a ts file', async () => {
+      mockfs({
+        ...getMockDeps(),
+        'webpack.config.ts': 'a file',
+      });
+      const task = webpackDevServerTask();
+      await callTaskForTest(task);
+      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(
+        expect.arrayContaining(['--config', '${packageRoot}/webpack.config.ts']),
+      );
+      expect(mockSpawn.mock.calls[0][2]).toEqual({
+        env: { TS_NODE_COMPILER_OPTIONS: expect.anything(), TS_NODE_TRANSPILE_ONLY: 'true' },
+      });
+    });
+
+    it('merges provide env with ts-node env when config is a ts file', async () => {
+      mockfs({
+        ...getMockDeps(),
+        'webpack.config.ts': 'a file',
+      });
+      const task = webpackDevServerTask({
+        env: { CUSTOM_ENV: 'value' },
+        transpileOnly: false,
+        tsconfig: 'tsconfig.json',
+      });
+      await callTaskForTest(task);
+      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(
+        expect.arrayContaining(['--config', '${packageRoot}/webpack.config.ts']),
+      );
+      expect(mockSpawn.mock.calls[0][2]).toEqual({
+        env: { CUSTOM_ENV: 'value', TS_NODE_PROJECT: 'tsconfig.json' },
+      });
     });
 
     it('falls back to webpack.config.js', async () => {

@@ -18,8 +18,8 @@
     "build": "tsc",
     "lint": "eslint --color --max-warnings=0 src",
     "prepack": "cp .npmignore lib/.npmignore",
-    "test": "jest",
-    "test:update": "jest --updateSnapshot"
+    "test": "cross-env NODE_OPTIONS='--experimental-vm-modules' jest",
+    "test:update": "yarn test --updateSnapshot"
   },
   "engines": {
     "node": ">=22.18.0"
@@ -27,10 +27,10 @@
   "dependencies": {
     "@types/tar-fs": "^2.0.4",
     "chalk": "catalog:prod",
-    "cross-spawn": "catalog:prod",
     "fs-extra": "catalog:prod",
     "glob": "^13.0.6",
     "just-task": "workspace:^",
+    "nano-spawn": "catalog:prod",
     "run-parallel-limit": "^1.0.6",
     "supports-color": "^8.1.0",
     "webpack-merge": "^6.0.1"
@@ -185,6 +185,7 @@
     "@types/supports-color": "^8.1.1",
     "async-done": "^2.0.0",
     "autoprefixer": "catalog:dev",
+    "cross-env": "catalog:dev",
     "esbuild": "catalog:dev",
     "eslint": "catalog:dev",
     "fork-ts-checker-webpack-plugin": "catalog:dev",

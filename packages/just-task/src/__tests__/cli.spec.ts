@@ -1,9 +1,12 @@
 import { describe, expect, it, jest } from '@jest/globals';
-import { sync as spawnSync } from 'cross-spawn';
+import type { SubprocessError } from 'nano-spawn';
+import type _nanoSpawn from 'nano-spawn';
 import path from 'path';
 
 // Each spawn transpiles the CLI and config via ts-node, which can take a moment.
 jest.setTimeout(30000);
+
+let nanoSpawn: typeof _nanoSpawn | undefined;
 
 describe('cli', () => {
   const packageRoot = path.resolve(__dirname, '../..');
@@ -16,26 +19,18 @@ describe('cli', () => {
    * Spawn the just CLI (`src/cli.ts`) in a child node process, transpiling TypeScript
    * on the fly with ts-node, and always pointing it at the mock just.config.ts.
    */
-  function runCli(...args: string[]) {
-    const result = spawnSync(process.execPath, ['-r', tsNodeRegister, cliPath, ...args, '--config', configPath], {
+  async function runCli(...args: string[]) {
+    nanoSpawn ??= (await import('nano-spawn')).default;
+    return nanoSpawn(process.execPath, ['-r', tsNodeRegister, cliPath, ...args, '--config', configPath], {
       cwd: packageRoot,
-      env: { ...process.env, TS_NODE_TRANSPILE_ONLY: '1' },
-      encoding: 'utf8',
-    });
-
-    const stdout = result.stdout || '';
-    const stderr = result.stderr || '';
-    return {
-      stdout,
-      stderr,
-      /** stdout and stderr combined, for assertions that don't care which stream was used. */
-      output: stdout + stderr,
-      exitCode: result.status,
-    };
+      env: { TS_NODE_TRANSPILE_ONLY: '1' },
+    })
+      .then(res => ({ ...res, exitCode: 0 }))
+      .catch(err => err as SubprocessError);
   }
 
-  it('prints the list of available tasks (with descriptions) when no command is given', () => {
-    const { stdout, exitCode } = runCli();
+  it('prints the list of available tasks (with descriptions) when no command is given', async () => {
+    const { stdout, exitCode } = await runCli();
 
     expect(exitCode).toBe(0);
     expect(stdout).toContain('All the tasks that are available to just:');
@@ -44,8 +39,8 @@ describe('cli', () => {
     expect(stdout).toContain('webpack:promise:fail');
   });
 
-  it('runs a task resolved by name from the config', () => {
-    const { stdout, exitCode } = runCli('clean');
+  it('runs a task resolved by name from the config', async () => {
+    const { stdout, exitCode } = await runCli('clean');
 
     expect(exitCode).toBe(0);
     expect(stdout).toContain("■ started 'clean'");
@@ -53,15 +48,15 @@ describe('cli', () => {
     expect(stdout).toContain("■ finished 'clean' in");
   });
 
-  it('errors with a non-zero exit code for an unknown command', () => {
-    const { stderr, exitCode } = runCli('does-not-exist');
+  it('errors with a non-zero exit code for an unknown command', async () => {
+    const { stderr, exitCode } = (await runCli('does-not-exist')) as SubprocessError;
 
     expect(exitCode).toBe(1);
     expect(stderr).toContain('Command not defined: does-not-exist');
   });
 
-  it('exits non-zero when a task fails', () => {
-    const { exitCode, stdout, stderr } = runCli('webpack:promise:fail');
+  it('exits non-zero when a task fails', async () => {
+    const { exitCode, stdout, stderr } = (await runCli('webpack:promise:fail')) as SubprocessError;
 
     expect(exitCode).toBe(1);
     expect(stdout).toContain("started 'webpack:promise:fail'");
@@ -69,8 +64,8 @@ describe('cli', () => {
     expect(stderr).toContain('Error: adsfadsf');
   });
 
-  it('parses the --production flag so the conditional task runs (yargs)', () => {
-    const { stdout, exitCode } = runCli('cond', '--production');
+  it('parses the --production flag so the conditional task runs (yargs)', async () => {
+    const { stdout, exitCode } = await runCli('cond', '--production');
 
     expect(exitCode).toBe(0);
     expect(stdout).toContain("started 'cond'");
@@ -80,8 +75,8 @@ describe('cli', () => {
     expect(stdout).toContain('fake linting with eslint');
   });
 
-  it('skips the conditional task when --production is not passed (yargs)', () => {
-    const { stdout, exitCode } = runCli('cond');
+  it('skips the conditional task when --production is not passed (yargs)', async () => {
+    const { stdout, exitCode } = await runCli('cond');
 
     expect(exitCode).toBe(0);
     expect(stdout).not.toContain("started 'ts'");

@@ -19,7 +19,7 @@
     "api:update": "api-extractor run --local",
     "build": "tsc",
     "lint": "eslint --color --max-warnings=0 src",
-    "test": "jest"
+    "test": "cross-env NODE_OPTIONS='--experimental-vm-modules' jest"
   },
   "engines": {
     "node": ">=22.18.0"
@@ -54,10 +54,11 @@
     "@microsoft/just-internal-scripts": "workspace:^",
     "@types/resolve": "^1.20.2",
     "@types/undertaker-registry": "^1.0.1",
-    "cross-spawn": "catalog:prod",
+    "cross-env": "catalog:dev",
     "eslint": "catalog:dev",
     "jest": "catalog:dev",
     "mock-fs": "catalog:dev",
+    "nano-spawn": "catalog:prod",
     "ts-node": "catalog:dev",
     "typescript": "catalog:dev"
   },

@@ -1,21 +1,15 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
-import { spawn } from '../../utils';
+import { spawnNode } from '../../utils/exec';
 import { jestTask, type JestTaskOptions } from '../jestTask';
 import { callTaskForTest } from './callTaskForTest';
 import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
 
-jest.mock('../../utils/exec', () => {
-  const originalModule = jest.requireActual<typeof import('../../utils/exec')>('../../utils/exec');
-  return {
-    ...originalModule,
-    spawn: jest.fn(() => Promise.resolve()).mockName('spawn'),
-  };
-});
 jest.mock('just-task/lib/logger');
 jest.mock('supports-color', () => ({ stdout: true }));
 
-const mockSpawn = spawn as jest.MockedFunction<typeof spawn>;
+jest.mock('../../utils/exec', () => ({ spawnNode: jest.fn() }));
+const mockSpawn = spawnNode as jest.MockedFunction<typeof spawnNode>;
 
 const relativeRepoRoot = '../..';
 
@@ -23,12 +17,12 @@ function mockFsJest(relativePath?: string) {
   const root = relativePath || relativeRepoRoot;
   return {
     [`${root}/node_modules/jest/bin/jest.js`]: 'a file',
-    [`${root}/node_modules/jest/package.json`]: '{"main":"bin/jest.js"}',
+    [`${root}/node_modules/jest/package.json`]: '{"bin":{"jest":"bin/jest.js"}}',
   };
 }
 
 describe('jestTask (mocked)', () => {
-  const mockJestArgs = ['${nodeExecPath}', '${repoRoot}/node_modules/jest/bin/jest.js'];
+  const mockJestArgs = ['${repoRoot}/node_modules/jest/bin/jest.js'];
 
   beforeEach(() => {
     mockfs({
@@ -74,7 +68,7 @@ describe('jestTask (mocked)', () => {
       });
       const task = jestTask();
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockSpawn).not.toHaveBeenCalled();
     });
 
     it('does nothing if jest is not resolved', async () => {
@@ -83,7 +77,7 @@ describe('jestTask (mocked)', () => {
       });
       const task = jestTask();
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockSpawn).not.toHaveBeenCalled();
     });
   });
 
@@ -175,21 +169,20 @@ describe('jestTask (mocked)', () => {
       expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['path/to/test']));
     });
 
-    it('prepends nodeArgs before jest command', async () => {
+    it('passes nodeArgs to spawnNode', async () => {
       const task = jestTask({ nodeArgs: ['--max-old-space-size=4096'] });
       await callTaskForTest(task);
-      // node <nodeArgs> path/to/jest <jestArgs>
       const args = getNormalizedSpawnArgs(mockSpawn);
-      expect(args[1]).toBe('--max-old-space-size=4096');
-      expect(args[2]).toBe('${repoRoot}/node_modules/jest/bin/jest.js');
+      expect(args[0]).toBe('${repoRoot}/node_modules/jest/bin/jest.js');
+      expect(mockSpawn.mock.calls[0][2]).toEqual({ nodeArgs: ['--max-old-space-size=4096'] });
     });
 
-    it('passes env to spawn', async () => {
+    it('passes env to spawnNode', async () => {
       const env = { NODE_ENV: 'test', CI: 'true' };
       const task = jestTask({ env });
       await callTaskForTest(task);
       expect(mockSpawn).toHaveBeenCalledTimes(1);
-      expect(mockSpawn.mock.calls[0][2]?.env).toEqual(env);
+      expect(mockSpawn.mock.calls[0][2]).toEqual({ env });
     });
   });
 });
