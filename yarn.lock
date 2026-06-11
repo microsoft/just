@@ -1390,7 +1390,6 @@ __metadata:
     "@eslint/js": "npm:^10.0.0"
     "@jest/globals": "catalog:dev"
     "@microsoft/api-extractor": "catalog:dev"
-    "@types/cross-spawn": "npm:^6.0.6"
     "@types/fs-extra": "npm:^11.0.0"
     "@types/mock-fs": "npm:^4.13.1"
     "@types/node": "npm:^22.0.0"
@@ -2012,15 +2011,6 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10c0/2e1cdba2c410f25649e77856505cd60223250fa12dff7a503e492208dbfdd25f62859918f28aba95315251fd1f5e1ffbfca1e25e73037189ab85dd3f8d0a148c
-  languageName: node
-  linkType: hard
-
-"@types/cross-spawn@npm:^6.0.6":
-  version: 6.0.6
-  resolution: "@types/cross-spawn@npm:6.0.6"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: 10c0/e3d476bb6b3a54a8934a97fe6ee4bd13e2e5eb29073929a4be76a52466602ffaea420b20774ffe8503f9fa24f3ae34817e95e7f625689fb0d1c10404f5b2889c
   languageName: node
   linkType: hard
 
@@ -4662,7 +4652,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execa@npm:^5.1.1":
+"execa@npm:^5.0.0, execa@npm:^5.1.1":
   version: 5.1.1
   resolution: "execa@npm:5.1.1"
   dependencies:
@@ -6478,9 +6468,9 @@ __metadata:
     async-done: "npm:^2.0.0"
     autoprefixer: "catalog:dev"
     chalk: "catalog:prod"
-    cross-spawn: "catalog:prod"
     esbuild: "catalog:dev"
     eslint: "catalog:dev"
+    execa: "catalog:prod"
     fork-ts-checker-webpack-plugin: "catalog:dev"
     fs-extra: "catalog:prod"
     glob: "npm:^13.0.6"
@@ -6597,8 +6587,8 @@ __metadata:
     "@types/yargs-parser": "npm:^21.0.3"
     chalk: "catalog:prod"
     chokidar: "npm:^3.5.2"
-    cross-spawn: "catalog:prod"
     eslint: "catalog:dev"
+    execa: "catalog:prod"
     fs-extra: "catalog:prod"
     jest: "catalog:dev"
     mock-fs: "catalog:dev"

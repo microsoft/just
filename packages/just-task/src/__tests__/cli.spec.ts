@@ -1,5 +1,5 @@
 import { describe, expect, it, jest } from '@jest/globals';
-import { sync as spawnSync } from 'cross-spawn';
+import execa from 'execa';
 import path from 'path';
 
 // Each spawn transpiles the CLI and config via ts-node, which can take a moment.
@@ -17,21 +17,14 @@ describe('cli', () => {
    * on the fly with ts-node, and always pointing it at the mock just.config.ts.
    */
   function runCli(...args: string[]) {
-    const result = spawnSync(process.execPath, ['-r', tsNodeRegister, cliPath, ...args, '--config', configPath], {
+    return execa.sync(process.execPath, ['-r', tsNodeRegister, cliPath, ...args, '--config', configPath], {
       cwd: packageRoot,
       env: { ...process.env, TS_NODE_TRANSPILE_ONLY: '1' },
+      all: true,
       encoding: 'utf8',
+      // Don't throw on non-zero exit; tests assert on the returned exitCode.
+      reject: false,
     });
-
-    const stdout = result.stdout || '';
-    const stderr = result.stderr || '';
-    return {
-      stdout,
-      stderr,
-      /** stdout and stderr combined, for assertions that don't care which stream was used. */
-      output: stdout + stderr,
-      exitCode: result.status,
-    };
   }
 
   it('prints the list of available tasks (with descriptions) when no command is given', () => {

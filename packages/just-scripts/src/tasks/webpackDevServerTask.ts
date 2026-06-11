@@ -1,12 +1,12 @@
-// // WARNING: Careful about add more imports - only import types from webpack
-import type { Configuration } from 'webpack';
-import { logNodeCommand, spawn } from '../utils';
-import type { TaskFunction } from 'just-task';
 import fs from 'fs';
-import type { WebpackCliTaskOptions } from './webpackCliTask';
+import type { TaskFunction } from 'just-task';
+// WARNING: Careful about adding more imports - only import types from webpack
+import type { Configuration } from 'webpack';
+import { resolveBin, resolveWrapper } from '../tryRequire';
 import { getTsNodeEnv, isTsConfigFile } from '../typescript/getTsNodeEnv';
+import { execNode } from '../utils/exec';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
-import { resolveWrapper } from '../tryRequire';
+import type { WebpackCliTaskOptions } from './webpackCliTask';
 
 export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Configuration {
   /**
@@ -31,9 +31,10 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
   open?: boolean;
 
   /**
-   * Environment variables to be passed to the spawned process of webpack-dev-server
+   * Environment variables to be passed to the spawned process of `webpack-dev-server`
+   * (merged with `process.env`).
    */
-  env?: { [key: string]: string | undefined };
+  env?: NodeJS.ProcessEnv;
 
   /**
    * The tsconfig file to pass to ts-node for Typescript config
@@ -51,27 +52,30 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
  * Throws if `webpack` or `webpack-cli` is not found.
  */
 export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}): TaskFunction {
-  const configPath = findWebpackConfig({ configOption: options.config, tryServeConfig: true });
+  return async function webpackDevServer() {
+    const configPath = findWebpackConfig({ configOption: options.config, tryServeConfig: true });
 
-  const webpackCliPackageJsonPath = resolveWrapper('webpack-cli/package.json');
-  if (!webpackCliPackageJsonPath) {
-    throw new Error('Missing webpack-cli package. Please install webpack-cli as a devDependency.');
-  }
-  const webpackBin = 'webpack/bin/webpack.js';
-  const webpackBinPath = resolveWrapper(webpackBin);
-  if (!webpackBinPath) {
-    throw new Error(`Cannot find webpack (${webpackBin})`);
-  }
+    const webpackCliPackageJsonPath = resolveWrapper('webpack-cli/package.json');
+    if (!webpackCliPackageJsonPath) {
+      throw new Error('Missing webpack-cli package. Please install webpack-cli as a devDependency.');
+    }
+    const webpackBinPath = resolveBin('webpack');
+    if (!webpackBinPath) {
+      throw new Error(`Cannot find webpack package`);
+    }
 
-  return function webpackDevServer() {
-    const args = [...(options.nodeArgs || []), webpackBinPath, 'serve'];
+    const args = ['serve'];
+    let env = options.env;
 
     if (configPath && fs.existsSync(configPath)) {
       args.push('--config', configPath);
-      options.env = {
-        ...options.env,
-        ...(isTsConfigFile(configPath) && getTsNodeEnv(options.tsconfig, options.transpileOnly)),
-      };
+
+      if (isTsConfigFile(configPath)) {
+        env = {
+          ...env,
+          ...getTsNodeEnv(options.tsconfig, options.transpileOnly),
+        };
+      }
     }
 
     if (options.open) {
@@ -86,7 +90,10 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}):
       args.push(...options.webpackCliArgs);
     }
 
-    logNodeCommand(args);
-    return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
+    await execNode(webpackBinPath, args, {
+      env,
+      // avoid overriding unless set
+      ...(options.nodeArgs && { nodeOptions: options.nodeArgs }),
+    });
   };
 }

@@ -1,23 +1,14 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
-import { spawn } from '../../utils';
+import { execNode } from '../../utils/exec';
 import { tscTask, tscWatchTask } from '../tscTask';
 import { callTaskForTest } from './callTaskForTest';
-import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
+import { getNormalizedExecArgs } from './getNormalizedExecArgs';
 
-// Jest will hoist these before the imports above, so these modules will be mocked first
-jest.mock('../../utils/exec', () => {
-  const originalModule = jest.requireActual<typeof import('../../utils/exec')>('../../utils/exec');
-  return {
-    // Use real implementation of most exports
-    ...originalModule,
-    // Don't spawn anything
-    spawn: jest.fn(() => Promise.resolve()).mockName('spawn'),
-  };
-});
 jest.mock('just-task/lib/logger');
 
-const mockSpawn = spawn as jest.MockedFunction<typeof spawn>;
+jest.mock('../../utils/exec', () => ({ execNode: jest.fn() }));
+const mockExec = execNode as jest.MockedFunction<typeof execNode>;
 
 /**
  * Returns the composition of the `tsc.js` Node module in terms `mock-fs` understands, which is necessary for Node's
@@ -30,12 +21,12 @@ function mockFsTsc(relativePath?: string) {
 
   return {
     [`${ourRelativePath}/node_modules/typescript/lib/tsc.js`]: 'a file',
-    [`${ourRelativePath}/node_modules/typescript/package.json`]: 'a file',
+    [`${ourRelativePath}/node_modules/typescript/package.json`]: '{"bin":{"tsc":"lib/tsc.js"}}',
   };
 }
 
 describe(`tscTask (mocked)`, () => {
-  const mockTscArgs = ['${nodeExecPath}', '${repoRoot}/node_modules/typescript/lib/tsc.js'];
+  const mockTscArgs = ['${repoRoot}/node_modules/typescript/lib/tsc.js'];
 
   beforeEach(() => {
     // Pre-apply the most common mock tsc setup
@@ -54,13 +45,17 @@ describe(`tscTask (mocked)`, () => {
     it('runs command with no arguments', async () => {
       const task = tscTask();
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([...mockTscArgs, '--project', '${packageRoot}/tsconfig.json']);
+      expect(getNormalizedExecArgs(mockExec)).toEqual([
+        [...mockTscArgs, '--project', '${packageRoot}/tsconfig.json'],
+        // doesn't pass empty nodeArgs
+        {},
+      ]);
     });
 
     it('runs command with empty options', async () => {
       const task = tscTask({});
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([...mockTscArgs, '--project', '${packageRoot}/tsconfig.json']);
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([...mockTscArgs, '--project', '${packageRoot}/tsconfig.json']);
     });
 
     it('runs command with options', async () => {
@@ -68,13 +63,23 @@ describe(`tscTask (mocked)`, () => {
       const givenOptions = Object.freeze({ allowJs: true, outDir: 'some/out/path' });
       const task = tscTask(givenOptions);
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         ...mockTscArgs,
         '--allowJs',
         '--outDir',
         'some/out/path',
         '--project',
         '${packageRoot}/tsconfig.json',
+      ]);
+    });
+
+    it('respects nodeArgs', async () => {
+      const task = tscTask({ nodeArgs: ['--max-old-space-size=4096'] });
+      await callTaskForTest(task);
+      expect(mockExec).toHaveBeenCalledTimes(1);
+      expect(getNormalizedExecArgs(mockExec)).toEqual([
+        [...mockTscArgs, '--project', '${packageRoot}/tsconfig.json'],
+        { nodeOptions: ['--max-old-space-size=4096'] },
       ]);
     });
   });
@@ -87,7 +92,7 @@ describe(`tscTask (mocked)`, () => {
 
       const task = tscTask();
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockExec).not.toHaveBeenCalled();
     });
 
     it('respects valid "project" option', async () => {
@@ -99,7 +104,7 @@ describe(`tscTask (mocked)`, () => {
       });
       const task = tscTask({ project: 'a/custom/path/tsconfig.json' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([...mockTscArgs, '--project', 'a/custom/path/tsconfig.json']);
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([...mockTscArgs, '--project', 'a/custom/path/tsconfig.json']);
     });
 
     it('does nothing with invalid "project" option', async () => {
@@ -108,7 +113,7 @@ describe(`tscTask (mocked)`, () => {
       });
       const task = tscTask({ project: 'a/custom/path/tsconfig.json' });
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockExec).not.toHaveBeenCalled();
     });
 
     it('respects valid "build" option', async () => {
@@ -120,7 +125,7 @@ describe(`tscTask (mocked)`, () => {
       });
       const task = tscTask({ build: 'a/custom/path/tsconfig.json' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([...mockTscArgs, '--build', 'a/custom/path/tsconfig.json']);
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([...mockTscArgs, '--build', 'a/custom/path/tsconfig.json']);
     });
 
     it('ignores invalid "build" option', async () => {
@@ -129,7 +134,7 @@ describe(`tscTask (mocked)`, () => {
       });
       const task = tscTask({ build: 'a/custom/path/tsconfig.json' });
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockExec).not.toHaveBeenCalled();
     });
 
     it('respects multiple valid "build" options', async () => {
@@ -149,7 +154,7 @@ describe(`tscTask (mocked)`, () => {
         build: ['project/a/tsconfig.json', 'project/b/tsconfig.json', 'project/c/tsconfig.json'],
       });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         ...mockTscArgs,
         '--build',
         'project/a/tsconfig.json',
@@ -169,7 +174,7 @@ describe(`tscTask (mocked)`, () => {
         build: ['project/a/tsconfig.json', 'project/b/tsconfig.json', 'project/c/tsconfig.json'],
       });
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockExec).not.toHaveBeenCalled();
     });
   });
 
@@ -177,7 +182,7 @@ describe(`tscTask (mocked)`, () => {
     it('handles string value option', async () => {
       const task = tscTask({ module: 'ESNext' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         ...mockTscArgs,
         '--module',
         'ESNext',
@@ -189,7 +194,7 @@ describe(`tscTask (mocked)`, () => {
     it('handles string array option', async () => {
       const task = tscTask({ lib: ['es6', 'dom', 'esnext.intl'] });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         ...mockTscArgs,
         '--lib',
         'es6',
@@ -203,7 +208,7 @@ describe(`tscTask (mocked)`, () => {
     it('handles boolean true switch', async () => {
       const task = tscTask({ allowJs: true });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         ...mockTscArgs,
         '--allowJs',
         '--project',
@@ -214,13 +219,13 @@ describe(`tscTask (mocked)`, () => {
     it('ignores boolean false switch', async () => {
       const task = tscTask({ allowJs: false });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([...mockTscArgs, '--project', '${packageRoot}/tsconfig.json']);
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([...mockTscArgs, '--project', '${packageRoot}/tsconfig.json']);
     });
 
     it('puts --build arg first if specified', async () => {
       const task = tscTask({ allowJs: true, build: 'tsconfig.json', outDir: 'some/out/path' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         ...mockTscArgs,
         // The --build arg MUST be first if specified
         '--build',
@@ -241,19 +246,18 @@ describe(`tscTask (mocked)`, () => {
       });
       const task = tscTask();
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        '${nodeExecPath}',
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         '${packageRoot}/node_modules/typescript/lib/tsc.js',
         '--project',
         '${packageRoot}/tsconfig.json',
       ]);
     });
 
-    it('returns error if typescript is not found at the package or repo root', () => {
+    it('returns error if typescript is not found at the package or repo root', async () => {
       mockfs({
         'tsconfig.json': 'a file',
       });
-      expect(() => tscTask()).toThrow('Cannot find typescript CLI (typescript/lib/tsc.js)');
+      await expect(callTaskForTest(tscTask())).rejects.toThrow('Cannot find typescript CLI');
     });
   });
 
@@ -262,7 +266,7 @@ describe(`tscTask (mocked)`, () => {
     it('passes watch option to tsc', async () => {
       const task = tscWatchTask();
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         ...mockTscArgs,
         '--watch',
         '--project',

@@ -1,31 +1,25 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
-import { spawn } from '../../utils';
 import { eslintTask, type EsLintTaskOptions } from '../eslintTask';
 import { callTaskForTest } from './callTaskForTest';
-import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
+import { execNode } from '../../utils/exec';
+import { getNormalizedExecArgs } from './getNormalizedExecArgs';
 
-jest.mock('../../utils/exec', () => {
-  const originalModule = jest.requireActual<typeof import('../../utils/exec')>('../../utils/exec');
-  return {
-    ...originalModule,
-    spawn: jest.fn(() => Promise.resolve()).mockName('spawn'),
-  };
-});
 jest.mock('just-task/lib/logger');
 
-const mockSpawn = spawn as jest.MockedFunction<typeof spawn>;
+jest.mock('../../utils/exec', () => ({ execNode: jest.fn() }));
+const mockExec = execNode as jest.MockedFunction<typeof execNode>;
 
 function mockFsEslint(relativePath?: string) {
   const root = relativePath || '../..';
   return {
     [`${root}/node_modules/eslint/bin/eslint.js`]: 'a file',
-    [`${root}/node_modules/eslint/package.json`]: '{"main":"bin/eslint.js"}',
+    [`${root}/node_modules/eslint/package.json`]: '{"bin":"bin/eslint.js"}',
   };
 }
 
 describe('eslintTask (mocked)', () => {
-  const mockEslintArgs = ['${nodeExecPath}', '${repoRoot}/node_modules/eslint/bin/eslint.js'];
+  const mockEslintArgs = ['${repoRoot}/node_modules/eslint/bin/eslint.js'];
 
   beforeEach(() => {
     mockfs({
@@ -43,43 +37,36 @@ describe('eslintTask (mocked)', () => {
     it('runs eslint with default options', async () => {
       const task = eslintTask();
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        ...mockEslintArgs,
-        '.',
-        '--ext',
-        '.js,.jsx,.ts,.tsx',
-        '--config',
-        '${packageRoot}/.eslintrc.json',
-        '--color',
+      expect(getNormalizedExecArgs(mockExec)).toEqual([
+        [...mockEslintArgs, '.', '--ext', '.js,.jsx,.ts,.tsx', '--config', '${packageRoot}/.eslintrc.json', '--color'],
+        { env: {} },
       ]);
     });
 
     it('passes custom files', async () => {
       const task = eslintTask({ files: ['src/', 'lib/'] });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        ...mockEslintArgs,
-        'src/',
-        'lib/',
-        '--ext',
-        '.js,.jsx,.ts,.tsx',
-        '--config',
-        '${packageRoot}/.eslintrc.json',
-        '--color',
+      expect(getNormalizedExecArgs(mockExec)).toEqual([
+        [
+          ...mockEslintArgs,
+          'src/',
+          'lib/',
+          '--ext',
+          '.js,.jsx,.ts,.tsx',
+          '--config',
+          '${packageRoot}/.eslintrc.json',
+          '--color',
+        ],
+        { env: {} },
       ]);
     });
 
     it('passes custom extensions', async () => {
       const task = eslintTask({ extensions: '.ts,.tsx' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        ...mockEslintArgs,
-        '.',
-        '--ext',
-        '.ts,.tsx',
-        '--config',
-        '${packageRoot}/.eslintrc.json',
-        '--color',
+      expect(getNormalizedExecArgs(mockExec)).toEqual([
+        [...mockEslintArgs, '.', '--ext', '.ts,.tsx', '--config', '${packageRoot}/.eslintrc.json', '--color'],
+        { env: {} },
       ]);
     });
   });
@@ -91,7 +78,7 @@ describe('eslintTask (mocked)', () => {
       });
       const task = eslintTask();
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockExec).not.toHaveBeenCalled();
     });
 
     it('does nothing if no eslint config file exists', async () => {
@@ -100,7 +87,7 @@ describe('eslintTask (mocked)', () => {
       });
       const task = eslintTask();
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockExec).not.toHaveBeenCalled();
     });
   });
 
@@ -119,7 +106,9 @@ describe('eslintTask (mocked)', () => {
       });
       const task = eslintTask();
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--config', '${packageRoot}/' + name]));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(
+        expect.arrayContaining(['--config', '${packageRoot}/' + name]),
+      );
     });
 
     it('uses custom configPath', async () => {
@@ -129,7 +118,7 @@ describe('eslintTask (mocked)', () => {
       });
       const task = eslintTask({ configPath: 'custom/.eslintrc.json' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--config', 'custom/.eslintrc.json']));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(expect.arrayContaining(['--config', 'custom/.eslintrc.json']));
     });
   });
 
@@ -159,7 +148,9 @@ describe('eslintTask (mocked)', () => {
       const { flag, value } = cliFlags[opt as keyof typeof cliFlags];
       const task = eslintTask({ [opt]: value === undefined ? true : value });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(value ? [flag, String(value)] : [flag]));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(
+        expect.arrayContaining(value ? [flag, String(value)] : [flag]),
+      );
     });
 
     it('detects .eslintignore and passes as --ignore-path', async () => {
@@ -170,7 +161,7 @@ describe('eslintTask (mocked)', () => {
       });
       const task = eslintTask({ ignorePath: '.eslintignore' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--ignore-path', '.eslintignore']));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(expect.arrayContaining(['--ignore-path', '.eslintignore']));
     });
   });
 
@@ -178,25 +169,25 @@ describe('eslintTask (mocked)', () => {
     it('sets TIMING env var when timing is true', async () => {
       const task = eslintTask({ timing: true });
       await callTaskForTest(task);
-      expect(mockSpawn).toHaveBeenCalledTimes(1);
-      const env = mockSpawn.mock.calls[0][2]?.env;
-      expect(env?.TIMING).toBe('1');
+      expect(mockExec).toHaveBeenCalledTimes(1);
+      const env = mockExec.mock.calls[0][2]?.env;
+      expect(env).toEqual({ TIMING: '1' });
     });
 
     it('sets ESLINT_USE_FLAT_CONFIG env var when useFlatConfig is true', async () => {
       const task = eslintTask({ useFlatConfig: true });
       await callTaskForTest(task);
-      expect(mockSpawn).toHaveBeenCalledTimes(1);
-      const env = mockSpawn.mock.calls[0][2]?.env;
-      expect(env?.ESLINT_USE_FLAT_CONFIG).toBe('true');
+      expect(mockExec).toHaveBeenCalledTimes(1);
+      const env = mockExec.mock.calls[0][2]?.env;
+      expect(env).toEqual({ ESLINT_USE_FLAT_CONFIG: 'true' });
     });
 
     it('sets ESLINT_USE_FLAT_CONFIG to false when useFlatConfig is false', async () => {
       const task = eslintTask({ useFlatConfig: false });
       await callTaskForTest(task);
-      expect(mockSpawn).toHaveBeenCalledTimes(1);
-      const env = mockSpawn.mock.calls[0][2]?.env;
-      expect(env?.ESLINT_USE_FLAT_CONFIG).toBe('false');
+      expect(mockExec).toHaveBeenCalledTimes(1);
+      const env = mockExec.mock.calls[0][2]?.env;
+      expect(env).toEqual({ ESLINT_USE_FLAT_CONFIG: 'false' });
     });
   });
 });

@@ -1,7 +1,7 @@
+import { createReadStream, createWriteStream } from 'fs';
 import type { TaskFunction } from 'just-task';
-import { createWriteStream, createReadStream } from 'fs';
 import { pipeline } from 'stream';
-import { createGzip, createGunzip } from 'zlib';
+import { createGunzip, createGzip } from 'zlib';
 import { tryRequire } from '../tryRequire';
 
 export interface EntryHeader {
@@ -54,12 +54,12 @@ export interface CreateOptions {
  * Throws if `tar-fs` is not found.
  */
 export function createTarTask(opts: CreateOptions = { file: 'archive.tar.gz' }): TaskFunction {
-  const tar = getTarFs();
-  const options = getOptionsWithDefaults(opts);
-
-  const { file, cwd, gzip, ...restOptions } = options;
-
   return function archive(done) {
+    const tar = getTarFs();
+    const options = getOptionsWithDefaults(opts);
+
+    const { file, cwd, gzip, ...restOptions } = options;
+
     // Use the pipeline helper for proper error handling
     pipeline(
       [
@@ -108,12 +108,12 @@ export interface ExtractOptions {
  * Throws if `tar-fs` is not found.
  */
 export function extractTarTask(opts: ExtractOptions = { file: 'archive.tar.gz' }): TaskFunction {
-  const tar = getTarFs();
-  const options = getOptionsWithDefaults(opts);
-
-  const { cwd, file, gzip, ...restOptions } = options;
-
   return function extract(done) {
+    const tar = getTarFs();
+    const options = getOptionsWithDefaults(opts);
+
+    const { cwd, file, gzip, ...restOptions } = options;
+
     pipeline([createReadStream(file), ...(gzip ? [createGunzip()] : []), tar.extract(cwd, restOptions)], done);
   };
 }

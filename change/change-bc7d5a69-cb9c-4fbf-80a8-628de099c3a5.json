@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "`nodeExecTask`: run tasks with `execa` instead of `cross-spawn`. This should have very similar behavior, but changes the `spawnOptions` type slightly.",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

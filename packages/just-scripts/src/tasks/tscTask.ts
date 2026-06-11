@@ -1,9 +1,8 @@
-import type ts from 'typescript';
-import type { TaskFunction } from 'just-task';
-import { logger, resolveCwd } from 'just-task';
-import { logNodeCommand, spawn } from '../utils';
 import fs from 'fs';
-import { resolveWrapper } from '../tryRequire';
+import { logger, resolveCwd, type TaskFunction } from 'just-task';
+import type ts from 'typescript';
+import { resolveBin } from '../tryRequire';
+import { execNode } from '../utils/exec';
 
 export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | boolean | string[] } & {
   nodeArgs?: string[];
@@ -15,25 +14,23 @@ export type TscTaskOptions = { [key in keyof ts.CompilerOptions]?: string | bool
  * Throws if the `tsc` CLI (`typescript/lib/tsc.js`) is not found.
  */
 export function tscTask(options: TscTaskOptions = {}): TaskFunction {
-  const tscPath = 'typescript/lib/tsc.js';
-  const tscCmd = resolveWrapper(tscPath);
+  return async function tsc() {
+    const tscCmd = resolveBin('typescript', 'tsc');
+    if (!tscCmd) {
+      throw new Error(`Cannot find typescript CLI`);
+    }
 
-  if (!tscCmd) {
-    throw new Error(`Cannot find typescript CLI (${tscPath})`);
-  }
-
-  return function tsc() {
     // Read from options argument, if not there try the tsConfigFile found in root, if not then skip and use no config
     options = { ...options, ...getProjectOrBuildOptions(options) };
 
     if (isValidProject(options)) {
-      logger.info(`Running ${tscCmd} with ${options.project || options.build}`);
+      logger.info(`Running tsc with ${options.project || options.build}`);
 
-      const args = argsFromOptions(tscCmd, options);
-      logNodeCommand(args);
-      return spawn(process.execPath, args, { stdio: 'inherit' });
+      await execNode(tscCmd, argsFromOptions(options), {
+        // avoid overriding nodeOptions unless set
+        ...(options.nodeArgs && { nodeOptions: options.nodeArgs }),
+      });
     }
-    return Promise.resolve();
   };
 }
 
@@ -76,10 +73,10 @@ function isValidProject(options: TscTaskOptions) {
 /**
  * Returns an array of CLI arguments for TSC given the `options`.
  */
-function argsFromOptions(tscCmd: string, options: TscTaskOptions): string[] {
+function argsFromOptions(options: TscTaskOptions): string[] {
   const { nodeArgs, build, ...rest } = options;
 
-  const args = [...(nodeArgs || []), tscCmd];
+  const args: string[] = [];
   // --build must be the first arg if specified
   const argEntries = [...(build !== undefined ? [['build', build]] : []), ...Object.entries(rest)];
 

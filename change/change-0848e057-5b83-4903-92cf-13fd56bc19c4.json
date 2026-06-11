@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "minor",
+      "comment": "For all tasks which run CLIs from dependencies (`tsc`, `prettier`, etc), make the binary resolution more resilient across package versions and run the binaries with `execa`",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

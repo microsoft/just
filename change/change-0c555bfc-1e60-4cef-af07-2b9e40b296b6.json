@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "minor",
+      "comment": "`esbuildTask`, `prettierTask`, `tarTask`, `tscTask`, `webpackCliTask`: resolve dependencies and configs within task function instead of when the task creation function is called. This improves perf in the most common case when a particular task is not used, so the resolved dep/config is never needed.",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

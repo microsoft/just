@@ -1,20 +1,14 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
-import { spawn } from '../../utils';
+import { execNode } from '../../utils/exec';
 import { prettierTask, prettierCheckTask } from '../prettierTask';
 import { callTaskForTest } from './callTaskForTest';
-import { getNormalizedSpawnArgs, getAllNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
+import { getNormalizedExecArgs, getAllNormalizedExecArgs } from './getNormalizedExecArgs';
 
-jest.mock('../../utils/exec', () => {
-  const originalModule = jest.requireActual<typeof import('../../utils/exec')>('../../utils/exec');
-  return {
-    ...originalModule,
-    spawn: jest.fn(() => Promise.resolve()).mockName('spawn'),
-  };
-});
 jest.mock('just-task/lib/logger');
 
-const mockSpawn = spawn as jest.MockedFunction<typeof spawn>;
+jest.mock('../../utils/exec', () => ({ execNode: jest.fn(() => Promise.resolve()) }));
+const mockExec = execNode as jest.MockedFunction<typeof execNode>;
 
 const relativeRepoRoot = '../..';
 
@@ -22,7 +16,7 @@ function mockFsPrettierV2(relativePath?: string) {
   const root = relativePath || relativeRepoRoot;
   return {
     [`${root}/node_modules/prettier/bin-prettier.js`]: 'a file',
-    [`${root}/node_modules/prettier/package.json`]: '{"main":"index.js"}',
+    [`${root}/node_modules/prettier/package.json`]: '{"bin":"bin-prettier.js"}',
   };
 }
 
@@ -30,7 +24,7 @@ function mockFsPrettierV3(relativePath?: string) {
   const root = relativePath || relativeRepoRoot;
   return {
     [`${root}/node_modules/prettier/bin/prettier.cjs`]: 'a file',
-    [`${root}/node_modules/prettier/package.json`]: '{"main":"index.js"}',
+    [`${root}/node_modules/prettier/package.json`]: '{"bin":"bin/prettier.cjs"}',
   };
 }
 
@@ -45,29 +39,26 @@ describe('prettierTask (mocked)', () => {
       mockfs({});
       const task = prettierTask();
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockExec).not.toHaveBeenCalled();
     });
   });
 
   describe('prettier version resolution', () => {
-    it('uses prettier v2 bin path', async () => {
+    it('finds prettier v2 bin', async () => {
       mockfs({ ...mockFsPrettierV2() });
       const task = prettierTask({ files: ['src/file.ts'] });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        '${nodeExecPath}',
-        '${repoRoot}/node_modules/prettier/bin-prettier.js',
-        '--write',
-        'src/file.ts',
+      expect(getNormalizedExecArgs(mockExec)).toEqual([
+        ['${repoRoot}/node_modules/prettier/bin-prettier.js', '--write', 'src/file.ts'],
+        {},
       ]);
     });
 
-    it('falls back to prettier v3 bin path', async () => {
+    it('finds prettier v3 bin', async () => {
       mockfs({ ...mockFsPrettierV3() });
       const task = prettierTask({ files: ['src/file.ts'] });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        '${nodeExecPath}',
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         '${repoRoot}/node_modules/prettier/bin/prettier.cjs',
         '--write',
         'src/file.ts',
@@ -83,13 +74,13 @@ describe('prettierTask (mocked)', () => {
     it('passes --write by default', async () => {
       const task = prettierTask({ files: ['src/file.ts'] });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--write']));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(expect.arrayContaining(['--write']));
     });
 
     it('passes --check when check option is true', async () => {
       const task = prettierTask({ files: ['src/file.ts'], check: true });
       await callTaskForTest(task);
-      const args = getNormalizedSpawnArgs(mockSpawn);
+      const args = getNormalizedExecArgs(mockExec)[0];
       expect(args).toEqual(expect.arrayContaining(['--check']));
       expect(args).not.toEqual(expect.arrayContaining(['--write']));
     });
@@ -97,13 +88,13 @@ describe('prettierTask (mocked)', () => {
     it('passes --config', async () => {
       const task = prettierTask({ files: ['src/file.ts'], configPath: '.prettierrc' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--config', '.prettierrc']));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(expect.arrayContaining(['--config', '.prettierrc']));
     });
 
     it('passes --ignore-path', async () => {
       const task = prettierTask({ files: ['src/file.ts'], ignorePath: '.prettierignore' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['--ignore-path', '.prettierignore']));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(expect.arrayContaining(['--ignore-path', '.prettierignore']));
     });
   });
 
@@ -112,19 +103,19 @@ describe('prettierTask (mocked)', () => {
       mockfs({ ...mockFsPrettierV2() });
       const task = prettierCheckTask({ files: ['src/file.ts'] });
       await callTaskForTest(task);
-      const args = getNormalizedSpawnArgs(mockSpawn);
+      const args = getNormalizedExecArgs(mockExec)[0];
       expect(args).toEqual(expect.arrayContaining(['--check']));
       expect(args).not.toEqual(expect.arrayContaining(['--write']));
     });
   });
 
   describe('file chunking', () => {
-    it('splits files into chunks of 20 and spawns sequentially', async () => {
+    it('splits files into chunks of 20 and execs sequentially', async () => {
       mockfs({ ...mockFsPrettierV2() });
       const files = Array.from({ length: 25 }, (_, i) => `src/file${i}.ts`);
       const task = prettierTask({ files });
       await callTaskForTest(task);
-      const allCalls = getAllNormalizedSpawnArgs(mockSpawn);
+      const allCalls = getAllNormalizedExecArgs(mockExec);
       expect(allCalls).toHaveLength(2);
       // First chunk: 20 files
       expect(allCalls[0].filter(a => a.startsWith('src/file'))).toHaveLength(20);
@@ -141,13 +132,13 @@ describe('prettierTask (mocked)', () => {
     it('accepts a string as files option', async () => {
       const task = prettierTask({ files: 'src/single.ts' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['src/single.ts']));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(expect.arrayContaining(['src/single.ts']));
     });
 
     it('accepts an array as files option', async () => {
       const task = prettierTask({ files: ['a.ts', 'b.ts'] });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['a.ts', 'b.ts']));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(expect.arrayContaining(['a.ts', 'b.ts']));
     });
   });
 });

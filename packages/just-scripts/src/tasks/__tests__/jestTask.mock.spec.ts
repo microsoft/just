@@ -1,21 +1,15 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
-import { spawn } from '../../utils';
+import { execNode } from '../../utils/exec';
 import { jestTask, type JestTaskOptions } from '../jestTask';
 import { callTaskForTest } from './callTaskForTest';
-import { getNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
+import { getNormalizedExecArgs } from './getNormalizedExecArgs';
 
-jest.mock('../../utils/exec', () => {
-  const originalModule = jest.requireActual<typeof import('../../utils/exec')>('../../utils/exec');
-  return {
-    ...originalModule,
-    spawn: jest.fn(() => Promise.resolve()).mockName('spawn'),
-  };
-});
 jest.mock('just-task/lib/logger');
 jest.mock('supports-color', () => ({ stdout: true }));
 
-const mockSpawn = spawn as jest.MockedFunction<typeof spawn>;
+jest.mock('../../utils/exec', () => ({ execNode: jest.fn() }));
+const mockExec = execNode as jest.MockedFunction<typeof execNode>;
 
 const relativeRepoRoot = '../..';
 
@@ -23,12 +17,12 @@ function mockFsJest(relativePath?: string) {
   const root = relativePath || relativeRepoRoot;
   return {
     [`${root}/node_modules/jest/bin/jest.js`]: 'a file',
-    [`${root}/node_modules/jest/package.json`]: '{"main":"bin/jest.js"}',
+    [`${root}/node_modules/jest/package.json`]: '{"bin":{"jest":"bin/jest.js"}}',
   };
 }
 
 describe('jestTask (mocked)', () => {
-  const mockJestArgs = ['${nodeExecPath}', '${repoRoot}/node_modules/jest/bin/jest.js'];
+  const mockJestArgs = ['${repoRoot}/node_modules/jest/bin/jest.js'];
 
   beforeEach(() => {
     mockfs({
@@ -46,18 +40,16 @@ describe('jestTask (mocked)', () => {
     it('runs jest with default options', async () => {
       const task = jestTask();
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        ...mockJestArgs,
-        '--config',
-        '${packageRoot}/jest.config.js',
-        '--colors',
+      expect(getNormalizedExecArgs(mockExec)).toEqual([
+        [...mockJestArgs, '--config', '${packageRoot}/jest.config.js', '--colors'],
+        { env: undefined },
       ]);
     });
 
     it('runs jest with empty options', async () => {
       const task = jestTask({});
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         ...mockJestArgs,
         '--config',
         '${packageRoot}/jest.config.js',
@@ -74,7 +66,7 @@ describe('jestTask (mocked)', () => {
       });
       const task = jestTask();
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockExec).not.toHaveBeenCalled();
     });
 
     it('does nothing if jest is not resolved', async () => {
@@ -83,7 +75,7 @@ describe('jestTask (mocked)', () => {
       });
       const task = jestTask();
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockExec).not.toHaveBeenCalled();
     });
   });
 
@@ -96,7 +88,7 @@ describe('jestTask (mocked)', () => {
       const task = jestTask();
       await callTaskForTest(task);
       // When config comes from package.json, no --config arg is passed
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([...mockJestArgs, '--colors']);
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([...mockJestArgs, '--colors']);
     });
 
     it.each(['js', 'cjs', 'mjs', 'ts'])('finds jest.config.%s', async ext => {
@@ -107,7 +99,7 @@ describe('jestTask (mocked)', () => {
       });
       const task = jestTask();
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         ...mockJestArgs,
         '--config',
         `\${packageRoot}/${configFile}`,
@@ -122,7 +114,7 @@ describe('jestTask (mocked)', () => {
       });
       const task = jestTask({ config: 'custom/jest.config.js' });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual([
         ...mockJestArgs,
         '--config',
         'custom/jest.config.js',
@@ -164,7 +156,9 @@ describe('jestTask (mocked)', () => {
 
       const task = jestTask({ [opt]: value ?? true });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(value ? [flag, String(value)] : [flag]));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(
+        expect.arrayContaining(value ? [flag, String(value)] : [flag]),
+      );
     });
   });
 
@@ -172,24 +166,23 @@ describe('jestTask (mocked)', () => {
     it('includes custom positional args from options._', async () => {
       const task = jestTask({ _: ['path/to/test'] });
       await callTaskForTest(task);
-      expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(expect.arrayContaining(['path/to/test']));
+      expect(getNormalizedExecArgs(mockExec)[0]).toEqual(expect.arrayContaining(['path/to/test']));
     });
 
-    it('prepends nodeArgs before jest command', async () => {
+    it('passes nodeArgs as nodeOptions', async () => {
       const task = jestTask({ nodeArgs: ['--max-old-space-size=4096'] });
       await callTaskForTest(task);
-      // node <nodeArgs> path/to/jest <jestArgs>
-      const args = getNormalizedSpawnArgs(mockSpawn);
-      expect(args[1]).toBe('--max-old-space-size=4096');
-      expect(args[2]).toBe('${repoRoot}/node_modules/jest/bin/jest.js');
+      const [args, opts] = getNormalizedExecArgs(mockExec);
+      expect(args[0]).toBe('${repoRoot}/node_modules/jest/bin/jest.js');
+      expect(opts).toEqual({ nodeOptions: ['--max-old-space-size=4096'] });
     });
 
-    it('passes env to spawn', async () => {
+    it('passes env to execNode', async () => {
       const env = { NODE_ENV: 'test', CI: 'true' };
       const task = jestTask({ env });
       await callTaskForTest(task);
-      expect(mockSpawn).toHaveBeenCalledTimes(1);
-      expect(mockSpawn.mock.calls[0][2]?.env).toEqual(env);
+      expect(mockExec).toHaveBeenCalledTimes(1);
+      expect(mockExec.mock.calls[0][2]).toEqual({ env });
     });
   });
 });

@@ -25,9 +25,10 @@ afterEach(() => {
 });
 
 describe('createTarTask', () => {
-  it('throws if tar-fs is not installed', () => {
+  it('throws if tar-fs is not installed', async () => {
     mockTryRequire.mockReturnValueOnce(null);
-    expect(() => createTarTask({ file: 'out.tar' })).toThrow('Required dependency "tar-fs" is not installed');
+    const task = createTarTask({ file: 'out.tar' });
+    await expect(callTaskForTest(task)).rejects.toThrow('Required dependency "tar-fs" is not installed');
   });
 
   it('creates a gzipped tar archive that can be extracted with the same contents', async () => {
@@ -139,9 +140,10 @@ describe('extractTarTask', () => {
     ]);
   }
 
-  it('throws if tar-fs is not installed', () => {
+  it('throws if tar-fs is not installed', async () => {
     mockTryRequire.mockReturnValueOnce(null);
-    expect(() => extractTarTask({ file: 'in.tar' })).toThrow('Required dependency "tar-fs" is not installed');
+    const task = extractTarTask({ file: 'in.tar' });
+    await expect(callTaskForTest(task)).rejects.toThrow('Required dependency "tar-fs" is not installed');
   });
 
   it('extracts a gzipped tar archive, recreating nested directory structure', async () => {

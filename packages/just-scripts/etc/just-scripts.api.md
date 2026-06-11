@@ -8,9 +8,9 @@ import type { AcceptedPlugin } from 'postcss';
 import type * as ApiExtractorTypes from '@microsoft/api-extractor';
 import type { BuildOptions } from 'esbuild';
 import type { Configuration } from 'webpack';
+import execa from 'execa';
 import type ForkTsCheckerWebpackPluginType from 'fork-ts-checker-webpack-plugin';
 import type HtmlWebpackPlugin from 'html-webpack-plugin';
-import type { SpawnOptions } from 'child_process';
 import { TaskFunction } from 'just-task';
 import type ts from 'typescript';
 import * as webpackMerge from 'webpack-merge';
@@ -279,7 +279,7 @@ export interface NodeExecTaskOptions {
     args: string[];
     enableTypeScript?: boolean;
     env?: NodeJS.ProcessEnv;
-    spawnOptions?: SpawnOptions;
+    spawnOptions?: execa.Options;
     transpileOnly?: boolean;
     tsconfig?: string;
 }
@@ -400,9 +400,7 @@ export function webpackDevServerTask(options?: WebpackDevServerTaskOptions): Tas
 // @public (undocumented)
 export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Configuration {
     config?: string;
-    env?: {
-        [key: string]: string | undefined;
-    };
+    env?: NodeJS.ProcessEnv;
     mode?: 'production' | 'development';
     nodeArgs?: string[];
     open?: boolean;
@@ -431,7 +429,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction;
 export interface WebpackTaskOptions extends Configuration {
     // (undocumented)
     config?: string;
-    env?: NodeJS.ProcessEnv;
+    env?: Record<string, unknown>;
     onCompile?: (err: Error, stats: any) => void | Promise<void>;
     outputStats?: boolean | string;
     transpileOnly?: boolean;

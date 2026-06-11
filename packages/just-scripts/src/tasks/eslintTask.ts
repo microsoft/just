@@ -1,7 +1,7 @@
-import { logger, resolveCwd, type TaskFunction } from 'just-task';
-import { logNodeCommand, spawn } from '../utils';
 import fs from 'fs';
-import { resolveWrapper } from '../tryRequire';
+import { logger, resolveCwd, type TaskFunction } from 'just-task';
+import { resolveBin } from '../tryRequire';
+import { execNode } from '../utils/exec';
 
 /**
  * Task options generally follow ESLint CLI options explained here:
@@ -66,10 +66,9 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
       useFlatConfig,
     } = options;
 
-    const eslintPath = 'eslint/bin/eslint.js';
-    const eslintCmd = resolveWrapper(eslintPath);
-    if (!eslintCmd) {
-      logger.warn(`eslint CLI (${eslintPath}) not found, so this task has no effect.`);
+    const eslintBinPath = resolveBin('eslint');
+    if (!eslintBinPath) {
+      logger.warn(`eslint CLI not found, so this task has no effect.`);
       return;
     }
 
@@ -91,7 +90,6 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
     const eslintIgnorePath = ignorePath || resolveCwd('.eslintignore');
 
     const eslintArgs = [
-      eslintCmd,
       ...(files ? files : ['.']),
       ...['--ext', extensions ? extensions : '.js,.jsx,.ts,.tsx'],
       ...(noEslintRc ? ['--no-eslintrc'] : []),
@@ -109,18 +107,12 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
       '--color',
     ];
 
-    const env: NodeJS.ProcessEnv = { ...process.env };
-
-    if (timing) {
-      env.TIMING = '1';
-    }
-
-    if (useFlatConfig !== undefined) {
-      // https://eslint.org/blog/2024/04/eslint-v9.0.0-released/#flat-config-is-now-the-default-and-has-some-changes
-      env.ESLINT_USE_FLAT_CONFIG = JSON.stringify(useFlatConfig);
-    }
-
-    logNodeCommand(eslintArgs);
-    return spawn(process.execPath, eslintArgs, { stdio: 'inherit', env });
+    await execNode(eslintBinPath, eslintArgs, {
+      env: {
+        ...(timing && { TIMING: '1' }),
+        // https://eslint.org/blog/2024/04/eslint-v9.0.0-released/#flat-config-is-now-the-default-and-has-some-changes
+        ...(useFlatConfig !== undefined && { ESLINT_USE_FLAT_CONFIG: JSON.stringify(useFlatConfig) }),
+      },
+    });
   };
 }
