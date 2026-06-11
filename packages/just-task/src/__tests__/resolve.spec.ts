@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { describe, expect, it, jest, afterEach, beforeEach } from '@jest/globals';
 import path from 'path';
 import {
@@ -25,8 +24,8 @@ beforeEach(() => {
 describe('_isFileNameLike', () => {
   it('returns false for empty input', () => {
     expect(_isFileNameLike('')).toBe(false);
-    expect(_isFileNameLike(undefined as any)).toBe(false);
-    expect(_isFileNameLike(null as any)).toBe(false);
+    expect(_isFileNameLike(undefined as unknown as string)).toBe(false);
+    expect(_isFileNameLike(null as unknown as string)).toBe(false);
   });
 
   it('returns true for filenames', () => {
@@ -54,7 +53,7 @@ describe('_tryResolve', () => {
 
   it('does not throw', () => {
     expect(_tryResolve('foo', { cwd: 'bar' })).toBeNull();
-    expect(_tryResolve(undefined as any, undefined as any)).toBeNull();
+    expect(_tryResolve(undefined as unknown as string, undefined as unknown as object)).toBeNull();
   });
 
   it('does not recurse into child dirs', () => {
@@ -222,7 +221,7 @@ describe.each(['just.config.js', 'just.config.cjs', 'just.config.ts', 'just.conf
         },
         [configPath]: 'localConfig',
       });
-      const resolvedConfig = config.resolveConfigFile({ config: undefined, defaultConfig: undefined } as any);
+      const resolvedConfig = config.resolveConfigFile({ _: [] });
       expect(resolvedConfig).toContain(configPath);
     });
 
@@ -237,7 +236,8 @@ describe.each(['just.config.js', 'just.config.cjs', 'just.config.ts', 'just.conf
       const resolvedConfig = config.resolveConfigFile({
         config: './config/configArgument.ts',
         defaultConfig: './config/defaultConfigArgument.ts',
-      } as any);
+        _: [],
+      });
       expect(resolvedConfig).toContain('configArgument.ts');
     });
 
@@ -252,7 +252,8 @@ describe.each(['just.config.js', 'just.config.cjs', 'just.config.ts', 'just.conf
       const resolvedConfig = config.resolveConfigFile({
         config: undefined,
         defaultConfig: './config/defaultConfigArgument.ts',
-      } as any);
+        _: [],
+      });
       expect(resolvedConfig).toContain(configPath);
     });
 
@@ -266,7 +267,8 @@ describe.each(['just.config.js', 'just.config.cjs', 'just.config.ts', 'just.conf
       const resolvedConfig = config.resolveConfigFile({
         config: undefined,
         defaultConfig: './config/defaultConfigArgument.ts',
-      } as any);
+        _: [],
+      });
       expect(resolvedConfig).toContain('defaultConfigArgument.ts');
     });
   },

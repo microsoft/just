@@ -27,7 +27,9 @@ export function resolveConfigFile(args: yargsParser.Arguments): string | null {
   return null;
 }
 
-export function readConfig(): { [key: string]: TaskFunction } | void {
+type ConfigExports = Record<string, TaskFunction>;
+
+export function readConfig(): ConfigExports | void {
   // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
   const args = argv();
   const configFile = resolveConfigFile(args);
@@ -40,19 +42,23 @@ export function readConfig(): { [key: string]: TaskFunction } | void {
     }
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const configModule = require(configFile);
+      let configModule = require(configFile) as ConfigExports | (() => ConfigExports) | undefined;
+      // If the module only has a default export, use that as the config. (A config file can also
+      // export named task functions, and theoretically a task could be called "default", so
+      // ignore the default export if there are other exports alongside it.)
+      if (typeof configModule === 'object' && configModule.default && Object.keys(configModule).length === 1) {
+        configModule = configModule.default as unknown as ConfigExports | (() => ConfigExports);
+      }
 
       mark('registry:configModule');
 
       if (typeof configModule === 'function') {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         configModule();
+        configModule = undefined;
       }
 
       logger.perf('registry:configModule');
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return configModule;
     } catch (e) {
       logger.error(`Invalid configuration file: ${configFile}`);

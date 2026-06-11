@@ -61,7 +61,7 @@ undertaker.on('stop', function (args: UndertakerEndEventArgs) {
   }
 });
 
-undertaker.on('error', function (args: UndertakerEndEventArgs & { error: any }) {
+undertaker.on('error', function (args: UndertakerEndEventArgs & { error: unknown }) {
   delete tasksInProgress[args.name];
 
   if (!errorReported) {
@@ -69,25 +69,21 @@ undertaker.on('error', function (args: UndertakerEndEventArgs & { error: any }) 
     logger.error(chalk.red(`Error detected while running '${colorizeTaskName(args.name)}'`));
     logger.error(chalk.yellow('------------------------------------'));
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const stackOrMessage = (args.error as Error).stack || (args.error as Error).message || args.error;
-
+    const error = args.error as Partial<Error> & { stdout?: string; stderr?: string };
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string
+    const stackOrMessage = error.stack || error.message || String(error || '');
     if (stackOrMessage) {
       logger.error(chalk.yellow(stackOrMessage));
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    if (args.error.stdout) {
+    if (error.stdout) {
       logger.error(chalk.yellow('stdout:'));
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      logger.error(args.error.stdout);
+      logger.error(String(error.stdout));
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    if (args.error.stderr) {
+    if (error.stderr) {
       logger.error(chalk.yellow('stderr:'));
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      logger.error(args.error.stderr);
+      logger.error(String(error.stderr));
     }
 
     logger.error(chalk.yellow('------------------------------------'));

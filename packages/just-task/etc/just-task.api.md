@@ -58,9 +58,9 @@ interface OptionConfig {
     alias?: string | string[];
     array?: boolean;
     boolean?: boolean;
-    coerce?: (arg: any) => any;
+    coerce?: (arg: unknown) => unknown;
     count?: boolean;
-    default?: any;
+    default?: unknown;
     describe?: string;
     narg?: number;
     normalize?: boolean;

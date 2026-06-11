@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "Clean up task options: Remove `WebpackTaskOptions.env` which hasn't been used for a long time, and specify type of `onCompile` `stats`. Also specify real types for `ApiExtractorOptions.onResult`.",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "type": "patch",
+      "comment": "Support default exports from the just config file",
+      "packageName": "just-task",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

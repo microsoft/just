@@ -16,10 +16,11 @@ export interface ApiExtractorOptions extends ApiExtractorTypes.IExtractorInvokeO
 
   /**
    * Callback after api-extractor is invoked.
-   * @param result - Result of invoking api-extractor. Actual type is `ExtractorResult` from `@microsoft/api-extractor`.
-   * @param extractorOptions - Options with which api-extractor was invoked. Actual type is `IExtractorInvokeOptions`.
    */
-  onResult?: (result: any, extractorOptions: any) => void;
+  onResult?: (
+    result: ApiExtractorTypes.ExtractorResult,
+    extractorOptions: ApiExtractorTypes.IExtractorInvokeOptions,
+  ) => void;
 
   /**
    * Callback after the config file is loaded.
