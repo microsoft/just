@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "`nodeExecTask`: run tasks with `nano-spawn` instead of `cross-spawn`. Behavior is similar, but it changes the `spawnOptions` type slightly, and the `env` option is always merged with the current `process.env`.",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

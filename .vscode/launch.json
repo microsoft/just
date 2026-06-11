@@ -13,7 +13,7 @@
       "stopOnEntry": false,
       "args": ["--watchAll"],
       "runtimeExecutable": null,
-      "runtimeArgs": ["--nolazy", "--inspect"],
+      "runtimeArgs": ["--nolazy", "--inspect", "--experimental-vm-modules"],
       "env": {
         "NODE_ENV": "development"
       },
@@ -30,7 +30,7 @@
       "stopOnEntry": false,
       "args": ["${fileBasenameNoExtension}"],
       "runtimeExecutable": null,
-      "runtimeArgs": ["--nolazy", "--inspect"],
+      "runtimeArgs": ["--nolazy", "--inspect", "--experimental-vm-modules"],
       "env": {
         "NODE_ENV": "development"
       },

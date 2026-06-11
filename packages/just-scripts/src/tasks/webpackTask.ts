@@ -1,4 +1,4 @@
-// // WARNING: Careful about add more imports - only import types from webpack
+// WARNING: Careful about adding more imports - only import types from webpack
 import type { Configuration, WebpackOptionsNormalized } from 'webpack';
 import { logger, argv, type TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
@@ -15,9 +15,9 @@ export interface WebpackTaskOptions extends Configuration {
   outputStats?: boolean | string;
 
   /**
-   * Environment variables to be passed to the webpack-dev-server
+   * Environment variables to be passed to webpack
    */
-  env?: NodeJS.ProcessEnv;
+  env?: Record<string, unknown>;
 
   /**
    * Transpile the config only
@@ -38,7 +38,7 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
     const wp = tryRequire<typeof import('webpack')>('webpack');
 
     if (!wp) {
-      logger.warn('webpack is not installed, this task no effect');
+      logger.warn('webpack is not installed, this task has no effect');
       return;
     }
 

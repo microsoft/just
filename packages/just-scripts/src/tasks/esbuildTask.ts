@@ -1,6 +1,6 @@
 import type { BuildOptions } from 'esbuild';
 import type { TaskFunction } from 'just-task';
-import { resolveWrapper } from '../tryRequire';
+import { tryRequire } from '../tryRequire';
 
 export type EsbuildBuildOptions = BuildOptions;
 
@@ -10,15 +10,13 @@ export type EsbuildBuildOptions = BuildOptions;
  * Throws if `esbuild` is not found.
  */
 export function esbuildTask(options: EsbuildBuildOptions = {}): TaskFunction {
-  // Resolve first from cwd, then through resolution paths
-  const esbuildModuleResolution = resolveWrapper('esbuild');
-
-  if (!esbuildModuleResolution) {
-    throw new Error('Cannot find esbuild, please add it to your devDependencies');
-  }
-
   return async function esbuild() {
-    const esbuildModule = require(esbuildModuleResolution) as typeof import('esbuild');
+    // Resolve first from cwd, then through resolution paths
+    const esbuildModule = tryRequire<typeof import('esbuild')>('esbuild');
+    if (!esbuildModule) {
+      throw new Error('Cannot find esbuild, please add it to your devDependencies');
+    }
+
     return esbuildModule.build(options);
   };
 }

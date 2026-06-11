@@ -1,58 +1,54 @@
-import { describe, expect, it, jest, afterEach } from '@jest/globals';
-import cp from 'child_process';
+import { describe, expect, it, jest } from '@jest/globals';
 import path from 'path';
-import { spawn } from '../exec';
+import { spawnNode } from '../exec';
 import { getMockScript } from '../../__tests__/getMockScript';
-import { MockOutputStream } from '../../__tests__/MockOutputStream';
-import { fail } from 'assert';
+import type { SubprocessError } from 'nano-spawn';
 
-describe('spawn', () => {
-  const spawnSpy = jest.spyOn(cp, 'spawn');
+jest.mock('just-task/lib/logger');
 
-  afterEach(() => {
-    spawnSpy.mockClear();
-  });
-
+describe('spawnNode', () => {
   it('handles success case', async () => {
-    const stdout = new MockOutputStream();
-    await spawn(process.execPath, [getMockScript('mock-success.js')], { stdout });
-    expect(stdout.getOutput()).toContain('hello\n');
+    const result = await spawnNode(getMockScript('mock-success.js'), [], { stdio: 'pipe' });
+    expect(result.stdout).toContain('hello');
   });
 
-  it('rejects promise if command does not exist', async () => {
-    try {
-      await spawn(path.join(__dirname, 'nope'));
-      fail('should have rejected');
-    } catch (err) {
-      expect((err as { code: string }).code).toBe('ENOENT');
-    }
+  it('passes args to the script', async () => {
+    const result = await spawnNode(getMockScript('mock-success.js'), ['arg1', 'arg2'], { stdio: 'pipe' });
+    expect(result.stdout).toContain('hello arg1 arg2');
   });
 
-  it('handles non-zero exit code', async () => {
-    const stderr = new MockOutputStream();
-    try {
-      await spawn(process.execPath, [getMockScript('mock-fail.js')], { stderr });
-      fail('should have rejected');
-    } catch (error) {
-      expect((error as Error).message).toContain('Command failed');
-      expect((error as { code: number }).code).toBe(1);
-      // in the debugger there are some extra stderr chunks
-      expect(stderr.getOutput()).toContain('oh no\n');
-    }
+  it('passes nodeArgs to the command', async () => {
+    const mockScript = getMockScript('mock-success.js');
+    const result = await spawnNode(mockScript, ['arg1', 'arg2'], {
+      stdio: 'pipe',
+      nodeArgs: ['--version'],
+    });
+    expect(result.command).toEqual(`${process.execPath} --version ${mockScript} arg1 arg2`);
+    // If nodeArgs are passed correctly, the script prints the version instead of "hello arg1 arg2"
+    expect(result.stdout).toMatch(/^v\d+\.\d+\.\d+/);
   });
 
-  // TODO: in newer node, also test with spawn's signal option
-  it('handles signal', async () => {
-    const promise = spawn(process.execPath, [getMockScript('mock-forever.js')]);
-    const child = spawnSpy.mock.results[0].value as cp.ChildProcess;
-    expect(child).toBeTruthy();
-    try {
-      child.kill('SIGTERM');
-      await promise;
-      fail('should have rejected');
-    } catch (err) {
-      expect((err as Error).message).toContain('Command terminated by signal SIGTERM');
-      expect((err as { signal: string }).signal).toBe('SIGTERM');
-    }
+  it('rejects if the script exits non-zero', async () => {
+    const error = await spawnNode(getMockScript('mock-fail.js'), [], { stdio: 'pipe' }).catch(
+      err => err as SubprocessError,
+    );
+    expect(error).toBeInstanceOf(Error);
+    expect(error).toMatchObject({
+      exitCode: 1,
+      stderr: expect.stringContaining('oh no'),
+      message: expect.stringContaining('Command failed'),
+    });
+  });
+
+  it('rejects if the script does not exist', async () => {
+    const error = await spawnNode(path.join(__dirname, 'nope.js'), [], { stdio: 'pipe' }).catch(
+      err => err as SubprocessError,
+    );
+    expect(error).toBeInstanceOf(Error);
+    expect(error).toMatchObject({
+      exitCode: 1,
+      stderr: expect.stringContaining('Cannot find module'),
+      message: expect.stringContaining('Command failed'),
+    });
   });
 });

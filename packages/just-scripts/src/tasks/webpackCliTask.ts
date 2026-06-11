@@ -1,9 +1,8 @@
-import type { TaskFunction } from 'just-task';
-import { logger } from 'just-task';
-import { logNodeCommand, spawn } from '../utils';
+import { logger, type TaskFunction } from 'just-task';
+import { resolveBin } from '../tryRequire';
 import { getTsNodeEnv, isTsConfigFile } from '../typescript/getTsNodeEnv';
+import { spawnNode } from '../utils/exec';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
-import { resolveWrapper } from '../tryRequire';
 
 export interface WebpackCliTaskOptions {
   /**
@@ -18,7 +17,7 @@ export interface WebpackCliTaskOptions {
   nodeArgs?: string[];
 
   /**
-   * Environment variables to be passed to the webpack-cli
+   * Environment variables to be passed to the webpack-cli (merged with `process.env`).
    */
   env?: NodeJS.ProcessEnv;
 
@@ -38,20 +37,13 @@ export interface WebpackCliTaskOptions {
  * Throws if `webpack-cli` is not found.
  */
 export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunction {
-  const cliPath = 'webpack-cli/bin/cli.js';
-  const webpackCliCmd = resolveWrapper(cliPath);
-  if (!webpackCliCmd) {
-    throw new Error(`Cannot find webpack-cli (${cliPath})`);
-  }
+  return async function webpackCli() {
+    const webpackCliBin = resolveBin('webpack-cli');
+    if (!webpackCliBin) {
+      throw new Error(`Cannot find webpack-cli`);
+    }
 
-  return function webpackCli() {
     logger.info(`Running webpack-cli as a node process`);
-
-    const args = [
-      ...(options && options.nodeArgs ? options.nodeArgs : []),
-      webpackCliCmd,
-      ...(options && options.webpackCliArgs ? options.webpackCliArgs : []),
-    ];
 
     let configPath: string | null | undefined;
     if (options.webpackCliArgs) {
@@ -64,15 +56,14 @@ export function webpackCliTask(options: WebpackCliTaskOptions = {}): TaskFunctio
       configPath = findWebpackConfig();
     }
 
+    let env = options.env;
     if (isTsConfigFile(configPath ?? '')) {
-      options.env = {
-        ...options.env,
+      env = {
+        ...env,
         ...getTsNodeEnv(options.tsconfig, options.transpileOnly),
       };
     }
 
-    logNodeCommand(args);
-
-    return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
+    await spawnNode(webpackCliBin, options.webpackCliArgs || [], { env, nodeArgs: options.nodeArgs });
   };
 }

@@ -1,20 +1,14 @@
 import { describe, expect, it, jest, beforeEach, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
-import { spawn } from '../../utils';
+import { spawnNode } from '../../utils/exec';
 import { prettierTask, prettierCheckTask } from '../prettierTask';
 import { callTaskForTest } from './callTaskForTest';
 import { getNormalizedSpawnArgs, getAllNormalizedSpawnArgs } from './getNormalizedSpawnArgs';
 
-jest.mock('../../utils/exec', () => {
-  const originalModule = jest.requireActual<typeof import('../../utils/exec')>('../../utils/exec');
-  return {
-    ...originalModule,
-    spawn: jest.fn(() => Promise.resolve()).mockName('spawn'),
-  };
-});
 jest.mock('just-task/lib/logger');
 
-const mockSpawn = spawn as jest.MockedFunction<typeof spawn>;
+jest.mock('../../utils/exec', () => ({ spawnNode: jest.fn(() => Promise.resolve()) }));
+const mockSpawn = spawnNode as jest.MockedFunction<typeof spawnNode>;
 
 const relativeRepoRoot = '../..';
 
@@ -22,7 +16,7 @@ function mockFsPrettierV2(relativePath?: string) {
   const root = relativePath || relativeRepoRoot;
   return {
     [`${root}/node_modules/prettier/bin-prettier.js`]: 'a file',
-    [`${root}/node_modules/prettier/package.json`]: '{"main":"index.js"}',
+    [`${root}/node_modules/prettier/package.json`]: '{"bin":"bin-prettier.js"}',
   };
 }
 
@@ -30,7 +24,7 @@ function mockFsPrettierV3(relativePath?: string) {
   const root = relativePath || relativeRepoRoot;
   return {
     [`${root}/node_modules/prettier/bin/prettier.cjs`]: 'a file',
-    [`${root}/node_modules/prettier/package.json`]: '{"main":"index.js"}',
+    [`${root}/node_modules/prettier/package.json`]: '{"bin":"bin/prettier.cjs"}',
   };
 }
 
@@ -45,29 +39,27 @@ describe('prettierTask (mocked)', () => {
       mockfs({});
       const task = prettierTask();
       await callTaskForTest(task);
-      expect(spawn).not.toHaveBeenCalled();
+      expect(mockSpawn).not.toHaveBeenCalled();
     });
   });
 
   describe('prettier version resolution', () => {
-    it('uses prettier v2 bin path', async () => {
+    it('finds prettier v2 bin', async () => {
       mockfs({ ...mockFsPrettierV2() });
       const task = prettierTask({ files: ['src/file.ts'] });
       await callTaskForTest(task);
       expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        '${nodeExecPath}',
         '${repoRoot}/node_modules/prettier/bin-prettier.js',
         '--write',
         'src/file.ts',
       ]);
     });
 
-    it('falls back to prettier v3 bin path', async () => {
+    it('finds prettier v3 bin', async () => {
       mockfs({ ...mockFsPrettierV3() });
       const task = prettierTask({ files: ['src/file.ts'] });
       await callTaskForTest(task);
       expect(getNormalizedSpawnArgs(mockSpawn)).toEqual([
-        '${nodeExecPath}',
         '${repoRoot}/node_modules/prettier/bin/prettier.cjs',
         '--write',
         'src/file.ts',

@@ -425,6 +425,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@epic-web/invariant@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@epic-web/invariant@npm:1.0.0"
+  checksum: 10c0/72dbeb026e4e4eb3bc9c65739b91408ca77ab7d603a2494fa2eff3790ec22892c4caba751cffdf30f5ccf0e7ba79c1e9c96cf0a357404b9432bf1365baac23ca
+  languageName: node
+  linkType: hard
+
 "@esbuild/aix-ppc64@npm:0.28.0":
   version: 0.28.0
   resolution: "@esbuild/aix-ppc64@npm:0.28.0"
@@ -1390,7 +1397,6 @@ __metadata:
     "@eslint/js": "npm:^10.0.0"
     "@jest/globals": "catalog:dev"
     "@microsoft/api-extractor": "catalog:dev"
-    "@types/cross-spawn": "npm:^6.0.6"
     "@types/fs-extra": "npm:^11.0.0"
     "@types/mock-fs": "npm:^4.13.1"
     "@types/node": "npm:^22.0.0"
@@ -2012,15 +2018,6 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10c0/2e1cdba2c410f25649e77856505cd60223250fa12dff7a503e492208dbfdd25f62859918f28aba95315251fd1f5e1ffbfca1e25e73037189ab85dd3f8d0a148c
-  languageName: node
-  linkType: hard
-
-"@types/cross-spawn@npm:^6.0.6":
-  version: 6.0.6
-  resolution: "@types/cross-spawn@npm:6.0.6"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: 10c0/e3d476bb6b3a54a8934a97fe6ee4bd13e2e5eb29073929a4be76a52466602ffaea420b20774ffe8503f9fa24f3ae34817e95e7f625689fb0d1c10404f5b2889c
   languageName: node
   linkType: hard
 
@@ -3924,6 +3921,19 @@ __metadata:
   version: 1.1.1
   resolution: "create-require@npm:1.1.1"
   checksum: 10c0/157cbc59b2430ae9a90034a5f3a1b398b6738bf510f713edc4d4e45e169bc514d3d99dd34d8d01ca7ae7830b5b8b537e46ae8f3c8f932371b0875c0151d7ec91
+  languageName: node
+  linkType: hard
+
+"cross-env@npm:^10.1.0":
+  version: 10.1.0
+  resolution: "cross-env@npm:10.1.0"
+  dependencies:
+    "@epic-web/invariant": "npm:^1.0.0"
+    cross-spawn: "npm:^7.0.6"
+  bin:
+    cross-env: dist/bin/cross-env.js
+    cross-env-shell: dist/bin/cross-env-shell.js
+  checksum: 10c0/834a862db456ba1fedf6c6da43436b123ae38f514fa286d6f0937c14fa83f13469f77f70f2812db041ae2d84f82bac627040b8686030aca27fbdf113dfa38b63
   languageName: node
   linkType: hard
 
@@ -6478,7 +6488,7 @@ __metadata:
     async-done: "npm:^2.0.0"
     autoprefixer: "catalog:dev"
     chalk: "catalog:prod"
-    cross-spawn: "catalog:prod"
+    cross-env: "catalog:dev"
     esbuild: "catalog:dev"
     eslint: "catalog:dev"
     fork-ts-checker-webpack-plugin: "catalog:dev"
@@ -6488,6 +6498,7 @@ __metadata:
     jest: "catalog:dev"
     just-task: "workspace:^"
     mock-fs: "catalog:dev"
+    nano-spawn: "catalog:prod"
     postcss: "catalog:dev"
     run-parallel-limit: "npm:^1.0.6"
     sass: "catalog:dev"
@@ -6597,11 +6608,12 @@ __metadata:
     "@types/yargs-parser": "npm:^21.0.3"
     chalk: "catalog:prod"
     chokidar: "npm:^3.5.2"
-    cross-spawn: "catalog:prod"
+    cross-env: "catalog:dev"
     eslint: "catalog:dev"
     fs-extra: "catalog:prod"
     jest: "catalog:dev"
     mock-fs: "catalog:dev"
+    nano-spawn: "catalog:prod"
     resolve: "npm:^1.19.0"
     ts-node: "catalog:dev"
     typescript: "catalog:dev"
@@ -7085,6 +7097,13 @@ __metadata:
   bin:
     multicast-dns: cli.js
   checksum: 10c0/5120171d4bdb1577764c5afa96e413353bff530d1b37081cb29cccc747f989eb1baf40574fe8e27060fc1aef72b59c042f72b9b208413de33bcf411343c69057
+  languageName: node
+  linkType: hard
+
+"nano-spawn@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "nano-spawn@npm:2.1.0"
+  checksum: 10c0/3becc67ed9ab630b6572feab69a4ef468891ad1f89d5c8643f14a2044cf32ba64533033506208039b1e3d9ddcb2f5f4f87ec360f13b3c4f0774304aedf0f0290
   languageName: node
   linkType: hard
 

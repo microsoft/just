@@ -34,9 +34,11 @@ yarn change               # Create Beachball change file (required before PR)
 
 ### Running a single package's tests
 
+DO NOT run `jest` directly. You MUST run `yarn test` (which wraps jest and takes all the same args) from the specific package to ensure the correct environment is set up.
+
 ```bash
-cd packages/just-task && yarn jest              # Run just-task tests
-cd packages/just-task && yarn jest --testPathPattern=cache  # Run specific test file
+cd packages/just-task && yarn test              # Run just-task tests
+cd packages/just-task && yarn test --testPathPattern=cache  # Run specific test file
 ```
 
 ### Required before each commit
@@ -49,7 +51,7 @@ cd packages/just-task && yarn jest --testPathPattern=cache  # Run specific test 
 
 ### Required before creating a PR
 
-- Use `/beachball-change-files` to generate a Beachball change file.
+- Use `/beachball-change-file` to generate a Beachball change file.
 - If you're working on an assigned GitHub issue, include `Fixes #N` in the PR description to link the issue.
 
 ## Architecture

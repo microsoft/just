@@ -1,8 +1,9 @@
-import { logger, resolveCwd, argv, type TaskFunction } from 'just-task';
-import { spawn, readPackageJson, logNodeCommand } from '../utils';
 import { existsSync } from 'fs';
+import { argv, logger, resolveCwd, type TaskFunction } from 'just-task';
 import supportsColor from 'supports-color';
-import { resolveWrapper } from '../tryRequire';
+import { resolveBin } from '../tryRequire';
+import { spawnNode } from '../utils/exec';
+import { readPackageJson } from '../utils/readPackageJson';
 
 export interface JestTaskOptions {
   config?: string;
@@ -35,7 +36,7 @@ export interface JestTaskOptions {
   nodeArgs?: string[];
 
   /**
-   * Environment variables to be passed to the jest runner
+   * Environment variables to be passed to the jest runner (merged with `process.env`).
    */
   env?: NodeJS.ProcessEnv;
 }
@@ -44,14 +45,13 @@ export interface JestTaskOptions {
  * Create a task to run jest. Logs a warning if `jest` or a config file isn't found.
  */
 export function jestTask(options: JestTaskOptions = {}): TaskFunction {
-  const jestConfigFile = resolveCwd('./jest.config', { extensions: ['.js', '.cjs', '.mjs', '.ts', '.mts', '.cts'] });
-
   // undertaker apparently requires returning a promise, async function, or function that calls done()
   return async function jest() {
-    const jestPath = 'jest/bin/jest.js';
-    const jestCmd = resolveWrapper(jestPath);
-    if (!jestCmd) {
-      logger.warn(`jest CLI (${jestPath}) not found, so this task has no effect.`);
+    const jestConfigFile = resolveCwd('./jest.config', { extensions: ['.js', '.cjs', '.mjs', '.ts', '.mts', '.cts'] });
+
+    const jestBinPath = resolveBin('jest');
+    if (!jestBinPath) {
+      logger.warn(`jest CLI not found, so this task has no effect.`);
       return;
     }
 
@@ -79,8 +79,6 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
     const positional = argv()._.slice(1);
 
     const args = [
-      ...(options.nodeArgs || []),
-      jestCmd,
       ...(configFileExists ? ['--config', configFile] : []),
       ...(options.rootDir ? ['--rootDir', options.rootDir] : []),
       ...(options.passWithNoTests ? ['--passWithNoTests'] : []),
@@ -100,8 +98,6 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
       ...(options._ || positional).map(String),
     ].filter(arg => !!arg);
 
-    logNodeCommand(args);
-
-    return spawn(process.execPath, args, { stdio: 'inherit', env: options.env });
+    await spawnNode(jestBinPath, args, { env: options.env, nodeArgs: options.nodeArgs });
   };
 }

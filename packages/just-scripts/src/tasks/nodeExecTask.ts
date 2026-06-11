@@ -1,12 +1,11 @@
-import type { SpawnOptions } from 'child_process';
-import { spawn } from '../utils';
 import { logger, type TaskFunction } from 'just-task';
-import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
+import type { Options as SpawnOptions } from 'nano-spawn';
 import { resolveWrapper } from '../tryRequire';
+import { getTsNodeEnv } from '../typescript/getTsNodeEnv';
 
 export interface NodeExecTaskOptions {
   /**
-   * Arguments to be passed into a spawn call, including the script path to execute.
+   * Arguments to be passed into a `nano-spawn` call, including the script path to execute.
    * The script path should be **absolute** to prevent unpredictable resolution.
    *
    * **WARNING: If `options.shell` is enabled, do not pass unsanitized user input as `args`.
@@ -15,8 +14,7 @@ export interface NodeExecTaskOptions {
   args: string[];
 
   /**
-   * Environment variables to be passed to the spawned process.
-   * Defaults to `process.env`.
+   * Environment variables to be passed to the spawned process (merged with `process.env`).
    */
   env?: NodeJS.ProcessEnv;
 
@@ -36,7 +34,7 @@ export interface NodeExecTaskOptions {
   transpileOnly?: boolean;
 
   /**
-   * Custom spawn options.
+   * Custom options to pass to `nano-spawn`.
    *
    * **WARNING: If the `shell` option is enabled, do not pass unsanitized user input as `args`.
    * Any input containing shell metacharacters may be used to trigger arbitrary command execution.**
@@ -46,31 +44,31 @@ export interface NodeExecTaskOptions {
 
 /**
  * Create a task to execute a command in a new process.
- * Uses `cross-spawn` to avoid issues with spaces in arguments, but does not do any additional escaping.
+ * Uses `nano-spawn` for better handling of quoting/escaping and cross-platform consistency.
  *
  * **WARNING: If the `shell` option is enabled, do not pass unsanitized user input to this task.
  * Any input containing shell metacharacters may be used to trigger arbitrary command execution.**
  */
 export function nodeExecTask(options: NodeExecTaskOptions): TaskFunction {
-  return function () {
+  return async function () {
     const { spawnOptions, enableTypeScript, tsconfig, transpileOnly } = options;
 
-    const tsNodeRegister = resolveWrapper('ts-node/register');
+    const tsNodeRegister = enableTypeScript && resolveWrapper('ts-node/register');
     const nodeExecPath = process.execPath;
 
     const args = [...(options.args || [])];
     //  Preserve the default behavior of inheriting process.env if no options are specified
     let env = options.env ? { ...options.env } : { ...process.env };
-    const isTS = enableTypeScript && tsNodeRegister;
 
-    if (isTS) {
+    if (tsNodeRegister) {
       args.unshift('-r', tsNodeRegister);
 
       env = { ...env, ...getTsNodeEnv(tsconfig, transpileOnly) };
     }
 
-    logger.info([`Executing${isTS ? ' [TS]' : ''}:`, nodeExecPath, ...args].join(' '));
+    logger.info([`Executing${tsNodeRegister ? ' [TS]' : ''}:`, nodeExecPath, ...args].join(' '));
 
-    return spawn(nodeExecPath, args, { stdio: 'inherit', env, ...spawnOptions });
+    const nanoSpawn = (await import('nano-spawn')).default;
+    await nanoSpawn(nodeExecPath, args, { stdio: 'inherit', env, ...spawnOptions });
   };
 }
