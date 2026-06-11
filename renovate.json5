@@ -6,40 +6,11 @@
     "github>microsoft/m365-renovate-config:groupMore",
     "github>microsoft/m365-renovate-config:groupTypes",
     "github>microsoft/m365-renovate-config:keepFresh"
-    // TODO (release): re-enable and remove special rules
-    // "github>microsoft/m365-renovate-config:restrictNode(22)"
+    "github>microsoft/m365-renovate-config:restrictNode(22)"
   ],
 
   "labels": ["renovate"],
   "reviewers": ["ecraig12345"],
 
-  "baseBranchPatterns": ["main", "v2"],
-
-  "packageRules": [
-    // new version prints a protest message
-    { "matchPackageNames": ["es5-ext"], "enabled": false },
-
-    {
-      // disabled for v2 due to > pinned version requiring newer node
-      "matchBaseBranches": ["v2"],
-      "matchPackageNames": ["@microsoft/api-extractor", "lage"],
-      "enabled": false
-    },
-
-    // Temporary replacement for restrictNode
-    {
-      "matchBaseBranches": ["v2"],
-      "matchPackageNames": ["@types/node", "node", "nodejs/node", "node-version"],
-      "allowedVersions": "14"
-    },
-    {
-      "matchBaseBranches": ["main"],
-      "matchPackageNames": ["@types/node", "node", "nodejs/node", "node-version"],
-      "allowedVersions": "22"
-    },
-    {
-      "matchManagers": ["npm"],
-      "constraintsFiltering": "strict"
-    }
-  ]
+  "packageRules": []
 }
