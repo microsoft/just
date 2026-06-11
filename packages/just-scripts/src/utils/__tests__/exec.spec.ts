@@ -23,7 +23,12 @@ describe('spawnNode', () => {
       stdio: 'pipe',
       nodeArgs: ['--version'],
     });
-    expect(result.command).toEqual(`${process.execPath} --version ${mockScript} arg1 arg2`);
+    if (process.platform === 'win32') {
+      // nano-spawn quotes things in .command on windows
+      expect(result.command).toEqual(`'${process.execPath}' --version '${mockScript}' arg1 arg2`);
+    } else {
+      expect(result.command).toEqual(`${process.execPath} --version ${mockScript} arg1 arg2`);
+    }
     // If nodeArgs are passed correctly, the script prints the version instead of "hello arg1 arg2"
     expect(result.stdout).toMatch(/^v\d+\.\d+\.\d+/);
   });
