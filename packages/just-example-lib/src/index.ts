@@ -10,7 +10,7 @@ export const sample = 5;
 const root = document.createElement('div');
 root.innerHTML = `
   <h1>Hello, world!</h1>
-  <button>button</button>
+  <button class="btn">button</button>
   <img src="${clippy}" alt="Clippy" />
 `;
 document.body.appendChild(root);

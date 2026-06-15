@@ -9,12 +9,18 @@ const sassModuleTest = /\.module\.(scss|sass)$/;
 const defaultIdentName = '[name]_[local]_[hash:base64:5]';
 
 export interface CssLoaderOptions {
+  /**
+   * If true, force enabling CSS modules (with `localIdentName` or the default) for all files.
+   * If false, force disabling CSS modules for all files.
+   * If undefined, enable only for `*.module.[s]css`.
+   */
   modules?: boolean;
+  /** Class name format override. Ignored if `modules: false`. */
   localIdentName?: string;
 }
 
 function createStyleLoaderRule(
-  options: CssLoaderOptions & {
+  options: Pick<CssLoaderOptions, 'localIdentName'> & {
     cssLoaderPath: string;
     styleLoaderPath: string;
     postcssLoaderPath: string | null;
@@ -22,8 +28,7 @@ function createStyleLoaderRule(
     sassLoaderPath?: string;
   },
 ): RuleSetRule['use'] {
-  const { modules, localIdentName, sassLoaderPath, cssLoaderPath, postcssLoaderPath, autoprefixer, styleLoaderPath } =
-    options;
+  const { localIdentName, sassLoaderPath, cssLoaderPath, postcssLoaderPath, autoprefixer, styleLoaderPath } = options;
 
   const preloaders: RuleSetRule['use'] = [];
   postcssLoaderPath &&
@@ -45,7 +50,7 @@ function createStyleLoaderRule(
       // translates CSS into CommonJS
       loader: cssLoaderPath,
       options: {
-        modules: localIdentName ? { mode: 'local', localIdentName } : modules,
+        modules: localIdentName ? { mode: 'local', localIdentName } : false,
         importLoaders: preloaders.length,
       },
     },
@@ -64,6 +69,7 @@ function createStyleLoaderRule(
  */
 export function createStylesOverlay(options: CssLoaderOptions = {}): Configuration {
   const localIdentName = options.localIdentName || defaultIdentName;
+  const moduleOption = options.modules;
 
   const cssLoaderPath = resolveWrapper('css-loader');
   if (!cssLoaderPath) {
@@ -86,56 +92,44 @@ export function createStylesOverlay(options: CssLoaderOptions = {}): Configurati
   const sassLoaderPath =
     resolveWrapper('sass') || resolveWrapper('node-sass') ? resolveWrapper('sass-loader') : undefined;
 
-  return {
-    module: {
-      rules: [
-        {
-          test: cssTest,
-          exclude: [/node_modules/, cssModuleTest],
-          use: createStyleLoaderRule({
-            ...loaderArgs,
-            modules: false,
-            localIdentName,
-          }),
-          sideEffects: true,
-        },
-        {
-          test: cssModuleTest,
-          exclude: [/node_modules/],
-          use: createStyleLoaderRule({
-            ...loaderArgs,
-            modules: true,
-            localIdentName,
-          }),
-        },
-        ...(sassLoaderPath
-          ? [
-              {
-                test: sassTest,
-                exclude: [/node_modules/, sassModuleTest],
-                use: createStyleLoaderRule({
-                  ...loaderArgs,
-                  sassLoaderPath,
-                  modules: false,
-                  localIdentName,
-                }),
-                sideEffects: true,
-              },
-              {
-                test: sassModuleTest,
-                exclude: [/node_modules/],
-                use: createStyleLoaderRule({
-                  ...loaderArgs,
-                  sassLoaderPath,
-                  modules: true,
-                  localIdentName,
-                }),
-              },
-            ]
-          : []),
-      ],
-    },
-  };
+  const rules: RuleSetRule[] = [];
+
+  if (moduleOption !== true) {
+    rules.push({
+      test: cssTest,
+      exclude: [/node_modules/, ...(moduleOption === false ? [] : [cssModuleTest])],
+      use: createStyleLoaderRule({ ...loaderArgs }),
+      sideEffects: true,
+    });
+  }
+  if (moduleOption !== false) {
+    rules.push({
+      test: moduleOption ? cssTest : cssModuleTest,
+      exclude: [/node_modules/],
+      use: createStyleLoaderRule({ ...loaderArgs, localIdentName }),
+    });
+  }
+
+  if (sassLoaderPath) {
+    // these should exactly mirror the above but add sassLoaderPath
+    if (moduleOption !== true) {
+      rules.push({
+        test: sassTest,
+        exclude: [/node_modules/, ...(moduleOption === false ? [] : [sassModuleTest])],
+        use: createStyleLoaderRule({ ...loaderArgs, sassLoaderPath }),
+        sideEffects: true,
+      });
+    }
+    if (moduleOption !== false) {
+      rules.push({
+        test: moduleOption ? sassTest : sassModuleTest,
+        exclude: [/node_modules/],
+        use: createStyleLoaderRule({ ...loaderArgs, sassLoaderPath, localIdentName }),
+      });
+    }
+  }
+
+  return { module: { rules } };
 }
 
 /**

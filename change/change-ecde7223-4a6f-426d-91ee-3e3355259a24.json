@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "type": "major",
+      "comment": "`stylesOverlay`/webpack configs: Properly handle the `CssLoaderOptions.modules` option: if the user passes `modules: false`, **no** files are treated as CSS modules. With `modules: true`, **all** files are treated as modules. By default (`modules` unset), behavior depends on the presence of the `*.module.[s]css` extension. (Marked as a breaking change since the previous buggy behavior of treating all files as modules existed for so long.)",
+      "packageName": "just-scripts",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}
