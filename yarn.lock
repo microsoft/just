@@ -1351,28 +1351,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@microsoft/api-extractor-model@npm:7.33.10":
-  version: 7.33.10
-  resolution: "@microsoft/api-extractor-model@npm:7.33.10"
+"@microsoft/api-extractor-model@npm:7.33.8":
+  version: 7.33.8
+  resolution: "@microsoft/api-extractor-model@npm:7.33.8"
   dependencies:
     "@microsoft/tsdoc": "npm:~0.16.0"
     "@microsoft/tsdoc-config": "npm:~0.18.1"
-    "@rushstack/node-core-library": "npm:5.23.3"
-  checksum: 10c0/d79d6747d6ee7dd5c69d2f63aac43ea0e9e7cf34d31155966c25d60274018a7267a46ee11da279f15a21f66d57914fa2b267dbc50391f685bf58c6f3083af5de
+    "@rushstack/node-core-library": "npm:5.23.1"
+  checksum: 10c0/b7756832e0363d965dc85296d15d9d9432f6d3daf61166c2af34cd2f629cc03b67aff377b76b7fb2d0e574dab289065632c87268448ae1263e8e8b3c30a283a9
   languageName: node
   linkType: hard
 
 "@microsoft/api-extractor@npm:^7.58.7":
-  version: 7.58.11
-  resolution: "@microsoft/api-extractor@npm:7.58.11"
+  version: 7.58.9
+  resolution: "@microsoft/api-extractor@npm:7.58.9"
   dependencies:
-    "@microsoft/api-extractor-model": "npm:7.33.10"
+    "@microsoft/api-extractor-model": "npm:7.33.8"
     "@microsoft/tsdoc": "npm:~0.16.0"
     "@microsoft/tsdoc-config": "npm:~0.18.1"
-    "@rushstack/node-core-library": "npm:5.23.3"
+    "@rushstack/node-core-library": "npm:5.23.1"
     "@rushstack/rig-package": "npm:0.7.3"
-    "@rushstack/terminal": "npm:0.24.2"
-    "@rushstack/ts-command-line": "npm:5.3.12"
+    "@rushstack/terminal": "npm:0.24.0"
+    "@rushstack/ts-command-line": "npm:5.3.10"
     diff: "npm:~8.0.2"
     minimatch: "npm:10.2.3"
     resolve: "npm:~1.22.1"
@@ -1381,7 +1381,7 @@ __metadata:
     typescript: "npm:5.9.3"
   bin:
     api-extractor: bin/api-extractor
-  checksum: 10c0/9bfd0dbb722e7b7ce474243e79d3f5f9f31d4d92ac97b8fb1ae64e10cd0a251d8b683d3361ed4110fcc713e0e453260fc487a097b0cb740a7dddd034dd0ac980
+  checksum: 10c0/6432d8129712fc4b4f7ca3b202f87b05ca04e4f623aeb60ab942726f45ab96260de3cfd6006e0b169389abfacf403a45ed1d073a74ac4b5cc42410c0edc7b369
   languageName: node
   linkType: hard
 
@@ -1794,11 +1794,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rushstack/node-core-library@npm:5.23.3":
-  version: 5.23.3
-  resolution: "@rushstack/node-core-library@npm:5.23.3"
+"@rushstack/node-core-library@npm:5.23.1":
+  version: 5.23.1
+  resolution: "@rushstack/node-core-library@npm:5.23.1"
   dependencies:
-    ajv: "npm:~8.20.0"
+    ajv: "npm:~8.18.0"
     ajv-draft-04: "npm:~1.0.0"
     ajv-formats: "npm:~3.0.1"
     fs-extra: "npm:~11.3.0"
@@ -1811,7 +1811,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/node":
       optional: true
-  checksum: 10c0/9a2a6cdf91280a05fdd38dc737c5e925c145165d21f18f76d36f5965c56df27e7418d86e75e991051fb96d6eb82132bf2d672bbf41b41f3f4f96128fb2ff653e
+  checksum: 10c0/246e9b7a3c9f65cce199508e8c3bd437c926d0047eb8a9c1659ba1cd4f53a03e64fcb93ada90ce450e40d27277104261f2c1082a717aee3fcfc2b080c1a8183d
   languageName: node
   linkType: hard
 
@@ -1837,11 +1837,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rushstack/terminal@npm:0.24.2":
-  version: 0.24.2
-  resolution: "@rushstack/terminal@npm:0.24.2"
+"@rushstack/terminal@npm:0.24.0":
+  version: 0.24.0
+  resolution: "@rushstack/terminal@npm:0.24.0"
   dependencies:
-    "@rushstack/node-core-library": "npm:5.23.3"
+    "@rushstack/node-core-library": "npm:5.23.1"
     "@rushstack/problem-matcher": "npm:0.2.1"
     supports-color: "npm:~8.1.1"
   peerDependencies:
@@ -1849,19 +1849,19 @@ __metadata:
   peerDependenciesMeta:
     "@types/node":
       optional: true
-  checksum: 10c0/4018249b4dfb17119bcfcf0b5efa5fe7bc54fe9cabff7e8d9ae4cf2188f1bb79c9e746800c2dfd77ba8c456efbc5655c6456c2179a1408263a91d20ecac3a644
+  checksum: 10c0/7537ac0f589a1dbdcb4e03c92009aff63165d0d86f2e4511f7e2cb707ae35a9e04f438dd069aedf94ed61e5e6b534ff2e1d4bf2b25187d76fe09b8c52ab7a4ad
   languageName: node
   linkType: hard
 
-"@rushstack/ts-command-line@npm:5.3.12":
-  version: 5.3.12
-  resolution: "@rushstack/ts-command-line@npm:5.3.12"
+"@rushstack/ts-command-line@npm:5.3.10":
+  version: 5.3.10
+  resolution: "@rushstack/ts-command-line@npm:5.3.10"
   dependencies:
-    "@rushstack/terminal": "npm:0.24.2"
+    "@rushstack/terminal": "npm:0.24.0"
     "@types/argparse": "npm:1.0.38"
     argparse: "npm:~1.0.9"
     string-argv: "npm:~0.3.1"
-  checksum: 10c0/f5e72f3e3870b0d5c8424114f75354276c96fe4c4d14d2e4b9b8826711b848669939000c7099177bd295568e80ce11278b9427a5fd383f5a471821f2c7b36aba
+  checksum: 10c0/309d1a11778be57ff9ef1e1664012ed3ec09fe1ac6e290f5d0d56a6164fe19f8aff98478e39f4a24364b110b9d61e4b1e9199ace19bda2b3809ccde0958b57f3
   languageName: node
   linkType: hard
 
@@ -2962,7 +2962,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.0.0, ajv@npm:^8.9.0, ajv@npm:~8.20.0":
+"ajv@npm:^8.0.0, ajv@npm:^8.9.0":
   version: 8.20.0
   resolution: "ajv@npm:8.20.0"
   dependencies:
@@ -3148,11 +3148,11 @@ __metadata:
   linkType: hard
 
 "autoprefixer@npm:^10.4.27":
-  version: 10.5.4
-  resolution: "autoprefixer@npm:10.5.4"
+  version: 10.5.3
+  resolution: "autoprefixer@npm:10.5.3"
   dependencies:
     browserslist: "npm:^4.28.6"
-    caniuse-lite: "npm:^1.0.30001806"
+    caniuse-lite: "npm:^1.0.30001805"
     fraction.js: "npm:^5.3.4"
     picocolors: "npm:^1.1.1"
     postcss-value-parser: "npm:^4.2.0"
@@ -3160,7 +3160,7 @@ __metadata:
     postcss: ^8.1.0
   bin:
     autoprefixer: bin/autoprefixer
-  checksum: 10c0/274ebc9fa50ac0d7a5aa9bc29baa502f2d2006f47a899dac2de4ba86c989defaa62b096e68692e15d53c9ed2b62c57dd047ceba61d344908d8b6e61f220a10e8
+  checksum: 10c0/a166d39192a6ef735cd09c244c579cde560ae4bb7407073ac6ef2c0f26390bccd0ffa46f3b1b104526c862530e94755dddfa910b0c4d63073447e31de5d89d3e
   languageName: node
   linkType: hard
 
@@ -3583,10 +3583,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001803, caniuse-lite@npm:^1.0.30001806":
-  version: 1.0.30001806
-  resolution: "caniuse-lite@npm:1.0.30001806"
-  checksum: 10c0/9442c8afff0968e9b2ce0104a7340c1ce4a5c09f469ccb9eef10d25712ea0afe542486e5318c697c70dd502f988cfc04eaa1c9438c92ac3bcf4d708a2a17bee1
+"caniuse-lite@npm:^1.0.30001803, caniuse-lite@npm:^1.0.30001805":
+  version: 1.0.30001805
+  resolution: "caniuse-lite@npm:1.0.30001805"
+  checksum: 10c0/5245ea10d6addc9e054da52c622bf7730747b717fb30f01a9ffc8917e101221d90352440da23ff46f686579e7eeaaac6134801e07638c3a388d65d52dc8b17ac
   languageName: node
   linkType: hard
 
@@ -4199,9 +4199,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.389":
-  version: 1.5.393
-  resolution: "electron-to-chromium@npm:1.5.393"
-  checksum: 10c0/d8ef05aa8511bafb6b60506683dddbb968829f966af2aec582f06c208dc3598d7c5fc68b69ea2303befde1177637c19e53065a0fb7f47ca09c4928436c5768e7
+  version: 1.5.392
+  resolution: "electron-to-chromium@npm:1.5.392"
+  checksum: 10c0/13b691fb97ef02f6c3da6fecb530d667a2c72c951aaca2c5c13271074d6e2f9a9bb23c84939a6b9274fef1611247f3a7affba7b3961d0bdc0324d59f97046269
   languageName: node
   linkType: hard
 
@@ -8003,7 +8003,7 @@ __metadata:
 
 "resolve@patch:resolve@npm%3A^1.19.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.20.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A~1.22.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A~1.22.2#optional!builtin<compat/resolve>":
   version: 1.22.12
-  resolution: "resolve@patch:resolve@npm%3A1.22.12#optional!builtin<compat/resolve>::version=1.22.12&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.12#optional!builtin<compat/resolve>::version=1.22.12&hash=9bd1a5"
   dependencies:
     es-errors: "npm:^1.3.0"
     is-core-module: "npm:^2.16.1"
@@ -8011,7 +8011,7 @@ __metadata:
     supports-preserve-symlinks-flag: "npm:^1.0.0"
   bin:
     resolve: bin/resolve
-  checksum: 10c0/fc6519984ae1f894d877c0060ba8b1f5ba3bc0e85a02f74e141929c118c23d74d9735619a9cc2965397387e514884245c65d72a40731dcb6cfc84c7bcdc8321e
+  checksum: 10c0/e12af106e16e652bd83060e8afacece4ee3dcbd0f4cf028e3d9ad178e6ced9ecb1c87ee60158b239582313902a717f8adc57a9b76ea54b1994141ba15f420c65
   languageName: node
   linkType: hard
 
