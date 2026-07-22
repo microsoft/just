@@ -47,7 +47,7 @@ jobs:
         run: yarn test --verbose
 
       - name: Check for modified files
-        uses: microsoft/beachball/actions/check-for-modified-files@cf7d34819ad50dce8894b3ff99a2a7899aefee3d # v3
+        uses: microsoft/beachball/actions/check-for-modified-files@2183fc61cfda95fd77ab84b058723043d8b59939 # check-for-modified-files_v3
 
   # The docs have a separate installation (previously required for newer Node version, but still
   # helpful for keeping dependencies separate)
