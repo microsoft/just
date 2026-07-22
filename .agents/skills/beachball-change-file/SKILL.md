@@ -1,9 +1,14 @@
 ---
-name: beachball-change-file
 description: How to create a Beachball change file. ONLY use this skill when the user asks to generate change files, before pushing a branch, or before creating a PR.
+license: MIT
 metadata:
-  version: 1.0.3
+  github-path: skills/beachball-change-file
+  github-ref: refs/heads/main
+  github-repo: https://github.com/microsoft/beachball
+  github-tree-sha: 5198ce6d081a41c46a6a1bbf211418972596ef33
   source: https://github.com/microsoft/beachball/blob/main/skills/beachball-change-file/SKILL.md
+  version: 1.0.6
+name: beachball-change-file
 ---
 
 [Beachball](https://microsoft.github.io/beachball/) is a tool used for managing versioning and changelogs for JS/TS codebases. Every pull request must include a Beachball change file. Change files include the list of packages with public-facing changes in the branch, with the description and semver change type for each package. After the PR is checked in and a release is run, the change files are used to determine version bumps and update changelogs.
@@ -12,7 +17,7 @@ Beachball normally uses a CLI with an interactive prompt to create change files,
 
 ## Prerequisites
 
-- Deterine the root directory: this is almost always the git root, but the user might specify a different folder. (The root usually contains `beachball.config.*` or `.beachballrc.*` or has a `"beachball"` key in `package.json`.)
+- Determine the root directory: this is almost always the git root, but the user might specify a different folder. (The root usually contains `beachball.config.*` or `.beachballrc.*` or has a `"beachball"` key in `package.json`.)
 - Determine the package manager for the repo (`npm`, `yarn`, `pnpm`). The example commands below assume `yarn`, but substitute the appropriate command runner syntax for a different package manager.
 - Check the root `package.json` `scripts` for scripts that run `beachball change` and `beachball check`.
   - The examples below assume `scripts` called `change` and `checkchange` respectively, but substitute the appropriate script names if found.
@@ -40,9 +45,13 @@ Run `yarn checkchange --verbose` to get the list of changed packages and files c
 - The list of changed packages is under "Found changes in the following packages" -- you must ONLY include these packages in the change file! (beachball has various settings to ignore packages or files)
 - The list of changed files is under "changed files in current branch". IGNORE any files with `~~` strikethrough formatting.
 
+DO NOT manually check for existing change files.
+
 ### 3. Create the change file(s)
 
 Change files are located under `<changeDir>`. There are two possible structures for change files, determined by the `groupChanges` setting.
+
+When checking diffs to generate change files, DO NOT merge with the target branch; just use the local merge-base.
 
 #### Case 1: Non-grouped format (`groupChanges` is `false` or unset)
 

@@ -1,12 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>microsoft/m365-renovate-config:beachball",
-    "github>microsoft/m365-renovate-config:disableEsmVersions",
-    "github>microsoft/m365-renovate-config:groupMore",
-    "github>microsoft/m365-renovate-config:groupTypes",
-    "github>microsoft/m365-renovate-config:keepFresh",
-    "github>microsoft/m365-renovate-config:restrictNode(22)"
+    "github>microsoft/beachball//renovate/presets/beachball",
+    "github>microsoft/beachball//renovate/presets/disableEsmVersions",
+    "github>microsoft/beachball//renovate/presets/groupMore",
+    "github>microsoft/beachball//renovate/presets/groupTypes",
+    "github>microsoft/beachball//renovate/presets/keepFresh",
+    "github>microsoft/beachball//renovate/presets/restrictNode(22)"
   ],
 
   "labels": ["renovate"],
