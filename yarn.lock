@@ -1409,7 +1409,7 @@ __metadata:
     jest: "catalog:dev"
     lage: "npm:^2.15.12"
     lint-staged: "npm:^17.0.7"
-    prettier: "npm:~3.8.3"
+    prettier: "npm:~3.9.0"
     syncpack: "npm:^15.0.0"
     ts-jest: "npm:^29.4.11"
     typescript: "catalog:dev"
@@ -7689,12 +7689,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:~3.8.3":
-  version: 3.8.5
-  resolution: "prettier@npm:3.8.5"
+"prettier@npm:~3.9.0":
+  version: 3.9.5
+  resolution: "prettier@npm:3.9.5"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10c0/57ba3cd8ddc0cebcb31038f09081da5c8633ff1823ff5e5cf3496918b3b839f76a21e06050fd1a2c41547f44fedea2c28d7a4a26f0b2ed40eb60428c54c297ea
+  checksum: 10c0/0349dd9e6d8010965de6f69e6b6ee2484b8caf78c66675afced6c75ad60ff24c3a2a4f41153fb8adeaee4d8f539641b48cebc71d283cec4d146e9962126c5ceb
   languageName: node
   linkType: hard
 
