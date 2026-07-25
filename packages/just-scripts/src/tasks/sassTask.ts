@@ -3,7 +3,6 @@ import { globSync } from 'glob';
 import { logger, resolveCwd, type TaskFunction } from 'just-task';
 import path from 'path';
 import type { AcceptedPlugin } from 'postcss';
-import parallelLimit from 'run-parallel-limit';
 import { pathToFileURL } from 'url';
 import { tryRequire } from '../tryRequire';
 
@@ -25,7 +24,7 @@ export interface SassTaskOptions {
 export function sassTask(options: SassTaskOptions): TaskFunction {
   const { createSourceModule, postcssPlugins = [] } = options;
 
-  return function sass(done) {
+  return async function sass() {
     const sassModule = tryRequire<typeof import('sass')>('sass') || tryRequire<typeof import('sass')>('node-sass');
     const postcss = tryRequire<typeof import('postcss')>('postcss');
     const autoprefixer = tryRequire<typeof import('autoprefixer')>('autoprefixer');
@@ -42,64 +41,64 @@ export function sassTask(options: SassTaskOptions): TaskFunction {
         .filter(Boolean)
         .join(', ');
       logger.warn(`Required dependencies not found (${missing}), so this task has no effect.`);
-      done();
       return;
     }
 
     const autoprefixerFn = autoprefixer({ overrideBrowserslist: ['> 1%', 'last 2 versions', 'ie >= 11'] });
     const files = globSync('src/**/*.scss', { absolute: true, cwd: process.cwd() });
 
-    const tasks: parallelLimit.Task<void>[] = files.map(fileName => cb => {
-      fileName = path.resolve(fileName);
+    // p-limit is ESM and must be async imported from CJS
+    const pLimit = (await import('p-limit')).default;
+    const limiter = pLimit(5);
 
-      // The modern `compile()` API is available in `sass` but not in `node-sass`
-      if (typeof sassModule.compile === 'function') {
-        try {
-          const { css } = sassModule.compile(fileName, {
-            importers: [{ findFileUrl: patchSassFileUrl }],
-            loadPaths: [path.resolve(process.cwd(), 'node_modules')],
-          });
-          processCss(css);
-        } catch (err) {
-          const message = err instanceof Error ? err.message : String(err);
-          cb(new Error(`${path.relative(process.cwd(), fileName)}: ${message}`));
-        }
-      } else {
-        sassModule.render(
-          {
-            file: fileName,
-            importer: patchSassUrl,
-            includePaths: [path.resolve(process.cwd(), 'node_modules')],
-          },
-          (err, result) => {
-            if (err || !result) {
-              cb(new Error(`${path.relative(process.cwd(), fileName)}: ${err || 'no result returned'}`));
-              return;
+    await Promise.all(
+      files.map(file =>
+        limiter(async () => {
+          const fileName = path.resolve(file);
+
+          let css: string;
+          // The modern `compile()` API is available in `sass` but not in `node-sass`
+          if (typeof sassModule.compile === 'function') {
+            try {
+              css = sassModule.compile(fileName, {
+                importers: [{ findFileUrl: patchSassFileUrl }],
+                loadPaths: [path.resolve(process.cwd(), 'node_modules')],
+              }).css;
+            } catch (err) {
+              const message = err instanceof Error ? err.message : String(err);
+              throw new Error(`${path.relative(process.cwd(), fileName)}: ${message}`, { cause: err });
             }
+          } else {
+            // The legacy `render()` API is callback-based, so it must be promisified
+            css = await new Promise<string>((resolve, reject) => {
+              sassModule.render(
+                {
+                  file: fileName,
+                  importer: patchSassUrl,
+                  includePaths: [path.resolve(process.cwd(), 'node_modules')],
+                },
+                (err, result) => {
+                  if (err || !result) {
+                    reject(new Error(`${path.relative(process.cwd(), fileName)}: ${err || 'no result returned'}`));
+                  } else {
+                    resolve(result.css.toString());
+                  }
+                },
+              );
+            });
+          }
 
-            processCss(result.css.toString());
-          },
-        );
-      }
+          const res = await postcss([
+            autoprefixerFn,
+            ...(postcssRtl ? [postcssRtl({})] : []),
+            ...postcssPlugins,
+            ...(clean ? [clean()] : []),
+          ]).process(css, { from: fileName });
 
-      function processCss(css: string) {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- always defined per above
-        postcss!([
-          autoprefixerFn,
-          ...(postcssRtl ? [postcssRtl({})] : []),
-          ...postcssPlugins,
-          ...(clean ? [clean()] : []),
-        ])
-          .process(css, { from: fileName })
-          .then(res => {
-            fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, res.css));
-            cb(null);
-          })
-          .catch(e => cb(e instanceof Error ? e : new Error(String(e))));
-      }
-    });
-
-    parallelLimit(tasks, 5, done);
+          fs.writeFileSync(fileName + '.ts', createSourceModule(fileName, res.css));
+        }),
+      ),
+    );
   };
 }
 

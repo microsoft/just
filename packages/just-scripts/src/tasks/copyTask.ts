@@ -1,10 +1,9 @@
 import { globSync, hasMagic } from 'glob';
 import fse from 'fs-extra';
 import path from 'path';
-import { pipeline } from 'stream';
+import { pipeline } from 'stream/promises';
 import type { TaskFunction } from 'just-task';
 import { logger } from 'just-task';
-import parallelLimit from 'run-parallel-limit';
 
 export interface CopyTaskOptions {
   /**
@@ -38,9 +37,8 @@ export interface CopyTaskOptions {
 export function copyTask(options: CopyTaskOptions): TaskFunction {
   const { paths, dest, limit = 15 } = options;
 
-  return function copy(done) {
+  return async function copy() {
     if (!paths?.length) {
-      done();
       return;
     }
 
@@ -54,13 +52,30 @@ export function copyTask(options: CopyTaskOptions): TaskFunction {
 
     fse.mkdirpSync(dest);
 
-    const copyTasks: parallelLimit.Task<void>[] = [];
+    // Source/destination pairs for all files to copy, collected before starting any copies
+    const filesToCopy: { src: string; dest: string }[] = [];
 
     for (const copyPath of normalizedPaths) {
       helper(copyPath, getBasePath(copyPath));
     }
 
-    parallelLimit(copyTasks, limit, done);
+    // p-limit is ESM and must be async imported from CJS
+    const pLimit = (await import('p-limit')).default;
+    const limiter = pLimit(limit);
+
+    await Promise.all(
+      filesToCopy.map(({ src, dest: destPath }) =>
+        limiter(async () => {
+          fse.mkdirpSync(path.dirname(destPath));
+
+          // Use `pipeline` rather than wiring up `pipe`/`end`/`error` manually: it resolves only
+          // after the destination has been fully flushed and closed (not merely when the source
+          // finishes reading), and destroys both streams on error so no file descriptors or
+          // partial destination files are leaked.
+          await pipeline(fse.createReadStream(src), fse.createWriteStream(destPath));
+        }),
+      ),
+    );
 
     function helper(srcGlob: string, basePath: string) {
       // Return absolute paths to ensure path.relative(basePath, matchedPath) works
@@ -86,17 +101,7 @@ export function copyTask(options: CopyTaskOptions): TaskFunction {
 
         const relativePath = path.relative(basePath, matchedPath);
 
-        copyTasks.push(cb => {
-          const destPath = path.join(dest, relativePath);
-
-          fse.mkdirpSync(path.dirname(destPath));
-
-          // Use `pipeline` rather than wiring up `pipe`/`end`/`error` manually: it invokes the
-          // callback exactly once, only after the destination has been fully flushed and closed
-          // (not merely when the source finishes reading), and destroys both streams on error so
-          // no file descriptors or partial destination files are leaked.
-          pipeline(fse.createReadStream(matchedPath), fse.createWriteStream(destPath), err => cb(err || null));
-        });
+        filesToCopy.push({ src: matchedPath, dest: path.join(dest, relativePath) });
       }
     }
   };

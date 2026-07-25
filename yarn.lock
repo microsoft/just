@@ -2217,13 +2217,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/run-parallel-limit@npm:^1.0.0":
-  version: 1.0.3
-  resolution: "@types/run-parallel-limit@npm:1.0.3"
-  checksum: 10c0/499bf6640cf0c9ed6a20922117a247bcdaff8427ebde7f8237333f9966a82affe8504ae9c846193d4d19127be6aa291a10a8221b389a2bc47de6295c49146538
-  languageName: node
-  linkType: hard
-
 "@types/send@npm:*":
   version: 1.2.1
   resolution: "@types/send@npm:1.2.1"
@@ -6444,7 +6437,6 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": "catalog:dev"
     "@microsoft/just-internal-scripts": "workspace:^"
-    "@types/run-parallel-limit": "npm:^1.0.0"
     "@types/supports-color": "npm:^8.1.1"
     "@types/tar-fs": "npm:^2.0.4"
     async-done: "npm:^2.0.0"
@@ -6461,8 +6453,8 @@ __metadata:
     just-task: "workspace:^"
     mock-fs: "catalog:dev"
     nano-spawn: "catalog:prod"
+    p-limit: "npm:^7.3.1"
     postcss: "catalog:dev"
-    run-parallel-limit: "npm:^1.0.6"
     sass: "catalog:dev"
     supports-color: "npm:^8.1.0"
     tar-fs: "catalog:dev"
@@ -7367,6 +7359,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"p-limit@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "p-limit@npm:7.3.1"
+  dependencies:
+    yocto-queue: "npm:^1.2.1"
+  checksum: 10c0/49b7d7fcc244d4659fa3b260c7b4e632bc72333c60e76e4cd24c7befdeb9b8e22da644e5064e83df9e2ded75245e3e3b9df0e9cf8500b08db8ebf58ac18c6764
+  languageName: node
+  linkType: hard
+
 "p-locate@npm:^4.1.0":
   version: 4.1.0
   resolution: "p-locate@npm:4.1.0"
@@ -8050,15 +8051,6 @@ __metadata:
   version: 7.1.0
   resolution: "run-applescript@npm:7.1.0"
   checksum: 10c0/ab826c57c20f244b2ee807704b1ef4ba7f566aa766481ae5922aac785e2570809e297c69afcccc3593095b538a8a77d26f2b2e9a1d9dffee24e0e039502d1a03
-  languageName: node
-  linkType: hard
-
-"run-parallel-limit@npm:^1.0.6":
-  version: 1.1.0
-  resolution: "run-parallel-limit@npm:1.1.0"
-  dependencies:
-    queue-microtask: "npm:^1.2.2"
-  checksum: 10c0/9c78eb77e788d0ed803a7e80921412f6f6accfb2006de8c21699d9ebf7696df9cefaa313fe14d6169a3fc9f564b34fe91bfd9948cc3a58e2d24136a2390523ae
   languageName: node
   linkType: hard
 
@@ -9751,5 +9743,12 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: 10c0/dceb44c28578b31641e13695d200d34ec4ab3966a5729814d5445b194933c096b7ced71494ce53a0e8820685d1d010df8b2422e5bf2cdea7e469d97ffbea306f
+  languageName: node
+  linkType: hard
+
+"yocto-queue@npm:^1.2.1":
+  version: 1.2.2
+  resolution: "yocto-queue@npm:1.2.2"
+  checksum: 10c0/36d4793e9cf7060f9da543baf67c55e354f4862c8d3d34de1a1b1d7c382d44171315cc54abf84d8900b8113d742b830108a1434f4898fb244f9b7e8426d4b8f5
   languageName: node
   linkType: hard
