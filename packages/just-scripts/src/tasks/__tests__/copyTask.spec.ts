@@ -1,4 +1,4 @@
-import { describe, expect, it, jest, afterEach } from '@jest/globals';
+import { beforeAll, describe, expect, it, jest, afterEach } from '@jest/globals';
 import mockfs from 'mock-fs';
 import fse from 'fs-extra';
 import { Readable } from 'stream';
@@ -13,6 +13,12 @@ jest.mock('just-task/lib/logger');
 const itWindows = process.platform === 'win32' ? it : it.skip;
 
 describe('copyTask', () => {
+  beforeAll(async () => {
+    // Load the ESM-only `p-limit` used by copyTask up front, since it can't be loaded from disk
+    // while mock-fs is active.
+    await import('p-limit');
+  });
+
   afterEach(() => {
     mockfs.restore();
     // a couple tests mock additional functions
