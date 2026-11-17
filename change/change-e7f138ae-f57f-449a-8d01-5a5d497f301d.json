@@ -3,7 +3,7 @@
     {
       "packageName": "just-task",
       "type": "major",
-      "comment": "Remove `ts-node` support and the `--esm` option. Load configs with native `import()` and Node.js 22.18+ TypeScript support, including `.mjs`/`.mts` configs, async initializers, and top-level `await`.",
+      "comment": "Remove `ts-node` support and the `--esm` option. Load configs with native `import()` and Node.js 22.18+ TypeScript support, including `.mjs`/`.mts` configs, async initializers, and top-level `await`. Add an `importModule()` helper for importing files by path, and exit with a nonzero code when no config file is found.",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"
     },
