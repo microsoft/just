@@ -36,19 +36,6 @@
     "undertaker-registry": "^2.0.0",
     "yargs-parser": "^21.0.0"
   },
-  "peerDependencies": {
-    "ts-node": ">=8"
-  },
-  "peerDependenciesMeta": {
-    "ts-node": {
-      "optional": true
-    }
-  },
-  "rationale": {
-    "peerDependencies": {
-      "ts-node": "8.x released 2019; still seeing usage"
-    }
-  },
   "devDependencies": {
     "@microsoft/api-extractor": "catalog:dev",
     "@microsoft/just-internal-scripts": "workspace:^",
@@ -59,7 +46,6 @@
     "jest": "catalog:dev",
     "mock-fs": "catalog:dev",
     "nano-spawn": "catalog:prod",
-    "ts-node": "catalog:dev",
     "typescript": "catalog:dev"
   },
   "files": [

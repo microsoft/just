@@ -1,0 +1,18 @@
+{
+  "changes": [
+    {
+      "packageName": "just-task",
+      "type": "major",
+      "comment": "Remove `ts-node` support and the `--esm` option. Load configs with native `import()` and Node.js 22.18+ TypeScript support, including `.mjs`/`.mts` configs, async initializers, and top-level `await`.",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    },
+    {
+      "packageName": "just-scripts",
+      "type": "major",
+      "comment": "Remove `ts-node` integration and the associated `enableTypeScript`, `tsconfig`, and `transpileOnly` task options; use Node.js native TypeScript and ESM support instead. Webpack CLI tasks now require `webpack-cli` v7 or newer.",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

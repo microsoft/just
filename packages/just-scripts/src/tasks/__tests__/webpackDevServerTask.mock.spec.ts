@@ -100,7 +100,7 @@ describe('webpackDevServerTask (mocked)', () => {
       );
     });
 
-    it('uses ts-node env when config is a ts file', async () => {
+    it('uses native loading when config is a ts file', async () => {
       mockfs({
         ...getMockDeps(),
         'webpack.config.ts': 'a file',
@@ -110,27 +110,23 @@ describe('webpackDevServerTask (mocked)', () => {
       expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(
         expect.arrayContaining(['--config', '${packageRoot}/webpack.config.ts']),
       );
-      expect(mockSpawn.mock.calls[0][2]).toEqual({
-        env: { TS_NODE_COMPILER_OPTIONS: expect.anything(), TS_NODE_TRANSPILE_ONLY: 'true' },
-      });
+      expect(mockSpawn.mock.calls[0][2]).toEqual({});
     });
 
-    it('merges provide env with ts-node env when config is a ts file', async () => {
+    it('preserves provided env when config is a ts file', async () => {
       mockfs({
         ...getMockDeps(),
         'webpack.config.ts': 'a file',
       });
       const task = webpackDevServerTask({
         env: { CUSTOM_ENV: 'value' },
-        transpileOnly: false,
-        tsconfig: 'tsconfig.json',
       });
       await callTaskForTest(task);
       expect(getNormalizedSpawnArgs(mockSpawn)).toEqual(
         expect.arrayContaining(['--config', '${packageRoot}/webpack.config.ts']),
       );
       expect(mockSpawn.mock.calls[0][2]).toEqual({
-        env: { CUSTOM_ENV: 'value', TS_NODE_PROJECT: 'tsconfig.json' },
+        env: { CUSTOM_ENV: 'value' },
       });
     });
 

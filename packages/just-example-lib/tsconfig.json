@@ -7,5 +7,5 @@
     "outDir": "lib",
     "lib": ["ES2024", "DOM"]
   },
-  "include": ["src", "just.config.ts", "webpack.config.cts"]
+  "include": ["src", "just.config.mts", "webpack.config.mts"]
 }

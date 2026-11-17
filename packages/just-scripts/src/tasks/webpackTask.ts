@@ -1,23 +1,16 @@
 // WARNING: Careful about adding more imports - only import types from webpack
 import type { Configuration, MultiStats, Stats, WebpackOptionsNormalized } from 'webpack';
-import { logger, argv, type TaskFunction } from 'just-task';
+import { logger, argv, importModule, type TaskFunction } from 'just-task';
 import { tryRequire } from '../tryRequire';
 import fs from 'fs';
-import path from 'path';
 import { merge } from 'webpack-merge';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
-import { enableTypeScript } from 'just-task/lib/enableTypeScript';
 
 export interface WebpackTaskOptions extends Configuration {
   config?: string;
 
   /** true to output to stats.json; a string to output to a file */
   outputStats?: boolean | string;
-
-  /**
-   * Transpile the config only
-   */
-  transpileOnly?: boolean;
 
   /**
    * Optional callback triggered on compile
@@ -42,18 +35,13 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
 
     logger.info(`Webpack Config Path: ${webpackConfigPath}`);
 
-    if (webpackConfigPath && fs.existsSync(webpackConfigPath) && webpackConfigPath.endsWith('.ts')) {
-      const transpileOnly = options ? options.transpileOnly !== false : true;
-      enableTypeScript({ transpileOnly });
-    }
-
     type ConfigFunction = (
       env: unknown,
       argv: unknown,
     ) => Configuration | Configuration[] | Promise<Configuration | Configuration[]>;
     type ConfigExport = Configuration | Configuration[] | ConfigFunction | undefined;
     let configModuleExports = webpackConfigPath
-      ? (require(path.resolve(webpackConfigPath)) as ConfigExport)
+      ? (await importModule<{ default?: ConfigExport }>(webpackConfigPath)).default
       : undefined;
     if (configModuleExports && typeof configModuleExports === 'object' && 'default' in configModuleExports) {
       configModuleExports = (configModuleExports as { default?: ConfigExport }).default;

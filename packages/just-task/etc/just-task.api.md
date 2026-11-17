@@ -26,6 +26,9 @@ export function chain(subjectTaskName: string): {
 // @public (undocumented)
 export function condition(taskName: string, conditional: () => boolean): TaskFunction;
 
+// @public
+export function importModule<T = Record<string, unknown>>(filePath: string): Promise<T>;
+
 // @public (undocumented)
 export interface Logger {
     enableVerbose: boolean;

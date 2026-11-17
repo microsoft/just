@@ -32,7 +32,6 @@
     "style-loader": "^4.0.0",
     "tar-fs": "catalog:dev",
     "ts-loader": "^9.6.0",
-    "ts-node": "catalog:dev",
     "typescript": "catalog:dev",
     "webpack": "catalog:dev",
     "webpack-cli": "^7.0.3",
