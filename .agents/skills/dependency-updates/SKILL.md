@@ -1,6 +1,6 @@
 ---
 name: dependency-updates
-description: "Update dependencies and resolve Dependabot security alerts in Just's root Yarn workspace and separate VuePress docs project. Use when upgrading packages, applying security fixes, checking Yarn quarantine eligibility, deduplicating dependency trees, reviewing resolutions, or reporting remaining vulnerable dependencies."
+description: "Update dependencies and resolve Dependabot security alerts in Just's root Yarn workspace and separate VuePress docs project. Use when upgrading packages, reviewing Dependabot PRs, applying security fixes, checking Yarn quarantine eligibility, deduplicating dependency trees, reviewing resolutions, or reporting remaining vulnerable dependencies."
 ---
 
 # Dependency updates
@@ -40,6 +40,8 @@ Run graph queries from the repository root for root workspace dependencies, or f
 Classify each alert as vulnerable locally, fixed locally, removed from the local tree, quarantined, or lacking a published fix. An open GitHub alert does not prove that the local branch is still vulnerable. Conversely, an unused vulnerable dependency is not fixed merely because its execution path is disabled.
 
 ## Respect release quarantine
+
+When reviewing a Dependabot PR, verify that each updated package version in the proposed lockfile satisfies the affected project's configured `npmMinimalAgeGate`, using its registry publication timestamp and a freshly checked current time. Do not assume Dependabot or passing CI enforces this policy. If any updated version is still quarantined, recommend rejecting the PR. The review comment must identify the package and version and include the exact datetime when quarantine clears in both UTC and Pacific time (`America/Los_Angeles`, labeled PST or PDT as applicable at that datetime). Do not close the PR without authorization.
 
 1. Read all matching ranges in `security_advisory.vulnerabilities`, not only the alert's first patched version. Different major versions can have different fixes.
 2. Query npm registry metadata for the candidate release's publication timestamp, engines, dependency ranges, and peer requirements. A null first-patched field is not conclusive: inspect newer releases and upstream advisories, without assuming every newer version fixes the issue.
