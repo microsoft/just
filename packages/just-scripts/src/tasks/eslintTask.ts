@@ -43,7 +43,7 @@ export interface EsLintTaskOptions {
 
 /**
  * Create a task to run eslint.
- * Logs a warning if `eslint` or a config file is not found.
+ * Throws if `eslint` is not found. Logs a warning if a config file is not found.
  */
 export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
   // undertaker apparently requires returning a promise, async function, or function that calls done()
@@ -68,8 +68,7 @@ export function eslintTask(options: EsLintTaskOptions = {}): TaskFunction {
 
     const eslintBinPath = resolveBin('eslint');
     if (!eslintBinPath) {
-      logger.warn(`eslint CLI not found, so this task has no effect.`);
-      return;
+      throw new Error('Cannot find eslint CLI. Please add eslint to your devDependencies.');
     }
 
     // Try all possible extensions in the order listed here: https://eslint.org/docs/user-guide/configuring#configuration-file-formats

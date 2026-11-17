@@ -43,7 +43,7 @@ interface ApiExtractorContext {
 /**
  * Create a task to verify the API report. Errors if the report is out of date.
  *
- * Logs a warning if `@microsoft/api-extractor` or a config file is not found.
+ * Throws if `@microsoft/api-extractor` is not found. Logs a warning if a config file is not found.
  */
 export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFunction {
   // eslint-disable-next-line @typescript-eslint/require-await
@@ -64,7 +64,7 @@ export function apiExtractorVerifyTask(options: ApiExtractorOptions): TaskFuncti
 /**
  * Create a task to update the API report file.
  *
- * Logs a warning if `@microsoft/api-extractor` or a config file is not found.
+ * Throws if `@microsoft/api-extractor` is not found. Logs a warning if a config file is not found.
  *
  * Sample config which should be saved as api-extractor.json:
  * ```
@@ -112,15 +112,14 @@ export function apiExtractorUpdateTask(options: ApiExtractorOptions): TaskFuncti
 }
 
 /**
- * Load the api-extractor module (if available) and the config file.
- * Logs a warning and returns undefined if api-extractor or the config file couldn't be found.
+ * Load the api-extractor module and the config file. Throws if the module couldn't be found.
+ * Logs a warning and returns undefined if the module is unsupported or the config file couldn't be found.
  */
 function initApiExtractor(options: ApiExtractorOptions): ApiExtractorContext | undefined {
   const apiExtractorModule = tryRequire<typeof ApiExtractorTypes>('@microsoft/api-extractor');
 
   if (!apiExtractorModule) {
-    logger.warn('@microsoft/api-extractor package not found, so this task has no effect.');
-    return;
+    throw new Error('Cannot find @microsoft/api-extractor. Please add it to your devDependencies.');
   }
 
   if (!apiExtractorModule.Extractor.invoke) {

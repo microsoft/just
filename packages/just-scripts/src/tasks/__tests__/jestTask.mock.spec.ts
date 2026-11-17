@@ -60,7 +60,7 @@ describe('jestTask (mocked)', () => {
     });
   });
 
-  describe('skip conditions', () => {
+  describe('missing dependencies and configuration', () => {
     it('does nothing if no jest config found', async () => {
       mockfs({
         ...mockFsJest(),
@@ -71,12 +71,12 @@ describe('jestTask (mocked)', () => {
       expect(mockSpawn).not.toHaveBeenCalled();
     });
 
-    it('does nothing if jest is not resolved', async () => {
+    it('throws when run if jest is not resolved', async () => {
       mockfs({
         'jest.config.js': 'a file',
       });
       const task = jestTask();
-      await callTaskForTest(task);
+      await expect(callTaskForTest(task)).rejects.toThrow('Cannot find jest CLI');
       expect(mockSpawn).not.toHaveBeenCalled();
     });
   });

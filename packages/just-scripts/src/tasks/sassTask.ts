@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { globSync } from 'glob';
-import { logger, resolveCwd, type TaskFunction } from 'just-task';
+import { resolveCwd, type TaskFunction } from 'just-task';
 import path from 'path';
 import type { AcceptedPlugin } from 'postcss';
 import parallelLimit from 'run-parallel-limit';
@@ -15,7 +15,7 @@ export interface SassTaskOptions {
 /**
  * Create a task to run sass.
  *
- * Logs a warning if any required dependencies are not found.
+ * Throws if any required dependencies are not found.
  * - Required: `sass` or `node-sass`; `postcss`; `autoprefixer`.
  * - Optional: `postcss-rtl`, `postcss-clean`, and any postcss plugins passed in through `options`.
  *
@@ -41,9 +41,7 @@ export function sassTask(options: SassTaskOptions): TaskFunction {
       ]
         .filter(Boolean)
         .join(', ');
-      logger.warn(`Required dependencies not found (${missing}), so this task has no effect.`);
-      done();
-      return;
+      throw new Error(`Required dependencies not found (${missing}). Please add them to your devDependencies.`);
     }
 
     const autoprefixerFn = autoprefixer({ overrideBrowserslist: ['> 1%', 'last 2 versions', 'ie >= 11'] });

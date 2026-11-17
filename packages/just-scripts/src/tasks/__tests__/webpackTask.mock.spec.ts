@@ -36,11 +36,12 @@ describe('webpackTask (mocked)', () => {
     mockWebpack.mockImplementation(() => undefined);
   });
 
-  describe('skip conditions', () => {
-    it('does nothing if webpack is not installed', async () => {
+  describe('missing dependencies', () => {
+    it('throws when run if webpack is not installed', async () => {
       mockTryRequire.mockReturnValueOnce(null);
       const task = webpackTask();
-      await callTaskForTest(task);
+      expect(mockTryRequire).not.toHaveBeenCalled();
+      await expect(callTaskForTest(task)).rejects.toThrow('Cannot find webpack');
       expect(mockWebpack).not.toHaveBeenCalled();
     });
   });
