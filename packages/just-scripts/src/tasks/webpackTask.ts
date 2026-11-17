@@ -40,9 +40,11 @@ export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
       argv: unknown,
     ) => Configuration | Configuration[] | Promise<Configuration | Configuration[]>;
     type ConfigExport = Configuration | Configuration[] | ConfigFunction | undefined;
-    let configModuleExports = webpackConfigPath
-      ? (await importModule<{ default?: ConfigExport }>(webpackConfigPath)).default
+    const importedConfig = webpackConfigPath
+      ? await importModule<Configuration & { default?: ConfigExport }>(webpackConfigPath)
       : undefined;
+    let configModuleExports: ConfigExport =
+      importedConfig && 'default' in importedConfig ? importedConfig.default : importedConfig;
     if (configModuleExports && typeof configModuleExports === 'object' && 'default' in configModuleExports) {
       configModuleExports = (configModuleExports as { default?: ConfigExport }).default;
     }
