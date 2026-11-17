@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "type": "minor",
+      "dependentChangeType": "patch",
+      "comment": "Replace `run-parallel-limit` with `p-limit`, and use native promises in `cleanTask`, `copyTask`, and `sassTask`",
+      "email": "198982749+Copilot@users.noreply.github.com"
+    }
+  ]
+}
