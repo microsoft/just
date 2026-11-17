@@ -28,7 +28,7 @@
     "@types/tar-fs": "^2.0.4",
     "chalk": "catalog:prod",
     "fs-extra": "catalog:prod",
-    "glob": "^13.0.6",
+    "glob": "^14.0.0",
     "just-task": "workspace:^",
     "nano-spawn": "catalog:prod",
     "run-parallel-limit": "^1.0.6",
