@@ -19,5 +19,8 @@
     "touch": "^3.1.1",
     "typescript": "~6.0.3",
     "vuepress": "^2.0.0-rc.26"
+  },
+  "resolutions": {
+    "node-gyp": "ignore:"
   }
 }

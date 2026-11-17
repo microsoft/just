@@ -15,6 +15,7 @@ dist
 temp
 .temp
 .cache
+*.tmp.*
 
 docs/.yarn/*
 .yarn/*

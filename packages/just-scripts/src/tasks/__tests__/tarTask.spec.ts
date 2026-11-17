@@ -133,11 +133,13 @@ describe('extractTarTask', () => {
       fse.writeFileSync(filePath, content);
     }
     fse.mkdirpSync(path.dirname(archivePath));
-    await pipeline([
-      tarFs.pack(srcDir),
-      ...(options.gzip !== false ? [createGzip()] : []),
-      createWriteStream(archivePath),
-    ]);
+    const source = tarFs.pack(srcDir);
+    const destination = createWriteStream(archivePath);
+    if (options.gzip !== false) {
+      await pipeline(source, createGzip(), destination);
+    } else {
+      await pipeline(source, destination);
+    }
   }
 
   it('throws if tar-fs is not installed', async () => {
