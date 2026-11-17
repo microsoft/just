@@ -24,12 +24,6 @@ jest.mock('../../webpack/findWebpackConfig', () => ({
   findWebpackConfig: jest.fn((params?: { configOption?: string }) => params?.configOption ?? null),
 }));
 
-// Mock enableTypeScript
-jest.mock('just-task', () => ({
-  ...jest.requireActual<typeof import('just-task')>('just-task'),
-  enableTypeScript: jest.fn(),
-}));
-
 describe('webpackTask (mocked)', () => {
   afterEach(() => {
     jest.clearAllMocks();

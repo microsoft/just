@@ -92,27 +92,18 @@ describe('webpackCliTask (mocked)', () => {
     });
   });
 
-  describe('ts-node env', () => {
+  describe('native TypeScript configs', () => {
     beforeEach(() => {
       mockfs({ ...mockFsWebpackCli() });
     });
 
     it.each(['webpack.config.ts', 'webpack.config.cts', 'webpack.config.mts'])(
-      'enables ts-node transpileOnly for a %s config',
+      'loads a %s config',
       async configPath => {
         const task = webpackCliTask({ webpackCliArgs: ['--config', configPath] });
         await callTaskForTest(task);
-        expect(mockSpawn.mock.calls[0][2]?.env).toEqual({
-          TS_NODE_TRANSPILE_ONLY: 'true',
-          TS_NODE_COMPILER_OPTIONS: expect.anything(),
-        });
+        expect(mockSpawn.mock.calls[0][2]?.env).toBeUndefined();
       },
     );
-
-    it('does not enable ts-node env for a .js config', async () => {
-      const task = webpackCliTask({ webpackCliArgs: ['--config', 'webpack.config.js'] });
-      await callTaskForTest(task);
-      expect(mockSpawn.mock.calls[0][2]?.env).toBeUndefined();
-    });
   });
 });

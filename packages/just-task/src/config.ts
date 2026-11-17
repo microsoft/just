@@ -1,10 +1,9 @@
 import fs from 'fs';
-import path from 'path';
 
 import { argv } from './option';
 import { resolve } from './resolve';
 import { mark, logger } from './logger';
-import { enableTypeScript } from './enableTypeScript';
+import { importModule } from './importModule';
 import type yargsParser from 'yargs-parser';
 import type { TaskFunction } from './interfaces';
 
@@ -16,6 +15,8 @@ export function resolveConfigFile(args: yargsParser.Arguments): string | null {
     './just-task.js',
     './just.config.ts',
     './just.config.cts',
+    './just.config.mjs',
+    './just.config.mts',
     args.defaultConfig as string | undefined,
   ]) {
     const configFile = entry && resolve(entry);
@@ -29,31 +30,36 @@ export function resolveConfigFile(args: yargsParser.Arguments): string | null {
 
 type ConfigExports = Record<string, TaskFunction>;
 
-export function readConfig(): ConfigExports | void {
+/** Load configs natively while retaining the original exports of imported CommonJS modules. */
+export async function readConfig(): Promise<ConfigExports | void> {
   // uses a separate instance of yargs to first parse the config (without the --help in the way) so we can parse the configFile first regardless
   const args = argv();
   const configFile = resolveConfigFile(args);
 
   if (configFile && fs.existsSync(configFile)) {
-    const ext = path.extname(configFile);
-    if (ext === '.cts' || ext === '.ts' || ext === '.tsx') {
-      // TODO: add option to do typechecking as well
-      enableTypeScript({ transpileOnly: true, esm: args.esm as boolean | undefined });
-    }
-
     try {
-      let configModule = require(configFile) as ConfigExports | (() => ConfigExports) | undefined;
-      // If the module only has a default export, use that as the config. (A config file can also
-      // export named task functions, and theoretically a task could be called "default", so
-      // ignore the default export if there are other exports alongside it.)
-      if (typeof configModule === 'object' && configModule.default && Object.keys(configModule).length === 1) {
-        configModule = configModule.default as unknown as ConfigExports | (() => ConfigExports);
+      const importedConfig = await importModule(configFile);
+      // import() wraps CommonJS exports in a namespace. Recover the original exports from Node's
+      // real-path cache only if they match the namespace's default, leaving genuine ESM exports intact.
+      const commonjsModule = require.cache[fs.realpathSync(configFile)];
+      let configModule = (
+        commonjsModule && commonjsModule.exports === importedConfig.default ? commonjsModule.exports : importedConfig
+      ) as ConfigExports | (() => void | Promise<void>) | undefined;
+      // Unwrap a default-only config, ignoring __esModule (transpiler interop) and module.exports
+      // (Node's CommonJS namespace marker). If other exports exist, keep the task map instead:
+      // "default" may be a task name, not an initializer to run while loading the config.
+      if (
+        typeof configModule === 'object' &&
+        configModule.default &&
+        Object.keys(configModule).every(key => ['default', '__esModule', 'module.exports'].includes(key))
+      ) {
+        configModule = configModule.default as unknown as ConfigExports | (() => void | Promise<void>);
       }
 
       mark('registry:configModule');
 
       if (typeof configModule === 'function') {
-        configModule();
+        await configModule();
         configModule = undefined;
       }
 
@@ -70,5 +76,6 @@ export function readConfig(): ConfigExports | void {
       `Cannot find config file "${configFile}".`,
       `Please create a file called "just.config.js" in the root of the project next to "package.json".`,
     );
+    process.exitCode = 1;
   }
 }

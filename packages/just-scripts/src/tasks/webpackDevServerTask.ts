@@ -3,7 +3,6 @@ import type { TaskFunction } from 'just-task';
 // WARNING: Careful about adding more imports - only import types from webpack
 import type { Configuration } from 'webpack';
 import { resolveBin, resolveWrapper } from '../tryRequire';
-import { getTsNodeEnv, isTsConfigFile } from '../typescript/getTsNodeEnv';
 import { spawnNode } from '../utils/exec';
 import { findWebpackConfig } from '../webpack/findWebpackConfig';
 import type { WebpackCliTaskOptions } from './webpackCliTask';
@@ -35,16 +34,6 @@ export interface WebpackDevServerTaskOptions extends WebpackCliTaskOptions, Conf
    * (merged with `process.env`).
    */
   env?: NodeJS.ProcessEnv;
-
-  /**
-   * The tsconfig file to pass to ts-node for Typescript config
-   */
-  tsconfig?: string;
-
-  /**
-   * Transpile the config only
-   */
-  transpileOnly?: boolean;
 }
 
 /**
@@ -65,17 +54,9 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}):
     }
 
     const args = ['serve'];
-    let env = options.env;
 
     if (configPath && fs.existsSync(configPath)) {
       args.push('--config', configPath);
-
-      if (isTsConfigFile(configPath)) {
-        env = {
-          ...env,
-          ...getTsNodeEnv(options.tsconfig, options.transpileOnly),
-        };
-      }
     }
 
     if (options.open) {
@@ -90,6 +71,6 @@ export function webpackDevServerTask(options: WebpackDevServerTaskOptions = {}):
       args.push(...options.webpackCliArgs);
     }
 
-    await spawnNode(webpackBinPath, args, { env, nodeArgs: options.nodeArgs });
+    await spawnNode(webpackBinPath, args, { env: options.env, nodeArgs: options.nodeArgs });
   };
 }

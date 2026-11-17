@@ -36,15 +36,13 @@ describe('nodeExecTask', () => {
     lastResult = undefined;
   });
 
-  describe.each(['javascript', 'typescript (ts-node)'])('%s', fileType => {
+  describe.each(['javascript', 'typescript'])('%s', fileType => {
     const isTS = fileType !== 'javascript';
     const ext = isTS ? 'ts' : 'js';
-    const maybeTsAutoArgs = isTS ? ['-r', '${repoRoot}/node_modules/ts-node/register/index.js'] : [];
 
-    /** Include appropriate TypeScript options with the task if needed */
+    /** Capture script output while preserving the provided spawn options. */
     function wrapNodeExecTask(options: NodeExecTaskOptions) {
       return nodeExecTask({
-        ...(isTS && { enableTypeScript: true, transpileOnly: true }),
         ...options,
         spawnOptions: { ...options.spawnOptions, stdio: 'pipe' },
       });
@@ -66,8 +64,7 @@ describe('nodeExecTask', () => {
       }
     }
 
-    // These tests get expensive due to the IPC and especially with ts-node, so combine the basic
-    // success cases (args, default env)
+    // These tests get expensive due to the IPC, so combine the basic success cases (args, default env)
     it('runs a script', async () => {
       const task = wrapNodeExecTask({
         args: ['--max-old-space-size=4096', getMockScript(`mock-success.${ext}`), '--', 'arg1', 'arg2'],
@@ -78,7 +75,6 @@ describe('nodeExecTask', () => {
       const [program, args] = nanoSpawn.mock.calls[0];
       expect(program).toBe(process.execPath);
       expect(normalizeArgs(args as string[])).toEqual([
-        ...maybeTsAutoArgs,
         '--max-old-space-size=4096',
         `\${packageRoot}/src/__tests__/mock-success.${ext}`,
         '--',
@@ -93,12 +89,7 @@ describe('nodeExecTask', () => {
       // Just verify one value we expect to be present.
       expect(process.env.JEST_WORKER_ID).toBeTruthy();
       expect(output).toContain(`JEST_WORKER_ID=${process.env.JEST_WORKER_ID}`);
-
-      if (isTS) {
-        expect(output).toContain('TS_NODE_');
-      } else {
-        expect(output).not.toContain('TS_NODE_');
-      }
+      expect(output).not.toContain('TS_NODE_');
     });
 
     it('handles a script that fails', async () => {
@@ -128,13 +119,7 @@ describe('nodeExecTask', () => {
       expect(output).toContain('BAR=bar value');
       expect(process.env.JEST_WORKER_ID).toBeTruthy();
       expect(output).toContain('JEST_WORKER_ID');
-
-      // In TS it would have failed if these were missed, but check anyway
-      if (isTS) {
-        expect(output).toContain('TS_NODE_');
-      } else {
-        expect(output).not.toContain('TS_NODE_');
-      }
+      expect(output).not.toContain('TS_NODE_');
     });
 
     it('errors if file not found', async () => {
