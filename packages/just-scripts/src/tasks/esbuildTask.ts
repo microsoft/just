@@ -14,7 +14,7 @@ export function esbuildTask(options: EsbuildBuildOptions = {}): TaskFunction {
     // Resolve first from cwd, then through resolution paths
     const esbuildModule = tryRequire<typeof import('esbuild')>('esbuild');
     if (!esbuildModule) {
-      throw new Error('Cannot find esbuild, please add it to your devDependencies');
+      throw new Error('Cannot find esbuild. Please add it to your devDependencies.');
     }
 
     return esbuildModule.build(options);

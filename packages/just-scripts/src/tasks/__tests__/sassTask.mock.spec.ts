@@ -38,44 +38,50 @@ const mockCreateSourceModule = jest.fn((_fileName: string, css: string) => `expo
 describe('sassTask (mocked)', () => {
   beforeEach(() => {
     mockGlobSync.mockReturnValue([]);
-    mockTryRequire.mockImplementation(() => null);
+    mockTryRequire.mockImplementation((name: string) => {
+      if (name === 'sass') return mockSassModule;
+      if (name === 'postcss') return mockPostcssModule;
+      if (name === 'autoprefixer') return () => ({});
+      return null;
+    });
   });
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  describe('skip conditions', () => {
-    it('does nothing if sass is not installed', async () => {
+  describe('missing dependencies and source files', () => {
+    it('throws when run if neither sass nor node-sass is installed', async () => {
       mockTryRequire.mockImplementation((name: string) => {
         if (name === 'postcss') return () => ({});
         if (name === 'autoprefixer') return () => ({});
         return null;
       });
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
-      await callTaskForTest(task);
+      expect(mockTryRequire).not.toHaveBeenCalled();
+      await expect(callTaskForTest(task)).rejects.toThrow('Required dependencies not found (one of sass or node-sass)');
     });
 
-    it('does nothing if postcss is not installed', async () => {
+    it('throws when run if postcss is not installed', async () => {
       mockTryRequire.mockImplementation((name: string) => {
         if (name === 'sass') return mockSassModule;
         if (name === 'autoprefixer') return () => ({});
         return null;
       });
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
-      await callTaskForTest(task);
+      await expect(callTaskForTest(task)).rejects.toThrow('Required dependencies not found (postcss)');
       expect(mockSassModule.compile).not.toHaveBeenCalled();
       expect(mockSassModule.render).not.toHaveBeenCalled();
     });
 
-    it('does nothing if autoprefixer is not installed', async () => {
+    it('throws when run if autoprefixer is not installed', async () => {
       mockTryRequire.mockImplementation((name: string) => {
         if (name === 'sass') return mockSassModule;
         if (name === 'postcss') return () => ({});
         return null;
       });
       const task = sassTask({ createSourceModule: mockCreateSourceModule });
-      await callTaskForTest(task);
+      await expect(callTaskForTest(task)).rejects.toThrow('Required dependencies not found (autoprefixer)');
       expect(mockSassModule.compile).not.toHaveBeenCalled();
       expect(mockSassModule.render).not.toHaveBeenCalled();
     });
@@ -122,6 +128,18 @@ describe('sassTask (mocked)', () => {
       await callTaskForTest(task);
       expect(mockCreateSourceModule).toHaveBeenCalledWith(path.resolve('src/styles/main.scss'), '.test{color:red}');
       expect(fs.writeFileSync).toHaveBeenCalledWith(path.resolve('src/styles/main.scss') + '.ts', expect.any(String));
+    });
+
+    it('compiles without optional postcss plugins', async () => {
+      mockTryRequire.mockImplementation((name: string) => {
+        if (name === 'sass') return mockSassModule;
+        if (name === 'postcss') return mockPostcssModule;
+        if (name === 'autoprefixer') return () => ({});
+        return null;
+      });
+      const task = sassTask({ createSourceModule: mockCreateSourceModule });
+      await callTaskForTest(task);
+      expect(mockCreateSourceModule).toHaveBeenCalledWith(path.resolve('src/styles/main.scss'), '.test{color:red}');
     });
 
     it('processes multiple scss files', async () => {

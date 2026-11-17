@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "just-scripts",
+      "type": "major",
+      "comment": "Tasks for API Extractor, ESLint, Jest, Prettier, Sass, and webpack now fail when required tool dependencies are missing instead of warning and skipping. Missing configuration and optional Sass plugins retain their existing behavior.",
+      "email": "elcraig@microsoft.com",
+      "dependentChangeType": "patch"
+    }
+  ]
+}

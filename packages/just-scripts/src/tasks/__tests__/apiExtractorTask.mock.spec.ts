@@ -66,11 +66,15 @@ describe('apiExtractorTask (mocked)', () => {
     jest.clearAllMocks();
   });
 
-  describe('skip conditions', () => {
-    it('does nothing if api-extractor is not installed', async () => {
+  describe('missing dependencies and configuration', () => {
+    it.each([
+      { name: 'apiExtractorVerifyTask', createTask: apiExtractorVerifyTask },
+      { name: 'apiExtractorUpdateTask', createTask: apiExtractorUpdateTask },
+    ])('$name throws when run if api-extractor is not installed', async ({ createTask }) => {
       mockTryRequire.mockReturnValueOnce(null);
-      const task = apiExtractorVerifyTask({});
-      await callTaskForTest(task);
+      const task = createTask({});
+      expect(mockTryRequire).not.toHaveBeenCalled();
+      await expect(callTaskForTest(task)).rejects.toThrow('Cannot find @microsoft/api-extractor');
       expect(mockInvoke).not.toHaveBeenCalled();
     });
 

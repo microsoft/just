@@ -53,6 +53,7 @@ cd packages/just-task && yarn test --testPathPattern=cache  # Run specific test 
 
 - Use `/beachball-change-file` to generate a Beachball change file.
 - If you're working on an assigned GitHub issue, include `Fixes #N` in the PR description to link the issue.
+- Omit the validation section from PR descriptions when it would only list commands automatically run in CI. Include a validation section only for additional checks not covered by CI.
 
 ## Architecture
 

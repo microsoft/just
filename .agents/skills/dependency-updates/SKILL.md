@@ -41,7 +41,11 @@ Classify each alert as vulnerable locally, fixed locally, removed from the local
 
 ## Respect release quarantine
 
+When reviewing a Renovate "lock file maintenance" PR, quarantine compliance does not need to be verified separately: Renovate lock file maintenance respects quarantine. Other review checks still apply, including checking for newly duplicated dependency trees.
+
 When reviewing a Dependabot PR, verify that each updated package version in the proposed lockfile satisfies the affected project's configured `npmMinimalAgeGate`, using its registry publication timestamp and a freshly checked current time. Do not assume Dependabot or passing CI enforces this policy. If any updated version is still quarantined, recommend rejecting the PR. The review comment must identify the package and version and include the exact datetime when quarantine clears in both UTC and Pacific time (`America/Los_Angeles`, labeled PST or PDT as applicable at that datetime). Do not close the PR without authorization.
+
+How to review quarantine compliance:
 
 1. Read all matching ranges in `security_advisory.vulnerabilities`, not only the alert's first patched version. Different major versions can have different fixes.
 2. Query npm registry metadata for the candidate release's publication timestamp, engines, dependency ranges, and peer requirements. A null first-patched field is not conclusive: inspect newer releases and upstream advisories, without assuming every newer version fixes the issue.

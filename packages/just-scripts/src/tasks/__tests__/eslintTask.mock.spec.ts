@@ -79,13 +79,13 @@ describe('eslintTask (mocked)', () => {
     });
   });
 
-  describe('skip conditions', () => {
-    it('does nothing if eslint is not found', async () => {
+  describe('missing dependencies and configuration', () => {
+    it('throws when run if eslint is not found', async () => {
       mockfs({
         '.eslintrc.json': 'a file',
       });
       const task = eslintTask();
-      await callTaskForTest(task);
+      await expect(callTaskForTest(task)).rejects.toThrow('Cannot find eslint CLI');
       expect(mockSpawn).not.toHaveBeenCalled();
     });
 

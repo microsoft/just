@@ -42,7 +42,7 @@ export interface JestTaskOptions {
 }
 
 /**
- * Create a task to run jest. Logs a warning if `jest` or a config file isn't found.
+ * Create a task to run jest. Throws if `jest` isn't found. Logs a warning if a config file isn't found.
  */
 export function jestTask(options: JestTaskOptions = {}): TaskFunction {
   // undertaker apparently requires returning a promise, async function, or function that calls done()
@@ -51,8 +51,7 @@ export function jestTask(options: JestTaskOptions = {}): TaskFunction {
 
     const jestBinPath = resolveBin('jest');
     if (!jestBinPath) {
-      logger.warn(`jest CLI not found, so this task has no effect.`);
-      return;
+      throw new Error('Cannot find jest CLI. Please add jest to your devDependencies.');
     }
 
     const configFile = options.config || jestConfigFile;

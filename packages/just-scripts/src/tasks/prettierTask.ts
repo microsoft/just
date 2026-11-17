@@ -1,4 +1,4 @@
-import { logger, type TaskFunction } from 'just-task';
+import type { TaskFunction } from 'just-task';
 import { arrayify } from '../arrayUtils/arrayify';
 import { splitArrayIntoChunks } from '../arrayUtils/splitArrayIntoChunks';
 import { resolveBin } from '../tryRequire';
@@ -28,15 +28,14 @@ export interface PrettierTaskOptions {
 }
 
 /**
- * Create a task to run prettier via its CLI. Logs a warning if `prettier` is not found.
+ * Create a task to run prettier via its CLI. Throws if `prettier` is not found.
  */
 export function prettierTask(options: PrettierTaskOptions = {}): TaskFunction {
   return async function prettier() {
     // check v2 or v3 path
     const prettierBin = resolveBin('prettier');
     if (!prettierBin) {
-      logger.warn('prettier not found, so this task has no effect.');
-      return;
+      throw new Error('Cannot find prettier CLI. Please add prettier to your devDependencies.');
     }
 
     await runPrettierAsync({

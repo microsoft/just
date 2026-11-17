@@ -26,15 +26,14 @@ export interface WebpackTaskOptions extends Configuration {
 }
 
 /**
- * Create a task for running webpack. Logs a warning if `webpack` isn't found.
+ * Create a task for running webpack. Throws if `webpack` isn't found.
  */
 export function webpackTask(options?: WebpackTaskOptions): TaskFunction {
   return async function webpack() {
     const wp = tryRequire<typeof import('webpack')>('webpack');
 
     if (!wp) {
-      logger.warn('webpack is not installed, this task has no effect');
-      return;
+      throw new Error('Cannot find webpack. Please add it to your devDependencies.');
     }
 
     logger.info(`Running Webpack`);

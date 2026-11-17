@@ -34,11 +34,14 @@ describe('prettierTask (mocked)', () => {
     mockfs.restore();
   });
 
-  describe('skip conditions', () => {
-    it('does nothing if prettier is not found', async () => {
+  describe('missing dependencies', () => {
+    it.each([
+      { name: 'prettierTask', createTask: prettierTask },
+      { name: 'prettierCheckTask', createTask: prettierCheckTask },
+    ])('$name throws when run if prettier is not found', async ({ createTask }) => {
       mockfs({});
-      const task = prettierTask();
-      await callTaskForTest(task);
+      const task = createTask();
+      await expect(callTaskForTest(task)).rejects.toThrow('Cannot find prettier CLI');
       expect(mockSpawn).not.toHaveBeenCalled();
     });
   });

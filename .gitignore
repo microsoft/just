@@ -15,7 +15,10 @@ dist
 temp
 .temp
 .cache
+
+# likely copilot temporary files
 *.tmp.*
+pr-description.md
 
 docs/.yarn/*
 .yarn/*
