@@ -61,14 +61,13 @@ export function createTarTask(opts: CreateOptions = { file: 'archive.tar.gz' }):
     const { file, cwd, gzip, ...restOptions } = options;
 
     // Use the pipeline helper for proper error handling
-    pipeline(
-      [
-        tar.pack(cwd, { finalize: true, ...restOptions }),
-        ...(gzip ? [createGzip(typeof gzip === 'boolean' ? {} : gzip)] : []),
-        createWriteStream(file),
-      ],
-      done,
-    );
+    const source = tar.pack(cwd, { finalize: true, ...restOptions });
+    const destination = createWriteStream(file);
+    if (gzip) {
+      pipeline(source, createGzip(typeof gzip === 'boolean' ? {} : gzip), destination, done);
+    } else {
+      pipeline(source, destination, done);
+    }
   };
 }
 

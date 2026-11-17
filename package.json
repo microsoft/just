@@ -64,11 +64,13 @@
   },
   "resolutions": {
     "@types/chokidar/chokidar@*": "^3.0.0",
-    "@types/node@*": "^22.0.0"
+    "@types/node@*": "^22.0.0",
+    "node-gyp": "ignore:"
   },
   "rationale": {
     "resolutions": {
       "@types/chokidar/chokidar@*": "pin to version matching other chokidar deps, not *"
     }
-  }
+  },
+  "packageManager": "yarn@4.18.1"
 }

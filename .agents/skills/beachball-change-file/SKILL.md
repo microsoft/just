@@ -1,148 +1,129 @@
 ---
-description: How to create a Beachball change file. ONLY use this skill when the user asks to generate change files, before pushing a branch, or before creating a PR.
+description: Create and validate Beachball change files. Use when the user asks to generate change files, prepare to push a branch, or prepare or create a pull request. Do not use for ordinary code changes or planning.
 license: MIT
 metadata:
   github-path: skills/beachball-change-file
   github-ref: refs/heads/main
   github-repo: https://github.com/microsoft/beachball
-  github-tree-sha: 5198ce6d081a41c46a6a1bbf211418972596ef33
+  github-tree-sha: 21ff9c990bdc69d7dd677e831d94da13bff91b63
   source: https://github.com/microsoft/beachball/blob/main/skills/beachball-change-file/SKILL.md
-  version: 1.0.6
+  version: 1.1.1
 name: beachball-change-file
 ---
 
-[Beachball](https://microsoft.github.io/beachball/) is a tool used for managing versioning and changelogs for JS/TS codebases. Every pull request must include a Beachball change file. Change files include the list of packages with public-facing changes in the branch, with the description and semver change type for each package. After the PR is checked in and a release is run, the change files are used to determine version bumps and update changelogs.
+[Beachball](https://microsoft.github.io/beachball/) manages package versions and changelogs in JavaScript and TypeScript repositories. A change file records each changed package's changelog comment and semantic version bump. After a change is merged and released, Beachball uses these files to update package versions and changelogs.
 
-Beachball normally uses a CLI with an interactive prompt to create change files, but they can also be created manually using the standardized JSON format detailed below.
+Create change files manually using the workflow and JSON formats below. Do not use Beachball's interactive `change` command unless the user requests it.
 
-## Prerequisites
+## 1. Resolve repository context
 
-- Determine the root directory: this is almost always the git root, but the user might specify a different folder. (The root usually contains `beachball.config.*` or `.beachballrc.*` or has a `"beachball"` key in `package.json`.)
-- Determine the package manager for the repo (`npm`, `yarn`, `pnpm`). The example commands below assume `yarn`, but substitute the appropriate command runner syntax for a different package manager.
-- Check the root `package.json` `scripts` for scripts that run `beachball change` and `beachball check`.
-  - The examples below assume `scripts` called `change` and `checkchange` respectively, but substitute the appropriate script names if found.
-  - Using `scripts` if defined is preferred since they may add extra arguments, but it's possible to run the commands directly: `yarn beachball change` and `yarn beachball check` (substituting appropriate command runner)
-- Use `beachball config get` to check the following settings (note: `beachball config get` only exists in versions `>= 2.64.0`)
-  - `yarn beachball config get changeDir`: where to put the change files
-  - `yarn beachball config get branch`: target branch name
-  - `yarn beachball config get groupChanges`: whether grouped change files are enabled (true/false/undefined)
+Determine these values once and use them throughout the workflow:
 
-## Creating and validating a change file
+- `<ROOT>`: almost always the git root. It should contain `beachball.config.*` or `.beachballrc.*` or have a `"beachball"` key in `package.json`. If not found, ask the user.
+- `<BEACHBALL_COMMAND>`: the package-manager-specific way to invoke Beachball, such as `yarn beachball`, `pnpm exec beachball`, or `npm exec beachball --`.
+- `<BEACHBALL_VERSION>`: the version from `<BEACHBALL_COMMAND> --version`
+- `<CHECK_COMMAND>`: prefer a root `package.json` script that runs `beachball check`, because it may supply repository-specific arguments. Otherwise use `<BEACHBALL_COMMAND> check`. Include the package-manager-specific argument separator when passing `--verbose` through a script.
+- `<CHANGE_DIR>`: the result of `<BEACHBALL_COMMAND> config get changeDir`, or `change/` if unset.
+- `<GROUP_CHANGES>`: the result of `<BEACHBALL_COMMAND> config get groupChanges`; treat `false` and unset as non-grouped.
+- `<TARGET_BRANCH>`: use the branch specified by the user or pull request. Otherwise use the result of `<BEACHBALL_COMMAND> config get branch`, or the repository's default branch if unset. Ask the user if it cannot be determined reliably.
+- `<MERGE_BASE>`: the local merge-base of `HEAD` and `<TARGET_BRANCH>`. Do not merge the target branch to calculate it.
+- `<INCLUDE_EMAIL>`: For Beachball 2.x, set this to `true`. For Beachball 3.x, use the result of `<BEACHBALL_COMMAND> config get changeFile.includeEmail`; set this to `false` only if the result is explicitly `false`; otherwise set it to `true`.
+- `<EMAIL>`: the result of `git config user.email`. Never invent an email.
 
-Usually, an AI agent should create a change file manually following the standardized format detailed below.
+Run all commands from `<ROOT>` unless the repository's script requires otherwise.
 
-### 1. Validate repo state
+## 2. Inspect the git state
 
-Beachball only considers staged and committed files, so you should check for unstaged or untracked changes before proceeding:
+Beachball considers committed and staged files, but not unstaged or untracked files. Before proceeding, check for unstaged or untracked paths:
 
-1. Get file paths with unstaged changes (`git ls-files -m`) and untracked changes (`git ls-files -o --exclude-standard`)
-2. If there are any unstaged or untracked changes, ask the user whether they would like to stage all files or continue without staging. If they choose to stage, run `git add .` before proceeding.
+- Unstaged tracked paths: `git ls-files -m`
+- Untracked paths: `git ls-files -o --exclude-standard`
 
-### 2. Get changed packages
+If any changes are unstaged or untracked, ask whether to stage those exact paths or continue without them.
 
-Run `yarn checkchange --verbose` to get the list of changed packages and files considered by `beachball`:
+## 3. Get the authoritative changes
 
-- The list of changed packages is under "Found changes in the following packages" -- you must ONLY include these packages in the change file! (beachball has various settings to ignore packages or files)
-- The list of changed files is under "changed files in current branch". IGNORE any files with `~~` strikethrough formatting.
+Run `<CHECK_COMMAND> --verbose`, using the required argument separator if `<CHECK_COMMAND>` is a package script.
 
-DO NOT manually check for existing change files.
+- Use only the packages under "Found changes in the following packages" as change-file entries. Beachball configuration may exclude packages or files that otherwise appear changed.
+- Use the paths under "changed files in current branch" when reviewing the changes. Ignore paths shown with `~~` strikethrough formatting.
+- Do not determine which packages need entries by scanning `<CHANGE_DIR>`. Beachball's package list already accounts for existing change files and repository configuration.
 
-### 3. Create the change file(s)
+A nonzero exit caused by missing change files is expected at this stage; continue using the reported packages and paths. If the command failed because it could not run or load configuration, resolve or report that error before continuing. If no packages require entries, report that no change file is needed and stop.
 
-Change files are located under `<changeDir>`. There are two possible structures for change files, determined by the `groupChanges` setting.
+## 4. Determine each entry
 
-When checking diffs to generate change files, DO NOT merge with the target branch; just use the local merge-base.
+For each package reported by Beachball, gather:
 
-#### Case 1: Non-grouped format (`groupChanges` is `false` or unset)
+- Its current `version` from `package.json`.
+- Its disallowed types from `<BEACHBALL_COMMAND> config get disallowedChangeTypes --package <packageName>`.
+- Its considered changes from `git diff --cached <MERGE_BASE> -- <reported-paths>`. This form includes committed and staged changes while excluding unstaged edits.
+- Any relevant API report diff under the package's `etc/*.api.md`. A changed API report is strong evidence of a public signature change; an unchanged or absent report does not prove that the API is unchanged.
 
-If `groupChanges` is `false` or unset, you should create a separate change file for each package.
+Gather independent values for all reported packages in parallel when the available tools allow it.
 
-For each changed package **as listed by beachball**:
+Choose `type` using this table, then ensure the type is not disallowed:
 
-1. Generate a random GUID: `node -e "console.log(crypto.randomUUID())"`
-2. Create a change file under `<changeDir>/<packageName>-<guid>.json` with the following format. See [Change entry values](#change-entry-values) below for the proper values of each field.
+<!-- prettier-ignore -->
+| Package version | Consumer impact | `type` |
+| --------------- | --------------- | ------ |
+| Any | No consumer-visible effect, such as test-only or internal documentation changes | `none` |
+| Prerelease | Any consumer-visible effect | `prerelease` |
+| Stable `0.x` | Breaking API or behavior change | `minor` |
+| Stable `0.x` | Any other consumer-visible change | `patch` |
+| Stable `>=1.0.0` | Breaking API or behavior change | `major`, after user confirmation |
+| Stable `>=1.0.0` | New backward-compatible public functionality | `minor` |
+| Stable `>=1.0.0` | Backward-compatible fix or behavior correction | `patch` |
+
+For a stable package, use `prerelease`, `premajor`, `preminor`, or `prepatch` only when explicitly requested. For a prerelease package, use another prerelease type only when explicitly requested or when all normal choices are disallowed. If the inferred type is disallowed and there is no unambiguous allowed replacement, ask the user. If impact remains uncertain, prefer the consumer-impacting type (`patch` for stable packages or `prerelease` for prerelease packages).
+
+Set the remaining values as follows:
+
+- `packageName`: the exact package name reported by Beachball.
+- `dependentChangeType`: Depends on `<BEACHBALL_VERSION>`:
+  - 2.x: unless explicitly requested by the user, use `none` for change type `none`, and `patch` for all other change types.
+  - 3.x: Only include this if the user explicitly requests non-default dependent bump behavior.
+- `comment`: a concise, user-facing description suitable for a changelog. Emphasize API or behavior changes rather than implementation details, and wrap code identifiers in backticks.
+- `email`: omit this if `<INCLUDE_EMAIL>` is `false`. Otherwise use `<EMAIL>`. If `<EMAIL>` is not available, behavior depends on `<BEACHBALL_VERSION>`:
+  - 2.x: use `email not defined`.
+  - 3.x: omit the email.
+
+Ask the user only about unresolved classifications and any proposed `major` bump. When multiple packages need input, ask about them together.
+
+## 5. Create the change files
+
+Generate one random UUID per output file. When multiple files are needed, generate all UUIDs in one command, for example: `node -e "console.log(Array.from({ length: Number(process.argv[1]) }, () => crypto.randomUUID()).join('\n'))" <count>`.
+
+If `<GROUP_CHANGES>` is false or unset, create `<CHANGE_DIR>/<packageName>-<uuid>.json` for each package:
 
 ```json
 {
-  "packageName": "",
-  "type": "",
-  "dependentChangeType": "",
-  "comment": "",
-  "email": ""
+  "packageName": "example-package",
+  "type": "patch",
+  "comment": "Fix an issue affecting consumers",
+  "email": "user@example.com"
 }
 ```
 
-#### Case 2: Grouped format (`groupChanges: true`)
-
-If `groupChanges` is `true`, you should create a single change file.
-
-1. Generate a random GUID: `node -e "console.log(crypto.randomUUID())"`
-2. Create a single change file under `<changeDir>/change-<guid>.json` with the following format. The `changes` array should have an entry for each changed package **as listed by beachball**. See [Change entry values](#change-entry-values) below for the proper values of each field.
+If `<GROUP_CHANGES>` is true, create one `<CHANGE_DIR>/change-<uuid>.json` containing every package reported by Beachball:
 
 ```json
 {
   "changes": [
     {
-      "packageName": "",
-      "type": "",
-      "dependentChangeType": "",
-      "comment": "",
-      "email": ""
+      "packageName": "example-package",
+      "type": "patch",
+      "comment": "Fix an issue affecting consumers",
+      "email": "user@example.com"
     }
   ]
 }
 ```
 
-### 4. Validate the change file(s)
+Use the actual values determined above; the examples are illustrative only.
 
-Run `git add <changeDir>`, then re-run `yarn checkchange` to verify.
+## 6. Validate the result
 
-## Change entry values
+Beachball cannot validate new untracked change files. If staging permission was not already granted, ask before staging only the exact files just created.
 
-Each package's entry has the following values:
-
-- `packageName`: The name of the changed package, e.g. `just-task`
-- `type`: The semantic versioning change type for the package. See [Determining a package's change type](#determining-a-packages-change-type) below.
-- `dependentChangeType`: Change type for packages that depend on this package. If `type` is `"none"`, this should be `"none"`. Otherwise, this should be `"patch"` (beachball internally handles this for the special case of prerelease packages).
-- `comment` (`--message` CLI arg): A concise description of the changes made to the package. Tips:
-  - This will go in the changelog, so it should focus on user-facing changes (especially any API changes) rather than implementation details.
-  - Markdown formatting is allowed, so any references to names from code should be wrapped with backticks.
-- `email`: User's email from `git config user.email`, or `"email not defined"` if not available. Do NOT invent an email.
-
-### Determining a package's change type
-
-The `type` field is the semantic versioning change type for the package, determined based on the diff content of changed files in that package. There are different options depending on whether the package's current version contains a prerelease suffix or not, and the `disallowedChangeTypes` setting may modify which change types are allowed.
-
-If you're still uncertain about the change type after following the instructions below, ask the user to choose.
-
-For each package, start by checking:
-
-- The current `version` in `package.json`
-- `disallowedChangeTypes` for the specific package: `yarn beachball config get disallowedChangeTypes --package <packageName>`
-- Whether the package has a file `<package path>/etc/*.api.md`. If so, the diff of this file will show whether any public API signatures changed.
-
-#### Case 1: Version is 1.0.0 or greater and NOT prerelease
-
-If the package's current version is 1.0.0 or greater and does NOT have a prerelease suffix, the typical options are `<patch|minor|major|none>` (but you MUST respect `disallowedChangeTypes`):
-
-- `"patch"`: Bug fixes or other changes that don't impact exported API signatures.
-- `"minor"`: New exported APIs, non-breaking signature changes to exported APIs, or more significant changes to internal logic. (If the package has a `<package path>/etc/*.api.md` file, checking its diff is the easiest way to see exported API changes.)
-- `"major"`: Breaking changes to exported APIs (removals or breaking signature changes), critical dependency updates, or behavior changes that might be breaking for the consumer. You MUST confirm with the user before choosing `"major"`.
-- `"none"`: None of the changes will impact consumers of the package (e.g. the changes are only to non-exported test-specific files or documentation). If you're not certain, prefer `"patch"`.
-- There are additional options `prerelease|premajor|preminor|prepatch`, but you should only use one of these if explicitly requested by the user.
-
-#### Case 2: Version is 0.x.y and NOT prerelease
-
-If the package's major version is 0 and does NOT have a prerelease suffix, this is similar to case 1. However, version 0 packages follow different conventions for semantic versioning (you MUST still respect `disallowedChangeTypes`):
-
-- Use `"minor"` for breaking changes (do NOT use `"major"` unless specifically requested)
-- Use `"patch"` for any other changes that impact consumers of the package
-- Use `"none"` in the same circumstances as case 1
-
-#### Case 3: Version IS prerelease
-
-ONLY if the package's current version includes a prerelease suffix, the typical options are `<prerelease|none>` (but you MUST respect `disallowedChangeTypes`):
-
-- `"prerelease"`: Any changes that impact consumers of the package
-- `"none"`: None of the changes will impact consumers of the package (e.g. the changes are only to non-exported test-specific files or documentation). If you're not certain, prefer `"prerelease"`.
-- There are additional options `premajor|preminor|prepatch`, but you should only use one of these if explicitly requested by the user or all other change types are disallowed.
+After staging the generated files, rerun `<CHECK_COMMAND>` without `--verbose`. Validation succeeds when the command exits successfully. If the user declines staging, validate the files as JSON and explain that full Beachball validation requires them to be staged.
