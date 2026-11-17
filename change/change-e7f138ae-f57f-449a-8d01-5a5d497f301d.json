@@ -10,7 +10,7 @@
     {
       "packageName": "just-scripts",
       "type": "major",
-      "comment": "Remove `ts-node` integration and the associated `enableTypeScript`, `tsconfig`, and `transpileOnly` task options; use Node.js native TypeScript and ESM support instead. Webpack CLI tasks now require `webpack-cli` v7 or newer.",
+      "comment": "Remove `ts-node` integration and the associated `enableTypeScript`, `tsconfig`, and `transpileOnly` task options; use Node.js native TypeScript and ESM support instead. Native TypeScript configs on `webpack-cli` v5/v6 may need `--disable-interpret`; v7 is recommended.",
       "email": "elcraig@microsoft.com",
       "dependentChangeType": "patch"
     }
