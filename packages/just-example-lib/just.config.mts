@@ -62,14 +62,14 @@ task(
       }
     : prettierCheckTask({
         files: ['src'],
-        configPath: path.resolve(__dirname, '../../prettier.config.js'),
-        ignorePath: path.resolve(__dirname, '../../.prettierignore'),
+        configPath: path.resolve(import.meta.dirname, '../../prettier.config.js'),
+        ignorePath: path.resolve(import.meta.dirname, '../../.prettierignore'),
       }),
 );
 
 task('lint', series('eslint', 'prettier:check'));
 
-task('customNodeTask', nodeExecTask({ enableTypeScript: true, args: ['./src/customTask.ts'] }));
+task('customNodeTask', nodeExecTask({ args: ['./src/customTask.mts'] }));
 
 task('bundle:fake', () => {
   const someVar = Math.random();
@@ -115,9 +115,9 @@ task(
   ),
 );
 
-const tarFile = path.join(__dirname, 'dist/sample.tar.gz');
-task('tar:create', createTarTask({ file: tarFile, cwd: path.join(__dirname, 'lib') }));
-task('tar:extract', extractTarTask({ file: tarFile, cwd: path.join(__dirname, 'dist/extracted') }));
+const tarFile = path.join(import.meta.dirname, 'dist/sample.tar.gz');
+task('tar:create', createTarTask({ file: tarFile, cwd: path.join(import.meta.dirname, 'lib') }));
+task('tar:extract', extractTarTask({ file: tarFile, cwd: path.join(import.meta.dirname, 'dist/extracted') }));
 
 task('tar', series('tar:create', 'tar:extract'));
 
@@ -130,7 +130,7 @@ task(
     // build the `*.css` pattern with `path.posix` rather than `path.join`, which would use `\` on
     // Windows and cause glob to treat the separators as escape characters (matching nothing).
     paths: [path.resolve('src/clippy.jpg'), 'src/*.css'],
-    dest: path.join(__dirname, 'dist/copied'),
+    dest: path.join(import.meta.dirname, 'dist/copied'),
   }),
 );
 
@@ -138,8 +138,8 @@ task(
   'copy:instructions',
   copyInstructionsTask({
     copyInstructions: copyInstructions.copyFileToDestinationDirectoryWithRename({
-      sourceFilePath: path.join(__dirname, 'src/style1.css'),
-      destinationDirectory: path.join(__dirname, 'dist'),
+      sourceFilePath: path.join(import.meta.dirname, 'src/style1.css'),
+      destinationDirectory: path.join(import.meta.dirname, 'dist'),
       destinationName: 'renamed-style1.css',
     }),
   }),
@@ -147,7 +147,7 @@ task(
 
 task('copy:verify', done => {
   const expected = ['dist/renamed-style1.css', 'dist/copied/clippy.jpg', 'dist/copied/style1.css'];
-  const missing = expected.filter(file => !fs.existsSync(path.join(__dirname, file)));
+  const missing = expected.filter(file => !fs.existsSync(path.join(import.meta.dirname, file)));
   if (missing.length) {
     done(new Error(`Missing expected copied files: ${missing.join(', ')}`));
   }

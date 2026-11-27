@@ -1,7 +1,6 @@
 import { basicWebpackConfig, webpackMerge, htmlOverlay, fileOverlay, tsOverlay, stylesOverlay } from 'just-scripts';
 
-// must use export = for cts loaded directly with node
-export = () => {
+export default () => {
   return webpackMerge.merge(
     basicWebpackConfig,
     tsOverlay({ checkerOptions: false }),

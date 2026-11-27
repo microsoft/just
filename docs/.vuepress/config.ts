@@ -49,7 +49,7 @@ export default defineUserConfig({
       },
       {
         text: 'Migration',
-        link: '/migration/',
+        link: '/migration/v3',
         collapsible: false,
         children: [{ text: 'Migrating to v3', link: '/migration/v3' }],
       },
